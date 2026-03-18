@@ -6,12 +6,12 @@ tags={
 	"Events"
 }
 name="Relics of Legend: The Old World"
-supported_version="1.18.4"
-
-	
-//if = {
-		limit = { exists = scope:newly_created_artifact }
-		scope:newly_created_artifact = {
-			set_owner = root
-		}
+"//if"={
+	"limit"={
+		exists="scope:newly_created_artifact"
 	}
+	"scope:newly_created_artifact"={
+		set_owner="root"
+	}
+}
+supported_version="1.18.4"

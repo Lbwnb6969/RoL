@@ -1,4 +1,4 @@
-# Mythic Relics - 神话武器类型定义
+﻿# Mythic Relics - 神话武器类型定义
 # 注意：slot = primary_armament 对应角色界面中的 weapon 槽位
 rol_sword_of_mars = {
 	slot = primary_armament

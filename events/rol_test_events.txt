@@ -1,8 +1,4 @@
-# ==========================================
-# 这一排注释的作用是吸收文件头部可能残留的隐形 BOM 字符
-# 绝对不要删除这两行注释！
-# ==========================================
-namespace = rol_test
+﻿namespace = rol_test
 
 # Mythic Relics - 最小测试事件（控制台触发）
 rol_test.0001 = {
@@ -17,7 +13,7 @@ rol_test.0001 = {
 
 	option = {
 		name = rol_test.0001.a
-		# 直接触发效果即可，不需要写 root = {}，因为 option 默认就是在玩家作用域
+		# 直接触发效果即可，不需要写 root = {}
 		rol_create_sword_of_mars_effect = yes
 	}
 }

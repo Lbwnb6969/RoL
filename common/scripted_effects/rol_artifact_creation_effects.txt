@@ -1,4 +1,4 @@
-# Mythic Relics - 测试神器创建效果
+﻿# Mythic Relics - 测试神器创建效果
 # scope = character   <-- 必须加上这一行！告诉插件这是角色域！
 rol_create_sword_of_mars_effect = {
 	create_artifact = {

@@ -1,4 +1,4 @@
-# Mythic Relics - 神话神器修正
+﻿# Mythic Relics - 神话神器修正
 rol_sword_of_mars_modifier = {
 	prowess = 10
 	monthly_prestige_gain_mult = 0.10
