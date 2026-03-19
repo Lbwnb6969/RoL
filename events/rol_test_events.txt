@@ -1,6 +1,7 @@
 ﻿namespace = rol_test
 
 # Mythic Relics - 最小测试事件（控制台触发）
+# 控制台调用：event rol_test.0001
 rol_test.0001 = {
 	type = character_event
 	title = rol_test.0001.t
@@ -13,7 +14,8 @@ rol_test.0001 = {
 
 	option = {
 		name = rol_test.0001.a
-		# 直接触发效果即可，不需要写 root = {}
-		rol_create_sword_of_mars_effect = yes
+		root = {
+			rol_create_sword_of_mars_effect = yes
+		}
 	}
 }

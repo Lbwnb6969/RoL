@@ -1,5 +1,5 @@
 ﻿# Mythic Relics - 测试神器创建效果
-# scope = character   <-- 必须加上这一行！告诉插件这是角色域！
+# 调用方式（角色作用域）：rol_create_sword_of_mars_effect = yes
 rol_create_sword_of_mars_effect = {
 	create_artifact = {
 		name = rol_sword_of_mars_name
@@ -14,11 +14,8 @@ rol_create_sword_of_mars_effect = {
 		save_scope_as = newly_created_artifact
 	}
 
-	# 二次保险（CODEX写的，可以保留）
 	if = {
 		limit = { exists = scope:newly_created_artifact }
-		scope:newly_created_artifact = {
-			set_owner = root
-		}
+		scope:newly_created_artifact = { set_owner = root }
 	}
 }

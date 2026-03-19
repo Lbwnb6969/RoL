@@ -1,0 +1,4 @@
+﻿l_simp_chinese:
+ rol_test_decision:0 "[调试] 获得罗马战神之剑"
+ rol_test_decision_desc:0 "用于验证 Mythic Relics 是否成功加载的开发测试决议。"
+ rol_test_decision_tooltip:0 "创建并获得神器：罗马战神之剑"

@@ -1,0 +1,24 @@
+﻿rol_test_decision = {
+	ai_check_interval = 0
+	major = yes
+
+	picture = {
+		reference = "gfx/interface/illustrations/decisions/decision_destiny_goal.dds"
+	}
+
+	desc = rol_test_decision_desc
+	selection_tooltip = rol_test_decision_tooltip
+
+	is_shown = {
+		is_ai = no
+	}
+
+	is_valid = {
+		is_alive = yes
+	}
+
+	effect = {
+		# 在玩家作用域创建并归属神器
+		rol_create_sword_of_mars_effect = yes
+	}
+}

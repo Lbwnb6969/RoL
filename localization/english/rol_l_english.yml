@@ -1,0 +1,6 @@
+﻿l_english:
+ rol_test_decision:0 "[DEBUG] Claim the Sword of Mars"
+ rol_test_decision_desc:0 "A development decision used to verify that Mythic Relics is loaded correctly."
+ rol_test_decision_tooltip:0 "Create and receive the artifact: Sword of Mars"
+ rol_sword_of_mars_name:0 "Sword of Mars"
+ rol_sword_of_mars_description:0 "A legendary blade said to have been consecrated at the altar of Mars, god of war."
