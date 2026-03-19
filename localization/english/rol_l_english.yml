@@ -6,6 +6,8 @@
 
  rol_sword_of_mars_name:0 "Sword of Mars"
  rol_sword_of_mars_description:0 "A legendary blade said to have been consecrated at the altar of Mars, god of war."
+ artifact_rol_sword_of_mars:0 "Sword of Mars"
+ artifact_rol_sword_of_mars_desc:0 "A venerable war relic hallowed in Mars' name."
 
  rol_blade_of_mars:0 "Blade of Mars"
  rol_blade_of_mars_desc:0 "A blood-red relic said to have once belonged to Mars himself."
@@ -113,5 +115,9 @@
  rol_relic_activity_stage_log:0 "[CHARACTER.GetShortUIName|U] overcomes another stage in the ruins."
  rol_relic_activity_success_log:0 "[CHARACTER.GetShortUIName|U] secures the legendary relic."
  rol_relic_activity_failure_log:0 "[CHARACTER.GetShortUIName|U] withdraws after expedition failure."
+ rol_relic_activity_start_log_title:0 "Expedition Begins"
+ rol_relic_activity_stage_log_title:0 "Expedition Progress"
+ rol_relic_activity_success_log_title:0 "Expedition Success"
+ rol_relic_activity_failure_log_title:0 "Expedition Failed"
  rol_mars_activity_success_toast_title:0 "Expedition Success"
  rol_mars_activity_failure_toast_title:0 "Expedition Failed"

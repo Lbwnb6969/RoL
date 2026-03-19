@@ -1,6 +1,5 @@
 ﻿rol_test_decision = {
 	ai_check_interval = 0
-	major = yes
 
 	picture = {
 		reference = "gfx/interface/illustrations/decisions/decision_destiny_goal.dds"

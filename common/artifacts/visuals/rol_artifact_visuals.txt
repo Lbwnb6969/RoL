@@ -13,4 +13,5 @@ rol_blade_of_mars_visual = {
 # 可替换为你自定义图标：gfx/interface/icons/artifact/rol_nibelung_star_sphere.dds
 rol_nibelung_star_sphere_visual = {
 	icon = "artifact_regalia.dds"
+	asset = ep1_generic_jewelry_01_a_entity
 }
