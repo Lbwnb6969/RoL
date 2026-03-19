@@ -27,7 +27,9 @@ rol_quest_rome.1000 = {
 
 	option = {
 		name = rol_quest_rome.1000.a
-		custom_tooltip = rol_quest_rome.1000.a.tt
+		skill = martial
+		custom_tooltip = rol_quest_rome.1000.a.base_tt
+
 		if = {
 			limit = {
 				OR = {
@@ -35,28 +37,42 @@ rol_quest_rome.1000 = {
 					prowess >= 14
 				}
 			}
+			custom_tooltip = rol_quest_rome.1000.a.odds_high_tt
 			random_list = {
 				60 = {
 					add_prestige = 75
-					hidden_effect = { rol_rome_quest_progress_effect = yes }
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_major = yes }
+						rol_rome_quest_progress_effect = yes
+					}
 				}
 				40 = {
 					add_trait = wounded_1
 					add_prestige = -100
-					hidden_effect = { rol_rome_quest_progress_effect = yes }
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_negative = yes }
+						rol_rome_quest_progress_effect = yes
+					}
 				}
 			}
 		}
 		else = {
+			custom_tooltip = rol_quest_rome.1000.a.odds_low_tt
 			random_list = {
 				40 = {
 					add_prestige = 50
-					hidden_effect = { rol_rome_quest_progress_effect = yes }
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_medium = yes }
+						rol_rome_quest_progress_effect = yes
+					}
 				}
 				60 = {
 					add_trait = wounded_1
 					add_prestige = -100
-					hidden_effect = { rol_rome_quest_progress_effect = yes }
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_negative = yes }
+						rol_rome_quest_progress_effect = yes
+					}
 				}
 			}
 		}
@@ -64,12 +80,16 @@ rol_quest_rome.1000 = {
 
 	option = {
 		name = rol_quest_rome.1000.b
+		skill = learning
 		trigger = {
 			learning >= 15
 		}
 		custom_tooltip = rol_quest_rome.1000.b.tt
 		add_piety = 75
-		hidden_effect = { rol_rome_quest_progress_effect = yes }
+		hidden_effect = {
+			scope:activity ?= { activity_special_type_progression_major = yes }
+			rol_rome_quest_progress_effect = yes
+		}
 	}
 
 	option = {
@@ -77,6 +97,7 @@ rol_quest_rome.1000 = {
 		custom_tooltip = rol_quest_rome.1000.c.tt
 		add_prestige = -50
 		hidden_effect = {
+			scope:activity ?= { activity_special_type_progression_negative_major = yes }
 			rol_rome_quest_abort_effect = yes
 			rol_apply_mars_activity_cooldown_effect = yes
 		}
@@ -99,14 +120,17 @@ rol_quest_rome.1002 = {
 
 	option = {
 		name = rol_quest_rome.1002.a
+		skill = prowess
 		custom_tooltip = rol_quest_rome.1002.a.tt
 		if = {
 			limit = { prowess >= 12 }
 			add_prestige = 50
+			hidden_effect = { scope:activity ?= { activity_special_type_progression_medium = yes } }
 		}
 		else = {
 			add_trait = wounded_1
 			add_prestige = -50
+			hidden_effect = { scope:activity ?= { activity_special_type_progression_negative_tiny = yes } }
 		}
 		hidden_effect = { rol_rome_quest_progress_effect = yes }
 	}
@@ -116,6 +140,7 @@ rol_quest_rome.1002 = {
 		custom_tooltip = rol_quest_rome.1002.b.tt
 		add_prestige = -50
 		hidden_effect = {
+			scope:activity ?= { activity_special_type_progression_negative_major = yes }
 			rol_rome_quest_abort_effect = yes
 			rol_apply_mars_activity_cooldown_effect = yes
 		}
@@ -138,13 +163,16 @@ rol_quest_rome.1003 = {
 
 	option = {
 		name = rol_quest_rome.1003.a
+		skill = learning
 		custom_tooltip = rol_quest_rome.1003.a.tt
 		if = {
 			limit = { learning >= 14 }
 			add_piety = 75
+			hidden_effect = { scope:activity ?= { activity_special_type_progression_medium = yes } }
 		}
 		else = {
 			add_stress = 30
+			hidden_effect = { scope:activity ?= { activity_special_type_progression_negative_tiny = yes } }
 		}
 		hidden_effect = { rol_rome_quest_progress_effect = yes }
 	}
@@ -153,7 +181,10 @@ rol_quest_rome.1003 = {
 		name = rol_quest_rome.1003.b
 		custom_tooltip = rol_quest_rome.1003.b.tt
 		add_stress = 20
-		hidden_effect = { rol_rome_quest_progress_effect = yes }
+		hidden_effect = {
+			scope:activity ?= { activity_special_type_progression_tiny = yes }
+			rol_rome_quest_progress_effect = yes
+		}
 	}
 }
 
@@ -173,16 +204,21 @@ rol_quest_rome.1004 = {
 
 	option = {
 		name = rol_quest_rome.1004.a
+		skill = martial
 		custom_tooltip = rol_quest_rome.1004.a.tt
 		if = {
 			limit = { martial >= 16 }
 			add_prestige = 75
-			hidden_effect = { rol_rome_quest_progress_effect = yes }
+			hidden_effect = {
+				scope:activity ?= { activity_special_type_progression_major = yes }
+				rol_rome_quest_progress_effect = yes
+			}
 		}
 		else = {
 			add_trait = wounded_1
 			add_prestige = -100
 			hidden_effect = {
+				scope:activity ?= { activity_special_type_progression_negative_major = yes }
 				rol_rome_quest_abort_effect = yes
 				rol_apply_mars_activity_cooldown_effect = yes
 			}
@@ -194,19 +230,52 @@ rol_quest_rome.1004 = {
 		custom_tooltip = rol_quest_rome.1004.b.tt
 		add_prestige = -50
 		hidden_effect = {
+			scope:activity ?= { activity_special_type_progression_negative_major = yes }
 			rol_rome_quest_abort_effect = yes
 			rol_apply_mars_activity_cooldown_effect = yes
 		}
 	}
 }
 
-# 终局：获得神器
+# ???????
 rol_quest_rome.1001 = {
 	type = character_event
 	title = rol_quest_rome.1001.t
-	desc = rol_quest_rome.1001.desc
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					exists = scope:activity
+					scope:activity.var:activity_special_type_progression >= 75
+				}
+				desc = rol_quest_rome.1001.desc.tier_4
+			}
+			triggered_desc = {
+				trigger = {
+					exists = scope:activity
+					scope:activity.var:activity_special_type_progression >= 50
+				}
+				desc = rol_quest_rome.1001.desc.tier_3
+			}
+			triggered_desc = {
+				trigger = {
+					exists = scope:activity
+					scope:activity.var:activity_special_type_progression >= 25
+				}
+				desc = rol_quest_rome.1001.desc.tier_2
+			}
+			triggered_desc = {
+				trigger = {
+					exists = scope:activity
+				}
+				desc = rol_quest_rome.1001.desc.tier_1
+			}
+			desc = rol_quest_rome.1001.desc
+		}
+	}
 	theme = martial
 	override_background = { reference = armory }
+	override_sound = { reference = "event:/SFX/Events/Themes/sfx_event_theme_type_duty" }
 
 	trigger = {
 		is_ai = no
@@ -214,7 +283,9 @@ rol_quest_rome.1001 = {
 	}
 
 	immediate = {
-		# 直接发放神兵，避免脚本链失效导致“有事件无宝物”
+		play_sound_effect = "event:/DLC/EP1/SFX/UI/Notifications/court_grandeur_toast_lvl_up"
+
+		# ????????????????????????
 		create_artifact = {
 			name = artifact_rol_blade_of_mars
 			description = artifact_rol_blade_of_mars_desc
@@ -239,6 +310,10 @@ rol_quest_rome.1001 = {
 			error_log = "[ROL] Failed to grant artifact rol_blade_of_mars in rol_quest_rome.1001"
 		}
 
+		# ???????????????????
+		rol_rome_clamp_success_progress_effect = yes
+		rol_rome_apply_tiered_bonus_reward_effect = yes
+
 		add_character_flag = rol_mars_blade_claimed
 		remove_character_flag = rol_heard_mars_legend
 		remove_character_modifier = rol_mars_quest_cooldown_modifier
@@ -247,5 +322,6 @@ rol_quest_rome.1001 = {
 
 	option = {
 		name = rol_quest_rome.1001.a
+		custom_tooltip = rol_quest_rome.1001.a.tt
 	}
 }

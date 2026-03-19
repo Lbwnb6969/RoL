@@ -15,16 +15,66 @@ rol_rome_quest_progress_effect = {
 		add = 1
 	}
 
+	# 分阶段延时触发，避免事件连发挤在同一天
 	if = {
 		limit = { var:rol_rome_stage_count < 4 }
 		random_list = {
-			34 = { trigger_event = rol_quest_rome.1002 }
-			33 = { trigger_event = rol_quest_rome.1003 }
-			33 = { trigger_event = rol_quest_rome.1004 }
+			34 = { trigger_event = { id = rol_quest_rome.1002 days = 12 } }
+			33 = { trigger_event = { id = rol_quest_rome.1003 days = 16 } }
+			33 = { trigger_event = { id = rol_quest_rome.1004 days = 20 } }
 		}
 	}
 	else = {
-		trigger_event = rol_quest_rome.1001
+		trigger_event = { id = rol_quest_rome.1001 days = 10 }
+	}
+}
+
+# 将活动成功条限制在 0~100，避免超出UI预期
+rol_rome_clamp_success_progress_effect = {
+	scope:activity ?= {
+		if = {
+			limit = { var:activity_special_type_progression < 0 }
+			set_variable = {
+				name = activity_special_type_progression
+				value = 0
+			}
+		}
+		else_if = {
+			limit = { var:activity_special_type_progression > 100 }
+			set_variable = {
+				name = activity_special_type_progression
+				value = 100
+			}
+		}
+	}
+}
+
+# 终局额外奖励（不影响神器发放）
+rol_rome_apply_tiered_bonus_reward_effect = {
+	if = {
+		limit = {
+			exists = scope:activity
+			scope:activity.var:activity_special_type_progression >= 75
+		}
+		add_prestige = 250
+		add_piety = 150
+	}
+	else_if = {
+		limit = {
+			exists = scope:activity
+			scope:activity.var:activity_special_type_progression >= 50
+		}
+		add_prestige = 150
+	}
+	else_if = {
+		limit = {
+			exists = scope:activity
+			scope:activity.var:activity_special_type_progression >= 25
+		}
+		add_prestige = 75
+	}
+	else = {
+		add_prestige = 25
 	}
 }
 

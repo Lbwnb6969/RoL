@@ -30,6 +30,14 @@ activity_rol_seek_mars_blade = {
 		}
 	}
 
+	on_start = {
+		scope:activity = {
+			# 初始化活动成功条
+			activity_setup_special_type_progression_effect = yes
+			activity_special_type_progression_variable = { NUM = 30 }
+		}
+	}
+
 	province_filter = landed_title
 	ai_province_filter = landed_title
 	province_filter_target = c_roma
@@ -52,7 +60,8 @@ activity_rol_seek_mars_blade = {
 			on_phase_active = {
 				if = {
 					limit = { this = scope:host }
-					scope:activity = { progress_activity_phase_after = { days = 120 } }
+					# 给足时间，避免多阶段事件因延迟而被活动结束打断
+					scope:activity = { progress_activity_phase_after = { days = 365 } }
 					trigger_event = rol_quest_rome.1000
 				}
 			}
@@ -85,6 +94,32 @@ activity_rol_seek_mars_blade = {
 	guest_intents = {
 		intents = { reduce_stress_intent }
 		default = reduce_stress_intent
+	}
+
+	###################
+	# GRAPHICS
+	###################
+
+	# 活动所在地：地宫背景
+	background = {
+		trigger = {
+			scope:host.location = scope:activity.activity_location
+		}
+		texture = "gfx/interface/illustrations/event_scenes/dungeon.dds"
+		environment = "environment_event_dungeon"
+		ambience = "event:/SFX/Events/Backgrounds/dungeon"
+	}
+
+	# 行军途中：回廊背景
+	background = {
+		texture = "gfx/interface/illustrations/event_scenes/corridor.dds"
+		environment = "environment_event_corridor"
+		ambience = "event:/SFX/Events/Backgrounds/castle_corridor_night"
+	}
+
+	# 活动内成功条插件
+	activity_window_widgets = {
+		rol_mars_success_bar = "activity_plugin_widgets_summary"
 	}
 
 	ai_will_do = {
