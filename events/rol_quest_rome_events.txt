@@ -5,7 +5,27 @@
 rol_quest_rome.1000 = {
 	type = character_event
 	title = rol_quest_rome.1000.t
-	desc = rol_quest_rome.1000.desc
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = { rol_relic_context_is_mars_trigger = yes }
+				desc = rol_quest_rome.1000.desc.mars
+			}
+			triggered_desc = {
+				trigger = { rol_relic_context_is_weapon_trigger = yes }
+				desc = rol_quest_rome.1000.desc.weapon
+			}
+			triggered_desc = {
+				trigger = { rol_relic_context_is_regalia_trigger = yes }
+				desc = rol_quest_rome.1000.desc.regalia
+			}
+			triggered_desc = {
+				trigger = { rol_relic_context_is_accessory_trigger = yes }
+				desc = rol_quest_rome.1000.desc.accessory
+			}
+			desc = rol_quest_rome.1000.desc.generic
+		}
+	}
 	theme = martial
 	override_background = { reference = corridor_night }
 
@@ -108,7 +128,27 @@ rol_quest_rome.1000 = {
 rol_quest_rome.1002 = {
 	type = character_event
 	title = rol_quest_rome.1002.t
-	desc = rol_quest_rome.1002.desc
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = { rol_relic_context_is_mars_trigger = yes }
+				desc = rol_quest_rome.1002.desc.mars
+			}
+			triggered_desc = {
+				trigger = { rol_relic_context_is_weapon_trigger = yes }
+				desc = rol_quest_rome.1002.desc.weapon
+			}
+			triggered_desc = {
+				trigger = { rol_relic_context_is_regalia_trigger = yes }
+				desc = rol_quest_rome.1002.desc.regalia
+			}
+			triggered_desc = {
+				trigger = { rol_relic_context_is_accessory_trigger = yes }
+				desc = rol_quest_rome.1002.desc.accessory
+			}
+			desc = rol_quest_rome.1002.desc.generic
+		}
+	}
 	theme = martial
 	override_background = { reference = dungeon }
 
@@ -151,7 +191,27 @@ rol_quest_rome.1002 = {
 rol_quest_rome.1003 = {
 	type = character_event
 	title = rol_quest_rome.1003.t
-	desc = rol_quest_rome.1003.desc
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = { rol_relic_context_is_mars_trigger = yes }
+				desc = rol_quest_rome.1003.desc.mars
+			}
+			triggered_desc = {
+				trigger = { rol_relic_context_is_weapon_trigger = yes }
+				desc = rol_quest_rome.1003.desc.weapon
+			}
+			triggered_desc = {
+				trigger = { rol_relic_context_is_regalia_trigger = yes }
+				desc = rol_quest_rome.1003.desc.regalia
+			}
+			triggered_desc = {
+				trigger = { rol_relic_context_is_accessory_trigger = yes }
+				desc = rol_quest_rome.1003.desc.accessory
+			}
+			desc = rol_quest_rome.1003.desc.generic
+		}
+	}
 	theme = martial
 	override_background = { reference = ce1_catacombs }
 
@@ -192,7 +252,27 @@ rol_quest_rome.1003 = {
 rol_quest_rome.1004 = {
 	type = character_event
 	title = rol_quest_rome.1004.t
-	desc = rol_quest_rome.1004.desc
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = { rol_relic_context_is_mars_trigger = yes }
+				desc = rol_quest_rome.1004.desc.mars
+			}
+			triggered_desc = {
+				trigger = { rol_relic_context_is_weapon_trigger = yes }
+				desc = rol_quest_rome.1004.desc.weapon
+			}
+			triggered_desc = {
+				trigger = { rol_relic_context_is_regalia_trigger = yes }
+				desc = rol_quest_rome.1004.desc.regalia
+			}
+			triggered_desc = {
+				trigger = { rol_relic_context_is_accessory_trigger = yes }
+				desc = rol_quest_rome.1004.desc.accessory
+			}
+			desc = rol_quest_rome.1004.desc.generic
+		}
+	}
 	theme = martial
 	override_background = { reference = battlefield }
 
@@ -237,7 +317,7 @@ rol_quest_rome.1004 = {
 	}
 }
 
-# ???????
+# 终局：玛尔斯赐福
 rol_quest_rome.1001 = {
 	type = character_event
 	title = rol_quest_rome.1001.t
@@ -245,32 +325,45 @@ rol_quest_rome.1001 = {
 		first_valid = {
 			triggered_desc = {
 				trigger = {
+					rol_relic_context_is_mars_trigger = yes
 					exists = scope:activity
 					scope:activity.var:activity_special_type_progression >= 75
 				}
-				desc = rol_quest_rome.1001.desc.tier_4
+				desc = rol_quest_rome.1001.desc.mars.tier_4
 			}
 			triggered_desc = {
 				trigger = {
+					rol_relic_context_is_mars_trigger = yes
 					exists = scope:activity
 					scope:activity.var:activity_special_type_progression >= 50
 				}
-				desc = rol_quest_rome.1001.desc.tier_3
+				desc = rol_quest_rome.1001.desc.mars.tier_3
 			}
 			triggered_desc = {
 				trigger = {
+					rol_relic_context_is_mars_trigger = yes
 					exists = scope:activity
 					scope:activity.var:activity_special_type_progression >= 25
 				}
-				desc = rol_quest_rome.1001.desc.tier_2
+				desc = rol_quest_rome.1001.desc.mars.tier_2
 			}
 			triggered_desc = {
-				trigger = {
-					exists = scope:activity
-				}
-				desc = rol_quest_rome.1001.desc.tier_1
+				trigger = { rol_relic_context_is_mars_trigger = yes }
+				desc = rol_quest_rome.1001.desc.mars.tier_1
 			}
-			desc = rol_quest_rome.1001.desc
+			triggered_desc = {
+				trigger = { rol_relic_context_is_weapon_trigger = yes }
+				desc = rol_quest_rome.1001.desc.weapon
+			}
+			triggered_desc = {
+				trigger = { rol_relic_context_is_regalia_trigger = yes }
+				desc = rol_quest_rome.1001.desc.regalia
+			}
+			triggered_desc = {
+				trigger = { rol_relic_context_is_accessory_trigger = yes }
+				desc = rol_quest_rome.1001.desc.accessory
+			}
+			desc = rol_quest_rome.1001.desc.generic
 		}
 	}
 	theme = martial
@@ -285,7 +378,7 @@ rol_quest_rome.1001 = {
 	immediate = {
 		play_sound_effect = "event:/DLC/EP1/SFX/UI/Notifications/court_grandeur_toast_lvl_up"
 
-		# ????????????????????????
+		# 在当前角色作用域创建并归属神器
 		create_artifact = {
 			name = artifact_rol_blade_of_mars
 			description = artifact_rol_blade_of_mars_desc
@@ -310,18 +403,75 @@ rol_quest_rome.1001 = {
 			error_log = "[ROL] Failed to grant artifact rol_blade_of_mars in rol_quest_rome.1001"
 		}
 
-		# ???????????????????
-		rol_rome_clamp_success_progress_effect = yes
-		rol_rome_apply_tiered_bonus_reward_effect = yes
-
-		add_character_flag = rol_mars_blade_claimed
-		remove_character_flag = rol_heard_mars_legend
-		remove_character_modifier = rol_mars_quest_cooldown_modifier
-		rol_rome_quest_abort_effect = yes
+		rol_rome_quest_success_finalize_effect = yes
 	}
 
 	option = {
 		name = rol_quest_rome.1001.a
 		custom_tooltip = rol_quest_rome.1001.a.tt
+	}
+}
+
+# 活动结束后补一个“原版风格”结算事件
+rol_quest_rome.1090 = {
+	type = character_event
+	title = rol_quest_rome.1090.t
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					has_character_flag = rol_recent_mars_quest_success
+					has_variable = rol_recent_relic_result_tier
+					var:rol_recent_relic_result_tier >= 4
+				}
+				desc = rol_quest_rome.1090.desc.success_4
+			}
+			triggered_desc = {
+				trigger = {
+					has_character_flag = rol_recent_mars_quest_success
+					has_variable = rol_recent_relic_result_tier
+					var:rol_recent_relic_result_tier >= 3
+				}
+				desc = rol_quest_rome.1090.desc.success_3
+			}
+			triggered_desc = {
+				trigger = {
+					has_character_flag = rol_recent_mars_quest_success
+					has_variable = rol_recent_relic_result_tier
+					var:rol_recent_relic_result_tier >= 2
+				}
+				desc = rol_quest_rome.1090.desc.success_2
+			}
+			triggered_desc = {
+				trigger = {
+					has_character_flag = rol_recent_mars_quest_success
+				}
+				desc = rol_quest_rome.1090.desc.success_1
+			}
+			triggered_desc = {
+				trigger = {
+					has_character_flag = rol_recent_mars_quest_failure
+				}
+				desc = rol_quest_rome.1090.desc.failure
+			}
+			desc = rol_quest_rome.1090.desc.fallback
+		}
+	}
+	theme = martial
+	override_background = { reference = throne_room }
+
+	trigger = {
+		is_ai = no
+		OR = {
+			has_character_flag = rol_recent_mars_quest_success
+			has_character_flag = rol_recent_mars_quest_failure
+		}
+	}
+
+	option = {
+		name = rol_quest_rome.1090.a
+		hidden_effect = {
+			rol_relic_clear_recent_result_effect = yes
+		}
 	}
 }

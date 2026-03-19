@@ -1,5 +1,5 @@
-﻿# Mythic Relics - 罗马地宫任务链通用推进模板
-# 变量：rol_rome_stage_count（绑定在角色作用域）
+﻿# Mythic Relics - 罗马地宫任务链推进逻辑
+# 变量：rol_rome_stage_count（角色作用域）
 
 rol_rome_quest_progress_effect = {
 	if = {
@@ -15,6 +15,9 @@ rol_rome_quest_progress_effect = {
 		add = 1
 	}
 
+	# 记录阶段推进（活动结算页可见）
+	rol_relic_log_stage_effect = yes
+
 	# 分阶段延时触发，避免事件连发挤在同一天
 	if = {
 		limit = { var:rol_rome_stage_count < 4 }
@@ -29,7 +32,7 @@ rol_rome_quest_progress_effect = {
 	}
 }
 
-# 将活动成功条限制在 0~100，避免超出UI预期
+# 将活动成功条限制在 0~100，避免超出 UI 预期
 rol_rome_clamp_success_progress_effect = {
 	scope:activity ?= {
 		if = {
@@ -78,11 +81,95 @@ rol_rome_apply_tiered_bonus_reward_effect = {
 	}
 }
 
-rol_apply_mars_activity_cooldown_effect = {
-	add_character_modifier = {
-		modifier = rol_mars_quest_cooldown_modifier
-		years = 2
+# 存储最近一次成功结果等级（用于活动结算事件）
+rol_rome_store_success_result_effect = {
+	if = {
+		limit = {
+			exists = scope:activity
+			scope:activity.var:activity_special_type_progression >= 75
+		}
+		set_variable = {
+			name = rol_recent_relic_result_tier
+			value = 4
+		}
 	}
+	else_if = {
+		limit = {
+			exists = scope:activity
+			scope:activity.var:activity_special_type_progression >= 50
+		}
+		set_variable = {
+			name = rol_recent_relic_result_tier
+			value = 3
+		}
+	}
+	else_if = {
+		limit = {
+			exists = scope:activity
+			scope:activity.var:activity_special_type_progression >= 25
+		}
+		set_variable = {
+			name = rol_recent_relic_result_tier
+			value = 2
+		}
+	}
+	else = {
+		set_variable = {
+			name = rol_recent_relic_result_tier
+			value = 1
+		}
+	}
+
+	add_character_flag = rol_recent_mars_quest_success
+	remove_character_flag = rol_recent_mars_quest_failure
+}
+
+# 存储最近一次失败结果（用于活动结算事件）
+rol_rome_store_failure_result_effect = {
+	set_variable = {
+		name = rol_recent_relic_result_tier
+		value = 0
+	}
+	add_character_flag = rol_recent_mars_quest_failure
+	remove_character_flag = rol_recent_mars_quest_success
+}
+
+# 罗马远征成功后的统一收尾
+rol_rome_quest_success_finalize_effect = {
+	rol_rome_clamp_success_progress_effect = yes
+	rol_rome_store_success_result_effect = yes
+	rol_rome_apply_tiered_bonus_reward_effect = yes
+
+	add_character_flag = rol_mars_blade_claimed
+	remove_character_flag = rol_heard_mars_legend
+	remove_character_modifier = rol_mars_quest_cooldown_modifier
+
+	rol_relic_log_success_effect = yes
+	send_interface_toast = {
+		type = event_toast_effect_good
+		title = rol_mars_activity_success_toast_title
+		left_icon = root
+	}
+
+	rol_clear_context_mars_weapon_effect = yes
+	rol_rome_quest_abort_effect = yes
+}
+
+rol_apply_mars_activity_cooldown_effect = {
+	rol_relic_apply_cooldown_effect = {
+		COOLDOWN_MODIFIER = rol_mars_quest_cooldown_modifier
+		COOLDOWN_YEARS = 2
+	}
+
+	rol_rome_store_failure_result_effect = yes
+	rol_relic_log_failure_effect = yes
+	send_interface_toast = {
+		type = event_toast_effect_bad
+		title = rol_mars_activity_failure_toast_title
+		left_icon = root
+	}
+
+	rol_clear_context_mars_weapon_effect = yes
 }
 
 rol_rome_quest_abort_effect = {

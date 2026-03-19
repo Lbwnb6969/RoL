@@ -1,0 +1,99 @@
+﻿# Mythic Relics - 多地点神兵活动通用模板
+
+# 设定上下文（角色作用域）
+rol_relic_set_context_effect = {
+	add_character_flag = rol_relic_context_active
+	add_character_flag = $RELIC_CONTEXT_FLAG$
+	add_character_flag = $RELIC_ARCHETYPE_FLAG$
+}
+
+# 清理上下文（角色作用域）
+rol_relic_clear_context_effect = {
+	remove_character_flag = rol_relic_context_active
+	remove_character_flag = $RELIC_CONTEXT_FLAG$
+	remove_character_flag = $RELIC_ARCHETYPE_FLAG$
+}
+
+# 通用冷却（角色作用域）
+rol_relic_apply_cooldown_effect = {
+	add_character_modifier = {
+		modifier = $COOLDOWN_MODIFIER$
+		years = $COOLDOWN_YEARS$
+	}
+}
+
+# 活动日志：阶段推进
+rol_relic_log_stage_effect = {
+	scope:activity ?= {
+		add_activity_log_entry = {
+			key = rol_relic_activity_stage_log
+			character = root
+			score = 20
+			show_in_conclusion = yes
+		}
+	}
+}
+
+# 活动日志：成功
+rol_relic_log_success_effect = {
+	scope:activity ?= {
+		if = {
+			limit = { exists = scope:newly_created_artifact }
+			add_activity_log_entry = {
+				key = rol_relic_activity_success_log
+				character = root
+				artifact = scope:newly_created_artifact
+				score = 90
+				tags = { complete good }
+				show_in_conclusion = yes
+			}
+		}
+		else = {
+			add_activity_log_entry = {
+				key = rol_relic_activity_success_log
+				character = root
+				score = 90
+				tags = { complete good }
+				show_in_conclusion = yes
+			}
+		}
+	}
+}
+
+# 活动日志：失败
+rol_relic_log_failure_effect = {
+	scope:activity ?= {
+		add_activity_log_entry = {
+			key = rol_relic_activity_failure_log
+			character = root
+			score = 70
+			tags = { complete bad }
+			show_in_conclusion = yes
+		}
+	}
+}
+
+# 清理临时结算状态（角色作用域）
+rol_relic_clear_recent_result_effect = {
+	remove_character_flag = rol_recent_mars_quest_success
+	remove_character_flag = rol_recent_mars_quest_failure
+	if = {
+		limit = { has_variable = rol_recent_relic_result_tier }
+		remove_variable = rol_recent_relic_result_tier
+	}
+}
+
+# 罗马战神玛尔斯之剑：上下文包装（示例，供后续地点复用）
+rol_set_context_mars_weapon_effect = {
+	rol_relic_set_context_effect = {
+		RELIC_CONTEXT_FLAG = rol_relic_context_mars
+		RELIC_ARCHETYPE_FLAG = rol_relic_context_weapon
+	}
+}
+
+rol_clear_context_mars_weapon_effect = {
+	rol_relic_clear_context_effect = {
+		RELIC_CONTEXT_FLAG = rol_relic_context_mars
+		RELIC_ARCHETYPE_FLAG = rol_relic_context_weapon
+	}
+}

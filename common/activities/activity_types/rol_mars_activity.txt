@@ -31,10 +31,30 @@ activity_rol_seek_mars_blade = {
 	}
 
 	on_start = {
-		scope:activity = {
-			# 初始化活动成功条
-			activity_setup_special_type_progression_effect = yes
-			activity_special_type_progression_variable = { NUM = 30 }
+		if = {
+			limit = { this = scope:host }
+
+			# 清理上一次结算残留并设置本次上下文
+			rol_relic_clear_recent_result_effect = yes
+			rol_set_context_mars_weapon_effect = yes
+
+			if = {
+				limit = { has_variable = rol_rome_stage_count }
+				remove_variable = rol_rome_stage_count
+			}
+
+			scope:activity = {
+				# 初始化活动成功条
+				activity_setup_special_type_progression_effect = yes
+				activity_special_type_progression_variable = { NUM = 30 }
+
+				add_activity_log_entry = {
+					key = rol_relic_activity_start_log
+					character = scope:host
+					score = 10
+					show_in_conclusion = yes
+				}
+			}
 		}
 	}
 
@@ -94,6 +114,71 @@ activity_rol_seek_mars_blade = {
 	guest_intents = {
 		intents = { reduce_stress_intent }
 		default = reduce_stress_intent
+	}
+
+	conclusion_description = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					has_character_flag = rol_recent_mars_quest_success
+					has_variable = rol_recent_relic_result_tier
+					var:rol_recent_relic_result_tier >= 4
+				}
+				desc = activity_rol_seek_mars_blade_conclusion_desc_success_4
+			}
+			triggered_desc = {
+				trigger = {
+					has_character_flag = rol_recent_mars_quest_success
+					has_variable = rol_recent_relic_result_tier
+					var:rol_recent_relic_result_tier >= 3
+				}
+				desc = activity_rol_seek_mars_blade_conclusion_desc_success_3
+			}
+			triggered_desc = {
+				trigger = {
+					has_character_flag = rol_recent_mars_quest_success
+					has_variable = rol_recent_relic_result_tier
+					var:rol_recent_relic_result_tier >= 2
+				}
+				desc = activity_rol_seek_mars_blade_conclusion_desc_success_2
+			}
+			triggered_desc = {
+				trigger = {
+					has_character_flag = rol_recent_mars_quest_success
+				}
+				desc = activity_rol_seek_mars_blade_conclusion_desc_success_1
+			}
+			triggered_desc = {
+				trigger = {
+					has_character_flag = rol_recent_mars_quest_failure
+				}
+				desc = activity_rol_seek_mars_blade_conclusion_desc_failure
+			}
+			desc = activity_rol_seek_mars_blade_conclusion_desc_fallback
+		}
+	}
+
+	on_complete = {
+		if = {
+			limit = {
+				this = scope:host
+				is_ai = no
+				OR = {
+					has_character_flag = rol_recent_mars_quest_success
+					has_character_flag = rol_recent_mars_quest_failure
+				}
+			}
+			trigger_event = { id = rol_quest_rome.1090 days = 1 }
+		}
+
+		if = {
+			limit = { this = scope:host }
+			rol_clear_context_mars_weapon_effect = yes
+			if = {
+				limit = { has_variable = rol_rome_stage_count }
+				remove_variable = rol_rome_stage_count
+			}
+		}
 	}
 
 	###################

@@ -1,0 +1,17 @@
+﻿# Mythic Relics - 多地点模板触发器
+
+rol_relic_context_is_weapon_trigger = {
+	has_character_flag = rol_relic_context_weapon
+}
+
+rol_relic_context_is_regalia_trigger = {
+	has_character_flag = rol_relic_context_regalia
+}
+
+rol_relic_context_is_accessory_trigger = {
+	has_character_flag = rol_relic_context_accessory
+}
+
+rol_relic_context_is_mars_trigger = {
+	has_character_flag = rol_relic_context_mars
+}
