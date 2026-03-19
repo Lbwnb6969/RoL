@@ -8,3 +8,9 @@ rol_blade_of_mars_visual = {
 		reference = ep1_western_sword_01_a_portrait_entity
 	}
 }
+
+# 慕尼黑礼器：尼伯龙根星界球
+# 可替换为你自定义图标：gfx/interface/icons/artifact/rol_nibelung_star_sphere.dds
+rol_nibelung_star_sphere_visual = {
+	icon = "artifact_regalia.dds"
+}

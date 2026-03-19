@@ -1,5 +1,21 @@
-﻿# Mythic Relics - 神话神器修正
-rol_sword_of_mars_modifier = {
-	prowess = 10
-	monthly_prestige_gain_mult = 0.10
-}
+﻿# Mythic Relics - 神话神器修正
+
+# 旧测试神器（保留）
+rol_sword_of_mars_modifier = {
+	prowess = 10
+	monthly_prestige_gain_mult = 0.10
+}
+
+# 罗马战神之剑
+rol_blade_of_mars_modifier = {
+	martial = 8
+	prowess = 5
+	monthly_prestige_gain_mult = 0.10
+}
+
+# 慕尼黑礼器：尼伯龙根星界球
+rol_nibelung_star_sphere_modifier = {
+	learning = 8
+	diplomacy = 4
+	monthly_piety_gain_mult = 0.15
+}

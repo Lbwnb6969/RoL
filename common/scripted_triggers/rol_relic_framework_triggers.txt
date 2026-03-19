@@ -15,3 +15,15 @@ rol_relic_context_is_accessory_trigger = {
 rol_relic_context_is_mars_trigger = {
 	has_character_flag = rol_relic_context_mars
 }
+
+rol_relic_context_is_athena_trigger = {
+	has_character_flag = rol_relic_context_athena
+}
+
+rol_relic_context_is_anubis_trigger = {
+	has_character_flag = rol_relic_context_anubis
+}
+
+rol_relic_context_is_nibelung_trigger = {
+	has_character_flag = rol_relic_context_nibelung
+}

@@ -67,3 +67,15 @@ rol_create_blade_of_mars_effect = {
 		TIER_MODIFIER_KEY = rol_relic_tier_legendary_modifier
 	}
 }
+
+# Mythic Relics - 慕尼黑礼器：尼伯龙根星界球
+rol_create_nibelung_star_sphere_effect = {
+	rol_create_relic_artifact_effect = {
+		NAME_KEY = artifact_rol_nibelung_star_sphere
+		DESC_KEY = artifact_rol_nibelung_star_sphere_desc
+		ARTIFACT_TYPE = rol_nibelung_star_sphere
+		VISUAL_KEY = rol_nibelung_star_sphere_visual
+		MODIFIER_KEY = rol_nibelung_star_sphere_modifier
+		TIER_MODIFIER_KEY = rol_relic_tier_legendary_modifier
+	}
+}

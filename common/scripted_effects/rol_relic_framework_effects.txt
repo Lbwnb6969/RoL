@@ -77,6 +77,8 @@ rol_relic_log_failure_effect = {
 rol_relic_clear_recent_result_effect = {
 	remove_character_flag = rol_recent_mars_quest_success
 	remove_character_flag = rol_recent_mars_quest_failure
+	remove_character_flag = rol_recent_nibelung_quest_success
+	remove_character_flag = rol_recent_nibelung_quest_failure
 	if = {
 		limit = { has_variable = rol_recent_relic_result_tier }
 		remove_variable = rol_recent_relic_result_tier
@@ -95,5 +97,50 @@ rol_clear_context_mars_weapon_effect = {
 	rol_relic_clear_context_effect = {
 		RELIC_CONTEXT_FLAG = rol_relic_context_mars
 		RELIC_ARCHETYPE_FLAG = rol_relic_context_weapon
+	}
+}
+
+# 雅典样例：礼器类神物（模板示例）
+rol_set_context_athena_regalia_effect = {
+	rol_relic_set_context_effect = {
+		RELIC_CONTEXT_FLAG = rol_relic_context_athena
+		RELIC_ARCHETYPE_FLAG = rol_relic_context_regalia
+	}
+}
+
+rol_clear_context_athena_regalia_effect = {
+	rol_relic_clear_context_effect = {
+		RELIC_CONTEXT_FLAG = rol_relic_context_athena
+		RELIC_ARCHETYPE_FLAG = rol_relic_context_regalia
+	}
+}
+
+# 吉萨样例：配饰类神物（模板示例）
+rol_set_context_anubis_accessory_effect = {
+	rol_relic_set_context_effect = {
+		RELIC_CONTEXT_FLAG = rol_relic_context_anubis
+		RELIC_ARCHETYPE_FLAG = rol_relic_context_accessory
+	}
+}
+
+rol_clear_context_anubis_accessory_effect = {
+	rol_relic_clear_context_effect = {
+		RELIC_CONTEXT_FLAG = rol_relic_context_anubis
+		RELIC_ARCHETYPE_FLAG = rol_relic_context_accessory
+	}
+}
+
+# 慕尼黑样例：礼器类神物（尼伯龙根星界球）
+rol_set_context_nibelung_regalia_effect = {
+	rol_relic_set_context_effect = {
+		RELIC_CONTEXT_FLAG = rol_relic_context_nibelung
+		RELIC_ARCHETYPE_FLAG = rol_relic_context_regalia
+	}
+}
+
+rol_clear_context_nibelung_regalia_effect = {
+	rol_relic_clear_context_effect = {
+		RELIC_CONTEXT_FLAG = rol_relic_context_nibelung
+		RELIC_ARCHETYPE_FLAG = rol_relic_context_regalia
 	}
 }

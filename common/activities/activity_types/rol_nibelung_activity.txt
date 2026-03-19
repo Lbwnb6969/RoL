@@ -1,0 +1,204 @@
+﻿# Mythic Relics - 慕尼黑：尼伯龙根星界球远征
+activity_rol_seek_nibelung_sphere = {
+	is_shown = {
+		is_playable_character = yes
+		is_ai = no
+		has_character_flag = rol_heard_nibelung_legend
+		NOT = { has_character_flag = rol_nibelung_sphere_claimed }
+	}
+
+	can_start_showing_failures_only = {
+		is_available_adult = yes
+		is_at_war = no
+		gold >= 400
+		NOT = { is_activity_type_on_cooldown = activity_rol_seek_nibelung_sphere }
+		custom_tooltip = {
+			text = rol_nibelung_quest_on_cooldown_tt
+			NOT = { has_character_modifier = rol_nibelung_quest_cooldown_modifier }
+		}
+	}
+
+	is_valid = {
+		scope:host = {
+			is_playable_character = yes
+			is_ai = no
+			is_alive = yes
+			is_imprisoned = no
+			NOT = { is_incapable = yes }
+			has_character_flag = rol_heard_nibelung_legend
+			NOT = { has_character_flag = rol_nibelung_sphere_claimed }
+			NOT = { has_character_modifier = rol_nibelung_quest_cooldown_modifier }
+		}
+	}
+
+	on_start = {
+		if = {
+			limit = { this = scope:host }
+
+			rol_relic_clear_recent_result_effect = yes
+			rol_set_context_nibelung_regalia_effect = yes
+
+			if = {
+				limit = { has_variable = rol_munich_stage_count }
+				remove_variable = rol_munich_stage_count
+			}
+
+			scope:activity = {
+				activity_setup_special_type_progression_effect = yes
+				activity_special_type_progression_variable = { NUM = 35 }
+
+				add_activity_log_entry = {
+					key = rol_relic_activity_start_log
+					character = scope:host
+					score = 10
+					show_in_conclusion = yes
+				}
+			}
+		}
+	}
+
+	province_filter = landed_title
+	ai_province_filter = landed_title
+	province_filter_target = c_munchen
+
+	is_location_valid = {
+		county = title:c_munchen
+	}
+
+	wait_time_before_start = { days = 7 }
+	max_guest_arrival_delay_time = { days = 0 }
+	max_guests = 1
+	allow_zero_guest_invites = yes
+	open_invite = no
+
+	phases = {
+		rol_nibelung_descent_phase = {
+			is_predefined = yes
+			order = 1
+
+			on_phase_active = {
+				if = {
+					limit = { this = scope:host }
+					scope:activity = { progress_activity_phase_after = { days = 365 } }
+					trigger_event = rol_quest_munich.1000
+				}
+			}
+		}
+	}
+
+	cooldown = { days = 1 }
+
+	cost = {
+		gold = {
+			add = {
+				value = 400
+				desc = rol_seek_nibelung_sphere_cost_desc
+			}
+		}
+	}
+
+	ui_predicted_cost = {
+		gold = {
+			value = 400
+		}
+	}
+
+	host_intents = {
+		intents = { reduce_stress_intent rol_relic_hunt_intent }
+		default = reduce_stress_intent
+	}
+
+	guest_intents = {
+		intents = { reduce_stress_intent }
+		default = reduce_stress_intent
+	}
+
+	conclusion_description = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					has_character_flag = rol_recent_nibelung_quest_success
+					has_variable = rol_recent_relic_result_tier
+					var:rol_recent_relic_result_tier >= 4
+				}
+				desc = activity_rol_seek_nibelung_sphere_conclusion_desc_success_4
+			}
+			triggered_desc = {
+				trigger = {
+					has_character_flag = rol_recent_nibelung_quest_success
+					has_variable = rol_recent_relic_result_tier
+					var:rol_recent_relic_result_tier >= 3
+				}
+				desc = activity_rol_seek_nibelung_sphere_conclusion_desc_success_3
+			}
+			triggered_desc = {
+				trigger = {
+					has_character_flag = rol_recent_nibelung_quest_success
+					has_variable = rol_recent_relic_result_tier
+					var:rol_recent_relic_result_tier >= 2
+				}
+				desc = activity_rol_seek_nibelung_sphere_conclusion_desc_success_2
+			}
+			triggered_desc = {
+				trigger = { has_character_flag = rol_recent_nibelung_quest_success }
+				desc = activity_rol_seek_nibelung_sphere_conclusion_desc_success_1
+			}
+			triggered_desc = {
+				trigger = { has_character_flag = rol_recent_nibelung_quest_failure }
+				desc = activity_rol_seek_nibelung_sphere_conclusion_desc_failure
+			}
+			desc = activity_rol_seek_nibelung_sphere_conclusion_desc_fallback
+		}
+	}
+
+	on_complete = {
+		if = {
+			limit = {
+				this = scope:host
+				is_ai = no
+				OR = {
+					has_character_flag = rol_recent_nibelung_quest_success
+					has_character_flag = rol_recent_nibelung_quest_failure
+				}
+			}
+			trigger_event = { id = rol_quest_munich.1090 days = 1 }
+		}
+
+		if = {
+			limit = { this = scope:host }
+			rol_clear_context_nibelung_regalia_effect = yes
+			if = {
+				limit = { has_variable = rol_munich_stage_count }
+				remove_variable = rol_munich_stage_count
+			}
+		}
+	}
+
+	###################
+	# GRAPHICS
+	###################
+
+	background = {
+		trigger = {
+			scope:host.location = scope:activity.activity_location
+		}
+		texture = "gfx/interface/illustrations/event_scenes/dungeon.dds"
+		environment = "environment_event_dungeon"
+		ambience = "event:/SFX/Events/Backgrounds/dungeon"
+	}
+
+	background = {
+		texture = "gfx/interface/illustrations/event_scenes/bp3_mountain_winter.dds"
+		environment = "environment_event_mountains"
+		ambience = "event:/SFX/Events/Backgrounds/mountains_day"
+	}
+
+	activity_window_widgets = {
+		rol_munich_success_bar = "activity_plugin_widgets_summary"
+	}
+
+	ai_will_do = {
+		value = 0
+	}
+	ai_check_interval = 0
+}

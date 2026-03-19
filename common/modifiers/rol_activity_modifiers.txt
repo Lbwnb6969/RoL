@@ -2,3 +2,6 @@
 
 rol_mars_quest_cooldown_modifier = {
 }
+
+rol_nibelung_quest_cooldown_modifier = {
+}

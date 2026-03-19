@@ -1,0 +1,171 @@
+﻿# Mythic Relics - 慕尼黑地心任务链推进逻辑
+# 变量：rol_munich_stage_count（角色作用域）
+
+rol_munich_quest_progress_effect = {
+	if = {
+		limit = { NOT = { has_variable = rol_munich_stage_count } }
+		set_variable = {
+			name = rol_munich_stage_count
+			value = 0
+		}
+	}
+
+	change_variable = {
+		name = rol_munich_stage_count
+		add = 1
+	}
+
+	rol_relic_log_stage_effect = yes
+
+	if = {
+		limit = { var:rol_munich_stage_count < 2 }
+		trigger_event = { id = rol_quest_munich.1002 days = 14 }
+	}
+	else = {
+		trigger_event = { id = rol_quest_munich.1001 days = 10 }
+	}
+}
+
+rol_munich_clamp_success_progress_effect = {
+	scope:activity ?= {
+		if = {
+			limit = { var:activity_special_type_progression < 0 }
+			set_variable = {
+				name = activity_special_type_progression
+				value = 0
+			}
+		}
+		else_if = {
+			limit = { var:activity_special_type_progression > 100 }
+			set_variable = {
+				name = activity_special_type_progression
+				value = 100
+			}
+		}
+	}
+}
+
+rol_munich_apply_tiered_bonus_reward_effect = {
+	if = {
+		limit = {
+			exists = scope:activity
+			scope:activity.var:activity_special_type_progression >= 80
+		}
+		add_piety = 300
+		add_prestige = 200
+	}
+	else_if = {
+		limit = {
+			exists = scope:activity
+			scope:activity.var:activity_special_type_progression >= 60
+		}
+		add_piety = 200
+		add_prestige = 120
+	}
+	else_if = {
+		limit = {
+			exists = scope:activity
+			scope:activity.var:activity_special_type_progression >= 35
+		}
+		add_piety = 120
+		add_prestige = 60
+	}
+	else = {
+		add_piety = 60
+	}
+}
+
+rol_munich_store_success_result_effect = {
+	if = {
+		limit = {
+			exists = scope:activity
+			scope:activity.var:activity_special_type_progression >= 80
+		}
+		set_variable = {
+			name = rol_recent_relic_result_tier
+			value = 4
+		}
+	}
+	else_if = {
+		limit = {
+			exists = scope:activity
+			scope:activity.var:activity_special_type_progression >= 60
+		}
+		set_variable = {
+			name = rol_recent_relic_result_tier
+			value = 3
+		}
+	}
+	else_if = {
+		limit = {
+			exists = scope:activity
+			scope:activity.var:activity_special_type_progression >= 35
+		}
+		set_variable = {
+			name = rol_recent_relic_result_tier
+			value = 2
+		}
+	}
+	else = {
+		set_variable = {
+			name = rol_recent_relic_result_tier
+			value = 1
+		}
+	}
+
+	add_character_flag = rol_recent_nibelung_quest_success
+	remove_character_flag = rol_recent_nibelung_quest_failure
+}
+
+rol_munich_store_failure_result_effect = {
+	set_variable = {
+		name = rol_recent_relic_result_tier
+		value = 0
+	}
+	add_character_flag = rol_recent_nibelung_quest_failure
+	remove_character_flag = rol_recent_nibelung_quest_success
+}
+
+rol_munich_quest_success_finalize_effect = {
+	rol_munich_clamp_success_progress_effect = yes
+	rol_munich_store_success_result_effect = yes
+	rol_munich_apply_tiered_bonus_reward_effect = yes
+
+	add_character_flag = rol_nibelung_sphere_claimed
+	remove_character_flag = rol_heard_nibelung_legend
+	remove_character_modifier = rol_nibelung_quest_cooldown_modifier
+
+	rol_relic_log_success_effect = yes
+	send_interface_toast = {
+		type = event_toast_effect_good
+		title = rol_nibelung_activity_success_toast_title
+		left_icon = root
+	}
+
+	rol_clear_context_nibelung_regalia_effect = yes
+	rol_munich_quest_abort_effect = yes
+}
+
+rol_apply_nibelung_activity_cooldown_effect = {
+	rol_relic_apply_cooldown_effect = {
+		COOLDOWN_MODIFIER = rol_nibelung_quest_cooldown_modifier
+		COOLDOWN_YEARS = 2
+	}
+
+	rol_munich_store_failure_result_effect = yes
+	rol_relic_log_failure_effect = yes
+	send_interface_toast = {
+		type = event_toast_effect_bad
+		title = rol_nibelung_activity_failure_toast_title
+		left_icon = root
+	}
+
+	rol_clear_context_nibelung_regalia_effect = yes
+}
+
+rol_munich_quest_abort_effect = {
+	if = {
+		limit = { has_variable = rol_munich_stage_count }
+		remove_variable = rol_munich_stage_count
+	}
+}

@@ -1,0 +1,46 @@
+﻿# Mythic Relics - 多地点传说发现入口（模板层）
+
+rol_relic_discovery_yearly_on_action = {
+	effect = {
+		if = {
+			limit = {
+				is_ai = no
+				is_playable_character = yes
+				is_alive = yes
+			}
+			trigger_event = rol_relic_discovery.0001
+		}
+	}
+}
+
+rol_relic_discovery_title_gain_on_action = {
+	effect = {
+		if = {
+			limit = {
+				scope:title.tier = tier_county
+				root = {
+					is_ai = no
+					is_playable_character = yes
+					is_alive = yes
+				}
+			}
+			root = {
+				trigger_event = rol_relic_discovery.0001
+			}
+		}
+	}
+}
+
+# 每年可玩角色脉冲：挂接传说检测
+yearly_playable_pulse = {
+	on_actions = {
+		rol_relic_discovery_yearly_on_action
+	}
+}
+
+# 获得伯爵领时立即检测：减少“拿地后需等待”的体感
+on_title_gain = {
+	on_actions = {
+		rol_relic_discovery_title_gain_on_action
+	}
+}
