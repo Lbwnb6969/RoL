@@ -1,0 +1,10 @@
+﻿# Mythic Relics - 自定义神器视觉定义
+# 2D 图标路径：gfx/interface/icons/artifact/rol_blade_of_mars.dds
+rol_blade_of_mars_visual = {
+	icon = "rol_blade_of_mars.dds"
+
+	# 临时复用原版3D模型，后续可替换成你自己的实体
+	asset = {
+		reference = ep1_western_sword_01_a_portrait_entity
+	}
+}

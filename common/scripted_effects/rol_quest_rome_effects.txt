@@ -1,0 +1,43 @@
+﻿# Mythic Relics - 罗马地宫任务链通用推进模板
+# 变量：rol_rome_stage_count（绑定在角色作用域）
+
+rol_rome_quest_progress_effect = {
+	if = {
+		limit = { NOT = { has_variable = rol_rome_stage_count } }
+		set_variable = {
+			name = rol_rome_stage_count
+			value = 0
+		}
+	}
+
+	change_variable = {
+		name = rol_rome_stage_count
+		add = 1
+	}
+
+	if = {
+		limit = { var:rol_rome_stage_count < 4 }
+		random_list = {
+			34 = { trigger_event = rol_quest_rome.1002 }
+			33 = { trigger_event = rol_quest_rome.1003 }
+			33 = { trigger_event = rol_quest_rome.1004 }
+		}
+	}
+	else = {
+		trigger_event = rol_quest_rome.1001
+	}
+}
+
+rol_apply_mars_activity_cooldown_effect = {
+	add_character_modifier = {
+		modifier = rol_mars_quest_cooldown_modifier
+		years = 2
+	}
+}
+
+rol_rome_quest_abort_effect = {
+	if = {
+		limit = { has_variable = rol_rome_stage_count }
+		remove_variable = rol_rome_stage_count
+	}
+}

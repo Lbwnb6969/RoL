@@ -1,0 +1,251 @@
+﻿namespace = rol_quest_rome
+
+# Mythic Relics - 罗马地宫多阶段活动事件链
+
+rol_quest_rome.1000 = {
+	type = character_event
+	title = rol_quest_rome.1000.t
+	desc = rol_quest_rome.1000.desc
+	theme = martial
+	override_background = { reference = corridor_night }
+
+	trigger = {
+		is_ai = no
+		has_character_flag = rol_heard_mars_legend
+		NOT = { has_character_flag = rol_mars_blade_claimed }
+	}
+
+	immediate = {
+		if = {
+			limit = { NOT = { has_variable = rol_rome_stage_count } }
+			set_variable = {
+				name = rol_rome_stage_count
+				value = 0
+			}
+		}
+	}
+
+	option = {
+		name = rol_quest_rome.1000.a
+		custom_tooltip = rol_quest_rome.1000.a.tt
+		if = {
+			limit = {
+				OR = {
+					martial >= 18
+					prowess >= 14
+				}
+			}
+			random_list = {
+				60 = {
+					add_prestige = 75
+					hidden_effect = { rol_rome_quest_progress_effect = yes }
+				}
+				40 = {
+					add_trait = wounded_1
+					add_prestige = -100
+					hidden_effect = { rol_rome_quest_progress_effect = yes }
+				}
+			}
+		}
+		else = {
+			random_list = {
+				40 = {
+					add_prestige = 50
+					hidden_effect = { rol_rome_quest_progress_effect = yes }
+				}
+				60 = {
+					add_trait = wounded_1
+					add_prestige = -100
+					hidden_effect = { rol_rome_quest_progress_effect = yes }
+				}
+			}
+		}
+	}
+
+	option = {
+		name = rol_quest_rome.1000.b
+		trigger = {
+			learning >= 15
+		}
+		custom_tooltip = rol_quest_rome.1000.b.tt
+		add_piety = 75
+		hidden_effect = { rol_rome_quest_progress_effect = yes }
+	}
+
+	option = {
+		name = rol_quest_rome.1000.c
+		custom_tooltip = rol_quest_rome.1000.c.tt
+		add_prestige = -50
+		hidden_effect = {
+			rol_rome_quest_abort_effect = yes
+			rol_apply_mars_activity_cooldown_effect = yes
+		}
+	}
+}
+
+# 随机阶段一：落石回廊
+rol_quest_rome.1002 = {
+	type = character_event
+	title = rol_quest_rome.1002.t
+	desc = rol_quest_rome.1002.desc
+	theme = martial
+	override_background = { reference = dungeon }
+
+	trigger = {
+		is_ai = no
+		has_variable = rol_rome_stage_count
+		NOT = { has_character_flag = rol_mars_blade_claimed }
+	}
+
+	option = {
+		name = rol_quest_rome.1002.a
+		custom_tooltip = rol_quest_rome.1002.a.tt
+		if = {
+			limit = { prowess >= 12 }
+			add_prestige = 50
+		}
+		else = {
+			add_trait = wounded_1
+			add_prestige = -50
+		}
+		hidden_effect = { rol_rome_quest_progress_effect = yes }
+	}
+
+	option = {
+		name = rol_quest_rome.1002.b
+		custom_tooltip = rol_quest_rome.1002.b.tt
+		add_prestige = -50
+		hidden_effect = {
+			rol_rome_quest_abort_effect = yes
+			rol_apply_mars_activity_cooldown_effect = yes
+		}
+	}
+}
+
+# 随机阶段二：血誓祭坛
+rol_quest_rome.1003 = {
+	type = character_event
+	title = rol_quest_rome.1003.t
+	desc = rol_quest_rome.1003.desc
+	theme = martial
+	override_background = { reference = ce1_catacombs }
+
+	trigger = {
+		is_ai = no
+		has_variable = rol_rome_stage_count
+		NOT = { has_character_flag = rol_mars_blade_claimed }
+	}
+
+	option = {
+		name = rol_quest_rome.1003.a
+		custom_tooltip = rol_quest_rome.1003.a.tt
+		if = {
+			limit = { learning >= 14 }
+			add_piety = 75
+		}
+		else = {
+			add_stress = 30
+		}
+		hidden_effect = { rol_rome_quest_progress_effect = yes }
+	}
+
+	option = {
+		name = rol_quest_rome.1003.b
+		custom_tooltip = rol_quest_rome.1003.b.tt
+		add_stress = 20
+		hidden_effect = { rol_rome_quest_progress_effect = yes }
+	}
+}
+
+# 随机阶段三：禁卫残影
+rol_quest_rome.1004 = {
+	type = character_event
+	title = rol_quest_rome.1004.t
+	desc = rol_quest_rome.1004.desc
+	theme = martial
+	override_background = { reference = battlefield }
+
+	trigger = {
+		is_ai = no
+		has_variable = rol_rome_stage_count
+		NOT = { has_character_flag = rol_mars_blade_claimed }
+	}
+
+	option = {
+		name = rol_quest_rome.1004.a
+		custom_tooltip = rol_quest_rome.1004.a.tt
+		if = {
+			limit = { martial >= 16 }
+			add_prestige = 75
+			hidden_effect = { rol_rome_quest_progress_effect = yes }
+		}
+		else = {
+			add_trait = wounded_1
+			add_prestige = -100
+			hidden_effect = {
+				rol_rome_quest_abort_effect = yes
+				rol_apply_mars_activity_cooldown_effect = yes
+			}
+		}
+	}
+
+	option = {
+		name = rol_quest_rome.1004.b
+		custom_tooltip = rol_quest_rome.1004.b.tt
+		add_prestige = -50
+		hidden_effect = {
+			rol_rome_quest_abort_effect = yes
+			rol_apply_mars_activity_cooldown_effect = yes
+		}
+	}
+}
+
+# 终局：获得神器
+rol_quest_rome.1001 = {
+	type = character_event
+	title = rol_quest_rome.1001.t
+	desc = rol_quest_rome.1001.desc
+	theme = martial
+	override_background = { reference = armory }
+
+	trigger = {
+		is_ai = no
+		NOT = { has_character_flag = rol_mars_blade_claimed }
+	}
+
+	immediate = {
+		# 直接发放神兵，避免脚本链失效导致“有事件无宝物”
+		create_artifact = {
+			name = artifact_rol_blade_of_mars
+			description = artifact_rol_blade_of_mars_desc
+			creator = root
+			type = rol_blade_of_mars
+			visuals = rol_blade_of_mars_visual
+			rarity = illustrious
+			template = general_unique_template
+			modifier = rol_blade_of_mars_modifier
+			decaying = no
+			save_scope_as = newly_created_artifact
+		}
+
+		if = {
+			limit = { exists = scope:newly_created_artifact }
+			scope:newly_created_artifact = {
+				set_owner = root
+				add_artifact_modifier = rol_relic_tier_legendary_modifier
+			}
+		}
+		else = {
+			error_log = "[ROL] Failed to grant artifact rol_blade_of_mars in rol_quest_rome.1001"
+		}
+
+		add_character_flag = rol_mars_blade_claimed
+		remove_character_flag = rol_heard_mars_legend
+		remove_character_modifier = rol_mars_quest_cooldown_modifier
+		rol_rome_quest_abort_effect = yes
+	}
+
+	option = {
+		name = rol_quest_rome.1001.a
+	}
+}

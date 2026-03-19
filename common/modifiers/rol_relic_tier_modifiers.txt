@@ -1,0 +1,13 @@
+﻿# Mythic Relics - 伪稀有度阶位修正（仅本模组使用）
+
+rol_relic_tier_mythic_modifier = {
+	monthly_prestige_gain_mult = 0.05
+}
+
+rol_relic_tier_legendary_modifier = {
+	monthly_prestige_gain_mult = 0.10
+}
+
+rol_relic_tier_divine_modifier = {
+	monthly_prestige_gain_mult = 0.15
+}

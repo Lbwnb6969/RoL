@@ -1,0 +1,9 @@
+﻿l_english:
+ rol_relic_tier_mythic_modifier:0 "Relic Tier: Mythic"
+ rol_relic_tier_mythic_modifier_desc:0 "This artifact has crossed beyond mortal craftsmanship into mythic standing."
+
+ rol_relic_tier_legendary_modifier:0 "Relic Tier: Legendary"
+ rol_relic_tier_legendary_modifier_desc:0 "This artifact is recognized as legendary, appearing only in mythic relic hunts."
+
+ rol_relic_tier_divine_modifier:0 "Relic Tier: Divine"
+ rol_relic_tier_divine_modifier_desc:0 "This artifact is treated as divinely anointed, beyond normal standards of quality."

@@ -1,0 +1,29 @@
+﻿# Mythic Relics - 伪稀有度阶位效果
+# 约定：在角色作用域调用，且已存在 scope:newly_created_artifact
+
+rol_apply_relic_tier_mythic_effect = {
+	if = {
+		limit = { exists = scope:newly_created_artifact }
+		scope:newly_created_artifact = {
+			add_artifact_modifier = rol_relic_tier_mythic_modifier
+		}
+	}
+}
+
+rol_apply_relic_tier_legendary_effect = {
+	if = {
+		limit = { exists = scope:newly_created_artifact }
+		scope:newly_created_artifact = {
+			add_artifact_modifier = rol_relic_tier_legendary_modifier
+		}
+	}
+}
+
+rol_apply_relic_tier_divine_effect = {
+	if = {
+		limit = { exists = scope:newly_created_artifact }
+		scope:newly_created_artifact = {
+			add_artifact_modifier = rol_relic_tier_divine_modifier
+		}
+	}
+}

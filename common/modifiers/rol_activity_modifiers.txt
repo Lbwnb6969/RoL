@@ -1,0 +1,4 @@
+﻿# Mythic Relics - 活动相关修正
+
+rol_mars_quest_cooldown_modifier = {
+}

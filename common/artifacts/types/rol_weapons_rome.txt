@@ -1,0 +1,6 @@
+﻿# Mythic Relics - ????????
+rol_blade_of_mars = {
+	slot = primary_armament
+	default_visuals = rol_blade_of_mars_visual
+	can_reforge = no
+}

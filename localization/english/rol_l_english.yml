@@ -1,6 +1,27 @@
-﻿l_english:
- rol_test_decision:0 "[DEBUG] Claim the Sword of Mars"
- rol_test_decision_desc:0 "A development decision used to verify that Mythic Relics is loaded correctly."
- rol_test_decision_tooltip:0 "Create and receive the artifact: Sword of Mars"
- rol_sword_of_mars_name:0 "Sword of Mars"
+﻿l_english:
+
+ rol_test_decision:0 "[DEBUG] Claim the Sword of Mars"
+ rol_test_decision_desc:0 "A development decision used to verify that Mythic Relics is loaded correctly."
+ rol_test_decision_tooltip:0 "Create and receive the artifact: Sword of Mars"
+
+ rol_sword_of_mars_name:0 "Sword of Mars"
  rol_sword_of_mars_description:0 "A legendary blade said to have been consecrated at the altar of Mars, god of war."
+
+ rol_blade_of_mars:0 "Blade of Mars"
+ rol_blade_of_mars_desc:0 "A blood-red relic said to have once belonged to Mars himself."
+ artifact_rol_blade_of_mars:0 "Blade of Mars"
+ artifact_rol_blade_of_mars_desc:0 "Its edge glows with crimson hunger, as if the god of war still grips it."
+
+ rol_quest_rome.1000.a.tt:0 "You force your way forward; failure may wound you and cost Prestige."
+ rol_quest_rome.1000.b.tt:0 "You decipher the mechanism and proceed."
+ rol_quest_rome.1000.c.tt:0 "You withdraw. This quest enters a 2-year cooldown."
+ rol_quest_rome.1002.a.tt:0 "You push through and continue the expedition."
+ rol_quest_rome.1002.b.tt:0 "You withdraw. This quest enters a 2-year cooldown."
+ rol_quest_rome.1003.a.tt:0 "If successful, you stabilize the party and keep advancing."
+ rol_quest_rome.1003.b.tt:0 "You endure the strain and keep moving."
+ rol_quest_rome.1004.a.tt:0 "If this assault fails, the expedition fails and enters a 2-year cooldown."
+ rol_quest_rome.1004.b.tt:0 "You withdraw. This quest enters a 2-year cooldown."
+
+ rol_mars_quest_on_cooldown_tt:0 "Your last expedition failed. You must wait 2 years before trying again."
+ rol_mars_quest_cooldown_modifier:0 "Mars Expedition Cooldown"
+ rol_mars_quest_cooldown_modifier_desc:0 "The previous underground expedition ended in failure. Forces need time to recover."

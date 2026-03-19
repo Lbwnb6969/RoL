@@ -1,0 +1,30 @@
+﻿rol_relic_hunt_intent = {
+	icon = reduce_stress_intent
+	auto_complete = yes
+
+	on_invalidated = { trigger_event = activity_system.0090 }
+
+	ai_will_do = {
+		value = 100
+	}
+
+	scripted_animation = {
+		animation = personality_bold
+	}
+}
+
+# 兼容旧键，后续可删除
+rol_mars_intent = {
+	icon = reduce_stress_intent
+	auto_complete = yes
+
+	on_invalidated = { trigger_event = activity_system.0090 }
+
+	ai_will_do = {
+		value = 100
+	}
+
+	scripted_animation = {
+		animation = personality_bold
+	}
+}

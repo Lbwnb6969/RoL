@@ -1,4 +1,4 @@
-﻿# Mythic Relics - 测试神器创建效果
+﻿# Mythic Relics - 测试神器创建效果（旧测试保留）
 # 调用方式（角色作用域）：rol_create_sword_of_mars_effect = yes
 rol_create_sword_of_mars_effect = {
 	create_artifact = {
@@ -17,5 +17,53 @@ rol_create_sword_of_mars_effect = {
 	if = {
 		limit = { exists = scope:newly_created_artifact }
 		scope:newly_created_artifact = { set_owner = root }
+	}
+}
+
+# Mythic Relics - 通用神兵创建模板（稳定版）
+# 调用方式（角色作用域）：
+# rol_create_relic_artifact_effect = {
+# 	NAME_KEY = artifact_rol_blade_of_mars
+# 	DESC_KEY = artifact_rol_blade_of_mars_desc
+# 	ARTIFACT_TYPE = rol_blade_of_mars
+# 	VISUAL_KEY = rol_blade_of_mars_visual
+# 	MODIFIER_KEY = rol_blade_of_mars_modifier
+# 	TIER_MODIFIER_KEY = rol_relic_tier_legendary_modifier
+# }
+rol_create_relic_artifact_effect = {
+	create_artifact = {
+		name = $NAME_KEY$
+		description = $DESC_KEY$
+		creator = root
+		type = $ARTIFACT_TYPE$
+		visuals = $VISUAL_KEY$
+		rarity = illustrious
+		template = general_unique_template
+		modifier = $MODIFIER_KEY$
+		decaying = no
+		save_scope_as = newly_created_artifact
+	}
+
+	if = {
+		limit = { exists = scope:newly_created_artifact }
+		scope:newly_created_artifact = {
+			set_owner = root
+			add_artifact_modifier = $TIER_MODIFIER_KEY$
+		}
+	}
+	else = {
+		error_log = "[ROL] create_artifact failed in rol_create_relic_artifact_effect"
+	}
+}
+
+# Mythic Relics - 罗马神兵：战神玛尔斯之剑
+rol_create_blade_of_mars_effect = {
+	rol_create_relic_artifact_effect = {
+		NAME_KEY = artifact_rol_blade_of_mars
+		DESC_KEY = artifact_rol_blade_of_mars_desc
+		ARTIFACT_TYPE = rol_blade_of_mars
+		VISUAL_KEY = rol_blade_of_mars_visual
+		MODIFIER_KEY = rol_blade_of_mars_modifier
+		TIER_MODIFIER_KEY = rol_relic_tier_legendary_modifier
 	}
 }

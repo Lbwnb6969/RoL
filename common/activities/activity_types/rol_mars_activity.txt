@@ -1,0 +1,94 @@
+﻿# Mythic Relics - 战神玛尔斯神兵活动
+activity_rol_seek_mars_blade = {
+	is_shown = {
+		is_playable_character = yes
+		is_ai = no
+		has_character_flag = rol_heard_mars_legend
+		NOT = { has_character_flag = rol_mars_blade_claimed }
+	}
+
+	can_start_showing_failures_only = {
+		is_available_adult = yes
+		is_at_war = no
+		gold >= 300
+		NOT = { is_activity_type_on_cooldown = activity_rol_seek_mars_blade }
+		custom_tooltip = {
+			text = rol_mars_quest_on_cooldown_tt
+			NOT = { has_character_modifier = rol_mars_quest_cooldown_modifier }
+		}
+	}
+
+	is_valid = {
+		scope:host = {
+			is_playable_character = yes
+			is_alive = yes
+			is_imprisoned = no
+			NOT = { is_incapable = yes }
+			has_character_flag = rol_heard_mars_legend
+			NOT = { has_character_flag = rol_mars_blade_claimed }
+			NOT = { has_character_modifier = rol_mars_quest_cooldown_modifier }
+		}
+	}
+
+	province_filter = landed_title
+	ai_province_filter = landed_title
+	province_filter_target = c_roma
+
+	is_location_valid = {
+		county = title:c_roma
+	}
+
+	wait_time_before_start = { days = 7 }
+	max_guest_arrival_delay_time = { days = 0 }
+	max_guests = 1
+	allow_zero_guest_invites = yes
+	open_invite = no
+
+	phases = {
+		rol_mars_descent_phase = {
+			is_predefined = yes
+			order = 1
+
+			on_phase_active = {
+				if = {
+					limit = { this = scope:host }
+					scope:activity = { progress_activity_phase_after = { days = 120 } }
+					trigger_event = rol_quest_rome.1000
+				}
+			}
+		}
+	}
+
+	# 仅用于防止同一天重复点击；真实冷却由角色修正控制（2年）
+	cooldown = { days = 1 }
+
+	cost = {
+		gold = {
+			add = {
+				value = 300
+				desc = rol_seek_mars_blade_cost_desc
+			}
+		}
+	}
+
+	ui_predicted_cost = {
+		gold = {
+			value = 300
+		}
+	}
+
+	host_intents = {
+		intents = { reduce_stress_intent rol_relic_hunt_intent }
+		default = reduce_stress_intent
+	}
+
+	guest_intents = {
+		intents = { reduce_stress_intent }
+		default = reduce_stress_intent
+	}
+
+	ai_will_do = {
+		value = 0
+	}
+	ai_check_interval = 0
+}
