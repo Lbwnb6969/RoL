@@ -27,3 +27,11 @@ rol_relic_context_is_anubis_trigger = {
 rol_relic_context_is_nibelung_trigger = {
 	has_character_flag = rol_relic_context_nibelung
 }
+
+rol_relic_context_is_naxos_trigger = {
+	has_character_flag = rol_relic_context_naxos
+}
+
+rol_relic_debug_mode_trigger = {
+	has_character_flag = rol_relic_debug_mode
+}

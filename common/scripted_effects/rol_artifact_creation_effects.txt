@@ -14,10 +14,7 @@ rol_create_sword_of_mars_effect = {
 		save_scope_as = newly_created_artifact
 	}
 
-	if = {
-		limit = { exists = scope:newly_created_artifact }
-		scope:newly_created_artifact = { set_owner = root }
-	}
+	# create_artifact 在角色作用域下会自动归属给当前角色
 }
 
 # Mythic Relics - 通用神兵创建模板（稳定版）
@@ -47,7 +44,7 @@ rol_create_relic_artifact_effect = {
 	if = {
 		limit = { exists = scope:newly_created_artifact }
 		scope:newly_created_artifact = {
-			set_owner = root
+			# create_artifact 已自动归属给当前角色，不再重复 set_owner
 			add_artifact_modifier = $TIER_MODIFIER_KEY$
 		}
 	}

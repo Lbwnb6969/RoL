@@ -1,0 +1,6 @@
+﻿# Mythic Relics - ????????
+rol_blade_of_mars_modifier = {
+	martial = 8
+	prowess = 5
+	monthly_prestige_gain_mult = 0.10
+}

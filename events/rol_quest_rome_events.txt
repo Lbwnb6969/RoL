@@ -2,6 +2,28 @@
 
 # Mythic Relics - 罗马地宫多阶段活动事件链
 
+rol_quest_rome.0990 = {
+	type = character_event
+	title = rol_quest_rome.0990.t
+	desc = rol_quest_rome.0990.desc
+	theme = martial
+	override_background = { reference = corridor_night }
+	override_sound = { reference = "event:/SFX/Events/Themes/sfx_event_theme_type_faith" }
+
+	trigger = {
+		is_ai = no
+		has_character_flag = rol_heard_mars_legend
+		NOT = { has_character_flag = rol_mars_blade_claimed }
+	}
+
+	option = {
+		name = rol_quest_rome.0990.a
+		hidden_effect = {
+			trigger_event = { id = rol_quest_rome.1000 days = 1 }
+		}
+	}
+}
+
 rol_quest_rome.1000 = {
 	type = character_event
 	title = rol_quest_rome.1000.t
@@ -63,15 +85,15 @@ rol_quest_rome.1000 = {
 					add_prestige = 75
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_major = yes }
-						rol_rome_quest_progress_effect = yes
+						trigger_event = { id = rol_quest_rome.1010 days = 1 }
 					}
 				}
 				40 = {
 					add_trait = wounded_1
 					add_prestige = -100
 					hidden_effect = {
-						scope:activity ?= { activity_special_type_progression_negative = yes }
-						rol_rome_quest_progress_effect = yes
+						scope:activity ?= { activity_special_type_progression_negative_major = yes }
+						trigger_event = { id = rol_quest_rome.1011 days = 1 }
 					}
 				}
 			}
@@ -83,15 +105,15 @@ rol_quest_rome.1000 = {
 					add_prestige = 50
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_medium = yes }
-						rol_rome_quest_progress_effect = yes
+						trigger_event = { id = rol_quest_rome.1010 days = 1 }
 					}
 				}
 				60 = {
 					add_trait = wounded_1
 					add_prestige = -100
 					hidden_effect = {
-						scope:activity ?= { activity_special_type_progression_negative = yes }
-						rol_rome_quest_progress_effect = yes
+						scope:activity ?= { activity_special_type_progression_negative_major = yes }
+						trigger_event = { id = rol_quest_rome.1011 days = 1 }
 					}
 				}
 			}
@@ -108,7 +130,7 @@ rol_quest_rome.1000 = {
 		add_piety = 75
 		hidden_effect = {
 			scope:activity ?= { activity_special_type_progression_major = yes }
-			rol_rome_quest_progress_effect = yes
+			trigger_event = { id = rol_quest_rome.1010 days = 1 }
 		}
 	}
 
@@ -118,8 +140,59 @@ rol_quest_rome.1000 = {
 		add_prestige = -50
 		hidden_effect = {
 			scope:activity ?= { activity_special_type_progression_negative_major = yes }
-			rol_rome_quest_abort_effect = yes
-			rol_apply_mars_activity_cooldown_effect = yes
+			trigger_event = { id = rol_quest_rome.1012 days = 1 }
+		}
+	}
+}
+
+# 第一阶段结果反馈
+rol_quest_rome.1010 = {
+	type = character_event
+	title = rol_quest_rome.1010.t
+	desc = rol_quest_rome.1010.desc
+	theme = martial
+	override_background = { reference = corridor_night }
+
+	trigger = { is_ai = no }
+
+	option = {
+		name = rol_quest_rome.1010.a
+		hidden_effect = {
+			rol_rome_quest_progress_effect = yes
+		}
+	}
+}
+
+rol_quest_rome.1011 = {
+	type = character_event
+	title = rol_quest_rome.1011.t
+	desc = rol_quest_rome.1011.desc
+	theme = martial
+	override_background = { reference = corridor_night }
+
+	trigger = { is_ai = no }
+
+	option = {
+		name = rol_quest_rome.1011.a
+		hidden_effect = {
+			rol_rome_quest_fail_now_effect = yes
+		}
+	}
+}
+
+rol_quest_rome.1012 = {
+	type = character_event
+	title = rol_quest_rome.1012.t
+	desc = rol_quest_rome.1012.desc
+	theme = martial
+	override_background = { reference = corridor_night }
+
+	trigger = { is_ai = no }
+
+	option = {
+		name = rol_quest_rome.1012.a
+		hidden_effect = {
+			rol_rome_quest_fail_now_effect = yes
 		}
 	}
 }
@@ -164,15 +237,43 @@ rol_quest_rome.1002 = {
 		custom_tooltip = rol_quest_rome.1002.a.tt
 		if = {
 			limit = { prowess >= 12 }
-			add_prestige = 50
-			hidden_effect = { scope:activity ?= { activity_special_type_progression_medium = yes } }
+			random_list = {
+				65 = {
+					add_prestige = 50
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_medium = yes }
+						trigger_event = { id = rol_quest_rome.1020 days = 1 }
+					}
+				}
+				35 = {
+					add_trait = wounded_1
+					add_prestige = -80
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_negative = yes }
+						trigger_event = { id = rol_quest_rome.1021 days = 1 }
+					}
+				}
+			}
 		}
 		else = {
-			add_trait = wounded_1
-			add_prestige = -50
-			hidden_effect = { scope:activity ?= { activity_special_type_progression_negative_tiny = yes } }
+			random_list = {
+				35 = {
+					add_prestige = 30
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_tiny = yes }
+						trigger_event = { id = rol_quest_rome.1020 days = 1 }
+					}
+				}
+				65 = {
+					add_trait = wounded_1
+					add_prestige = -100
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_negative_major = yes }
+						trigger_event = { id = rol_quest_rome.1021 days = 1 }
+					}
+				}
+			}
 		}
-		hidden_effect = { rol_rome_quest_progress_effect = yes }
 	}
 
 	option = {
@@ -181,8 +282,52 @@ rol_quest_rome.1002 = {
 		add_prestige = -50
 		hidden_effect = {
 			scope:activity ?= { activity_special_type_progression_negative_major = yes }
-			rol_rome_quest_abort_effect = yes
-			rol_apply_mars_activity_cooldown_effect = yes
+			trigger_event = { id = rol_quest_rome.1022 days = 1 }
+		}
+	}
+}
+
+rol_quest_rome.1020 = {
+	type = character_event
+	title = rol_quest_rome.1020.t
+	desc = rol_quest_rome.1020.desc
+	theme = martial
+	override_background = { reference = dungeon }
+	trigger = { is_ai = no }
+	option = {
+		name = rol_quest_rome.1020.a
+		hidden_effect = {
+			rol_rome_quest_progress_effect = yes
+		}
+	}
+}
+
+rol_quest_rome.1021 = {
+	type = character_event
+	title = rol_quest_rome.1021.t
+	desc = rol_quest_rome.1021.desc
+	theme = martial
+	override_background = { reference = dungeon }
+	trigger = { is_ai = no }
+	option = {
+		name = rol_quest_rome.1021.a
+		hidden_effect = {
+			rol_rome_quest_fail_now_effect = yes
+		}
+	}
+}
+
+rol_quest_rome.1022 = {
+	type = character_event
+	title = rol_quest_rome.1022.t
+	desc = rol_quest_rome.1022.desc
+	theme = martial
+	override_background = { reference = dungeon }
+	trigger = { is_ai = no }
+	option = {
+		name = rol_quest_rome.1022.a
+		hidden_effect = {
+			rol_rome_quest_fail_now_effect = yes
 		}
 	}
 }
@@ -227,23 +372,92 @@ rol_quest_rome.1003 = {
 		custom_tooltip = rol_quest_rome.1003.a.tt
 		if = {
 			limit = { learning >= 14 }
-			add_piety = 75
-			hidden_effect = { scope:activity ?= { activity_special_type_progression_medium = yes } }
+			random_list = {
+				65 = {
+					add_piety = 75
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_medium = yes }
+						trigger_event = { id = rol_quest_rome.1030 days = 1 }
+					}
+				}
+				35 = {
+					add_stress = 40
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_negative = yes }
+						trigger_event = { id = rol_quest_rome.1031 days = 1 }
+					}
+				}
+			}
 		}
 		else = {
-			add_stress = 30
-			hidden_effect = { scope:activity ?= { activity_special_type_progression_negative_tiny = yes } }
+			random_list = {
+				35 = {
+					add_piety = 40
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_tiny = yes }
+						trigger_event = { id = rol_quest_rome.1030 days = 1 }
+					}
+				}
+				65 = {
+					add_stress = 60
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_negative_major = yes }
+						trigger_event = { id = rol_quest_rome.1031 days = 1 }
+					}
+				}
+			}
 		}
-		hidden_effect = { rol_rome_quest_progress_effect = yes }
 	}
 
 	option = {
 		name = rol_quest_rome.1003.b
 		custom_tooltip = rol_quest_rome.1003.b.tt
-		add_stress = 20
+		random_list = {
+			45 = {
+				add_prestige = 30
+				hidden_effect = {
+					scope:activity ?= { activity_special_type_progression_tiny = yes }
+					trigger_event = { id = rol_quest_rome.1030 days = 1 }
+				}
+			}
+			55 = {
+				add_stress = 45
+				add_prestige = -50
+				hidden_effect = {
+					scope:activity ?= { activity_special_type_progression_negative_major = yes }
+					trigger_event = { id = rol_quest_rome.1031 days = 1 }
+				}
+			}
+		}
+	}
+}
+
+rol_quest_rome.1030 = {
+	type = character_event
+	title = rol_quest_rome.1030.t
+	desc = rol_quest_rome.1030.desc
+	theme = martial
+	override_background = { reference = ce1_catacombs }
+	trigger = { is_ai = no }
+	option = {
+		name = rol_quest_rome.1030.a
 		hidden_effect = {
-			scope:activity ?= { activity_special_type_progression_tiny = yes }
 			rol_rome_quest_progress_effect = yes
+		}
+	}
+}
+
+rol_quest_rome.1031 = {
+	type = character_event
+	title = rol_quest_rome.1031.t
+	desc = rol_quest_rome.1031.desc
+	theme = martial
+	override_background = { reference = ce1_catacombs }
+	trigger = { is_ai = no }
+	option = {
+		name = rol_quest_rome.1031.a
+		hidden_effect = {
+			rol_rome_quest_fail_now_effect = yes
 		}
 	}
 }
@@ -287,20 +501,47 @@ rol_quest_rome.1004 = {
 		skill = martial
 		custom_tooltip = rol_quest_rome.1004.a.tt
 		if = {
-			limit = { martial >= 16 }
-			add_prestige = 75
-			hidden_effect = {
-				scope:activity ?= { activity_special_type_progression_major = yes }
-				rol_rome_quest_progress_effect = yes
+			limit = {
+				OR = {
+					martial >= 16
+					prowess >= 13
+				}
+			}
+			random_list = {
+				55 = {
+					add_prestige = 90
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_major = yes }
+						trigger_event = { id = rol_quest_rome.1040 days = 1 }
+					}
+				}
+				45 = {
+					add_trait = wounded_1
+					add_prestige = -120
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_negative_major = yes }
+						trigger_event = { id = rol_quest_rome.1041 days = 1 }
+					}
+				}
 			}
 		}
 		else = {
-			add_trait = wounded_1
-			add_prestige = -100
-			hidden_effect = {
-				scope:activity ?= { activity_special_type_progression_negative_major = yes }
-				rol_rome_quest_abort_effect = yes
-				rol_apply_mars_activity_cooldown_effect = yes
+			random_list = {
+				30 = {
+					add_prestige = 60
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_medium = yes }
+						trigger_event = { id = rol_quest_rome.1040 days = 1 }
+					}
+				}
+				70 = {
+					add_trait = wounded_1
+					add_prestige = -150
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_negative_major = yes }
+						trigger_event = { id = rol_quest_rome.1041 days = 1 }
+					}
+				}
 			}
 		}
 	}
@@ -311,8 +552,52 @@ rol_quest_rome.1004 = {
 		add_prestige = -50
 		hidden_effect = {
 			scope:activity ?= { activity_special_type_progression_negative_major = yes }
-			rol_rome_quest_abort_effect = yes
-			rol_apply_mars_activity_cooldown_effect = yes
+			trigger_event = { id = rol_quest_rome.1042 days = 1 }
+		}
+	}
+}
+
+rol_quest_rome.1040 = {
+	type = character_event
+	title = rol_quest_rome.1040.t
+	desc = rol_quest_rome.1040.desc
+	theme = martial
+	override_background = { reference = battlefield }
+	trigger = { is_ai = no }
+	option = {
+		name = rol_quest_rome.1040.a
+		hidden_effect = {
+			rol_rome_quest_progress_effect = yes
+		}
+	}
+}
+
+rol_quest_rome.1041 = {
+	type = character_event
+	title = rol_quest_rome.1041.t
+	desc = rol_quest_rome.1041.desc
+	theme = martial
+	override_background = { reference = battlefield }
+	trigger = { is_ai = no }
+	option = {
+		name = rol_quest_rome.1041.a
+		hidden_effect = {
+			rol_rome_quest_fail_now_effect = yes
+		}
+	}
+}
+
+rol_quest_rome.1042 = {
+	type = character_event
+	title = rol_quest_rome.1042.t
+	desc = rol_quest_rome.1042.desc
+	theme = martial
+	override_background = { reference = battlefield }
+	trigger = { is_ai = no }
+	option = {
+		name = rol_quest_rome.1042.a
+		hidden_effect = {
+			rol_rome_quest_fail_now_effect = yes
 		}
 	}
 }
@@ -334,22 +619,15 @@ rol_quest_rome.1001 = {
 			triggered_desc = {
 				trigger = {
 					rol_relic_context_is_mars_trigger = yes
-					exists = scope:activity
-					scope:activity.var:activity_special_type_progression >= 50
+					OR = {
+						NOT = { exists = scope:activity }
+						AND = {
+							exists = scope:activity
+							scope:activity.var:activity_special_type_progression < 75
+						}
+					}
 				}
-				desc = rol_quest_rome.1001.desc.mars.tier_3
-			}
-			triggered_desc = {
-				trigger = {
-					rol_relic_context_is_mars_trigger = yes
-					exists = scope:activity
-					scope:activity.var:activity_special_type_progression >= 25
-				}
-				desc = rol_quest_rome.1001.desc.mars.tier_2
-			}
-			triggered_desc = {
-				trigger = { rol_relic_context_is_mars_trigger = yes }
-				desc = rol_quest_rome.1001.desc.mars.tier_1
+				desc = rol_quest_rome.1001.desc.mars.below_tier4
 			}
 			triggered_desc = {
 				trigger = { rol_relic_context_is_weapon_trigger = yes }
@@ -372,38 +650,35 @@ rol_quest_rome.1001 = {
 
 	trigger = {
 		is_ai = no
-		NOT = { has_character_flag = rol_mars_blade_claimed }
 	}
 
 	immediate = {
-		play_sound_effect = "event:/DLC/EP1/SFX/UI/Notifications/court_grandeur_toast_lvl_up"
-
-		# 在当前角色作用域创建并归属神器
-		create_artifact = {
-			name = artifact_rol_blade_of_mars
-			description = artifact_rol_blade_of_mars_desc
-			creator = root
-			type = rol_blade_of_mars
-			visuals = rol_blade_of_mars_visual
-			rarity = illustrious
-			template = general_unique_template
-			modifier = rol_blade_of_mars_modifier
-			decaying = no
-			save_scope_as = newly_created_artifact
-		}
-
 		if = {
-			limit = { exists = scope:newly_created_artifact }
-			scope:newly_created_artifact = {
-				set_owner = root
-				add_artifact_modifier = rol_relic_tier_legendary_modifier
+			limit = { has_character_flag = rol_mars_blade_claimed }
+			error_log = "[ROL][DUPLICATE] rol_quest_rome.1001 fired after claim; skipping artifact grant"
+		}
+		else_if = {
+			limit = {
+				exists = scope:activity
+				scope:activity.var:activity_special_type_progression >= 75
 			}
+			play_sound_effect = "event:/DLC/EP1/SFX/UI/Notifications/court_grandeur_toast_lvl_up"
+			rol_create_blade_of_mars_effect = yes
+
+			if = {
+				limit = { exists = scope:newly_created_artifact }
+			}
+			else = {
+				error_log = "[ROL][ERROR] Failed to grant artifact rol_blade_of_mars in rol_quest_rome.1001"
+			}
+
+			rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_mars_terminal_tier4_reward }
+			rol_rome_quest_success_finalize_effect = yes
 		}
 		else = {
-			error_log = "[ROL] Failed to grant artifact rol_blade_of_mars in rol_quest_rome.1001"
+			rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_mars_terminal_below_tier4_fail }
+			rol_rome_quest_fail_now_effect = yes
 		}
-
-		rol_rome_quest_success_finalize_effect = yes
 	}
 
 	option = {

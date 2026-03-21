@@ -17,7 +17,10 @@ rol_relic_discovery_title_gain_on_action = {
 	effect = {
 		if = {
 			limit = {
-				scope:title.tier = tier_county
+				OR = {
+					scope:title.tier = tier_county
+					scope:title.tier = tier_barony
+				}
 				root = {
 					is_ai = no
 					is_playable_character = yes

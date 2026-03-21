@@ -1,0 +1,129 @@
+﻿l_simp_chinese:
+ rol_quest_naxos.0990.t:0 "鎶佃揪娉版媺锛圱hera锛?
+ rol_quest_naxos.0990.desc:0 "浣犲湪绾冲厠绱㈡柉澶栨捣鐧诲哺锛岀伀灞卞博澹佷笅鏂圭殑瑁傜紳鐩撮€氬湴涓嬨€傛棫缃楅┈閾枃涓庨檶鐢熷湥寰藉苟鍒楀埢鍦ㄥ叆鍙ｏ細杩欓噷骞堕潪鏅€氶仐杩癸紝鑰屾槸鈥滃笣鐨囧湪娉版媺鐣欎笅鐨勫娈垮墠鍘呪€濄€?
+ rol_quest_naxos.0990.a:0 "涓剧伀鍏ュ銆?
+
+ rol_quest_naxos.1000.t:0 "鍦板簳鐜嬪骇鍓嶅粖"
+ rol_quest_naxos.1000.desc:0 "娣卞鐨勭┕椤剁敱鍙ょ綏椹煶宸ヤ笌鏈煡鍚堥噾鍏卞悓鏋勬垚銆傛畫缂洪摥鍒绘殫绀猴細甯濈殗鏇惧湪姝や繚鍏ㄤ汉绫荤伀绉嶏紝骞朵互绂佸啗灏佸瓨閫氶亾銆?
+ rol_quest_naxos.1000.a:0 "浠ユ鍔涙墦寮€绗竴閬撳皝闂ㄣ€?
+ rol_quest_naxos.1000.b:0 "鍏堣В璇婚摥鏂囦笌鏈哄叧閫昏緫銆?
+ rol_quest_naxos.1000.c:0 "椋庨櫓杩囬珮锛岀珛鍒绘挙绂汇€?
+ rol_quest_naxos.1000.a.tt:0 "[martial|E]/[prowess|E]妫€瀹氾細澶辫触灏嗙珛鍗崇粓姝㈡椿鍔ㄣ€?
+ rol_quest_naxos.1000.b.tt:0 "[learning|E]妫€瀹氾細鎴愬姛鍙ǔ瀹氭帹杩涖€?
+ rol_quest_naxos.1000.c.tt:0 "涓诲姩缁撴潫鏈杩滃緛锛岃繘鍏?骞村喎鍗淬€?
+
+ rol_quest_naxos.1010.t:0 "灏侀棬宸茬牬"
+ rol_quest_naxos.1010.desc:0 "浣犵獊鐮翠簡鍓嶆灏侀攣銆傝蛋寤婂敖澶翠紶鏉ユ暣榻愭矇閲嶇殑鐢查澊澹帮紝鍍忎竴鏀案涓嶇柌鎯殑鍙よ€佸崼闃熸鍦ㄨ嫃閱掋€?
+ rol_quest_naxos.1010.a:0 "缁х画鎺ㄨ繘銆?
+ rol_quest_naxos.1011.t:0 "鍓嶅粖澶卞畧"
+ rol_quest_naxos.1011.desc:0 "鐏姏涓庢亹鎯у悓鏃跺穿濉屼簡闃熶紞绉╁簭銆傝嫢缁х画鍓嶈繘锛屽彧浼氭妸鏁存敮杩滃緛闃熻懍鍦ㄨ繖閲屻€?
+ rol_quest_naxos.1011.a:0 "缁堟娲诲姩銆?
+ rol_quest_naxos.1012.t:0 "浣犱笅浠ゆ挙閫€"
+ rol_quest_naxos.1012.desc:0 "浣犻€夋嫨淇濆瓨楠ㄥ共鎴樺姏銆傚皝闂ㄥ湪韬悗閲嶅惎锛屾嘲鎷夊湴涓嬪啀搴﹀綊浜庢矇榛樸€?
+ rol_quest_naxos.1012.a:0 "涓ゅ勾鍚庡啀鏉ャ€?
+
+ rol_quest_naxos.1002.t:0 "甯濆浗楠岃瘉鍘?
+ rol_quest_naxos.1002.desc:0 "涓澶у巺瑕佹眰杩炵画楠岃瘉锛氳缁熴€佸繝璇氥€佹寚鎸ユ潈涓庝俊蹇点€備换浣曚竴姝ョ姽璞紝閮戒細瑙﹀彂鑷村懡鍙嶅埗銆?
+ rol_quest_naxos.1002.a:0 "浠ュ▉鏈涗笌鍛戒护鍘嬩綇鍏ㄩ槦銆?
+ rol_quest_naxos.1002.b:0 "鐢ㄥ璇嗛€愭潯鐮磋В楠岃瘉閫昏緫銆?
+ rol_quest_naxos.1002.c:0 "涓鎺ㄨ繘锛屼繚鍏ㄥ疄鍔涖€?
+ rol_quest_naxos.1002.a.tt:0 "[diplomacy|E]妫€瀹氾細澶辫触灏嗙洿鎺ョ粓姝㈡椿鍔ㄣ€?
+ rol_quest_naxos.1002.b.tt:0 "[learning|E]妫€瀹氾細澶辫触灏嗙洿鎺ョ粓姝㈡椿鍔ㄣ€?
+ rol_quest_naxos.1002.c.tt:0 "涓诲姩缁撴潫娲诲姩锛岃繘鍏?骞村喎鍗淬€?
+
+ rol_quest_naxos.1020.t:0 "楠岃瘉閫氳繃"
+ rol_quest_naxos.1020.desc:0 "鏈€鍚庝竴鏋氬嵃璁颁寒璧枫€傚娈挎牳蹇冨尯鐨勫ぇ闂ㄧ紦缂撳紑鍚紝绂佸啗瑾撲护灏卞湪鍓嶆柟銆?
+ rol_quest_naxos.1020.a:0 "缁х画銆?
+ rol_quest_naxos.1021.t:0 "楠岃瘉澶辫触"
+ rol_quest_naxos.1021.desc:0 "鍙嶅埗绋嬪簭鍏ㄩ潰瑙﹀彂锛岄槦浼嶅凡缁忓け鍘诲畨鍏ㄦ帹杩涙潯浠躲€備綘蹇呴』瀹ｅ竷鏈杩滃緛澶辫触銆?
+ rol_quest_naxos.1021.a:0 "绔嬪埢鎾ゅ嚭銆?
+ rol_quest_naxos.1022.t:0 "缁堟楠岃瘉"
+ rol_quest_naxos.1022.desc:0 "浣犻€夋嫨鍦ㄤ腑娈垫鎹熴€傚敖绠￠仐鎲撅紝浣嗚繖璁╀富鍔涘緱浠ュ畬鏁存挙鍥炪€?
+ rol_quest_naxos.1022.a:0 "杩欐槸鐞嗘櫤涔嬩妇銆?
+
+ rol_quest_naxos.1003.t:0 "绂佸啗瀹堥棬闃靛垪"
+ rol_quest_naxos.1003.desc:0 "鏍稿績闂ㄥ墠锛岄噾鑹茬敳鑳勭殑娈嬪奖缁勬垚鍙よ€佹垬闃点€傚畠浠笉瑷€涓嶈锛屽嵈浠ュ啗绀间笌鏉€鎰忓悓鏃惰繋鎺ヤ綘銆?
+ rol_quest_naxos.1003.a:0 "姝ｉ潰鍐茬牬闃靛垪銆?
+ rol_quest_naxos.1003.b:0 "娼滃叆闃靛悗锛屽垏鏂樀鍒椾腑鏋€?
+ rol_quest_naxos.1003.c:0 "鍋滄鎺ㄨ繘锛屾挙绂汇€?
+ rol_quest_naxos.1003.a.tt:0 "[martial|E]妫€瀹氾細澶辫触灏嗙洿鎺ョ粓姝㈡椿鍔ㄣ€?
+ rol_quest_naxos.1003.b.tt:0 "[intrigue|E]妫€瀹氾細楂橀闄╂綔琛岋紝澶辫触鍗崇粓姝€?
+ rol_quest_naxos.1003.c.tt:0 "涓诲姩缁撴潫娲诲姩锛岃繘鍏?骞村喎鍗淬€?
+
+ rol_quest_naxos.1030.t:0 "绂佸啗鎵胯浣?
+ rol_quest_naxos.1030.desc:0 "鏈€鍚庝竴鎺掑畧闂ㄦ畫褰辫寮€閬撹矾銆傝獡浠ょ煶鏌卞惎鍔紝浣犲凡瑙﹀強瀹璇曠偧缁堢偣銆?
+ rol_quest_naxos.1030.a:0 "鎺ュ彈鎺堝嵃銆?
+ rol_quest_naxos.1031.t:0 "绂佸啗鎷掔粷浣?
+ rol_quest_naxos.1031.desc:0 "瀹堥棬闃靛垪鐨勫弽鍑绘墦纰庝簡浣犵殑鑺傚銆傜户缁己闂彧浼氳杩滃緛闃熷叏鐏€?
+ rol_quest_naxos.1031.a:0 "缁堟琛屽姩銆?
+ rol_quest_naxos.1032.t:0 "姝㈡浜庣帇搴ч棬鍓?
+ rol_quest_naxos.1032.desc:0 "浣犻€夋嫨鍦ㄦ渶鍚庨棬妲涘墠鎾ょ銆傚娈挎仮澶嶅瘋闈欙紝浠夸經浠庢湭鎺ョ撼杩囧嚒浜恒€?
+ rol_quest_naxos.1032.a:0 "鏉ユ棩鍐嶆垬銆?
+
+ rol_quest_naxos.1001.t:0 "娉版媺瀹鐨勬渶缁堣瀹?
+ rol_quest_naxos.1001.desc:0 "鏍稿績瑾撴煴鍥炲簲浜嗕綘鐨勮繙寰併€備綘璺濈甯濈殗鐣欎笅鐨勭鍐涜獡浠ゅ彧宸渶鍚庝竴姝ャ€?
+ rol_quest_naxos.1001.desc.tier_1:0 "浣犲媺寮烘姷杈剧粓鐐癸紝浣嗘病鏈夊畬鎴愭渶缁堝悓姝ャ€?
+ rol_quest_naxos.1001.desc.tier_2:0 "浣犵獊鐮村鏁板叧鍗★紝浣嗘牳蹇冭獡浠や粛淇濇寔灏侀攣銆?
+ rol_quest_naxos.1001.desc.tier_3:0 "浣犲嚑涔庡畬鎴愬叏娴佺▼锛屽彧宸复闂ㄤ竴鑴氥€?
+ rol_quest_naxos.1001.desc.tier_4:0 "浣犲畬鎴愪簡鍏ㄩ儴楠岃瘉涓庢垬鏂楄瘯鐐笺€傛嘲鎷夊娈垮悜浣犲紑鏀剧鍐涘緛鍙潈銆?
+ rol_quest_naxos.1001.desc.below_tier4:0 "浣犳湭杈惧埌鏈€缁堥槇鍊硷紝瀹鎷掔粷浜や粯绂佸啗瑾撲护銆傛湰娆¤繙寰佹寜澶辫触缁撶畻銆?
+ rol_quest_naxos.1001.a:0 "鍙戝竷绂佸啗寰佸彫浠ゃ€?
+ rol_quest_naxos.1001.a.tt:0 "浠呭綋鎴愬姛搴﹁揪鍒?#V 75+锛圱ier4锛?! 鎵嶄細瑙ｉ攣鍏电锛?rol_adeptus_custudes$銆?
+
+ rol_quest_naxos.1090.t:0 "娉版媺杩滃緛缁撶畻"
+ rol_quest_naxos.1090.desc.success_4:0 "浣犱互鍑犺繎绁炶瘽鐨勬晥鐜囧畬鎴愯繙寰侊紝娉版媺鍦颁笅瀹姝ｅ紡鍚戜綘鏁堝繝銆?
+ rol_quest_naxos.1090.desc.success_3:0 "浣犳暣浣撴帉鎺ц壇濂斤紝浣嗕粛鏈夊叧閿己鍙ｆ湭琚畬鍏ㄦ姽骞炽€?
+ rol_quest_naxos.1090.desc.success_2:0 "浣犺壈闅炬帹杩涘埌缁堢偣锛屼唬浠锋矇閲嶃€?
+ rol_quest_naxos.1090.desc.success_1:0 "浣犲媺寮虹淮鎸侀槦浼嶆挙鍑猴紝璺濈鐪熸鎴愬姛浠嶆湁宸窛銆?
+ rol_quest_naxos.1090.desc.failure:0 "鏈杩滃緛澶辫触銆傝ˉ鍛樹笌淇暣鑷冲皯闇€瑕佷袱骞淬€?
+ rol_quest_naxos.1090.desc.fallback:0 "杩滃緛宸茬粨鏉燂紝娉版媺閬楄抗缁х画娌夌潯銆?
+ rol_quest_naxos.1090.a:0 "璁板叆鍐涘姟妗ｆ銆?
+
+ activity_rol_seek_naxos_guard:0 "娉版媺鍦颁笅瀹杩滃緛"
+ activity_rol_seek_naxos_guard_desc:0 "浣犲皢娣卞叆绾冲厠绱㈡柉杈栦笅鐨勬嘲鎷夛紙Thera锛夊湴涓嬪娈匡紝楠岃瘉甯濈殗鐣欎笅鐨勭鍐涜獡浠ゃ€?
+ activity_rol_seek_naxos_guard_host_desc:0 "$BULLET_WITH_TAB$浠?Tier4 鎴愬姛鎵嶅彲瑙ｉ攣鍏电锛?rol_adeptus_custudes$\n$BULLET_WITH_TAB$鏈揪Tier4鍗冲垽瀹氬け璐ュ苟杩涘叆鍐峰嵈"
+ activity_rol_seek_naxos_guard_guest_desc:0 ""
+ activity_rol_seek_naxos_guard_conclusion_desc:0 "鐏北宀╁眰閲嶆柊灏侀棴鍏ュ彛锛屽彧鏈夋。妗堣浣忎簡浣犲湪鍦颁笅鐪嬪埌鐨勪竴鍒囥€?
+ activity_rol_seek_naxos_guard_conclusion_desc_success_4:0 "浣犲畬鏁撮噸鍚簡甯濈殗绂佸啗瑾撲护銆?
+ activity_rol_seek_naxos_guard_conclusion_desc_success_3:0 "浣犳帴杩戞垚鍔燂紝浣嗕粛鐣欎笅鍏抽敭缂哄彛銆?
+ activity_rol_seek_naxos_guard_conclusion_desc_success_2:0 "浣犵淮鎸佷綇浜嗘帹杩涳紝鍗翠笉瓒充互鍙栧緱鏈€缁堟巿鏉冦€?
+ activity_rol_seek_naxos_guard_conclusion_desc_success_1:0 "浣犲媺寮轰繚鍏ㄩ槦浼嶆挙绂汇€?
+ activity_rol_seek_naxos_guard_conclusion_desc_failure:0 "浣犺杩粓姝㈣繙寰併€備袱骞村悗鏂瑰彲鍐嶆灏濊瘯銆?
+ activity_rol_seek_naxos_guard_conclusion_desc_fallback:0 "杩滃緛缁撴潫锛屼笅涓€娆″紑闂ㄤ粛鍦ㄦ湭鏉ャ€?
+ activity_rol_seek_naxos_guard_selection_tooltip:0 "鐜囬槦娣卞叆娉版媺鍦颁笅瀹锛屽畬鎴愰獙璇佷笌鎴橀樀璇曠偧銆俓n\n棰勬湡濂栧姳锛歕n$activity_rol_seek_naxos_guard_host_desc$"
+ activity_rol_seek_naxos_guard_predicted_cost:0 "鏈琛屽姩闇€瑕侀噸瑁呮姢鍗€佸伐鍏典笌澶ч噺鍦板簳琛ョ粰銆?
+ activity_rol_seek_naxos_guard_province_desc:0 "杩滃緛鐩爣浣嶄簬[ROOT.Province.GetName]"
+
+ activity_rol_seek_naxos_guard_special_type_title:0 "瀹鍚屾搴?
+ activity_rol_seek_naxos_guard_special_type_desc:0 "浣犲湪姣忎釜闃舵鐨勫喅绛栧皢鏀瑰彉鍚屾搴︺€傚彧鏈夎揪鍒癟ier4锛屽娈挎墠浼氫氦浠樼鍐涜獡浠ゃ€?
+ ROL_NAXOS_WINDOW_SPECIAL_PROGRESS_TOOLTIP:0 "褰撳墠瀹鍚屾搴︼細[ActivityWindow.GetSpecialProgressValue|0^V]"
+
+ activity_rol_seek_naxos_guard_special_type_bar_segment_tt_0:0 "#T 宕╂簝杈圭紭#!\n闃熶紞鐘舵€佹瀬宸紝鎺ヨ繎鏁翠綋澶辫触銆?
+ activity_rol_seek_naxos_guard_special_type_bar_segment_tt_1:0 "#T 鍕夊己鍙帶#!\n浠嶅湪鎺ㄨ繘锛屼絾椋庨櫓鏋侀珮銆?
+ activity_rol_seek_naxos_guard_special_type_bar_segment_tt_2:0 "#T 娓愬叆浣冲#!\n鑺傚寮€濮嬪洖鍒颁綘鎵嬩腑銆?
+ activity_rol_seek_naxos_guard_special_type_bar_segment_tt_3:0 "#T 浼樺娍鏄庢樉#!\n浣犵鏈€缁堥棬妲涘彧宸竴姝ャ€?
+ activity_rol_seek_naxos_guard_special_type_bar_segment_tt_4:0 "#T 瀹屽叏鍚屾#!\n浣犲叿澶囧彇寰楃鍐涜獡浠ょ殑璧勬牸銆?
+ activity_rol_seek_naxos_guard_special_type_bar_segment_0_tt:0 "$activity_rol_seek_naxos_guard_special_type_bar_segment_tt_0$"
+ activity_rol_seek_naxos_guard_special_type_bar_segment_1_tt:0 "$activity_rol_seek_naxos_guard_special_type_bar_segment_tt_1$"
+ activity_rol_seek_naxos_guard_special_type_bar_segment_2_tt:0 "$activity_rol_seek_naxos_guard_special_type_bar_segment_tt_2$"
+ activity_rol_seek_naxos_guard_special_type_bar_segment_3_tt:0 "$activity_rol_seek_naxos_guard_special_type_bar_segment_tt_3$"
+ activity_rol_seek_naxos_guard_special_type_bar_segment_4_tt:0 "$activity_rol_seek_naxos_guard_special_type_bar_segment_tt_4$"
+
+ phase_rol_naxos_descent_phase:0 "娉版媺鍦板鎺㈢储"
+ phase_rol_naxos_descent_phase_desc:0 "浣犳鐜囬槦娣卞叆娉版媺鍦颁笅瀹锛岃拷瀵诲笣鐨囬仐鐣欑殑鏈€缁堣獡浠ゃ€?
+ rol_naxos_descent_phase:0 "$phase_rol_naxos_descent_phase$"
+ rol_naxos_descent_phase_desc:0 "$phase_rol_naxos_descent_phase_desc$"
+
+ rol_seek_naxos_guard_cost_desc:0 "娉版媺杩滃緛绛瑰璐圭敤"
+ rol_naxos_quest_on_cooldown_tt:0 "浣犳渶杩戜竴娆℃嘲鎷夎繙寰佸け璐ヤ簡锛屽繀椤荤瓑寰?骞村悗鍐嶅皾璇曘€?
+ rol_naxos_quest_cooldown_modifier:0 "娉版媺杩滃緛鍐峰嵈"
+ rol_naxos_quest_cooldown_modifier_desc:0 "涓婃璇曠偧鎹熷け涓ラ噸锛岄槦浼嶆殏鏃舵棤娉曞啀娆＄粍缁囧悓绛夎妯¤鍔ㄣ€?
+ TRAVEL_NAME_FOR_activity_rol_seek_naxos_guard:0 "[Character.GetFirstNameNoTooltip]鐨勬嘲鎷夎繙寰?
+
+ rol_naxos_activity_success_toast_title:0 "娉版媺杩滃緛鎴愬姛"
+ rol_naxos_activity_failure_toast_title:0 "娉版媺杩滃緛澶辫触"
+
+ rol_adeptus_custudes:0 "Adeptus Custudes"
+ rol_adeptus_custudes_flavor:0 "甯濈殗浜插崼鐨勭鍐涚紪鍒舵畫瀛樹簬娉版媺鍦板锛屽敮鏈夐€氳繃鍏ㄩ儴楠岃瘉鑰呮墠鍙皟鐢ㄣ€?
+ rol_naxian_tideguard:0 "$rol_adeptus_custudes$"
+ rol_naxian_tideguard_flavor:0 "$rol_adeptus_custudes_flavor$"

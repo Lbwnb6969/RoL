@@ -31,9 +31,7 @@ activity_rol_seek_mars_blade = {
 	}
 
 	on_start = {
-		if = {
-			limit = { this = scope:host }
-
+		scope:host = {
 			# 清理上一次结算残留并设置本次上下文
 			rol_relic_clear_recent_result_effect = yes
 			rol_set_context_mars_weapon_effect = yes
@@ -42,19 +40,17 @@ activity_rol_seek_mars_blade = {
 				limit = { has_variable = rol_rome_stage_count }
 				remove_variable = rol_rome_stage_count
 			}
+		}
 
-			scope:activity = {
-				# 初始化活动成功条
-				activity_setup_special_type_progression_effect = yes
-				activity_special_type_progression_variable = { NUM = 30 }
+		# 初始化活动成功条
+		activity_setup_special_type_progression_effect = yes
+		activity_special_type_progression_variable = { NUM = 30 }
 
-				add_activity_log_entry = {
-					key = rol_relic_activity_start_log
-					character = scope:host
-					score = 10
-					show_in_conclusion = yes
-				}
-			}
+		add_activity_log_entry = {
+			key = rol_relic_activity_start_log
+			character = scope:host
+			score = 10
+			show_in_conclusion = yes
 		}
 	}
 
@@ -82,7 +78,7 @@ activity_rol_seek_mars_blade = {
 					limit = { this = scope:host }
 					# 给足时间，避免多阶段事件因延迟而被活动结束打断
 					scope:activity = { progress_activity_phase_after = { days = 365 } }
-					trigger_event = rol_quest_rome.1000
+					trigger_event = rol_quest_rome.0990
 				}
 			}
 		}
@@ -159,20 +155,18 @@ activity_rol_seek_mars_blade = {
 	}
 
 	on_complete = {
-		if = {
-			limit = {
-				this = scope:host
-				is_ai = no
-				OR = {
-					has_character_flag = rol_recent_mars_quest_success
-					has_character_flag = rol_recent_mars_quest_failure
+		scope:host = {
+			if = {
+				limit = {
+					is_ai = no
+					OR = {
+						has_character_flag = rol_recent_mars_quest_success
+						has_character_flag = rol_recent_mars_quest_failure
+					}
 				}
+				trigger_event = { id = rol_quest_rome.1090 days = 1 }
 			}
-			trigger_event = { id = rol_quest_rome.1090 days = 1 }
-		}
 
-		if = {
-			limit = { this = scope:host }
 			rol_clear_context_mars_weapon_effect = yes
 			if = {
 				limit = { has_variable = rol_rome_stage_count }
@@ -188,7 +182,7 @@ activity_rol_seek_mars_blade = {
 	# 活动所在地：地宫背景
 	background = {
 		trigger = {
-			scope:host.location = scope:activity.activity_location
+			rol_activity_host_at_activity_location_trigger = yes
 		}
 		texture = "gfx/interface/illustrations/event_scenes/dungeon.dds"
 		environment = "environment_event_dungeon"
@@ -202,6 +196,69 @@ activity_rol_seek_mars_blade = {
 		ambience = "event:/SFX/Events/Backgrounds/castle_corridor_night"
 	}
 
+	# 活动窗口人物（参考原版活动，保证背景中有角色演出）
+	window_characters = {
+		host = {
+			camera = camera_event_center
+
+			effect = {
+				if = {
+					limit = { rol_activity_host_at_activity_location_trigger = yes }
+					scope:host = { add_to_list = characters }
+				}
+			}
+
+			scripted_animation = {
+				animation = idle
+			}
+		}
+
+		travel_host = {
+			camera = camera_event_horse_left
+
+			effect = {
+				if = {
+					limit = { rol_activity_host_traveling_trigger = yes }
+					scope:host = { add_to_list = characters }
+				}
+			}
+
+			scripted_animation = {
+				animation = jockey_walk
+			}
+		}
+
+		guest = {
+			camera = camera_body_right
+
+			effect = {
+				if = {
+					limit = {
+						rol_activity_host_at_activity_location_trigger = yes
+						scope:player ?= { this != scope:host }
+					}
+					scope:player ?= { add_to_list = characters }
+				}
+				else = {
+					if = {
+						limit = { rol_activity_host_at_activity_location_trigger = yes }
+						every_attending_character = {
+							limit = {
+								location = scope:activity.activity_location
+								this != scope:host
+							}
+							add_to_list = characters
+						}
+					}
+				}
+			}
+
+			scripted_animation = {
+				animation = idle
+			}
+		}
+	}
+
 	# 活动内成功条插件
 	activity_window_widgets = {
 		rol_mars_success_bar = "activity_plugin_widgets_summary"
@@ -212,3 +269,5 @@ activity_rol_seek_mars_blade = {
 	}
 	ai_check_interval = 0
 }
+
+

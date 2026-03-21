@@ -14,12 +14,16 @@
  artifact_rol_blade_of_mars:0 "Blade of Mars"
  artifact_rol_blade_of_mars_desc:0 "Its edge glows with crimson hunger, as if the god of war still grips it."
 
+ rol_quest_rome.0990.t:0 "At the Sealed Catacomb Gate"
+ rol_quest_rome.0990.desc:0 "Your company reaches the shattered entrance beneath Rome. Cold air exhales from the dark and every torch seems smaller than it should. Even hardened veterans lower their voices as old legionary carvings emerge from the dust."
+ rol_quest_rome.0990.a:0 "Form ranks. We enter with steel and silence."
+
  rol_quest_rome.1000.a.base_tt:0 "[martial|E]/[prowess|E] check: higher skill improves success odds."
  rol_quest_rome.1000.a.odds_high_tt:0 "Current odds: #P 60% success#!, #N 40% failure#!."
  rol_quest_rome.1000.a.odds_low_tt:0 "Current odds: #P 40% success#!, #N 60% failure#!."
  rol_quest_rome.1000.b.tt:0 "[learning|E] check passed. #P 100% success#! and increased expedition progress."
  rol_quest_rome.1000.c.tt:0 "You withdraw. This quest enters a 2-year cooldown."
- rol_quest_rome.1001.a.tt:0 "You always receive the artifact. Progress #V 75+#!: +250 [prestige|E], +150 [piety|E]; #V 50+#!: +150 [prestige|E]; #V 25+#!: +75 [prestige|E]."
+ rol_quest_rome.1001.a.tt:0 "You receive the artifact only at #V Tier 4 (75+ progress)#!. Below that, this expedition fails and enters cooldown."
  rol_quest_rome.1002.a.tt:0 "[prowess|E] check: success advances and increases progress; failure causes injury and slight progress loss."
  rol_quest_rome.1002.b.tt:0 "You withdraw. This quest enters a 2-year cooldown."
  rol_quest_rome.1003.a.tt:0 "[learning|E] check: higher Learning improves your odds and progress gain."
@@ -89,6 +93,7 @@
  rol_quest_rome.1001.desc.mars.tier_2:0 "You break through traps and shades with discipline. The altar opens in crimson light."
  rol_quest_rome.1001.desc.mars.tier_3:0 "Your command is precise and relentless. The final seal shatters before your will."
  rol_quest_rome.1001.desc.mars.tier_4:0 "No hesitation, no retreat—you crush every trial, and Mars answers in sacred red flame."
+ rol_quest_rome.1001.desc.mars.below_tier4:0 "You reach the core, but fail to complete the final blood-oath resonance. The Blade of Mars remains sealed."
 
  rol_quest_rome.1002.t:0 "Falling-Stone Corridor"
  rol_quest_rome.1002.desc.mars:0 "Deep supports crack. A thunderous cascade of stone crashes toward your column."
@@ -121,3 +126,4 @@
  rol_relic_activity_failure_log_title:0 "Expedition Failed"
  rol_mars_activity_success_toast_title:0 "Expedition Success"
  rol_mars_activity_failure_toast_title:0 "Expedition Failed"
+

@@ -17,6 +17,7 @@ rol_rome_quest_progress_effect = {
 
 	# 记录阶段推进（活动结算页可见）
 	rol_relic_log_stage_effect = yes
+	rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_mars_stage_progress }
 
 	# 分阶段延时触发，避免事件连发挤在同一天
 	if = {
@@ -153,6 +154,7 @@ rol_rome_quest_success_finalize_effect = {
 
 	rol_clear_context_mars_weapon_effect = yes
 	rol_rome_quest_abort_effect = yes
+	rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_mars_success_finalize }
 }
 
 rol_apply_mars_activity_cooldown_effect = {
@@ -170,6 +172,17 @@ rol_apply_mars_activity_cooldown_effect = {
 	}
 
 	rol_clear_context_mars_weapon_effect = yes
+	rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_mars_failure_finalize }
+}
+
+# 任一失败立即终止活动（统一收口）
+rol_rome_quest_fail_now_effect = {
+	rol_apply_mars_activity_cooldown_effect = yes
+	rol_rome_quest_abort_effect = yes
+	rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_mars_fail_now }
+	scope:activity ?= {
+		complete_activity = yes
+	}
 }
 
 rol_rome_quest_abort_effect = {

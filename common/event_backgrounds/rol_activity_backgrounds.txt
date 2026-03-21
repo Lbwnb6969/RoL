@@ -1,18 +1,75 @@
-﻿# Mythic Relics - 活动背景配置（备用，主配置已写入 activity_type）
+﻿# Relics of Legend - 活动背景通用模板与实例
+#
+# 通用模板（可复制到新地区活动）：
+# 1) 旅途中背景：trigger 使用 rol_activity_host_traveling_trigger
+# 2) 抵达后背景：trigger 使用 rol_activity_host_at_activity_location_trigger
+#
+# 说明：人物演出（角色站位/动画）在 activity_type 里的 window_characters 定义，
+# 这里专注背景、环境与环境音配置。
 
 activity_rol_seek_mars_blade = {
+	# 旅途中：罗马地宫前回廊
 	background = {
 		trigger = {
-			scope:host.location != scope:activity.activity_location
+			rol_activity_host_traveling_trigger = yes
 		}
 		reference = "gfx/interface/illustrations/event_scenes/corridor.dds"
 		environment = "environment_event_corridor"
 		ambience = "event:/SFX/Events/Backgrounds/castle_corridor_night"
 	}
 
+	# 抵达后：罗马地宫
 	background = {
+		trigger = {
+			rol_activity_host_at_activity_location_trigger = yes
+		}
 		reference = "gfx/interface/illustrations/event_scenes/dungeon.dds"
 		environment = "environment_event_dungeon"
 		ambience = "event:/SFX/Events/Backgrounds/dungeon"
 	}
 }
+
+activity_rol_seek_nibelung_sphere = {
+	# 旅途中：阿尔卑斯冬境
+	background = {
+		trigger = {
+			rol_activity_host_traveling_trigger = yes
+		}
+		reference = "gfx/interface/illustrations/event_scenes/bp3_mountain_winter.dds"
+		environment = "environment_event_mountains"
+		ambience = "event:/SFX/Events/Backgrounds/mountains_day"
+	}
+
+	# 抵达后：星冢地宫
+	background = {
+		trigger = {
+			rol_activity_host_at_activity_location_trigger = yes
+		}
+		reference = "gfx/interface/illustrations/event_scenes/dungeon.dds"
+		environment = "environment_event_dungeon"
+		ambience = "event:/SFX/Events/Backgrounds/dungeon"
+	}
+}
+
+activity_rol_seek_naxos_guard = {
+	# 旅途中：泰拉外海悬崖
+	background = {
+		trigger = {
+			rol_activity_host_traveling_trigger = yes
+		}
+		reference = "gfx/interface/illustrations/event_scenes/corridor_night.dds"
+		environment = "environment_event_corridor"
+		ambience = "event:/SFX/Events/Backgrounds/castle_corridor_night"
+	}
+
+	# 抵达后：泰拉地下宫殿
+	background = {
+		trigger = {
+			rol_activity_host_at_activity_location_trigger = yes
+		}
+		reference = "gfx/interface/illustrations/event_scenes/dungeon.dds"
+		environment = "environment_event_dungeon"
+		ambience = "event:/SFX/Events/Backgrounds/dungeon"
+	}
+}
+

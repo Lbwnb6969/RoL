@@ -1,0 +1,24 @@
+﻿l_simp_chinese:
+ rol_relic_debug_enabled_toast:0 "[ROL 璋冭瘯] 宸插紑鍚?
+ rol_relic_debug_disabled_toast:0 "[ROL 璋冭瘯] 宸插叧闂?
+
+ rol_relic_debug_mars_stage_progress:0 "[ROL 璋冭瘯] 缃楅┈閾撅細闃舵鎺ㄨ繘"
+ rol_relic_debug_mars_success_finalize:0 "[ROL 璋冭瘯] 缃楅┈閾撅細鎴愬姛鏀跺熬"
+ rol_relic_debug_mars_failure_finalize:0 "[ROL 璋冭瘯] 缃楅┈閾撅細澶辫触鏀跺熬"
+ rol_relic_debug_mars_fail_now:0 "[ROL 璋冭瘯] 缃楅┈閾撅細绔嬪嵆澶辫触鍒嗘敮"
+ rol_relic_debug_mars_terminal_tier4_reward:0 "[ROL 璋冭瘯] 缃楅┈閾撅細缁堝眬Tier4鍙戝"
+ rol_relic_debug_mars_terminal_below_tier4_fail:0 "[ROL 璋冭瘯] 缃楅┈閾撅細缁堝眬浣庝簬Tier4澶辫触"
+
+ rol_relic_debug_nibelung_stage_progress:0 "[ROL 璋冭瘯] 鎱曞凹榛戦摼锛氶樁娈垫帹杩?
+ rol_relic_debug_nibelung_success_finalize:0 "[ROL 璋冭瘯] 鎱曞凹榛戦摼锛氭垚鍔熸敹灏?
+ rol_relic_debug_nibelung_failure_finalize:0 "[ROL 璋冭瘯] 鎱曞凹榛戦摼锛氬け璐ユ敹灏?
+ rol_relic_debug_nibelung_fail_now:0 "[ROL 璋冭瘯] 鎱曞凹榛戦摼锛氱珛鍗冲け璐ュ垎鏀?
+ rol_relic_debug_nibelung_terminal_tier4_reward:0 "[ROL 璋冭瘯] 鎱曞凹榛戦摼锛氱粓灞€Tier4鍙戝"
+ rol_relic_debug_nibelung_terminal_below_tier4_fail:0 "[ROL 璋冭瘯] 鎱曞凹榛戦摼锛氱粓灞€浣庝簬Tier4澶辫触"
+
+ rol_relic_debug_naxos_stage_progress:0 "[ROL 璋冭瘯] 娉版媺閾撅細闃舵鎺ㄨ繘"
+ rol_relic_debug_naxos_success_finalize:0 "[ROL 璋冭瘯] 娉版媺閾撅細鎴愬姛鏀跺熬"
+ rol_relic_debug_naxos_failure_finalize:0 "[ROL 璋冭瘯] 娉版媺閾撅細澶辫触鏀跺熬"
+ rol_relic_debug_naxos_fail_now:0 "[ROL 璋冭瘯] 娉版媺閾撅細绔嬪嵆澶辫触鍒嗘敮"
+ rol_relic_debug_naxos_terminal_tier4_reward:0 "[ROL 璋冭瘯] 娉版媺閾撅細缁堝眬Tier4鍙戝"
+ rol_relic_debug_naxos_terminal_below_tier4_fail:0 "[ROL 璋冭瘯] 娉版媺閾撅細缁堝眬浣庝簬Tier4澶辫触"

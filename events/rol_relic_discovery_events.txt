@@ -58,6 +58,20 @@ rol_relic_discovery.0001 = {
 			add_character_flag = rol_heard_nibelung_legend
 			trigger_event = rol_relic_discovery.1300
 		}
+
+		# 纳克索斯：爱琴海誓卫
+		if = {
+			limit = {
+				OR = {
+					has_title = title:c_naxos
+					has_title = title:b_thera
+				}
+				NOT = { has_character_flag = rol_heard_naxos_legend }
+				NOT = { has_character_flag = rol_naxos_unit_unlocked }
+			}
+			add_character_flag = rol_heard_naxos_legend
+			trigger_event = rol_relic_discovery.1400
+		}
 	}
 }
 
@@ -126,5 +140,22 @@ rol_relic_discovery.1300 = {
 
 	option = {
 		name = rol_relic_discovery.1300.a
+	}
+}
+
+# 纳克索斯传说
+rol_relic_discovery.1400 = {
+	type = character_event
+	title = rol_relic_discovery.1400.t
+	desc = rol_relic_discovery.1400.desc
+	theme = martial
+
+	trigger = {
+		is_ai = no
+		has_character_flag = rol_heard_naxos_legend
+	}
+
+	option = {
+		name = rol_relic_discovery.1400.a
 	}
 }

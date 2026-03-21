@@ -2,6 +2,28 @@
 
 # Mythic Relics - 慕尼黑：尼伯龙根星界球活动事件链
 
+rol_quest_munich.0990 = {
+	type = character_event
+	title = rol_quest_munich.0990.t
+	desc = rol_quest_munich.0990.desc
+	theme = learning
+	override_background = { reference = bp3_mountain_winter }
+	override_sound = { reference = "event:/SFX/Events/Themes/sfx_event_theme_type_faith" }
+
+	trigger = {
+		is_ai = no
+		has_character_flag = rol_heard_nibelung_legend
+		NOT = { has_character_flag = rol_nibelung_sphere_claimed }
+	}
+
+	option = {
+		name = rol_quest_munich.0990.a
+		hidden_effect = {
+			trigger_event = { id = rol_quest_munich.1000 days = 1 }
+		}
+	}
+}
+
 rol_quest_munich.1000 = {
 	type = character_event
 	title = rol_quest_munich.1000.t
@@ -37,14 +59,14 @@ rol_quest_munich.1000 = {
 					add_piety = 100
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_major = yes }
-						rol_munich_quest_progress_effect = yes
+						trigger_event = { id = rol_quest_munich.1010 days = 1 }
 					}
 				}
 				30 = {
 					add_stress = 40
 					hidden_effect = {
-						scope:activity ?= { activity_special_type_progression_negative = yes }
-						rol_munich_quest_progress_effect = yes
+						scope:activity ?= { activity_special_type_progression_negative_major = yes }
+						trigger_event = { id = rol_quest_munich.1011 days = 1 }
 					}
 				}
 			}
@@ -56,14 +78,14 @@ rol_quest_munich.1000 = {
 					add_piety = 60
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_medium = yes }
-						rol_munich_quest_progress_effect = yes
+						trigger_event = { id = rol_quest_munich.1010 days = 1 }
 					}
 				}
 				55 = {
 					add_stress = 50
 					hidden_effect = {
-						scope:activity ?= { activity_special_type_progression_negative_tiny = yes }
-						rol_munich_quest_progress_effect = yes
+						scope:activity ?= { activity_special_type_progression_negative_major = yes }
+						trigger_event = { id = rol_quest_munich.1011 days = 1 }
 					}
 				}
 			}
@@ -87,15 +109,15 @@ rol_quest_munich.1000 = {
 					add_prestige = 90
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_medium = yes }
-						rol_munich_quest_progress_effect = yes
+						trigger_event = { id = rol_quest_munich.1010 days = 1 }
 					}
 				}
 				45 = {
 					add_trait = wounded_1
 					add_prestige = -120
 					hidden_effect = {
-						scope:activity ?= { activity_special_type_progression_negative = yes }
-						rol_munich_quest_progress_effect = yes
+						scope:activity ?= { activity_special_type_progression_negative_major = yes }
+						trigger_event = { id = rol_quest_munich.1011 days = 1 }
 					}
 				}
 			}
@@ -107,7 +129,7 @@ rol_quest_munich.1000 = {
 					add_prestige = 60
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_tiny = yes }
-						rol_munich_quest_progress_effect = yes
+						trigger_event = { id = rol_quest_munich.1010 days = 1 }
 					}
 				}
 				65 = {
@@ -115,7 +137,7 @@ rol_quest_munich.1000 = {
 					add_prestige = -150
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_negative_major = yes }
-						rol_munich_quest_progress_effect = yes
+						trigger_event = { id = rol_quest_munich.1011 days = 1 }
 					}
 				}
 			}
@@ -128,8 +150,53 @@ rol_quest_munich.1000 = {
 		add_prestige = -50
 		hidden_effect = {
 			scope:activity ?= { activity_special_type_progression_negative_major = yes }
-			rol_munich_quest_abort_effect = yes
-			rol_apply_nibelung_activity_cooldown_effect = yes
+			trigger_event = { id = rol_quest_munich.1012 days = 1 }
+		}
+	}
+}
+
+# 第一阶段结果反馈
+rol_quest_munich.1010 = {
+	type = character_event
+	title = rol_quest_munich.1010.t
+	desc = rol_quest_munich.1010.desc
+	theme = learning
+	override_background = { reference = dungeon }
+	trigger = { is_ai = no }
+	option = {
+		name = rol_quest_munich.1010.a
+		hidden_effect = {
+			rol_munich_quest_progress_effect = yes
+		}
+	}
+}
+
+rol_quest_munich.1011 = {
+	type = character_event
+	title = rol_quest_munich.1011.t
+	desc = rol_quest_munich.1011.desc
+	theme = learning
+	override_background = { reference = dungeon }
+	trigger = { is_ai = no }
+	option = {
+		name = rol_quest_munich.1011.a
+		hidden_effect = {
+			rol_munich_quest_fail_now_effect = yes
+		}
+	}
+}
+
+rol_quest_munich.1012 = {
+	type = character_event
+	title = rol_quest_munich.1012.t
+	desc = rol_quest_munich.1012.desc
+	theme = learning
+	override_background = { reference = dungeon }
+	trigger = { is_ai = no }
+	option = {
+		name = rol_quest_munich.1012.a
+		hidden_effect = {
+			rol_munich_quest_fail_now_effect = yes
 		}
 	}
 }
@@ -159,14 +226,14 @@ rol_quest_munich.1002 = {
 					add_prestige = 100
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_major = yes }
-						rol_munich_quest_progress_effect = yes
+						trigger_event = { id = rol_quest_munich.1020 days = 1 }
 					}
 				}
 				35 = {
 					add_stress = 35
 					hidden_effect = {
-						scope:activity ?= { activity_special_type_progression_negative_tiny = yes }
-						rol_munich_quest_progress_effect = yes
+						scope:activity ?= { activity_special_type_progression_negative_major = yes }
+						trigger_event = { id = rol_quest_munich.1021 days = 1 }
 					}
 				}
 			}
@@ -178,14 +245,14 @@ rol_quest_munich.1002 = {
 					add_prestige = 60
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_medium = yes }
-						rol_munich_quest_progress_effect = yes
+						trigger_event = { id = rol_quest_munich.1020 days = 1 }
 					}
 				}
 				60 = {
 					add_stress = 45
 					hidden_effect = {
-						scope:activity ?= { activity_special_type_progression_negative = yes }
-						rol_munich_quest_progress_effect = yes
+						scope:activity ?= { activity_special_type_progression_negative_major = yes }
+						trigger_event = { id = rol_quest_munich.1021 days = 1 }
 					}
 				}
 			}
@@ -203,14 +270,14 @@ rol_quest_munich.1002 = {
 					add_piety = 120
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_major = yes }
-						rol_munich_quest_progress_effect = yes
+						trigger_event = { id = rol_quest_munich.1020 days = 1 }
 					}
 				}
 				25 = {
 					add_stress = 20
 					hidden_effect = {
-						scope:activity ?= { activity_special_type_progression_negative_tiny = yes }
-						rol_munich_quest_progress_effect = yes
+						scope:activity ?= { activity_special_type_progression_negative = yes }
+						trigger_event = { id = rol_quest_munich.1021 days = 1 }
 					}
 				}
 			}
@@ -222,14 +289,14 @@ rol_quest_munich.1002 = {
 					add_piety = 70
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_medium = yes }
-						rol_munich_quest_progress_effect = yes
+						trigger_event = { id = rol_quest_munich.1020 days = 1 }
 					}
 				}
 				55 = {
 					add_stress = 35
 					hidden_effect = {
-						scope:activity ?= { activity_special_type_progression_negative = yes }
-						rol_munich_quest_progress_effect = yes
+						scope:activity ?= { activity_special_type_progression_negative_major = yes }
+						trigger_event = { id = rol_quest_munich.1021 days = 1 }
 					}
 				}
 			}
@@ -242,8 +309,52 @@ rol_quest_munich.1002 = {
 		add_stress = 15
 		hidden_effect = {
 			scope:activity ?= { activity_special_type_progression_negative_major = yes }
-			rol_munich_quest_abort_effect = yes
-			rol_apply_nibelung_activity_cooldown_effect = yes
+			trigger_event = { id = rol_quest_munich.1022 days = 1 }
+		}
+	}
+}
+
+rol_quest_munich.1020 = {
+	type = character_event
+	title = rol_quest_munich.1020.t
+	desc = rol_quest_munich.1020.desc
+	theme = learning
+	override_background = { reference = ce1_catacombs }
+	trigger = { is_ai = no }
+	option = {
+		name = rol_quest_munich.1020.a
+		hidden_effect = {
+			rol_munich_quest_progress_effect = yes
+		}
+	}
+}
+
+rol_quest_munich.1021 = {
+	type = character_event
+	title = rol_quest_munich.1021.t
+	desc = rol_quest_munich.1021.desc
+	theme = learning
+	override_background = { reference = ce1_catacombs }
+	trigger = { is_ai = no }
+	option = {
+		name = rol_quest_munich.1021.a
+		hidden_effect = {
+			rol_munich_quest_fail_now_effect = yes
+		}
+	}
+}
+
+rol_quest_munich.1022 = {
+	type = character_event
+	title = rol_quest_munich.1022.t
+	desc = rol_quest_munich.1022.desc
+	theme = learning
+	override_background = { reference = ce1_catacombs }
+	trigger = { is_ai = no }
+	option = {
+		name = rol_quest_munich.1022.a
+		hidden_effect = {
+			rol_munich_quest_fail_now_effect = yes
 		}
 	}
 }
@@ -262,21 +373,15 @@ rol_quest_munich.1001 = {
 			}
 			triggered_desc = {
 				trigger = {
-					exists = scope:activity
-					scope:activity.var:activity_special_type_progression >= 60
+					OR = {
+						NOT = { exists = scope:activity }
+						AND = {
+							exists = scope:activity
+							scope:activity.var:activity_special_type_progression < 80
+						}
+					}
 				}
-				desc = rol_quest_munich.1001.desc.tier_3
-			}
-			triggered_desc = {
-				trigger = {
-					exists = scope:activity
-					scope:activity.var:activity_special_type_progression >= 35
-				}
-				desc = rol_quest_munich.1001.desc.tier_2
-			}
-			triggered_desc = {
-				trigger = { exists = scope:activity }
-				desc = rol_quest_munich.1001.desc.tier_1
+				desc = rol_quest_munich.1001.desc.below_tier4
 			}
 			desc = rol_quest_munich.1001.desc
 		}
@@ -287,25 +392,35 @@ rol_quest_munich.1001 = {
 
 	trigger = {
 		is_ai = no
-		NOT = { has_character_flag = rol_nibelung_sphere_claimed }
 	}
 
 	immediate = {
-		play_sound_effect = "event:/DLC/EP1/SFX/UI/Notifications/court_grandeur_toast_lvl_up"
-
-		rol_create_nibelung_star_sphere_effect = yes
-
 		if = {
-			limit = { exists = scope:newly_created_artifact }
-			scope:newly_created_artifact = {
-				set_owner = root
+			limit = { has_character_flag = rol_nibelung_sphere_claimed }
+			error_log = "[ROL][DUPLICATE] rol_quest_munich.1001 fired after claim; skipping artifact grant"
+		}
+		else_if = {
+			limit = {
+				exists = scope:activity
+				scope:activity.var:activity_special_type_progression >= 80
 			}
+			play_sound_effect = "event:/DLC/EP1/SFX/UI/Notifications/court_grandeur_toast_lvl_up"
+			rol_create_nibelung_star_sphere_effect = yes
+
+			if = {
+				limit = { exists = scope:newly_created_artifact }
+			}
+			else = {
+				error_log = "[ROL][ERROR] Failed to grant artifact rol_nibelung_star_sphere in rol_quest_munich.1001"
+			}
+
+			rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_nibelung_terminal_tier4_reward }
+			rol_munich_quest_success_finalize_effect = yes
 		}
 		else = {
-			error_log = "[ROL] Failed to grant artifact rol_nibelung_star_sphere in rol_quest_munich.1001"
+			rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_nibelung_terminal_below_tier4_fail }
+			rol_munich_quest_fail_now_effect = yes
 		}
-
-		rol_munich_quest_success_finalize_effect = yes
 	}
 
 	option = {

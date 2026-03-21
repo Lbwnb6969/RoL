@@ -1,0 +1,44 @@
+﻿# Relics of Legend - Naxos / Thera elite unit
+
+rol_adeptus_custudes = {
+	type = heavy_infantry
+	icon = heavy_infantry
+
+	can_recruit = {
+		has_character_flag = rol_naxos_unit_unlocked
+		any_active_accolade = {
+			primary_type = {
+				this = accolade_type:vanguard_attribute
+			}
+			accolade_rank >= 5
+		}
+		NOT = {
+			culture = { has_cultural_parameter = strength_in_numbers_heavy_maa_ban }
+		}
+	}
+
+	should_show_when_unavailable = {
+		government_allows = subject_men_at_arms
+		has_character_flag = rol_naxos_unit_unlocked
+	}
+
+	damage = 1440
+	toughness = 1080
+	pursuit = 0
+	screen = 0
+
+	terrain_bonus = {
+		hills = { damage = 40 }
+	}
+
+	buy_cost = { gold = accolade_heavy_infantry_recruitment_cost }
+	low_maintenance_cost = { gold = heavy_infantry_low_maint_cost }
+	high_maintenance_cost = { gold = heavy_infantry_high_maint_cost }
+	provision_cost = @provisions_cost_infantry_expensive
+
+	stack = 4
+	ai_quality = {
+		value = culture_ai_weight_heavy_infantry
+		add = 0
+	}
+}

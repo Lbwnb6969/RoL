@@ -4,6 +4,10 @@
  artifact_rol_nibelung_star_sphere:0 "尼伯龙根星界球"
  artifact_rol_nibelung_star_sphere_desc:0 "它在掌心上方静静自转，仿佛一颗被驯服的夜空。每一次闪烁，都像远古星海在低语。"
 
+ rol_quest_munich.0990.t:0 "抵达星冢入口"
+ rol_quest_munich.0990.desc:0 "你的远征队抵达慕尼黑城郊那道被地震撕开的峡口。寒雾如祭烟般垂落，众人不自觉压低了声音。裂开的岩层下，古老矿井向地心延伸，仿佛在邀请，也像在审判。"
+ rol_quest_munich.0990.a:0 "点燃仪式火把，肃穆下探。"
+
  rol_quest_munich.1000.t:0 "踏入极寒"
  rol_quest_munich.1000.desc:0 "矿坑深处的寒风几乎割裂肺腑。火把照见通道尽头一扇巨大的绝对冰川之门，冰层之内星辰符文缓缓流动，像活着的天穹。"
  rol_quest_munich.1000.a:0 "按星图推演，解开冰门。"
@@ -16,6 +20,16 @@
  rol_quest_munich.1000.b.odds_high_tt:0 "当前判定：成功率 #P 55%#!，失败率 #N 45%#!。"
  rol_quest_munich.1000.b.odds_low_tt:0 "当前判定：成功率 #P 35%#!，失败率 #N 65%#!。"
  rol_quest_munich.1000.c.tt:0 "你终止本次远征：进入2年冷却。"
+
+ rol_quest_munich.1010.t:0 "冰门开启"
+ rol_quest_munich.1010.desc:0 "符文与火光交错，冰封大门终于向你让路。队伍士气回升，远征得以继续。"
+ rol_quest_munich.1010.a:0 "向地心推进。"
+ rol_quest_munich.1011.t:0 "冰门反噬"
+ rol_quest_munich.1011.desc:0 "极寒与星噪同时爆发，队伍陷入恐慌。继续下探只会让伤亡迅速扩大。"
+ rol_quest_munich.1011.a:0 "终止远征。"
+ rol_quest_munich.1012.t:0 "在入口止步"
+ rol_quest_munich.1012.desc:0 "你下令撤回，冰门在身后重新凝结。圣所沉入沉默，本次探索就此结束。"
+ rol_quest_munich.1012.a:0 "整备两年后再来。"
 
  rol_quest_munich.1002.t:0 "心灵深渊"
  rol_quest_munich.1002.desc:0 "穿过冰门后，一座地底大空洞在你面前展开。穹顶水晶映照着不可名状的光。队伍开始出现幻觉：逝者怒吼、深渊凝视、群星倒转。"
@@ -30,14 +44,25 @@
  rol_quest_munich.1002.b.odds_low_tt:0 "当前判定：成功率 #P 45%#!，失败率 #N 55%#!。"
  rol_quest_munich.1002.c.tt:0 "你终止本次远征：进入2年冷却。"
 
+ rol_quest_munich.1020.t:0 "心域稳定"
+ rol_quest_munich.1020.desc:0 "幻象逐渐散去，你重新掌控了队伍意志。圣所核心的脉动就在前方。"
+ rol_quest_munich.1020.a:0 "继续深入。"
+ rol_quest_munich.1021.t:0 "心域崩坏"
+ rol_quest_munich.1021.desc:0 "队伍被幻象撕裂，意志防线彻底坍塌。你必须立刻终止探索。"
+ rol_quest_munich.1021.a:0 "全员撤离。"
+ rol_quest_munich.1022.t:0 "主动撤离圣所"
+ rol_quest_munich.1022.desc:0 "你选择保存实力，带着尚存理智的队员离开地底空洞。"
+ rol_quest_munich.1022.a:0 "这是必要的决定。"
+
  rol_quest_munich.1001.t:0 "星辰陨心"
  rol_quest_munich.1001.desc:0 "陨铁祭坛悬浮于绝对宁静的地下冰湖上方。星界球在其中自转，内部银河缓缓流动。你伸手触碰它时，整座地宫像在屏息等待回应。"
  rol_quest_munich.1001.desc.tier_1:0 "球体在你手中光芒黯淡，星河几乎停滞。你带走了它，却也感受到它对你粗粝手段的沉默叹息。"
  rol_quest_munich.1001.desc.tier_2:0 "星光在球体深处若隐若现。它接纳了你，向你展示了零散却珍贵的失落真知。"
  rol_quest_munich.1001.desc.tier_3:0 "球体悬浮于掌心之上，极光般的色彩淹没地底。你听见的不是声音，而是一整片星海的脉搏。"
  rol_quest_munich.1001.desc.tier_4:0 "宇宙与灵魂在此刻共鸣。一束纯净星光刺穿地层直上慕尼黑夜空，万民仰望异象，而你如半神般走出地宫。"
+ rol_quest_munich.1001.desc.below_tier4:0 "你没能完成终极共鸣，星界球拒绝离开祭坛。本次远征按失败结算。"
  rol_quest_munich.1001.a:0 "让群星见证我的统治。"
- rol_quest_munich.1001.a.tt:0 "你获得礼器[artifact|E]：$rol_nibelung_star_sphere$。成功度越高，结算奖励越丰厚。"
+ rol_quest_munich.1001.a.tt:0 "仅当成功度达到 #V 80+（Tier4）#! 才可带走礼器；否则按失败结算并进入2年冷却。"
 
  rol_quest_munich.1090.t:0 "星界远征结算"
  rol_quest_munich.1090.desc.success_4:0 "这是一场近乎神话的完美远征。你不仅夺得圣物，还让整个巴伐利亚见证了违反常理的天象。"
@@ -50,7 +75,7 @@
 
  activity_rol_seek_nibelung_sphere:0 "尼伯龙根星界远征"
  activity_rol_seek_nibelung_sphere_desc:0 "你将深入慕尼黑地底冰封圣所，追寻尼伯龙根遗留的星界礼器。"
- activity_rol_seek_nibelung_sphere_host_desc:0 "$BULLET_WITH_TAB$可能获得传说礼器：$rol_nibelung_star_sphere$\n$BULLET_WITH_TAB$失败时可能受伤、增压并损失威望"
+ activity_rol_seek_nibelung_sphere_host_desc:0 "$BULLET_WITH_TAB$可能获得传说礼器：$rol_nibelung_star_sphere$\n$BULLET_WITH_TAB$失败将立刻终止远征并进入冷却"
  activity_rol_seek_nibelung_sphere_guest_desc:0 ""
  activity_rol_seek_nibelung_sphere_conclusion_desc:0 "暴雪掩埋了入口，但你已触碰过地心深处的星海。"
  activity_rol_seek_nibelung_sphere_conclusion_desc_success_4:0 "你与圣物达成宇宙共鸣，传说在你身上成真。"

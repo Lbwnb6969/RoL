@@ -1,0 +1,567 @@
+﻿namespace = rol_quest_naxos
+
+# Mythic Relics - 纳克索斯：爱琴海誓卫活动事件链
+
+rol_quest_naxos.0990 = {
+	type = character_event
+	title = rol_quest_naxos.0990.t
+	desc = rol_quest_naxos.0990.desc
+	theme = martial
+	override_background = { reference = docks }
+	override_sound = { reference = "event:/SFX/Events/Themes/sfx_event_theme_type_faith" }
+
+	trigger = {
+		is_ai = no
+		has_character_flag = rol_heard_naxos_legend
+		NOT = { has_character_flag = rol_naxos_unit_unlocked }
+	}
+
+	option = {
+		name = rol_quest_naxos.0990.a
+		hidden_effect = {
+			trigger_event = { id = rol_quest_naxos.1000 days = 1 }
+		}
+	}
+}
+
+rol_quest_naxos.1000 = {
+	type = character_event
+	title = rol_quest_naxos.1000.t
+	desc = rol_quest_naxos.1000.desc
+	theme = martial
+	override_background = { reference = ce1_catacombs }
+
+	trigger = {
+		is_ai = no
+		has_character_flag = rol_heard_naxos_legend
+		NOT = { has_character_flag = rol_naxos_unit_unlocked }
+	}
+
+	immediate = {
+		if = {
+			limit = { NOT = { has_variable = rol_naxos_stage_count } }
+			set_variable = {
+				name = rol_naxos_stage_count
+				value = 0
+			}
+		}
+	}
+
+	option = {
+		name = rol_quest_naxos.1000.a
+		skill = martial
+		custom_tooltip = rol_quest_naxos.1000.a.tt
+		if = {
+			limit = {
+				OR = {
+					martial >= 15
+					prowess >= 12
+				}
+			}
+			random_list = {
+				65 = {
+					add_prestige = 70
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_major = yes }
+						trigger_event = { id = rol_quest_naxos.1010 days = 1 }
+					}
+				}
+				35 = {
+					add_trait = wounded_1
+					add_prestige = -100
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_negative_major = yes }
+						trigger_event = { id = rol_quest_naxos.1011 days = 1 }
+					}
+				}
+			}
+		}
+		else = {
+			random_list = {
+				40 = {
+					add_prestige = 45
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_medium = yes }
+						trigger_event = { id = rol_quest_naxos.1010 days = 1 }
+					}
+				}
+				60 = {
+					add_trait = wounded_1
+					add_prestige = -110
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_negative_major = yes }
+						trigger_event = { id = rol_quest_naxos.1011 days = 1 }
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = rol_quest_naxos.1000.b
+		skill = learning
+		trigger = {
+			learning >= 13
+		}
+		custom_tooltip = rol_quest_naxos.1000.b.tt
+		add_piety = 60
+		hidden_effect = {
+			scope:activity ?= { activity_special_type_progression_medium = yes }
+			trigger_event = { id = rol_quest_naxos.1010 days = 1 }
+		}
+	}
+
+	option = {
+		name = rol_quest_naxos.1000.c
+		custom_tooltip = rol_quest_naxos.1000.c.tt
+		add_prestige = -50
+		hidden_effect = {
+			scope:activity ?= { activity_special_type_progression_negative_major = yes }
+			trigger_event = { id = rol_quest_naxos.1012 days = 1 }
+		}
+	}
+}
+
+rol_quest_naxos.1010 = {
+	type = character_event
+	title = rol_quest_naxos.1010.t
+	desc = rol_quest_naxos.1010.desc
+	theme = martial
+	override_background = { reference = ce1_catacombs }
+	trigger = { is_ai = no }
+	option = {
+		name = rol_quest_naxos.1010.a
+		hidden_effect = { rol_naxos_quest_progress_effect = yes }
+	}
+}
+
+rol_quest_naxos.1011 = {
+	type = character_event
+	title = rol_quest_naxos.1011.t
+	desc = rol_quest_naxos.1011.desc
+	theme = martial
+	override_background = { reference = ce1_catacombs }
+	trigger = { is_ai = no }
+	option = {
+		name = rol_quest_naxos.1011.a
+		hidden_effect = { rol_naxos_quest_fail_now_effect = yes }
+	}
+}
+
+rol_quest_naxos.1012 = {
+	type = character_event
+	title = rol_quest_naxos.1012.t
+	desc = rol_quest_naxos.1012.desc
+	theme = martial
+	override_background = { reference = ce1_catacombs }
+	trigger = { is_ai = no }
+	option = {
+		name = rol_quest_naxos.1012.a
+		hidden_effect = { rol_naxos_quest_fail_now_effect = yes }
+	}
+}
+
+rol_quest_naxos.1002 = {
+	type = character_event
+	title = rol_quest_naxos.1002.t
+	desc = rol_quest_naxos.1002.desc
+	theme = diplomacy
+	override_background = { reference = ce1_catacombs }
+
+	trigger = {
+		is_ai = no
+		has_variable = rol_naxos_stage_count
+		NOT = { has_character_flag = rol_naxos_unit_unlocked }
+	}
+
+	option = {
+		name = rol_quest_naxos.1002.a
+		skill = diplomacy
+		custom_tooltip = rol_quest_naxos.1002.a.tt
+		if = {
+			limit = { diplomacy >= 14 }
+			random_list = {
+				65 = {
+					add_prestige = 80
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_major = yes }
+						trigger_event = { id = rol_quest_naxos.1020 days = 1 }
+					}
+				}
+				35 = {
+					add_stress = 40
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_negative_major = yes }
+						trigger_event = { id = rol_quest_naxos.1021 days = 1 }
+					}
+				}
+			}
+		}
+		else = {
+			random_list = {
+				40 = {
+					add_prestige = 50
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_medium = yes }
+						trigger_event = { id = rol_quest_naxos.1020 days = 1 }
+					}
+				}
+				60 = {
+					add_stress = 55
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_negative_major = yes }
+						trigger_event = { id = rol_quest_naxos.1021 days = 1 }
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = rol_quest_naxos.1002.b
+		skill = learning
+		custom_tooltip = rol_quest_naxos.1002.b.tt
+		if = {
+			limit = { learning >= 15 }
+			random_list = {
+				70 = {
+					add_piety = 90
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_major = yes }
+						trigger_event = { id = rol_quest_naxos.1020 days = 1 }
+					}
+				}
+				30 = {
+					add_stress = 30
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_negative = yes }
+						trigger_event = { id = rol_quest_naxos.1021 days = 1 }
+					}
+				}
+			}
+		}
+		else = {
+			random_list = {
+				45 = {
+					add_piety = 50
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_medium = yes }
+						trigger_event = { id = rol_quest_naxos.1020 days = 1 }
+					}
+				}
+				55 = {
+					add_stress = 45
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_negative_major = yes }
+						trigger_event = { id = rol_quest_naxos.1021 days = 1 }
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = rol_quest_naxos.1002.c
+		custom_tooltip = rol_quest_naxos.1002.c.tt
+		add_prestige = -40
+		hidden_effect = {
+			scope:activity ?= { activity_special_type_progression_negative_major = yes }
+			trigger_event = { id = rol_quest_naxos.1022 days = 1 }
+		}
+	}
+}
+
+rol_quest_naxos.1020 = {
+	type = character_event
+	title = rol_quest_naxos.1020.t
+	desc = rol_quest_naxos.1020.desc
+	theme = diplomacy
+	override_background = { reference = ce1_catacombs }
+	trigger = { is_ai = no }
+	option = {
+		name = rol_quest_naxos.1020.a
+		hidden_effect = { rol_naxos_quest_progress_effect = yes }
+	}
+}
+
+rol_quest_naxos.1021 = {
+	type = character_event
+	title = rol_quest_naxos.1021.t
+	desc = rol_quest_naxos.1021.desc
+	theme = diplomacy
+	override_background = { reference = ce1_catacombs }
+	trigger = { is_ai = no }
+	option = {
+		name = rol_quest_naxos.1021.a
+		hidden_effect = { rol_naxos_quest_fail_now_effect = yes }
+	}
+}
+
+rol_quest_naxos.1022 = {
+	type = character_event
+	title = rol_quest_naxos.1022.t
+	desc = rol_quest_naxos.1022.desc
+	theme = diplomacy
+	override_background = { reference = ce1_catacombs }
+	trigger = { is_ai = no }
+	option = {
+		name = rol_quest_naxos.1022.a
+		hidden_effect = { rol_naxos_quest_fail_now_effect = yes }
+	}
+}
+
+rol_quest_naxos.1003 = {
+	type = character_event
+	title = rol_quest_naxos.1003.t
+	desc = rol_quest_naxos.1003.desc
+	theme = martial
+	override_background = { reference = battlefield }
+
+	trigger = {
+		is_ai = no
+		has_variable = rol_naxos_stage_count
+		NOT = { has_character_flag = rol_naxos_unit_unlocked }
+	}
+
+	option = {
+		name = rol_quest_naxos.1003.a
+		skill = martial
+		custom_tooltip = rol_quest_naxos.1003.a.tt
+		if = {
+			limit = {
+				OR = {
+					martial >= 17
+					prowess >= 13
+				}
+			}
+			random_list = {
+				60 = {
+					add_prestige = 100
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_major = yes }
+						trigger_event = { id = rol_quest_naxos.1030 days = 1 }
+					}
+				}
+				40 = {
+					add_trait = wounded_1
+					add_prestige = -130
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_negative_major = yes }
+						trigger_event = { id = rol_quest_naxos.1031 days = 1 }
+					}
+				}
+			}
+		}
+		else = {
+			random_list = {
+				35 = {
+					add_prestige = 70
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_medium = yes }
+						trigger_event = { id = rol_quest_naxos.1030 days = 1 }
+					}
+				}
+				65 = {
+					add_trait = wounded_1
+					add_prestige = -160
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_negative_major = yes }
+						trigger_event = { id = rol_quest_naxos.1031 days = 1 }
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = rol_quest_naxos.1003.b
+		skill = intrigue
+		custom_tooltip = rol_quest_naxos.1003.b.tt
+		random_list = {
+			45 = {
+				add_prestige = 55
+				hidden_effect = {
+					scope:activity ?= { activity_special_type_progression_tiny = yes }
+					trigger_event = { id = rol_quest_naxos.1030 days = 1 }
+				}
+			}
+			55 = {
+				add_stress = 40
+				add_prestige = -60
+				hidden_effect = {
+					scope:activity ?= { activity_special_type_progression_negative_major = yes }
+					trigger_event = { id = rol_quest_naxos.1031 days = 1 }
+				}
+			}
+		}
+	}
+
+	option = {
+		name = rol_quest_naxos.1003.c
+		custom_tooltip = rol_quest_naxos.1003.c.tt
+		add_prestige = -50
+		hidden_effect = {
+			scope:activity ?= { activity_special_type_progression_negative_major = yes }
+			trigger_event = { id = rol_quest_naxos.1032 days = 1 }
+		}
+	}
+}
+
+rol_quest_naxos.1030 = {
+	type = character_event
+	title = rol_quest_naxos.1030.t
+	desc = rol_quest_naxos.1030.desc
+	theme = martial
+	override_background = { reference = battlefield }
+	trigger = { is_ai = no }
+	option = {
+		name = rol_quest_naxos.1030.a
+		hidden_effect = { rol_naxos_quest_progress_effect = yes }
+	}
+}
+
+rol_quest_naxos.1031 = {
+	type = character_event
+	title = rol_quest_naxos.1031.t
+	desc = rol_quest_naxos.1031.desc
+	theme = martial
+	override_background = { reference = battlefield }
+	trigger = { is_ai = no }
+	option = {
+		name = rol_quest_naxos.1031.a
+		hidden_effect = { rol_naxos_quest_fail_now_effect = yes }
+	}
+}
+
+rol_quest_naxos.1032 = {
+	type = character_event
+	title = rol_quest_naxos.1032.t
+	desc = rol_quest_naxos.1032.desc
+	theme = martial
+	override_background = { reference = battlefield }
+	trigger = { is_ai = no }
+	option = {
+		name = rol_quest_naxos.1032.a
+		hidden_effect = { rol_naxos_quest_fail_now_effect = yes }
+	}
+}
+
+rol_quest_naxos.1001 = {
+	type = character_event
+	title = rol_quest_naxos.1001.t
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					exists = scope:activity
+					scope:activity.var:activity_special_type_progression >= 75
+				}
+				desc = rol_quest_naxos.1001.desc.tier_4
+			}
+			triggered_desc = {
+				trigger = {
+					OR = {
+						NOT = { exists = scope:activity }
+						AND = {
+							exists = scope:activity
+							scope:activity.var:activity_special_type_progression < 75
+						}
+					}
+				}
+				desc = rol_quest_naxos.1001.desc.below_tier4
+			}
+			desc = rol_quest_naxos.1001.desc
+		}
+	}
+	theme = martial
+	override_background = { reference = armory }
+	override_sound = { reference = "event:/SFX/Events/Themes/sfx_event_theme_type_duty" }
+
+	trigger = {
+		is_ai = no
+	}
+
+	immediate = {
+		if = {
+			limit = { has_character_flag = rol_naxos_unit_unlocked }
+			error_log = "[ROL][DUPLICATE] rol_quest_naxos.1001 fired after unlock; skipping reward"
+		}
+		else_if = {
+			limit = {
+				exists = scope:activity
+				scope:activity.var:activity_special_type_progression >= 75
+			}
+			play_sound_effect = "event:/DLC/EP1/SFX/UI/Notifications/court_grandeur_toast_lvl_up"
+			rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_naxos_terminal_tier4_reward }
+			rol_naxos_quest_success_finalize_effect = yes
+		}
+		else = {
+			rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_naxos_terminal_below_tier4_fail }
+			rol_naxos_quest_fail_now_effect = yes
+		}
+	}
+
+	option = {
+		name = rol_quest_naxos.1001.a
+		custom_tooltip = rol_quest_naxos.1001.a.tt
+	}
+}
+
+rol_quest_naxos.1090 = {
+	type = character_event
+	title = rol_quest_naxos.1090.t
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					has_character_flag = rol_recent_naxos_quest_success
+					has_variable = rol_recent_relic_result_tier
+					var:rol_recent_relic_result_tier >= 4
+				}
+				desc = rol_quest_naxos.1090.desc.success_4
+			}
+			triggered_desc = {
+				trigger = {
+					has_character_flag = rol_recent_naxos_quest_success
+					has_variable = rol_recent_relic_result_tier
+					var:rol_recent_relic_result_tier >= 3
+				}
+				desc = rol_quest_naxos.1090.desc.success_3
+			}
+			triggered_desc = {
+				trigger = {
+					has_character_flag = rol_recent_naxos_quest_success
+					has_variable = rol_recent_relic_result_tier
+					var:rol_recent_relic_result_tier >= 2
+				}
+				desc = rol_quest_naxos.1090.desc.success_2
+			}
+			triggered_desc = {
+				trigger = { has_character_flag = rol_recent_naxos_quest_success }
+				desc = rol_quest_naxos.1090.desc.success_1
+			}
+			triggered_desc = {
+				trigger = { has_character_flag = rol_recent_naxos_quest_failure }
+				desc = rol_quest_naxos.1090.desc.failure
+			}
+			desc = rol_quest_naxos.1090.desc.fallback
+		}
+	}
+	theme = martial
+	override_background = { reference = throne_room }
+
+	trigger = {
+		is_ai = no
+		OR = {
+			has_character_flag = rol_recent_naxos_quest_success
+			has_character_flag = rol_recent_naxos_quest_failure
+		}
+	}
+
+	option = {
+		name = rol_quest_naxos.1090.a
+		hidden_effect = {
+			rol_relic_clear_recent_result_effect = yes
+		}
+	}
+}

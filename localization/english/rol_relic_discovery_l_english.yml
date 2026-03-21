@@ -14,3 +14,7 @@
  rol_relic_discovery.1300.t:0 "The Munich Omen"
  rol_relic_discovery.1300.desc:0 "A deep autumn quake tears open a valley near Munich. Miners uncover strange warm ice glowing in pale blue, and survivors mutter only one phrase: the stars turn beneath the earth."
  rol_relic_discovery.1300.a:0 "Gather trusted companions and descend."
+
+ rol_relic_discovery.1400.t:0 "Clues to the Thera Underground Palace"
+ rol_relic_discovery.1400.desc:0 "Records tied to Naxos and Thera reference a late-Roman \"Imperial Palace\" buried under volcanic stone, sealed by Custodes oaths. Rumor claims it once influenced the fate of the Empire itself."
+ rol_relic_discovery.1400.a:0 "Prepare a Thera expedition."

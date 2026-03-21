@@ -1,0 +1,12 @@
+﻿# Relics of Legend - 活动通用触发模板
+
+# 宿主是否已到达活动目标地点
+rol_activity_host_at_activity_location_trigger = {
+	scope:host.location = scope:activity.activity_location
+}
+
+# 宿主是否仍在路途中
+rol_activity_host_traveling_trigger = {
+	scope:host.location != scope:activity.activity_location
+}
+
