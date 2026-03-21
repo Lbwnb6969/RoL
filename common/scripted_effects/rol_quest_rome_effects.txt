@@ -19,6 +19,23 @@ rol_rome_quest_progress_effect = {
 	rol_relic_log_stage_effect = yes
 	rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_mars_stage_progress }
 
+	# 宾客互动事件（每次活动至多触发一次）
+	if = {
+		limit = {
+			NOT = { has_character_flag = rol_mars_guest_event_fired }
+			exists = scope:activity
+			scope:activity = {
+				any_attending_character = {
+					this != root
+				}
+			}
+			var:rol_rome_stage_count >= 1
+			var:rol_rome_stage_count < 4
+		}
+		add_character_flag = rol_mars_guest_event_fired
+		trigger_event = { id = rol_quest_rome.1050 days = 4 }
+	}
+
 	# 分阶段延时触发，避免事件连发挤在同一天
 	if = {
 		limit = { var:rol_rome_stage_count < 4 }
@@ -149,6 +166,7 @@ rol_rome_quest_success_finalize_effect = {
 	send_interface_toast = {
 		type = event_toast_effect_good
 		title = rol_mars_activity_success_toast_title
+		desc = rol_mars_activity_success_toast_desc
 		left_icon = root
 	}
 
@@ -168,6 +186,7 @@ rol_apply_mars_activity_cooldown_effect = {
 	send_interface_toast = {
 		type = event_toast_effect_bad
 		title = rol_mars_activity_failure_toast_title
+		desc = rol_mars_activity_failure_toast_desc
 		left_icon = root
 	}
 
@@ -191,3 +210,4 @@ rol_rome_quest_abort_effect = {
 		remove_variable = rol_rome_stage_count
 	}
 }
+

@@ -71,8 +71,35 @@ rol_quest_rome.1000 = {
 		name = rol_quest_rome.1000.a
 		skill = martial
 		custom_tooltip = rol_quest_rome.1000.a.base_tt
+		custom_tooltip = rol_relic_fail_ends_expedition_tt
 
 		if = {
+			limit = {
+				OR = {
+					martial >= 25
+					prowess >= 25
+				}
+			}
+			custom_tooltip = rol_quest_rome.1000.a.odds_elite_tt
+			random_list = {
+				85 = {
+					add_prestige = 90
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_major = yes }
+						trigger_event = { id = rol_quest_rome.1010 days = 1 }
+					}
+				}
+				15 = {
+					add_trait = wounded_1
+					add_prestige = -90
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_negative_major = yes }
+						trigger_event = { id = rol_quest_rome.1011 days = 1 }
+					}
+				}
+			}
+		}
+		else_if = {
 			limit = {
 				OR = {
 					martial >= 18
@@ -81,14 +108,14 @@ rol_quest_rome.1000 = {
 			}
 			custom_tooltip = rol_quest_rome.1000.a.odds_high_tt
 			random_list = {
-				60 = {
+				70 = {
 					add_prestige = 75
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_major = yes }
 						trigger_event = { id = rol_quest_rome.1010 days = 1 }
 					}
 				}
-				40 = {
+				30 = {
 					add_trait = wounded_1
 					add_prestige = -100
 					hidden_effect = {
@@ -101,14 +128,14 @@ rol_quest_rome.1000 = {
 		else = {
 			custom_tooltip = rol_quest_rome.1000.a.odds_low_tt
 			random_list = {
-				40 = {
+				45 = {
 					add_prestige = 50
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_medium = yes }
 						trigger_event = { id = rol_quest_rome.1010 days = 1 }
 					}
 				}
-				60 = {
+				55 = {
 					add_trait = wounded_1
 					add_prestige = -100
 					hidden_effect = {
@@ -235,17 +262,38 @@ rol_quest_rome.1002 = {
 		name = rol_quest_rome.1002.a
 		skill = prowess
 		custom_tooltip = rol_quest_rome.1002.a.tt
+		custom_tooltip = rol_relic_fail_ends_expedition_tt
 		if = {
+			limit = { prowess >= 25 }
+			random_list = {
+				85 = {
+					add_prestige = 70
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_major = yes }
+						trigger_event = { id = rol_quest_rome.1020 days = 1 }
+					}
+				}
+				15 = {
+					add_trait = wounded_1
+					add_prestige = -70
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_negative = yes }
+						trigger_event = { id = rol_quest_rome.1021 days = 1 }
+					}
+				}
+			}
+		}
+		else_if = {
 			limit = { prowess >= 12 }
 			random_list = {
-				65 = {
+				75 = {
 					add_prestige = 50
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_medium = yes }
 						trigger_event = { id = rol_quest_rome.1020 days = 1 }
 					}
 				}
-				35 = {
+				25 = {
 					add_trait = wounded_1
 					add_prestige = -80
 					hidden_effect = {
@@ -257,14 +305,14 @@ rol_quest_rome.1002 = {
 		}
 		else = {
 			random_list = {
-				35 = {
+				40 = {
 					add_prestige = 30
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_tiny = yes }
 						trigger_event = { id = rol_quest_rome.1020 days = 1 }
 					}
 				}
-				65 = {
+				60 = {
 					add_trait = wounded_1
 					add_prestige = -100
 					hidden_effect = {
@@ -370,17 +418,37 @@ rol_quest_rome.1003 = {
 		name = rol_quest_rome.1003.a
 		skill = learning
 		custom_tooltip = rol_quest_rome.1003.a.tt
+		custom_tooltip = rol_relic_fail_ends_expedition_tt
 		if = {
+			limit = { learning >= 25 }
+			random_list = {
+				85 = {
+					add_piety = 90
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_major = yes }
+						trigger_event = { id = rol_quest_rome.1030 days = 1 }
+					}
+				}
+				15 = {
+					add_stress = 30
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_negative = yes }
+						trigger_event = { id = rol_quest_rome.1031 days = 1 }
+					}
+				}
+			}
+		}
+		else_if = {
 			limit = { learning >= 14 }
 			random_list = {
-				65 = {
+				75 = {
 					add_piety = 75
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_medium = yes }
 						trigger_event = { id = rol_quest_rome.1030 days = 1 }
 					}
 				}
-				35 = {
+				25 = {
 					add_stress = 40
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_negative = yes }
@@ -391,14 +459,14 @@ rol_quest_rome.1003 = {
 		}
 		else = {
 			random_list = {
-				35 = {
+				40 = {
 					add_piety = 40
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_tiny = yes }
 						trigger_event = { id = rol_quest_rome.1030 days = 1 }
 					}
 				}
-				65 = {
+				60 = {
 					add_stress = 60
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_negative_major = yes }
@@ -412,15 +480,16 @@ rol_quest_rome.1003 = {
 	option = {
 		name = rol_quest_rome.1003.b
 		custom_tooltip = rol_quest_rome.1003.b.tt
+		custom_tooltip = rol_relic_fail_ends_expedition_tt
 		random_list = {
-			45 = {
+			50 = {
 				add_prestige = 30
 				hidden_effect = {
 					scope:activity ?= { activity_special_type_progression_tiny = yes }
 					trigger_event = { id = rol_quest_rome.1030 days = 1 }
 				}
 			}
-			55 = {
+			50 = {
 				add_stress = 45
 				add_prestige = -50
 				hidden_effect = {
@@ -500,7 +569,33 @@ rol_quest_rome.1004 = {
 		name = rol_quest_rome.1004.a
 		skill = martial
 		custom_tooltip = rol_quest_rome.1004.a.tt
+		custom_tooltip = rol_relic_fail_ends_expedition_tt
 		if = {
+			limit = {
+				OR = {
+					martial >= 25
+					prowess >= 25
+				}
+			}
+			random_list = {
+				85 = {
+					add_prestige = 120
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_major = yes }
+						trigger_event = { id = rol_quest_rome.1040 days = 1 }
+					}
+				}
+				15 = {
+					add_trait = wounded_1
+					add_prestige = -90
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_negative_major = yes }
+						trigger_event = { id = rol_quest_rome.1041 days = 1 }
+					}
+				}
+			}
+		}
+		else_if = {
 			limit = {
 				OR = {
 					martial >= 16
@@ -508,14 +603,14 @@ rol_quest_rome.1004 = {
 				}
 			}
 			random_list = {
-				55 = {
+				65 = {
 					add_prestige = 90
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_major = yes }
 						trigger_event = { id = rol_quest_rome.1040 days = 1 }
 					}
 				}
-				45 = {
+				35 = {
 					add_trait = wounded_1
 					add_prestige = -120
 					hidden_effect = {
@@ -527,14 +622,14 @@ rol_quest_rome.1004 = {
 		}
 		else = {
 			random_list = {
-				30 = {
+				35 = {
 					add_prestige = 60
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_medium = yes }
 						trigger_event = { id = rol_quest_rome.1040 days = 1 }
 					}
 				}
-				70 = {
+				65 = {
 					add_trait = wounded_1
 					add_prestige = -150
 					hidden_effect = {
@@ -598,6 +693,41 @@ rol_quest_rome.1042 = {
 		name = rol_quest_rome.1042.a
 		hidden_effect = {
 			rol_rome_quest_fail_now_effect = yes
+		}
+	}
+}
+
+# 宾客插曲：中段军议
+rol_quest_rome.1050 = {
+	type = character_event
+	title = rol_quest_rome.1050.t
+	desc = rol_quest_rome.1050.desc
+	theme = martial
+	override_background = { reference = corridor_night }
+
+	trigger = {
+		is_ai = no
+		exists = scope:activity
+		scope:activity = {
+			any_attending_character = {
+				this != root
+			}
+		}
+	}
+
+	option = {
+		name = rol_quest_rome.1050.a
+		hidden_effect = {
+			scope:activity ?= { activity_special_type_progression_tiny = yes }
+			add_prestige = 35
+		}
+	}
+
+	option = {
+		name = rol_quest_rome.1050.b
+		hidden_effect = {
+			scope:activity ?= { activity_special_type_progression_negative = yes }
+			add_stress = 20
 		}
 	}
 }
@@ -750,3 +880,4 @@ rol_quest_rome.1090 = {
 		}
 	}
 }
+

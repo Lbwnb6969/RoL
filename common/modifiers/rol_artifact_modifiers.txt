@@ -10,7 +10,9 @@ rol_sword_of_mars_modifier = {
 rol_blade_of_mars_modifier = {
 	martial = 8
 	prowess = 5
-	monthly_prestige_gain_mult = 0.10
+	monthly_prestige_gain_mult = 0.12
+	knight_effectiveness_mult = 0.08
+	dread_gain_mult = 0.10
 }
 
 # 慕尼黑礼器：尼伯龙根星界球
@@ -18,4 +20,6 @@ rol_nibelung_star_sphere_modifier = {
 	learning = 8
 	diplomacy = 4
 	monthly_piety_gain_mult = 0.15
+	monthly_prestige_gain_mult = 0.05
+	stress_loss_mult = 0.08
 }

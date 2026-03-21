@@ -1,0 +1,9 @@
+﻿texticon = {
+	icon = rol_legendary_icon
+	iconsize = {
+		texture = "gfx/interface/icons/artifact/artifact_regalia.dds"
+		size = { 24 24 }
+		offset = { 0 5 }
+		fontsize = 18
+	}
+}

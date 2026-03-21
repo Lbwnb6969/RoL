@@ -51,7 +51,33 @@ rol_quest_naxos.1000 = {
 		name = rol_quest_naxos.1000.a
 		skill = martial
 		custom_tooltip = rol_quest_naxos.1000.a.tt
+		custom_tooltip = rol_relic_fail_ends_expedition_tt
 		if = {
+			limit = {
+				OR = {
+					martial >= 25
+					prowess >= 25
+				}
+			}
+			random_list = {
+				85 = {
+					add_prestige = 70
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_major = yes }
+						trigger_event = { id = rol_quest_naxos.1010 days = 1 }
+					}
+				}
+				15 = {
+					add_trait = wounded_1
+					add_prestige = -85
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_negative = yes }
+						trigger_event = { id = rol_quest_naxos.1011 days = 1 }
+					}
+				}
+			}
+		}
+		else_if = {
 			limit = {
 				OR = {
 					martial >= 15
@@ -59,14 +85,14 @@ rol_quest_naxos.1000 = {
 				}
 			}
 			random_list = {
-				65 = {
+				75 = {
 					add_prestige = 70
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_major = yes }
 						trigger_event = { id = rol_quest_naxos.1010 days = 1 }
 					}
 				}
-				35 = {
+				25 = {
 					add_trait = wounded_1
 					add_prestige = -100
 					hidden_effect = {
@@ -78,14 +104,14 @@ rol_quest_naxos.1000 = {
 		}
 		else = {
 			random_list = {
-				40 = {
+				45 = {
 					add_prestige = 45
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_medium = yes }
 						trigger_event = { id = rol_quest_naxos.1010 days = 1 }
 					}
 				}
-				60 = {
+				55 = {
 					add_trait = wounded_1
 					add_prestige = -110
 					hidden_effect = {
@@ -178,17 +204,37 @@ rol_quest_naxos.1002 = {
 		name = rol_quest_naxos.1002.a
 		skill = diplomacy
 		custom_tooltip = rol_quest_naxos.1002.a.tt
+		custom_tooltip = rol_relic_fail_ends_expedition_tt
 		if = {
+			limit = { diplomacy >= 25 }
+			random_list = {
+				85 = {
+					add_prestige = 90
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_major = yes }
+						trigger_event = { id = rol_quest_naxos.1020 days = 1 }
+					}
+				}
+				15 = {
+					add_stress = 25
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_negative = yes }
+						trigger_event = { id = rol_quest_naxos.1021 days = 1 }
+					}
+				}
+			}
+		}
+		else_if = {
 			limit = { diplomacy >= 14 }
 			random_list = {
-				65 = {
+				75 = {
 					add_prestige = 80
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_major = yes }
 						trigger_event = { id = rol_quest_naxos.1020 days = 1 }
 					}
 				}
-				35 = {
+				25 = {
 					add_stress = 40
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_negative_major = yes }
@@ -199,14 +245,14 @@ rol_quest_naxos.1002 = {
 		}
 		else = {
 			random_list = {
-				40 = {
+				45 = {
 					add_prestige = 50
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_medium = yes }
 						trigger_event = { id = rol_quest_naxos.1020 days = 1 }
 					}
 				}
-				60 = {
+				55 = {
 					add_stress = 55
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_negative_major = yes }
@@ -221,17 +267,37 @@ rol_quest_naxos.1002 = {
 		name = rol_quest_naxos.1002.b
 		skill = learning
 		custom_tooltip = rol_quest_naxos.1002.b.tt
+		custom_tooltip = rol_relic_fail_ends_expedition_tt
 		if = {
+			limit = { learning >= 25 }
+			random_list = {
+				85 = {
+					add_piety = 110
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_major = yes }
+						trigger_event = { id = rol_quest_naxos.1020 days = 1 }
+					}
+				}
+				15 = {
+					add_stress = 20
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_negative = yes }
+						trigger_event = { id = rol_quest_naxos.1021 days = 1 }
+					}
+				}
+			}
+		}
+		else_if = {
 			limit = { learning >= 15 }
 			random_list = {
-				70 = {
+				80 = {
 					add_piety = 90
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_major = yes }
 						trigger_event = { id = rol_quest_naxos.1020 days = 1 }
 					}
 				}
-				30 = {
+				20 = {
 					add_stress = 30
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_negative = yes }
@@ -242,14 +308,14 @@ rol_quest_naxos.1002 = {
 		}
 		else = {
 			random_list = {
-				45 = {
+				50 = {
 					add_piety = 50
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_medium = yes }
 						trigger_event = { id = rol_quest_naxos.1020 days = 1 }
 					}
 				}
-				55 = {
+				50 = {
 					add_stress = 45
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_negative_major = yes }
@@ -327,7 +393,33 @@ rol_quest_naxos.1003 = {
 		name = rol_quest_naxos.1003.a
 		skill = martial
 		custom_tooltip = rol_quest_naxos.1003.a.tt
+		custom_tooltip = rol_relic_fail_ends_expedition_tt
 		if = {
+			limit = {
+				OR = {
+					martial >= 25
+					prowess >= 25
+				}
+			}
+			random_list = {
+				85 = {
+					add_prestige = 100
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_major = yes }
+						trigger_event = { id = rol_quest_naxos.1030 days = 1 }
+					}
+				}
+				15 = {
+					add_trait = wounded_1
+					add_prestige = -110
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_negative = yes }
+						trigger_event = { id = rol_quest_naxos.1031 days = 1 }
+					}
+				}
+			}
+		}
+		else_if = {
 			limit = {
 				OR = {
 					martial >= 17
@@ -335,14 +427,14 @@ rol_quest_naxos.1003 = {
 				}
 			}
 			random_list = {
-				60 = {
+				70 = {
 					add_prestige = 100
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_major = yes }
 						trigger_event = { id = rol_quest_naxos.1030 days = 1 }
 					}
 				}
-				40 = {
+				30 = {
 					add_trait = wounded_1
 					add_prestige = -130
 					hidden_effect = {
@@ -354,14 +446,14 @@ rol_quest_naxos.1003 = {
 		}
 		else = {
 			random_list = {
-				35 = {
+				40 = {
 					add_prestige = 70
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_medium = yes }
 						trigger_event = { id = rol_quest_naxos.1030 days = 1 }
 					}
 				}
-				65 = {
+				60 = {
 					add_trait = wounded_1
 					add_prestige = -160
 					hidden_effect = {
@@ -377,20 +469,63 @@ rol_quest_naxos.1003 = {
 		name = rol_quest_naxos.1003.b
 		skill = intrigue
 		custom_tooltip = rol_quest_naxos.1003.b.tt
-		random_list = {
-			45 = {
-				add_prestige = 55
-				hidden_effect = {
-					scope:activity ?= { activity_special_type_progression_tiny = yes }
-					trigger_event = { id = rol_quest_naxos.1030 days = 1 }
+		custom_tooltip = rol_relic_fail_ends_expedition_tt
+		if = {
+			limit = { intrigue >= 25 }
+			random_list = {
+				70 = {
+					add_prestige = 70
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_medium = yes }
+						trigger_event = { id = rol_quest_naxos.1030 days = 1 }
+					}
+				}
+				30 = {
+					add_stress = 30
+					add_prestige = -40
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_negative = yes }
+						trigger_event = { id = rol_quest_naxos.1031 days = 1 }
+					}
 				}
 			}
-			55 = {
-				add_stress = 40
-				add_prestige = -60
-				hidden_effect = {
-					scope:activity ?= { activity_special_type_progression_negative_major = yes }
-					trigger_event = { id = rol_quest_naxos.1031 days = 1 }
+		}
+		else_if = {
+			limit = { intrigue >= 16 }
+			random_list = {
+				55 = {
+					add_prestige = 55
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_tiny = yes }
+						trigger_event = { id = rol_quest_naxos.1030 days = 1 }
+					}
+				}
+				45 = {
+					add_stress = 35
+					add_prestige = -55
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_negative_major = yes }
+						trigger_event = { id = rol_quest_naxos.1031 days = 1 }
+					}
+				}
+			}
+		}
+		else = {
+			random_list = {
+				40 = {
+					add_prestige = 45
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_tiny = yes }
+						trigger_event = { id = rol_quest_naxos.1030 days = 1 }
+					}
+				}
+				60 = {
+					add_stress = 45
+					add_prestige = -70
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_negative_major = yes }
+						trigger_event = { id = rol_quest_naxos.1031 days = 1 }
+					}
 				}
 			}
 		}
@@ -443,6 +578,40 @@ rol_quest_naxos.1032 = {
 	option = {
 		name = rol_quest_naxos.1032.a
 		hidden_effect = { rol_naxos_quest_fail_now_effect = yes }
+	}
+}
+
+rol_quest_naxos.1050 = {
+	type = character_event
+	title = rol_quest_naxos.1050.t
+	desc = rol_quest_naxos.1050.desc
+	theme = diplomacy
+	override_background = { reference = ce1_catacombs }
+
+	trigger = {
+		is_ai = no
+		exists = scope:activity
+		scope:activity = {
+			any_attending_character = {
+				this != root
+			}
+		}
+	}
+
+	option = {
+		name = rol_quest_naxos.1050.a
+		hidden_effect = {
+			scope:activity ?= { activity_special_type_progression_tiny = yes }
+			add_prestige = 40
+		}
+	}
+
+	option = {
+		name = rol_quest_naxos.1050.b
+		hidden_effect = {
+			scope:activity ?= { activity_special_type_progression_negative = yes }
+			add_stress = 20
+		}
 	}
 }
 
@@ -565,3 +734,4 @@ rol_quest_naxos.1090 = {
 		}
 	}
 }
+

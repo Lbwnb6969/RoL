@@ -1,0 +1,23 @@
+﻿RolArtifactRarityAndSlotType = {
+	type = artifact
+
+	text = {
+		trigger = {
+			OR = {
+				artifact_type = rol_blade_of_mars
+				artifact_type = rol_sword_of_mars
+			}
+		}
+		localization_key = rol_artifact_rarity_slot_legendary_weapon
+	}
+
+	text = {
+		trigger = { artifact_type = rol_nibelung_star_sphere }
+		localization_key = rol_artifact_rarity_slot_legendary_regalia
+	}
+
+	text = {
+		localization_key = rol_artifact_rarity_slot_default
+		fallback = yes
+	}
+}

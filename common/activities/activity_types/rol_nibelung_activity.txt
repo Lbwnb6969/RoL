@@ -40,6 +40,7 @@ activity_rol_seek_nibelung_sphere = {
 				limit = { has_variable = rol_munich_stage_count }
 				remove_variable = rol_munich_stage_count
 			}
+			remove_character_flag = rol_nibelung_guest_event_fired
 		}
 
 		activity_setup_special_type_progression_effect = yes
@@ -62,10 +63,41 @@ activity_rol_seek_nibelung_sphere = {
 	}
 
 	wait_time_before_start = { days = 7 }
-	max_guest_arrival_delay_time = { days = 0 }
-	max_guests = 1
+	max_guest_arrival_delay_time = { months = 6 }
+	max_guests = 12
 	allow_zero_guest_invites = yes
 	open_invite = no
+
+	guest_invite_rules = {
+		rules = {
+			2 = activity_invite_rule_lovers
+			2 = activity_invite_rule_rivals_if_appropriate
+			3 = activity_invite_rule_extended_family
+			5 = activity_invite_rule_knights
+			6 = activity_invite_mp
+		}
+		defaults = {
+			1 = activity_invite_rule_friends
+			1 = activity_invite_rule_close_family
+			3 = activity_invite_rule_courtiers
+			4 = activity_invite_rule_guests
+			1 = activity_invite_spouses
+		}
+	}
+
+	can_be_activity_guest = {
+		is_adult = yes
+		is_healthy = yes
+		is_available = yes
+		in_diplomatic_range = scope:host
+		is_playable_character = no
+	}
+
+	guest_join_chance = {
+		base = 10
+		base_activity_modifier = yes
+		activity_guest_shared_ai_accept_modifier = yes
+	}
 
 	phases = {
 		rol_nibelung_descent_phase = {

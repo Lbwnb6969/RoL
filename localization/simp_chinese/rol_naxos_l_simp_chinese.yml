@@ -59,6 +59,10 @@
  rol_quest_naxos.1032.t:0 "止步终门"
  rol_quest_naxos.1032.desc:0 "你在最后门槛前下令撤离。"
  rol_quest_naxos.1032.a:0 "全队收拢。"
+ rol_quest_naxos.1050.t:0 "地宫军议"
+ rol_quest_naxos.1050.desc:0 "一位受邀同行者建议在下一道指令锁前放缓节奏，先稳住阵列与心态。"
+ rol_quest_naxos.1050.a:0 "采纳稳健方案。"
+ rol_quest_naxos.1050.b:0 "保持强压推进。"
 
  rol_quest_naxos.1001.t:0 "泰拉宫殿的最终裁决"
  rol_quest_naxos.1001.desc:0 "你站在最终誓令接口之前。"
@@ -121,6 +125,8 @@
 
  rol_naxos_activity_success_toast_title:0 "泰拉远征成功"
  rol_naxos_activity_failure_toast_title:0 "泰拉远征失败"
+ rol_naxos_activity_success_toast_desc:0 "你已突破宫殿试炼，指挥权得到确认。"
+ rol_naxos_activity_failure_toast_desc:0 "行动失败，后勤与士气都需要恢复后方可再试。"
 
  rol_adeptus_custudes:0 "Adeptus Custudes"
  rol_adeptus_custudes_flavor:0 "沉眠于泰拉地宫的古老禁军编制，只有完成全部誓令流程者方可调动。"

@@ -18,6 +18,23 @@ rol_naxos_quest_progress_effect = {
 	rol_relic_log_stage_effect = yes
 	rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_naxos_stage_progress }
 
+	# 宾客互动事件（每次活动至多触发一次）
+	if = {
+		limit = {
+			NOT = { has_character_flag = rol_naxos_guest_event_fired }
+			exists = scope:activity
+			scope:activity = {
+				any_attending_character = {
+					this != root
+				}
+			}
+			var:rol_naxos_stage_count >= 1
+			var:rol_naxos_stage_count < 3
+		}
+		add_character_flag = rol_naxos_guest_event_fired
+		trigger_event = { id = rol_quest_naxos.1050 days = 4 }
+	}
+
 	if = {
 		limit = { var:rol_naxos_stage_count < 3 }
 		random_list = {
@@ -142,6 +159,7 @@ rol_naxos_quest_success_finalize_effect = {
 	send_interface_toast = {
 		type = event_toast_effect_good
 		title = rol_naxos_activity_success_toast_title
+		desc = rol_naxos_activity_success_toast_desc
 		left_icon = root
 	}
 
@@ -161,6 +179,7 @@ rol_apply_naxos_activity_cooldown_effect = {
 	send_interface_toast = {
 		type = event_toast_effect_bad
 		title = rol_naxos_activity_failure_toast_title
+		desc = rol_naxos_activity_failure_toast_desc
 		left_icon = root
 	}
 
@@ -183,3 +202,4 @@ rol_naxos_quest_abort_effect = {
 		remove_variable = rol_naxos_stage_count
 	}
 }
+

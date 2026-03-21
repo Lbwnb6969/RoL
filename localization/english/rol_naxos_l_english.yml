@@ -59,6 +59,10 @@
  rol_quest_naxos.1032.t:0 "Retreat at the Final Door"
  rol_quest_naxos.1032.desc:0 "You call withdrawal at the threshold."
  rol_quest_naxos.1032.a:0 "Stand down."
+ rol_quest_naxos.1050.t:0 "Companion Debate in the Vault"
+ rol_quest_naxos.1050.desc:0 "A guest in your expedition urges caution before the next command-lock. Their caution may preserve order—or cost momentum."
+ rol_quest_naxos.1050.a:0 "Accept the careful approach."
+ rol_quest_naxos.1050.b:0 "Push hard and keep tempo."
 
  rol_quest_naxos.1001.t:0 "Final Verdict of the Thera Palace"
  rol_quest_naxos.1001.desc:0 "You stand before the final oath-interface."
@@ -121,6 +125,8 @@
 
  rol_naxos_activity_success_toast_title:0 "Thera Expedition Success"
  rol_naxos_activity_failure_toast_title:0 "Thera Expedition Failed"
+ rol_naxos_activity_success_toast_desc:0 "The palace trials are overcome and your command authority stands affirmed."
+ rol_naxos_activity_failure_toast_desc:0 "The operation has failed. Logistics and morale must recover before a new run."
 
  rol_adeptus_custudes:0 "Adeptus Custudes"
  rol_adeptus_custudes_flavor:0 "Ancient Custodes formations preserved beneath Thera and released only by a completed oath-command sequence."

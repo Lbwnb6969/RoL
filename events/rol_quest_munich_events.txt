@@ -51,18 +51,39 @@ rol_quest_munich.1000 = {
 		name = rol_quest_munich.1000.a
 		skill = learning
 		custom_tooltip = rol_quest_munich.1000.a.base_tt
+		custom_tooltip = rol_relic_fail_ends_expedition_tt
 		if = {
+			limit = { learning >= 25 }
+			custom_tooltip = rol_quest_munich.1000.a.odds_elite_tt
+			random_list = {
+				85 = {
+					add_piety = 120
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_major = yes }
+						trigger_event = { id = rol_quest_munich.1010 days = 1 }
+					}
+				}
+				15 = {
+					add_stress = 30
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_negative_major = yes }
+						trigger_event = { id = rol_quest_munich.1011 days = 1 }
+					}
+				}
+			}
+		}
+		else_if = {
 			limit = { learning >= 18 }
 			custom_tooltip = rol_quest_munich.1000.a.odds_high_tt
 			random_list = {
-				70 = {
+				80 = {
 					add_piety = 100
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_major = yes }
 						trigger_event = { id = rol_quest_munich.1010 days = 1 }
 					}
 				}
-				30 = {
+				20 = {
 					add_stress = 40
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_negative_major = yes }
@@ -74,14 +95,14 @@ rol_quest_munich.1000 = {
 		else = {
 			custom_tooltip = rol_quest_munich.1000.a.odds_low_tt
 			random_list = {
-				45 = {
+				50 = {
 					add_piety = 60
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_medium = yes }
 						trigger_event = { id = rol_quest_munich.1010 days = 1 }
 					}
 				}
-				55 = {
+				50 = {
 					add_stress = 50
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_negative_major = yes }
@@ -96,7 +117,34 @@ rol_quest_munich.1000 = {
 		name = rol_quest_munich.1000.b
 		skill = martial
 		custom_tooltip = rol_quest_munich.1000.b.base_tt
+		custom_tooltip = rol_relic_fail_ends_expedition_tt
 		if = {
+			limit = {
+				OR = {
+					martial >= 25
+					prowess >= 25
+				}
+			}
+			custom_tooltip = rol_quest_munich.1000.b.odds_elite_tt
+			random_list = {
+				85 = {
+					add_prestige = 105
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_major = yes }
+						trigger_event = { id = rol_quest_munich.1010 days = 1 }
+					}
+				}
+				15 = {
+					add_trait = wounded_1
+					add_prestige = -90
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_negative_major = yes }
+						trigger_event = { id = rol_quest_munich.1011 days = 1 }
+					}
+				}
+			}
+		}
+		else_if = {
 			limit = {
 				OR = {
 					martial >= 16
@@ -105,14 +153,14 @@ rol_quest_munich.1000 = {
 			}
 			custom_tooltip = rol_quest_munich.1000.b.odds_high_tt
 			random_list = {
-				55 = {
+				65 = {
 					add_prestige = 90
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_medium = yes }
 						trigger_event = { id = rol_quest_munich.1010 days = 1 }
 					}
 				}
-				45 = {
+				35 = {
 					add_trait = wounded_1
 					add_prestige = -120
 					hidden_effect = {
@@ -125,14 +173,14 @@ rol_quest_munich.1000 = {
 		else = {
 			custom_tooltip = rol_quest_munich.1000.b.odds_low_tt
 			random_list = {
-				35 = {
+				40 = {
 					add_prestige = 60
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_tiny = yes }
 						trigger_event = { id = rol_quest_munich.1010 days = 1 }
 					}
 				}
-				65 = {
+				60 = {
 					add_trait = wounded_1
 					add_prestige = -150
 					hidden_effect = {
@@ -218,18 +266,39 @@ rol_quest_munich.1002 = {
 		name = rol_quest_munich.1002.a
 		skill = diplomacy
 		custom_tooltip = rol_quest_munich.1002.a.base_tt
+		custom_tooltip = rol_relic_fail_ends_expedition_tt
 		if = {
+			limit = { diplomacy >= 25 }
+			custom_tooltip = rol_quest_munich.1002.a.odds_elite_tt
+			random_list = {
+				85 = {
+					add_prestige = 120
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_major = yes }
+						trigger_event = { id = rol_quest_munich.1020 days = 1 }
+					}
+				}
+				15 = {
+					add_stress = 20
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_negative = yes }
+						trigger_event = { id = rol_quest_munich.1021 days = 1 }
+					}
+				}
+			}
+		}
+		else_if = {
 			limit = { diplomacy >= 16 }
 			custom_tooltip = rol_quest_munich.1002.a.odds_high_tt
 			random_list = {
-				65 = {
+				75 = {
 					add_prestige = 100
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_major = yes }
 						trigger_event = { id = rol_quest_munich.1020 days = 1 }
 					}
 				}
-				35 = {
+				25 = {
 					add_stress = 35
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_negative_major = yes }
@@ -241,14 +310,14 @@ rol_quest_munich.1002 = {
 		else = {
 			custom_tooltip = rol_quest_munich.1002.a.odds_low_tt
 			random_list = {
-				40 = {
+				45 = {
 					add_prestige = 60
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_medium = yes }
 						trigger_event = { id = rol_quest_munich.1020 days = 1 }
 					}
 				}
-				60 = {
+				55 = {
 					add_stress = 45
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_negative_major = yes }
@@ -262,18 +331,39 @@ rol_quest_munich.1002 = {
 	option = {
 		name = rol_quest_munich.1002.b
 		custom_tooltip = rol_quest_munich.1002.b.base_tt
+		custom_tooltip = rol_relic_fail_ends_expedition_tt
 		if = {
+			limit = { piety_level >= 3 }
+			custom_tooltip = rol_quest_munich.1002.b.odds_elite_tt
+			random_list = {
+				85 = {
+					add_piety = 140
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_major = yes }
+						trigger_event = { id = rol_quest_munich.1020 days = 1 }
+					}
+				}
+				15 = {
+					add_stress = 15
+					hidden_effect = {
+						scope:activity ?= { activity_special_type_progression_negative = yes }
+						trigger_event = { id = rol_quest_munich.1021 days = 1 }
+					}
+				}
+			}
+		}
+		else_if = {
 			limit = { piety_level >= 2 }
 			custom_tooltip = rol_quest_munich.1002.b.odds_high_tt
 			random_list = {
-				75 = {
+				85 = {
 					add_piety = 120
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_major = yes }
 						trigger_event = { id = rol_quest_munich.1020 days = 1 }
 					}
 				}
-				25 = {
+				15 = {
 					add_stress = 20
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_negative = yes }
@@ -285,14 +375,14 @@ rol_quest_munich.1002 = {
 		else = {
 			custom_tooltip = rol_quest_munich.1002.b.odds_low_tt
 			random_list = {
-				45 = {
+				50 = {
 					add_piety = 70
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_medium = yes }
 						trigger_event = { id = rol_quest_munich.1020 days = 1 }
 					}
 				}
-				55 = {
+				50 = {
 					add_stress = 35
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_negative_major = yes }
@@ -355,6 +445,41 @@ rol_quest_munich.1022 = {
 		name = rol_quest_munich.1022.a
 		hidden_effect = {
 			rol_munich_quest_fail_now_effect = yes
+		}
+	}
+}
+
+# 宾客插曲：星冢议论
+rol_quest_munich.1050 = {
+	type = character_event
+	title = rol_quest_munich.1050.t
+	desc = rol_quest_munich.1050.desc
+	theme = diplomacy
+	override_background = { reference = ce1_catacombs }
+
+	trigger = {
+		is_ai = no
+		exists = scope:activity
+		scope:activity = {
+			any_attending_character = {
+				this != root
+			}
+		}
+	}
+
+	option = {
+		name = rol_quest_munich.1050.a
+		hidden_effect = {
+			scope:activity ?= { activity_special_type_progression_tiny = yes }
+			add_piety = 35
+		}
+	}
+
+	option = {
+		name = rol_quest_munich.1050.b
+		hidden_effect = {
+			scope:activity ?= { activity_special_type_progression_negative = yes }
+			add_stress = 20
 		}
 	}
 }
@@ -487,3 +612,4 @@ rol_quest_munich.1090 = {
 		}
 	}
 }
+

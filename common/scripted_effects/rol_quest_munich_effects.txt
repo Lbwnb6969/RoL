@@ -18,6 +18,23 @@ rol_munich_quest_progress_effect = {
 	rol_relic_log_stage_effect = yes
 	rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_nibelung_stage_progress }
 
+	# 宾客互动事件（每次活动至多触发一次）
+	if = {
+		limit = {
+			NOT = { has_character_flag = rol_nibelung_guest_event_fired }
+			exists = scope:activity
+			scope:activity = {
+				any_attending_character = {
+					this != root
+				}
+			}
+			var:rol_munich_stage_count >= 1
+			var:rol_munich_stage_count < 2
+		}
+		add_character_flag = rol_nibelung_guest_event_fired
+		trigger_event = { id = rol_quest_munich.1050 days = 4 }
+	}
+
 	if = {
 		limit = { var:rol_munich_stage_count < 2 }
 		trigger_event = { id = rol_quest_munich.1002 days = 14 }
@@ -140,6 +157,7 @@ rol_munich_quest_success_finalize_effect = {
 	send_interface_toast = {
 		type = event_toast_effect_good
 		title = rol_nibelung_activity_success_toast_title
+		desc = rol_nibelung_activity_success_toast_desc
 		left_icon = root
 	}
 
@@ -159,6 +177,7 @@ rol_apply_nibelung_activity_cooldown_effect = {
 	send_interface_toast = {
 		type = event_toast_effect_bad
 		title = rol_nibelung_activity_failure_toast_title
+		desc = rol_nibelung_activity_failure_toast_desc
 		left_icon = root
 	}
 
@@ -182,3 +201,4 @@ rol_munich_quest_abort_effect = {
 		remove_variable = rol_munich_stage_count
 	}
 }
+

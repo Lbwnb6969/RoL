@@ -1,0 +1,6 @@
+﻿l_english:
+ ARTIFACT_RARITY_AND_SLOT_TYPE:0 "[ARTIFACT.Custom('RolArtifactRarityAndSlotType')]"
+ rol_artifact_rarity_slot_legendary_weapon:0 "@rol_legendary_icon! #P Legendary Weapon#!"
+ rol_artifact_rarity_slot_legendary_regalia:0 "@rol_legendary_icon! #P Legendary Regalia#!"
+ rol_artifact_rarity_slot_legendary_trinket:0 "@rol_legendary_icon! #P Legendary Trinket#!"
+ rol_artifact_rarity_slot_default:0 "[ARTIFACT.Custom('ArtifactRarity')] [ARTIFACT.Custom('ArtifactType')]"

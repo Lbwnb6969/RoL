@@ -19,8 +19,9 @@
  rol_quest_rome.0990.a:0 "Form ranks. We enter with steel and silence."
 
  rol_quest_rome.1000.a.base_tt:0 "[martial|E]/[prowess|E] check: higher skill improves success odds."
- rol_quest_rome.1000.a.odds_high_tt:0 "Current odds: #P 60% success#!, #N 40% failure#!."
- rol_quest_rome.1000.a.odds_low_tt:0 "Current odds: #P 40% success#!, #N 60% failure#!."
+ rol_quest_rome.1000.a.odds_elite_tt:0 "Current odds: #P 85% success#!, #N 15% failure#!."
+ rol_quest_rome.1000.a.odds_high_tt:0 "Current odds: #P 70% success#!, #N 30% failure#!."
+ rol_quest_rome.1000.a.odds_low_tt:0 "Current odds: #P 45% success#!, #N 55% failure#!."
  rol_quest_rome.1000.b.tt:0 "[learning|E] check passed. #P 100% success#! and increased expedition progress."
  rol_quest_rome.1000.c.tt:0 "You withdraw. This quest enters a 2-year cooldown."
  rol_quest_rome.1001.a.tt:0 "You receive the artifact only at #V Tier 4 (75+ progress)#!. Below that, this expedition fails and enters cooldown."
@@ -115,6 +116,10 @@
  rol_quest_rome.1004.desc.regalia:0 "Ceremonial sentinels in spectral armor deny passage to the unworthy."
  rol_quest_rome.1004.desc.accessory:0 "Deadly silhouettes gather at the corridor's end, a final threshold of fear."
  rol_quest_rome.1004.desc.generic:0 "Spectral defenders hold the last gate."
+ rol_quest_rome.1050.t:0 "Council by Torchlight"
+ rol_quest_rome.1050.desc:0 "One of your invited companions urges a careful formation shift before the next gate. The suggestion is prudent, but it costs time and nerves."
+ rol_quest_rome.1050.a:0 "Adopt the proposal."
+ rol_quest_rome.1050.b:0 "Press on with my own plan."
 
  rol_relic_activity_start_log:0 "[CHARACTER.GetShortUIName|U] begins the relic expedition."
  rol_relic_activity_stage_log:0 "[CHARACTER.GetShortUIName|U] overcomes another stage in the ruins."
@@ -126,4 +131,7 @@
  rol_relic_activity_failure_log_title:0 "Expedition Failed"
  rol_mars_activity_success_toast_title:0 "Expedition Success"
  rol_mars_activity_failure_toast_title:0 "Expedition Failed"
+ rol_mars_activity_success_toast_desc:0 "The catacomb operation is complete and your war-host returns in triumph."
+ rol_mars_activity_failure_toast_desc:0 "The expedition has collapsed. Recovery and reorganization are now required."
+ rol_relic_fail_ends_expedition_tt:0 "#N If this check fails, the expedition ends in failure immediately.#!"
 
