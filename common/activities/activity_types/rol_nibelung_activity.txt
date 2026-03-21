@@ -62,6 +62,8 @@ activity_rol_seek_nibelung_sphere = {
 		county = title:c_munchen
 	}
 
+	is_single_location = yes
+
 	wait_time_before_start = { days = 7 }
 	max_guest_arrival_delay_time = { months = 6 }
 	max_guests = 12
@@ -103,6 +105,12 @@ activity_rol_seek_nibelung_sphere = {
 		rol_nibelung_descent_phase = {
 			is_predefined = yes
 			order = 1
+
+			select_scripted_location = {
+				title:c_munchen.title_province = { save_scope_as = province }
+			}
+
+			location_source = scripted
 
 			on_phase_active = {
 				if = {

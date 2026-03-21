@@ -1,0 +1,226 @@
+﻿# RoL 新对话完整交接文档（Master Handoff）
+
+> 当前快照日期：2026-03-21  
+> 文档真源：`C:\CK3Mods\RoL\docs\rol_handoff_master.md`
+
+---
+
+## 0) 当前快照基线来源（只基于已存在事实）
+
+本交接文档仅汇总以下已存在文件内容，不使用臆测：
+
+- `C:\CK3Mods\RoL\docs\rol_console_test_guide.md`
+- `C:\CK3Mods\RoL\docs\rol_visual_replacement_guide.md`
+- `C:\CK3Mods\RoL\docs\rol_image_resolution_guide.md`
+- `C:\Users\Falcons的Niko本人的PC\.codex\skills\rol-ck3-modder\SKILL.md`
+- `C:\Users\Falcons的Niko本人的PC\.codex\skills\rol-ck3-modder\agents\openai.yaml`
+
+---
+
+## 1) 项目身份与目标
+
+- 模组名称：**Relics of Legend（RoL）**。
+- 核心玩法：玩家持有特定地区伯爵领后触发本地传说发现事件，通过决议/活动开启远征，经过多阶段检定后获得对应神兵或特殊奖励。
+- 当前主线覆盖：
+  - Rome（玛尔斯之剑）
+  - Munich（尼伯龙根星界球）
+  - Naxos/Thera（禁军解锁）
+
+---
+
+## 2) 强制工程规则（必须遵守）
+
+1. **唯一开发真源目录**：`C:\CK3Mods\RoL`
+2. Documents 目录仅作为镜像：
+   - `c:\Users\Falcons的Niko本人的PC\Documents\Paradox Interactive\Crusader Kings III\mod\RoL`
+3. 文件编码要求：脚本与本地化改动统一 **UTF-8 with BOM**。
+4. 自定义命名统一前缀：`rol_`（兼容活动键 `activity_rol_`、`phase_rol_`）。
+5. 不确定 CK3 接口写法时，先检索既有实例（game/RICE/docs/UsePlanguage.md）再改。
+
+---
+
+## 3) 当前已落地模块状态（实现快照）
+
+### 3.1 多链活动状态
+- 三链活动均已启用宾客系统：`max_guests = 12`，含 `guest_invite_rules`。
+- 三链均有中段宾客事件：
+  - `rol_quest_rome.1050`
+  - `rol_quest_munich.1050`
+  - `rol_quest_naxos.1050`
+- 三链成功/失败 toast 已支持双行（title + desc）。
+
+### 3.2 终局奖励门槛（Tier4）
+- Rome：`activity_special_type_progression >= 75`
+- Munich：`>= 80`
+- Naxos：`>= 75`
+- 直接 `event rol_quest_*.1001` 时若缺 `scope:activity`，通常会走失败分支（测试时需用成功 finalize effect）。
+
+### 3.3 传奇显示覆盖（仅 RoL）
+- 已接入 artifact custom loc 与本地化覆盖：`ARTIFACT_RARITY_AND_SLOT_TYPE` -> `RolArtifactRarityAndSlotType`。
+- 已接入文本图标 token：`@rol_legendary_icon!`（可替换实际 DDS）。
+
+### 3.4 发现事件入口
+- 通用入口：`event rol_relic_discovery.0001`
+- 地区直测：
+  - Rome：`rol_relic_discovery.1000`
+  - Munich：`rol_relic_discovery.1300`
+  - Naxos：`rol_relic_discovery.1400`
+
+---
+
+## 4) 关键技术架构
+
+1. **模板化底层**：通过 `scripted_effects` / `scripted_triggers` 承载可复用逻辑。
+2. **活动主流程**：发现 -> 活动 -> 阶段检定反馈 -> 终局判定 -> 结算事件。
+3. **可观测性**：
+   - 活动成功条变化
+   - 结果 toast 双行
+   - 调试 trace/日志
+4. **失败统一收口**：风险分支失败统一走 `*_quest_fail_now_effect`。
+
+---
+
+## 5) 资源与 UI 替换地图
+
+### 5.1 活动背景
+- 改 `common/activities/activity_types/*.txt` 的 `background` 与 `window_characters`。
+
+### 5.2 事件背景
+- 在事件内使用 `override_background = { reference = ... }`。
+- 背景 reference 定义位于 `common/event_backgrounds/*.txt`。
+
+### 5.3 圣物/武器图标
+- 定义入口：`common/artifacts/visuals/rol_artifact_visuals.txt`
+- 贴图目录：`gfx/interface/icons/artifact/`
+
+### 5.4 推荐分辨率
+- 事件/活动背景：`1592x848`
+- artifact icon：`240x240`
+- text icon：`60x60`（显示约 24x24）
+- 活动图标常用：`80x80`；header `164x164`
+
+---
+
+## 6) 常见故障排查顺序
+
+1. `not a valid id`：先确认是否在 `C:\CK3Mods\RoL` 真源改动并重启游戏+启动器。
+2. 活动窗口不出现：确认不是直接事件链绕过活动入口；检查冷却/战争/金币/已领取标记。
+3. 终局不给奖励：确认是否有 `scope:activity` 进度上下文。
+4. 获得/失去提示异常：检查是否重复 set_owner 或重复发奖链路。
+5. 中文乱码：检查 YAML 编码是否 BOM，且 key 是否存在。
+
+---
+
+## 7) 回归测试清单（控制台 + 预期）
+
+### 7.1 预热
+```txt
+effect rol_relic_debug_enable_effect = yes
+```
+
+### 7.2 发现层
+```txt
+event rol_relic_discovery.0001
+event rol_relic_discovery.1000
+event rol_relic_discovery.1300
+event rol_relic_discovery.1400
+```
+预期：对应发现弹窗可触发。
+
+### 7.3 活动链
+```txt
+event rol_quest_rome.0990
+event rol_quest_munich.0990
+event rol_quest_naxos.0990
+```
+预期：链路可推进，反馈事件可见。
+
+### 7.4 直接发奖测试
+```txt
+effect rol_create_blade_of_mars_effect = yes
+effect rol_create_nibelung_star_sphere_effect = yes
+```
+预期：artifact 创建成功。
+
+### 7.5 成功结算模拟
+```txt
+effect rol_rome_quest_success_finalize_effect = yes
+effect rol_munich_quest_success_finalize_effect = yes
+effect rol_naxos_quest_success_finalize_effect = yes
+```
+预期：成功结算标记、toast、奖励/解锁状态一致。
+
+---
+
+## 8) 如何使用 `$rol-ck3-modder`
+
+### 8.1 安装位置与识别
+- 全局 skill 目录：`~/.codex/skills/rol-ck3-modder`
+- 本机实际路径：
+  - `C:\Users\Falcons的Niko本人的PC\.codex\skills\rol-ck3-modder\SKILL.md`
+- UI 元数据：`agents/openai.yaml`
+  - `display_name: RoL CK3 Modder`
+  - `policy.allow_implicit_invocation: true`
+
+### 8.2 触发方式
+1. **显式触发（推荐）**：在请求里写 `$rol-ck3-modder`
+2. **隐式触发**：描述明显 RoL/CK3 脚本任务，系统可自动匹配
+
+### 8.3 三类标准调用模板
+1) 修 bug
+```txt
+Use $rol-ck3-modder to diagnose and fix the Munich chain crash, then provide a regression checklist.
+```
+
+2) 新增一条活动阶段
+```txt
+Use $rol-ck3-modder to add one new stage event to Naxos chain, including effects, localization (EN/ZH), and test commands.
+```
+
+3) 本地化/编码巡检
+```txt
+Use $rol-ck3-modder to scan all RoL localization for UTF-8 BOM and missing keys, then patch and report.
+```
+
+### 8.4 脚本工作流模板（建议固定）
+1. 先检查（BOM / prefix / smoke）
+2. 再改动（最小变更）
+3. 再回归（控制台复现命令）
+4. 最后同步镜像（真源 -> Documents）
+
+### 8.5 一键检查命令集合
+```powershell
+python "C:\Users\Falcons的Niko本人的PC\.codex\skills\rol-ck3-modder\scripts\check_bom_utf8.py" "C:\CK3Mods\RoL"
+python "C:\Users\Falcons的Niko本人的PC\.codex\skills\rol-ck3-modder\scripts\check_rol_prefix.py" "C:\CK3Mods\RoL"
+python "C:\Users\Falcons的Niko本人的PC\.codex\skills\rol-ck3-modder\scripts\rol_smoke_checks.py" "C:\CK3Mods\RoL"
+powershell -ExecutionPolicy Bypass -File "C:\Users\Falcons的Niko本人的PC\.codex\skills\rol-ck3-modder\scripts\sync_to_documents.ps1" -WhatIf
+```
+
+---
+
+## 9) 下一位 Codex 接手指令模板（新对话首条可直接复制）
+
+```txt
+你现在是 RoL（Relics of Legend）模组的 CK3 专家开发助手。请严格遵守：
+1) 唯一真源目录：C:\CK3Mods\RoL（Documents 目录仅镜像）
+2) 修改文件统一 UTF-8 with BOM
+3) 自定义 ID/事件/effect/trigger/变量/flag 保持 rol_ 前缀
+4) 先检索现有实现与文档再改动，优先最小变更
+5) 活动链遵循：发现 -> 活动 -> 阶段反馈 -> 终局判定 -> 结算
+6) 输出必须包含：变更摘要、可执行测试步骤、预期结果、风险说明
+
+请先读取以下基线文档后再开始：
+- C:\CK3Mods\RoL\docs\rol_handoff_master.md
+- C:\CK3Mods\RoL\docs\rol_console_test_guide.md
+- C:\CK3Mods\RoL\docs\rol_visual_replacement_guide.md
+- C:\CK3Mods\RoL\docs\rol_image_resolution_guide.md
+
+当前任务：<在这里写你这次要做的具体需求>
+```
+
+---
+
+## 10) 接口/类型变更说明
+
+- 本次仅新增文档资产：`docs/rol_handoff_master.md`
+- 无游戏脚本接口变更、无事件 ID 变更、无数据结构变更。
