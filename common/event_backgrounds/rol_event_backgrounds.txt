@@ -1,0 +1,43 @@
+﻿# Relics of Legend - Discovery/knowledge event backgrounds
+# Usage in event:
+# override_background = { reference = rol_discovery_bg_xxx }
+
+rol_discovery_bg_rome = {
+	background = {
+		reference = "gfx/interface/illustrations/event_scenes/corridor_night.dds"
+		environment = "environment_event_mountains"
+		ambience = "event:/SFX/Events/Backgrounds/mountains_day"
+	}
+}
+
+rol_discovery_bg_athena = {
+	background = {
+		reference = "gfx/interface/illustrations/event_scenes/corridor.dds"
+		environment = "environment_event_corridor"
+		ambience = "event:/SFX/Events/Backgrounds/castle_corridor_day"
+	}
+}
+
+rol_discovery_bg_anubis = {
+	background = {
+		reference = "gfx/interface/illustrations/event_scenes/dungeon.dds"
+		environment = "environment_event_dungeon"
+		ambience = "event:/SFX/Events/Backgrounds/dungeon"
+	}
+}
+
+rol_discovery_bg_munich = {
+	background = {
+		reference = "gfx/interface/illustrations/event_scenes/bp3_mountain_winter.dds"
+		environment = "environment_event_mountains"
+		ambience = "event:/SFX/Events/Backgrounds/mountains_day"
+	}
+}
+
+rol_discovery_bg_naxos = {
+	background = {
+		reference = "gfx/interface/illustrations/event_scenes/dungeon.dds"
+		environment = "environment_event_dungeon"
+		ambience = "event:/SFX/Events/Backgrounds/dungeon"
+	}
+}

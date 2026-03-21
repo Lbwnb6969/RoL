@@ -6,6 +6,7 @@ rol_trigger.1000 = {
 	title = rol_trigger.1000.t
 	desc = rol_trigger.1000.desc
 	theme = martial
+	override_background = { reference = rol_discovery_bg_rome }
 
 	trigger = {
 		is_ai = no
