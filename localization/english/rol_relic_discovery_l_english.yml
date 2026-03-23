@@ -18,3 +18,7 @@
  rol_relic_discovery.1400.t:0 "Clues to the Thera Underground Palace"
  rol_relic_discovery.1400.desc:0 "Records tied to Naxos and Thera reference a late-Roman \"Imperial Palace\" buried under volcanic stone, sealed by Custodes oaths. Rumor claims it once influenced the fate of the Empire itself."
  rol_relic_discovery.1400.a:0 "Prepare a Thera expedition."
+
+ rol_relic_discovery.1500.t:0 "The Sevilla Sea-Chart"
+ rol_relic_discovery.1500.desc:0 "In Sevilla, a half-rotted chart from a ruined tavern cellar refuses every scholar's explanation. Its markings pulse with old magic, and one impossible notation repeats beside a drowned star symbol: beyond the storm-wall waits the Astrolabe of Ocean-Sea."
+ rol_relic_discovery.1500.a:0 "Prepare an ocean expedition from Sevilla."

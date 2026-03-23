@@ -1,6 +1,6 @@
 ﻿namespace = rol_trigger
 
-# Mythic Relics - ??????
+# Mythic Relics - 旧版测试触发
 rol_trigger.1000 = {
 	type = character_event
 	title = rol_trigger.1000.t

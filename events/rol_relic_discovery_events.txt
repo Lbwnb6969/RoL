@@ -1,8 +1,8 @@
 ﻿namespace = rol_relic_discovery
 
-# Mythic Relics - 多地点传说发现事件（模板层）
+# Mythic Relics - 圣物发现入口与分支事件
 
-# 入口：隐藏检测事件
+# 年度/拿地发现总入口
 rol_relic_discovery.0001 = {
 	type = character_event
 	hidden = yes
@@ -15,7 +15,7 @@ rol_relic_discovery.0001 = {
 	}
 
 	immediate = {
-		# 罗马：玛尔斯
+		# 罗马：玛尔斯之剑
 		if = {
 			limit = {
 				has_title = title:c_roma
@@ -26,7 +26,7 @@ rol_relic_discovery.0001 = {
 			trigger_event = rol_relic_discovery.1000
 		}
 
-		# 雅典样例：雅典娜（礼器）
+		# 雅典：雅典娜礼器（预留）
 		if = {
 			limit = {
 				has_title = title:c_attica
@@ -37,7 +37,7 @@ rol_relic_discovery.0001 = {
 			trigger_event = rol_relic_discovery.1100
 		}
 
-		# 吉萨样例：阿努比斯（配饰）
+		# 吉萨：阿努比斯遗物（预留）
 		if = {
 			limit = {
 				has_title = title:c_giza
@@ -48,7 +48,7 @@ rol_relic_discovery.0001 = {
 			trigger_event = rol_relic_discovery.1200
 		}
 
-		# 慕尼黑：尼伯龙根星界球（礼器）
+		# 慕尼黑：尼伯龙根星界球
 		if = {
 			limit = {
 				has_title = title:c_munchen
@@ -59,7 +59,7 @@ rol_relic_discovery.0001 = {
 			trigger_event = rol_relic_discovery.1300
 		}
 
-		# 纳克索斯：爱琴海誓卫
+		# 纳克索斯 / 泰拉：地下宫殿传说
 		if = {
 			limit = {
 				OR = {
@@ -72,10 +72,21 @@ rol_relic_discovery.0001 = {
 			add_character_flag = rol_heard_naxos_legend
 			trigger_event = rol_relic_discovery.1400
 		}
+
+		# 塞维利亚：大洋统御星盘
+		if = {
+			limit = {
+				has_title = title:c_sevilla
+				NOT = { has_character_flag = rol_heard_astrolabe_legend }
+				NOT = { has_character_flag = rol_astrolabe_of_ocean_claimed }
+			}
+			add_character_flag = rol_heard_astrolabe_legend
+			trigger_event = rol_relic_discovery.1500
+		}
 	}
 }
 
-# 罗马传说已知
+# 罗马发现
 rol_relic_discovery.1000 = {
 	type = character_event
 	title = rol_relic_discovery.1000.t
@@ -93,7 +104,7 @@ rol_relic_discovery.1000 = {
 	}
 }
 
-# 雅典样例传说
+# 雅典发现
 rol_relic_discovery.1100 = {
 	type = character_event
 	title = rol_relic_discovery.1100.t
@@ -111,7 +122,7 @@ rol_relic_discovery.1100 = {
 	}
 }
 
-# 吉萨样例传说
+# 吉萨发现
 rol_relic_discovery.1200 = {
 	type = character_event
 	title = rol_relic_discovery.1200.t
@@ -129,7 +140,7 @@ rol_relic_discovery.1200 = {
 	}
 }
 
-# 慕尼黑传说
+# 慕尼黑发现
 rol_relic_discovery.1300 = {
 	type = character_event
 	title = rol_relic_discovery.1300.t
@@ -147,7 +158,7 @@ rol_relic_discovery.1300 = {
 	}
 }
 
-# 纳克索斯传说
+# 纳克索斯发现
 rol_relic_discovery.1400 = {
 	type = character_event
 	title = rol_relic_discovery.1400.t
@@ -162,5 +173,23 @@ rol_relic_discovery.1400 = {
 
 	option = {
 		name = rol_relic_discovery.1400.a
+	}
+}
+
+# 塞维利亚发现
+rol_relic_discovery.1500 = {
+	type = character_event
+	title = rol_relic_discovery.1500.t
+	desc = rol_relic_discovery.1500.desc
+	theme = stewardship
+	override_background = { reference = rol_discovery_bg_sevilla }
+
+	trigger = {
+		is_ai = no
+		has_character_flag = rol_heard_astrolabe_legend
+	}
+
+	option = {
+		name = rol_relic_discovery.1500.a
 	}
 }

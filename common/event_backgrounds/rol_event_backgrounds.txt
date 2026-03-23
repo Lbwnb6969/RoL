@@ -1,12 +1,74 @@
-﻿# Relics of Legend - Discovery/knowledge event backgrounds
-# Usage in event:
-# override_background = { reference = rol_discovery_bg_xxx }
+﻿# Relics of Legend - custom event background registry
+# All custom RoL event-scene DDS files live in:
+# gfx/interface/illustrations/event_scenes/
+#
+# Discovery keys reuse rol_discovery_bg_<chain>.
+# Terminal reward keys reuse rol_success_bg_<chain>.
+# Mainline event keys use rol_bg_<chain>_<scene>.
+# Placeholder DDS files are seeded from base-game scenes and can be safely replaced later
+# with generated custom art using the same filenames.
 
 rol_discovery_bg_rome = {
 	background = {
-		reference = "gfx/interface/illustrations/event_scenes/Discovery_Rome.dds"
+		reference = "gfx/interface/illustrations/event_scenes/rol_event_rome_discovery.dds"
 		environment = "environment_event_corridor"
 		ambience = "event:/SFX/Events/Backgrounds/castle_corridor_night"
+	}
+}
+
+rol_bg_rome_0990_arrival = {
+	background = {
+		reference = "gfx/interface/illustrations/event_scenes/rol_event_rome_0990_arrival.dds"
+		environment = "environment_event_corridor"
+		ambience = "event:/SFX/Events/Backgrounds/castle_corridor_night"
+	}
+}
+
+rol_bg_rome_1000_catacombs = {
+	background = {
+		reference = "gfx/interface/illustrations/event_scenes/rol_event_rome_1000_catacombs.dds"
+		environment = "environment_ce1_catacombs"
+		ambience = "event:/SFX/Events/Backgrounds/FP4/fp4_condemned_village"
+	}
+}
+
+rol_bg_rome_1002_collapse = {
+	background = {
+		reference = "gfx/interface/illustrations/event_scenes/rol_event_rome_1002_collapse.dds"
+		environment = "environment_event_dungeon"
+		ambience = "event:/SFX/Events/Backgrounds/dungeon"
+	}
+}
+
+rol_bg_rome_1003_altar = {
+	background = {
+		reference = "gfx/interface/illustrations/event_scenes/rol_event_rome_1003_altar.dds"
+		environment = "environment_ce1_catacombs"
+		ambience = "event:/SFX/Events/Backgrounds/FP4/fp4_condemned_village"
+	}
+}
+
+rol_bg_rome_1004_guardians = {
+	background = {
+		reference = "gfx/interface/illustrations/event_scenes/rol_event_rome_1004_guardians.dds"
+		environment = "environment_event_battlefield"
+		ambience = "event:/SFX/Events/Backgrounds/battlefield_gloomy"
+	}
+}
+
+rol_success_bg_rome = {
+	background = {
+		reference = "gfx/interface/illustrations/event_scenes/rol_event_rome_1001_terminal.dds"
+		environment = "environment_event_armory"
+		ambience = "event:/SFX/Events/Backgrounds/armory"
+	}
+}
+
+rol_bg_rome_1090_summary = {
+	background = {
+		reference = "gfx/interface/illustrations/event_scenes/rol_event_rome_1090_summary.dds"
+		environment = "environment_frontend_west_main"
+		ambience = "event:/SFX/Events/Backgrounds/throneroom_western"
 	}
 }
 
@@ -28,16 +90,152 @@ rol_discovery_bg_anubis = {
 
 rol_discovery_bg_munich = {
 	background = {
-		reference = "gfx/interface/illustrations/event_scenes/bp3_mountain_winter.dds"
-		environment = "environment_event_mountains"
+		reference = "gfx/interface/illustrations/event_scenes/rol_event_munich_discovery.dds"
+		environment = "environment_bp3_mountain_winter"
 		ambience = "event:/SFX/Events/Backgrounds/mountains_day"
+	}
+}
+
+rol_bg_munich_0990_arrival = {
+	background = {
+		reference = "gfx/interface/illustrations/event_scenes/rol_event_munich_0990_arrival.dds"
+		environment = "environment_bp3_mountain_winter"
+		ambience = "event:/SFX/Events/Backgrounds/mountains_day"
+	}
+}
+
+rol_bg_munich_1000_frost = {
+	background = {
+		reference = "gfx/interface/illustrations/event_scenes/rol_event_munich_1000_frost.dds"
+		environment = "environment_event_dungeon"
+		ambience = "event:/SFX/Events/Backgrounds/dungeon"
+	}
+}
+
+rol_bg_munich_1002_abyss = {
+	background = {
+		reference = "gfx/interface/illustrations/event_scenes/rol_event_munich_1002_abyss.dds"
+		environment = "environment_ce1_catacombs"
+		ambience = "event:/SFX/Events/Backgrounds/FP4/fp4_condemned_village"
+	}
+}
+
+rol_success_bg_munich = {
+	background = {
+		reference = "gfx/interface/illustrations/event_scenes/rol_event_munich_1001_terminal.dds"
+		environment = "environment_event_armory"
+		ambience = "event:/SFX/Events/Backgrounds/armory"
+	}
+}
+
+rol_bg_munich_1090_summary = {
+	background = {
+		reference = "gfx/interface/illustrations/event_scenes/rol_event_munich_1090_summary.dds"
+		environment = "environment_event_battlefield"
+		ambience = "event:/SFX/Events/Backgrounds/battlefield_gloomy"
 	}
 }
 
 rol_discovery_bg_naxos = {
 	background = {
-		reference = "gfx/interface/illustrations/event_scenes/dungeon.dds"
+		reference = "gfx/interface/illustrations/event_scenes/rol_event_naxos_discovery.dds"
 		environment = "environment_event_dungeon"
 		ambience = "event:/SFX/Events/Backgrounds/dungeon"
+	}
+}
+
+rol_bg_naxos_0990_arrival = {
+	background = {
+		reference = "gfx/interface/illustrations/event_scenes/rol_event_naxos_0990_arrival.dds"
+		environment = "environment_event_docks"
+		ambience = "event:/SFX/Events/Backgrounds/docks_day"
+	}
+}
+
+rol_bg_naxos_1000_antechamber = {
+	background = {
+		reference = "gfx/interface/illustrations/event_scenes/rol_event_naxos_1000_antechamber.dds"
+		environment = "environment_ce1_catacombs"
+		ambience = "event:/SFX/Events/Backgrounds/FP4/fp4_condemned_village"
+	}
+}
+
+rol_bg_naxos_1002_verification = {
+	background = {
+		reference = "gfx/interface/illustrations/event_scenes/rol_event_naxos_1002_verification.dds"
+		environment = "environment_ce1_catacombs"
+		ambience = "event:/SFX/Events/Backgrounds/FP4/fp4_condemned_village"
+	}
+}
+
+rol_bg_naxos_1003_custodes = {
+	background = {
+		reference = "gfx/interface/illustrations/event_scenes/rol_event_naxos_1003_custodes.dds"
+		environment = "environment_event_battlefield"
+		ambience = "event:/SFX/Events/Backgrounds/battlefield_gloomy"
+	}
+}
+
+rol_success_bg_naxos = {
+	background = {
+		reference = "gfx/interface/illustrations/event_scenes/rol_event_naxos_1001_terminal.dds"
+		environment = "environment_event_armory"
+		ambience = "event:/SFX/Events/Backgrounds/armory"
+	}
+}
+
+rol_bg_naxos_1090_summary = {
+	background = {
+		reference = "gfx/interface/illustrations/event_scenes/rol_event_naxos_1090_summary.dds"
+		environment = "environment_frontend_west_main"
+		ambience = "event:/SFX/Events/Backgrounds/throneroom_western"
+	}
+}
+
+rol_discovery_bg_sevilla = {
+	background = {
+		reference = "gfx/interface/illustrations/event_scenes/rol_event_sevilla_discovery.dds"
+		environment = "environment_event_fp3_docks"
+		ambience = "event:/SFX/Events/Backgrounds/docks_day"
+	}
+}
+
+rol_bg_sevilla_0990_quays = {
+	background = {
+		reference = "gfx/interface/illustrations/event_scenes/rol_event_sevilla_0990_quays.dds"
+		environment = "environment_event_docks"
+		ambience = "event:/SFX/Events/Backgrounds/docks_day"
+	}
+}
+
+rol_bg_sevilla_1000_smugglers = {
+	background = {
+		reference = "gfx/interface/illustrations/event_scenes/rol_event_sevilla_1000_smugglers.dds"
+		environment = "environment_event_docks"
+		ambience = "event:/SFX/Events/Backgrounds/docks_day"
+	}
+}
+
+rol_bg_sevilla_1002_stormwall = {
+	background = {
+		reference = "gfx/interface/illustrations/event_scenes/rol_event_sevilla_1002_stormwall.dds"
+		environment = "environment_event_fp1_ocean"
+		ambience = "event:/DLC/FP1/SFX/Events/event_ocean_longship"
+	}
+}
+
+rol_success_bg_sevilla = {
+	background = {
+		reference = "gfx/interface/illustrations/event_scenes/rol_event_sevilla_1001_terminal.dds"
+		environment = "environment_event_fp1_ocean"
+		ambience = "event:/DLC/FP1/SFX/Events/event_ocean_longship"
+	}
+}
+
+rol_bg_sevilla_1090_summary = {
+	background = {
+		reference = "gfx/interface/illustrations/event_scenes/rol_event_sevilla_1090_summary.dds"
+		environment = "environment_event_fp1_ocean"
+		ambience = "event:/DLC/FP1/SFX/Events/event_ocean_longship"
 	}
 }

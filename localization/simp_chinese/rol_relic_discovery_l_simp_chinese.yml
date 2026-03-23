@@ -1,20 +1,24 @@
 ﻿l_simp_chinese:
- rol_relic_discovery.1000.t:0 "战神的密道"
- rol_relic_discovery.1000.desc:0 "你在罗马的工事整修中发现了一段被封死的古代通道。石门上的军团纹饰与战神神印依稀可辨，仿佛在等待下一位敢于下令开启的人。"
+ rol_relic_discovery.1000.t:0 "战神密道"
+ rol_relic_discovery.1000.desc:0 "在罗马的修缮工程中，你的工人发现了一条被封死的古老通道。石壁上仍保留着军团记号与玛尔斯的徽印。"
  rol_relic_discovery.1000.a:0 "封锁现场，准备远征。"
 
- rol_relic_discovery.1100.t:0 "灰烬下的女神铭文"
- rol_relic_discovery.1100.desc:0 "阿提卡旧神庙的地下库室中，学者辨认出一段提及雅典娜圣物的古铭。传闻称，真正的礼器仍埋藏在塌陷祭坛深处。"
- rol_relic_discovery.1100.a:0 "记录传说，日后必取。"
+ rol_relic_discovery.1100.t:0 "雅典娜的埋藏铭文"
+ rol_relic_discovery.1100.desc:0 "在一处坍塌的阿提卡神龛中，学者找到了残缺铭文，暗示雅典娜的一件圣物仍埋藏在旧祭坛下方。"
+ rol_relic_discovery.1100.a:0 "记录这则传说，留待日后追索。"
 
- rol_relic_discovery.1200.t:0 "沙海中的冥府封印"
- rol_relic_discovery.1200.desc:0 "吉萨附近的墓道中，工匠挖出刻有豺狼首图腾的封石。祭司称这是通往阿努比斯圣饰的旧封印，轻启者或得神佑，或遭诅咒。"
- rol_relic_discovery.1200.a:0 "先封存，再筹备队伍。"
+ rol_relic_discovery.1200.t:0 "豺狼封印"
+ rol_relic_discovery.1200.desc:0 "在吉萨附近，一条葬祭回廊中出现了刻有豺狼徽印的石块。祭司低语说，封印之后沉睡着阿努比斯的遗物。"
+ rol_relic_discovery.1200.a:0 "封存墓道，召集专家。"
 
- rol_relic_discovery.1300.t:0 "慕尼黑的异象"
- rol_relic_discovery.1300.desc:0 "深秋地震撕开了慕尼黑城郊的谷地，矿工在地下挖出了发着幽蓝微光的“热冰”。幸存者神志混乱，只会重复一句话：群星在地下运转。你从古老羊皮卷中找到了对应的记载——尼伯龙根星界球或许真的存在。"
- rol_relic_discovery.1300.a:0 "召集心腹，准备下探。"
+ rol_relic_discovery.1300.t:0 "慕尼黑凶兆"
+ rol_relic_discovery.1300.desc:0 "深秋的一场地震撕开了慕尼黑近郊的山谷。矿工从裂隙中带出散发苍蓝微光的温热冰层，而幸存者只反复念着一句话：星辰在大地之下转动。"
+ rol_relic_discovery.1300.a:0 "召集可信同伴，立即下探。"
 
- rol_relic_discovery.1400.t:0 "泰拉地下宫殿的线索"
- rol_relic_discovery.1400.desc:0 "你在纳克索斯与泰拉（Thera）的地契档案中发现了异常记录：罗马晚期曾在火山岩层下修建一座“皇帝宫殿”，并以禁军誓令封锁核心区。传闻这座宫殿曾左右帝国兴衰。"
- rol_relic_discovery.1400.a:0 "准备远征泰拉地宫。"
+ rol_relic_discovery.1400.t:0 "泰拉地下宫殿线索"
+ rol_relic_discovery.1400.desc:0 "与纳克索斯和泰拉相关的档案提到一座埋藏于火山岩下、由禁军誓令封锁的晚期罗马“帝皇宫殿”。传闻它曾左右帝国本身的命运。"
+ rol_relic_discovery.1400.a:0 "准备泰拉远征。"
+
+ rol_relic_discovery.1500.t:0 "塞维利亚海图"
+ rol_relic_discovery.1500.desc:0 "在塞维利亚，一张从破败酒馆地窖里翻出的半腐海图拒绝接受任何学者的解释。图上的记号泛着古老魔力，而在一枚溺星符号旁，反复写着同一句不可能的话：风墙之后，便是大洋统御星盘。"
+ rol_relic_discovery.1500.a:0 "从塞维利亚准备一场远洋远征。"

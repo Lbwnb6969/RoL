@@ -1,17 +1,23 @@
-﻿# Mythic Relics - 自定义神器视觉定义
-# 2D 图标路径：gfx/interface/icons/artifact/rol_blade_of_mars.dds
+﻿# Mythic Relics - 神器视觉定义
+# 2D 图标位于 gfx/interface/icons/artifact/rol_blade_of_mars.dds
 rol_blade_of_mars_visual = {
 	icon = "rol_blade_of_mars.dds"
 
-	# 临时复用原版3D模型，后续可替换成你自己的实体
+	# 临时复用原版 3D 资源，后续可替换为自定义模型
 	asset = {
 		reference = ep1_western_sword_01_a_portrait_entity
 	}
 }
 
 # 慕尼黑礼器：尼伯龙根星界球
-# 可替换为你自定义图标：gfx/interface/icons/artifact/rol_nibelung_star_sphere.dds
+# 当前使用原版 artifact_regalia.dds 作为临时图标
 rol_nibelung_star_sphere_visual = {
 	icon = "artifact_regalia.dds"
 	asset = ep1_generic_jewelry_01_a_entity
+}
+
+# 塞维利亚配饰：大洋统御星盘
+rol_astrolabe_of_ocean_visual = {
+	icon = "artifact_icons_unique_armillary.dds"
+	asset = fp2_armillary_sphere_01_a_entity
 }

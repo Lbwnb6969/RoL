@@ -22,3 +22,10 @@
  rol_relic_debug_naxos_fail_now:0 "[ROL DEBUG] Naxos fail-now invoked"
  rol_relic_debug_naxos_terminal_tier4_reward:0 "[ROL DEBUG] Naxos terminal Tier4 reward branch"
  rol_relic_debug_naxos_terminal_below_tier4_fail:0 "[ROL DEBUG] Naxos terminal below Tier4 fail branch"
+
+ rol_relic_debug_astrolabe_stage_progress:0 "[ROL DEBUG] Astrolabe stage progressed"
+ rol_relic_debug_astrolabe_success_finalize:0 "[ROL DEBUG] Astrolabe success finalized"
+ rol_relic_debug_astrolabe_failure_finalize:0 "[ROL DEBUG] Astrolabe failure finalized"
+ rol_relic_debug_astrolabe_fail_now:0 "[ROL DEBUG] Astrolabe fail-now invoked"
+ rol_relic_debug_astrolabe_terminal_tier4_reward:0 "[ROL DEBUG] Astrolabe terminal Tier4 reward branch"
+ rol_relic_debug_astrolabe_terminal_below_tier4_fail:0 "[ROL DEBUG] Astrolabe terminal below Tier4 fail branch"

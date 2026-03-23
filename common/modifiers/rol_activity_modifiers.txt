@@ -1,4 +1,4 @@
-﻿# Mythic Relics - 活动相关修正
+﻿# Mythic Relics - 活动冷却修正
 
 rol_mars_quest_cooldown_modifier = {
 }
@@ -7,4 +7,7 @@ rol_nibelung_quest_cooldown_modifier = {
 }
 
 rol_naxos_quest_cooldown_modifier = {
+}
+
+rol_astrolabe_quest_cooldown_modifier = {
 }

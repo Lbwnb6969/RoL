@@ -1,0 +1,6 @@
+﻿# Mythic Relics - 伊比利亚传奇配饰
+rol_astrolabe_of_ocean = {
+	slot = miscellaneous
+	default_visuals = rol_astrolabe_of_ocean_visual
+	can_reforge = no
+}

@@ -6,15 +6,6 @@ rol_adeptus_custudes = {
 
 	can_recruit = {
 		has_character_flag = rol_naxos_unit_unlocked
-		any_active_accolade = {
-			primary_type = {
-				this = accolade_type:vanguard_attribute
-			}
-			accolade_rank >= 5
-		}
-		NOT = {
-			culture = { has_cultural_parameter = strength_in_numbers_heavy_maa_ban }
-		}
 	}
 
 	should_show_when_unavailable = {

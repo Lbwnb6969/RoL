@@ -7,7 +7,7 @@ rol_quest_munich.0990 = {
 	title = rol_quest_munich.0990.t
 	desc = rol_quest_munich.0990.desc
 	theme = learning
-	override_background = { reference = bp3_mountain_winter }
+	override_background = { reference = rol_bg_munich_0990_arrival }
 	override_sound = { reference = "event:/SFX/Events/Themes/sfx_event_theme_type_faith" }
 
 	trigger = {
@@ -29,7 +29,7 @@ rol_quest_munich.1000 = {
 	title = rol_quest_munich.1000.t
 	desc = rol_quest_munich.1000.desc
 	theme = learning
-	override_background = { reference = dungeon }
+	override_background = { reference = rol_bg_munich_1000_frost }
 
 	trigger = {
 		is_ai = no
@@ -254,7 +254,7 @@ rol_quest_munich.1002 = {
 	title = rol_quest_munich.1002.t
 	desc = rol_quest_munich.1002.desc
 	theme = diplomacy
-	override_background = { reference = ce1_catacombs }
+	override_background = { reference = rol_bg_munich_1002_abyss }
 
 	trigger = {
 		is_ai = no
@@ -512,7 +512,7 @@ rol_quest_munich.1001 = {
 		}
 	}
 	theme = learning
-	override_background = { reference = armory }
+	override_background = { reference = rol_success_bg_munich }
 	override_sound = { reference = "event:/SFX/Events/Themes/sfx_event_theme_type_faith" }
 
 	trigger = {
@@ -595,7 +595,7 @@ rol_quest_munich.1090 = {
 		}
 	}
 	theme = learning
-	override_background = { reference = battlefield }
+	override_background = { reference = rol_bg_munich_1090_summary }
 
 	trigger = {
 		is_ai = no

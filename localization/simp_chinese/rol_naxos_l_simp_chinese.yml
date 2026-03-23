@@ -128,7 +128,7 @@
  rol_naxos_activity_success_toast_desc:0 "你已突破宫殿试炼，指挥权得到确认。"
  rol_naxos_activity_failure_toast_desc:0 "行动失败，后勤与士气都需要恢复后方可再试。"
 
- rol_adeptus_custudes:0 "Adeptus Custudes"
- rol_adeptus_custudes_flavor:0 "沉眠于泰拉地宫的古老禁军编制，只有完成全部誓令流程者方可调动。"
+ rol_adeptus_custudes:0 "禁军"
+ rol_adeptus_custudes_flavor:0 "帝皇的金甲伴卫，为侍立于人类之主身侧而铸成的基因战士。唯有完成誓令指挥序列、通过泰拉地宫最终裁决之人，方可唤醒这支“万夫团”的古老编制。"
  rol_naxian_tideguard:0 "$rol_adeptus_custudes$"
  rol_naxian_tideguard_flavor:0 "$rol_adeptus_custudes_flavor$"

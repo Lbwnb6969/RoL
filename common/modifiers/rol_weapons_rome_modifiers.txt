@@ -1,4 +1,4 @@
-﻿# Mythic Relics - ????????
+﻿# Mythic Relics - 罗马武器修正
 rol_blade_of_mars_modifier = {
 	martial = 8
 	prowess = 5

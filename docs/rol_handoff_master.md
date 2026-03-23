@@ -224,3 +224,60 @@ powershell -ExecutionPolicy Bypass -File "C:\Users\Falcons的Niko本人的PC\.co
 
 - 本次仅新增文档资产：`docs/rol_handoff_master.md`
 - 无游戏脚本接口变更、无事件 ID 变更、无数据结构变更。
+
+---
+
+## 11) 2026-03-22 更新：Sevilla / Astrolabe of Ocean-Sea
+
+### 11.1 新增内容
+- 新增第四条完整主线：**Sevilla 大洋统御星盘**。
+- 新发现事件：`rol_relic_discovery.1500`
+- 新活动 ID：`activity_rol_seek_astrolabe_of_ocean`
+- 新任务命名空间：`rol_quest_sevilla`
+- 新 artifact：`rol_astrolabe_of_ocean`
+
+### 11.2 规则 / 流程 / 门槛
+- 发现与活动地点统一固定为 `c_sevilla`，不再允许手动改址。
+- 活动阶段通过 `c_sevilla` 的 scripted location 直接锁定位置。
+- 初始进度为 `35`。
+- Tier4 门槛为 `>= 80`。
+- 只有终局达到 Tier4 才会发放圣物；低于 Tier4 直接按失败收口。
+- 成功 finalize：`rol_sevilla_quest_success_finalize_effect`
+- 失败 finalize：`rol_sevilla_quest_fail_now_effect`
+- 圣物创建 effect：`rol_create_astrolabe_of_ocean_effect`
+
+### 11.3 Discovery / Activity / Finalize 测试命令
+```txt
+event rol_relic_discovery.1500
+event rol_quest_sevilla.0990
+event rol_quest_sevilla.1000
+event rol_quest_sevilla.1002
+event rol_quest_sevilla.1001
+event rol_quest_sevilla.1090
+
+effect rol_create_astrolabe_of_ocean_effect = yes
+effect rol_sevilla_quest_success_finalize_effect = yes
+effect rol_sevilla_quest_fail_now_effect = yes
+```
+
+### 11.4 相关状态
+- `rol_heard_astrolabe_legend`
+- `rol_astrolabe_of_ocean_claimed`
+- `rol_astrolabe_quest_cooldown_modifier`
+- `rol_recent_sevilla_quest_success`
+- `rol_recent_sevilla_quest_failure`
+- `rol_sevilla_stage_count`
+- `rol_astrolabe_guest_event_fired`
+
+### 11.5 2026-03-22 后续维护项
+- Sevilla 简中、本地化、toast 与 debug 文案已补齐。
+- 泰拉 / Naxos 的 `rol_adeptus_custudes` 已改为 **只需 `rol_naxos_unit_unlocked` 解锁**，不再要求 `vanguard` 5 级 accolade。
+- 新增统一圣物测试入口：
+```txt
+effect rol_debug_grant_all_artifact_relics_effect = yes
+```
+- 该入口只发放三件 artifact：Rome / Munich / Sevilla；不包含泰拉禁军解锁。
+- 泰拉兵种解锁仍使用：
+```txt
+effect rol_naxos_quest_success_finalize_effect = yes
+```

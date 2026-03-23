@@ -76,3 +76,22 @@ rol_create_nibelung_star_sphere_effect = {
 		TIER_MODIFIER_KEY = rol_relic_tier_legendary_modifier
 	}
 }
+
+# Mythic Relics - 塞维利亚配饰：大洋统御星盘
+rol_create_astrolabe_of_ocean_effect = {
+	rol_create_relic_artifact_effect = {
+		NAME_KEY = artifact_rol_astrolabe_of_ocean
+		DESC_KEY = artifact_rol_astrolabe_of_ocean_desc
+		ARTIFACT_TYPE = rol_astrolabe_of_ocean
+		VISUAL_KEY = rol_astrolabe_of_ocean_visual
+		MODIFIER_KEY = rol_astrolabe_of_ocean_modifier
+		TIER_MODIFIER_KEY = rol_relic_tier_legendary_modifier
+	}
+}
+
+# Mythic Relics - 统一测试入口：一次性发放三件圣物
+rol_debug_grant_all_artifact_relics_effect = {
+	rol_create_blade_of_mars_effect = yes
+	rol_create_nibelung_star_sphere_effect = yes
+	rol_create_astrolabe_of_ocean_effect = yes
+}

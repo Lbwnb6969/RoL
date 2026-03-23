@@ -16,6 +16,12 @@
 		localization_key = rol_artifact_rarity_slot_legendary_regalia
 	}
 
+
+	text = {
+		trigger = { artifact_type = rol_astrolabe_of_ocean }
+		localization_key = rol_artifact_rarity_slot_legendary_trinket
+	}
+
 	text = {
 		localization_key = rol_artifact_rarity_slot_default
 		fallback = yes

@@ -7,7 +7,7 @@ rol_quest_rome.0990 = {
 	title = rol_quest_rome.0990.t
 	desc = rol_quest_rome.0990.desc
 	theme = martial
-	override_background = { reference = corridor_night }
+	override_background = { reference = rol_bg_rome_0990_arrival }
 	override_sound = { reference = "event:/SFX/Events/Themes/sfx_event_theme_type_faith" }
 
 	trigger = {
@@ -49,7 +49,7 @@ rol_quest_rome.1000 = {
 		}
 	}
 	theme = martial
-	override_background = { reference = corridor_night }
+	override_background = { reference = rol_bg_rome_1000_catacombs }
 
 	trigger = {
 		is_ai = no
@@ -250,7 +250,7 @@ rol_quest_rome.1002 = {
 		}
 	}
 	theme = martial
-	override_background = { reference = dungeon }
+	override_background = { reference = rol_bg_rome_1002_collapse }
 
 	trigger = {
 		is_ai = no
@@ -406,7 +406,7 @@ rol_quest_rome.1003 = {
 		}
 	}
 	theme = martial
-	override_background = { reference = ce1_catacombs }
+	override_background = { reference = rol_bg_rome_1003_altar }
 
 	trigger = {
 		is_ai = no
@@ -557,7 +557,7 @@ rol_quest_rome.1004 = {
 		}
 	}
 	theme = martial
-	override_background = { reference = battlefield }
+	override_background = { reference = rol_bg_rome_1004_guardians }
 
 	trigger = {
 		is_ai = no
@@ -775,7 +775,7 @@ rol_quest_rome.1001 = {
 		}
 	}
 	theme = martial
-	override_background = { reference = armory }
+	override_background = { reference = rol_success_bg_rome }
 	override_sound = { reference = "event:/SFX/Events/Themes/sfx_event_theme_type_duty" }
 
 	trigger = {
@@ -863,7 +863,7 @@ rol_quest_rome.1090 = {
 		}
 	}
 	theme = martial
-	override_background = { reference = throne_room }
+	override_background = { reference = rol_bg_rome_1090_summary }
 
 	trigger = {
 		is_ai = no

@@ -1,4 +1,4 @@
-﻿# Mythic Relics - ????????
+﻿# Mythic Relics - ?? on_action ??
 on_yearly_playable = {
 	on_actions = { rol_on_yearly_playable_mars_legend }
 }

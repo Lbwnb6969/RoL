@@ -1,12 +1,12 @@
-﻿# Mythic Relics - 神话神器修正
+﻿# Mythic Relics - 神器修正
 
-# 旧测试神器（保留）
+# 旧版测试用剑
 rol_sword_of_mars_modifier = {
 	prowess = 10
 	monthly_prestige_gain_mult = 0.10
 }
 
-# 罗马战神之剑
+# 罗马战神剑
 rol_blade_of_mars_modifier = {
 	martial = 8
 	prowess = 5
@@ -22,4 +22,13 @@ rol_nibelung_star_sphere_modifier = {
 	monthly_piety_gain_mult = 0.15
 	monthly_prestige_gain_mult = 0.05
 	stress_loss_mult = 0.08
+}
+
+# 塞维利亚配饰：大洋统御星盘
+rol_astrolabe_of_ocean_modifier = {
+	learning = 6
+	stewardship = 4
+	monthly_prestige_gain_mult = 0.10
+	travel_safety = 10
+	travel_speed_mult = 0.10
 }

@@ -1,0 +1,201 @@
+﻿# Mythic Relics - 塞维利亚大洋统御星盘任务效果
+# 使用 rol_sevilla_stage_count 跟踪阶段推进次数
+
+rol_sevilla_quest_progress_effect = {
+	if = {
+		limit = { NOT = { has_variable = rol_sevilla_stage_count } }
+		set_variable = {
+			name = rol_sevilla_stage_count
+			value = 0
+		}
+	}
+
+	change_variable = {
+		name = rol_sevilla_stage_count
+		add = 1
+	}
+
+	rol_relic_log_stage_effect = yes
+	rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_astrolabe_stage_progress }
+
+	if = {
+		limit = {
+			NOT = { has_character_flag = rol_astrolabe_guest_event_fired }
+			exists = scope:activity
+			scope:activity = {
+				any_attending_character = {
+					this != root
+				}
+			}
+			var:rol_sevilla_stage_count >= 1
+			var:rol_sevilla_stage_count < 2
+		}
+		add_character_flag = rol_astrolabe_guest_event_fired
+		trigger_event = { id = rol_quest_sevilla.1050 days = 4 }
+	}
+
+	if = {
+		limit = { var:rol_sevilla_stage_count < 2 }
+		trigger_event = { id = rol_quest_sevilla.1002 days = 14 }
+	}
+	else = {
+		trigger_event = { id = rol_quest_sevilla.1001 days = 10 }
+	}
+}
+
+rol_sevilla_clamp_success_progress_effect = {
+	scope:activity ?= {
+		if = {
+			limit = { var:activity_special_type_progression < 0 }
+			set_variable = {
+				name = activity_special_type_progression
+				value = 0
+			}
+		}
+		else_if = {
+			limit = { var:activity_special_type_progression > 100 }
+			set_variable = {
+				name = activity_special_type_progression
+				value = 100
+			}
+		}
+	}
+}
+
+rol_sevilla_apply_tiered_bonus_reward_effect = {
+	if = {
+		limit = {
+			exists = scope:activity
+			scope:activity.var:activity_special_type_progression >= 80
+		}
+		add_prestige = 350
+		add_gold = 150
+	}
+	else_if = {
+		limit = {
+			exists = scope:activity
+			scope:activity.var:activity_special_type_progression >= 60
+		}
+		add_prestige = 220
+		add_gold = 80
+	}
+	else_if = {
+		limit = {
+			exists = scope:activity
+			scope:activity.var:activity_special_type_progression >= 35
+		}
+		add_prestige = 120
+		add_gold = 40
+	}
+	else = {
+		add_prestige = 60
+	}
+}
+
+rol_sevilla_store_success_result_effect = {
+	if = {
+		limit = {
+			exists = scope:activity
+			scope:activity.var:activity_special_type_progression >= 80
+		}
+		set_variable = {
+			name = rol_recent_relic_result_tier
+			value = 4
+		}
+	}
+	else_if = {
+		limit = {
+			exists = scope:activity
+			scope:activity.var:activity_special_type_progression >= 60
+		}
+		set_variable = {
+			name = rol_recent_relic_result_tier
+			value = 3
+		}
+	}
+	else_if = {
+		limit = {
+			exists = scope:activity
+			scope:activity.var:activity_special_type_progression >= 35
+		}
+		set_variable = {
+			name = rol_recent_relic_result_tier
+			value = 2
+		}
+	}
+	else = {
+		set_variable = {
+			name = rol_recent_relic_result_tier
+			value = 1
+		}
+	}
+
+	add_character_flag = rol_recent_sevilla_quest_success
+	remove_character_flag = rol_recent_sevilla_quest_failure
+}
+
+rol_sevilla_store_failure_result_effect = {
+	set_variable = {
+		name = rol_recent_relic_result_tier
+		value = 0
+	}
+	add_character_flag = rol_recent_sevilla_quest_failure
+	remove_character_flag = rol_recent_sevilla_quest_success
+}
+
+rol_sevilla_quest_success_finalize_effect = {
+	rol_sevilla_clamp_success_progress_effect = yes
+	rol_sevilla_store_success_result_effect = yes
+	rol_sevilla_apply_tiered_bonus_reward_effect = yes
+
+	add_character_flag = rol_astrolabe_of_ocean_claimed
+	remove_character_flag = rol_heard_astrolabe_legend
+	remove_character_modifier = rol_astrolabe_quest_cooldown_modifier
+
+	rol_relic_log_success_effect = yes
+	send_interface_toast = {
+		type = event_toast_effect_good
+		title = rol_astrolabe_activity_success_toast_title
+		desc = rol_astrolabe_activity_success_toast_desc
+		left_icon = root
+	}
+
+	rol_clear_context_astrolabe_accessory_effect = yes
+	rol_sevilla_quest_abort_effect = yes
+	rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_astrolabe_success_finalize }
+}
+
+rol_apply_astrolabe_activity_cooldown_effect = {
+	rol_relic_apply_cooldown_effect = {
+		COOLDOWN_MODIFIER = rol_astrolabe_quest_cooldown_modifier
+		COOLDOWN_YEARS = 2
+	}
+
+	rol_sevilla_store_failure_result_effect = yes
+	rol_relic_log_failure_effect = yes
+	send_interface_toast = {
+		type = event_toast_effect_bad
+		title = rol_astrolabe_activity_failure_toast_title
+		desc = rol_astrolabe_activity_failure_toast_desc
+		left_icon = root
+	}
+
+	rol_clear_context_astrolabe_accessory_effect = yes
+	rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_astrolabe_failure_finalize }
+}
+
+rol_sevilla_quest_fail_now_effect = {
+	rol_apply_astrolabe_activity_cooldown_effect = yes
+	rol_sevilla_quest_abort_effect = yes
+	rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_astrolabe_fail_now }
+	scope:activity ?= {
+		complete_activity = yes
+	}
+}
+
+rol_sevilla_quest_abort_effect = {
+	if = {
+		limit = { has_variable = rol_sevilla_stage_count }
+		remove_variable = rol_sevilla_stage_count
+	}
+}

@@ -7,7 +7,7 @@ rol_quest_naxos.0990 = {
 	title = rol_quest_naxos.0990.t
 	desc = rol_quest_naxos.0990.desc
 	theme = martial
-	override_background = { reference = docks }
+	override_background = { reference = rol_bg_naxos_0990_arrival }
 	override_sound = { reference = "event:/SFX/Events/Themes/sfx_event_theme_type_faith" }
 
 	trigger = {
@@ -29,7 +29,7 @@ rol_quest_naxos.1000 = {
 	title = rol_quest_naxos.1000.t
 	desc = rol_quest_naxos.1000.desc
 	theme = martial
-	override_background = { reference = ce1_catacombs }
+	override_background = { reference = rol_bg_naxos_1000_antechamber }
 
 	trigger = {
 		is_ai = no
@@ -192,7 +192,7 @@ rol_quest_naxos.1002 = {
 	title = rol_quest_naxos.1002.t
 	desc = rol_quest_naxos.1002.desc
 	theme = diplomacy
-	override_background = { reference = ce1_catacombs }
+	override_background = { reference = rol_bg_naxos_1002_verification }
 
 	trigger = {
 		is_ai = no
@@ -381,7 +381,7 @@ rol_quest_naxos.1003 = {
 	title = rol_quest_naxos.1003.t
 	desc = rol_quest_naxos.1003.desc
 	theme = martial
-	override_background = { reference = battlefield }
+	override_background = { reference = rol_bg_naxos_1003_custodes }
 
 	trigger = {
 		is_ai = no
@@ -643,7 +643,7 @@ rol_quest_naxos.1001 = {
 		}
 	}
 	theme = martial
-	override_background = { reference = armory }
+	override_background = { reference = rol_success_bg_naxos }
 	override_sound = { reference = "event:/SFX/Events/Themes/sfx_event_theme_type_duty" }
 
 	trigger = {
@@ -717,7 +717,7 @@ rol_quest_naxos.1090 = {
 		}
 	}
 	theme = martial
-	override_background = { reference = throne_room }
+	override_background = { reference = rol_bg_naxos_1090_summary }
 
 	trigger = {
 		is_ai = no

@@ -128,7 +128,7 @@
  rol_naxos_activity_success_toast_desc:0 "The palace trials are overcome and your command authority stands affirmed."
  rol_naxos_activity_failure_toast_desc:0 "The operation has failed. Logistics and morale must recover before a new run."
 
- rol_adeptus_custudes:0 "Adeptus Custudes"
- rol_adeptus_custudes_flavor:0 "Ancient Custodes formations preserved beneath Thera and released only by a completed oath-command sequence."
+ rol_adeptus_custudes:0 "Adeptus Custodes"
+ rol_adeptus_custudes_flavor:0 "The Emperor's golden companions—gene-forged sentinels wrought to stand at the Master of Mankind's side. These sealed formations awaken only for one who completes the oath-command and proves worthy of directing the Ten Thousand."
  rol_naxian_tideguard:0 "$rol_adeptus_custudes$"
  rol_naxian_tideguard_flavor:0 "$rol_adeptus_custudes_flavor$"
