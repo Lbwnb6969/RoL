@@ -1,0 +1,8 @@
+﻿# Relics of Legend - 四链总完成触发器
+
+rol_has_all_major_relic_completions_trigger = {
+	has_character_flag = rol_mars_blade_claimed
+	has_character_flag = rol_nibelung_sphere_claimed
+	has_character_flag = rol_naxos_unit_unlocked
+	has_character_flag = rol_astrolabe_of_ocean_claimed
+}

@@ -186,8 +186,8 @@ activity_rol_seek_astrolabe_of_ocean = {
 	}
 
 	host_intents = {
-		intents = { reduce_stress_intent rol_relic_hunt_intent }
-		default = reduce_stress_intent
+		intents = { rol_relic_hunt_intent }
+		default = rol_relic_hunt_intent
 	}
 
 	guest_intents = {

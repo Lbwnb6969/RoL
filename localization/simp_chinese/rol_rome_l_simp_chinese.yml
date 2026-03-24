@@ -63,7 +63,7 @@
  rol_quest_rome.1002.desc.generic:0 "通道开始坍塌，巨石接连落下。再迟疑片刻，你和队伍就会被困死在地下。"
  rol_quest_rome.1002.a:0 "顶着碎石强行突进。"
  rol_quest_rome.1002.b:0 "撤回地表，保存实力。"
- rol_quest_rome.1002.a.tt:0 "[prowess|E]检定：失败将直接终止远征。"
+ rol_quest_rome.1002.a.tt:0 "[prowess|E]检定：在回廊彻底坍塌前强行突进。"
  rol_quest_rome.1002.b.tt:0 "你选择撤退：本次远征失败，进入2年冷却。"
 
  rol_quest_rome.1020.t:0 "回廊突破"
@@ -84,8 +84,8 @@
  rol_quest_rome.1003.desc.generic:0 "祭坛符文开始活化，像在对闯入者进行某种古老试炼。"
  rol_quest_rome.1003.a:0 "诵读古文，破除誓锁。"
  rol_quest_rome.1003.b:0 "强行跨过祭坛。"
- rol_quest_rome.1003.a.tt:0 "[learning|E]检定：失败将直接终止远征。"
- rol_quest_rome.1003.b.tt:0 "高风险硬闯：成功继续推进，失败立即终止。"
+ rol_quest_rome.1003.a.tt:0 "[learning|E]检定：解读血誓祭坛的古老誓文。"
+ rol_quest_rome.1003.b.tt:0 "孤注一掷地硬闯祭坛回响。"
 
  rol_quest_rome.1030.t:0 "祭坛压制成功"
  rol_quest_rome.1030.desc:0 "躁动符文逐渐归于沉寂。你成功压住了祭坛反噬，远征得以继续。"
@@ -102,7 +102,7 @@
  rol_quest_rome.1004.desc.generic:0 "披甲残影挡住了最后通道。若不能突破它们，这次远征将止步于此。"
  rol_quest_rome.1004.a:0 "正面冲垮他们！"
  rol_quest_rome.1004.b:0 "此处不宜久留，后撤。"
- rol_quest_rome.1004.a.tt:0 "[martial|E]检定：失败将远征立即结束并进入2年冷却。"
+ rol_quest_rome.1004.a.tt:0 "[martial|E]/[prowess|E]检定：正面冲垮最后的守卫阵列。"
  rol_quest_rome.1004.b.tt:0 "你选择撤退：本次远征失败，进入2年冷却。"
 
  rol_quest_rome.1040.t:0 "残影溃散"

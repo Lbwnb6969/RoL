@@ -239,3 +239,11 @@ rol_bg_sevilla_1090_summary = {
 		ambience = "event:/DLC/FP1/SFX/Events/event_ocean_longship"
 	}
 }
+
+rol_bg_legend_circle_revelation = {
+	background = {
+		reference = "gfx/interface/illustrations/event_scenes/rol_event_legend_circle_revelation.dds"
+		environment = "environment_frontend_west_main"
+		ambience = "event:/SFX/Events/Backgrounds/throneroom_western"
+	}
+}

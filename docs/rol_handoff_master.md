@@ -1,6 +1,6 @@
 ﻿# RoL 新对话完整交接文档（Master Handoff）
 
-> 当前快照日期：2026-03-23  
+> 当前快照日期：2026-03-24  
 > 文档真源：`C:\CK3Mods\RoL\docs\rol_handoff_master.md`
 
 ---
@@ -72,7 +72,15 @@
 - Tier4-only 终局门槛不变；无论选哪档，仍只有达到各链 Tier4 才会拿到最终圣物 / 解锁。
 - 活动规划文案统一改为神秘化叙述：不直写奖励、不写“低于 Tier4 视为失败”，仅保留失败进入 2 年冷却。
 
-### 3.6 正式入口与已移除遗留
+### 3.6 四链全通总事件（2026-03-24）
+- 新增一次性大型总事件：`rol_legend_circle.0001`。
+- 触发条件固定为同一角色同时持有四个永久完成 flag：`rol_mars_blade_claimed`、`rol_nibelung_sphere_claimed`、`rol_naxos_unit_unlocked`、`rol_astrolabe_of_ocean_claimed`。
+- 共享接口：`rol_has_all_major_relic_completions_trigger` + `rol_check_legend_circle_revelation_effect`。
+- 防重 flag：`rol_legend_circle_revealed`。
+- 奖励结构：当前角色永久 modifier + House 75 年 modifier + Dynasty 100 年 modifier + `+500 dynasty prestige`。
+
+### 3.7 正式入口与已移除遗留
+### 3.7 正式入口与已移除遗留
 - 当前唯一正式发现链路：`common/on_action/rol_relic_discovery_on_actions.txt -> rol_relic_discovery.0001 -> 四条活动链`。
 - 以下遗留 / 测试入口已从仓库移除，不再作为任何开发或测试基线：
   - `common/on_action/rol_on_actions.txt`
@@ -249,13 +257,15 @@ powershell -ExecutionPolicy Bypass -File "C:\Users\Falcons的Niko本人的PC\.co
 
 ## 10) 接口/类型变更说明
 
+- 新增四链全通总事件接口：`rol_has_all_major_relic_completions_trigger`、`rol_check_legend_circle_revelation_effect`、`rol_legend_circle.0001`
+- 新增总事件奖励 modifier：`rol_legend_circle_conqueror_modifier`、`rol_legend_circle_house_modifier`、`rol_legend_circle_dynasty_modifier`
 - 新增统一活动选项分类：`rol_option_expedition_preparation`
 - 新增四档固定 option ID：`rol_expedition_preparation_low / standard / high / supreme`
 - 新增共享层：
   - `common/scripted_triggers/rol_expedition_preparation_triggers.txt`
   - `common/script_values/rol_expedition_preparation_values.txt`
   - `common/scripted_effects/rol_expedition_preparation_effects.txt`
-- 删除四个遗留测试入口文件（见 3.6）
+- 删除四个遗留测试入口文件（见 3.7）
 - 四链活动文本规范更新为：神秘化描述、失败仅写 2 年冷却、未来新链默认沿用统一筹备模块。
 
 ---

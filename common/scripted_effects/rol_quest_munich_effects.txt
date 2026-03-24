@@ -151,6 +151,7 @@ rol_munich_quest_success_finalize_effect = {
 	rol_apply_expedition_preparation_success_bonus_effect = yes
 
 	add_character_flag = rol_nibelung_sphere_claimed
+	rol_check_legend_circle_revelation_effect = yes
 	remove_character_flag = rol_heard_nibelung_legend
 	remove_character_modifier = rol_nibelung_quest_cooldown_modifier
 

@@ -1,0 +1,42 @@
+﻿namespace = rol_legend_circle
+
+# Relics of Legend - 四链全通后的总揭示事件
+
+rol_legend_circle.0001 = {
+	type = character_event
+	title = rol_legend_circle.0001.t
+	desc = rol_legend_circle.0001.desc
+	theme = learning
+	override_background = { reference = rol_bg_legend_circle_revelation }
+	override_sound = { reference = "event:/SFX/Events/Themes/sfx_event_theme_type_learning" }
+
+	trigger = {
+		is_ai = no
+		has_character_flag = rol_legend_circle_revealed
+		rol_has_all_major_relic_completions_trigger = yes
+	}
+
+	option = {
+		name = rol_legend_circle.0001.a
+		flavor = rol_legend_circle.0001.a.flavor
+		hidden_effect = {
+			play_sound_effect = "event:/DLC/EP1/SFX/UI/Notifications/court_grandeur_toast_lvl_up"
+			add_character_modifier = {
+				modifier = rol_legend_circle_conqueror_modifier
+			}
+			house ?= {
+				add_house_modifier = {
+					modifier = rol_legend_circle_house_modifier
+					years = 75
+				}
+			}
+			dynasty ?= {
+				add_dynasty_modifier = {
+					modifier = rol_legend_circle_dynasty_modifier
+					years = 100
+				}
+				add_dynasty_prestige = 500
+			}
+		}
+	}
+}

@@ -1,0 +1,12 @@
+﻿l_simp_chinese:
+ rol_legend_circle.0001.t:0 "传奇圆环已然揭示"
+ rol_legend_circle.0001.desc:0 "欧洲大陆最古老的传说，终究不是被岁月磨损后的空谈。历经足以摧折常人意志的艰险，我们仍一步步闯入其深处，并最终将它们一一征服。埋藏于罗马地下的战刃、沉眠于阿尔卑斯寒域之下的星界球、泰拉深处那令人战栗的古老验证，以及自塞维利亚外海攫取而来的大洋星盘，如今都已在世人面前化作无可辩驳的证据。\n\n然而，真正令人不安的并非胜利本身，而是它们彼此之间的关系。它们的埋藏地点仿佛环抱着庞大的地中海与阿尔卑斯山脉，像一圈被远古意志刻意布下的印记，绝非偶然。宝藏如今已归于我手，而那将它们安置于此的真正意义，似乎仍在黑暗中注视着我们。"
+ rol_legend_circle.0001.a:0 "让世界为我揭开的真相而震颤"
+ rol_legend_circle.0001.a.flavor:0 "你将四次远征的胜利熔铸为一则足以超越自身寿命的传奇。"
+ rol_legend_circle_conqueror_modifier:0 "传奇圆环征服者"
+ rol_legend_circle_conqueror_modifier_desc:0 "此人亲手证实了四则不可能的古老传说，并自每一次试炼中凯旋而归，足以震慑整个时代。"
+ rol_legend_circle_house_modifier:0 "圆环揭示之族"
+ rol_legend_circle_house_modifier_desc:0 "此家族因这个时代最伟大的遗藏揭示而获得威望、纪律与传承光辉。"
+ rol_legend_circle_dynasty_modifier:0 "四重揭示之朝"
+ rol_legend_circle_dynasty_modifier_desc:0 "这个宗族的名号，已与重新定义古老传说的四次大发现永久相连。"
+ rol_relic_debug_legend_circle_triggered:0 "[ROL][调试] 传奇圆环揭示事件已排队"

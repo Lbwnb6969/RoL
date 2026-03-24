@@ -1,0 +1,12 @@
+﻿l_english:
+ rol_legend_circle.0001.t:0 "The Circle of Legends Revealed"
+ rol_legend_circle.0001.desc:0 "The oldest tales of Europe have not withered into metaphor after all. Through ordeals that should have broken any mortal venture, we pressed onward and prevailed. The blade buried beneath Rome, the frozen star-sphere beneath the Alps, the terrible revelation beneath Thera, and the oceanic instrument wrested from Sevilla now stand as proof before the world.\n\nYet the triumph itself is not the most unsettling truth. Their places of concealment arc around the great body of the Mediterranean and the wall of the Alps like a deliberate ring, as though some forgotten power once marked the continent with design rather than chance. The treasures are in our hands; the meaning behind their placement still watches from the dark."
+ rol_legend_circle.0001.a:0 "Let the world tremble at what we have unveiled"
+ rol_legend_circle.0001.a.flavor:0 "You bind the four victories into a single legend that will outlive your own lifetime."
+ rol_legend_circle_conqueror_modifier:0 "Conqueror of the Legend Circle"
+ rol_legend_circle_conqueror_modifier_desc:0 "This character proved four impossible legends true and emerged from each trial with power enough to awe an entire age."
+ rol_legend_circle_house_modifier:0 "House of the Revealed Circle"
+ rol_legend_circle_house_modifier_desc:0 "This House draws prestige and discipline from the greatest relic revelations of the age."
+ rol_legend_circle_dynasty_modifier:0 "Dynasty of the Four Revelations"
+ rol_legend_circle_dynasty_modifier_desc:0 "This Dynasty's name is now tied to a chain of discoveries that reshaped how the world understands ancient legend."
+ rol_relic_debug_legend_circle_triggered:0 "[ROL][Debug] Legend circle revelation queued"

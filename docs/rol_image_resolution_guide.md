@@ -15,6 +15,7 @@
 ### 建议
 - 直接按 **1592x848** 出图最稳。
 - 关键主体放在中间 70% 区域，避免 UI 遮挡。
+- `rol_event_legend_circle_revelation.dds` 这类四链全通总事件，也沿用同一 `1592x848` event-scene 基线。
 
 ---
 

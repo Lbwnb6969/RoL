@@ -209,6 +209,27 @@ effect rol_sevilla_quest_success_finalize_effect = yes
    - `high`：额外 `+150 prestige / +25 dynasty prestige`
    - `supreme`：额外 `+350 prestige / +50 dynasty prestige`
 
+### 5.6 四链全通总事件 / 老档回填验证
+
+```txt
+effect add_character_flag = rol_mars_blade_claimed
+effect add_character_flag = rol_nibelung_sphere_claimed
+effect add_character_flag = rol_naxos_unit_unlocked
+effect add_character_flag = rol_astrolabe_of_ocean_claimed
+effect remove_character_flag = rol_legend_circle_revealed
+effect rol_check_legend_circle_revelation_effect = yes
+```
+
+预期：
+- `1` 天后触发 `rol_legend_circle.0001`
+- 事件背景为 `rol_bg_legend_circle_revelation`
+- 关闭事件后获得：
+  - 角色永久 modifier：`rol_legend_circle_conqueror_modifier`
+  - House 75 年 modifier：`rol_legend_circle_house_modifier`
+  - Dynasty 100 年 modifier：`rol_legend_circle_dynasty_modifier`
+  - 额外 `+500 dynasty prestige`
+- 再次执行 `effect rol_check_legend_circle_revelation_effect = yes` 不会重复触发
+
 
 ---
 

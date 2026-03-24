@@ -11,3 +11,26 @@ rol_naxos_quest_cooldown_modifier = {
 
 rol_astrolabe_quest_cooldown_modifier = {
 }
+
+rol_legend_circle_conqueror_modifier = {
+	icon = martial_positive
+	martial = 3
+	learning = 3
+	prowess = 4
+	monthly_prestige_gain_mult = 0.20
+	monthly_piety_gain_mult = 0.15
+	knight_effectiveness_mult = 0.10
+}
+
+rol_legend_circle_house_modifier = {
+	icon = learning_positive
+	monthly_martial_lifestyle_xp_gain_mult = 0.20
+	monthly_learning_lifestyle_xp_gain_mult = 0.20
+	monthly_prestige_gain_mult = 0.10
+}
+
+rol_legend_circle_dynasty_modifier = {
+	icon = letter_positive
+	monthly_dynasty_prestige_mult = 0.15
+	cultural_head_fascination_mult = 0.10
+}

@@ -1,6 +1,6 @@
 ﻿# RoL 全视觉资源主清单（图标 / 大图 / 兵种图 / 背景）
 
-> 快照日期：2026-03-23  
+> 快照日期：2026-03-24  
 > 真源目录：`C:\CK3Mods\RoL`  
 > 本文档同时承担：**命名清单 / 规格清单 / Prompt 清单 / 资源状态审计**
 
@@ -181,13 +181,22 @@
 
 ---
 
+### 6.5 四链总揭示 / Legend Circle
+
+| 资源类型 | 状态 | 文件名 | 推荐规格 | 目标目录 | 引用方式 / 引用文件 | Prompt |
+|---|---|---|---|---|---|---|
+| 四链全通总事件背景 | 已接线（占位） | `rol_event_legend_circle_revelation.dds` | `1592x848 / DDS BC1` | `gfx/interface/illustrations/event_scenes/` | `rol_bg_legend_circle_revelation -> events/rol_legend_circle_events.txt (.0001)` | `Mediterranean-centered legendary revelation scene, relic discoveries forming an arc around the Mediterranean and Alps, ancient Europe map symbolism, colossal sacred atmosphere, dark gold and deep blue, triumphant yet ominous, CK3 event background, no text, no logo` |
+
+---
+
 ## 7) 状态审计附录
 
 ### 7.1 已接线
 
 | 分类 | 条目 | 说明 |
 |---|---|---|
-| 四链背景 | `rol_event_*.dds`、`rol_activity_*.dds` 共 35 张 | 当前均已接线；大多数仍是占位图，可直接同名覆盖 |
+| 四链背景 | `rol_event_*.dds`、`rol_activity_*.dds` 共 36 张 | 当前均已接线；大多数仍是占位图，可直接同名覆盖 |
+| 总揭示背景 | `rol_event_legend_circle_revelation.dds` | 已接线占位，可直接同名替换为最终大事件图 |
 | Mars 活动图标族 | `activity_rol_seek_mars_blade*.dds`（小图 / header / 大图 / header 背景） | 已存在并按 activity ID 命名落地 |
 | Rome Artifact 图标 | `rol_blade_of_mars.dds` | 已由 `rol_blade_of_mars_visual` 使用 |
 | 活动选项分类图标 | `gfx/interface/icons/activity_option_categories/rol_option_expedition_preparation.dds` | 已接线，但当前仍为原版资金图标占位 |
@@ -239,4 +248,3 @@
    - `Discovery_Rome.dds`
    - `artifact_regalia.dds` 的 Nibelung / text icon 临时职责
    - `rol_option_expedition_preparation.dds` 的原版占位临时职责
-
