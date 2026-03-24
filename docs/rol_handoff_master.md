@@ -1,6 +1,6 @@
 ﻿# RoL 新对话完整交接文档（Master Handoff）
 
-> 当前快照日期：2026-03-21  
+> 当前快照日期：2026-03-23  
 > 文档真源：`C:\CK3Mods\RoL\docs\rol_handoff_master.md`
 
 ---
@@ -25,6 +25,7 @@
   - Rome（玛尔斯之剑）
   - Munich（尼伯龙根星界球）
   - Naxos/Thera（禁军解锁）
+  - Sevilla（大洋统御星盘）
 
 ---
 
@@ -41,13 +42,14 @@
 
 ## 3) 当前已落地模块状态（实现快照）
 
-### 3.1 多链活动状态
-- 三链活动均已启用宾客系统：`max_guests = 12`，含 `guest_invite_rules`。
-- 三链均有中段宾客事件：
+### 3.1 四链活动状态
+- 四链活动均已启用宾客系统：`max_guests = 12`，含 `guest_invite_rules`。
+- 四链均有中段宾客事件：
   - `rol_quest_rome.1050`
   - `rol_quest_munich.1050`
   - `rol_quest_naxos.1050`
-- 三链成功/失败 toast 已支持双行（title + desc）。
+  - `rol_quest_sevilla.1050`
+- 四链成功/失败 toast 已支持双行（title + desc）。
 
 ### 3.2 终局奖励门槛（Tier4）
 - Rome：`activity_special_type_progression >= 75`
@@ -60,6 +62,23 @@
 - 已接入文本图标 token：`@rol_legendary_icon!`（可替换实际 DDS）。
 
 ### 3.4 发现事件入口
+
+### 3.5 统一“人员与装备等级”模块（2026-03-23）
+- 四条正式活动统一接入活动选项分类：`rol_option_expedition_preparation`。
+- 四档固定为：`rol_expedition_preparation_low` / `standard` / `high` / `supreme`。
+- 固定成本曲线：`30 / 150 / 600 / 1750`；`standard` 为默认档。
+- 随机二元检定统一叠加筹备修正并 clamp 到 `5~95`：`low -10`、`standard 0`、`high +10`、`supreme +20`。
+- 成功后额外奖励统一只在 `*_quest_success_finalize_effect` 发放：`high +150 prestige / +25 dynasty prestige`，`supreme +350 / +50`。
+- Tier4-only 终局门槛不变；无论选哪档，仍只有达到各链 Tier4 才会拿到最终圣物 / 解锁。
+- 活动规划文案统一改为神秘化叙述：不直写奖励、不写“低于 Tier4 视为失败”，仅保留失败进入 2 年冷却。
+
+### 3.6 正式入口与已移除遗留
+- 当前唯一正式发现链路：`common/on_action/rol_relic_discovery_on_actions.txt -> rol_relic_discovery.0001 -> 四条活动链`。
+- 以下遗留 / 测试入口已从仓库移除，不再作为任何开发或测试基线：
+  - `common/on_action/rol_on_actions.txt`
+  - `events/rol_trigger_events.txt`
+  - `common/decisions/rol_decisions.txt`
+  - `events/rol_test_events.txt`
 - 通用入口：`event rol_relic_discovery.0001`
 - 地区直测：
   - Rome：`rol_relic_discovery.1000`
@@ -70,13 +89,14 @@
 
 ## 4) 关键技术架构
 
-1. **模板化底层**：通过 `scripted_effects` / `scripted_triggers` 承载可复用逻辑。
+1. **模板化底层**：通过 `scripted_effects` / `scripted_triggers` / `script_values` 承载可复用逻辑。
 2. **活动主流程**：发现 -> 活动 -> 阶段检定反馈 -> 终局判定 -> 结算事件。
-3. **可观测性**：
+3. **统一筹备接口**：新活动链默认沿用 `rol_option_expedition_preparation` 与四档成本 / 成功率 / 成功奖励规则。
+4. **可观测性**：
    - 活动成功条变化
    - 结果 toast 双行
    - 调试 trace/日志
-4. **失败统一收口**：风险分支失败统一走 `*_quest_fail_now_effect`。
+5. **失败统一收口**：风险分支失败统一走 `*_quest_fail_now_effect`。
 
 ---
 
@@ -132,8 +152,15 @@ event rol_relic_discovery.1400
 event rol_quest_rome.0990
 event rol_quest_munich.0990
 event rol_quest_naxos.0990
+event rol_quest_sevilla.0990
 ```
 预期：链路可推进，反馈事件可见。
+
+### 7.3.1 活动规划 UI（统一筹备模块）
+- 四条活动都应出现 `rol_option_expedition_preparation` 分类。
+- 默认档为 `standard`，默认总价应约为：Rome `300`、Munich `400`、Naxos `350`、Sevilla `400`。
+- 切换为 `low / high / supreme` 时，总价、活动描述与检定提示应同步变化。
+- 失败说明统一只写“失败进入 2 年冷却”，不直接暴露 Tier4 数值门槛。
 
 ### 7.4 直接发奖测试
 ```txt
@@ -222,8 +249,14 @@ powershell -ExecutionPolicy Bypass -File "C:\Users\Falcons的Niko本人的PC\.co
 
 ## 10) 接口/类型变更说明
 
-- 本次仅新增文档资产：`docs/rol_handoff_master.md`
-- 无游戏脚本接口变更、无事件 ID 变更、无数据结构变更。
+- 新增统一活动选项分类：`rol_option_expedition_preparation`
+- 新增四档固定 option ID：`rol_expedition_preparation_low / standard / high / supreme`
+- 新增共享层：
+  - `common/scripted_triggers/rol_expedition_preparation_triggers.txt`
+  - `common/script_values/rol_expedition_preparation_values.txt`
+  - `common/scripted_effects/rol_expedition_preparation_effects.txt`
+- 删除四个遗留测试入口文件（见 3.6）
+- 四链活动文本规范更新为：神秘化描述、失败仅写 2 年冷却、未来新链默认沿用统一筹备模块。
 
 ---
 

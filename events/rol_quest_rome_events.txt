@@ -74,6 +74,22 @@ rol_quest_rome.1000 = {
 		custom_tooltip = rol_relic_fail_ends_expedition_tt
 
 		if = {
+			limit = { rol_expedition_preparation_low_trigger = yes }
+			custom_tooltip = rol_expedition_preparation_current_modifier_low_tt
+		}
+		else_if = {
+			limit = { rol_expedition_preparation_standard_trigger = yes }
+			custom_tooltip = rol_expedition_preparation_current_modifier_standard_tt
+		}
+		else_if = {
+			limit = { rol_expedition_preparation_high_trigger = yes }
+			custom_tooltip = rol_expedition_preparation_current_modifier_high_tt
+		}
+		else_if = {
+			limit = { rol_expedition_preparation_supreme_trigger = yes }
+			custom_tooltip = rol_expedition_preparation_current_modifier_supreme_tt
+		}
+		if = {
 			limit = {
 				OR = {
 					martial >= 25
@@ -81,23 +97,31 @@ rol_quest_rome.1000 = {
 				}
 			}
 			custom_tooltip = rol_quest_rome.1000.a.odds_elite_tt
-			random_list = {
-				85 = {
-					add_prestige = 90
-					hidden_effect = {
-						scope:activity ?= { activity_special_type_progression_major = yes }
-						trigger_event = { id = rol_quest_rome.1010 days = 1 }
-					}
+						hidden_effect = { remove_character_flag = rol_expedition_random_success }
+			random = {
+				chance = {
+					value = 85
+					add = rol_expedition_preparation_success_chance_modifier
+					min = 5
+					max = 95
 				}
-				15 = {
-					add_trait = wounded_1
-					add_prestige = -90
-					hidden_effect = {
-						scope:activity ?= { activity_special_type_progression_negative_major = yes }
-						trigger_event = { id = rol_quest_rome.1011 days = 1 }
-					}
+				add_character_flag = rol_expedition_random_success
+				add_prestige = 90
+				hidden_effect = {
+					scope:activity ?= { activity_special_type_progression_major = yes }
+					trigger_event = { id = rol_quest_rome.1010 days = 1 }
 				}
 			}
+			if = {
+				limit = { NOT = { has_character_flag = rol_expedition_random_success } }
+				add_trait = wounded_1
+				add_prestige = -90
+				hidden_effect = {
+					scope:activity ?= { activity_special_type_progression_negative_major = yes }
+					trigger_event = { id = rol_quest_rome.1011 days = 1 }
+				}
+			}
+			remove_character_flag = rol_expedition_random_success
 		}
 		else_if = {
 			limit = {
@@ -107,43 +131,59 @@ rol_quest_rome.1000 = {
 				}
 			}
 			custom_tooltip = rol_quest_rome.1000.a.odds_high_tt
-			random_list = {
-				70 = {
-					add_prestige = 75
-					hidden_effect = {
-						scope:activity ?= { activity_special_type_progression_major = yes }
-						trigger_event = { id = rol_quest_rome.1010 days = 1 }
-					}
+						hidden_effect = { remove_character_flag = rol_expedition_random_success }
+			random = {
+				chance = {
+					value = 70
+					add = rol_expedition_preparation_success_chance_modifier
+					min = 5
+					max = 95
 				}
-				30 = {
-					add_trait = wounded_1
-					add_prestige = -100
-					hidden_effect = {
-						scope:activity ?= { activity_special_type_progression_negative_major = yes }
-						trigger_event = { id = rol_quest_rome.1011 days = 1 }
-					}
+				add_character_flag = rol_expedition_random_success
+				add_prestige = 75
+				hidden_effect = {
+					scope:activity ?= { activity_special_type_progression_major = yes }
+					trigger_event = { id = rol_quest_rome.1010 days = 1 }
 				}
 			}
+			if = {
+				limit = { NOT = { has_character_flag = rol_expedition_random_success } }
+				add_trait = wounded_1
+				add_prestige = -100
+				hidden_effect = {
+					scope:activity ?= { activity_special_type_progression_negative_major = yes }
+					trigger_event = { id = rol_quest_rome.1011 days = 1 }
+				}
+			}
+			remove_character_flag = rol_expedition_random_success
 		}
 		else = {
 			custom_tooltip = rol_quest_rome.1000.a.odds_low_tt
-			random_list = {
-				45 = {
-					add_prestige = 50
-					hidden_effect = {
-						scope:activity ?= { activity_special_type_progression_medium = yes }
-						trigger_event = { id = rol_quest_rome.1010 days = 1 }
-					}
+						hidden_effect = { remove_character_flag = rol_expedition_random_success }
+			random = {
+				chance = {
+					value = 45
+					add = rol_expedition_preparation_success_chance_modifier
+					min = 5
+					max = 95
 				}
-				55 = {
-					add_trait = wounded_1
-					add_prestige = -100
-					hidden_effect = {
-						scope:activity ?= { activity_special_type_progression_negative_major = yes }
-						trigger_event = { id = rol_quest_rome.1011 days = 1 }
-					}
+				add_character_flag = rol_expedition_random_success
+				add_prestige = 50
+				hidden_effect = {
+					scope:activity ?= { activity_special_type_progression_medium = yes }
+					trigger_event = { id = rol_quest_rome.1010 days = 1 }
 				}
 			}
+			if = {
+				limit = { NOT = { has_character_flag = rol_expedition_random_success } }
+				add_trait = wounded_1
+				add_prestige = -100
+				hidden_effect = {
+					scope:activity ?= { activity_special_type_progression_negative_major = yes }
+					trigger_event = { id = rol_quest_rome.1011 days = 1 }
+				}
+			}
+			remove_character_flag = rol_expedition_random_success
 		}
 	}
 
@@ -264,63 +304,103 @@ rol_quest_rome.1002 = {
 		custom_tooltip = rol_quest_rome.1002.a.tt
 		custom_tooltip = rol_relic_fail_ends_expedition_tt
 		if = {
+			limit = { rol_expedition_preparation_low_trigger = yes }
+			custom_tooltip = rol_expedition_preparation_current_modifier_low_tt
+		}
+		else_if = {
+			limit = { rol_expedition_preparation_standard_trigger = yes }
+			custom_tooltip = rol_expedition_preparation_current_modifier_standard_tt
+		}
+		else_if = {
+			limit = { rol_expedition_preparation_high_trigger = yes }
+			custom_tooltip = rol_expedition_preparation_current_modifier_high_tt
+		}
+		else_if = {
+			limit = { rol_expedition_preparation_supreme_trigger = yes }
+			custom_tooltip = rol_expedition_preparation_current_modifier_supreme_tt
+		}
+		if = {
 			limit = { prowess >= 25 }
-			random_list = {
-				85 = {
-					add_prestige = 70
-					hidden_effect = {
-						scope:activity ?= { activity_special_type_progression_major = yes }
-						trigger_event = { id = rol_quest_rome.1020 days = 1 }
-					}
+						hidden_effect = { remove_character_flag = rol_expedition_random_success }
+			random = {
+				chance = {
+					value = 85
+					add = rol_expedition_preparation_success_chance_modifier
+					min = 5
+					max = 95
 				}
-				15 = {
-					add_trait = wounded_1
-					add_prestige = -70
-					hidden_effect = {
-						scope:activity ?= { activity_special_type_progression_negative = yes }
-						trigger_event = { id = rol_quest_rome.1021 days = 1 }
-					}
+				add_character_flag = rol_expedition_random_success
+				add_prestige = 70
+				hidden_effect = {
+					scope:activity ?= { activity_special_type_progression_major = yes }
+					trigger_event = { id = rol_quest_rome.1020 days = 1 }
 				}
 			}
+			if = {
+				limit = { NOT = { has_character_flag = rol_expedition_random_success } }
+				add_trait = wounded_1
+				add_prestige = -70
+				hidden_effect = {
+					scope:activity ?= { activity_special_type_progression_negative = yes }
+					trigger_event = { id = rol_quest_rome.1021 days = 1 }
+				}
+			}
+			remove_character_flag = rol_expedition_random_success
 		}
 		else_if = {
 			limit = { prowess >= 12 }
-			random_list = {
-				75 = {
-					add_prestige = 50
-					hidden_effect = {
-						scope:activity ?= { activity_special_type_progression_medium = yes }
-						trigger_event = { id = rol_quest_rome.1020 days = 1 }
-					}
+						hidden_effect = { remove_character_flag = rol_expedition_random_success }
+			random = {
+				chance = {
+					value = 75
+					add = rol_expedition_preparation_success_chance_modifier
+					min = 5
+					max = 95
 				}
-				25 = {
-					add_trait = wounded_1
-					add_prestige = -80
-					hidden_effect = {
-						scope:activity ?= { activity_special_type_progression_negative = yes }
-						trigger_event = { id = rol_quest_rome.1021 days = 1 }
-					}
+				add_character_flag = rol_expedition_random_success
+				add_prestige = 50
+				hidden_effect = {
+					scope:activity ?= { activity_special_type_progression_medium = yes }
+					trigger_event = { id = rol_quest_rome.1020 days = 1 }
 				}
 			}
+			if = {
+				limit = { NOT = { has_character_flag = rol_expedition_random_success } }
+				add_trait = wounded_1
+				add_prestige = -80
+				hidden_effect = {
+					scope:activity ?= { activity_special_type_progression_negative = yes }
+					trigger_event = { id = rol_quest_rome.1021 days = 1 }
+				}
+			}
+			remove_character_flag = rol_expedition_random_success
 		}
 		else = {
-			random_list = {
-				40 = {
-					add_prestige = 30
-					hidden_effect = {
-						scope:activity ?= { activity_special_type_progression_tiny = yes }
-						trigger_event = { id = rol_quest_rome.1020 days = 1 }
-					}
+						hidden_effect = { remove_character_flag = rol_expedition_random_success }
+			random = {
+				chance = {
+					value = 40
+					add = rol_expedition_preparation_success_chance_modifier
+					min = 5
+					max = 95
 				}
-				60 = {
-					add_trait = wounded_1
-					add_prestige = -100
-					hidden_effect = {
-						scope:activity ?= { activity_special_type_progression_negative_major = yes }
-						trigger_event = { id = rol_quest_rome.1021 days = 1 }
-					}
+				add_character_flag = rol_expedition_random_success
+				add_prestige = 30
+				hidden_effect = {
+					scope:activity ?= { activity_special_type_progression_tiny = yes }
+					trigger_event = { id = rol_quest_rome.1020 days = 1 }
 				}
 			}
+			if = {
+				limit = { NOT = { has_character_flag = rol_expedition_random_success } }
+				add_trait = wounded_1
+				add_prestige = -100
+				hidden_effect = {
+					scope:activity ?= { activity_special_type_progression_negative_major = yes }
+					trigger_event = { id = rol_quest_rome.1021 days = 1 }
+				}
+			}
+			remove_character_flag = rol_expedition_random_success
 		}
 	}
 
@@ -420,60 +500,100 @@ rol_quest_rome.1003 = {
 		custom_tooltip = rol_quest_rome.1003.a.tt
 		custom_tooltip = rol_relic_fail_ends_expedition_tt
 		if = {
+			limit = { rol_expedition_preparation_low_trigger = yes }
+			custom_tooltip = rol_expedition_preparation_current_modifier_low_tt
+		}
+		else_if = {
+			limit = { rol_expedition_preparation_standard_trigger = yes }
+			custom_tooltip = rol_expedition_preparation_current_modifier_standard_tt
+		}
+		else_if = {
+			limit = { rol_expedition_preparation_high_trigger = yes }
+			custom_tooltip = rol_expedition_preparation_current_modifier_high_tt
+		}
+		else_if = {
+			limit = { rol_expedition_preparation_supreme_trigger = yes }
+			custom_tooltip = rol_expedition_preparation_current_modifier_supreme_tt
+		}
+		if = {
 			limit = { learning >= 25 }
-			random_list = {
-				85 = {
-					add_piety = 90
-					hidden_effect = {
-						scope:activity ?= { activity_special_type_progression_major = yes }
-						trigger_event = { id = rol_quest_rome.1030 days = 1 }
-					}
+						hidden_effect = { remove_character_flag = rol_expedition_random_success }
+			random = {
+				chance = {
+					value = 85
+					add = rol_expedition_preparation_success_chance_modifier
+					min = 5
+					max = 95
 				}
-				15 = {
-					add_stress = 30
-					hidden_effect = {
-						scope:activity ?= { activity_special_type_progression_negative = yes }
-						trigger_event = { id = rol_quest_rome.1031 days = 1 }
-					}
+				add_character_flag = rol_expedition_random_success
+				add_piety = 90
+				hidden_effect = {
+					scope:activity ?= { activity_special_type_progression_major = yes }
+					trigger_event = { id = rol_quest_rome.1030 days = 1 }
 				}
 			}
+			if = {
+				limit = { NOT = { has_character_flag = rol_expedition_random_success } }
+				add_stress = 30
+				hidden_effect = {
+					scope:activity ?= { activity_special_type_progression_negative = yes }
+					trigger_event = { id = rol_quest_rome.1031 days = 1 }
+				}
+			}
+			remove_character_flag = rol_expedition_random_success
 		}
 		else_if = {
 			limit = { learning >= 14 }
-			random_list = {
-				75 = {
-					add_piety = 75
-					hidden_effect = {
-						scope:activity ?= { activity_special_type_progression_medium = yes }
-						trigger_event = { id = rol_quest_rome.1030 days = 1 }
-					}
+						hidden_effect = { remove_character_flag = rol_expedition_random_success }
+			random = {
+				chance = {
+					value = 75
+					add = rol_expedition_preparation_success_chance_modifier
+					min = 5
+					max = 95
 				}
-				25 = {
-					add_stress = 40
-					hidden_effect = {
-						scope:activity ?= { activity_special_type_progression_negative = yes }
-						trigger_event = { id = rol_quest_rome.1031 days = 1 }
-					}
+				add_character_flag = rol_expedition_random_success
+				add_piety = 75
+				hidden_effect = {
+					scope:activity ?= { activity_special_type_progression_medium = yes }
+					trigger_event = { id = rol_quest_rome.1030 days = 1 }
 				}
 			}
+			if = {
+				limit = { NOT = { has_character_flag = rol_expedition_random_success } }
+				add_stress = 40
+				hidden_effect = {
+					scope:activity ?= { activity_special_type_progression_negative = yes }
+					trigger_event = { id = rol_quest_rome.1031 days = 1 }
+				}
+			}
+			remove_character_flag = rol_expedition_random_success
 		}
 		else = {
-			random_list = {
-				40 = {
-					add_piety = 40
-					hidden_effect = {
-						scope:activity ?= { activity_special_type_progression_tiny = yes }
-						trigger_event = { id = rol_quest_rome.1030 days = 1 }
-					}
+						hidden_effect = { remove_character_flag = rol_expedition_random_success }
+			random = {
+				chance = {
+					value = 40
+					add = rol_expedition_preparation_success_chance_modifier
+					min = 5
+					max = 95
 				}
-				60 = {
-					add_stress = 60
-					hidden_effect = {
-						scope:activity ?= { activity_special_type_progression_negative_major = yes }
-						trigger_event = { id = rol_quest_rome.1031 days = 1 }
-					}
+				add_character_flag = rol_expedition_random_success
+				add_piety = 40
+				hidden_effect = {
+					scope:activity ?= { activity_special_type_progression_tiny = yes }
+					trigger_event = { id = rol_quest_rome.1030 days = 1 }
 				}
 			}
+			if = {
+				limit = { NOT = { has_character_flag = rol_expedition_random_success } }
+				add_stress = 60
+				hidden_effect = {
+					scope:activity ?= { activity_special_type_progression_negative_major = yes }
+					trigger_event = { id = rol_quest_rome.1031 days = 1 }
+				}
+			}
+			remove_character_flag = rol_expedition_random_success
 		}
 	}
 
@@ -481,23 +601,47 @@ rol_quest_rome.1003 = {
 		name = rol_quest_rome.1003.b
 		custom_tooltip = rol_quest_rome.1003.b.tt
 		custom_tooltip = rol_relic_fail_ends_expedition_tt
-		random_list = {
-			50 = {
-				add_prestige = 30
-				hidden_effect = {
-					scope:activity ?= { activity_special_type_progression_tiny = yes }
-					trigger_event = { id = rol_quest_rome.1030 days = 1 }
-				}
+		if = {
+			limit = { rol_expedition_preparation_low_trigger = yes }
+			custom_tooltip = rol_expedition_preparation_current_modifier_low_tt
+		}
+		else_if = {
+			limit = { rol_expedition_preparation_standard_trigger = yes }
+			custom_tooltip = rol_expedition_preparation_current_modifier_standard_tt
+		}
+		else_if = {
+			limit = { rol_expedition_preparation_high_trigger = yes }
+			custom_tooltip = rol_expedition_preparation_current_modifier_high_tt
+		}
+		else_if = {
+			limit = { rol_expedition_preparation_supreme_trigger = yes }
+			custom_tooltip = rol_expedition_preparation_current_modifier_supreme_tt
+		}
+				hidden_effect = { remove_character_flag = rol_expedition_random_success }
+		random = {
+			chance = {
+				value = 50
+				add = rol_expedition_preparation_success_chance_modifier
+				min = 5
+				max = 95
 			}
-			50 = {
-				add_stress = 45
-				add_prestige = -50
-				hidden_effect = {
-					scope:activity ?= { activity_special_type_progression_negative_major = yes }
-					trigger_event = { id = rol_quest_rome.1031 days = 1 }
-				}
+			add_character_flag = rol_expedition_random_success
+			add_prestige = 30
+			hidden_effect = {
+				scope:activity ?= { activity_special_type_progression_tiny = yes }
+				trigger_event = { id = rol_quest_rome.1030 days = 1 }
 			}
 		}
+		if = {
+			limit = { NOT = { has_character_flag = rol_expedition_random_success } }
+			add_stress = 45
+			add_prestige = -50
+			hidden_effect = {
+				scope:activity ?= { activity_special_type_progression_negative_major = yes }
+				trigger_event = { id = rol_quest_rome.1031 days = 1 }
+			}
+		}
+		remove_character_flag = rol_expedition_random_success
 	}
 }
 
@@ -571,29 +715,53 @@ rol_quest_rome.1004 = {
 		custom_tooltip = rol_quest_rome.1004.a.tt
 		custom_tooltip = rol_relic_fail_ends_expedition_tt
 		if = {
+			limit = { rol_expedition_preparation_low_trigger = yes }
+			custom_tooltip = rol_expedition_preparation_current_modifier_low_tt
+		}
+		else_if = {
+			limit = { rol_expedition_preparation_standard_trigger = yes }
+			custom_tooltip = rol_expedition_preparation_current_modifier_standard_tt
+		}
+		else_if = {
+			limit = { rol_expedition_preparation_high_trigger = yes }
+			custom_tooltip = rol_expedition_preparation_current_modifier_high_tt
+		}
+		else_if = {
+			limit = { rol_expedition_preparation_supreme_trigger = yes }
+			custom_tooltip = rol_expedition_preparation_current_modifier_supreme_tt
+		}
+		if = {
 			limit = {
 				OR = {
 					martial >= 25
 					prowess >= 25
 				}
 			}
-			random_list = {
-				85 = {
-					add_prestige = 120
-					hidden_effect = {
-						scope:activity ?= { activity_special_type_progression_major = yes }
-						trigger_event = { id = rol_quest_rome.1040 days = 1 }
-					}
+						hidden_effect = { remove_character_flag = rol_expedition_random_success }
+			random = {
+				chance = {
+					value = 85
+					add = rol_expedition_preparation_success_chance_modifier
+					min = 5
+					max = 95
 				}
-				15 = {
-					add_trait = wounded_1
-					add_prestige = -90
-					hidden_effect = {
-						scope:activity ?= { activity_special_type_progression_negative_major = yes }
-						trigger_event = { id = rol_quest_rome.1041 days = 1 }
-					}
+				add_character_flag = rol_expedition_random_success
+				add_prestige = 120
+				hidden_effect = {
+					scope:activity ?= { activity_special_type_progression_major = yes }
+					trigger_event = { id = rol_quest_rome.1040 days = 1 }
 				}
 			}
+			if = {
+				limit = { NOT = { has_character_flag = rol_expedition_random_success } }
+				add_trait = wounded_1
+				add_prestige = -90
+				hidden_effect = {
+					scope:activity ?= { activity_special_type_progression_negative_major = yes }
+					trigger_event = { id = rol_quest_rome.1041 days = 1 }
+				}
+			}
+			remove_character_flag = rol_expedition_random_success
 		}
 		else_if = {
 			limit = {
@@ -602,42 +770,58 @@ rol_quest_rome.1004 = {
 					prowess >= 13
 				}
 			}
-			random_list = {
-				65 = {
-					add_prestige = 90
-					hidden_effect = {
-						scope:activity ?= { activity_special_type_progression_major = yes }
-						trigger_event = { id = rol_quest_rome.1040 days = 1 }
-					}
+						hidden_effect = { remove_character_flag = rol_expedition_random_success }
+			random = {
+				chance = {
+					value = 65
+					add = rol_expedition_preparation_success_chance_modifier
+					min = 5
+					max = 95
 				}
-				35 = {
-					add_trait = wounded_1
-					add_prestige = -120
-					hidden_effect = {
-						scope:activity ?= { activity_special_type_progression_negative_major = yes }
-						trigger_event = { id = rol_quest_rome.1041 days = 1 }
-					}
+				add_character_flag = rol_expedition_random_success
+				add_prestige = 90
+				hidden_effect = {
+					scope:activity ?= { activity_special_type_progression_major = yes }
+					trigger_event = { id = rol_quest_rome.1040 days = 1 }
 				}
 			}
+			if = {
+				limit = { NOT = { has_character_flag = rol_expedition_random_success } }
+				add_trait = wounded_1
+				add_prestige = -120
+				hidden_effect = {
+					scope:activity ?= { activity_special_type_progression_negative_major = yes }
+					trigger_event = { id = rol_quest_rome.1041 days = 1 }
+				}
+			}
+			remove_character_flag = rol_expedition_random_success
 		}
 		else = {
-			random_list = {
-				35 = {
-					add_prestige = 60
-					hidden_effect = {
-						scope:activity ?= { activity_special_type_progression_medium = yes }
-						trigger_event = { id = rol_quest_rome.1040 days = 1 }
-					}
+						hidden_effect = { remove_character_flag = rol_expedition_random_success }
+			random = {
+				chance = {
+					value = 35
+					add = rol_expedition_preparation_success_chance_modifier
+					min = 5
+					max = 95
 				}
-				65 = {
-					add_trait = wounded_1
-					add_prestige = -150
-					hidden_effect = {
-						scope:activity ?= { activity_special_type_progression_negative_major = yes }
-						trigger_event = { id = rol_quest_rome.1041 days = 1 }
-					}
+				add_character_flag = rol_expedition_random_success
+				add_prestige = 60
+				hidden_effect = {
+					scope:activity ?= { activity_special_type_progression_medium = yes }
+					trigger_event = { id = rol_quest_rome.1040 days = 1 }
 				}
 			}
+			if = {
+				limit = { NOT = { has_character_flag = rol_expedition_random_success } }
+				add_trait = wounded_1
+				add_prestige = -150
+				hidden_effect = {
+					scope:activity ?= { activity_special_type_progression_negative_major = yes }
+					trigger_event = { id = rol_quest_rome.1041 days = 1 }
+				}
+			}
+			remove_character_flag = rol_expedition_random_success
 		}
 	}
 

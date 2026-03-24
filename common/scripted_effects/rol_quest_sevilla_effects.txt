@@ -147,6 +147,7 @@ rol_sevilla_quest_success_finalize_effect = {
 	rol_sevilla_clamp_success_progress_effect = yes
 	rol_sevilla_store_success_result_effect = yes
 	rol_sevilla_apply_tiered_bonus_reward_effect = yes
+	rol_apply_expedition_preparation_success_bonus_effect = yes
 
 	add_character_flag = rol_astrolabe_of_ocean_claimed
 	remove_character_flag = rol_heard_astrolabe_legend

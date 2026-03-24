@@ -1,0 +1,16 @@
+﻿# Relics of Legend - Unified expedition preparation values
+
+rol_expedition_preparation_success_chance_modifier = {
+	if = {
+		limit = { rol_expedition_preparation_supreme_trigger = yes }
+		add = 20
+	}
+	else_if = {
+		limit = { rol_expedition_preparation_high_trigger = yes }
+		add = 10
+	}
+	else_if = {
+		limit = { rol_expedition_preparation_low_trigger = yes }
+		add = -10
+	}
+}

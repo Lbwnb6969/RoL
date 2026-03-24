@@ -148,6 +148,7 @@ rol_munich_quest_success_finalize_effect = {
 	rol_munich_clamp_success_progress_effect = yes
 	rol_munich_store_success_result_effect = yes
 	rol_munich_apply_tiered_bonus_reward_effect = yes
+	rol_apply_expedition_preparation_success_bonus_effect = yes
 
 	add_character_flag = rol_nibelung_sphere_claimed
 	remove_character_flag = rol_heard_nibelung_legend

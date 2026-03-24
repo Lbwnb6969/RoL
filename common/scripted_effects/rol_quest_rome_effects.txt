@@ -157,6 +157,7 @@ rol_rome_quest_success_finalize_effect = {
 	rol_rome_clamp_success_progress_effect = yes
 	rol_rome_store_success_result_effect = yes
 	rol_rome_apply_tiered_bonus_reward_effect = yes
+	rol_apply_expedition_preparation_success_bonus_effect = yes
 
 	add_character_flag = rol_mars_blade_claimed
 	remove_character_flag = rol_heard_mars_legend

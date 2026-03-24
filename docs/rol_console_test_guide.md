@@ -114,6 +114,25 @@ event rol_quest_sevilla.1001
 event rol_quest_sevilla.1090
 ```
 
+### 3.5 活动规划 UI：统一“人员与装备等级”模块
+
+在分别给四条链加上对应 `rol_heard_*` flag、移除领取 flag / cooldown 后，手动打开活动规划界面，检查以下内容：
+
+| 活动 | `low` 总价 | `standard` 总价（默认） | `high` 总价 | `supreme` 总价 |
+|---|---:|---:|---:|---:|
+| Rome | `180` | `300` | `750` | `1900` |
+| Munich | `280` | `400` | `850` | `2000` |
+| Naxos / Thera | `230` | `350` | `800` | `1950` |
+| Sevilla | `280` | `400` | `850` | `2000` |
+
+手动验证点：
+- 四条活动都出现 `人员与装备等级` 分类（脚本 ID：`rol_option_expedition_preparation`）。
+- 默认选项为 `standard`。
+- 活动主描述 / host_desc / selection_tooltip 不再直接写明圣物 / 兵种奖励，也不再写“低于 Tier4 视为失败”。
+- 活动选项描述会明确写出：成功率变化 + 成功后额外 `prestige / dynasty prestige`。
+- 四档切换时，总价应与上表一致；图标应显示 `gfx/interface/icons/activity_option_categories/rol_option_expedition_preparation.dds`。
+
+
 ---
 
 ## 4. 圣物直发 / 统一测试入口
@@ -175,6 +194,21 @@ effect remove_character_flag = rol_astrolabe_of_ocean_claimed
 effect rol_create_astrolabe_of_ocean_effect = yes
 effect rol_sevilla_quest_success_finalize_effect = yes
 ```
+
+### 5.5 筹备档位成功奖励验证
+
+1. 记录当前角色的 `[prestige|E]` 与 `[dynasty_prestige|E]`。
+2. 正常进入任意一条活动，并分别测试 `low / standard / high / supreme`。
+3. 在相同能力档位下，观察随机检定 option：
+   - 现在只显示定性风险文本；
+   - 额外会出现当前筹备提示（更困难 / 无修正 / 更容易 / 显著更容易）。
+4. 仅当远征最终达到各链 Tier4 时，才会拿到最终奖励；低于终局门槛时统一失败并进入 2 年冷却。
+5. 成功结算后对比额外收益：
+   - `low`：无额外奖励
+   - `standard`：无额外奖励
+   - `high`：额外 `+150 prestige / +25 dynasty prestige`
+   - `supreme`：额外 `+350 prestige / +50 dynasty prestige`
+
 
 ---
 

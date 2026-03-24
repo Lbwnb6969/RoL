@@ -150,6 +150,7 @@ rol_naxos_quest_success_finalize_effect = {
 	rol_naxos_clamp_success_progress_effect = yes
 	rol_naxos_store_success_result_effect = yes
 	rol_naxos_apply_tiered_bonus_reward_effect = yes
+	rol_apply_expedition_preparation_success_bonus_effect = yes
 
 	add_character_flag = rol_naxos_unit_unlocked
 	remove_character_flag = rol_heard_naxos_legend

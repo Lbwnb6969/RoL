@@ -53,60 +53,100 @@ rol_quest_sevilla.1000 = {
 		custom_tooltip = rol_quest_sevilla.1000.a.base_tt
 		custom_tooltip = rol_relic_fail_ends_expedition_tt
 		if = {
+			limit = { rol_expedition_preparation_low_trigger = yes }
+			custom_tooltip = rol_expedition_preparation_current_modifier_low_tt
+		}
+		else_if = {
+			limit = { rol_expedition_preparation_standard_trigger = yes }
+			custom_tooltip = rol_expedition_preparation_current_modifier_standard_tt
+		}
+		else_if = {
+			limit = { rol_expedition_preparation_high_trigger = yes }
+			custom_tooltip = rol_expedition_preparation_current_modifier_high_tt
+		}
+		else_if = {
+			limit = { rol_expedition_preparation_supreme_trigger = yes }
+			custom_tooltip = rol_expedition_preparation_current_modifier_supreme_tt
+		}
+		if = {
 			limit = { diplomacy >= 25 }
 			custom_tooltip = rol_quest_sevilla.1000.a.odds_elite_tt
-			random_list = {
-				85 = {
-					add_prestige = 70
-					hidden_effect = {
-						scope:activity ?= { activity_special_type_progression_major = yes }
-						trigger_event = { id = rol_quest_sevilla.1010 days = 1 }
-					}
+						hidden_effect = { remove_character_flag = rol_expedition_random_success }
+			random = {
+				chance = {
+					value = 85
+					add = rol_expedition_preparation_success_chance_modifier
+					min = 5
+					max = 95
 				}
-				15 = {
-					add_stress = 25
-					hidden_effect = {
-						trigger_event = { id = rol_quest_sevilla.1011 days = 1 }
-					}
+				add_character_flag = rol_expedition_random_success
+				add_prestige = 70
+				hidden_effect = {
+					scope:activity ?= { activity_special_type_progression_major = yes }
+					trigger_event = { id = rol_quest_sevilla.1010 days = 1 }
 				}
 			}
+			if = {
+				limit = { NOT = { has_character_flag = rol_expedition_random_success } }
+				add_stress = 25
+				hidden_effect = {
+					trigger_event = { id = rol_quest_sevilla.1011 days = 1 }
+				}
+			}
+			remove_character_flag = rol_expedition_random_success
 		}
 		else_if = {
 			limit = { diplomacy >= 16 }
 			custom_tooltip = rol_quest_sevilla.1000.a.odds_high_tt
-			random_list = {
-				75 = {
-					add_prestige = 60
-					hidden_effect = {
-						scope:activity ?= { activity_special_type_progression_major = yes }
-						trigger_event = { id = rol_quest_sevilla.1010 days = 1 }
-					}
+						hidden_effect = { remove_character_flag = rol_expedition_random_success }
+			random = {
+				chance = {
+					value = 75
+					add = rol_expedition_preparation_success_chance_modifier
+					min = 5
+					max = 95
 				}
-				25 = {
-					add_stress = 35
-					hidden_effect = {
-						trigger_event = { id = rol_quest_sevilla.1011 days = 1 }
-					}
+				add_character_flag = rol_expedition_random_success
+				add_prestige = 60
+				hidden_effect = {
+					scope:activity ?= { activity_special_type_progression_major = yes }
+					trigger_event = { id = rol_quest_sevilla.1010 days = 1 }
 				}
 			}
+			if = {
+				limit = { NOT = { has_character_flag = rol_expedition_random_success } }
+				add_stress = 35
+				hidden_effect = {
+					trigger_event = { id = rol_quest_sevilla.1011 days = 1 }
+				}
+			}
+			remove_character_flag = rol_expedition_random_success
 		}
 		else = {
 			custom_tooltip = rol_quest_sevilla.1000.a.odds_low_tt
-			random_list = {
-				50 = {
-					add_prestige = 40
-					hidden_effect = {
-						scope:activity ?= { activity_special_type_progression_medium = yes }
-						trigger_event = { id = rol_quest_sevilla.1010 days = 1 }
-					}
+						hidden_effect = { remove_character_flag = rol_expedition_random_success }
+			random = {
+				chance = {
+					value = 50
+					add = rol_expedition_preparation_success_chance_modifier
+					min = 5
+					max = 95
 				}
-				50 = {
-					add_stress = 45
-					hidden_effect = {
-						trigger_event = { id = rol_quest_sevilla.1011 days = 1 }
-					}
+				add_character_flag = rol_expedition_random_success
+				add_prestige = 40
+				hidden_effect = {
+					scope:activity ?= { activity_special_type_progression_medium = yes }
+					trigger_event = { id = rol_quest_sevilla.1010 days = 1 }
 				}
 			}
+			if = {
+				limit = { NOT = { has_character_flag = rol_expedition_random_success } }
+				add_stress = 45
+				hidden_effect = {
+					trigger_event = { id = rol_quest_sevilla.1011 days = 1 }
+				}
+			}
+			remove_character_flag = rol_expedition_random_success
 		}
 	}
 
@@ -116,6 +156,22 @@ rol_quest_sevilla.1000 = {
 		custom_tooltip = rol_quest_sevilla.1000.b.base_tt
 		custom_tooltip = rol_relic_fail_ends_expedition_tt
 		if = {
+			limit = { rol_expedition_preparation_low_trigger = yes }
+			custom_tooltip = rol_expedition_preparation_current_modifier_low_tt
+		}
+		else_if = {
+			limit = { rol_expedition_preparation_standard_trigger = yes }
+			custom_tooltip = rol_expedition_preparation_current_modifier_standard_tt
+		}
+		else_if = {
+			limit = { rol_expedition_preparation_high_trigger = yes }
+			custom_tooltip = rol_expedition_preparation_current_modifier_high_tt
+		}
+		else_if = {
+			limit = { rol_expedition_preparation_supreme_trigger = yes }
+			custom_tooltip = rol_expedition_preparation_current_modifier_supreme_tt
+		}
+		if = {
 			limit = {
 				OR = {
 					martial >= 25
@@ -123,22 +179,30 @@ rol_quest_sevilla.1000 = {
 				}
 			}
 			custom_tooltip = rol_quest_sevilla.1000.b.odds_elite_tt
-			random_list = {
-				80 = {
-					add_prestige = 85
-					hidden_effect = {
-						scope:activity ?= { activity_special_type_progression_major = yes }
-						trigger_event = { id = rol_quest_sevilla.1010 days = 1 }
-					}
+						hidden_effect = { remove_character_flag = rol_expedition_random_success }
+			random = {
+				chance = {
+					value = 80
+					add = rol_expedition_preparation_success_chance_modifier
+					min = 5
+					max = 95
 				}
-				20 = {
-					add_trait = wounded_1
-					add_prestige = -80
-					hidden_effect = {
-						trigger_event = { id = rol_quest_sevilla.1011 days = 1 }
-					}
+				add_character_flag = rol_expedition_random_success
+				add_prestige = 85
+				hidden_effect = {
+					scope:activity ?= { activity_special_type_progression_major = yes }
+					trigger_event = { id = rol_quest_sevilla.1010 days = 1 }
 				}
 			}
+			if = {
+				limit = { NOT = { has_character_flag = rol_expedition_random_success } }
+				add_trait = wounded_1
+				add_prestige = -80
+				hidden_effect = {
+					trigger_event = { id = rol_quest_sevilla.1011 days = 1 }
+				}
+			}
+			remove_character_flag = rol_expedition_random_success
 		}
 		else_if = {
 			limit = {
@@ -148,41 +212,57 @@ rol_quest_sevilla.1000 = {
 				}
 			}
 			custom_tooltip = rol_quest_sevilla.1000.b.odds_high_tt
-			random_list = {
-				65 = {
-					add_prestige = 70
-					hidden_effect = {
-						scope:activity ?= { activity_special_type_progression_medium = yes }
-						trigger_event = { id = rol_quest_sevilla.1010 days = 1 }
-					}
+						hidden_effect = { remove_character_flag = rol_expedition_random_success }
+			random = {
+				chance = {
+					value = 65
+					add = rol_expedition_preparation_success_chance_modifier
+					min = 5
+					max = 95
 				}
-				35 = {
-					add_trait = wounded_1
-					add_prestige = -100
-					hidden_effect = {
-						trigger_event = { id = rol_quest_sevilla.1011 days = 1 }
-					}
+				add_character_flag = rol_expedition_random_success
+				add_prestige = 70
+				hidden_effect = {
+					scope:activity ?= { activity_special_type_progression_medium = yes }
+					trigger_event = { id = rol_quest_sevilla.1010 days = 1 }
 				}
 			}
+			if = {
+				limit = { NOT = { has_character_flag = rol_expedition_random_success } }
+				add_trait = wounded_1
+				add_prestige = -100
+				hidden_effect = {
+					trigger_event = { id = rol_quest_sevilla.1011 days = 1 }
+				}
+			}
+			remove_character_flag = rol_expedition_random_success
 		}
 		else = {
 			custom_tooltip = rol_quest_sevilla.1000.b.odds_low_tt
-			random_list = {
-				40 = {
-					add_prestige = 45
-					hidden_effect = {
-						scope:activity ?= { activity_special_type_progression_tiny = yes }
-						trigger_event = { id = rol_quest_sevilla.1010 days = 1 }
-					}
+						hidden_effect = { remove_character_flag = rol_expedition_random_success }
+			random = {
+				chance = {
+					value = 40
+					add = rol_expedition_preparation_success_chance_modifier
+					min = 5
+					max = 95
 				}
-				60 = {
-					add_trait = wounded_1
-					add_prestige = -120
-					hidden_effect = {
-						trigger_event = { id = rol_quest_sevilla.1011 days = 1 }
-					}
+				add_character_flag = rol_expedition_random_success
+				add_prestige = 45
+				hidden_effect = {
+					scope:activity ?= { activity_special_type_progression_tiny = yes }
+					trigger_event = { id = rol_quest_sevilla.1010 days = 1 }
 				}
 			}
+			if = {
+				limit = { NOT = { has_character_flag = rol_expedition_random_success } }
+				add_trait = wounded_1
+				add_prestige = -120
+				hidden_effect = {
+					trigger_event = { id = rol_quest_sevilla.1011 days = 1 }
+				}
+			}
+			remove_character_flag = rol_expedition_random_success
 		}
 	}
 
@@ -260,60 +340,100 @@ rol_quest_sevilla.1002 = {
 		custom_tooltip = rol_quest_sevilla.1002.a.base_tt
 		custom_tooltip = rol_relic_fail_ends_expedition_tt
 		if = {
+			limit = { rol_expedition_preparation_low_trigger = yes }
+			custom_tooltip = rol_expedition_preparation_current_modifier_low_tt
+		}
+		else_if = {
+			limit = { rol_expedition_preparation_standard_trigger = yes }
+			custom_tooltip = rol_expedition_preparation_current_modifier_standard_tt
+		}
+		else_if = {
+			limit = { rol_expedition_preparation_high_trigger = yes }
+			custom_tooltip = rol_expedition_preparation_current_modifier_high_tt
+		}
+		else_if = {
+			limit = { rol_expedition_preparation_supreme_trigger = yes }
+			custom_tooltip = rol_expedition_preparation_current_modifier_supreme_tt
+		}
+		if = {
 			limit = { learning >= 25 }
 			custom_tooltip = rol_quest_sevilla.1002.a.odds_elite_tt
-			random_list = {
-				85 = {
-					add_piety = 90
-					hidden_effect = {
-						scope:activity ?= { activity_special_type_progression_major = yes }
-						trigger_event = { id = rol_quest_sevilla.1020 days = 1 }
-					}
+						hidden_effect = { remove_character_flag = rol_expedition_random_success }
+			random = {
+				chance = {
+					value = 85
+					add = rol_expedition_preparation_success_chance_modifier
+					min = 5
+					max = 95
 				}
-				15 = {
-					add_stress = 30
-					hidden_effect = {
-						trigger_event = { id = rol_quest_sevilla.1021 days = 1 }
-					}
+				add_character_flag = rol_expedition_random_success
+				add_piety = 90
+				hidden_effect = {
+					scope:activity ?= { activity_special_type_progression_major = yes }
+					trigger_event = { id = rol_quest_sevilla.1020 days = 1 }
 				}
 			}
+			if = {
+				limit = { NOT = { has_character_flag = rol_expedition_random_success } }
+				add_stress = 30
+				hidden_effect = {
+					trigger_event = { id = rol_quest_sevilla.1021 days = 1 }
+				}
+			}
+			remove_character_flag = rol_expedition_random_success
 		}
 		else_if = {
 			limit = { learning >= 18 }
 			custom_tooltip = rol_quest_sevilla.1002.a.odds_high_tt
-			random_list = {
-				75 = {
-					add_piety = 75
-					hidden_effect = {
-						scope:activity ?= { activity_special_type_progression_major = yes }
-						trigger_event = { id = rol_quest_sevilla.1020 days = 1 }
-					}
+						hidden_effect = { remove_character_flag = rol_expedition_random_success }
+			random = {
+				chance = {
+					value = 75
+					add = rol_expedition_preparation_success_chance_modifier
+					min = 5
+					max = 95
 				}
-				25 = {
-					add_stress = 40
-					hidden_effect = {
-						trigger_event = { id = rol_quest_sevilla.1021 days = 1 }
-					}
+				add_character_flag = rol_expedition_random_success
+				add_piety = 75
+				hidden_effect = {
+					scope:activity ?= { activity_special_type_progression_major = yes }
+					trigger_event = { id = rol_quest_sevilla.1020 days = 1 }
 				}
 			}
+			if = {
+				limit = { NOT = { has_character_flag = rol_expedition_random_success } }
+				add_stress = 40
+				hidden_effect = {
+					trigger_event = { id = rol_quest_sevilla.1021 days = 1 }
+				}
+			}
+			remove_character_flag = rol_expedition_random_success
 		}
 		else = {
 			custom_tooltip = rol_quest_sevilla.1002.a.odds_low_tt
-			random_list = {
-				45 = {
-					add_piety = 50
-					hidden_effect = {
-						scope:activity ?= { activity_special_type_progression_medium = yes }
-						trigger_event = { id = rol_quest_sevilla.1020 days = 1 }
-					}
+						hidden_effect = { remove_character_flag = rol_expedition_random_success }
+			random = {
+				chance = {
+					value = 45
+					add = rol_expedition_preparation_success_chance_modifier
+					min = 5
+					max = 95
 				}
-				55 = {
-					add_stress = 50
-					hidden_effect = {
-						trigger_event = { id = rol_quest_sevilla.1021 days = 1 }
-					}
+				add_character_flag = rol_expedition_random_success
+				add_piety = 50
+				hidden_effect = {
+					scope:activity ?= { activity_special_type_progression_medium = yes }
+					trigger_event = { id = rol_quest_sevilla.1020 days = 1 }
 				}
 			}
+			if = {
+				limit = { NOT = { has_character_flag = rol_expedition_random_success } }
+				add_stress = 50
+				hidden_effect = {
+					trigger_event = { id = rol_quest_sevilla.1021 days = 1 }
+				}
+			}
+			remove_character_flag = rol_expedition_random_success
 		}
 	}
 
@@ -323,60 +443,100 @@ rol_quest_sevilla.1002 = {
 		custom_tooltip = rol_quest_sevilla.1002.b.base_tt
 		custom_tooltip = rol_relic_fail_ends_expedition_tt
 		if = {
+			limit = { rol_expedition_preparation_low_trigger = yes }
+			custom_tooltip = rol_expedition_preparation_current_modifier_low_tt
+		}
+		else_if = {
+			limit = { rol_expedition_preparation_standard_trigger = yes }
+			custom_tooltip = rol_expedition_preparation_current_modifier_standard_tt
+		}
+		else_if = {
+			limit = { rol_expedition_preparation_high_trigger = yes }
+			custom_tooltip = rol_expedition_preparation_current_modifier_high_tt
+		}
+		else_if = {
+			limit = { rol_expedition_preparation_supreme_trigger = yes }
+			custom_tooltip = rol_expedition_preparation_current_modifier_supreme_tt
+		}
+		if = {
 			limit = { stewardship >= 25 }
 			custom_tooltip = rol_quest_sevilla.1002.b.odds_elite_tt
-			random_list = {
-				80 = {
-					add_prestige = 80
-					hidden_effect = {
-						scope:activity ?= { activity_special_type_progression_major = yes }
-						trigger_event = { id = rol_quest_sevilla.1020 days = 1 }
-					}
+						hidden_effect = { remove_character_flag = rol_expedition_random_success }
+			random = {
+				chance = {
+					value = 80
+					add = rol_expedition_preparation_success_chance_modifier
+					min = 5
+					max = 95
 				}
-				20 = {
-					add_stress = 25
-					hidden_effect = {
-						trigger_event = { id = rol_quest_sevilla.1021 days = 1 }
-					}
+				add_character_flag = rol_expedition_random_success
+				add_prestige = 80
+				hidden_effect = {
+					scope:activity ?= { activity_special_type_progression_major = yes }
+					trigger_event = { id = rol_quest_sevilla.1020 days = 1 }
 				}
 			}
+			if = {
+				limit = { NOT = { has_character_flag = rol_expedition_random_success } }
+				add_stress = 25
+				hidden_effect = {
+					trigger_event = { id = rol_quest_sevilla.1021 days = 1 }
+				}
+			}
+			remove_character_flag = rol_expedition_random_success
 		}
 		else_if = {
 			limit = { stewardship >= 16 }
 			custom_tooltip = rol_quest_sevilla.1002.b.odds_high_tt
-			random_list = {
-				70 = {
-					add_prestige = 65
-					hidden_effect = {
-						scope:activity ?= { activity_special_type_progression_major = yes }
-						trigger_event = { id = rol_quest_sevilla.1020 days = 1 }
-					}
+						hidden_effect = { remove_character_flag = rol_expedition_random_success }
+			random = {
+				chance = {
+					value = 70
+					add = rol_expedition_preparation_success_chance_modifier
+					min = 5
+					max = 95
 				}
-				30 = {
-					add_stress = 35
-					hidden_effect = {
-						trigger_event = { id = rol_quest_sevilla.1021 days = 1 }
-					}
+				add_character_flag = rol_expedition_random_success
+				add_prestige = 65
+				hidden_effect = {
+					scope:activity ?= { activity_special_type_progression_major = yes }
+					trigger_event = { id = rol_quest_sevilla.1020 days = 1 }
 				}
 			}
+			if = {
+				limit = { NOT = { has_character_flag = rol_expedition_random_success } }
+				add_stress = 35
+				hidden_effect = {
+					trigger_event = { id = rol_quest_sevilla.1021 days = 1 }
+				}
+			}
+			remove_character_flag = rol_expedition_random_success
 		}
 		else = {
 			custom_tooltip = rol_quest_sevilla.1002.b.odds_low_tt
-			random_list = {
-				45 = {
-					add_prestige = 40
-					hidden_effect = {
-						scope:activity ?= { activity_special_type_progression_medium = yes }
-						trigger_event = { id = rol_quest_sevilla.1020 days = 1 }
-					}
+						hidden_effect = { remove_character_flag = rol_expedition_random_success }
+			random = {
+				chance = {
+					value = 45
+					add = rol_expedition_preparation_success_chance_modifier
+					min = 5
+					max = 95
 				}
-				55 = {
-					add_stress = 45
-					hidden_effect = {
-						trigger_event = { id = rol_quest_sevilla.1021 days = 1 }
-					}
+				add_character_flag = rol_expedition_random_success
+				add_prestige = 40
+				hidden_effect = {
+					scope:activity ?= { activity_special_type_progression_medium = yes }
+					trigger_event = { id = rol_quest_sevilla.1020 days = 1 }
 				}
 			}
+			if = {
+				limit = { NOT = { has_character_flag = rol_expedition_random_success } }
+				add_stress = 45
+				hidden_effect = {
+					trigger_event = { id = rol_quest_sevilla.1021 days = 1 }
+				}
+			}
+			remove_character_flag = rol_expedition_random_success
 		}
 	}
 

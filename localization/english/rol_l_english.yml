@@ -1,9 +1,5 @@
 ﻿l_english:
 
- rol_test_decision:0 "[DEBUG] Claim the Sword of Mars"
- rol_test_decision_desc:0 "A development decision used to verify that Mythic Relics is loaded correctly."
- rol_test_decision_tooltip:0 "Create and receive the artifact: Sword of Mars"
-
  rol_sword_of_mars_name:0 "Sword of Mars"
  rol_sword_of_mars_description:0 "A legendary blade said to have been consecrated at the altar of Mars, god of war."
  artifact_rol_sword_of_mars:0 "Sword of Mars"
@@ -19,12 +15,12 @@
  rol_quest_rome.0990.a:0 "Form ranks. We enter with steel and silence."
 
  rol_quest_rome.1000.a.base_tt:0 "[martial|E]/[prowess|E] check: higher skill improves success odds."
- rol_quest_rome.1000.a.odds_elite_tt:0 "Current odds: #P 85% success#!, #N 15% failure#!."
- rol_quest_rome.1000.a.odds_high_tt:0 "Current odds: #P 70% success#!, #N 30% failure#!."
- rol_quest_rome.1000.a.odds_low_tt:0 "Current odds: #P 45% success#!, #N 55% failure#!."
+ rol_quest_rome.1000.a.odds_elite_tt:0 "This approach has a #P commanding grip#! on the trial."
+ rol_quest_rome.1000.a.odds_high_tt:0 "This approach gives you #P favorable odds#!."
+ rol_quest_rome.1000.a.odds_low_tt:0 "This approach is a #N dangerous gamble#!."
  rol_quest_rome.1000.b.tt:0 "[learning|E] check passed. #P 100% success#! and increased expedition progress."
  rol_quest_rome.1000.c.tt:0 "You withdraw. This quest enters a 2-year cooldown."
- rol_quest_rome.1001.a.tt:0 "You receive the artifact only at #V Tier 4 (75+ progress)#!. Below that, this expedition fails and enters cooldown."
+ rol_quest_rome.1001.a.tt:0 "If the final resonance answers your expedition, your claim is secured. Otherwise the expedition fails and enters a 2-year cooldown."
  rol_quest_rome.1002.a.tt:0 "[prowess|E] check: success advances and increases progress; failure causes injury and slight progress loss."
  rol_quest_rome.1002.b.tt:0 "You withdraw. This quest enters a 2-year cooldown."
  rol_quest_rome.1003.a.tt:0 "[learning|E] check: higher Learning improves your odds and progress gain."
@@ -33,14 +29,14 @@
  rol_quest_rome.1004.b.tt:0 "You withdraw. This quest enters a 2-year cooldown."
 
  activity_rol_seek_mars_blade_special_type_title:0 "Expedition Progress"
- activity_rol_seek_mars_blade_special_type_desc:0 "Your choices in the catacombs shift expedition progress. Higher progress yields better bonus rewards in the final blessing event."
+ activity_rol_seek_mars_blade_special_type_desc:0 "Your choices determine how deeply the buried war-rite answers your will. Only the strongest alignment draws out its final response."
  ROL_MARS_WINDOW_SPECIAL_PROGRESS_TOOLTIP:0 "Current expedition progress: [ActivityWindow.GetSpecialProgressValue|0^V]"
 
  activity_rol_seek_mars_blade_special_type_bar_segment_tt_0:0 "#T Ominous#!\nThe expedition is in dire condition."
  activity_rol_seek_mars_blade_special_type_bar_segment_tt_1:0 "#T Holding On#!\nThe party survives, but barely."
  activity_rol_seek_mars_blade_special_type_bar_segment_tt_2:0 "#T Stable#!\nMomentum is building in your favor."
  activity_rol_seek_mars_blade_special_type_bar_segment_tt_3:0 "#T War-God's Gaze#!\nYour leadership drives the expedition forward."
- activity_rol_seek_mars_blade_special_type_bar_segment_tt_4:0 "#T Triumph Near#!\nThe blessing of Mars is within reach."
+ activity_rol_seek_mars_blade_special_type_bar_segment_tt_4:0 "#T Final Echo#!\nThe chamber is close to a decisive reply."
 
  activity_rol_seek_mars_blade_special_type_bar_segment_0_tt:0 "$activity_rol_seek_mars_blade_special_type_bar_segment_tt_0$"
  activity_rol_seek_mars_blade_special_type_bar_segment_1_tt:0 "$activity_rol_seek_mars_blade_special_type_bar_segment_tt_1$"
@@ -66,7 +62,7 @@
  activity_rol_seek_mars_blade_conclusion_desc_success_3:0 "A strong success with controlled risk."
  activity_rol_seek_mars_blade_conclusion_desc_success_2:0 "A costly but successful expedition."
  activity_rol_seek_mars_blade_conclusion_desc_success_1:0 "A narrow success won through endurance."
- activity_rol_seek_mars_blade_conclusion_desc_failure:0 "The expedition failed and requires a long recovery period."
+ activity_rol_seek_mars_blade_conclusion_desc_failure:0 "The expedition failed and now enters a 2-year cooldown."
  activity_rol_seek_mars_blade_conclusion_desc_fallback:0 "The expedition has concluded."
 
  rol_quest_rome.1090.t:0 "Expedition Aftermath"
@@ -94,7 +90,7 @@
  rol_quest_rome.1001.desc.mars.tier_2:0 "You break through traps and shades with discipline. The altar opens in crimson light."
  rol_quest_rome.1001.desc.mars.tier_3:0 "Your command is precise and relentless. The final seal shatters before your will."
  rol_quest_rome.1001.desc.mars.tier_4:0 "No hesitation, no retreat—you crush every trial, and Mars answers in sacred red flame."
- rol_quest_rome.1001.desc.mars.below_tier4:0 "You reach the core, but fail to complete the final blood-oath resonance. The Blade of Mars remains sealed."
+ rol_quest_rome.1001.desc.mars.below_tier4:0 "You reach the core, but the chamber falls silent before your claim. Whatever waited here recedes beyond your grasp."
 
  rol_quest_rome.1002.t:0 "Falling-Stone Corridor"
  rol_quest_rome.1002.desc.mars:0 "Deep supports crack. A thunderous cascade of stone crashes toward your column."
@@ -133,5 +129,15 @@
  rol_mars_activity_failure_toast_title:0 "Expedition Failed"
  rol_mars_activity_success_toast_desc:0 "The catacomb operation is complete and your war-host returns in triumph."
  rol_mars_activity_failure_toast_desc:0 "The expedition has collapsed. Recovery and reorganization are now required."
- rol_relic_fail_ends_expedition_tt:0 "#N If this check fails, the expedition ends in failure immediately.#!"
+ rol_relic_fail_ends_expedition_tt:0 "#N If this check fails, the expedition ends immediately and enters a 2-year cooldown.#!"
 
+ activity_rol_seek_mars_blade:0 "Mars Catacomb Expedition"
+ activity_rol_seek_mars_blade_desc:0 "Organize a forbidden descent beneath Rome, following sealed war-rites, collapsing halls, and the rumor of something still awake in the dark."
+ activity_rol_seek_mars_blade_host_desc:0 "$BULLET_WITH_TAB$Adjust your outlay through the $rol_option_expedition_preparation$ activity option\n$BULLET_WITH_TAB$Failure ends the expedition and applies a 2-year cooldown"
+ activity_rol_seek_mars_blade_guest_desc:0 ""
+ activity_rol_seek_mars_blade_conclusion_desc:0 "Stone doors close behind you, but the echo of the undercroft lingers in every tale told after."
+ activity_rol_seek_mars_blade_selection_tooltip:0 "Lead a disciplined descent into Rome's buried war-sanctums, where ancient oaths, broken corridors, and silent guardians still watch the dark.\n\nFailure ends the expedition and applies a 2-year cooldown."
+ activity_rol_seek_mars_blade_predicted_cost:0 "The expedition's cost depends heavily on the personnel and equipment grade you select."
+ activity_rol_seek_mars_blade_province_desc:0 "Target location: [ROOT.Province.GetName]"
+ rol_seek_mars_blade_cost_desc:0 "Expedition personnel, equipment, and ritual preparations"
+ TRAVEL_NAME_FOR_activity_rol_seek_mars_blade:0 "[Character.GetFirstNameNoTooltip]'s Mars Expedition"

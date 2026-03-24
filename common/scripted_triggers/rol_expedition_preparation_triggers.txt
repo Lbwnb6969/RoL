@@ -1,0 +1,41 @@
+﻿# Relics of Legend - Unified expedition preparation triggers
+
+rol_expedition_preparation_low_trigger = {
+	exists = scope:activity
+	scope:activity = {
+		has_activity_option = {
+			category = rol_option_expedition_preparation
+			option = rol_expedition_preparation_low
+		}
+	}
+}
+
+rol_expedition_preparation_standard_trigger = {
+	exists = scope:activity
+	scope:activity = {
+		has_activity_option = {
+			category = rol_option_expedition_preparation
+			option = rol_expedition_preparation_standard
+		}
+	}
+}
+
+rol_expedition_preparation_high_trigger = {
+	exists = scope:activity
+	scope:activity = {
+		has_activity_option = {
+			category = rol_option_expedition_preparation
+			option = rol_expedition_preparation_high
+		}
+	}
+}
+
+rol_expedition_preparation_supreme_trigger = {
+	exists = scope:activity
+	scope:activity = {
+		has_activity_option = {
+			category = rol_option_expedition_preparation
+			option = rol_expedition_preparation_supreme
+		}
+	}
+}

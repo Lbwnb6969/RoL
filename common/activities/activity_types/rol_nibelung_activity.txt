@@ -10,7 +10,7 @@ activity_rol_seek_nibelung_sphere = {
 	can_start_showing_failures_only = {
 		is_available_adult = yes
 		is_at_war = no
-		gold >= 400
+		gold >= 280
 		NOT = { is_activity_type_on_cooldown = activity_rol_seek_nibelung_sphere }
 		custom_tooltip = {
 			text = rol_nibelung_quest_on_cooldown_tt
@@ -101,6 +101,52 @@ activity_rol_seek_nibelung_sphere = {
 		activity_guest_shared_ai_accept_modifier = yes
 	}
 
+	options = {
+		rol_option_expedition_preparation = {
+			rol_expedition_preparation_low = {
+				cost = {
+					gold = {
+						add = {
+							value = 30
+							desc = rol_expedition_preparation_low
+						}
+					}
+				}
+			}
+			rol_expedition_preparation_standard = {
+				default = yes
+				cost = {
+					gold = {
+						add = {
+							value = 150
+							desc = rol_expedition_preparation_standard
+						}
+					}
+				}
+			}
+			rol_expedition_preparation_high = {
+				cost = {
+					gold = {
+						add = {
+							value = 600
+							desc = rol_expedition_preparation_high
+						}
+					}
+				}
+			}
+			rol_expedition_preparation_supreme = {
+				cost = {
+					gold = {
+						add = {
+							value = 1750
+							desc = rol_expedition_preparation_supreme
+						}
+					}
+				}
+			}
+		}
+	}
+
 	phases = {
 		rol_nibelung_descent_phase = {
 			is_predefined = yes
@@ -127,7 +173,7 @@ activity_rol_seek_nibelung_sphere = {
 	cost = {
 		gold = {
 			add = {
-				value = 400
+				value = 250
 				desc = rol_seek_nibelung_sphere_cost_desc
 			}
 		}
@@ -135,7 +181,7 @@ activity_rol_seek_nibelung_sphere = {
 
 	ui_predicted_cost = {
 		gold = {
-			value = 400
+			value = 250
 		}
 	}
 
