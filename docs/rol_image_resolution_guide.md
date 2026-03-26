@@ -1,102 +1,128 @@
-﻿# RoL 图片分辨率规范（事件背景 / 活动背景 / 武器图标 / 活动图标）
+﻿# RoL 图片分辨率规范（事件背景 / 活动背景 / 圣物图标 / 活动图标）
 
-> 结论基于 CK3 原版资源尺寸统计（当前本机版本）。
-
----
-
-## 1) 事件背景图（Event Background）
-
-- **用途**：`events/*.txt` 里 `override_background = { reference = ... }` 对应的背景图
-- **注册文件**：`common/event_backgrounds/*.txt`
-- **贴图路径**：`gfx/interface/illustrations/event_scenes/*.dds`
-- **推荐分辨率**：**1592 x 848**（原版主流）
-- **可用变体**：少量 DLC 用 1599x852 / 1593x852；不建议混用
-
-### 建议
-- 直接按 **1592x848** 出图最稳。
-- 关键主体放在中间 70% 区域，避免 UI 遮挡。
-- `rol_event_legend_circle_revelation.dds` 这类四链全通总事件，也沿用同一 `1592x848` event-scene 基线。
+> 结论基于当前 CK3 原版常见规格与 RoL 已验证接线。
 
 ---
 
-## 2) 活动背景图（Activity Background）
+## 1) Event / Activity scene 背景
 
-- **用途**：`common/activities/activity_types/*.txt` 的 `background = { texture = ... }`
-- **贴图路径**：同上 `gfx/interface/illustrations/event_scenes/*.dds`
-- **推荐分辨率**：**1592 x 848**
+### 适用范围
+- `events/*.txt` 里的 `override_background = { reference = ... }`
+- `common/activities/activity_types/*.txt` 里的 `background = { texture = ... }`
+- 注册文件：`common/event_backgrounds/rol_event_backgrounds.txt`
+- 贴图目录：`gfx/interface/illustrations/event_scenes/`
 
-### 说明
-活动窗口背景和事件背景共用同一套场景规格，所以你可以复用同一尺寸模板。
+### 推荐规格
+- 分辨率：**1592 x 848**
+- 推荐格式：**DDS / BC1(DXT1)**
+- 默认：**无透明**
 
----
+### 当前 RoL 例子
+- `rol_event_legend_circle_revelation.dds`
+- `rol_event_carthage_discovery.dds`
+- `rol_event_carthage_1000_desert.dds`
+- `rol_activity_carthage_travel.dds`
+- `rol_activity_carthage_location.dds`
 
-## 3) 决议大图（Decision Picture，若你后续用到）
-
-- **用途**：`common/decisions/*.txt` 里 `picture = { reference = "..." }`
-- **贴图路径**：`gfx/interface/illustrations/decisions/*.dds`
-- **推荐分辨率**：**1100 x 440**（原版主流）
-- **高分辨率可选**：2200 x 880（2x 资源）
-
----
-
-## 4) 武器/圣物图标（Artifact Icon）
-
-- **用途**：`common/artifacts/visuals/*.txt` 里 `icon = "xxx.dds"`
-- **贴图路径**：`gfx/interface/icons/artifact/*.dds`
-- **推荐分辨率**：**240 x 240**
-
-### 你当前问题的根因
-你之前那张是 **2048x2048**，UI 按 240 方图读取，会出现“只显示左上角”。
+### 实操建议
+- 主体尽量放在中间 70% 区域，避免 UI 遮挡。
+- 新活动链与大事件统一优先沿用 `1592x848`，不要混用奇怪变体尺寸。
 
 ---
 
-## 5) 活动图标（Activity Icon 系列）
+## 2) Activity 图标族
 
-## 5.1 活动主图标（列表/按钮）
+### 2.1 小图标（列表 / 按钮）
 - 路径：`gfx/interface/icons/activities/`
 - 推荐：**80 x 80**
+- 推荐格式：**DDS / BC3(DXT5)**
+- 默认：**带透明**
 
-## 5.2 活动头图标（Header）
-- 路径：同上
-- 命名常见：`*_header.dds`
+### 2.2 Header 图标
+- 路径：`gfx/interface/icons/activities/`
+- 常见命名：`*_header.dds`
 - 推荐：**164 x 164**
+- 推荐格式：**DDS / BC3(DXT5)**
+- 默认：**带透明**
 
-## 5.3 活动类型图标（Type）
-- 路径：`gfx/interface/icons/activity_types/`
-- 推荐：**78 x 78**
+### 2.3 活动大图
+- 路径：`gfx/interface/illustrations/activities/`
+- 推荐：**1592 x 848**
+- 推荐格式：**DDS / BC1(DXT1)**
+- 默认：**无透明**
 
-## 5.4 活动阶段图标（Phase）
-- 路径：`gfx/interface/icons/activity_phases/`
-- 推荐：**140 x 140**（主流）
-- 兼容：160 x 160（少量存在）
+### 2.4 Header 背景
+- 路径：`gfx/interface/illustrations/activity_header_backgrounds/`
+- 推荐：**1100 x 440**
+- 推荐格式：**DDS / BC1(DXT1)**
+- 默认：**无透明**
 
-## 5.5 活动意图图标（Intent）
-- 路径：`gfx/interface/icons/activity_intents/`
-- 推荐：**60 x 60**
-
----
-
-## 6) 兵种图标（你的禁军会用到）
-
-- **用途**：`common/men_at_arms_types/*.txt` 的 `icon = ...`
-- **路径**：`gfx/interface/icons/regimenttypes/`
-- **推荐分辨率**：**120 x 120**
-
----
-
-## 7) RoL 实操建议（统一工作流）
-
-1. 先按目标尺寸建 PSD/Krita 画布（不要先画超大再硬塞）。
-2. 导出 DDS 时优先用带 Alpha 的格式（常用 DXT5 / BC3）。
-3. 文件放入对应目录后，检查脚本引用路径是否一致。
-4. 删除缓存：`Documents/Paradox Interactive/Crusader Kings III/gfx`。
-5. **完全重启** 启动器和游戏再看效果。
+### Carthage 当前例子
+- `activity_rol_seek_ash_forged_mask.dds`
+- `activity_rol_seek_ash_forged_mask_header.dds`
+- `gfx/interface/illustrations/activities/activity_rol_seek_ash_forged_mask.dds`
+- `gfx/interface/illustrations/activity_header_backgrounds/activity_rol_seek_ash_forged_mask.dds`
 
 ---
 
-## 8) 关于“传奇级武器”那 5 个紫字
+## 3) Artifact 图标
 
-- 你做的“伪稀有度”**有用**：可做分层数值、奖励判定、日志、调试与文案分档。
-- 但这 5 个紫字来自原生稀有度 `illustrious` 显示链路。
-- **只靠 artifact rarity 本身，不能做“仅 RoL 改名、原版不变”。**
-- 若要“仅 RoL 显示传奇级武器”，需要走 **GUI + 条件本地化**（按 RoL 标记/修正符判断）定向改显示。
+### 适用范围
+- `common/artifacts/visuals/*.txt` 里的 `icon = "xxx.dds"`
+- 目录：`gfx/interface/icons/artifact/`
+
+### 推荐规格
+- 分辨率：**240 x 240**
+- 推荐格式：**DDS / BC3(DXT5)**
+- 默认：**带透明**
+
+### 当前 RoL 例子
+- `rol_blade_of_mars.dds`
+- `rol_ash_forged_mask.dds`
+- Munich 当前仍临时读原版 `artifact_regalia.dds`
+- Sevilla 当前读取自定义图标 `rol_astrolabe_of_ocean.dds`
+
+### 常见错误
+- 如果你拿 **2048x2048** 直接塞到 artifact icon 位，UI 往往只会显示左上角。
+- 正解是直接按 **240x240** 出图再导出。
+
+---
+
+## 4) 其他常用尺寸
+
+| 资源类型 | 路径 | 推荐规格 |
+|---|---|---|
+| Activity 选项分类图标 | `gfx/interface/icons/activity_option_categories/` | `96 x 120` |
+| Men-at-arms 小图标 | `gfx/interface/icons/regimenttypes/` | `120 x 120` |
+| Men-at-arms 大图 | `gfx/interface/illustrations/men_at_arms_big/` | `680 x 400` |
+| Decision 大图 | `gfx/interface/illustrations/decisions/` | `1100 x 440` |
+| Text Icon | `gfx/interface/icons/artifact/` | `60 x 60` |
+
+---
+
+## 5) 透明图标硬性检查
+
+### 只看“格式是 BC3/DXT5”还不够
+活动小图标、artifact icon、intent / option 类图标在交付前必须确认：
+- 文件确实带 alpha 通道
+- alpha **不是全 255**
+- 游戏里边缘不是实心底
+
+### 推荐核查顺序
+1. 用支持 alpha 预览的软件打开 DDS
+2. 确认透明区域不是棋盘被烤进图片本体
+3. 导出后检查 alpha 仍存在
+4. 清掉 `Documents/Paradox Interactive/Crusader Kings III/gfx`
+5. 完全重启启动器与游戏再看
+
+---
+
+## 6) RoL 当前统一工作流
+
+1. 先按目标尺寸建画布，不要先画超大图再硬塞。
+2. 背景类优先 `1592x848 / BC1`；图标类优先 `BC3 + alpha`。
+3. 文件放到正确目录后，再检查：
+   - 显式引用是否正确
+   - 隐式 basename 是否正确
+4. 清 `gfx` 缓存。
+5. 完全重启游戏验证。

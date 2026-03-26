@@ -23,6 +23,11 @@
 	}
 
 	text = {
+		trigger = { artifact_type = rol_ash_forged_mask }
+		localization_key = rol_artifact_rarity_slot_legendary_mask
+	}
+
+	text = {
 		localization_key = rol_artifact_rarity_slot_default
 		fallback = yes
 	}

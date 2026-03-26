@@ -19,7 +19,8 @@ rol_quest_naxos.0990 = {
 	option = {
 		name = rol_quest_naxos.0990.a
 		
-		flavor = rol_quest_naxos.0990.a.flavorhidden_effect = {
+		flavor = rol_quest_naxos.0990.a.flavor
+		hidden_effect = {
 			trigger_event = { id = rol_quest_naxos.1000 days = 1 }
 		}
 	}
@@ -155,7 +156,8 @@ rol_quest_naxos.1000 = {
 	option = {
 		name = rol_quest_naxos.1000.c
 		
-		flavor = rol_quest_naxos.1000.c.flavorcustom_tooltip = rol_quest_naxos.1000.c.tt
+		flavor = rol_quest_naxos.1000.c.flavor
+		custom_tooltip = rol_quest_naxos.1000.c.tt
 		add_prestige = -50
 		hidden_effect = {
 			scope:activity ?= { activity_special_type_progression_negative_major = yes }
@@ -174,7 +176,8 @@ rol_quest_naxos.1010 = {
 	option = {
 		name = rol_quest_naxos.1010.a
 		
-		flavor = rol_quest_naxos.1010.a.flavorhidden_effect = { rol_naxos_quest_progress_effect = yes }
+		flavor = rol_quest_naxos.1010.a.flavor
+		hidden_effect = { rol_naxos_quest_progress_effect = yes }
 	}
 }
 
@@ -188,7 +191,8 @@ rol_quest_naxos.1011 = {
 	option = {
 		name = rol_quest_naxos.1011.a
 		
-		flavor = rol_quest_naxos.1011.a.flavorhidden_effect = { rol_naxos_quest_fail_now_effect = yes }
+		flavor = rol_quest_naxos.1011.a.flavor
+		hidden_effect = { rol_naxos_quest_fail_now_effect = yes }
 	}
 }
 
@@ -202,7 +206,8 @@ rol_quest_naxos.1012 = {
 	option = {
 		name = rol_quest_naxos.1012.a
 		
-		flavor = rol_quest_naxos.1012.a.flavorhidden_effect = { rol_naxos_quest_fail_now_effect = yes }
+		flavor = rol_quest_naxos.1012.a.flavor
+		hidden_effect = { rol_naxos_quest_fail_now_effect = yes }
 	}
 }
 
@@ -373,7 +378,8 @@ rol_quest_naxos.1002 = {
 	option = {
 		name = rol_quest_naxos.1002.c
 		
-		flavor = rol_quest_naxos.1002.c.flavorcustom_tooltip = rol_quest_naxos.1002.c.tt
+		flavor = rol_quest_naxos.1002.c.flavor
+		custom_tooltip = rol_quest_naxos.1002.c.tt
 		add_prestige = -40
 		hidden_effect = {
 			scope:activity ?= { activity_special_type_progression_negative_major = yes }
@@ -392,7 +398,8 @@ rol_quest_naxos.1020 = {
 	option = {
 		name = rol_quest_naxos.1020.a
 		
-		flavor = rol_quest_naxos.1020.a.flavorhidden_effect = { rol_naxos_quest_progress_effect = yes }
+		flavor = rol_quest_naxos.1020.a.flavor
+		hidden_effect = { rol_naxos_quest_progress_effect = yes }
 	}
 }
 
@@ -406,7 +413,8 @@ rol_quest_naxos.1021 = {
 	option = {
 		name = rol_quest_naxos.1021.a
 		
-		flavor = rol_quest_naxos.1021.a.flavorhidden_effect = { rol_naxos_quest_fail_now_effect = yes }
+		flavor = rol_quest_naxos.1021.a.flavor
+		hidden_effect = { rol_naxos_quest_fail_now_effect = yes }
 	}
 }
 
@@ -420,7 +428,8 @@ rol_quest_naxos.1022 = {
 	option = {
 		name = rol_quest_naxos.1022.a
 		
-		flavor = rol_quest_naxos.1022.a.flavorhidden_effect = { rol_naxos_quest_fail_now_effect = yes }
+		flavor = rol_quest_naxos.1022.a.flavor
+		hidden_effect = { rol_naxos_quest_fail_now_effect = yes }
 	}
 }
 
@@ -607,7 +616,8 @@ rol_quest_naxos.1003 = {
 	option = {
 		name = rol_quest_naxos.1003.c
 		
-		flavor = rol_quest_naxos.1003.c.flavorcustom_tooltip = rol_quest_naxos.1003.c.tt
+		flavor = rol_quest_naxos.1003.c.flavor
+		custom_tooltip = rol_quest_naxos.1003.c.tt
 		add_prestige = -50
 		hidden_effect = {
 			scope:activity ?= { activity_special_type_progression_negative_major = yes }
@@ -626,7 +636,8 @@ rol_quest_naxos.1030 = {
 	option = {
 		name = rol_quest_naxos.1030.a
 		
-		flavor = rol_quest_naxos.1030.a.flavorhidden_effect = { rol_naxos_quest_progress_effect = yes }
+		flavor = rol_quest_naxos.1030.a.flavor
+		hidden_effect = { rol_naxos_quest_progress_effect = yes }
 	}
 }
 
@@ -640,7 +651,8 @@ rol_quest_naxos.1031 = {
 	option = {
 		name = rol_quest_naxos.1031.a
 		
-		flavor = rol_quest_naxos.1031.a.flavorhidden_effect = { rol_naxos_quest_fail_now_effect = yes }
+		flavor = rol_quest_naxos.1031.a.flavor
+		hidden_effect = { rol_naxos_quest_fail_now_effect = yes }
 	}
 }
 
@@ -654,7 +666,8 @@ rol_quest_naxos.1032 = {
 	option = {
 		name = rol_quest_naxos.1032.a
 		
-		flavor = rol_quest_naxos.1032.a.flavorhidden_effect = { rol_naxos_quest_fail_now_effect = yes }
+		flavor = rol_quest_naxos.1032.a.flavor
+		hidden_effect = { rol_naxos_quest_fail_now_effect = yes }
 	}
 }
 
@@ -678,7 +691,8 @@ rol_quest_naxos.1050 = {
 	option = {
 		name = rol_quest_naxos.1050.a
 		
-		flavor = rol_quest_naxos.1050.a.flavorhidden_effect = {
+		flavor = rol_quest_naxos.1050.a.flavor
+		hidden_effect = {
 			scope:activity ?= { activity_special_type_progression_tiny = yes }
 			add_prestige = 40
 		}
@@ -687,7 +701,8 @@ rol_quest_naxos.1050 = {
 	option = {
 		name = rol_quest_naxos.1050.b
 		
-		flavor = rol_quest_naxos.1050.b.flavorhidden_effect = {
+		flavor = rol_quest_naxos.1050.b.flavor
+		hidden_effect = {
 			scope:activity ?= { activity_special_type_progression_negative = yes }
 			add_stress = 20
 		}
@@ -752,7 +767,8 @@ rol_quest_naxos.1001 = {
 	option = {
 		name = rol_quest_naxos.1001.a
 		
-		flavor = rol_quest_naxos.1001.a.flavorcustom_tooltip = rol_quest_naxos.1001.a.tt
+		flavor = rol_quest_naxos.1001.a.flavor
+		custom_tooltip = rol_quest_naxos.1001.a.tt
 	}
 }
 
@@ -810,7 +826,8 @@ rol_quest_naxos.1090 = {
 	option = {
 		name = rol_quest_naxos.1090.a
 		
-		flavor = rol_quest_naxos.1090.a.flavorhidden_effect = {
+		flavor = rol_quest_naxos.1090.a.flavor
+		hidden_effect = {
 			rol_relic_clear_recent_result_effect = yes
 		}
 	}

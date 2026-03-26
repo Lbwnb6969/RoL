@@ -34,3 +34,5 @@ rol_legend_circle_dynasty_modifier = {
 	monthly_dynasty_prestige_mult = 0.15
 	cultural_head_fascination_mult = 0.10
 }
+rol_carthage_quest_cooldown_modifier = {
+}

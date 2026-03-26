@@ -83,6 +83,20 @@ rol_relic_discovery.0001 = {
 			add_character_flag = rol_heard_astrolabe_legend
 			trigger_event = rol_relic_discovery.1500
 		}
+
+		# 突尼斯 / 迦太基：浴火金面
+		if = {
+			limit = {
+				OR = {
+					has_title = title:c_tunis
+					has_title = title:b_qartajana
+				}
+				NOT = { has_character_flag = rol_heard_carthage_legend }
+				NOT = { has_character_flag = rol_ash_forged_mask_claimed }
+			}
+			add_character_flag = rol_heard_carthage_legend
+			trigger_event = rol_relic_discovery.1600
+		}
 	}
 }
 
@@ -191,5 +205,22 @@ rol_relic_discovery.1500 = {
 
 	option = {
 		name = rol_relic_discovery.1500.a
+	}
+}
+# 突尼斯发现
+rol_relic_discovery.1600 = {
+	type = character_event
+	title = rol_relic_discovery.1600.t
+	desc = rol_relic_discovery.1600.desc
+	theme = martial
+	override_background = { reference = rol_discovery_bg_carthage }
+
+	trigger = {
+		is_ai = no
+		has_character_flag = rol_heard_carthage_legend
+	}
+
+	option = {
+		name = rol_relic_discovery.1600.a
 	}
 }

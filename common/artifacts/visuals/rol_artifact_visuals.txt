@@ -18,6 +18,11 @@ rol_nibelung_star_sphere_visual = {
 
 # 塞维利亚配饰：大洋统御星盘
 rol_astrolabe_of_ocean_visual = {
-	icon = "artifact_icons_unique_armillary.dds"
+	icon = "rol_astrolabe_of_ocean.dds"
 	asset = fp2_armillary_sphere_01_a_entity
+}
+# 突尼斯传奇头具：迦太基的浴火金面
+rol_ash_forged_mask_visual = {
+	icon = "rol_ash_forged_mask.dds"
+	asset = ep1_generic_jewelry_01_a_entity
 }

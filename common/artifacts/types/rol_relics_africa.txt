@@ -1,0 +1,6 @@
+﻿# Mythic Relics - 北非传奇面具
+rol_ash_forged_mask = {
+	slot = helmet
+	default_visuals = rol_ash_forged_mask_visual
+	can_reforge = no
+}

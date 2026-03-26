@@ -1,0 +1,202 @@
+﻿# Mythic Relics - 突尼斯浴火金面任务链推进逻辑
+# 变量：rol_carthage_stage_count（角色作用域）
+
+rol_carthage_quest_progress_effect = {
+	if = {
+		limit = { NOT = { has_variable = rol_carthage_stage_count } }
+		set_variable = {
+			name = rol_carthage_stage_count
+			value = 0
+		}
+	}
+
+	change_variable = {
+		name = rol_carthage_stage_count
+		add = 1
+	}
+
+	rol_relic_log_stage_effect = yes
+	rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_carthage_stage_progress }
+
+	if = {
+		limit = {
+			NOT = { has_character_flag = rol_carthage_guest_event_fired }
+			exists = scope:activity
+			scope:activity = {
+				any_attending_character = {
+					this != root
+				}
+			}
+			var:rol_carthage_stage_count >= 1
+			var:rol_carthage_stage_count < 2
+		}
+		add_character_flag = rol_carthage_guest_event_fired
+		trigger_event = { id = rol_quest_carthage.1050 days = 4 }
+	}
+
+	if = {
+		limit = { var:rol_carthage_stage_count < 2 }
+		trigger_event = { id = rol_quest_carthage.1002 days = 14 }
+	}
+	else = {
+		trigger_event = { id = rol_quest_carthage.1001 days = 10 }
+	}
+}
+
+rol_carthage_clamp_success_progress_effect = {
+	scope:activity ?= {
+		if = {
+			limit = { var:activity_special_type_progression < 0 }
+			set_variable = {
+				name = activity_special_type_progression
+				value = 0
+			}
+		}
+		else_if = {
+			limit = { var:activity_special_type_progression > 100 }
+			set_variable = {
+				name = activity_special_type_progression
+				value = 100
+			}
+		}
+	}
+}
+
+rol_carthage_apply_tiered_bonus_reward_effect = {
+	if = {
+		limit = {
+			exists = scope:activity
+			scope:activity.var:activity_special_type_progression >= 80
+		}
+		add_prestige = 320
+		add_piety = 140
+	}
+	else_if = {
+		limit = {
+			exists = scope:activity
+			scope:activity.var:activity_special_type_progression >= 60
+		}
+		add_prestige = 200
+		add_piety = 90
+	}
+	else_if = {
+		limit = {
+			exists = scope:activity
+			scope:activity.var:activity_special_type_progression >= 35
+		}
+		add_prestige = 110
+		add_piety = 50
+	}
+	else = {
+		add_prestige = 60
+	}
+}
+
+rol_carthage_store_success_result_effect = {
+	if = {
+		limit = {
+			exists = scope:activity
+			scope:activity.var:activity_special_type_progression >= 80
+		}
+		set_variable = {
+			name = rol_recent_relic_result_tier
+			value = 4
+		}
+	}
+	else_if = {
+		limit = {
+			exists = scope:activity
+			scope:activity.var:activity_special_type_progression >= 60
+		}
+		set_variable = {
+			name = rol_recent_relic_result_tier
+			value = 3
+		}
+	}
+	else_if = {
+		limit = {
+			exists = scope:activity
+			scope:activity.var:activity_special_type_progression >= 35
+		}
+		set_variable = {
+			name = rol_recent_relic_result_tier
+			value = 2
+		}
+	}
+	else = {
+		set_variable = {
+			name = rol_recent_relic_result_tier
+			value = 1
+		}
+	}
+
+	add_character_flag = rol_recent_carthage_quest_success
+	remove_character_flag = rol_recent_carthage_quest_failure
+}
+
+rol_carthage_store_failure_result_effect = {
+	set_variable = {
+		name = rol_recent_relic_result_tier
+		value = 0
+	}
+	add_character_flag = rol_recent_carthage_quest_failure
+	remove_character_flag = rol_recent_carthage_quest_success
+}
+
+rol_carthage_quest_success_finalize_effect = {
+	rol_carthage_clamp_success_progress_effect = yes
+	rol_carthage_store_success_result_effect = yes
+	rol_carthage_apply_tiered_bonus_reward_effect = yes
+	rol_apply_expedition_preparation_success_bonus_effect = yes
+
+	add_character_flag = rol_ash_forged_mask_claimed
+	remove_character_flag = rol_heard_carthage_legend
+	remove_character_modifier = rol_carthage_quest_cooldown_modifier
+
+	rol_relic_log_success_effect = yes
+	send_interface_toast = {
+		type = event_toast_effect_good
+		title = rol_carthage_activity_success_toast_title
+		desc = rol_carthage_activity_success_toast_desc
+		left_icon = root
+	}
+
+	rol_clear_context_carthage_helmet_effect = yes
+	rol_carthage_quest_abort_effect = yes
+	rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_carthage_success_finalize }
+}
+
+rol_apply_carthage_activity_cooldown_effect = {
+	rol_relic_apply_cooldown_effect = {
+		COOLDOWN_MODIFIER = rol_carthage_quest_cooldown_modifier
+		COOLDOWN_YEARS = 2
+	}
+
+	rol_carthage_store_failure_result_effect = yes
+	rol_relic_log_failure_effect = yes
+	send_interface_toast = {
+		type = event_toast_effect_bad
+		title = rol_carthage_activity_failure_toast_title
+		desc = rol_carthage_activity_failure_toast_desc
+		left_icon = root
+	}
+
+	rol_clear_context_carthage_helmet_effect = yes
+	rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_carthage_failure_finalize }
+}
+
+rol_carthage_quest_fail_now_effect = {
+	rol_apply_carthage_activity_cooldown_effect = yes
+	rol_carthage_quest_abort_effect = yes
+	rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_carthage_fail_now }
+	scope:activity ?= {
+		complete_activity = yes
+	}
+}
+
+rol_carthage_quest_abort_effect = {
+	if = {
+		limit = { has_variable = rol_carthage_stage_count }
+		remove_variable = rol_carthage_stage_count
+	}
+}

@@ -32,3 +32,12 @@ rol_astrolabe_of_ocean_modifier = {
 	travel_safety = 10
 	travel_speed_mult = 0.10
 }
+# 突尼斯头具：迦太基的浴火金面
+rol_ash_forged_mask_modifier = {
+	martial = 7
+	learning = 4
+	prowess = 4
+	monthly_prestige_gain_mult = 0.10
+	knight_effectiveness_mult = 0.08
+	dread_gain_mult = 0.10
+}

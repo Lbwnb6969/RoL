@@ -35,3 +35,14 @@ rol_relic_context_is_naxos_trigger = {
 rol_relic_debug_mode_trigger = {
 	has_character_flag = rol_relic_debug_mode
 }
+rol_relic_context_is_helmet_trigger = {
+	has_character_flag = rol_relic_context_helmet
+}
+
+rol_relic_context_is_astrolabe_trigger = {
+	has_character_flag = rol_relic_context_astrolabe
+}
+
+rol_relic_context_is_carthage_trigger = {
+	has_character_flag = rol_relic_context_carthage
+}

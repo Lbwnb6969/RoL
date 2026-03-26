@@ -117,6 +117,8 @@ rol_relic_clear_recent_result_effect = {
 	remove_character_flag = rol_recent_naxos_quest_failure
 	remove_character_flag = rol_recent_sevilla_quest_success
 	remove_character_flag = rol_recent_sevilla_quest_failure
+	remove_character_flag = rol_recent_carthage_quest_success
+	remove_character_flag = rol_recent_carthage_quest_failure
 	remove_character_flag = rol_expedition_random_success
 	if = {
 		limit = { has_variable = rol_recent_relic_result_tier }
@@ -211,5 +213,19 @@ rol_clear_context_astrolabe_accessory_effect = {
 	rol_relic_clear_context_effect = {
 		RELIC_CONTEXT_FLAG = rol_relic_context_astrolabe
 		RELIC_ARCHETYPE_FLAG = rol_relic_context_accessory
+	}
+}
+# 突尼斯样例：头具类神物（浴火金面）
+rol_set_context_carthage_helmet_effect = {
+	rol_relic_set_context_effect = {
+		RELIC_CONTEXT_FLAG = rol_relic_context_carthage
+		RELIC_ARCHETYPE_FLAG = rol_relic_context_helmet
+	}
+}
+
+rol_clear_context_carthage_helmet_effect = {
+	rol_relic_clear_context_effect = {
+		RELIC_CONTEXT_FLAG = rol_relic_context_carthage
+		RELIC_ARCHETYPE_FLAG = rol_relic_context_helmet
 	}
 }

@@ -1,6 +1,6 @@
 ﻿# Mythic Relics - 巴伐利亚礼器
 rol_nibelung_star_sphere = {
-	slot = miscellaneous
+	slot = regalia
 	default_visuals = rol_nibelung_star_sphere_visual
 	can_reforge = no
 }
