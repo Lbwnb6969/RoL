@@ -2,6 +2,7 @@
 
 > 真源目录：`C:\CK3Mods\RoL`  
 > 当前覆盖五条正式主线：Rome / Munich / Naxos / Sevilla / Carthage
+> 当前不再维护 `Documents\Paradox Interactive\Crusader Kings III\mod\RoL` 内容镜像；只检查 `RoL.mod` 的 `path` 与 `Documents\Paradox Interactive\Crusader Kings III\gfx` 缓存。
 
 ---
 
@@ -147,6 +148,23 @@ event rol_quest_carthage.1090
 
 ---
 
+## 4.1 五条正式活动链 Tier4 阈值回归
+
+| 活动 | 起始进度 | 主阶段高成功参考值 | Tier4 真正门槛 | 收口说明 |
+|---|---:|---:|---:|---|
+| Rome | 30 | 70 | 70 | 4 个主阶段需要尽量命中 major / 高成功档 |
+| Munich | 35 | 55 | 55 | 2 个主阶段需要尽量命中 major / 高成功档 |
+| Naxos / Thera | 30 | 60 | 60 | 3 个主阶段需要尽量命中 major / 高成功档 |
+| Sevilla | 35 | 55 | 55 | 2 个主阶段需要尽量命中 major / 高成功档 |
+| Carthage / Qartajana | 35 | 55 | 55 | 2 个主阶段需要尽量命中 major / 高成功档 |
+
+回归验证点：
+- 五条正式链维持 **Tier4-only + 严格高成功** 基线。
+- **主阶段没失败 ≠ 自动 Tier4**；若某一主阶段只拿到 `medium / tiny` 成功，终局不保证过线。
+- `1050` 宾客正向事件只作为**额外余量**，不是隐藏硬门槛。
+- 终局判定、`store_success_result_effect`、`apply_tiered_bonus_reward_effect` 三层阈值必须一致。
+- 本次不重做 GUI 成功条，仅以终局判定和实际发奖结果为准。
+
 ## 5. 圣物直发 / 统一测试入口
 
 ### 5.1 单件直发
@@ -176,6 +194,7 @@ effect rol_create_nibelung_star_sphere_effect = yes
 - 新生成的 `rol_nibelung_star_sphere` 出现在 **礼器 / regalia** 槽
 - 不再落到配饰 / 杂项槽
 - 旧存档历史实例若异常，删旧物后重新发放再测
+- 图标应来自 `rol_nibelung_star_sphere.dds`，不再借用 `artifact_regalia.dds`
 
 ### 5.4 Carthage 槽位验证
 ```txt
@@ -185,6 +204,42 @@ effect rol_create_ash_forged_mask_effect = yes
 
 预期：
 - 新生成的 `rol_ash_forged_mask` 出现在 **helmet / 头具** 槽
+
+### 5.5 四件传奇圣物数值 spot-check
+在角色 artifact 卡片 / modifier 面板中核对：
+
+- `rol_blade_of_mars_modifier`
+  - `martial = 9`
+  - `prowess = 6`
+  - `monthly_prestige_gain_mult = 0.15`
+  - `knight_effectiveness_mult = 0.10`
+  - `dread_gain_mult = 0.15`
+  - `monthly_martial_lifestyle_xp_gain_mult = 0.15`
+  - `army_damage_mult = 0.08`
+- `rol_nibelung_star_sphere_modifier`
+  - `learning = 9`
+  - `diplomacy = 2`
+  - `stewardship = 4`
+  - `monthly_piety_gain_mult = 0.18`
+  - `monthly_prestige_gain_mult = 0.08`
+  - `stress_loss_mult = 0.10`
+  - `domain_limit = 1`
+  - `monthly_learning_lifestyle_xp_gain_mult = 0.15`
+- `rol_astrolabe_of_ocean_modifier`
+  - `learning = 7`
+  - `stewardship = 6`
+  - `monthly_prestige_gain_mult = 0.15`
+  - `character_travel_safety = 15`
+  - `travel_speed_mult = 0.15`
+  - `monthly_stewardship_lifestyle_xp_gain_mult = 0.15`
+- `rol_ash_forged_mask_modifier`
+  - `martial = 8`
+  - `learning = 5`
+  - `prowess = 6`
+  - `monthly_prestige_gain_mult = 0.15`
+  - `knight_effectiveness_mult = 0.10`
+  - `dread_gain_mult = 0.20`
+  - `monthly_county_control_growth_factor = 0.10`
 
 ---
 
@@ -254,6 +309,7 @@ effect rol_check_legend_circle_revelation_effect = yes
 - `1` 天后触发 `rol_legend_circle.0001`
 - 该总事件仍只认旧四条核心主线
 - **Carthage 不会影响该总事件触发条件**
+- 事件背景继续读取 `rol_bg_legend_circle_revelation`
 
 ---
 
@@ -345,3 +401,55 @@ effect if = { limit = { has_variable = rol_carthage_stage_count } remove_variabl
 - 泰拉活动成功后看不到兵种：执行 `effect rol_naxos_quest_success_finalize_effect = yes` 后，再到军事界面确认 `rol_adeptus_custudes` 是否可招募。
 - 没有 debug toast：先执行 `effect rol_relic_debug_enable_effect = yes`。
 - 背景 / 图标缓存异常：删除 `Documents/Paradox Interactive/Crusader Kings III/gfx` 后，完全重启启动器与游戏。
+
+---
+
+## 11. 视觉回归检查
+
+### 11.1 Carthage 事件背景
+```txt
+event rol_relic_discovery.1600
+event rol_quest_carthage.0990
+event rol_quest_carthage.1000
+event rol_quest_carthage.1002
+event rol_quest_carthage.1001
+event rol_quest_carthage.1090
+```
+
+预期：
+- `rol_discovery_bg_carthage`
+- `rol_bg_carthage_0990_arrival`
+- `rol_bg_carthage_1000_desert`
+- `rol_bg_carthage_1002_ash_temple`
+- `rol_success_bg_carthage`
+- `rol_bg_carthage_1090_summary`
+
+以上 6 个 key 都能正常显示当前占位 DDS，不再黑底或丢失背景。
+
+### 11.2 Regalia 图标污染回归
+预期：
+- `rol_nibelung_star_sphere_visual` 只读取 `rol_nibelung_star_sphere.dds`
+- RoL 目录不再交付 `artifact_regalia.dds`
+- 原版 / NPC 的 regalia 不再被 Nibelung 星界球封面污染
+
+### 11.3 `@rol_legendary_icon!` 透明验证
+1. 删除 `Documents/Paradox Interactive/Crusader Kings III/gfx`
+2. 完整重启启动器与游戏
+3. 打开任意使用 `@rol_legendary_icon!` 的文本
+
+预期：
+- 背景为真正透明
+- 只显示大金星与两颗环绕小星
+- 不再出现棋盘底、黑底或实心底
+
+### 11.4 英文界面回归
+切英文后重点抽查：
+- Rome 主链按钮名与 `1010~1042` 过渡事件
+- Munich `1010~1022`
+- Carthage 全链 `0990 / 1000 / 1002 / 1050 / 1001 / 1090`
+- 活动意图 `rol_mars_intent / rol_relic_hunt_intent`
+
+预期：
+- 不再出现缺英文、空白文本、回退 key
+- Rome / Munich / Carthage 的活跃事件标题、正文、按钮均有英文
+- `error.log` 不再报相关 missing loc

@@ -161,7 +161,8 @@ rol_quest_rome.1000 = {
 	option = {
 		name = rol_quest_rome.1000.b
 		
-		flavor = rol_quest_rome.1000.b.flavorskill = learning
+		flavor = rol_quest_rome.1000.b.flavor
+		skill = learning
 		trigger = {
 			learning >= 15
 		}
@@ -829,7 +830,7 @@ rol_quest_rome.1001 = {
 				trigger = {
 					rol_relic_context_is_mars_trigger = yes
 					exists = scope:activity
-					scope:activity.var:activity_special_type_progression >= 75
+					scope:activity.var:activity_special_type_progression >= 70
 				}
 				desc = rol_quest_rome.1001.desc.mars.tier_4
 			}
@@ -840,7 +841,7 @@ rol_quest_rome.1001 = {
 						NOT = { exists = scope:activity }
 						AND = {
 							exists = scope:activity
-							scope:activity.var:activity_special_type_progression < 75
+							scope:activity.var:activity_special_type_progression < 70
 						}
 					}
 				}
@@ -877,7 +878,7 @@ rol_quest_rome.1001 = {
 		else_if = {
 			limit = {
 				exists = scope:activity
-				scope:activity.var:activity_special_type_progression >= 75
+				scope:activity.var:activity_special_type_progression >= 70
 			}
 			play_sound_effect = "event:/DLC/EP1/SFX/UI/Notifications/court_grandeur_toast_lvl_up"
 			rol_create_blade_of_mars_effect = yes

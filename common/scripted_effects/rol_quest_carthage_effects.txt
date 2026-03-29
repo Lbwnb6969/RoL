@@ -66,7 +66,7 @@ rol_carthage_apply_tiered_bonus_reward_effect = {
 	if = {
 		limit = {
 			exists = scope:activity
-			scope:activity.var:activity_special_type_progression >= 80
+			scope:activity.var:activity_special_type_progression >= 55
 		}
 		add_prestige = 320
 		add_piety = 140
@@ -74,7 +74,7 @@ rol_carthage_apply_tiered_bonus_reward_effect = {
 	else_if = {
 		limit = {
 			exists = scope:activity
-			scope:activity.var:activity_special_type_progression >= 60
+			scope:activity.var:activity_special_type_progression >= 45
 		}
 		add_prestige = 200
 		add_piety = 90
@@ -96,7 +96,7 @@ rol_carthage_store_success_result_effect = {
 	if = {
 		limit = {
 			exists = scope:activity
-			scope:activity.var:activity_special_type_progression >= 80
+			scope:activity.var:activity_special_type_progression >= 55
 		}
 		set_variable = {
 			name = rol_recent_relic_result_tier
@@ -106,7 +106,7 @@ rol_carthage_store_success_result_effect = {
 	else_if = {
 		limit = {
 			exists = scope:activity
-			scope:activity.var:activity_special_type_progression >= 60
+			scope:activity.var:activity_special_type_progression >= 45
 		}
 		set_variable = {
 			name = rol_recent_relic_result_tier
@@ -161,6 +161,8 @@ rol_carthage_quest_success_finalize_effect = {
 		left_icon = root
 	}
 
+	trigger_event = { id = rol_quest_carthage.1090 days = 1 }
+
 	rol_clear_context_carthage_helmet_effect = yes
 	rol_carthage_quest_abort_effect = yes
 	rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_carthage_success_finalize }
@@ -180,6 +182,8 @@ rol_apply_carthage_activity_cooldown_effect = {
 		desc = rol_carthage_activity_failure_toast_desc
 		left_icon = root
 	}
+
+	trigger_event = { id = rol_quest_carthage.1090 days = 1 }
 
 	rol_clear_context_carthage_helmet_effect = yes
 	rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_carthage_failure_finalize }

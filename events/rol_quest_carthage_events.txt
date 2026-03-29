@@ -266,12 +266,12 @@ rol_quest_carthage.1001 = {
 	title = rol_quest_carthage.1001.t
 	desc = {
 		first_valid = {
-			triggered_desc = { trigger = { exists = scope:activity scope:activity.var:activity_special_type_progression >= 80 } desc = rol_quest_carthage.1001.desc.tier_4 }
+			triggered_desc = { trigger = { exists = scope:activity scope:activity.var:activity_special_type_progression >= 55 } desc = rol_quest_carthage.1001.desc.tier_4 }
 			triggered_desc = {
 				trigger = {
 					OR = {
 						NOT = { exists = scope:activity }
-						AND = { exists = scope:activity scope:activity.var:activity_special_type_progression < 80 }
+						AND = { exists = scope:activity scope:activity.var:activity_special_type_progression < 55 }
 					}
 				}
 				desc = rol_quest_carthage.1001.desc.below_tier4
@@ -290,7 +290,7 @@ rol_quest_carthage.1001 = {
 			error_log = "[ROL][DUPLICATE] rol_quest_carthage.1001 fired after claim; skipping artifact grant"
 		}
 		else_if = {
-			limit = { exists = scope:activity scope:activity.var:activity_special_type_progression >= 80 }
+			limit = { exists = scope:activity scope:activity.var:activity_special_type_progression >= 55 }
 			play_sound_effect = "event:/DLC/EP1/SFX/UI/Notifications/court_grandeur_toast_lvl_up"
 			rol_create_ash_forged_mask_effect = yes
 			if = { limit = { exists = scope:newly_created_artifact } }

@@ -2,6 +2,7 @@
 
 > 真源目录：`C:\CK3Mods\RoL`  
 > 当前实际加载路径：`Documents\Paradox Interactive\Crusader Kings III\mod\RoL.mod -> C:/CK3Mods/RoL`
+> 当前不再维护 `Documents\Paradox Interactive\Crusader Kings III\mod\RoL` 内容镜像；视觉问题只检查 descriptor path、实际接线与 `gfx` 缓存。
 
 ---
 
@@ -92,7 +93,7 @@ CK3 很多活动资源按 **activity ID 同名隐式读取**，不一定有显�
 
 ### 当前重点接线
 - Rome：`rol_blade_of_mars_visual -> rol_blade_of_mars.dds`
-- Munich：`rol_nibelung_star_sphere_visual -> artifact_regalia.dds`（仍是原版占位）
+- Munich：`rol_nibelung_star_sphere_visual -> rol_nibelung_star_sphere.dds`
 - Sevilla：`rol_astrolabe_of_ocean_visual -> rol_astrolabe_of_ocean.dds`
 - Carthage：`rol_ash_forged_mask_visual -> rol_ash_forged_mask.dds`
 
@@ -100,6 +101,7 @@ CK3 很多活动资源按 **activity ID 同名隐式读取**，不一定有显�
 - **槽位** 在 `common/artifacts/types/*.txt`
 - **2D 图标 / 3D asset** 在 `common/artifacts/visuals/*.txt`
 - Munich 当前已修为：`rol_nibelung_star_sphere -> slot = regalia`
+- Munich 当前也已切到专用 artifact 图标，不再覆盖原版 `artifact_regalia.dds`
 
 ---
 
@@ -136,3 +138,5 @@ CK3 很多活动资源按 **activity ID 同名隐式读取**，不一定有显�
 4. 删除：`Documents/Paradox Interactive/Crusader Kings III/gfx`
 5. 完全重启启动器与游戏
 6. 若是透明图标，再检查 DDS 是否真的含有效 alpha，而不是“格式对了但 alpha 全不透明”
+7. 若是 text icon / artifact icon，确认 `@rol_legendary_icon!` 这类 60x60 图标也经过真透明验证
+

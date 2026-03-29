@@ -229,16 +229,6 @@ activity_rol_seek_ash_forged_mask = {
 
 	on_complete = {
 		scope:host = {
-			if = {
-				limit = {
-					is_ai = no
-					OR = {
-						has_character_flag = rol_recent_carthage_quest_success
-						has_character_flag = rol_recent_carthage_quest_failure
-					}
-				}
-				trigger_event = { id = rol_quest_carthage.1090 days = 1 }
-			}
 			rol_clear_context_carthage_helmet_effect = yes
 			if = {
 				limit = { has_variable = rol_carthage_stage_count }

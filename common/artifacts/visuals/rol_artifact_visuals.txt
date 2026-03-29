@@ -10,9 +10,9 @@ rol_blade_of_mars_visual = {
 }
 
 # 慕尼黑礼器：尼伯龙根星界球
-# 当前使用原版 artifact_regalia.dds 作为临时图标
+# 当前使用 RoL 专用图标，避免覆盖原版 regalia
 rol_nibelung_star_sphere_visual = {
-	icon = "artifact_regalia.dds"
+	icon = "rol_nibelung_star_sphere.dds"
 	asset = ep1_generic_jewelry_01_a_entity
 }
 

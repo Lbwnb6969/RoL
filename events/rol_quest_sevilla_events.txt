@@ -537,7 +537,7 @@ rol_quest_sevilla.1001 = {
 			triggered_desc = {
 				trigger = {
 					exists = scope:activity
-					scope:activity.var:activity_special_type_progression >= 80
+					scope:activity.var:activity_special_type_progression >= 55
 				}
 				desc = rol_quest_sevilla.1001.desc.tier_4
 			}
@@ -547,7 +547,7 @@ rol_quest_sevilla.1001 = {
 						NOT = { exists = scope:activity }
 						AND = {
 							exists = scope:activity
-							scope:activity.var:activity_special_type_progression < 80
+							scope:activity.var:activity_special_type_progression < 55
 						}
 					}
 				}
@@ -572,7 +572,7 @@ rol_quest_sevilla.1001 = {
 		else_if = {
 			limit = {
 				exists = scope:activity
-				scope:activity.var:activity_special_type_progression >= 80
+				scope:activity.var:activity_special_type_progression >= 55
 			}
 			play_sound_effect = "event:/DLC/EP1/SFX/UI/Notifications/court_grandeur_toast_lvl_up"
 			rol_create_astrolabe_of_ocean_effect = yes

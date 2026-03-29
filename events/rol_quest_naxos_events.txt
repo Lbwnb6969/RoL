@@ -141,7 +141,8 @@ rol_quest_naxos.1000 = {
 	option = {
 		name = rol_quest_naxos.1000.b
 		
-		flavor = rol_quest_naxos.1000.b.flavorskill = learning
+		flavor = rol_quest_naxos.1000.b.flavor
+		skill = learning
 		trigger = {
 			learning >= 13
 		}
@@ -717,7 +718,7 @@ rol_quest_naxos.1001 = {
 			triggered_desc = {
 				trigger = {
 					exists = scope:activity
-					scope:activity.var:activity_special_type_progression >= 75
+					scope:activity.var:activity_special_type_progression >= 60
 				}
 				desc = rol_quest_naxos.1001.desc.tier_4
 			}
@@ -727,7 +728,7 @@ rol_quest_naxos.1001 = {
 						NOT = { exists = scope:activity }
 						AND = {
 							exists = scope:activity
-							scope:activity.var:activity_special_type_progression < 75
+							scope:activity.var:activity_special_type_progression < 60
 						}
 					}
 				}
@@ -752,7 +753,7 @@ rol_quest_naxos.1001 = {
 		else_if = {
 			limit = {
 				exists = scope:activity
-				scope:activity.var:activity_special_type_progression >= 75
+				scope:activity.var:activity_special_type_progression >= 60
 			}
 			play_sound_effect = "event:/DLC/EP1/SFX/UI/Notifications/court_grandeur_toast_lvl_up"
 			rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_naxos_terminal_tier4_reward }

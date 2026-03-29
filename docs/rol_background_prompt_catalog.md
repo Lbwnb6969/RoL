@@ -51,7 +51,7 @@
 | 圣物 | 当前槽位 | 当前图标状态 | 文件 / 接线 | Prompt |
 |---|---|---|---|---|
 | Blade of Mars | weapon | 已接线 | `rol_blade_of_mars.dds` -> `rol_blade_of_mars_visual` | `legendary Roman sword, crimson edge glow, dark bronze hilt, centered artifact icon` |
-| Nibelung Star Sphere | **regalia** | 原版占位 | `rol_nibelung_star_sphere_visual -> artifact_regalia.dds` | `ceremonial star sphere, frozen crystal armillary, blue-gold metal, regal occult artifact icon` |
+| Nibelung Star Sphere | **regalia** | 已接线（专用图标） | `rol_nibelung_star_sphere_visual -> rol_nibelung_star_sphere.dds` | `ceremonial star sphere, frozen crystal armillary, blue-gold metal, regal occult artifact icon` |
 | Astrolabe of Ocean | trinket | 已接线 | `rol_astrolabe_of_ocean.dds` -> `rol_astrolabe_of_ocean_visual` | `ancient ocean astrolabe, brass rings, luminous blue pointer, maritime relic icon` |
 | Ash-Forged Mask | **helmet** | 已接线（占位） | `rol_ash_forged_mask.dds` -> `rol_ash_forged_mask_visual` | `legendary Carthaginian golden mask, ash-dark burn marks, cold starlight, black-sand relic icon` |
 
@@ -144,7 +144,6 @@
 - Legend Circle 大事件背景已接线。
 
 ### 6.2 仍在用原版占位的地方
-- Munich artifact 图标：`artifact_regalia.dds`
 - Sevilla artifact 图标：已切到 `rol_astrolabe_of_ocean.dds`
 - `@rol_legendary_icon!` 已切到 `rol_legendary_icon.dds`
 - Athena / Anubis discovery 仍读原版 scene
@@ -158,3 +157,9 @@
 - 已接线文件统一**同名覆盖**。
 - 未接线或仍在用原版占位的资源，先补文件，再改 visual / GUI / basename 接线。
 - 活动图标透明问题先看 alpha 是否真实存在，再清 `gfx` 缓存，不要只看导出格式名。
+
+### 6.5 当前新增视觉基线
+- Munich artifact 专用图标：`rol_nibelung_star_sphere.dds`
+- Carthage 事件背景 key 已补齐到 `common/event_backgrounds/rol_event_backgrounds.txt`
+- `rol_legendary_icon.dds` 需保持：`60x60`、真透明背景、大金星 + 两颗环绕小星
+

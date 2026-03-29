@@ -1,6 +1,6 @@
 ﻿# RoL 新对话完整交接文档（Master Handoff）
 
-> 当前快照日期：2026-03-25  
+> 当前快照日期：2026-03-29  
 > 真源目录：`C:\CK3Mods\RoL`  
 > 当前启动器描述符：`C:\Users\Falcons的Niko本人的PC\Documents\Paradox Interactive\Crusader Kings III\mod\RoL.mod` -> `path="C:/CK3Mods/RoL"`
 
@@ -10,7 +10,7 @@
 
 - 模组名称：**Relics of Legend（RoL）**。
 - 唯一开发真源：`C:\CK3Mods\RoL`。
-- Documents 目录仅镜像，不作为开发目录。
+- Documents 目录不再维护任何 RoL 内容镜像；仅保留启动器 descriptor 与 CK3 缓存相关路径。
 - 所有脚本 / 本地化文本统一 **UTF-8 with BOM**。
 - 所有自定义 ID / 事件 / effect / trigger / 变量 / flag 保持 `rol_` 前缀。
 - 当前唯一正式发现入口：
@@ -20,7 +20,7 @@
 
 ---
 
-## 1) 当前正式主线快照（2026-03-25）
+## 1) 当前正式主线快照（2026-03-29）
 
 | 地区 | Discovery | Activity | 最终结果 | 永久完成标记 | 是否计入 `rol_legend_circle` |
 |---|---|---|---|---|---|
@@ -47,7 +47,7 @@
 ## 2) 已落地工程规则
 
 1. 真源只认 `C:\CK3Mods\RoL`。
-2. 不在 Documents 镜像里直接开发。
+2. 不在 Documents 下维护或修补第二份 RoL 内容副本；若需确认加载是否正确，只检查 `RoL.mod` 的 `path`。
 3. CK3 文本文件统一 UTF-8 with BOM。
 4. 先查现有实现与模板，再做最小改动。
 5. 活动链固定遵循：**发现 -> 活动 -> 阶段反馈 -> 终局判定 -> 结算**。
@@ -86,6 +86,21 @@
 - `common/decisions/rol_decisions.txt`
 - `events/rol_test_events.txt`
 
+### 3.4 五条正式活动链真实结算阈值基线（2026-03-29）
+
+| 活动 | 起始进度 | 主阶段高成功参考值 | Tier4 | Tier3 | Tier2 |
+|---|---:|---:|---:|---:|---:|
+| Rome | `30` | `70` | `70` | `50` | `30` |
+| Munich | `35` | `55` | `55` | `45` | `35` |
+| Naxos / Thera | `30` | `60` | `60` | `45` | `30` |
+| Sevilla | `35` | `55` | `55` | `45` | `35` |
+| Carthage / Qartajana | `35` | `55` | `55` | `45` | `35` |
+
+- 当前五条正式链都按“**Tier4-only + 严格高成功**”收口。
+- **主阶段没失败 ≠ 自动 Tier4**；若某段只拿到 `medium / tiny` 成功，终局不保证过线。
+- `1050` 宾客正向事件的定位仍是**额外余量**，不是终局 Tier4 必需条件。
+- 终局继续保持 **Tier4-only** 发放最终圣物 / 解锁；低于 Tier4 仍判失败并进入冷却。
+
 ---
 
 ## 4) Carthage / 浴火金面实现快照
@@ -107,6 +122,7 @@
   - `1050` 宾客插曲
   - `1001` 终局判定
   - `1090` 结算
+- 结构保持 **两主阶段模板**；当前版本通过加厚现有事件正文 / flavor / summary 来增强终局感，不新增第三主阶段。
 - 成功收口：`rol_carthage_quest_success_finalize_effect`
 - 失败收口：`rol_carthage_quest_fail_now_effect`
 
@@ -140,15 +156,54 @@
   - `rol_event_carthage_1090_summary.dds`
   - `rol_activity_carthage_travel.dds`
   - `rol_activity_carthage_location.dds`
-- 当前均已接线，可继续同名替换最终图。
+- 当前 scene 占位图已存在，且事件背景 registry 已补齐，可继续同名替换最终图。
 
 ---
 
 ## 5) Munich 当前特别说明
 
 - `rol_nibelung_star_sphere` 现已修正为：`slot = regalia`。
-- 当前修复是**最小修复**：只改 artifact type 槽位，不扩大战线改 3D asset 或额外 UI 逻辑。
+- `rol_nibelung_star_sphere_visual` 现已改为读取 **`rol_nibelung_star_sphere.dds`**，不再借用 `artifact_regalia.dds`。
+- RoL 不再交付自定义 `artifact_regalia.dds`，避免污染原版与 NPC 的 regalia 图标。
+- 当前修复仍保持**最小修复**：不扩大战线改 3D asset 或额外 UI 逻辑。
 - 新生成实例应进入 **礼器 / regalia** 槽；旧存档里历史实例若异常，需删旧物后重新发放测试。
+
+---
+
+## 5.1) 四件传奇 artifact 当前数值基线
+
+- `rol_blade_of_mars_modifier`
+  - `martial = 9`
+  - `prowess = 6`
+  - `monthly_prestige_gain_mult = 0.15`
+  - `knight_effectiveness_mult = 0.10`
+  - `dread_gain_mult = 0.15`
+  - `monthly_martial_lifestyle_xp_gain_mult = 0.15`
+  - `army_damage_mult = 0.08`
+- `rol_nibelung_star_sphere_modifier`
+  - `learning = 9`
+  - `diplomacy = 2`
+  - `stewardship = 4`
+  - `monthly_piety_gain_mult = 0.18`
+  - `monthly_prestige_gain_mult = 0.08`
+  - `stress_loss_mult = 0.10`
+  - `domain_limit = 1`
+  - `monthly_learning_lifestyle_xp_gain_mult = 0.15`
+- `rol_astrolabe_of_ocean_modifier`
+  - `learning = 7`
+  - `stewardship = 6`
+  - `monthly_prestige_gain_mult = 0.15`
+  - `character_travel_safety = 15`
+  - `travel_speed_mult = 0.15`
+  - `monthly_stewardship_lifestyle_xp_gain_mult = 0.15`
+- `rol_ash_forged_mask_modifier`
+  - `martial = 8`
+  - `learning = 5`
+  - `prowess = 6`
+  - `monthly_prestige_gain_mult = 0.15`
+  - `knight_effectiveness_mult = 0.10`
+  - `dread_gain_mult = 0.20`
+  - `monthly_county_control_growth_factor = 0.10`
 
 ---
 
@@ -182,11 +237,18 @@ effect rol_debug_grant_all_artifact_relics_effect = yes
 ```
 预期：当前一次性发放 **Rome / Munich / Sevilla / Carthage** 四件 artifact；Naxos 不包含在内。
 
----
-
 ## 7) 给下一位 Codex 的明确约束
 
 - 新活动链默认沿用统一筹备模块与当前 tooltip / flavor / cooldown 规范。
 - **不是每条新链都自动并入 `rol_legend_circle`**；只有明确指定为“正式核心计数链”时，才在成功 finalize 里写永久完成 flag 并调用共享检查 effect。
 - 若只是像 Carthage 这样新增正式活动链但**不想并入总事件**，就不要调用 `rol_check_legend_circle_revelation_effect`。
-- 所有实施结束后，再执行真源 -> Documents 的单向镜像同步。
+- 不再执行任何真源 -> Documents 的镜像同步；只需确保 `Documents\Paradox Interactive\Crusader Kings III\mod\RoL.mod` 仍指向 `C:\CK3Mods\RoL`。
+
+
+
+
+## 8) 本地化收口基线
+
+- 当前规则：**活跃显示 key 必须双语齐全；死 key 直接删除，不再为“数量对齐”保留孤儿 loc。**
+- 已补齐重点：Rome 活跃按钮 / 过渡事件英文、Munich `1010~1022` 英文、Carthage 全链英文润色、`rol_mars_intent` 英文。
+- 已清理重点：旧 `rol_seek_mars_blade_decision*`、Rome 旧终局残留孤儿描述 key。

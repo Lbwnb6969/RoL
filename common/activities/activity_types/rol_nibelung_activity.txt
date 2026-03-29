@@ -235,16 +235,6 @@ activity_rol_seek_nibelung_sphere = {
 
 	on_complete = {
 		scope:host = {
-			if = {
-				limit = {
-					is_ai = no
-					OR = {
-						has_character_flag = rol_recent_nibelung_quest_success
-						has_character_flag = rol_recent_nibelung_quest_failure
-					}
-				}
-				trigger_event = { id = rol_quest_munich.1090 days = 1 }
-			}
 
 			rol_clear_context_nibelung_regalia_effect = yes
 			if = {

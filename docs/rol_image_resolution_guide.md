@@ -79,7 +79,7 @@
 ### 当前 RoL 例子
 - `rol_blade_of_mars.dds`
 - `rol_ash_forged_mask.dds`
-- Munich 当前仍临时读原版 `artifact_regalia.dds`
+- `rol_nibelung_star_sphere.dds`
 - Sevilla 当前读取自定义图标 `rol_astrolabe_of_ocean.dds`
 
 ### 常见错误
@@ -114,6 +114,7 @@
 3. 导出后检查 alpha 仍存在
 4. 清掉 `Documents/Paradox Interactive/Crusader Kings III/gfx`
 5. 完全重启启动器与游戏再看
+6. 对 text icon / artifact icon，必须额外确认 alpha 不是全 255；`rol_legendary_icon.dds` 当前基线为 `60x60` 真透明
 
 ---
 

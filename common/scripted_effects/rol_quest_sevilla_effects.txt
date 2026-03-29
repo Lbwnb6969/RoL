@@ -66,7 +66,7 @@ rol_sevilla_apply_tiered_bonus_reward_effect = {
 	if = {
 		limit = {
 			exists = scope:activity
-			scope:activity.var:activity_special_type_progression >= 80
+			scope:activity.var:activity_special_type_progression >= 55
 		}
 		add_prestige = 350
 		add_gold = 150
@@ -74,7 +74,7 @@ rol_sevilla_apply_tiered_bonus_reward_effect = {
 	else_if = {
 		limit = {
 			exists = scope:activity
-			scope:activity.var:activity_special_type_progression >= 60
+			scope:activity.var:activity_special_type_progression >= 45
 		}
 		add_prestige = 220
 		add_gold = 80
@@ -96,7 +96,7 @@ rol_sevilla_store_success_result_effect = {
 	if = {
 		limit = {
 			exists = scope:activity
-			scope:activity.var:activity_special_type_progression >= 80
+			scope:activity.var:activity_special_type_progression >= 55
 		}
 		set_variable = {
 			name = rol_recent_relic_result_tier
@@ -106,7 +106,7 @@ rol_sevilla_store_success_result_effect = {
 	else_if = {
 		limit = {
 			exists = scope:activity
-			scope:activity.var:activity_special_type_progression >= 60
+			scope:activity.var:activity_special_type_progression >= 45
 		}
 		set_variable = {
 			name = rol_recent_relic_result_tier
@@ -162,6 +162,8 @@ rol_sevilla_quest_success_finalize_effect = {
 		left_icon = root
 	}
 
+	trigger_event = { id = rol_quest_sevilla.1090 days = 1 }
+
 	rol_clear_context_astrolabe_accessory_effect = yes
 	rol_sevilla_quest_abort_effect = yes
 	rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_astrolabe_success_finalize }
@@ -181,6 +183,8 @@ rol_apply_astrolabe_activity_cooldown_effect = {
 		desc = rol_astrolabe_activity_failure_toast_desc
 		left_icon = root
 	}
+
+	trigger_event = { id = rol_quest_sevilla.1090 days = 1 }
 
 	rol_clear_context_astrolabe_accessory_effect = yes
 	rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_astrolabe_failure_finalize }

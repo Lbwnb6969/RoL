@@ -75,7 +75,7 @@ rol_rome_apply_tiered_bonus_reward_effect = {
 	if = {
 		limit = {
 			exists = scope:activity
-			scope:activity.var:activity_special_type_progression >= 75
+			scope:activity.var:activity_special_type_progression >= 70
 		}
 		add_prestige = 250
 		add_piety = 150
@@ -90,7 +90,7 @@ rol_rome_apply_tiered_bonus_reward_effect = {
 	else_if = {
 		limit = {
 			exists = scope:activity
-			scope:activity.var:activity_special_type_progression >= 25
+			scope:activity.var:activity_special_type_progression >= 30
 		}
 		add_prestige = 75
 	}
@@ -104,7 +104,7 @@ rol_rome_store_success_result_effect = {
 	if = {
 		limit = {
 			exists = scope:activity
-			scope:activity.var:activity_special_type_progression >= 75
+			scope:activity.var:activity_special_type_progression >= 70
 		}
 		set_variable = {
 			name = rol_recent_relic_result_tier
@@ -124,7 +124,7 @@ rol_rome_store_success_result_effect = {
 	else_if = {
 		limit = {
 			exists = scope:activity
-			scope:activity.var:activity_special_type_progression >= 25
+			scope:activity.var:activity_special_type_progression >= 30
 		}
 		set_variable = {
 			name = rol_recent_relic_result_tier
@@ -172,6 +172,8 @@ rol_rome_quest_success_finalize_effect = {
 		left_icon = root
 	}
 
+	trigger_event = { id = rol_quest_rome.1090 days = 1 }
+
 	rol_clear_context_mars_weapon_effect = yes
 	rol_rome_quest_abort_effect = yes
 	rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_mars_success_finalize }
@@ -191,6 +193,8 @@ rol_apply_mars_activity_cooldown_effect = {
 		desc = rol_mars_activity_failure_toast_desc
 		left_icon = root
 	}
+
+	trigger_event = { id = rol_quest_rome.1090 days = 1 }
 
 	rol_clear_context_mars_weapon_effect = yes
 	rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_mars_failure_finalize }

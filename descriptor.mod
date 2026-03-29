@@ -4,5 +4,6 @@ tags={
 	"Decisions"
 	"Events"
 }
-name="Relics of Legend: The Old World"
+name="Relics of Legends"
 supported_version="1.18.4"
+remote_file_id="3692558151"

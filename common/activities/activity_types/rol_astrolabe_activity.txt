@@ -235,16 +235,6 @@ activity_rol_seek_astrolabe_of_ocean = {
 
 	on_complete = {
 		scope:host = {
-			if = {
-				limit = {
-					is_ai = no
-					OR = {
-						has_character_flag = rol_recent_sevilla_quest_success
-						has_character_flag = rol_recent_sevilla_quest_failure
-					}
-				}
-				trigger_event = { id = rol_quest_sevilla.1090 days = 1 }
-			}
 
 			rol_clear_context_astrolabe_accessory_effect = yes
 			if = {

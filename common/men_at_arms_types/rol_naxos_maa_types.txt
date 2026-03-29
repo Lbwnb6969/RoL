@@ -2,7 +2,7 @@
 
 rol_adeptus_custudes = {
 	type = heavy_infantry
-	icon = heavy_infantry
+	icon = rol_adeptus_custudes
 
 	can_recruit = {
 		has_character_flag = rol_naxos_unit_unlocked
@@ -13,8 +13,8 @@ rol_adeptus_custudes = {
 		has_character_flag = rol_naxos_unit_unlocked
 	}
 
-	damage = 1440
-	toughness = 1080
+	damage = 960
+	toughness = 720
 	pursuit = 0
 	screen = 0
 

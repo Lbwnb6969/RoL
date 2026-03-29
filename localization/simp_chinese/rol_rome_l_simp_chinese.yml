@@ -4,10 +4,6 @@
  artifact_rol_blade_of_mars:0 "战神玛尔斯之剑"
  artifact_rol_blade_of_mars_desc:0 "这柄古剑在黑暗中泛着嗜血红辉，仿佛仍在回应战神玛尔斯的召唤。"
 
- rol_seek_mars_blade_decision:0 "探寻玛尔斯之剑"
- rol_seek_mars_blade_decision_desc:0 "召集最悍勇的死士，深入帕拉蒂尼山下的古老陵道，追索那柄沉睡于血誓中的神兵。"
- rol_seek_mars_blade_decision_tooltip:0 "你将花费 @gold_icon!300 发起探险。"
-
  rol_quest_rome.0990.t:0 "抵达封印地宫"
  rol_quest_rome.0990.desc:0 "你率队来到罗马地层下那道崩裂的入口。冷风从黑暗深处缓缓吐息，火把的光都显得渺小。就连老兵也不自觉压低了声音，只因石壁上的军团刻纹仍在无声注视来者。"
  rol_quest_rome.0990.a:0 "整队列阵，以肃静与钢铁入内。"
@@ -43,15 +39,8 @@
  rol_quest_rome.1001.desc.weapon:0 "你握住那柄沉睡已久的刃兵，金属在掌中发出低鸣，像在确认新的征服者。"
  rol_quest_rome.1001.desc.regalia:0 "当你触及那件礼器，符文逐层亮起。它不只是器物，而是可被世人见证的权威象征。"
  rol_quest_rome.1001.desc.accessory:0 "那件配饰在你掌中泛起微光，细小却不容忽视，像将一段失落神话系在了你的命运之上。"
- rol_quest_rome.1001.desc.mars.tier_1:0 "你抵达祭坛时已筋疲力尽，队伍损失惨重。即便如此，封印仍被打开，玛尔斯之剑最终归于你手。"
- rol_quest_rome.1001.desc.mars.tier_2:0 "你率队稳步突破机关与残影，代价可控。当祭坛裂开时，猩红剑芒再次照亮地宫。"
- rol_quest_rome.1001.desc.mars.tier_3:0 "你的指挥冷静而高效，远征队几乎势如破竹。最后封印崩解之际，玛尔斯之剑以烈焰之姿认你为主。"
  rol_quest_rome.1001.desc.mars.tier_4:0 "你毫无退缩，以铁血意志横扫全部试炼。军号在地宫回响，玛尔斯之剑在最炽热的血光中降临。"
  rol_quest_rome.1001.desc.mars.below_tier4:0 "你抵达了核心，却在宣告前听见了沉默。此地真正的回应仍从你手中退去。"
- rol_quest_rome.1001.desc.tier_1:0 "$rol_quest_rome.1001.desc.mars.tier_1$"
- rol_quest_rome.1001.desc.tier_2:0 "$rol_quest_rome.1001.desc.mars.tier_2$"
- rol_quest_rome.1001.desc.tier_3:0 "$rol_quest_rome.1001.desc.mars.tier_3$"
- rol_quest_rome.1001.desc.tier_4:0 "$rol_quest_rome.1001.desc.mars.tier_4$"
  rol_quest_rome.1001.a:0 "让诸神见证我的征服。"
  rol_quest_rome.1001.a.tt:0 "若最终回响真正回应你的远征，你才能完成宣告；否则本次远征失败并进入2年冷却。"
 

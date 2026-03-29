@@ -8,36 +8,43 @@ rol_sword_of_mars_modifier = {
 
 # 罗马战神剑
 rol_blade_of_mars_modifier = {
-	martial = 8
-	prowess = 5
-	monthly_prestige_gain_mult = 0.12
-	knight_effectiveness_mult = 0.08
-	dread_gain_mult = 0.10
+	martial = 9
+	prowess = 6
+	monthly_prestige_gain_mult = 0.15
+	knight_effectiveness_mult = 0.10
+	dread_gain_mult = 0.15
+	monthly_martial_lifestyle_xp_gain_mult = 0.15
+	army_damage_mult = 0.08
 }
 
 # 慕尼黑礼器：尼伯龙根星界球
 rol_nibelung_star_sphere_modifier = {
-	learning = 8
-	diplomacy = 4
-	monthly_piety_gain_mult = 0.15
-	monthly_prestige_gain_mult = 0.05
-	stress_loss_mult = 0.08
+	learning = 9
+	diplomacy = 2
+	stewardship = 4
+	monthly_piety_gain_mult = 0.18
+	monthly_prestige_gain_mult = 0.08
+	stress_loss_mult = 0.10
+	domain_limit = 1
+	monthly_learning_lifestyle_xp_gain_mult = 0.15
 }
 
 # 塞维利亚配饰：大洋统御星盘
 rol_astrolabe_of_ocean_modifier = {
-	learning = 6
-	stewardship = 4
-	monthly_prestige_gain_mult = 0.10
-	travel_safety = 10
-	travel_speed_mult = 0.10
+	learning = 7
+	stewardship = 6
+	monthly_prestige_gain_mult = 0.15
+	character_travel_safety = 15
+	travel_speed_mult = 0.15
+	monthly_stewardship_lifestyle_xp_gain_mult = 0.15
 }
 # 突尼斯头具：迦太基的浴火金面
 rol_ash_forged_mask_modifier = {
-	martial = 7
-	learning = 4
-	prowess = 4
-	monthly_prestige_gain_mult = 0.10
-	knight_effectiveness_mult = 0.08
-	dread_gain_mult = 0.10
+	martial = 8
+	learning = 5
+	prowess = 6
+	monthly_prestige_gain_mult = 0.15
+	knight_effectiveness_mult = 0.10
+	dread_gain_mult = 0.20
+	monthly_county_control_growth_factor = 0.10
 }

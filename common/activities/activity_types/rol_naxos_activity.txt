@@ -229,16 +229,6 @@ activity_rol_seek_naxos_guard = {
 
 	on_complete = {
 		scope:host = {
-			if = {
-				limit = {
-					is_ai = no
-					OR = {
-						has_character_flag = rol_recent_naxos_quest_success
-						has_character_flag = rol_recent_naxos_quest_failure
-					}
-				}
-				trigger_event = { id = rol_quest_naxos.1090 days = 1 }
-			}
 
 			if = {
 				limit = { has_variable = rol_naxos_stage_count }
