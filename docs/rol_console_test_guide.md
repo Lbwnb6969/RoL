@@ -161,6 +161,7 @@ event rol_quest_carthage.1090
 回归验证点：
 - 五条正式链维持 **Tier4-only + 严格高成功** 基线。
 - **主阶段没失败 ≠ 自动 Tier4**；若某一主阶段只拿到 `medium / tiny` 成功，终局不保证过线。
+- Naxos 的 `1000.b`（learning）与 `1003.b`（intrigue）在成功时也给予 `major`；任一成功路线都不会再因进度不足而注定失败。
 - `1050` 宾客正向事件只作为**额外余量**，不是隐藏硬门槛。
 - 终局判定、`store_success_result_effect`、`apply_tiered_bonus_reward_effect` 三层阈值必须一致。
 - 本次不重做 GUI 成功条，仅以终局判定和实际发奖结果为准。
@@ -447,7 +448,7 @@ event rol_quest_carthage.1090
 - Rome 主链按钮名与 `1010~1042` 过渡事件
 - Munich `1010~1022`
 - Carthage 全链 `0990 / 1000 / 1002 / 1050 / 1001 / 1090`
-- 活动意图 `rol_mars_intent / rol_relic_hunt_intent`
+- 活动意图 `rol_relic_hunt_intent`
 
 预期：
 - 不再出现缺英文、空白文本、回退 key

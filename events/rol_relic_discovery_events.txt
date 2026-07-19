@@ -26,28 +26,6 @@ rol_relic_discovery.0001 = {
 			trigger_event = rol_relic_discovery.1000
 		}
 
-		# 雅典：雅典娜礼器（预留）
-		if = {
-			limit = {
-				has_title = title:c_attica
-				NOT = { has_character_flag = rol_heard_athena_legend }
-				NOT = { has_character_flag = rol_athena_relic_claimed }
-			}
-			add_character_flag = rol_heard_athena_legend
-			trigger_event = rol_relic_discovery.1100
-		}
-
-		# 吉萨：阿努比斯遗物（预留）
-		if = {
-			limit = {
-				has_title = title:c_giza
-				NOT = { has_character_flag = rol_heard_anubis_legend }
-				NOT = { has_character_flag = rol_anubis_relic_claimed }
-			}
-			add_character_flag = rol_heard_anubis_legend
-			trigger_event = rol_relic_discovery.1200
-		}
-
 		# 慕尼黑：尼伯龙根星界球
 		if = {
 			limit = {
@@ -115,42 +93,6 @@ rol_relic_discovery.1000 = {
 
 	option = {
 		name = rol_relic_discovery.1000.a
-	}
-}
-
-# 雅典发现
-rol_relic_discovery.1100 = {
-	type = character_event
-	title = rol_relic_discovery.1100.t
-	desc = rol_relic_discovery.1100.desc
-	theme = diplomacy
-	override_background = { reference = rol_discovery_bg_athena }
-
-	trigger = {
-		is_ai = no
-		has_character_flag = rol_heard_athena_legend
-	}
-
-	option = {
-		name = rol_relic_discovery.1100.a
-	}
-}
-
-# 吉萨发现
-rol_relic_discovery.1200 = {
-	type = character_event
-	title = rol_relic_discovery.1200.t
-	desc = rol_relic_discovery.1200.desc
-	theme = stewardship
-	override_background = { reference = rol_discovery_bg_anubis }
-
-	trigger = {
-		is_ai = no
-		has_character_flag = rol_heard_anubis_legend
-	}
-
-	option = {
-		name = rol_relic_discovery.1200.a
 	}
 }
 

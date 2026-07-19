@@ -100,7 +100,9 @@
  rol_quest_carthage.1001.a.flavor:0 "亲手夺取那最后的回答，或被它当场拒绝。"
 
  rol_quest_carthage.1090.t:0 "黑沙远征结算"
- rol_quest_carthage.1090.desc.success_4:0 "你穿过黑沙、亡军回响与一座死去帝国最后的誓约，把埋在迦太基灰烬下的答案带回了现世。任何见到这份战利的人都不会再把这场远征视为单纯掠夺——那是征服。"
+ rol_quest_carthage.1090.desc.success_4.standard:0 "你穿过黑沙、亡军回响与一座死去帝国最后的誓约，把埋在迦太基灰烬下的答案带回了现世。任何见到这份战利的人都不会再把这场远征视为单纯掠夺——那是征服。\n\n$EFFECT_LIST_BULLET$获得圣物：#P $artifact_rol_ash_forged_mask$#!\n$EFFECT_LIST_BULLET$获得 #P +320#! [prestige|E]\n$EFFECT_LIST_BULLET$获得 #P +140#! [piety|E]\n$EFFECT_LIST_BULLET$本次整备档位未提供额外凯旋奖励"
+ rol_quest_carthage.1090.desc.success_4.high:0 "你穿过黑沙、亡军回响与一座死去帝国最后的誓约，把埋在迦太基灰烬下的答案带回了现世。任何见到这份战利的人都不会再把这场远征视为单纯掠夺——那是征服。\n\n$EFFECT_LIST_BULLET$获得圣物：#P $artifact_rol_ash_forged_mask$#!\n$EFFECT_LIST_BULLET$获得 #P +320#! [prestige|E]\n$EFFECT_LIST_BULLET$获得 #P +140#! [piety|E]\n$EFFECT_LIST_BULLET$因高等整备额外获得 #P +150#! [prestige|E] 与 #P +25#! [dynasty_prestige|E]"
+ rol_quest_carthage.1090.desc.success_4.supreme:0 "你穿过黑沙、亡军回响与一座死去帝国最后的誓约，把埋在迦太基灰烬下的答案带回了现世。任何见到这份战利的人都不会再把这场远征视为单纯掠夺——那是征服。\n\n$EFFECT_LIST_BULLET$获得圣物：#P $artifact_rol_ash_forged_mask$#!\n$EFFECT_LIST_BULLET$获得 #P +320#! [prestige|E]\n$EFFECT_LIST_BULLET$获得 #P +140#! [piety|E]\n$EFFECT_LIST_BULLET$因极致整备额外获得 #P +350#! [prestige|E] 与 #P +50#! [dynasty_prestige|E]"
  rol_quest_carthage.1090.desc.success_3:0 "你把这座埋藏圣所逼开到了绝大多数活人都难以承受的程度。哪怕尚未做到绝对掌控，这场远征也已开始改写后世讲述迦太基的方式。"
  rol_quest_carthage.1090.desc.success_2:0 "你在盐尘、死灰与战争幻象中稳住了整支队列，并带回了足以证明地下传说并非杜撰的证据。这不是完整胜利，却也是不容否认的胜利。"
  rol_quest_carthage.1090.desc.success_1:0 "你几乎是被遗迹放生般逃出了这场黑沙下探，却也带回了远超流言的东西。直到此刻，这场远征都更像一次被准许的幸存，而非真正轻松的凯旋。"

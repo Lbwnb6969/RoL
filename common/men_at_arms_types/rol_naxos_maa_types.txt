@@ -1,5 +1,7 @@
 ﻿# Relics of Legend - Naxos / Thera elite unit
 
+@provisions_cost_infantry_expensive = 12
+
 rol_adeptus_custudes = {
 	type = heavy_infantry
 	icon = rol_adeptus_custudes

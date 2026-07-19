@@ -55,7 +55,9 @@
  rol_quest_munich.1001.a.tt:0 "Only a full final resonance secures the claim. Otherwise the expedition fails and enters a 2-year cooldown."
 
  rol_quest_munich.1090.t:0 "Star-Crypt Expedition Summary"
- rol_quest_munich.1090.desc.success_4:0 "A legendary success: command, faith, and destiny aligned."
+ rol_quest_munich.1090.desc.success_4.standard:0 "A legendary success: command, faith, and destiny aligned.\n\n$EFFECT_LIST_BULLET$Gained relic: #P $artifact_rol_nibelung_star_sphere$#!\n$EFFECT_LIST_BULLET$Gained #P +300#! [piety|E]\n$EFFECT_LIST_BULLET$Gained #P +200#! [prestige|E]\n$EFFECT_LIST_BULLET$No extra triumph bonus came from expedition preparation"
+ rol_quest_munich.1090.desc.success_4.high:0 "A legendary success: command, faith, and destiny aligned.\n\n$EFFECT_LIST_BULLET$Gained relic: #P $artifact_rol_nibelung_star_sphere$#!\n$EFFECT_LIST_BULLET$Gained #P +300#! [piety|E]\n$EFFECT_LIST_BULLET$Gained #P +200#! [prestige|E]\n$EFFECT_LIST_BULLET$Gained #P +150#! [prestige|E] and #P +25#! [dynasty_prestige|E] from high preparation"
+ rol_quest_munich.1090.desc.success_4.supreme:0 "A legendary success: command, faith, and destiny aligned.\n\n$EFFECT_LIST_BULLET$Gained relic: #P $artifact_rol_nibelung_star_sphere$#!\n$EFFECT_LIST_BULLET$Gained #P +300#! [piety|E]\n$EFFECT_LIST_BULLET$Gained #P +200#! [prestige|E]\n$EFFECT_LIST_BULLET$Gained #P +350#! [prestige|E] and #P +50#! [dynasty_prestige|E] from supreme preparation"
  rol_quest_munich.1090.desc.success_3:0 "A brilliant result achieved through exceptional leadership."
  rol_quest_munich.1090.desc.success_2:0 "A costly but stable success."
  rol_quest_munich.1090.desc.success_1:0 "A narrow success won at heavy strain."

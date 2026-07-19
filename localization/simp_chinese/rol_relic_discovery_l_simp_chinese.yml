@@ -3,14 +3,6 @@
  rol_relic_discovery.1000.desc:0 "在罗马的修缮工程中，你的工人发现了一条被封死的古老通道。石壁上仍保留着军团记号与玛尔斯的徽印。"
  rol_relic_discovery.1000.a:0 "封锁现场，准备远征。"
 
- rol_relic_discovery.1100.t:0 "雅典娜的埋藏铭文"
- rol_relic_discovery.1100.desc:0 "在一处坍塌的阿提卡神龛中，学者找到了残缺铭文，暗示雅典娜的一件圣物仍埋藏在旧祭坛下方。"
- rol_relic_discovery.1100.a:0 "记录这则传说，留待日后追索。"
-
- rol_relic_discovery.1200.t:0 "豺狼封印"
- rol_relic_discovery.1200.desc:0 "在吉萨附近，一条葬祭回廊中出现了刻有豺狼徽印的石块。祭司低语说，封印之后沉睡着阿努比斯的遗物。"
- rol_relic_discovery.1200.a:0 "封存墓道，召集专家。"
-
  rol_relic_discovery.1300.t:0 "慕尼黑凶兆"
  rol_relic_discovery.1300.desc:0 "深秋的一场地震撕开了慕尼黑近郊的山谷。矿工从裂隙中带出散发苍蓝微光的温热冰层，而幸存者只反复念着一句话：星辰在大地之下转动。"
  rol_relic_discovery.1300.a:0 "召集可信同伴，立即下探。"

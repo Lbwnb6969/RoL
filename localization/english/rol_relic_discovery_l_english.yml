@@ -3,14 +3,6 @@
  rol_relic_discovery.1000.desc:0 "During repairs in Rome, your workers uncover a sealed ancient passage. Legionary markings and the sigil of Mars still remain on the stone."
  rol_relic_discovery.1000.a:0 "Seal the site and prepare an expedition."
 
- rol_relic_discovery.1100.t:0 "Athena's Buried Inscription"
- rol_relic_discovery.1100.desc:0 "In a collapsed Attican shrine, scholars recover text hinting at a sacred relic of Athena hidden below the old altar."
- rol_relic_discovery.1100.a:0 "Record the legend for a future quest."
-
- rol_relic_discovery.1200.t:0 "Seal of the Jackal"
- rol_relic_discovery.1200.desc:0 "Near Giza, a funerary corridor yields a carved stone bearing the jackal sigil. Priests whisper of an Anubis relic beyond the seal."
- rol_relic_discovery.1200.a:0 "Secure the chamber and gather specialists."
-
  rol_relic_discovery.1300.t:0 "The Munich Omen"
  rol_relic_discovery.1300.desc:0 "A deep autumn quake tears open a valley near Munich. Miners uncover strange warm ice glowing in pale blue, and survivors mutter only one phrase: the stars turn beneath the earth."
  rol_relic_discovery.1300.a:0 "Gather trusted companions and descend."

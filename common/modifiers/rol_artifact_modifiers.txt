@@ -1,11 +1,5 @@
 ﻿# Mythic Relics - 神器修正
 
-# 旧版测试用剑
-rol_sword_of_mars_modifier = {
-	prowess = 10
-	monthly_prestige_gain_mult = 0.10
-}
-
 # 罗马战神剑
 rol_blade_of_mars_modifier = {
 	martial = 9
@@ -35,7 +29,7 @@ rol_astrolabe_of_ocean_modifier = {
 	stewardship = 6
 	monthly_prestige_gain_mult = 0.15
 	character_travel_safety = 15
-	travel_speed_mult = 0.15
+	character_travel_speed_mult = 0.15
 	monthly_stewardship_lifestyle_xp_gain_mult = 0.15
 }
 # 突尼斯头具：迦太基的浴火金面

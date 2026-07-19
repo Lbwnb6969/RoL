@@ -1,10 +1,5 @@
 ﻿l_english:
 
- rol_sword_of_mars_name:0 "Sword of Mars"
- rol_sword_of_mars_description:0 "A legendary blade said to have been consecrated at the altar of Mars, god of war."
- artifact_rol_sword_of_mars:0 "Sword of Mars"
- artifact_rol_sword_of_mars_desc:0 "A venerable war relic hallowed in Mars' name."
-
  rol_blade_of_mars:0 "Blade of Mars"
  rol_blade_of_mars_desc:0 "A blood-red relic said to have once belonged to Mars himself."
  artifact_rol_blade_of_mars:0 "Blade of Mars"
@@ -61,7 +56,9 @@
  activity_rol_seek_mars_blade_conclusion_desc_fallback:0 "The expedition has concluded."
 
  rol_quest_rome.1090.t:0 "Expedition Aftermath"
- rol_quest_rome.1090.desc.success_4:0 "Your expedition is already spoken of as a model of command and resolve."
+ rol_quest_rome.1090.desc.success_4.standard:0 "Your expedition is already spoken of as a model of command and resolve.\n\n$EFFECT_LIST_BULLET$Gained relic: #P $artifact_rol_blade_of_mars$#!\n$EFFECT_LIST_BULLET$Gained #P +250#! [prestige|E]\n$EFFECT_LIST_BULLET$Gained #P +150#! [piety|E]\n$EFFECT_LIST_BULLET$No extra triumph bonus came from expedition preparation"
+ rol_quest_rome.1090.desc.success_4.high:0 "Your expedition is already spoken of as a model of command and resolve.\n\n$EFFECT_LIST_BULLET$Gained relic: #P $artifact_rol_blade_of_mars$#!\n$EFFECT_LIST_BULLET$Gained #P +250#! [prestige|E]\n$EFFECT_LIST_BULLET$Gained #P +150#! [piety|E]\n$EFFECT_LIST_BULLET$Gained #P +150#! [prestige|E] and #P +25#! [dynasty_prestige|E] from high preparation"
+ rol_quest_rome.1090.desc.success_4.supreme:0 "Your expedition is already spoken of as a model of command and resolve.\n\n$EFFECT_LIST_BULLET$Gained relic: #P $artifact_rol_blade_of_mars$#!\n$EFFECT_LIST_BULLET$Gained #P +250#! [prestige|E]\n$EFFECT_LIST_BULLET$Gained #P +150#! [piety|E]\n$EFFECT_LIST_BULLET$Gained #P +350#! [prestige|E] and #P +50#! [dynasty_prestige|E] from supreme preparation"
  rol_quest_rome.1090.desc.success_3:0 "You maintained control through danger and delivered a decisive result."
  rol_quest_rome.1090.desc.success_2:0 "You weathered serious setbacks but achieved your objective."
  rol_quest_rome.1090.desc.success_1:0 "You barely prevailed, but prevailed nonetheless."
@@ -133,6 +130,3 @@
  activity_rol_seek_mars_blade_province_desc:0 "Target location: [ROOT.Province.GetName]"
  rol_seek_mars_blade_cost_desc:0 "Expedition personnel, equipment, and ritual preparations"
  TRAVEL_NAME_FOR_activity_rol_seek_mars_blade:0 "[Character.GetFirstNameNoTooltip]'s Mars Expedition"
-
- rol_mars_intent:0 "$rol_relic_hunt_intent$"
- rol_mars_intent_desc:0 "$rol_relic_hunt_intent_desc$"

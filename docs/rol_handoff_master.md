@@ -250,5 +250,5 @@ effect rol_debug_grant_all_artifact_relics_effect = yes
 ## 8) 本地化收口基线
 
 - 当前规则：**活跃显示 key 必须双语齐全；死 key 直接删除，不再为“数量对齐”保留孤儿 loc。**
-- 已补齐重点：Rome 活跃按钮 / 过渡事件英文、Munich `1010~1022` 英文、Carthage 全链英文润色、`rol_mars_intent` 英文。
+- 已补齐重点：Rome 活跃按钮 / 过渡事件英文、Munich `1010~1022` 英文、Carthage 全链英文润色、统一 `rol_relic_hunt_intent` 英文。
 - 已清理重点：旧 `rol_seek_mars_blade_decision*`、Rome 旧终局残留孤儿描述 key。

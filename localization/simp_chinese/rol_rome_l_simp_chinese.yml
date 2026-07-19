@@ -109,7 +109,9 @@
  rol_quest_rome.1050.b:0 "按原计划强推。"
 
  rol_quest_rome.1090.t:0 "远征结算"
- rol_quest_rome.1090.desc.success_4:0 "你的远征几乎以完美姿态落幕。队伍纪律、战术执行与临场抉择无可挑剔，这将成为后世传唱的范本。"
+ rol_quest_rome.1090.desc.success_4.standard:0 "你的远征几乎以完美姿态落幕。队伍纪律、战术执行与临场抉择无可挑剔，这将成为后世传唱的范本。\n\n$EFFECT_LIST_BULLET$获得圣物：#P $artifact_rol_blade_of_mars$#!\n$EFFECT_LIST_BULLET$获得 #P +250#! [prestige|E]\n$EFFECT_LIST_BULLET$获得 #P +150#! [piety|E]\n$EFFECT_LIST_BULLET$本次整备档位未提供额外凯旋奖励"
+ rol_quest_rome.1090.desc.success_4.high:0 "你的远征几乎以完美姿态落幕。队伍纪律、战术执行与临场抉择无可挑剔，这将成为后世传唱的范本。\n\n$EFFECT_LIST_BULLET$获得圣物：#P $artifact_rol_blade_of_mars$#!\n$EFFECT_LIST_BULLET$获得 #P +250#! [prestige|E]\n$EFFECT_LIST_BULLET$获得 #P +150#! [piety|E]\n$EFFECT_LIST_BULLET$因高等整备额外获得 #P +150#! [prestige|E] 与 #P +25#! [dynasty_prestige|E]"
+ rol_quest_rome.1090.desc.success_4.supreme:0 "你的远征几乎以完美姿态落幕。队伍纪律、战术执行与临场抉择无可挑剔，这将成为后世传唱的范本。\n\n$EFFECT_LIST_BULLET$获得圣物：#P $artifact_rol_blade_of_mars$#!\n$EFFECT_LIST_BULLET$获得 #P +250#! [prestige|E]\n$EFFECT_LIST_BULLET$获得 #P +150#! [piety|E]\n$EFFECT_LIST_BULLET$因极致整备额外获得 #P +350#! [prestige|E] 与 #P +50#! [dynasty_prestige|E]"
  rol_quest_rome.1090.desc.success_3:0 "你以稳健而强势的节奏完成了远征。虽有险阻，但整体掌控良好，足以令追随者心悦诚服。"
  rol_quest_rome.1090.desc.success_2:0 "你在多次风险中维持住了局面。纵有损耗，这趟远征仍可被称作一次成功。"
  rol_quest_rome.1090.desc.success_1:0 "你以沉重代价完成了目标。伤亡与疲惫并存，但最终结果证明了坚持的价值。"
@@ -160,9 +162,6 @@
 
  rol_relic_hunt_intent:0 "夺取神兵"
  rol_relic_hunt_intent_desc:0 "你的唯一目标是追索并夺得传说神兵，哪怕要以鲜血开路。"
- rol_mars_intent:0 "$rol_relic_hunt_intent$"
- rol_mars_intent_desc:0 "$rol_relic_hunt_intent_desc$"
-
  rol_relic_activity_start_log:0 "[CHARACTER.GetShortUIName|U]率队进入地宫，远征正式开始。"
  rol_relic_activity_stage_log:0 "[CHARACTER.GetShortUIName|U]在地宫中推进了一段关键路程。"
  rol_relic_activity_success_log:0 "[CHARACTER.GetShortUIName|U]完成远征并取得传说遗物。"

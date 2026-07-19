@@ -36,14 +36,18 @@ rol_rome_quest_progress_effect = {
 		trigger_event = { id = rol_quest_rome.1050 days = 4 }
 	}
 
-	# 分阶段延时触发，避免事件连发挤在同一天
+	# 按固定顺序推进，避免重复或倒序触发叙事阶段
 	if = {
-		limit = { var:rol_rome_stage_count < 4 }
-		random_list = {
-			34 = { trigger_event = { id = rol_quest_rome.1002 days = 12 } }
-			33 = { trigger_event = { id = rol_quest_rome.1003 days = 16 } }
-			33 = { trigger_event = { id = rol_quest_rome.1004 days = 20 } }
-		}
+		limit = { var:rol_rome_stage_count = 1 }
+		trigger_event = { id = rol_quest_rome.1002 days = 12 }
+	}
+	else_if = {
+		limit = { var:rol_rome_stage_count = 2 }
+		trigger_event = { id = rol_quest_rome.1003 days = 16 }
+	}
+	else_if = {
+		limit = { var:rol_rome_stage_count = 3 }
+		trigger_event = { id = rol_quest_rome.1004 days = 20 }
 	}
 	else = {
 		trigger_event = { id = rol_quest_rome.1001 days = 10 }
@@ -158,6 +162,7 @@ rol_rome_quest_success_finalize_effect = {
 	rol_rome_store_success_result_effect = yes
 	rol_rome_apply_tiered_bonus_reward_effect = yes
 	rol_apply_expedition_preparation_success_bonus_effect = yes
+	rol_store_recent_expedition_preparation_effect = yes
 
 	add_character_flag = rol_mars_blade_claimed
 	rol_check_legend_circle_revelation_effect = yes
@@ -205,9 +210,6 @@ rol_rome_quest_fail_now_effect = {
 	rol_apply_mars_activity_cooldown_effect = yes
 	rol_rome_quest_abort_effect = yes
 	rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_mars_fail_now }
-	scope:activity ?= {
-		complete_activity = yes
-	}
 }
 
 rol_rome_quest_abort_effect = {

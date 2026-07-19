@@ -36,11 +36,12 @@ rol_naxos_quest_progress_effect = {
 	}
 
 	if = {
-		limit = { var:rol_naxos_stage_count < 3 }
-		random_list = {
-			50 = { trigger_event = { id = rol_quest_naxos.1002 days = 12 } }
-			50 = { trigger_event = { id = rol_quest_naxos.1003 days = 16 } }
-		}
+		limit = { var:rol_naxos_stage_count = 1 }
+		trigger_event = { id = rol_quest_naxos.1002 days = 12 }
+	}
+	else_if = {
+		limit = { var:rol_naxos_stage_count = 2 }
+		trigger_event = { id = rol_quest_naxos.1003 days = 16 }
 	}
 	else = {
 		trigger_event = { id = rol_quest_naxos.1001 days = 8 }
@@ -151,6 +152,7 @@ rol_naxos_quest_success_finalize_effect = {
 	rol_naxos_store_success_result_effect = yes
 	rol_naxos_apply_tiered_bonus_reward_effect = yes
 	rol_apply_expedition_preparation_success_bonus_effect = yes
+	rol_store_recent_expedition_preparation_effect = yes
 
 	add_character_flag = rol_naxos_unit_unlocked
 	rol_check_legend_circle_revelation_effect = yes

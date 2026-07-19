@@ -73,7 +73,9 @@
  rol_quest_sevilla.1001.a.tt:0 "Only a full final alignment lets you bring the omen home. Otherwise the expedition fails and enters a 2-year cooldown."
 
  rol_quest_sevilla.1090.t:0 "Ocean Expedition Summary"
- rol_quest_sevilla.1090.desc.success_4:0 "A legendary voyage. You broke the storm-wall, mastered the mirror-sea, and returned with a relic fit to reorder the age of sail."
+ rol_quest_sevilla.1090.desc.success_4.standard:0 "A legendary voyage. You broke the storm-wall, mastered the mirror-sea, and returned with a relic fit to reorder the age of sail.\n\n$EFFECT_LIST_BULLET$Gained relic: #P $artifact_rol_astrolabe_of_ocean$#!\n$EFFECT_LIST_BULLET$Gained #P +350#! [prestige|E]\n$EFFECT_LIST_BULLET$Gained #P +150#! [gold|E]\n$EFFECT_LIST_BULLET$No extra triumph bonus came from expedition preparation"
+ rol_quest_sevilla.1090.desc.success_4.high:0 "A legendary voyage. You broke the storm-wall, mastered the mirror-sea, and returned with a relic fit to reorder the age of sail.\n\n$EFFECT_LIST_BULLET$Gained relic: #P $artifact_rol_astrolabe_of_ocean$#!\n$EFFECT_LIST_BULLET$Gained #P +350#! [prestige|E]\n$EFFECT_LIST_BULLET$Gained #P +150#! [gold|E]\n$EFFECT_LIST_BULLET$Gained #P +150#! [prestige|E] and #P +25#! [dynasty_prestige|E] from high preparation"
+ rol_quest_sevilla.1090.desc.success_4.supreme:0 "A legendary voyage. You broke the storm-wall, mastered the mirror-sea, and returned with a relic fit to reorder the age of sail.\n\n$EFFECT_LIST_BULLET$Gained relic: #P $artifact_rol_astrolabe_of_ocean$#!\n$EFFECT_LIST_BULLET$Gained #P +350#! [prestige|E]\n$EFFECT_LIST_BULLET$Gained #P +150#! [gold|E]\n$EFFECT_LIST_BULLET$Gained #P +350#! [prestige|E] and #P +50#! [dynasty_prestige|E] from supreme preparation"
  rol_quest_sevilla.1090.desc.success_3:0 "A brilliant expedition whose discipline and nerve turned impossible waters into a navigable triumph."
  rol_quest_sevilla.1090.desc.success_2:0 "A costly but valuable success that proved your fleet could endure the world's edge."
  rol_quest_sevilla.1090.desc.success_1:0 "You survived by narrow margins, but your banner still returned with glory."

@@ -1,6 +1,6 @@
 ﻿l_simp_chinese:
- ARTIFACT_RARITY_AND_SLOT_TYPE:0 "[ARTIFACT.Custom('RolArtifactRarityAndSlotType')]"
  rol_artifact_rarity_slot_legendary_weapon:0 "@rol_legendary_icon! #color:{0.9,0.9,0} 传奇级武器#!"
  rol_artifact_rarity_slot_legendary_regalia:0 "@rol_legendary_icon! #color:{0.9,0.9,0} 传奇级礼器#!"
  rol_artifact_rarity_slot_legendary_trinket:0 "@rol_legendary_icon! #color:{0.9,0.9,0} 传奇级饰品#!"
- rol_artifact_rarity_slot_default:0 "[ARTIFACT.Custom('ArtifactRarity')] [ARTIFACT.Custom('ArtifactType')]"
+ rol_artifact_rarity_slot_default:0 "[Artifact.GetRarityAndSlotType]"
+ rol_artifact_rarity_type_default:0 "[Artifact.GetRarityAndType]"

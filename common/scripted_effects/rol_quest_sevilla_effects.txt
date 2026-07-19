@@ -148,6 +148,7 @@ rol_sevilla_quest_success_finalize_effect = {
 	rol_sevilla_store_success_result_effect = yes
 	rol_sevilla_apply_tiered_bonus_reward_effect = yes
 	rol_apply_expedition_preparation_success_bonus_effect = yes
+	rol_store_recent_expedition_preparation_effect = yes
 
 	add_character_flag = rol_astrolabe_of_ocean_claimed
 	rol_check_legend_circle_revelation_effect = yes
@@ -194,9 +195,6 @@ rol_sevilla_quest_fail_now_effect = {
 	rol_apply_astrolabe_activity_cooldown_effect = yes
 	rol_sevilla_quest_abort_effect = yes
 	rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_astrolabe_fail_now }
-	scope:activity ?= {
-		complete_activity = yes
-	}
 }
 
 rol_sevilla_quest_abort_effect = {

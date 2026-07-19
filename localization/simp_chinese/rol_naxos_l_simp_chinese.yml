@@ -12,7 +12,7 @@
  rol_quest_naxos.1000.a.odds_elite_tt:0 "此举对当前试炼可谓 #P把握极高#!。"
  rol_quest_naxos.1000.a.odds_high_tt:0 "此举目前 #P胜算较高#!。"
  rol_quest_naxos.1000.a.odds_low_tt:0 "此举仍是 #N高风险豪赌#!。"
- rol_quest_naxos.1000.b.tt:0 "[learning|E]检定：成功可稳定推进。"
+ rol_quest_naxos.1000.b.tt:0 "[learning|E]检定：成功可完整同步第一道封印。"
  rol_quest_naxos.1000.c.tt:0 "中止远征并进入2年冷却。"
 
  rol_quest_naxos.1010.t:0 "首封已破"
@@ -59,7 +59,7 @@
  rol_quest_naxos.1003.a.odds_elite_tt:0 "此举对当前试炼可谓 #P把握极高#!。"
  rol_quest_naxos.1003.a.odds_high_tt:0 "此举目前 #P胜算较高#!。"
  rol_quest_naxos.1003.a.odds_low_tt:0 "此举仍是 #N高风险豪赌#!。"
- rol_quest_naxos.1003.b.tt:0 "[intrigue|E]检定：潜入阵后切断守门中枢。"
+ rol_quest_naxos.1003.b.tt:0 "[intrigue|E]检定：潜入阵后切断守门中枢，完整同步终门。"
  rol_quest_naxos.1003.b.odds_elite_tt:0 "此举对当前试炼可谓 #P把握极高#!。"
  rol_quest_naxos.1003.b.odds_high_tt:0 "此举目前 #P胜算较高#!。"
  rol_quest_naxos.1003.b.odds_low_tt:0 "此举仍是 #N高风险豪赌#!。"
@@ -90,7 +90,9 @@
  rol_quest_naxos.1001.a.tt:0 "唯有最终裁决真正承认你的号令，你才算完成此行；否则本次远征失败并进入2年冷却。"
 
  rol_quest_naxos.1090.t:0 "泰拉远征结算"
- rol_quest_naxos.1090.desc.success_4:0 "这是一场近乎神话的胜利。地下宫殿如今响应你的命令。"
+ rol_quest_naxos.1090.desc.success_4.standard:0 "这是一场近乎神话的胜利。地下宫殿如今响应你的命令。\n\n$EFFECT_LIST_BULLET$解锁招募：#P $rol_adeptus_custudes$#!\n$EFFECT_LIST_BULLET$获得 #P +220#! [prestige|E]\n$EFFECT_LIST_BULLET$获得 #P +80#! [gold|E]\n$EFFECT_LIST_BULLET$本次整备档位未提供额外凯旋奖励"
+ rol_quest_naxos.1090.desc.success_4.high:0 "这是一场近乎神话的胜利。地下宫殿如今响应你的命令。\n\n$EFFECT_LIST_BULLET$解锁招募：#P $rol_adeptus_custudes$#!\n$EFFECT_LIST_BULLET$获得 #P +220#! [prestige|E]\n$EFFECT_LIST_BULLET$获得 #P +80#! [gold|E]\n$EFFECT_LIST_BULLET$因高等整备额外获得 #P +150#! [prestige|E] 与 #P +25#! [dynasty_prestige|E]"
+ rol_quest_naxos.1090.desc.success_4.supreme:0 "这是一场近乎神话的胜利。地下宫殿如今响应你的命令。\n\n$EFFECT_LIST_BULLET$解锁招募：#P $rol_adeptus_custudes$#!\n$EFFECT_LIST_BULLET$获得 #P +220#! [prestige|E]\n$EFFECT_LIST_BULLET$获得 #P +80#! [gold|E]\n$EFFECT_LIST_BULLET$因极致整备额外获得 #P +350#! [prestige|E] 与 #P +50#! [dynasty_prestige|E]"
  rol_quest_naxos.1090.desc.success_3:0 "你的掌控相当出色，但仍未达到完美闭环。"
  rol_quest_naxos.1090.desc.success_2:0 "你以沉重代价推进到终点。"
  rol_quest_naxos.1090.desc.success_1:0 "你勉强保全了远征队。"

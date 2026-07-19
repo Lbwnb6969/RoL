@@ -146,7 +146,6 @@
 ### 6.2 仍在用原版占位的地方
 - Sevilla artifact 图标：已切到 `rol_astrolabe_of_ocean.dds`
 - `@rol_legendary_icon!` 已切到 `rol_legendary_icon.dds`
-- Athena / Anubis discovery 仍读原版 scene
 
 ### 6.3 仍缺的活动图标族
 - `activity_rol_seek_nibelung_sphere*`

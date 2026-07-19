@@ -71,7 +71,9 @@
  rol_quest_sevilla.1001.a.tt:0 "唯有最终回响完整归于你手，你才能把这道异象带回人间；否则本次远征失败并进入2年冷却。"
 
  rol_quest_sevilla.1090.t:0 "大洋远征结算"
- rol_quest_sevilla.1090.desc.success_4:0 "这是一场传奇航行。你突破风墙，驾驭镜海，并带回了一件足以改写航海时代的圣物。"
+ rol_quest_sevilla.1090.desc.success_4.standard:0 "这是一场传奇航行。你突破风墙，驾驭镜海，并带回了一件足以改写航海时代的圣物。\n\n$EFFECT_LIST_BULLET$获得圣物：#P $artifact_rol_astrolabe_of_ocean$#!\n$EFFECT_LIST_BULLET$获得 #P +350#! [prestige|E]\n$EFFECT_LIST_BULLET$获得 #P +150#! [gold|E]\n$EFFECT_LIST_BULLET$本次整备档位未提供额外凯旋奖励"
+ rol_quest_sevilla.1090.desc.success_4.high:0 "这是一场传奇航行。你突破风墙，驾驭镜海，并带回了一件足以改写航海时代的圣物。\n\n$EFFECT_LIST_BULLET$获得圣物：#P $artifact_rol_astrolabe_of_ocean$#!\n$EFFECT_LIST_BULLET$获得 #P +350#! [prestige|E]\n$EFFECT_LIST_BULLET$获得 #P +150#! [gold|E]\n$EFFECT_LIST_BULLET$因高等整备额外获得 #P +150#! [prestige|E] 与 #P +25#! [dynasty_prestige|E]"
+ rol_quest_sevilla.1090.desc.success_4.supreme:0 "这是一场传奇航行。你突破风墙，驾驭镜海，并带回了一件足以改写航海时代的圣物。\n\n$EFFECT_LIST_BULLET$获得圣物：#P $artifact_rol_astrolabe_of_ocean$#!\n$EFFECT_LIST_BULLET$获得 #P +350#! [prestige|E]\n$EFFECT_LIST_BULLET$获得 #P +150#! [gold|E]\n$EFFECT_LIST_BULLET$因极致整备额外获得 #P +350#! [prestige|E] 与 #P +50#! [dynasty_prestige|E]"
  rol_quest_sevilla.1090.desc.success_3:0 "这是一场极为出色的远征，你以纪律与胆识把不可能的海域化为可通行之路。"
  rol_quest_sevilla.1090.desc.success_2:0 "你以高昂代价赢得了胜利，至少证明你的舰队足以抵达世界尽头。"
  rol_quest_sevilla.1090.desc.success_1:0 "你以微弱优势幸存下来，但旗帜依旧带着荣耀返回。"

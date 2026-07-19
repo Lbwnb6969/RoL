@@ -1,23 +1,4 @@
-﻿# Mythic Relics - 测试神器创建效果（旧测试保留）
-# 调用方式（角色作用域）：rol_create_sword_of_mars_effect = yes
-rol_create_sword_of_mars_effect = {
-	create_artifact = {
-		name = rol_sword_of_mars_name
-		description = rol_sword_of_mars_description
-		creator = root
-		type = rol_sword_of_mars
-		visuals = sword
-		rarity = illustrious
-		template = general_unique_template
-		modifier = rol_sword_of_mars_modifier
-		decaying = no
-		save_scope_as = newly_created_artifact
-	}
-
-	# create_artifact 在角色作用域下会自动归属给当前角色
-}
-
-# Mythic Relics - 通用神兵创建模板（稳定版）
+﻿# Mythic Relics - 通用神兵创建模板（稳定版）
 # 调用方式（角色作用域）：
 # rol_create_relic_artifact_effect = {
 # 	NAME_KEY = artifact_rol_blade_of_mars

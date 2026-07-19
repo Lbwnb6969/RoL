@@ -14,7 +14,7 @@
  rol_quest_naxos.1000.a.odds_elite_tt:0 "This approach has a #P commanding grip#! on the trial."
  rol_quest_naxos.1000.a.odds_high_tt:0 "This approach gives you #P favorable odds#!."
  rol_quest_naxos.1000.a.odds_low_tt:0 "This approach is a #N dangerous gamble#!."
- rol_quest_naxos.1000.b.tt:0 "[learning|E] check: success stabilizes progress."
+ rol_quest_naxos.1000.b.tt:0 "[learning|E] check: success fully synchronizes the first seal."
  rol_quest_naxos.1000.c.tt:0 "Abort the expedition and trigger a 2-year cooldown."
 
  rol_quest_naxos.1010.t:0 "First Seal Breached"
@@ -61,7 +61,7 @@
  rol_quest_naxos.1003.a.odds_elite_tt:0 "This approach has a #P commanding grip#! on the trial."
  rol_quest_naxos.1003.a.odds_high_tt:0 "This approach gives you #P favorable odds#!."
  rol_quest_naxos.1003.a.odds_low_tt:0 "This approach is a #N dangerous gamble#!."
- rol_quest_naxos.1003.b.tt:0 "[intrigue|E] check: slip behind the array and sever its core."
+ rol_quest_naxos.1003.b.tt:0 "[intrigue|E] check: slip behind the array, sever its core, and fully synchronize the gate."
  rol_quest_naxos.1003.b.odds_elite_tt:0 "This approach has a #P commanding grip#! on the trial."
  rol_quest_naxos.1003.b.odds_high_tt:0 "This approach gives you #P favorable odds#!."
  rol_quest_naxos.1003.b.odds_low_tt:0 "This approach is a #N dangerous gamble#!."
@@ -92,7 +92,9 @@
  rol_quest_naxos.1001.a.tt:0 "Only a full final authorization answers your command. Otherwise the expedition fails and enters a 2-year cooldown."
 
  rol_quest_naxos.1090.t:0 "Thera Expedition Summary"
- rol_quest_naxos.1090.desc.success_4:0 "A near-mythic success. The underground palace now answers your command."
+ rol_quest_naxos.1090.desc.success_4.standard:0 "A near-mythic success. The underground palace now answers your command.\n\n$EFFECT_LIST_BULLET$Unlocked recruitment: #P $rol_adeptus_custudes$#!\n$EFFECT_LIST_BULLET$Gained #P +220#! [prestige|E]\n$EFFECT_LIST_BULLET$Gained #P +80#! [gold|E]\n$EFFECT_LIST_BULLET$No extra triumph bonus came from expedition preparation"
+ rol_quest_naxos.1090.desc.success_4.high:0 "A near-mythic success. The underground palace now answers your command.\n\n$EFFECT_LIST_BULLET$Unlocked recruitment: #P $rol_adeptus_custudes$#!\n$EFFECT_LIST_BULLET$Gained #P +220#! [prestige|E]\n$EFFECT_LIST_BULLET$Gained #P +80#! [gold|E]\n$EFFECT_LIST_BULLET$Gained #P +150#! [prestige|E] and #P +25#! [dynasty_prestige|E] from high preparation"
+ rol_quest_naxos.1090.desc.success_4.supreme:0 "A near-mythic success. The underground palace now answers your command.\n\n$EFFECT_LIST_BULLET$Unlocked recruitment: #P $rol_adeptus_custudes$#!\n$EFFECT_LIST_BULLET$Gained #P +220#! [prestige|E]\n$EFFECT_LIST_BULLET$Gained #P +80#! [gold|E]\n$EFFECT_LIST_BULLET$Gained #P +350#! [prestige|E] and #P +50#! [dynasty_prestige|E] from supreme preparation"
  rol_quest_naxos.1090.desc.success_3:0 "Strong control, but short of perfect closure."
  rol_quest_naxos.1090.desc.success_2:0 "You reached the end at severe cost."
  rol_quest_naxos.1090.desc.success_1:0 "You barely extracted the force intact."

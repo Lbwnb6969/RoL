@@ -7,7 +7,7 @@ A narrative relic-hunting mod for **Crusader Kings III** that adds handcrafted e
 > 当前 `descriptor.mod`：
 > - `name = "Relics of Legends"`
 > - `version = "0.91"`
-> - `supported_version = "1.18.4"`
+> - `supported_version = "1.19.0.6"`
 > - `remote_file_id = "3692558151"`
 
 ---
@@ -179,7 +179,7 @@ Localization policy:
 ## Current Compatibility Snapshot
 
 From `descriptor.mod`:
-- supported CK3 version: **1.18.4**
+- supported CK3 version: **1.19.0.6**
 
 If CK3 updates and something breaks, first re-check:
 - activity UI behavior

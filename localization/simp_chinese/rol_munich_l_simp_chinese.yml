@@ -73,7 +73,9 @@
  rol_quest_munich.1001.a.tt:0 "唯有最终共鸣真正完成，你才能带回此行的答案；否则本次远征失败并进入2年冷却。"
 
  rol_quest_munich.1090.t:0 "星界远征结算"
- rol_quest_munich.1090.desc.success_4:0 "这是一场近乎神话的完美远征。你不仅夺得圣物，还让整个巴伐利亚见证了违反常理的天象。"
+ rol_quest_munich.1090.desc.success_4.standard:0 "这是一场近乎神话的完美远征。你不仅夺得圣物，还让整个巴伐利亚见证了违反常理的天象。\n\n$EFFECT_LIST_BULLET$获得圣物：#P $artifact_rol_nibelung_star_sphere$#!\n$EFFECT_LIST_BULLET$获得 #P +300#! [piety|E]\n$EFFECT_LIST_BULLET$获得 #P +200#! [prestige|E]\n$EFFECT_LIST_BULLET$本次整备档位未提供额外凯旋奖励"
+ rol_quest_munich.1090.desc.success_4.high:0 "这是一场近乎神话的完美远征。你不仅夺得圣物，还让整个巴伐利亚见证了违反常理的天象。\n\n$EFFECT_LIST_BULLET$获得圣物：#P $artifact_rol_nibelung_star_sphere$#!\n$EFFECT_LIST_BULLET$获得 #P +300#! [piety|E]\n$EFFECT_LIST_BULLET$获得 #P +200#! [prestige|E]\n$EFFECT_LIST_BULLET$因高等整备额外获得 #P +150#! [prestige|E] 与 #P +25#! [dynasty_prestige|E]"
+ rol_quest_munich.1090.desc.success_4.supreme:0 "这是一场近乎神话的完美远征。你不仅夺得圣物，还让整个巴伐利亚见证了违反常理的天象。\n\n$EFFECT_LIST_BULLET$获得圣物：#P $artifact_rol_nibelung_star_sphere$#!\n$EFFECT_LIST_BULLET$获得 #P +300#! [piety|E]\n$EFFECT_LIST_BULLET$获得 #P +200#! [prestige|E]\n$EFFECT_LIST_BULLET$因极致整备额外获得 #P +350#! [prestige|E] 与 #P +50#! [dynasty_prestige|E]"
  rol_quest_munich.1090.desc.success_3:0 "你以卓越判断穿越了冰封与幻象，星界球承认了你的资格。"
  rol_quest_munich.1090.desc.success_2:0 "尽管过程凶险，你仍稳住了局势，成功带回古老礼器。"
  rol_quest_munich.1090.desc.success_1:0 "你勉强完成了远征。代价沉重，但圣物终究归于你手。"

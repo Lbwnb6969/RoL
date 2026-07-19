@@ -316,7 +316,9 @@ rol_quest_carthage.1090 = {
 	title = rol_quest_carthage.1090.t
 	desc = {
 		first_valid = {
-			triggered_desc = { trigger = { has_character_flag = rol_recent_carthage_quest_success has_variable = rol_recent_relic_result_tier var:rol_recent_relic_result_tier >= 4 } desc = rol_quest_carthage.1090.desc.success_4 }
+			triggered_desc = { trigger = { has_character_flag = rol_recent_carthage_quest_success has_character_flag = rol_recent_expedition_preparation_supreme has_variable = rol_recent_relic_result_tier var:rol_recent_relic_result_tier >= 4 } desc = rol_quest_carthage.1090.desc.success_4.supreme }
+			triggered_desc = { trigger = { has_character_flag = rol_recent_carthage_quest_success has_character_flag = rol_recent_expedition_preparation_high has_variable = rol_recent_relic_result_tier var:rol_recent_relic_result_tier >= 4 } desc = rol_quest_carthage.1090.desc.success_4.high }
+			triggered_desc = { trigger = { has_character_flag = rol_recent_carthage_quest_success has_variable = rol_recent_relic_result_tier var:rol_recent_relic_result_tier >= 4 } desc = rol_quest_carthage.1090.desc.success_4.standard }
 			triggered_desc = { trigger = { has_character_flag = rol_recent_carthage_quest_success has_variable = rol_recent_relic_result_tier var:rol_recent_relic_result_tier >= 3 } desc = rol_quest_carthage.1090.desc.success_3 }
 			triggered_desc = { trigger = { has_character_flag = rol_recent_carthage_quest_success has_variable = rol_recent_relic_result_tier var:rol_recent_relic_result_tier >= 2 } desc = rol_quest_carthage.1090.desc.success_2 }
 			triggered_desc = { trigger = { has_character_flag = rol_recent_carthage_quest_success } desc = rol_quest_carthage.1090.desc.success_1 }
