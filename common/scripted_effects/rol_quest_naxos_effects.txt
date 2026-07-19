@@ -32,7 +32,8 @@ rol_naxos_quest_progress_effect = {
 			var:rol_naxos_stage_count < 3
 		}
 		add_character_flag = rol_naxos_guest_event_fired
-		trigger_event = { id = rol_quest_naxos.1050 days = 4 }
+		add_character_flag = rol_rival_route_naxos
+		rol_try_rival_interlude_effect = { FALLBACK_EVENT = rol_quest_naxos.1050 }
 	}
 
 	if = {

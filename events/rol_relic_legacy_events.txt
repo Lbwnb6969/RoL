@@ -1,0 +1,48 @@
+﻿namespace = rol_relic_legacy
+
+# First holder event: the relic asks its owner to embody its legend.
+rol_relic_legacy.0001 = {
+	type = character_event title = rol_relic_legacy.0001.t desc = rol_relic_legacy.0001.desc theme = stewardship
+	trigger = { rol_has_true_artifact_relic_trigger = yes NOT = { has_character_flag = rol_relic_legacy_duty_cooldown } }
+	immediate = { random_character_artifact = { limit = { OR = { artifact_type = rol_blade_of_mars artifact_type = rol_nibelung_star_sphere artifact_type = rol_astrolabe_of_ocean artifact_type = rol_ash_forged_mask } } save_scope_as = rol_legacy_artifact } add_character_flag = { flag = rol_relic_legacy_duty_cooldown years = 5 } }
+	option = { name = rol_relic_legacy.0001.a flavor = rol_relic_legacy.0001.a.flavor add_prestige = 100 add_stress = 15 }
+	option = { name = rol_relic_legacy.0001.b flavor = rol_relic_legacy.0001.b.flavor add_piety = 75 add_stress = -15 }
+}
+
+# Second holder event: court scholars or warriors ask to use the relic.
+rol_relic_legacy.0002 = {
+	type = character_event title = rol_relic_legacy.0002.t desc = rol_relic_legacy.0002.desc theme = learning
+	trigger = { rol_has_true_artifact_relic_trigger = yes NOT = { has_character_flag = rol_relic_legacy_study_cooldown } }
+	immediate = { random_character_artifact = { limit = { OR = { artifact_type = rol_blade_of_mars artifact_type = rol_nibelung_star_sphere artifact_type = rol_astrolabe_of_ocean artifact_type = rol_ash_forged_mask } } save_scope_as = rol_legacy_artifact } add_character_flag = { flag = rol_relic_legacy_study_cooldown years = 5 } }
+	option = { name = rol_relic_legacy.0002.a flavor = rol_relic_legacy.0002.a.flavor add_gold = -50 add_prestige = 125 }
+	option = { name = rol_relic_legacy.0002.b flavor = rol_relic_legacy.0002.b.flavor add_piety = 50 }
+}
+
+rol_relic_legacy.0003 = {
+	type = character_event title = rol_relic_legacy.0003.t desc = rol_relic_legacy.0003.desc theme = diplomacy
+	trigger = { exists = scope:rol_legacy_artifact }
+	option = { name = rol_relic_legacy.0003.a flavor = rol_relic_legacy.0003.a.flavor add_prestige = 75 }
+}
+
+rol_relic_legacy.0101 = {
+	type = character_event title = rol_relic_legacy.0101.t desc = rol_relic_legacy.0101.desc theme = martial
+	trigger = { has_character_flag = rol_naxos_unit_unlocked NOT = { has_character_flag = rol_naxos_review_cooldown } }
+	immediate = { add_character_flag = { flag = rol_naxos_review_cooldown years = 5 } }
+	option = { name = rol_relic_legacy.0101.a flavor = rol_relic_legacy.0101.a.flavor add_prestige = 100 add_gold = -40 }
+	option = { name = rol_relic_legacy.0101.b flavor = rol_relic_legacy.0101.b.flavor add_piety = 60 }
+}
+
+rol_relic_legacy.0102 = {
+	type = character_event title = rol_relic_legacy.0102.t desc = rol_relic_legacy.0102.desc theme = martial
+	trigger = { has_character_flag = rol_naxos_unit_unlocked NOT = { has_character_flag = rol_naxos_veteran_cooldown } }
+	immediate = { add_character_flag = { flag = rol_naxos_veteran_cooldown years = 5 } }
+	option = { name = rol_relic_legacy.0102.a flavor = rol_relic_legacy.0102.a.flavor add_gold = -75 add_prestige = 150 }
+	option = { name = rol_relic_legacy.0102.b flavor = rol_relic_legacy.0102.b.flavor add_stress = -20 }
+}
+
+rol_relic_legacy.0103 = {
+	type = character_event title = rol_relic_legacy.0103.t desc = rol_relic_legacy.0103.desc theme = martial
+	trigger = { is_ai = no is_alive = yes NOT = { has_character_flag = rol_naxos_unit_unlocked } }
+	option = { name = rol_relic_legacy.0103.a flavor = rol_relic_legacy.0103.a.flavor trigger = { prestige >= 500 martial >= 10 } add_prestige = -500 add_gold = -100 add_character_flag = rol_naxos_unit_unlocked }
+	option = { name = rol_relic_legacy.0103.b flavor = rol_relic_legacy.0103.b.flavor add_piety = 50 }
+}

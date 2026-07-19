@@ -32,7 +32,8 @@ rol_munich_quest_progress_effect = {
 			var:rol_munich_stage_count < 2
 		}
 		add_character_flag = rol_nibelung_guest_event_fired
-		trigger_event = { id = rol_quest_munich.1050 days = 4 }
+		add_character_flag = rol_rival_route_nibelung
+		rol_try_rival_interlude_effect = { FALLBACK_EVENT = rol_quest_munich.1050 }
 	}
 
 	if = {

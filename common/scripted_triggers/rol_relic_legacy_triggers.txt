@@ -1,0 +1,10 @@
+﻿rol_has_true_artifact_relic_trigger = {
+	any_character_artifact = {
+		OR = {
+			artifact_type = rol_blade_of_mars
+			artifact_type = rol_nibelung_star_sphere
+			artifact_type = rol_astrolabe_of_ocean
+			artifact_type = rol_ash_forged_mask
+		}
+	}
+}

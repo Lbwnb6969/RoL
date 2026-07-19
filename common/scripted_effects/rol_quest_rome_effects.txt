@@ -33,7 +33,8 @@ rol_rome_quest_progress_effect = {
 			var:rol_rome_stage_count < 4
 		}
 		add_character_flag = rol_mars_guest_event_fired
-		trigger_event = { id = rol_quest_rome.1050 days = 4 }
+		add_character_flag = rol_rival_route_mars
+		rol_try_rival_interlude_effect = { FALLBACK_EVENT = rol_quest_rome.1050 }
 	}
 
 	# 按固定顺序推进，避免重复或倒序触发叙事阶段

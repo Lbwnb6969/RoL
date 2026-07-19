@@ -34,6 +34,7 @@ activity_rol_seek_nibelung_sphere = {
 	on_start = {
 		scope:host = {
 			rol_relic_clear_recent_result_effect = yes
+			rol_clear_rival_route_effect = yes
 			rol_set_context_nibelung_regalia_effect = yes
 
 			if = {

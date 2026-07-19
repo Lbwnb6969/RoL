@@ -1,0 +1,6 @@
+﻿# Relics of Legend - collectible counterfeits
+rol_counterfeit_blade_of_mars = { slot = primary_armament default_visuals = rol_blade_of_mars_visual can_reforge = no }
+rol_counterfeit_nibelung_sphere = { slot = regalia default_visuals = rol_nibelung_star_sphere_visual can_reforge = no }
+rol_counterfeit_astrolabe = { slot = miscellaneous default_visuals = rol_astrolabe_of_ocean_visual can_reforge = no }
+rol_counterfeit_ash_mask = { slot = helmet default_visuals = rol_ash_forged_mask_visual can_reforge = no }
+rol_counterfeit_naxos_token = { slot = miscellaneous default_visuals = rol_nibelung_star_sphere_visual can_reforge = no }

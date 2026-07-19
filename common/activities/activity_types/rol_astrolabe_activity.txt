@@ -34,6 +34,7 @@ activity_rol_seek_astrolabe_of_ocean = {
 	on_start = {
 		scope:host = {
 			rol_relic_clear_recent_result_effect = yes
+			rol_clear_rival_route_effect = yes
 			rol_set_context_astrolabe_accessory_effect = yes
 
 			if = {

@@ -1,0 +1,39 @@
+﻿rol_try_rival_interlude_effect = {
+	random_list = {
+		40 = {
+			scope:activity = {
+				random_attending_character = {
+					limit = { this != root is_alive = yes }
+					save_scope_as = rol_expedition_rival
+				}
+			}
+			trigger_event = { id = rol_rival.1000 days = 4 }
+		}
+		60 = { trigger_event = { id = $FALLBACK_EVENT$ days = 4 } rol_clear_rival_route_effect = yes }
+	}
+}
+
+rol_create_counterfeit_effect = {
+	if = { limit = { has_character_flag = rol_rival_route_mars } create_artifact = { name = artifact_rol_counterfeit_blade_of_mars description = artifact_rol_counterfeit_blade_of_mars_desc creator = scope:rol_expedition_rival type = rol_counterfeit_blade_of_mars visuals = rol_blade_of_mars_visual rarity = common template = general_unique_template modifier = rol_counterfeit_relic_modifier decaying = no } }
+	else_if = { limit = { has_character_flag = rol_rival_route_nibelung } create_artifact = { name = artifact_rol_counterfeit_nibelung_sphere description = artifact_rol_counterfeit_nibelung_sphere_desc creator = scope:rol_expedition_rival type = rol_counterfeit_nibelung_sphere visuals = rol_nibelung_star_sphere_visual rarity = common template = general_unique_template modifier = rol_counterfeit_relic_modifier decaying = no } }
+	else_if = { limit = { has_character_flag = rol_rival_route_astrolabe } create_artifact = { name = artifact_rol_counterfeit_astrolabe description = artifact_rol_counterfeit_astrolabe_desc creator = scope:rol_expedition_rival type = rol_counterfeit_astrolabe visuals = rol_astrolabe_of_ocean_visual rarity = common template = general_unique_template modifier = rol_counterfeit_relic_modifier decaying = no } }
+	else_if = { limit = { has_character_flag = rol_rival_route_carthage } create_artifact = { name = artifact_rol_counterfeit_ash_mask description = artifact_rol_counterfeit_ash_mask_desc creator = scope:rol_expedition_rival type = rol_counterfeit_ash_mask visuals = rol_ash_forged_mask_visual rarity = common template = general_unique_template modifier = rol_counterfeit_relic_modifier decaying = no } }
+	else = { create_artifact = { name = artifact_rol_counterfeit_naxos_token description = artifact_rol_counterfeit_naxos_token_desc creator = scope:rol_expedition_rival type = rol_counterfeit_naxos_token visuals = rol_nibelung_star_sphere_visual rarity = common template = general_unique_template modifier = rol_counterfeit_relic_modifier decaying = no } }
+}
+
+# A convincing counterfeit ends this expedition, but does not set the unique-relic claim flag.
+rol_rival_counterfeit_failure_effect = {
+	if = { limit = { has_character_flag = rol_rival_route_mars } rol_rome_quest_fail_now_effect = yes }
+	else_if = { limit = { has_character_flag = rol_rival_route_nibelung } rol_munich_quest_fail_now_effect = yes }
+	else_if = { limit = { has_character_flag = rol_rival_route_astrolabe } rol_sevilla_quest_fail_now_effect = yes }
+	else_if = { limit = { has_character_flag = rol_rival_route_carthage } rol_carthage_quest_fail_now_effect = yes }
+	else = { rol_naxos_quest_fail_now_effect = yes }
+}
+
+rol_clear_rival_route_effect = {
+	remove_character_flag = rol_rival_route_mars
+	remove_character_flag = rol_rival_route_nibelung
+	remove_character_flag = rol_rival_route_astrolabe
+	remove_character_flag = rol_rival_route_carthage
+	remove_character_flag = rol_rival_route_naxos
+}

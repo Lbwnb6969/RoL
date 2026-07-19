@@ -34,6 +34,7 @@ activity_rol_seek_mars_blade = {
 		scope:host = {
 			# 清理上一次结算残留并设置本次上下文
 			rol_relic_clear_recent_result_effect = yes
+			rol_clear_rival_route_effect = yes
 			rol_set_context_mars_weapon_effect = yes
 
 			if = {

@@ -31,7 +31,8 @@ rol_sevilla_quest_progress_effect = {
 			var:rol_sevilla_stage_count < 2
 		}
 		add_character_flag = rol_astrolabe_guest_event_fired
-		trigger_event = { id = rol_quest_sevilla.1050 days = 4 }
+		add_character_flag = rol_rival_route_astrolabe
+		rol_try_rival_interlude_effect = { FALLBACK_EVENT = rol_quest_sevilla.1050 }
 	}
 
 	if = {

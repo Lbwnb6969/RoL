@@ -34,6 +34,7 @@ activity_rol_seek_naxos_guard = {
 	on_start = {
 		scope:host = {
 			rol_relic_clear_recent_result_effect = yes
+			rol_clear_rival_route_effect = yes
 			rol_set_context_naxos_relic_effect = yes
 			if = {
 				limit = { has_variable = rol_naxos_stage_count }

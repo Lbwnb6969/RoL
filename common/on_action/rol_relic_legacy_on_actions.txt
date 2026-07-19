@@ -1,0 +1,48 @@
+﻿rol_relic_legacy_yearly_on_action = {
+	effect = {
+		if = {
+			limit = { is_ai = no is_alive = yes is_playable_character = yes }
+			random_list = {
+				20 = { random_list = { 50 = { trigger_event = rol_relic_legacy.0001 } 50 = { trigger_event = rol_relic_legacy.0002 } } }
+				80 = { }
+			}
+			if = {
+				limit = { has_character_flag = rol_naxos_unit_unlocked }
+				random_list = { 20 = { random_list = { 50 = { trigger_event = rol_relic_legacy.0101 } 50 = { trigger_event = rol_relic_legacy.0102 } } } 80 = { } }
+			}
+		}
+	}
+}
+
+rol_relic_changed_owner_on_action = {
+	effect = {
+		if = {
+			limit = {
+				OR = {
+					artifact_type = rol_blade_of_mars
+					artifact_type = rol_nibelung_star_sphere
+					artifact_type = rol_astrolabe_of_ocean
+					artifact_type = rol_ash_forged_mask
+				}
+				exists = scope:owner
+				scope:owner = { is_ai = no is_alive = yes }
+			}
+			save_scope_as = rol_legacy_artifact
+			scope:owner = { trigger_event = rol_relic_legacy.0003 }
+		}
+	}
+}
+
+rol_naxos_death_on_action = {
+	effect = {
+		if = {
+			limit = { has_character_flag = rol_naxos_unit_unlocked exists = player_heir player_heir = { is_ai = no is_alive = yes } }
+			save_scope_as = rol_naxos_predecessor
+			player_heir = { trigger_event = { id = rol_relic_legacy.0103 days = 7 } }
+		}
+	}
+}
+
+yearly_playable_pulse = { on_actions = { rol_relic_legacy_yearly_on_action } }
+on_artifact_changed_owner = { on_actions = { rol_relic_changed_owner_on_action } }
+on_death = { on_actions = { rol_naxos_death_on_action } }

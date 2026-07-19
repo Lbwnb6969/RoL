@@ -34,6 +34,7 @@ activity_rol_seek_ash_forged_mask = {
 	on_start = {
 		scope:host = {
 			rol_relic_clear_recent_result_effect = yes
+			rol_clear_rival_route_effect = yes
 			rol_set_context_carthage_helmet_effect = yes
 			if = {
 				limit = { has_variable = rol_carthage_stage_count }

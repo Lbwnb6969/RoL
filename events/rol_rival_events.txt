@@ -1,0 +1,31 @@
+﻿namespace = rol_rival
+
+rol_rival.1000 = {
+	type = character_event
+	title = rol_rival.1000.t
+	desc = rol_rival.1000.desc
+	theme = intrigue
+	left_portrait = scope:rol_expedition_rival
+	trigger = { is_ai = no exists = scope:activity exists = scope:rol_expedition_rival }
+	option = { name = rol_rival.1000.a flavor = rol_rival.1000.a.flavor add_prestige = -50 scope:rol_expedition_rival = { add_opinion = { target = root modifier = grateful_opinion } } hidden_effect = { scope:activity = { activity_special_type_progression_tiny = yes } rol_clear_rival_route_effect = yes } }
+	option = {
+		name = rol_rival.1000.b
+		flavor = rol_rival.1000.b.flavor
+		skill = prowess
+		random_list = {
+			0 = { modifier = { add = 70 prowess >= scope:rol_expedition_rival.prowess } modifier = { add = 35 prowess < scope:rol_expedition_rival.prowess } desc = rol_rival.1000.b.success hidden_effect = { scope:activity = { activity_special_type_progression_major = yes } } }
+			0 = { modifier = { add = 30 prowess >= scope:rol_expedition_rival.prowess } modifier = { add = 65 prowess < scope:rol_expedition_rival.prowess } desc = rol_rival.1000.b.failure add_trait = wounded_1 hidden_effect = { scope:activity = { activity_special_type_progression_negative_major = yes } } }
+		}
+		hidden_effect = { rol_clear_rival_route_effect = yes }
+	}
+	option = {
+		name = rol_rival.1000.c
+		flavor = rol_rival.1000.c.flavor
+		skill = learning
+		random_list = {
+			65 = { desc = rol_rival.1000.c.success add_prestige = 75 hidden_effect = { scope:activity = { activity_special_type_progression_medium = yes } } }
+			35 = { desc = rol_rival.1000.c.failure add_stress = 25 hidden_effect = { rol_create_counterfeit_effect = yes rol_rival_counterfeit_failure_effect = yes } }
+		}
+		hidden_effect = { rol_clear_rival_route_effect = yes }
+	}
+}
