@@ -11,14 +11,12 @@ rol_relic_fragment_success_effect = {
 	if = {
 		limit = { has_character_flag = rol_fragment_route_mars }
 		if = {
-			limit = { NOT = { has_character_flag = rol_mars_fragment_1 } }
-			add_character_flag = rol_mars_fragment_1
+			limit = { exists = scope:rol_fragment_artifact scope:rol_fragment_artifact = { NOT = { has_artifact_modifier = rol_blade_fragment_1_modifier } } }
 			scope:rol_fragment_artifact = { add_artifact_modifier = rol_blade_fragment_1_modifier }
 			add_prestige = 100
 		}
 		else_if = {
-			limit = { NOT = { has_character_flag = rol_mars_fragment_2 } }
-			add_character_flag = rol_mars_fragment_2
+			limit = { exists = scope:rol_fragment_artifact scope:rol_fragment_artifact = { NOT = { has_artifact_modifier = rol_blade_fragment_2_modifier } } }
 			scope:rol_fragment_artifact = { add_artifact_modifier = rol_blade_fragment_2_modifier }
 			add_prestige = 200
 		}
@@ -26,14 +24,12 @@ rol_relic_fragment_success_effect = {
 	else_if = {
 		limit = { has_character_flag = rol_fragment_route_nibelung }
 		if = {
-			limit = { NOT = { has_character_flag = rol_nibelung_fragment_1 } }
-			add_character_flag = rol_nibelung_fragment_1
+			limit = { exists = scope:rol_fragment_artifact scope:rol_fragment_artifact = { NOT = { has_artifact_modifier = rol_nibelung_fragment_1_modifier } } }
 			scope:rol_fragment_artifact = { add_artifact_modifier = rol_nibelung_fragment_1_modifier }
 			add_prestige = 100
 		}
 		else_if = {
-			limit = { NOT = { has_character_flag = rol_nibelung_fragment_2 } }
-			add_character_flag = rol_nibelung_fragment_2
+			limit = { exists = scope:rol_fragment_artifact scope:rol_fragment_artifact = { NOT = { has_artifact_modifier = rol_nibelung_fragment_2_modifier } } }
 			scope:rol_fragment_artifact = { add_artifact_modifier = rol_nibelung_fragment_2_modifier }
 			add_prestige = 200
 		}
@@ -41,14 +37,12 @@ rol_relic_fragment_success_effect = {
 	else_if = {
 		limit = { has_character_flag = rol_fragment_route_astrolabe }
 		if = {
-			limit = { NOT = { has_character_flag = rol_astrolabe_fragment_1 } }
-			add_character_flag = rol_astrolabe_fragment_1
+			limit = { exists = scope:rol_fragment_artifact scope:rol_fragment_artifact = { NOT = { has_artifact_modifier = rol_astrolabe_fragment_1_modifier } } }
 			scope:rol_fragment_artifact = { add_artifact_modifier = rol_astrolabe_fragment_1_modifier }
 			add_prestige = 100
 		}
 		else_if = {
-			limit = { NOT = { has_character_flag = rol_astrolabe_fragment_2 } }
-			add_character_flag = rol_astrolabe_fragment_2
+			limit = { exists = scope:rol_fragment_artifact scope:rol_fragment_artifact = { NOT = { has_artifact_modifier = rol_astrolabe_fragment_2_modifier } } }
 			scope:rol_fragment_artifact = { add_artifact_modifier = rol_astrolabe_fragment_2_modifier }
 			add_prestige = 200
 		}
@@ -56,14 +50,12 @@ rol_relic_fragment_success_effect = {
 	else_if = {
 		limit = { has_character_flag = rol_fragment_route_ash }
 		if = {
-			limit = { NOT = { has_character_flag = rol_ash_fragment_1 } }
-			add_character_flag = rol_ash_fragment_1
+			limit = { exists = scope:rol_fragment_artifact scope:rol_fragment_artifact = { NOT = { has_artifact_modifier = rol_ash_fragment_1_modifier } } }
 			scope:rol_fragment_artifact = { add_artifact_modifier = rol_ash_fragment_1_modifier }
 			add_prestige = 100
 		}
 		else_if = {
-			limit = { NOT = { has_character_flag = rol_ash_fragment_2 } }
-			add_character_flag = rol_ash_fragment_2
+			limit = { exists = scope:rol_fragment_artifact scope:rol_fragment_artifact = { NOT = { has_artifact_modifier = rol_ash_fragment_2_modifier } } }
 			scope:rol_fragment_artifact = { add_artifact_modifier = rol_ash_fragment_2_modifier }
 			add_prestige = 200
 		}

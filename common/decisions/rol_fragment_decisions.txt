@@ -8,8 +8,10 @@ rol_seek_mars_fragment_decision = {
 		is_playable_character = yes
 		is_ai = no
 		has_character_flag = rol_mars_blade_claimed
-		NOT = { has_character_flag = rol_mars_fragment_2 }
-		any_character_artifact = { artifact_type = rol_blade_of_mars }
+		any_character_artifact = {
+			artifact_type = rol_blade_of_mars
+			NOT = { has_artifact_modifier = rol_blade_fragment_2_modifier }
+		}
 	}
 	is_valid_showing_failures_only = {
 		is_available_adult = yes
@@ -32,8 +34,10 @@ rol_seek_nibelung_fragment_decision = {
 		is_playable_character = yes
 		is_ai = no
 		has_character_flag = rol_nibelung_sphere_claimed
-		NOT = { has_character_flag = rol_nibelung_fragment_2 }
-		any_character_artifact = { artifact_type = rol_nibelung_star_sphere }
+		any_character_artifact = {
+			artifact_type = rol_nibelung_star_sphere
+			NOT = { has_artifact_modifier = rol_nibelung_fragment_2_modifier }
+		}
 	}
 	is_valid_showing_failures_only = {
 		is_available_adult = yes
@@ -56,8 +60,10 @@ rol_seek_astrolabe_fragment_decision = {
 		is_playable_character = yes
 		is_ai = no
 		has_character_flag = rol_astrolabe_of_ocean_claimed
-		NOT = { has_character_flag = rol_astrolabe_fragment_2 }
-		any_character_artifact = { artifact_type = rol_astrolabe_of_ocean }
+		any_character_artifact = {
+			artifact_type = rol_astrolabe_of_ocean
+			NOT = { has_artifact_modifier = rol_astrolabe_fragment_2_modifier }
+		}
 	}
 	is_valid_showing_failures_only = {
 		is_available_adult = yes
@@ -80,8 +86,10 @@ rol_seek_ash_fragment_decision = {
 		is_playable_character = yes
 		is_ai = no
 		has_character_flag = rol_ash_forged_mask_claimed
-		NOT = { has_character_flag = rol_ash_fragment_2 }
-		any_character_artifact = { artifact_type = rol_ash_forged_mask }
+		any_character_artifact = {
+			artifact_type = rol_ash_forged_mask
+			NOT = { has_artifact_modifier = rol_ash_fragment_2_modifier }
+		}
 	}
 	is_valid_showing_failures_only = {
 		is_available_adult = yes
