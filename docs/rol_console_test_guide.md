@@ -328,6 +328,36 @@ effect rol_carthage_quest_fail_now_effect = yes
 
 ---
 
+## 7.1 Legacy 2.0 / 竞争者 / 碎片系统
+
+### 圣物换主事件
+
+```txt
+effect rol_create_blade_of_mars_effect = yes
+event rol_relic_legacy.0003
+```
+
+预期：事件显示 `rol_bg_relic_legacy_transfer`，并提供公开传承、秘密藏匿、学者研究三种选择；同一角色五年内不会重复触发换主事件。
+
+### 碎片远征最小 smoke
+
+```txt
+effect add_character_flag = rol_mars_blade_claimed
+effect rol_create_blade_of_mars_effect = yes
+effect add_character_flag = rol_fragment_route_mars
+event rol_relic_fragment.0001
+```
+
+预期：事件显示 `rol_bg_fragment_expedition`；成功后给当前 Mars artifact 追加一级 modifier，并在一天后显示 `rol_bg_fragment_upgrade` 的确认事件。再次使用同一路线可追加二级 modifier；失败会增加压力并清除 route flag。
+
+其余三条路线只需替换 artifact 创建 effect 和 route flag：
+
+- `rol_create_nibelung_star_sphere_effect` + `rol_fragment_route_nibelung`
+- `rol_create_astrolabe_of_ocean_effect` + `rol_fragment_route_astrolabe`
+- `rol_create_ash_forged_mask_effect` + `rol_fragment_route_ash`
+
+竞争者事件依赖活动上下文，优先从五条正式活动的阶段选项进入；若只直接执行 `event rol_rival.1000`，没有 `scope:activity` 时不应把它作为完整回归结果。
+
 ## 8. 重置命令
 
 ### 8.1 通用 recent result 清理
