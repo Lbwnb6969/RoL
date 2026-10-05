@@ -1,0 +1,5 @@
+﻿rol_expedition_cooperation_opinion = {
+	opinion = 15
+	years = 5
+	decaying = yes
+}

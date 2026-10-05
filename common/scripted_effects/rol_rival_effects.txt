@@ -1,15 +1,43 @@
 ﻿rol_try_rival_interlude_effect = {
-	random_list = {
-		40 = {
-			scope:activity = {
-				random_attending_character = {
-					limit = { this != root is_alive = yes }
-					save_scope_as = rol_expedition_rival
-				}
-			}
-			trigger_event = { id = rol_rival.1000 days = 4 }
+	if = {
+		limit = { has_character_flag = rol_force_rival_interlude }
+		remove_character_flag = rol_force_rival_interlude
+		rol_fire_rival_or_fallback_effect = { FALLBACK_EVENT = $FALLBACK_EVENT$ }
+	}
+	else = {
+		random_list = {
+			40 = { rol_fire_rival_or_fallback_effect = { FALLBACK_EVENT = $FALLBACK_EVENT$ } }
+			60 = { trigger_event = { id = $FALLBACK_EVENT$ days = 4 } rol_clear_rival_route_effect = yes }
 		}
-		60 = { trigger_event = { id = $FALLBACK_EVENT$ days = 4 } rol_clear_rival_route_effect = yes }
+	}
+}
+
+rol_select_expedition_rival_effect = {
+	save_scope_as = rol_expedition_host
+	scope:activity = {
+		random_attending_character = {
+			limit = { this != scope:rol_expedition_host is_alive = yes is_adult = yes }
+			save_scope_as = rol_expedition_rival
+		}
+	}
+	if = {
+		limit = { NOT = { exists = scope:rol_expedition_rival } }
+		random_courtier_or_guest = {
+			limit = { this != root is_alive = yes is_adult = yes }
+			save_scope_as = rol_expedition_rival
+		}
+	}
+}
+
+rol_fire_rival_or_fallback_effect = {
+	rol_select_expedition_rival_effect = yes
+	if = {
+		limit = { exists = scope:rol_expedition_rival }
+		trigger_event = { id = rol_rival.1000 days = 4 }
+	}
+	else = {
+		trigger_event = { id = $FALLBACK_EVENT$ days = 4 }
+		rol_clear_rival_route_effect = yes
 	}
 }
 
