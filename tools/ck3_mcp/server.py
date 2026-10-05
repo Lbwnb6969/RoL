@@ -179,6 +179,38 @@ def _send_key(hwnd: int, virtual_key: int) -> None:
             raise OSError("SendInput failed")
 
 
+def _send_enter() -> None:
+    """Submit the developer console using the keyboard scan code."""
+    if os.name != "nt":
+        raise RuntimeError("ck3_send_console requires Windows")
+    user32 = ctypes.windll.user32
+    KEYEVENTF_KEYUP = 0x0002
+    KEYEVENTF_SCANCODE = 0x0008
+    INPUT_KEYBOARD = 1
+
+    class KEYBDINPUT(ctypes.Structure):
+        _fields_ = [
+            ("wVk", wintypes.WORD),
+            ("wScan", wintypes.WORD),
+            ("dwFlags", wintypes.DWORD),
+            ("time", wintypes.DWORD),
+            ("dwExtraInfo", ctypes.POINTER(wintypes.ULONG)),
+        ]
+
+    class INPUT(ctypes.Structure):
+        _fields_ = [
+            ("type", wintypes.DWORD),
+            ("ki", KEYBDINPUT),
+            ("padding", wintypes.BYTE * 8),
+        ]
+
+    # Enter is scan code 0x1C on the US keyboard layout.
+    for flags in (KEYEVENTF_SCANCODE, KEYEVENTF_SCANCODE | KEYEVENTF_KEYUP):
+        event = INPUT(type=INPUT_KEYBOARD, ki=KEYBDINPUT(wVk=0, wScan=0x1C, dwFlags=flags, time=0, dwExtraInfo=None))
+        if user32.SendInput(1, ctypes.byref(event), ctypes.sizeof(INPUT)) != 1:
+            raise OSError("SendInput failed")
+
+
 def _send_unicode_text(text: str) -> None:
     if os.name != "nt":
         raise RuntimeError("ck3_send_console requires Windows")
@@ -213,18 +245,151 @@ def _send_console(args: dict[str, Any]) -> dict[str, Any]:
     if hwnd is None:
         return _error("No visible CK3 window matched the running ck3.exe process.")
     try:
-        user32 = ctypes.windll.user32
-        user32.SetForegroundWindow(hwnd)
-        time.sleep(0.25)
-        # CK3's default developer console hotkey is the OEM backtick/tilde key.
-        _send_key(hwnd, 0xC0)
+        if not _activate_window(hwnd):
+            foreground = ctypes.windll.user32.GetForegroundWindow()
+            return _error(f"Could not bring CK3 window {hwnd} to the foreground; refusing to inject input (foreground={foreground}).")
+        # CK3's default developer console hotkey is the US Shift+backtick
+        # (tilde) key. Some keyboard layouts expose the section key instead,
+        # so the caller may select an alternate OEM key when needed.
+        hotkey = str(args.get("console_hotkey", "shift_oem3")).lower()
+        _send_console_hotkey(hotkey)
         time.sleep(0.15)
         _send_unicode_text(command)
-        _send_key(hwnd, 0x0D)
+        _send_enter()
         time.sleep(max(0.1, min(float(args.get("wait_seconds", 1.0)), 30.0)))
         return _text_result(f"Sent developer console command to window {hwnd}: {command}", hwnd=hwnd, command=command, logs={name: _tail(path, 80, args.get("log_filter")) for name, path in _log_paths().items()})
     except (OSError, RuntimeError, ValueError) as exc:
         return _error(f"Could not send console command: {exc}")
+
+
+def _send_console_hotkey(hotkey: str) -> None:
+    if hotkey not in {"oem3", "shift_oem3", "oem5", "shift_oem5"}:
+        raise ValueError("console_hotkey must be oem3, shift_oem3, oem5, or shift_oem5")
+    user32 = ctypes.windll.user32
+    KEYEVENTF_KEYUP = 0x0002
+    KEYEVENTF_SCANCODE = 0x0008
+    INPUT_KEYBOARD = 1
+
+    class KEYBDINPUT(ctypes.Structure):
+        _fields_ = [("wVk", wintypes.WORD), ("wScan", wintypes.WORD), ("dwFlags", wintypes.DWORD), ("time", wintypes.DWORD), ("dwExtraInfo", ctypes.POINTER(wintypes.ULONG))]
+
+    class INPUT(ctypes.Structure):
+        _fields_ = [("type", wintypes.DWORD), ("ki", KEYBDINPUT), ("padding", wintypes.BYTE * 8)]
+
+    # US keyboard scan codes: left Shift=0x2A, grave/tilde=0x29,
+    # backslash/pipe=0x2B. Scan-code injection works with CK3's raw input path.
+    scan = 0x29 if hotkey.endswith("oem3") else 0x2B
+
+    def emit(scan_code: int, flags: int) -> None:
+        event = INPUT(type=INPUT_KEYBOARD, ki=KEYBDINPUT(wVk=0, wScan=scan_code, dwFlags=KEYEVENTF_SCANCODE | flags, time=0, dwExtraInfo=None))
+        if user32.SendInput(1, ctypes.byref(event), ctypes.sizeof(INPUT)) != 1:
+            raise OSError("SendInput failed")
+
+    shifted = hotkey.startswith("shift_")
+    if shifted:
+        emit(0x2A, 0)
+    emit(scan, 0)
+    emit(scan, KEYEVENTF_KEYUP)
+    if shifted:
+        emit(0x2A, KEYEVENTF_KEYUP)
+
+
+def _window_rect(hwnd: int) -> tuple[int, int, int, int]:
+    rect = wintypes.RECT()
+    if not ctypes.windll.user32.GetWindowRect(hwnd, ctypes.byref(rect)):
+        raise OSError("GetWindowRect failed")
+    return rect.left, rect.top, rect.right, rect.bottom
+
+
+def _activate_window(hwnd: int) -> bool:
+    user32 = ctypes.windll.user32
+    foreground = user32.GetForegroundWindow()
+    foreground_thread = user32.GetWindowThreadProcessId(foreground, None) if foreground else 0
+    target_thread = user32.GetWindowThreadProcessId(hwnd, None)
+    if foreground_thread and target_thread and foreground_thread != target_thread:
+        user32.AttachThreadInput(foreground_thread, target_thread, True)
+    try:
+        # Windows may reject SetForegroundWindow when the caller is not the
+        # current foreground process.  A short ALT tap clears that foreground
+        # lock, after which the normal activation calls work reliably.
+        VK_MENU = 0x12
+        user32.keybd_event(VK_MENU, 0, 0, 0)
+        user32.keybd_event(VK_MENU, 0, 0x0002, 0)
+        user32.ShowWindow(hwnd, 9)  # SW_RESTORE
+        user32.BringWindowToTop(hwnd)
+        user32.SetActiveWindow(hwnd)
+        user32.SetFocus(hwnd)
+        user32.SetForegroundWindow(hwnd)
+        user32.SwitchToThisWindow(hwnd, True)
+    finally:
+        if foreground_thread and target_thread and foreground_thread != target_thread:
+            user32.AttachThreadInput(foreground_thread, target_thread, False)
+    for _ in range(3):
+        time.sleep(0.1)
+        if user32.GetForegroundWindow() == hwnd:
+            return True
+        # A foreground-lock policy can reject the first request. Retrying
+        # after the ALT tap is safe and avoids sending input elsewhere.
+        user32.SetForegroundWindow(hwnd)
+    return user32.GetForegroundWindow() == hwnd
+
+
+def _capture_screen(args: dict[str, Any]) -> dict[str, Any]:
+    if os.name != "nt":
+        return _error("ck3_capture_screen requires Windows")
+    hwnd = _find_ck3_window(args.get("window_title"))
+    if hwnd is None:
+        return _error("No visible CK3 window matched the running ck3.exe process.")
+    try:
+        from PIL import ImageGrab
+
+        ARTIFACT_DIR.mkdir(parents=True, exist_ok=True)
+        stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+        path = ARTIFACT_DIR / "screenshots" / f"ck3_{stamp}.png"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        left, top, right, bottom = _window_rect(hwnd)
+        if not _activate_window(hwnd):
+            foreground = ctypes.windll.user32.GetForegroundWindow()
+            return _error(f"Could not bring CK3 window {hwnd} to the foreground; refusing to capture (foreground={foreground}).")
+        # DirectX fullscreen windows often return a black PrintWindow frame;
+        # after activation, a full desktop capture contains the selected CK3 window.
+        image = ImageGrab.grab(all_screens=True)
+        foreground_after = ctypes.windll.user32.GetForegroundWindow()
+        if foreground_after != hwnd:
+            return _error(f"CK3 lost the foreground during capture; refusing to save an unrelated desktop image (foreground={foreground_after}, target={hwnd}).")
+        image.save(path)
+        return _text_result(f"Captured CK3 screen to {path}.", path=str(path), hwnd=hwnd, window_rect=[left, top, right, bottom], size=list(image.size))
+    except (OSError, RuntimeError, ImportError) as exc:
+        return _error(f"Could not capture CK3 screen: {exc}")
+
+
+def _click_window(args: dict[str, Any]) -> dict[str, Any]:
+    if os.name != "nt":
+        return _error("ck3_click requires Windows")
+    try:
+        x = int(args["x"])
+        y = int(args["y"])
+    except (KeyError, TypeError, ValueError):
+        return _error("x and y are required window-relative integer coordinates")
+    hwnd = _find_ck3_window(args.get("window_title"))
+    if hwnd is None:
+        return _error("No visible CK3 window matched the running ck3.exe process.")
+    try:
+        user32 = ctypes.windll.user32
+        left, top, right, bottom = _window_rect(hwnd)
+        if not (0 <= x < right - left and 0 <= y < bottom - top):
+            return _error(f"Click coordinate ({x}, {y}) is outside window bounds {(right - left, bottom - top)}")
+        if not _activate_window(hwnd):
+            foreground = user32.GetForegroundWindow()
+            return _error(f"Could not bring CK3 window {hwnd} to the foreground; refusing to click (foreground={foreground}).")
+        time.sleep(0.15)
+        user32.SetCursorPos(left + x, top + y)
+        user32.mouse_event(0x0002, 0, 0, 0, 0)
+        user32.mouse_event(0x0004, 0, 0, 0, 0)
+        time.sleep(max(0.1, min(float(args.get("wait_seconds", 1.0)), 30.0)))
+        return _text_result(f"Clicked CK3 window at ({x}, {y}).", hwnd=hwnd, window_rect=[left, top, right, bottom], x=x, y=y)
+    except OSError as exc:
+        return _error(f"Could not click CK3 window: {exc}")
 
 
 def _stop() -> dict[str, Any]:
@@ -383,7 +548,17 @@ TOOLS = [
     {
         "name": "ck3_send_console",
         "description": "Send one developer console command to the visible CK3 window using Windows native input.",
-        "inputSchema": {"type": "object", "required": ["command"], "properties": {"command": {"type": "string"}, "window_title": {"type": "string"}, "wait_seconds": {"type": "number"}, "log_filter": {"type": "string"}}},
+        "inputSchema": {"type": "object", "required": ["command"], "properties": {"command": {"type": "string"}, "window_title": {"type": "string"}, "console_hotkey": {"type": "string", "enum": ["oem3", "shift_oem3", "oem5", "shift_oem5"]}, "wait_seconds": {"type": "number"}, "log_filter": {"type": "string"}}},
+    },
+    {
+        "name": "ck3_capture_screen",
+        "description": "Capture the visible CK3 desktop screen to an ignored local test artifact and return its window bounds.",
+        "inputSchema": {"type": "object", "properties": {"window_title": {"type": "string"}}},
+    },
+    {
+        "name": "ck3_click",
+        "description": "Click a window-relative coordinate in the visible CK3 window for event and activity UI tests.",
+        "inputSchema": {"type": "object", "required": ["x", "y"], "properties": {"x": {"type": "integer"}, "y": {"type": "integer"}, "window_title": {"type": "string"}, "wait_seconds": {"type": "number"}}},
     },
     {
         "name": "ck3_read_logs",
@@ -426,6 +601,10 @@ def _call_tool(name: str, args: dict[str, Any]) -> dict[str, Any]:
         return _run_console_action(args)
     if name == "ck3_send_console":
         return _send_console(args)
+    if name == "ck3_capture_screen":
+        return _capture_screen(args)
+    if name == "ck3_click":
+        return _click_window(args)
     if name == "ck3_read_logs":
         return _read_logs(args)
     if name == "ck3_snapshot_logs":

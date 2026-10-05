@@ -38,6 +38,7 @@
 - 已通过 MCP 协议握手、工具列表、环境探测、RoL 静态验证和 CK3 `debug_mode` console action；该探针加载了 RoL 事件命名空间与事件文件，返回码为 0，未发现 RoL error.log 条目。
 - 已通过 MCP `ck3_launch` 启动带 `-debug_mode` 的真实 CK3 窗口，并通过 `ck3_send_console` 找到窗口句柄、发送 `debug_mode` 命令，随后用 `ck3_stop` 正常结束会话；窗口测试日志未出现 RoL 错误。
 - 已完成一次完整游戏内 smoke：MCP 使用 `-skip -play=e_byzantium` 进入可操作角色，`ck3_send_console` 触发 `event rol_relic_fragment.0001`，随后读取 error.log 未发现 `rol_` 条目，并保存了日志快照。
+- 已增强 MCP 窗口回归工具：`ck3_send_console`、`ck3_click`、`ck3_capture_screen` 先校验 CK3 HWND 是否真正处于 Windows 前景；激活失败时拒绝输入/点击/截图，避免误操作其他全屏程序；已在真实 CK3 窗口完成 launch、console、click、stop 协议回归。
 
 ## Next steps
 
@@ -52,4 +53,4 @@
 - 当前 1.20.0.3 的宗教/圣物系统可作为后续接入点，但直接把 RoL artifact 改成 holy relic 需要额外 DLC 条件和存档兼容测试。
 - AI 仍按玩家专用活动设计（`ai_will_do = 0`），是否开放 AI 远征需要单独的平衡目标。
 - 新增碎片系统依赖 CK3 1.20 对 artifact scope 的 `add_artifact_modifier` 行为；当前已通过项目 smoke 检查，但仍需游戏内 console/事件回归确认。
-- MCP 的命令行 console action 和窗口 console 注入已可用；当前已在新开局角色上触发碎片远征事件，完整存档中的 artifact 转移、升级和活动选项点击仍需选定适配 1.20 的测试存档逐项回归。
+- MCP 的命令行 console action 和窗口 console 注入已可用；当前已在新开局角色上触发碎片远征事件，完整存档中的 artifact 转移、升级和活动选项点击仍需选定适配 1.20 的测试存档逐项回归。窗口截图依赖 Pillow `ImageGrab`，并受桌面前景锁定与其他全屏程序影响；工具现在会在激活失败时安全拒绝操作。
