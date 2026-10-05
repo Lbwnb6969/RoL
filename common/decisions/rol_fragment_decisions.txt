@@ -1,0 +1,93 @@
+﻿# Relics of Legends - short fragment expeditions
+
+rol_seek_mars_fragment_decision = {
+	picture = { reference = "gfx/interface/illustrations/decisions/decision_smith.dds" }
+	cooldown = { years = 2 }
+	is_shown = {
+		is_playable_character = yes
+		is_ai = no
+		has_character_flag = rol_mars_blade_claimed
+		NOT = { has_character_flag = rol_mars_fragment_2 }
+		any_character_artifact = { artifact_type = rol_blade_of_mars }
+	}
+	is_valid_showing_failures_only = {
+		is_available_adult = yes
+		is_at_war = no
+		gold >= 120
+	}
+	minimum_cost = { gold = 120 }
+	effect = {
+		add_character_flag = rol_fragment_route_mars
+		trigger_event = { id = rol_relic_fragment.0001 days = 1 }
+	}
+	ai_potential = { always = no }
+}
+
+rol_seek_nibelung_fragment_decision = {
+	picture = { reference = "gfx/interface/illustrations/decisions/decision_smith.dds" }
+	cooldown = { years = 2 }
+	is_shown = {
+		is_playable_character = yes
+		is_ai = no
+		has_character_flag = rol_nibelung_sphere_claimed
+		NOT = { has_character_flag = rol_nibelung_fragment_2 }
+		any_character_artifact = { artifact_type = rol_nibelung_star_sphere }
+	}
+	is_valid_showing_failures_only = {
+		is_available_adult = yes
+		is_at_war = no
+		gold >= 120
+	}
+	minimum_cost = { gold = 120 }
+	effect = {
+		add_character_flag = rol_fragment_route_nibelung
+		trigger_event = { id = rol_relic_fragment.0001 days = 1 }
+	}
+	ai_potential = { always = no }
+}
+
+rol_seek_astrolabe_fragment_decision = {
+	picture = { reference = "gfx/interface/illustrations/decisions/decision_smith.dds" }
+	cooldown = { years = 2 }
+	is_shown = {
+		is_playable_character = yes
+		is_ai = no
+		has_character_flag = rol_astrolabe_of_ocean_claimed
+		NOT = { has_character_flag = rol_astrolabe_fragment_2 }
+		any_character_artifact = { artifact_type = rol_astrolabe_of_ocean }
+	}
+	is_valid_showing_failures_only = {
+		is_available_adult = yes
+		is_at_war = no
+		gold >= 120
+	}
+	minimum_cost = { gold = 120 }
+	effect = {
+		add_character_flag = rol_fragment_route_astrolabe
+		trigger_event = { id = rol_relic_fragment.0001 days = 1 }
+	}
+	ai_potential = { always = no }
+}
+
+rol_seek_ash_fragment_decision = {
+	picture = { reference = "gfx/interface/illustrations/decisions/decision_smith.dds" }
+	cooldown = { years = 2 }
+	is_shown = {
+		is_playable_character = yes
+		is_ai = no
+		has_character_flag = rol_ash_forged_mask_claimed
+		NOT = { has_character_flag = rol_ash_fragment_2 }
+		any_character_artifact = { artifact_type = rol_ash_forged_mask }
+	}
+	is_valid_showing_failures_only = {
+		is_available_adult = yes
+		is_at_war = no
+		gold >= 120
+	}
+	minimum_cost = { gold = 120 }
+	effect = {
+		add_character_flag = rol_fragment_route_ash
+		trigger_event = { id = rol_relic_fragment.0001 days = 1 }
+	}
+	ai_potential = { always = no }
+}

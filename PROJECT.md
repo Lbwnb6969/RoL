@@ -28,11 +28,17 @@
 - 已为 Rome、Munich、Naxos、Sevilla、Carthage 五条活动显式添加 1.20 `header_background`。
 - 已更新 README 和交接文档的版本基线。
 - 最终验证已通过：BOM、`rol_` 前缀、RoL smoke checks、五个 header DDS 路径和 `git diff --check`。
+- 已实现 Relic Legacy 2.0 第一批：圣物换主时的公开、隐秘、学术三种传承取向，以及对应短期角色修正。
+- 已实现竞争者关系网络第一批：合作契约、强硬对抗后的积怨、后续契约代价事件和尊重/敌意意见修正。
+- 已实现四条真品的碎片远征决策、三种能力挑战、两级 artifact modifier、失败压力代价和升级确认事件。
+- 新增内容先使用现有 DDS 占位图；竞争者、传承和碎片场景的生图提示词已记录在 `docs/rol_rival_legacy_image_prompts.md`，尚未调用生图 API。
 
 ## Next steps
 
-1. 用 1.20 游戏实际启动一次活动窗口，验证 header、活动背景、选项和 artifact 卡片。
-2. 根据 `docs/rol_roadmap_1_20.md` 选择下一阶段：优先建议 Relic Legacy 2.0 与可选五链终局分支。
+1. 运行静态检查并修正新脚本、本地化和背景键的回归问题。
+2. 用 1.20 游戏实际启动一次活动窗口，验证 header、活动背景、选项、artifact modifier 和四条碎片决策。
+3. 在代码验证和游戏内回归完成后，才按提示词生成并筛选新增图片，替换占位 DDS。
+4. 再评估可选五链终局分支、圣物互相组合和 AI 远征开放的平衡目标。
 
 ## Unresolved issues
 
@@ -40,3 +46,4 @@
 - 启动器描述符仍位于 Documents 侧并正确指向 `C:\\CK3Mods\\RoL`；本轮按项目规范不修改 Documents 侧副本，若启动器仍显示旧版本号，应优先让启动器重新生成元数据。
 - 当前 1.20.0.3 的宗教/圣物系统可作为后续接入点，但直接把 RoL artifact 改成 holy relic 需要额外 DLC 条件和存档兼容测试。
 - AI 仍按玩家专用活动设计（`ai_will_do = 0`），是否开放 AI 远征需要单独的平衡目标。
+- 新增碎片系统依赖 CK3 1.20 对 artifact scope 的 `add_artifact_modifier` 行为；当前已通过项目 smoke 检查，但仍需游戏内 console/事件回归确认。

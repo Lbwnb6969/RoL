@@ -4,6 +4,20 @@
 		remove_character_flag = rol_force_rival_interlude
 		rol_fire_rival_or_fallback_effect = { FALLBACK_EVENT = $FALLBACK_EVENT$ }
 	}
+	else_if = {
+		limit = { has_character_flag = rol_rival_cooperation_active }
+		random_list = {
+			75 = { rol_fire_rival_or_fallback_effect = { FALLBACK_EVENT = $FALLBACK_EVENT$ } }
+			25 = { trigger_event = { id = $FALLBACK_EVENT$ days = 4 } rol_clear_rival_route_effect = yes }
+		}
+	}
+	else_if = {
+		limit = { has_character_flag = rol_rival_grudge_active }
+		random_list = {
+			70 = { rol_fire_rival_or_fallback_effect = { FALLBACK_EVENT = $FALLBACK_EVENT$ } }
+			30 = { trigger_event = { id = $FALLBACK_EVENT$ days = 4 } rol_clear_rival_route_effect = yes }
+		}
+	}
 	else = {
 		random_list = {
 			40 = { rol_fire_rival_or_fallback_effect = { FALLBACK_EVENT = $FALLBACK_EVENT$ } }

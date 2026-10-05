@@ -111,3 +111,45 @@ A night oath ceremony in an ancient Aegean sanctuary after the death of a comman
 7. `rol_event_naxos_oath_inheritance.dds`
 
 前三张覆盖面最高，应优先生成和筛选。图片完成后仍需另行注册 background key 并接入事件；仅放入 `gfx` 目录不会自动生效。
+
+## 6. 当前占位图与碎片远征提示词
+
+代码阶段先复用 rol_event_rome_0990_arrival.dds 作为占位图。以下文件已经注册到 RoL 的背景键，后续生图完成后直接替换对应 DDS：
+
+### 6.1 竞争者契约
+
+- 文件：rol_event_rival_pact.dds
+- 背景键：rol_bg_rival_pact
+
+```text
+A restrained medieval diplomatic chamber inside a temporary relic expedition headquarters. The expedition leader and an ambiguous rival stand on opposite sides of a scarred oak table covered with route maps, wax seals, shared notes, and a small open purse. A single lantern illuminates hands, maps, and the uneasy distance between the two figures; guards and expedition equipment remain soft in the background. The scene should communicate a practical pact between competitors, with shared credit and future distrust, without showing any specific relic.
+```
+
+### 6.2 圣物转手
+
+- 文件：rol_event_relic_legacy_transfer.dds
+- 背景键：rol_bg_relic_legacy_transfer
+
+```text
+A solemn medieval armory prepared for the transfer of an inherited legendary relic. A covered reliquary rests on a stone workbench between an old household banner and a newly prepared set of travel gear. Witnesses remain in shadow while a gloved hand reaches toward the covered object, leaving the exact artifact ambiguous. Warm forge light, dark iron, folded cloth, sealed documents, and a quiet sense of political succession; no visible writing, no explicit theft, no specific sword, sphere, astrolabe, or mask.
+```
+
+### 6.3 碎片远征
+
+- 文件：rol_event_fragment_expedition.dds
+- 背景键：rol_bg_fragment_expedition
+
+```text
+A compact medieval excavation at the mouth of a newly uncovered chamber. An expedition leader studies a fragment-sized piece of worked metal and stone beside measuring tools, rope, oil lamps, and a half-cleared threshold. The larger legendary relic is absent from the scene; only clues to a matching fragment appear. Narrow passage walls, dust, careful hands, and a small uncertain opening create the feeling of a dangerous short expedition. Neutral materials and lighting must keep the image compatible with a martial blade, celestial sphere, ocean astrolabe, or funerary mask.
+```
+
+### 6.4 碎片嵌合升级
+
+- 文件：rol_event_fragment_upgrade.dds
+- 背景键：rol_bg_fragment_upgrade
+
+```text
+A medieval reliquary workshop at the moment a recovered fragment is fitted into a legendary object hidden beneath a dark cloth. The fragment is visible only as a small distinctive piece locking into a larger silhouette, while the exact relic remains deliberately ambiguous. A scholar, craftsperson, and silent guard observe the alignment; chisels, clamps, wax, and old diagrams rest on the table. The mood is precise and consequential, with controlled golden light, no explosive magic, no readable writing, and enough calm central space for event text.
+```
+
+统一规格继续使用 1592 x 848、横向 16:9、无透明通道，最终转换为 DDS / BC1 (DXT1)。所有提示词都要求无文字、无徽标、无水印，并为中央事件文本保留清晰区域。

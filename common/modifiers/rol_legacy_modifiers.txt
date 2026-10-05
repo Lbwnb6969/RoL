@@ -1,0 +1,26 @@
+﻿# Relics of Legends - Legacy 2.0 temporary states
+
+rol_relic_legacy_public_modifier = {
+	monthly_prestige_gain_mult = 0.05
+	general_opinion = 5
+}
+
+rol_relic_legacy_concealed_modifier = {
+	dread_gain_mult = 0.05
+	general_opinion = -2
+}
+
+rol_relic_legacy_scholarly_modifier = {
+	monthly_learning_lifestyle_xp_gain_mult = 0.10
+	monthly_piety_gain_mult = 0.05
+}
+
+rol_rival_pact_modifier = {
+	monthly_prestige_gain_mult = 0.05
+	general_opinion = 3
+}
+
+rol_rival_grudge_modifier = {
+	general_opinion = -5
+	dread_gain_mult = 0.05
+}

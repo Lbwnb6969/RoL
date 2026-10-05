@@ -17,8 +17,8 @@ RoL 已经有五条正式远征：Rome、Munich、Naxos/Thera、Sevilla、Cartha
 
 当前的结构性空缺有四个：
 
-1. 五条链的“完成”仍主要是一次性奖励，奖励后可持续玩的遗物生命周期较薄。
-2. rival 已能制造 counterfeit，但合作、勒索、结盟和声誉后果还没有形成长期关系线。
+1. 五条链的主线奖励仍主要是一次性奖励；本轮已补上遗物换主与碎片升级的第一层生命周期。
+2. rival 已能制造 counterfeit；本轮已补上合作契约、积怨和后续声誉意见，勒索与放逐仍可继续扩展。
 3. `rol_legend_circle` 目前固定为四链计数，Carthage 的内容价值与总事件脱节。
 4. 活动选项、阶段检定和奖励数值仍分散在多条链中，未来增加地区时容易复制粘贴漂移。
 
@@ -30,21 +30,21 @@ RoL 已经有五条正式远征：Rome、Munich、Naxos/Thera、Sevilla、Cartha
 - 五条活动显式接入 `header_background`。
 - 运行 BOM、前缀、smoke 检查，并在游戏中分别打开一次活动规划页和结算页。
 
-### P1：Relic Legacy 2.0（优先推荐）
+### P1：Relic Legacy 2.0（第一批已实现）
 
 把遗物从“拿到即结束”变成可持续的政治与家族资产：
 
 - 记录 `provenance`：发现者、首次持有者、转手次数、原始地区。
 - 继承或转让时，根据遗物类型触发不同的 `legacy` 事件：学者研究、持有者义务、争议归属、伪造品揭露。
-- 将已有 `on_artifact_changed_owner` 与 `rol_relic_legacy` 事件扩展为三条选择：公开传承、秘密藏匿、交给宗教/学术机构。
+- 将已有 `on_artifact_changed_owner` 与 `rol_relic_legacy` 事件扩展为三条选择：公开传承、秘密藏匿、交给学者研究；宗教机构桥接保留给 P2。
 - 奖励以 prestige、dynasty prestige、opinion、legitimacy 或短期 modifier 为主，不重复发放同一件真 artifact。
 
 这样能复用当前 on-action 和 artifact scope，改动集中，且不会改变主线结算门槛。
 
-### P1：竞争者与远征关系网
+### P1：竞争者与远征关系网（第一批已实现）
 
 - rival 初次出现时保存其地区、能力和路线偏好。
-- 允许“合作勘探 / 互相勒索 / 放逐竞争者 / 接受其线索”四种长期结果。
+- 已实现“合作勘探 / 强硬对抗 / 接受其线索”的第一批关系分支，并为合作和积怨加入短期角色状态；互相勒索和放逐竞争者仍可继续扩展。
 - counterfeit 结果不只给负面提示，还可以留下可追踪的 `rol_counterfeit_exposed` 标记，影响后续活动成功率和声誉。
 - 将现有 `rol_expedition_cooperation_opinion` 变成跨链关系奖励，避免每条链重复造一套 opinion modifier。
 
@@ -56,11 +56,12 @@ RoL 已经有五条正式远征：Rome、Munich、Naxos/Thera、Sevilla、Cartha
 - 五链完成：解锁增强 reveal，追加 Carthage 的灰烬线索、dynasty/realm 奖励或新的终局选择。
 - 不要在成功 finalize 中无条件改动旧存档的计数语义；通过新 flag 或新决策分支保持旧档可预测。
 
-### P2：遗物碎片与升级远征
+### P2：遗物碎片与升级远征（第一批已实现）
 
 每条主链结束后开放一次短型“fragment”任务，而不是重复完整主线：
 
-- 低成本、短冷却、只奖励碎片或 tier modifier。
+- 四件真品各自开放低成本、两年冷却的短型碎片远征，只追加 artifact modifier，不重复创建主线 artifact。
+- 三种能力挑战分别使用 learning、prowess、stewardship，并在失败时增加压力和短期失败修正。
 - 收集同一地区的碎片后，可以选择强化原遗物、换取政治资源或解锁地区专属事件。
 - 失败只消耗碎片机会或增加短期压力，不重新发放主线 artifact。
 

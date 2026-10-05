@@ -279,3 +279,43 @@ rol_bg_legend_circle_revelation = {
 		ambience = "event:/SFX/Events/Backgrounds/throneroom_western"
 	}
 }
+
+rol_bg_rival_expedition = {
+	background = {
+		reference = "gfx/interface/illustrations/event_scenes/rol_event_rival_expedition.dds"
+		environment = "environment_event_corridor"
+		ambience = "event:/SFX/Events/Backgrounds/castle_corridor_night"
+	}
+}
+
+rol_bg_rival_pact = {
+	background = {
+		reference = "gfx/interface/illustrations/event_scenes/rol_event_rival_pact.dds"
+		environment = "environment_frontend_west_main"
+		ambience = "event:/SFX/Events/Backgrounds/throneroom_western"
+	}
+}
+
+rol_bg_relic_legacy_transfer = {
+	background = {
+		reference = "gfx/interface/illustrations/event_scenes/rol_event_relic_legacy_transfer.dds"
+		environment = "environment_event_armory"
+		ambience = "event:/SFX/Events/Backgrounds/armory"
+	}
+}
+
+rol_bg_fragment_expedition = {
+	background = {
+		reference = "gfx/interface/illustrations/event_scenes/rol_event_fragment_expedition.dds"
+		environment = "environment_event_corridor"
+		ambience = "event:/SFX/Events/Backgrounds/castle_corridor_night"
+	}
+}
+
+rol_bg_fragment_upgrade = {
+	background = {
+		reference = "gfx/interface/illustrations/event_scenes/rol_event_fragment_upgrade.dds"
+		environment = "environment_frontend_west_main"
+		ambience = "event:/SFX/Events/Backgrounds/throneroom_western"
+	}
+}
