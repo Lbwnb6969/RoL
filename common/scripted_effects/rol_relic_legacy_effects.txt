@@ -1,0 +1,28 @@
+﻿# Relics of Legends - artifact provenance bookkeeping
+
+rol_relic_legacy_register_new_artifact_effect = {
+	if = {
+		limit = { exists = scope:newly_created_artifact }
+		scope:newly_created_artifact = {
+			set_variable = {
+				name = rol_relic_legacy_transfer_count
+				value = 0
+			}
+		}
+	}
+}
+
+rol_relic_legacy_record_transfer_effect = {
+	if = {
+		limit = { exists = scope:rol_legacy_artifact }
+		scope:rol_legacy_artifact = {
+			if = {
+				limit = { has_variable = rol_relic_legacy_transfer_count }
+				change_variable = { name = rol_relic_legacy_transfer_count add = 1 }
+			}
+			else = {
+				set_variable = { name = rol_relic_legacy_transfer_count value = 1 }
+			}
+		}
+	}
+}

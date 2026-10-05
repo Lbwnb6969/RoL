@@ -28,6 +28,7 @@ rol_relic_legacy.0003 = {
 		flavor = rol_relic_legacy.0003.a.flavor
 		add_prestige = 75
 		add_character_modifier = { modifier = rol_relic_legacy_public_modifier years = 5 }
+		if = { limit = { scope:rol_legacy_artifact.var:rol_relic_legacy_transfer_count >= 2 } dynasty = { add_dynasty_prestige = 100 } }
 	}
 	option = {
 		name = rol_relic_legacy.0003.b
@@ -42,6 +43,7 @@ rol_relic_legacy.0003 = {
 		remove_short_term_gold = 100
 		add_learning_lifestyle_xp = 150
 		add_character_modifier = { modifier = rol_relic_legacy_scholarly_modifier years = 5 }
+		if = { limit = { scope:rol_legacy_artifact.var:rol_relic_legacy_transfer_count >= 2 } add_learning_lifestyle_xp = 100 }
 	}
 }
 

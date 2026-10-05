@@ -37,6 +37,7 @@
  rol_relic_legacy.0003.desc: "[rol_legacy_artifact.GetName] has passed into your keeping. The old owner's story clings to it, but the court already watches for the mark you will leave."
  rol_relic_legacy.0003.a: "Its next legend begins with me."
  rol_relic_legacy.0003.a.flavor: "Possession is only the first test of mastery."
+ rol_relic_legacy.0003.a.legacy: "A long-lived legacy adds 100 dynasty prestige."
  rol_relic_legacy.0101.t: "The Naxian Review"
  rol_relic_legacy.0101.desc: "The oath-guard assembles for inspection. Veterans demand that its discipline remain worthy of the tradition you recovered."
  rol_relic_legacy.0101.a: "Spare no expense on readiness."
@@ -69,3 +70,4 @@
   rol_relic_legacy.0003.b.flavor: "A hidden inheritance is harder to challenge."
   rol_relic_legacy.0003.c: "Entrust it to scholars."
   rol_relic_legacy.0003.c.flavor: "A measured legacy can outlive a single court."
+ rol_relic_legacy.0003.c.legacy: "Repeated transfers give the scholars another century of questions."

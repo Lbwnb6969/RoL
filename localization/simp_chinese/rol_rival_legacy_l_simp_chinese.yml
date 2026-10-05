@@ -37,6 +37,7 @@
  rol_relic_legacy.0003.desc: "[rol_legacy_artifact.GetName]如今落入你的手中。旧主的故事仍萦绕其上，但宫廷已在等待你留下自己的印记。"
  rol_relic_legacy.0003.a: "它的新传奇由我开始。"
  rol_relic_legacy.0003.a.flavor: "占有只是驾驭传奇的第一道考验。"
+ rol_relic_legacy.0003.a.legacy: "悠久的传承会额外带来 100 点宗族威望。"
  rol_relic_legacy.0101.t: "纳克索斯检阅"
  rol_relic_legacy.0101.desc: "誓卫列队受检。老兵要求他们的纪律必须配得上你所寻回的传统。"
  rol_relic_legacy.0101.a: "不惜代价维持战备。"
@@ -69,3 +70,4 @@
   rol_relic_legacy.0003.b.flavor: "隐藏的继承更难受到挑战。"
   rol_relic_legacy.0003.c: "把它托付给学者。"
   rol_relic_legacy.0003.c.flavor: "经过考证的遗产可以超越一座宫廷的寿命。"
+ rol_relic_legacy.0003.c.legacy: "反复转手的圣物，会让学者留下更多问题。"

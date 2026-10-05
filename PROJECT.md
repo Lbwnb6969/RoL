@@ -34,13 +34,16 @@
 - 已实现五链增强终局：Carthage 不改变旧四链揭示条件，但完成第五件真品后会单独触发五重圆环事件和 dynasty/realm 级奖励。
 - 新增内容先使用现有 DDS 占位图；竞争者、传承和碎片场景的生图提示词已记录在 `docs/rol_rival_legacy_image_prompts.md`，尚未调用生图 API。
 - 已用本机 CK3 1.20 启动加载回归：新决策本地化和 AI 检查项已修正，RoL 相关脚本不再产生启动错误；日志剩余错误来自原版 GUI/数据和书签内容。
+- 已新增 `tools/ck3_mcp` 本地 stdio MCP：基于 CK3 官方 `-debug_mode`、`-run_console_action` 接口和 Windows 原生 `SendInput` 提供环境探测、开发者模式启动/停止、命令行与窗口 console、日志读取/快照、RoL 静态检查和组合 smoke test；运行时产物被 `.gitignore` 忽略且日志只复制不删除。
+- 已通过 MCP 协议握手、工具列表、环境探测、RoL 静态验证和 CK3 `debug_mode` console action；该探针加载了 RoL 事件命名空间与事件文件，返回码为 0，未发现 RoL error.log 条目。
+- 已通过 MCP `ck3_launch` 启动带 `-debug_mode` 的真实 CK3 窗口，并通过 `ck3_send_console` 找到窗口句柄、发送 `debug_mode` 命令，随后用 `ck3_stop` 正常结束会话；窗口测试日志未出现 RoL 错误。
+- 已完成一次完整游戏内 smoke：MCP 使用 `-skip -play=e_byzantium` 进入可操作角色，`ck3_send_console` 触发 `event rol_relic_fragment.0001`，随后读取 error.log 未发现 `rol_` 条目，并保存了日志快照。
 
 ## Next steps
 
-1. 运行静态检查并修正新脚本、本地化和背景键的回归问题。
-2. 用 1.20 游戏实际启动一次活动窗口，验证 header、活动背景、选项、artifact modifier 和四条碎片决策。
-3. 在代码验证和游戏内回归完成后，才按提示词生成并筛选新增图片，替换占位 DDS。
-4. 再评估可选五链终局分支、圣物互相组合和 AI 远征开放的平衡目标。
+1. 用 MCP 启动 1.20 游戏窗口并载入一个可回归存档，完成一次可交互活动流程，验证 header、活动背景、选项、artifact modifier 和四条碎片决策。
+2. 在代码验证和游戏内回归完成后，才按提示词生成并筛选新增图片，替换占位 DDS。
+3. 再评估可选五链终局分支、圣物互相组合和 AI 远征开放的平衡目标。
 
 ## Unresolved issues
 
@@ -49,3 +52,4 @@
 - 当前 1.20.0.3 的宗教/圣物系统可作为后续接入点，但直接把 RoL artifact 改成 holy relic 需要额外 DLC 条件和存档兼容测试。
 - AI 仍按玩家专用活动设计（`ai_will_do = 0`），是否开放 AI 远征需要单独的平衡目标。
 - 新增碎片系统依赖 CK3 1.20 对 artifact scope 的 `add_artifact_modifier` 行为；当前已通过项目 smoke 检查，但仍需游戏内 console/事件回归确认。
+- MCP 的命令行 console action 和窗口 console 注入已可用；当前已在新开局角色上触发碎片远征事件，完整存档中的 artifact 转移、升级和活动选项点击仍需选定适配 1.20 的测试存档逐项回归。

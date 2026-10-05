@@ -28,6 +28,7 @@ rol_relic_changed_owner_on_action = {
 				scope:owner = { is_ai = no is_alive = yes }
 			}
 			save_scope_as = rol_legacy_artifact
+			rol_relic_legacy_record_transfer_effect = yes
 			if = { limit = { artifact_type = rol_blade_of_mars } scope:owner = { add_character_flag = rol_mars_blade_claimed } }
 			if = { limit = { artifact_type = rol_nibelung_star_sphere } scope:owner = { add_character_flag = rol_nibelung_sphere_claimed } }
 			if = { limit = { artifact_type = rol_astrolabe_of_ocean } scope:owner = { add_character_flag = rol_astrolabe_of_ocean_claimed } }
