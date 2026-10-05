@@ -239,6 +239,8 @@ activity_rol_seek_naxos_guard = {
 		}
 	}
 
+	header_background = "gfx/interface/illustrations/activity_header_backgrounds/activity_rol_seek_naxos_guard.dds"
+
 	background = {
 		trigger = {
 			rol_activity_host_at_activity_location_trigger = yes

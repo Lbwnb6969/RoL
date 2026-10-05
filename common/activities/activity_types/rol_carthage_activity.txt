@@ -238,6 +238,8 @@ activity_rol_seek_ash_forged_mask = {
 		}
 	}
 
+	header_background = "gfx/interface/illustrations/activity_header_backgrounds/activity_rol_seek_ash_forged_mask.dds"
+
 	background = {
 		trigger = { rol_activity_host_at_activity_location_trigger = yes }
 		texture = "gfx/interface/illustrations/event_scenes/rol_activity_carthage_location.dds"

@@ -249,6 +249,9 @@ activity_rol_seek_nibelung_sphere = {
 	# GRAPHICS
 	###################
 
+	# CK3 1.20 activity header art
+	header_background = "gfx/interface/illustrations/activity_header_backgrounds/activity_rol_seek_nibelung_sphere.dds"
+
 	background = {
 		trigger = {
 			rol_activity_host_at_activity_location_trigger = yes

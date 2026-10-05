@@ -1,6 +1,6 @@
 ﻿# RoL 新对话完整交接文档（Master Handoff）
 
-> 当前快照日期：2026-03-29  
+> 当前快照日期：2026-10-05
 > 真源目录：`C:\CK3Mods\RoL`  
 > 当前启动器描述符：`C:\Users\Falcons的Niko本人的PC\Documents\Paradox Interactive\Crusader Kings III\mod\RoL.mod` -> `path="C:/CK3Mods/RoL"`
 
@@ -13,6 +13,7 @@
 - Documents 目录不再维护任何 RoL 内容镜像；仅保留启动器 descriptor 与 CK3 缓存相关路径。
 - 所有脚本 / 本地化文本统一 **UTF-8 with BOM**。
 - 所有自定义 ID / 事件 / effect / trigger / 变量 / flag 保持 `rol_` 前缀。
+- 当前目标游戏版本：**CK3 1.20.0.3**（“Crozier” / By God Alone）。
 - 当前唯一正式发现入口：
   - `common/on_action/rol_relic_discovery_on_actions.txt`
   - `-> rol_relic_discovery.0001`

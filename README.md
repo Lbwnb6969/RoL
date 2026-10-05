@@ -3,11 +3,11 @@
 A narrative relic-hunting mod for **Crusader Kings III** that adds handcrafted expedition chains, legendary rewards, custom event scenes, and a multi-chain grand reveal event.
 
 > 中文名：**传奇圣遗物 / Relics of Legends**  
-> 当前仓库快照基线：**2026-03-29**  
+> 当前仓库快照基线：**2026-10-05**
 > 当前 `descriptor.mod`：
 > - `name = "Relics of Legends"`
-> - `version = "0.91"`
-> - `supported_version = "1.19.0.6"`
+> - `version = "1.00"`
+> - `supported_version = "1.20.0.3"`
 > - `remote_file_id = "3692558151"`
 
 ---
@@ -142,9 +142,9 @@ If you are continuing development, start with:
 ### Static validation scripts used in this project
 
 ```powershell
-python "C:\Users\Falcons的Niko本人的PC\.codex\skills\rol-ck3-modder\scripts\check_bom_utf8.py" "C:\CK3Mods\RoL"
-python "C:\Users\Falcons的Niko本人的PC\.codex\skills\rol-ck3-modder\scripts\check_rol_prefix.py" "C:\CK3Mods\RoL"
-python "C:\Users\Falcons的Niko本人的PC\.codex\skills\rol-ck3-modder\scripts\rol_smoke_checks.py" "C:\CK3Mods\RoL"
+python "C:\Users\Administrator\.codex\skills\rol-ck3-modder\scripts\check_bom_utf8.py" "C:\CK3Mods\RoL"
+python "C:\Users\Administrator\.codex\skills\rol-ck3-modder\scripts\check_rol_prefix.py" "C:\CK3Mods\RoL"
+python "C:\Users\Administrator\.codex\skills\rol-ck3-modder\scripts\rol_smoke_checks.py" "C:\CK3Mods\RoL"
 ```
 
 ---
@@ -179,7 +179,9 @@ Localization policy:
 ## Current Compatibility Snapshot
 
 From `descriptor.mod`:
-- supported CK3 version: **1.19.0.6**
+- supported CK3 version: **1.20.0.3** (CK3 1.20 “Crozier”, current 1.20.0.3 hotfix)
+
+The five activities now explicitly declare their 1.20 `header_background` assets. This removes reliance on filename discovery for the activity header and keeps the existing travel/location backgrounds unchanged.
 
 If CK3 updates and something breaks, first re-check:
 - activity UI behavior
@@ -208,3 +210,4 @@ RoL is built as a handcrafted legendary-expedition project focused on:
 - Background prompt catalog: `docs/rol_background_prompt_catalog.md`
 - Image resolution guide: `docs/rol_image_resolution_guide.md`
 - Visual replacement guide: `docs/rol_visual_replacement_guide.md`
+- 1.20 compatibility and expansion roadmap: `docs/rol_roadmap_1_20.md`
