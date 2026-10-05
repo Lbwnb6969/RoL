@@ -358,6 +358,19 @@ event rol_relic_fragment.0001
 
 竞争者事件依赖活动上下文，优先从五条正式活动的阶段选项进入；若只直接执行 `event rol_rival.1000`，没有 `scope:activity` 时不应把它作为完整回归结果。
 
+### 五链增强终局
+
+```txt
+effect add_character_flag = rol_mars_blade_claimed
+effect add_character_flag = rol_nibelung_sphere_claimed
+effect add_character_flag = rol_naxos_unit_unlocked
+effect add_character_flag = rol_astrolabe_of_ocean_claimed
+effect add_character_flag = rol_ash_forged_mask_claimed
+effect rol_check_legend_circle_fivefold_revelation_effect = yes
+```
+
+预期：一天后触发 `rol_legend_circle.0002`，发放五重圆环角色修正、家族/宗族奖励和 1000 dynasty prestige；旧四链 `rol_legend_circle.0001` 的触发语义保持不变。
+
 ## 8. 重置命令
 
 ### 8.1 通用 recent result 清理

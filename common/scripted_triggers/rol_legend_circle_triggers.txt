@@ -6,3 +6,8 @@ rol_has_all_major_relic_completions_trigger = {
 	has_character_flag = rol_naxos_unit_unlocked
 	has_character_flag = rol_astrolabe_of_ocean_claimed
 }
+
+rol_has_all_five_relic_completions_trigger = {
+	rol_has_all_major_relic_completions_trigger = yes
+	has_character_flag = rol_ash_forged_mask_claimed
+}

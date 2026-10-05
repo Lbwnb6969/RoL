@@ -153,6 +153,7 @@ rol_sevilla_quest_success_finalize_effect = {
 
 	add_character_flag = rol_astrolabe_of_ocean_claimed
 	rol_check_legend_circle_revelation_effect = yes
+	rol_check_legend_circle_fivefold_revelation_effect = yes
 	remove_character_flag = rol_heard_astrolabe_legend
 	remove_character_modifier = rol_astrolabe_quest_cooldown_modifier
 

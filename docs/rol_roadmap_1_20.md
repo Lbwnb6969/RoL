@@ -48,12 +48,12 @@ RoL 已经有五条正式远征：Rome、Munich、Naxos/Thera、Sevilla、Cartha
 - counterfeit 结果不只给负面提示，还可以留下可追踪的 `rol_counterfeit_exposed` 标记，影响后续活动成功率和声誉。
 - 将现有 `rol_expedition_cooperation_opinion` 变成跨链关系奖励，避免每条链重复造一套 opinion modifier。
 
-### P1：Legend Circle 可选终局
+### P1：Legend Circle 可选终局（五链增强已实现）
 
 保留当前四链总事件作为默认兼容规则，同时增加一个明确的玩家决策或游戏规则：
 
 - 四链完成：触发当前基础 reveal。
-- 五链完成：解锁增强 reveal，追加 Carthage 的灰烬线索、dynasty/realm 奖励或新的终局选择。
+- 五链完成：保留原四链 reveal，同时新增五重圆环 reveal，追加 Carthage 的灰烬封印叙事、角色/家族修正和 dynasty prestige 奖励。
 - 不要在成功 finalize 中无条件改动旧存档的计数语义；通过新 flag 或新决策分支保持旧档可预测。
 
 ### P2：遗物碎片与升级远征（第一批已实现）
