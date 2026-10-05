@@ -27,12 +27,12 @@
 - 已将 `descriptor.mod` 目标版本改为 `1.20.0.3`、模组版本改为 `1.00`，并修复 BOM。
 - 已为 Rome、Munich、Naxos、Sevilla、Carthage 五条活动显式添加 1.20 `header_background`。
 - 已更新 README 和交接文档的版本基线。
+- 最终验证已通过：BOM、`rol_` 前缀、RoL smoke checks、五个 header DDS 路径和 `git diff --check`。
 
 ## Next steps
 
-1. 运行 BOM、前缀、smoke 检查并检查五个 header 资源路径。
-2. 用 1.20 游戏实际启动一次活动窗口，验证 header、活动背景、选项和 artifact 卡片。
-3. 根据 `docs/rol_roadmap_1_20.md` 选择下一阶段：优先建议 Relic Legacy 2.0 与可选五链终局分支。
+1. 用 1.20 游戏实际启动一次活动窗口，验证 header、活动背景、选项和 artifact 卡片。
+2. 根据 `docs/rol_roadmap_1_20.md` 选择下一阶段：优先建议 Relic Legacy 2.0 与可选五链终局分支。
 
 ## Unresolved issues
 
