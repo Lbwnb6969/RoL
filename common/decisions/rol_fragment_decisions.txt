@@ -2,6 +2,7 @@
 
 rol_seek_mars_fragment_decision = {
 	picture = { reference = "gfx/interface/illustrations/decisions/decision_smith.dds" }
+	ai_check_interval = 0
 	cooldown = { years = 2 }
 	is_shown = {
 		is_playable_character = yes
@@ -25,6 +26,7 @@ rol_seek_mars_fragment_decision = {
 
 rol_seek_nibelung_fragment_decision = {
 	picture = { reference = "gfx/interface/illustrations/decisions/decision_smith.dds" }
+	ai_check_interval = 0
 	cooldown = { years = 2 }
 	is_shown = {
 		is_playable_character = yes
@@ -48,6 +50,7 @@ rol_seek_nibelung_fragment_decision = {
 
 rol_seek_astrolabe_fragment_decision = {
 	picture = { reference = "gfx/interface/illustrations/decisions/decision_smith.dds" }
+	ai_check_interval = 0
 	cooldown = { years = 2 }
 	is_shown = {
 		is_playable_character = yes
@@ -71,6 +74,7 @@ rol_seek_astrolabe_fragment_decision = {
 
 rol_seek_ash_fragment_decision = {
 	picture = { reference = "gfx/interface/illustrations/decisions/decision_smith.dds" }
+	ai_check_interval = 0
 	cooldown = { years = 2 }
 	is_shown = {
 		is_playable_character = yes

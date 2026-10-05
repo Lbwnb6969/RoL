@@ -1,10 +1,5 @@
 ﻿rol_try_rival_interlude_effect = {
 	if = {
-		limit = { has_character_flag = rol_force_rival_interlude }
-		remove_character_flag = rol_force_rival_interlude
-		rol_fire_rival_or_fallback_effect = { FALLBACK_EVENT = $FALLBACK_EVENT$ }
-	}
-	else_if = {
 		limit = { has_character_flag = rol_rival_cooperation_active }
 		random_list = {
 			75 = { rol_fire_rival_or_fallback_effect = { FALLBACK_EVENT = $FALLBACK_EVENT$ } }
