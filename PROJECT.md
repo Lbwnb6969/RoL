@@ -57,6 +57,7 @@
 - 已增强 MCP 窗口回归工具：`ck3_send_console`、`ck3_click`、`ck3_capture_screen` 先校验 CK3 HWND 是否真正处于 Windows 前景；激活失败时拒绝输入/点击/截图，避免误操作其他全屏程序；已在真实 CK3 窗口完成 launch、console、click、stop 协议回归。
 - 已新增仓库内 `tools/ck3_mcp/rol_static_audit.py` 与 MCP `ck3_static_audit`：静态检查五条活动统一契约、活动背景文件、英中本地化键对齐/重复键和 RoL 自有 gfx 引用；该检查不启动 CK3，可作为每轮脚本与文案改动后的快速门槛。
 - 已补齐 MCP `ck3_validate_mod` 依赖的 BOM、`rol_` 前缀和脚本结构 smoke 校验脚本，避免组合验证引用缺失文件。
+- 已清理背景提示词、竞争者/传承图像清单和窗口回归手册中的过期“待生成/仍缺活动图标”描述，使文档状态与当前 DDS 清单一致；继续遵守旧版可用资源保留规则。
 - 已扩展 `rol_static_audit.py`：检查每条活动的终局部分成功路由、随机挑战分支和至少多选项事件，并统计分支选项数量。
 - 已新增 `tools/ck3_mcp/png_to_dds_bc1.py`，并把三十张 canonical 背景的 DDS 尺寸与 DXT1 fourCC 纳入静态审计；带人物草稿已移动到 `output/imagegen/rejected/rol_round1_with_people/` 保存。
 - 已新增 `tools/ck3_mcp/rol_dds_audit.py` 与 MCP `ck3_dds_audit`，按资源目录检查 DDS 头、压缩标记和尺寸；历史尺寸只报 warning，损坏格式才阻断验证，并已纳入 `ck3_validate_mod`。

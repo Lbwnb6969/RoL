@@ -115,9 +115,9 @@ A night oath ceremony in an ancient Aegean sanctuary after the death of a comman
 
 前三张覆盖面最高，应优先生成和筛选。图片完成后仍需另行注册 background key 并接入事件；仅放入 `gfx` 目录不会自动生效。
 
-## 6. 当前占位图与碎片远征提示词
+## 6. 当前已接入的竞争者、传承与碎片场景
 
-代码阶段先复用 rol_event_rome_0990_arrival.dds 作为占位图。以下文件已经注册到 RoL 的背景键，后续生图完成后直接替换对应 DDS：
+以下资源已经注册到 RoL 的背景键并接入当前事件链。它们均按无人环境背景处理；旧版仍可用的资源继续保留，后续不重复调用生图 API，除非出现明确占位、缺失或场景冲突：
 
 ### 6.1 竞争者契约
 

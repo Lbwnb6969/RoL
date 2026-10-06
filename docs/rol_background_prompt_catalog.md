@@ -48,8 +48,8 @@
 | Munich / Nibelung | 已接线（旧版资源保留） | `activity_rol_seek_nibelung_sphere*` | `frozen star sphere sigil, icy runes, cobalt glow, alpine occult expedition emblem` |
 | Naxos / Thera | 已接线（旧版资源保留） | `activity_rol_seek_naxos_guard*` | `golden imperial guardian crest, spear motif, sacred halo, black-gold expedition emblem` |
 | Sevilla / Astrolabe | 已接线（旧版资源保留） | `activity_rol_seek_astrolabe_of_ocean*` | `oceanic astrolabe emblem, brass rings, blue pointer, forbidden maritime sigil` |
-| Carthage / Ash-Forged Mask | 已接线（隐式匹配，占位） | `activity_rol_seek_ash_forged_mask.dds` / `activity_rol_seek_ash_forged_mask_header.dds` / `illustrations/activities/activity_rol_seek_ash_forged_mask.dds` / `activity_header_backgrounds/activity_rol_seek_ash_forged_mask.dds` | `ash-forged golden mask emblem, black sand, cold starlight, Carthaginian desert relic expedition crest` |
-| 统一筹备模块 | 已接线（占位） | `gfx/interface/icons/activity_option_categories/rol_option_expedition_preparation.dds` | `expedition planning ledger, hired retainers, bundled gear, premium CK3 option-category icon` |
+| Carthage / Ash-Forged Mask | 已接线（旧版资源保留） | `activity_rol_seek_ash_forged_mask.dds` / `activity_rol_seek_ash_forged_mask_header.dds` / `illustrations/activities/activity_rol_seek_ash_forged_mask.dds` / `activity_header_backgrounds/activity_rol_seek_ash_forged_mask.dds` | `ash-forged golden mask emblem, black sand, cold starlight, Carthaginian desert relic expedition crest` |
+| 统一筹备模块 | 已接线（旧版资源保留） | `gfx/interface/icons/activity_option_categories/rol_option_expedition_preparation.dds` | `expedition planning ledger, hired retainers, bundled gear, premium CK3 option-category icon` |
 
 五条活动的大图和 header 已在 round 5 统一替换为无人环境图；round 6 替换了五地 Travel / Location 背景，round 7 又替换了 Rome、Sevilla、Carthage 和 Legend Circle 的旧事件场景。三批均按 `1592x848 / DXT1` 接线，round 5 还从同源生成图裁出 `1100x440 / DXT1` header。活动窗口中的人物继续由 `window_characters` 提供。
 
@@ -62,7 +62,7 @@
 | Blade of Mars | weapon | 已接线 | `rol_blade_of_mars.dds` -> `rol_blade_of_mars_visual` | `legendary Roman sword, crimson edge glow, dark bronze hilt, centered artifact icon` |
 | Nibelung Star Sphere | **regalia** | 已接线（专用图标） | `rol_nibelung_star_sphere_visual -> rol_nibelung_star_sphere.dds` | `ceremonial star sphere, frozen crystal armillary, blue-gold metal, regal occult artifact icon` |
 | Astrolabe of Ocean | trinket | 已接线 | `rol_astrolabe_of_ocean.dds` -> `rol_astrolabe_of_ocean_visual` | `ancient ocean astrolabe, brass rings, luminous blue pointer, maritime relic icon` |
-| Ash-Forged Mask | **helmet** | 已接线（占位） | `rol_ash_forged_mask.dds` -> `rol_ash_forged_mask_visual` | `legendary Carthaginian golden mask, ash-dark burn marks, cold starlight, black-sand relic icon` |
+| Ash-Forged Mask | **helmet** | 已接线（旧版资源保留） | `rol_ash_forged_mask.dds` -> `rol_ash_forged_mask_visual` | `legendary Carthaginian golden mask, ash-dark burn marks, cold starlight, black-sand relic icon` |
 
 ---
 
@@ -152,14 +152,13 @@
 - 五条正式活动链都已接入统一筹备模块图标：`rol_option_expedition_preparation.dds`。
 - Legend Circle 大事件背景已接线。
 
-### 6.2 仍在用原版占位的地方
-- Sevilla artifact 图标：已切到 `rol_astrolabe_of_ocean.dds`
-- `@rol_legendary_icon!` 已切到 `rol_legendary_icon.dds`
+### 6.2 旧版资源保留项
+- Munich、Naxos、Sevilla、Carthage 的活动图标族均已存在并通过 DDS 审计；当前没有因为“看起来旧”而重复生图。
+- Sevilla artifact 图标已接入 `rol_astrolabe_of_ocean.dds`。
+- `@rol_legendary_icon!` 已接入 `rol_legendary_icon.dds`。
 
-### 6.3 仍缺的活动图标族
-- `activity_rol_seek_nibelung_sphere*`
-- `activity_rol_seek_naxos_guard*`
-- `activity_rol_seek_astrolabe_of_ocean*`
+### 6.3 当前缺口
+- 当前 canonical 资源清单没有发现需要立即生成的新活动图标族；后续只有出现明确占位、缺失或场景冲突时才新增生图批次。
 
 ### 6.4 当前最稳妥的替换策略
 - 已接线文件统一**同名覆盖**。

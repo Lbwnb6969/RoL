@@ -468,7 +468,7 @@ event rol_quest_carthage.1090
 - `rol_success_bg_carthage`
 - `rol_bg_carthage_1090_summary`
 
-以上 6 个 key 都能正常显示当前占位 DDS，不再黑底或丢失背景。
+以上 6 个 key 都能正常显示当前接入的 DDS，不再黑底或丢失背景；其中仍可用的旧版资源按项目规则保留，不重复生图。
 
 ### 11.2 Regalia 图标污染回归
 预期：
