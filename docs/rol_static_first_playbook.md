@@ -6,6 +6,7 @@
 
 ```powershell
 python tools/ck3_mcp/rol_static_audit.py
+python tools/ck3_mcp/rol_dds_audit.py
 python tools/ck3_mcp/server.py  # 通过 MCP 调用 ck3_validate_mod
 python "C:\Users\Administrator\.codex\skills\rol-ck3-modder\scripts\check_bom_utf8.py" "C:\CK3Mods\RoL"
 python "C:\Users\Administrator\.codex\skills\rol-ck3-modder\scripts\check_rol_prefix.py" "C:\CK3Mods\RoL"

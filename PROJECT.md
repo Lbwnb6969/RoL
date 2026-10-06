@@ -45,6 +45,7 @@
 - 已增强 MCP 窗口回归工具：`ck3_send_console`、`ck3_click`、`ck3_capture_screen` 先校验 CK3 HWND 是否真正处于 Windows 前景；激活失败时拒绝输入/点击/截图，避免误操作其他全屏程序；已在真实 CK3 窗口完成 launch、console、click、stop 协议回归。
 - 已新增仓库内 `tools/ck3_mcp/rol_static_audit.py` 与 MCP `ck3_static_audit`：静态检查五条活动统一契约、活动背景文件、英中本地化键对齐/重复键和 RoL 自有 gfx 引用；该检查不启动 CK3，可作为每轮脚本与文案改动后的快速门槛。
 - 已新增 `tools/ck3_mcp/png_to_dds_bc1.py`，并把七张新背景的 DDS 尺寸与 DXT1 fourCC 纳入静态审计；带人物草稿已移动到 `output/imagegen/rejected/rol_round1_with_people/` 保存。
+- 已新增 `tools/ck3_mcp/rol_dds_audit.py` 与 MCP `ck3_dds_audit`，按资源目录检查 DDS 头、压缩标记和尺寸；历史尺寸只报 warning，损坏格式才阻断验证，并已纳入 `ck3_validate_mod`。
 - 已将 MCP `ck3_launch.wait_seconds` 上限扩展到 180 秒，并在返回结构中加入 `window_hwnd` / `window_ready`，用于区分新开局和大型存档的加载阶段。
 - 已为 `ck3_send_console` 增加 `close_console` 参数；执行事件或脚本命令后可自动收起开发者控制台，继续做事件窗口截图和点击回归。
 - 已完成一次真实窗口事件回归：新开局 `-skip -play=e_byzantium` 后触发 `event rol_relic_discovery.1000`，截图确认中文事件文案和 Rome 地宫背景正确显示；`close_console=true` 后控制台不会遮挡事件窗口。

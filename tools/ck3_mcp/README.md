@@ -32,6 +32,7 @@
 - `ck3_read_logs`：读取受限长度的日志尾部并支持关键字过滤。
 - `ck3_snapshot_logs`：把日志复制到时间戳目录，保留原始日志。
 - `ck3_static_audit`：不启动游戏，快速检查五条活动的统一结构、活动背景文件、英中本地化键对齐和 RoL 自有 `gfx` 引用。
+- `ck3_dds_audit`：不启动游戏，检查 RoL DDS 头、压缩标记和资源尺寸；历史资源的非规范尺寸以警告列出，损坏头才会失败。
 - `ck3_validate_mod`：运行静态审计、BOM、ID 前缀和 smoke 检查。
 - `ck3_smoke_test`：组合静态检查、CK3 1.20 开发者控制台初始化探针和 RoL 日志过滤。
 
@@ -48,6 +49,8 @@
 - 脚本中出现的 RoL-owned `gfx/` 引用是否都能解析到真源文件。
 
 这套审计借鉴了当前 Workshop 中 RICE / VIET 活动的共同结构，但只验证 RoL 自有路径，避免把原版 GUI 覆盖文件里的 vanilla 资源误报为缺失。通过后再运行 `ck3_validate_mod`；只有需要确认 Clausewitz 实际加载或窗口 UI 接线时，才使用 `ck3_smoke_test` 或完整窗口工具。
+
+`ck3_dds_audit` 会把事件背景、活动大图、header 背景、活动图标和 artifact 图标按目录分别解释；例如新事件背景目标是 `1592x848 / DXT1`，而现有活动大图的 `1592x841` 和 header 的 `1100x442` 会保留为可见警告，便于分批替换。
 
 生成事件背景时，`tools/ck3_mcp/png_to_dds_bc1.py` 会居中裁切并缩放 PNG，再写出标准 `DDS / BC1(DXT1)`；静态审计会锁定当前七张已替换背景为 `1592x848 / DXT1`。事件背景不放人物，人物由 CK3 事件代码叠加。
 

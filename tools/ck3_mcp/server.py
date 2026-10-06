@@ -40,6 +40,7 @@ LOG_DIR = USER_DIR / "logs"
 ARTIFACT_DIR = ROOT / "tools" / "ck3_mcp" / "artifacts"
 SCRIPT_DIR = Path(r"C:\Users\Administrator\.codex\skills\rol-ck3-modder\scripts")
 STATIC_AUDIT_SCRIPT = ROOT / "tools" / "ck3_mcp" / "rol_static_audit.py"
+DDS_AUDIT_SCRIPT = ROOT / "tools" / "ck3_mcp" / "rol_dds_audit.py"
 
 _tracked_process: subprocess.Popen[str] | None = None
 
@@ -590,6 +591,7 @@ def _snapshot_logs() -> dict[str, Any]:
 def _validate_mod() -> dict[str, Any]:
     commands = [
         [sys.executable, str(STATIC_AUDIT_SCRIPT), str(ROOT)],
+        [sys.executable, str(DDS_AUDIT_SCRIPT), str(ROOT)],
         [sys.executable, str(SCRIPT_DIR / "check_bom_utf8.py"), str(ROOT)],
         [sys.executable, str(SCRIPT_DIR / "check_rol_prefix.py"), str(ROOT)],
         [sys.executable, str(SCRIPT_DIR / "rol_smoke_checks.py"), str(ROOT)],
@@ -623,6 +625,22 @@ def _static_audit() -> dict[str, Any]:
     )
 
 
+def _dds_audit() -> dict[str, Any]:
+    completed = subprocess.run(
+        [sys.executable, str(DDS_AUDIT_SCRIPT), str(ROOT)],
+        cwd=str(ROOT),
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    passed = completed.returncode == 0
+    output = completed.stdout + completed.stderr
+    return _text_result(
+        "RoL DDS audit passed." if passed else "RoL DDS audit failed.\n" + output,
+        passed=passed,
+        output=output,
+        returncode=completed.returncode,
+    )
 def _smoke_test() -> dict[str, Any]:
     validation = _validate_mod()
     validation_ok = bool(validation.get("structuredContent", {}).get("passed"))
@@ -693,7 +711,12 @@ TOOLS = [
     },
     {
         "name": "ck3_static_audit",
-        "description": "Run the fast repository-local RoL activity, localization, and owned-gfx static audit without launching CK3.",
+        "description": "Run the fast repository-local RoL activity, localization, owned-gfx, and canonical generated-DDS static audit without launching CK3.",
+        "inputSchema": {"type": "object", "properties": {}},
+    },
+    {
+        "name": "ck3_dds_audit",
+        "description": "Audit all RoL-owned DDS headers, compression tags, dimensions, and legacy-size warnings without launching CK3.",
         "inputSchema": {"type": "object", "properties": {}},
     },
     {
@@ -739,6 +762,8 @@ def _call_tool(name: str, args: dict[str, Any]) -> dict[str, Any]:
         return _snapshot_logs()
     if name == "ck3_static_audit":
         return _static_audit()
+    if name == "ck3_dds_audit":
+        return _dds_audit()
     if name == "ck3_validate_mod":
         return _validate_mod()
     if name == "ck3_smoke_test":
