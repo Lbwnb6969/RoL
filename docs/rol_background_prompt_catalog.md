@@ -91,15 +91,15 @@
 
 | 场景 | 状态 | 文件 | Prompt |
 |---|---|---|---|
-| Discovery | 已接线（占位） | `rol_event_naxos_discovery.dds` | `Aegean volcanic island ruins, broken stairs descending underground, black rock and gold traces` |
+| Discovery | 已接线（无人场景） | `rol_event_naxos_discovery.dds` | `Black-volcanic Aegean cliff ruin, sealed doorway, cold sea light; see rol_rival_legacy_image_prompts.md §7` |
 | Travel | 已接线（占位） | `rol_activity_naxos_travel.dds` | `approach to Thera volcanic sea cliffs, black volcanic stone, sea wind and embers` |
 | Location | 已接线（占位） | `rol_activity_naxos_location.dds` | `underground palace of Thera, black-gold colonnades, ancient imperial statues` |
-| `0990` Arrival | 已接线（占位） | `rol_event_naxos_0990_arrival.dds` | `sea cliff entrance at Thera, stone stairway into the earth, sea mist` |
-| `1000` Antechamber | 已接线（占位） | `rol_event_naxos_1000_antechamber.dds` | `gigantic black-gold doors, braziers before imperial icons, sacred pressure` |
-| `1002` Verification | 已接线（占位） | `rol_event_naxos_1002_verification.dds` | `long verification hall, ancient mechanisms and trial altar, cold golden light` |
-| `1003` Custodes | 已接线（占位） | `rol_event_naxos_1003_custodes.dds` | `golden guardian silhouettes in formation, long polearms, impassable sacred gate` |
-| `1001` Terminal | 已接线（占位） | `rol_event_naxos_1001_terminal.dds` | `throne-like sanctuary, sacred gold light, elite guard insignia, final command bestowed` |
-| `1090` Summary | 已接线（占位） | `rol_event_naxos_1090_summary.dds` | `underground sanctuary at rest, ritual wargear and banners, solemn closure` |
+| `0990` Arrival | 已接线（无人场景） | `rol_event_naxos_0990_arrival.dds` | `Empty sea-cliff entrance, sealed door, black stone and cold Aegean light; see rol_rival_legacy_image_prompts.md §7` |
+| `1000` Antechamber | 已接线（无人场景） | `rol_event_naxos_1000_antechamber.dds` | `Empty black-gold geometric doors and braziers, no imperial figures; see rol_rival_legacy_image_prompts.md §7` |
+| `1002` Verification | 已接线（无人场景） | `rol_event_naxos_1002_verification.dds` | `Empty mechanism hall and testing altar; see rol_rival_legacy_image_prompts.md §7` |
+| `1003` Custodes | 已接线（无人场景） | `rol_event_naxos_1003_custodes.dds` | `Empty sealed custodes gate, stored spears and geometric seals; see rol_rival_legacy_image_prompts.md §7` |
+| `1001` Terminal | 已接线（无人场景） | `rol_event_naxos_1001_terminal.dds` | `Empty skylit sanctuary with covered dais; see rol_rival_legacy_image_prompts.md §7` |
+| `1090` Summary | 已接线（无人场景） | `rol_event_naxos_1090_summary.dds` | `Empty sanctuary with banners, weapon racks and covered display table; see rol_rival_legacy_image_prompts.md §7` |
 
 ### 5.4 Sevilla / Astrolabe
 

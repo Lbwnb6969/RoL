@@ -156,3 +156,36 @@ A quiet empty medieval reliquary workshop prepared for fitting a recovered fragm
 ```
 
 统一规格继续使用 1592 x 848、横向 16:9、无透明通道，最终转换为 DDS / BC1 (DXT1)。所有提示词都要求无文字、无徽标、无水印，并为中央事件文本保留清晰区域。
+
+
+## 7. Naxos / Thera 无人事件背景批次
+
+Naxos 的事件背景统一使用黑色火山石、爱琴海海风、克制的旧金色几何纹样和冷灰蓝光。背景只画建筑、器物和光线，不画守卫、人物、雕像、盔甲人台或人形浮雕；守卫和继承者由事件代码叠加。建议文件名分别对应 `rol_event_naxos_*.dds`，最终规格为 `1592x848 / BC1(DXT1)`。
+
+```text
+An empty black-volcanic Aegean coastal ruin at first discovery: a weathered stairway descends from sea cliffs to a sealed underground doorway, with broken columns, salt mist, and restrained old-gold geometric marks on the stone. No readable writing and no statues. The place must feel ancient, guarded by architecture alone, and ready for CK3 event portraits to overlay.
+```
+
+```text
+An empty sea-cliff entrance to an underground Thera sanctuary, with a curving black-stone stairway, a heavy sealed door, scattered volcanic rubble, one small oil lamp, and distant cold Aegean water. Use restrained gold trim and blue-gray storm light. No people, animals, guards, armor, statues, relief faces, or human-shaped shadows.
+```
+
+```text
+An empty Naxos antechamber behind enormous black-and-gold geometric doors. Braziers burn on low stone stands; abstract sun and spear motifs are carved as simple non-human geometry, never as figures. The floor is dusty and symmetrical, the sacred pressure comes from scale and silence. No guards, statues, armor, portraits, or human silhouettes.
+```
+
+```text
+An empty Thera terminal sanctuary with a raised stone dais beneath a circular skylight and restrained golden light. A covered reliquary or closed stone pedestal remains deliberately ambiguous; dark volcanic columns and sea-blue shadow frame the chamber. No throne occupant, statue, guardian, armor, human relief, animal, or human-shaped shadow.
+```
+
+```text
+An empty verification hall inside a black-volcanic sanctuary, lined with ancient mechanical wheels, counterweights, channels, and a simple stone testing altar. Cold blue daylight meets a narrow warm beam; every motif is geometric and non-human. No people, guards, statues, armor, faces, or silhouettes.
+```
+
+```text
+An empty custodes gate deep inside the Thera sanctuary: a monumental sealed door, rows of ceremonial spears stored on wall racks, extinguished braziers, and black-gold geometric seals. The sacred guard is implied by the locked architecture and abandoned equipment. No soldiers, armor mannequins, statues, relief faces, animals, or human shadows.
+```
+
+```text
+An empty Naxos sanctuary after the relic expedition, with folded neutral banners, a cold hearth, orderly weapon racks, and a covered stone display table in a quiet black-stone hall. Pale sea light and one restrained brazier suggest closure without triumph. No armor displays shaped like bodies, no people, statues, portraits, or human silhouettes.
+```

@@ -89,6 +89,13 @@ DDS_ASSETS = {
     "gfx/interface/illustrations/event_scenes/rol_event_relic_legacy_transfer.dds": (1592, 848, b"DXT1"),
     "gfx/interface/illustrations/event_scenes/rol_event_fragment_expedition.dds": (1592, 848, b"DXT1"),
     "gfx/interface/illustrations/event_scenes/rol_event_fragment_upgrade.dds": (1592, 848, b"DXT1"),
+    "gfx/interface/illustrations/event_scenes/rol_event_naxos_discovery.dds": (1592, 848, b"DXT1"),
+    "gfx/interface/illustrations/event_scenes/rol_event_naxos_0990_arrival.dds": (1592, 848, b"DXT1"),
+    "gfx/interface/illustrations/event_scenes/rol_event_naxos_1000_antechamber.dds": (1592, 848, b"DXT1"),
+    "gfx/interface/illustrations/event_scenes/rol_event_naxos_1001_terminal.dds": (1592, 848, b"DXT1"),
+    "gfx/interface/illustrations/event_scenes/rol_event_naxos_1002_verification.dds": (1592, 848, b"DXT1"),
+    "gfx/interface/illustrations/event_scenes/rol_event_naxos_1003_custodes.dds": (1592, 848, b"DXT1"),
+    "gfx/interface/illustrations/event_scenes/rol_event_naxos_1090_summary.dds": (1592, 848, b"DXT1"),
 }
 
 
