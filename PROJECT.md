@@ -44,6 +44,9 @@
 - 已把五条活动的 Tier 2/3 低于完整圣物门槛路径接成可达的“部分成功”终局：记录活动日志、保留进度奖励、给予 5 年圣物证据学习修正并进入 2 年冷却；只有 Tier 4 发放唯一完整圣物。
 - 已用 CK3 1.20 `-run_console_action=debug_mode` 重新加载新增终局代码；五个 quest namespace 均加载，error.log 为空。此前发现的部分成功调试键与活动日志标题缺失已修复。
 - 已生成并接入五条活动的无人主图与同源 header：Rome、Munich、Naxos、Sevilla、Carthage 各一套，分别符合 `1592x848 / DXT1` 与 `1100x440 / DXT1`。
+- 已完成 round 6 活动旅行/地点背景：五地共 10 张无人环境图替换旧 1592×889 资源，统一为 `1592x848 / DXT1`；旧文件已归档到 `archive/replaced_assets/20261006/round6_activity_legacy/`。
+- 已完成 round 7 事件背景：Rome、Sevilla、Carthage 与 Legend Circle 共 19 张旧场景改为无人环境图，统一为 `1592x848 / DXT1`；旧文件已归档到 `archive/replaced_assets/20261006/round7_event_legacy/`。
+- 当前 `rol_dds_audit.py` 已对 84 张 RoL DDS 全部通过，历史 1592×889 警告已清零；`rol_static_audit.py` 锁定 59 张 canonical DDS。
 - 已用本机 CK3 1.20 启动加载回归：新决策本地化和 AI 检查项已修正，RoL 相关脚本不再产生启动错误；日志剩余错误来自原版 GUI/数据和书签内容。
 - 已新增 `tools/ck3_mcp` 本地 stdio MCP：基于 CK3 官方 `-debug_mode`、`-run_console_action` 接口和 Windows 原生 `SendInput` 提供环境探测、开发者模式启动/停止、命令行与窗口 console、日志读取/快照、RoL 静态检查和组合 smoke test；运行时产物被 `.gitignore` 忽略且日志只复制不删除。
 - 已通过 MCP 协议握手、工具列表、环境探测、RoL 静态验证和 CK3 `debug_mode` console action；该探针加载了 RoL 事件命名空间与事件文件，返回码为 0，未发现 RoL error.log 条目。
@@ -62,7 +65,7 @@
 
 1. 先用 `ck3_static_audit`、`ck3_validate_mod` 固化后续脚本/本地化/资源改动的快速回归；发现静态问题时优先修复，不启动游戏反复试错。
 2. 在静态契约和资源清单稳定后，只选一个最小窗口流程验证 activity header、活动背景、筹备选项、部分成功结算和 Tier 4 artifact modifier；不再每轮重复完整活动点击。
-3. 继续按无人场景规则生成 Rome、Munich、Sevilla、Carthage 的关键阶段背景与活动大图，逐批转换 DDS 并做静态审计；最后再选一个最小窗口流程验证实际显示效果。
+3. 在静态资源与终局代码稳定后，只选一个最小窗口流程验证新活动背景、部分成功结算和 Tier 4 artifact modifier 的实际显示效果。
 
 ## Unresolved issues
 

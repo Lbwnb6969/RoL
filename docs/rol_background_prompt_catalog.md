@@ -44,7 +44,7 @@
 | Carthage / Ash-Forged Mask | 已接线（隐式匹配，占位） | `activity_rol_seek_ash_forged_mask.dds` / `activity_rol_seek_ash_forged_mask_header.dds` / `illustrations/activities/activity_rol_seek_ash_forged_mask.dds` / `activity_header_backgrounds/activity_rol_seek_ash_forged_mask.dds` | `ash-forged golden mask emblem, black sand, cold starlight, Carthaginian desert relic expedition crest` |
 | 统一筹备模块 | 已接线（占位） | `gfx/interface/icons/activity_option_categories/rol_option_expedition_preparation.dds` | `expedition planning ledger, hired retainers, bundled gear, premium CK3 option-category icon` |
 
-五条活动的大图和 header 已在 round 5 统一替换为无人环境图；每条活动从同一张生成源图裁出 `1592x848 / DXT1` 主图和 `1100x440 / DXT1` header，提示词记录在 `docs/imagegen_batches/rol_round5_activity_no_characters.jsonl`。活动窗口中的人物继续由 `window_characters` 提供。
+五条活动的大图和 header 已在 round 5 统一替换为无人环境图；round 6 替换了五地 Travel / Location 背景，round 7 又替换了 Rome、Sevilla、Carthage 和 Legend Circle 的旧事件场景。三批均按 `1592x848 / DXT1` 接线，round 5 还从同源生成图裁出 `1100x440 / DXT1` header。活动窗口中的人物继续由 `window_characters` 提供。
 
 ---
 
@@ -65,24 +65,24 @@
 
 | 场景 | 状态 | 文件 | Prompt |
 |---|---|---|---|
-| Discovery | 已接线（占位） | `rol_event_rome_discovery.dds` | `ancient Roman underground passage, relief of Mars, crimson torchlight, cracked stone walls` |
-| Travel | 已接线（占位） | `rol_activity_rome_travel.dds` | `night journey through Roman underground corridor, ranks of torches, damp stone walls` |
-| Location | 已接线（占位） | `rol_activity_rome_location.dds` | `sealed catacomb main chamber, heavy stone gate, ritual fire and chains` |
-| `0990` Arrival | 已接线（占位） | `rol_event_rome_0990_arrival.dds` | `sealed catacomb entrance, half-collapsed arch, iron gate with wax seals` |
-| `1000` Catacombs | 已接线（占位） | `rol_event_rome_1000_catacombs.dds` | `deep Palatine catacombs, broken statues, red dust haze, distant altar of Mars` |
-| `1002` Collapse | 已接线（占位） | `rol_event_rome_1002_collapse.dds` | `narrow corridor with falling boulders, overturned torches, shattered dust` |
-| `1003` Altar | 已接线（占位） | `rol_event_rome_1003_altar.dds` | `blood oath altar, crimson ritual markings, statue of Mars, solemn and mysterious` |
-| `1004` Guardians | 已接线（占位） | `rol_event_rome_1004_guardians.dds` | `underground war hall, ghostly praetorian formation, glowing crimson eyes` |
-| `1001` Terminal | 已接线（占位） | `rol_event_rome_1001_terminal.dds` | `blessing of Mars, legendary blade floating above altar, red-gold divine light` |
-| `1090` Summary | 已接线（占位） | `rol_event_rome_1090_summary.dds` | `Roman armory after expedition, relic on display, dark red war banners` |
+| Discovery | 已接线（round 7 / 无人场景） | `rol_event_rome_discovery.dds` | `empty Roman underground discovery passage, basalt chamber, geometric laurel, crimson torchlight` |
+| Travel | 已接线（round 6 / 无人场景） | `rol_activity_rome_travel.dds` | `empty torchlit Roman underground route, vaulted corridor, sealed doors, no expedition members` |
+| Location | 已接线（round 6 / 无人场景） | `rol_activity_rome_location.dds` | `empty Palatine catacomb entrance, basalt arch, red torchlight, no figures` |
+| `0990` Arrival | 已接线（round 7 / 无人场景） | `rol_event_rome_0990_arrival.dds` | `empty sealed Roman catacomb arrival, iron gate, broken arch, torch brackets` |
+| `1000` Catacombs | 已接线（round 7 / 无人场景） | `rol_event_rome_1000_catacombs.dds` | `empty deep Palatine chamber, basalt, red dust, geometric altar` |
+| `1002` Collapse | 已接线（round 7 / 无人场景） | `rol_event_rome_1002_collapse.dds` | `empty corridor collapse, falling boulders, overturned torches` |
+| `1003` Altar | 已接线（round 7 / 无人场景） | `rol_event_rome_1003_altar.dds` | `empty Roman oath altar, abstract crimson marks, sealed door` |
+| `1004` Guardians | 已接线（round 7 / 无人场景） | `rol_event_rome_1004_guardians.dds` | `empty war hall, abandoned shields, red-lit final gate` |
+| `1001` Terminal | 已接线（round 7 / 无人场景） | `rol_event_rome_1001_terminal.dds` | `empty terminal altar, red-gold aperture, sacred shaft of light` |
+| `1090` Summary | 已接线（round 7 / 无人场景） | `rol_event_rome_1090_summary.dds` | `empty Roman armory, covered display table, dark red banners` |
 
 ### 5.2 Munich / Nibelung
 
 | 场景 | 状态 | 文件 | Prompt |
 |---|---|---|---|
 | Discovery | 已接线（无人场景 / 已统一尺寸） | `rol_event_munich_discovery.dds` | `Bavarian mountain omen, empty ancient stone gate buried in snow, pale starlight, cold mist` |
-| Travel | 已接线（占位） | `rol_activity_munich_travel.dds` | `expedition through Alpine blizzard trail, cold blue daylight, whipping snow` |
-| Location | 已接线（占位） | `rol_activity_munich_location.dds` | `frozen star crypt, frost-covered pillars, ancient sarcophagi, cold blue reflections` |
+| Travel | 已接线（round 6 / 无人场景） | `rol_activity_munich_travel.dds` | `empty Alpine pass to the star crypt, snow, blue ice cliffs, no travelers` |
+| Location | 已接线（round 6 / 无人场景） | `rol_activity_munich_location.dds` | `empty glacial star-crypt approach, blue ice cavern, sealed gate, no figures` |
 | `0990` Arrival | 已接线（无人场景 / 已统一尺寸） | `rol_event_munich_0990_arrival.dds` | `empty ice crypt antechamber, frost pillars, blue star light` |
 | `1000` Frost | 已接线（无人场景 / 已统一尺寸） | `rol_event_munich_1000_frost.dds` | `empty frozen gate chained in blue-white light` |
 | `1002` Abyss | 已接线（无人场景 / 已统一尺寸） | `rol_event_munich_1002_abyss.dds` | `empty mirrored ice cavern with violet star reflections` |
@@ -94,8 +94,8 @@
 | 场景 | 状态 | 文件 | Prompt |
 |---|---|---|---|
 | Discovery | 已接线（无人场景） | `rol_event_naxos_discovery.dds` | `Black-volcanic Aegean cliff ruin, sealed doorway, cold sea light; see rol_rival_legacy_image_prompts.md §7` |
-| Travel | 已接线（占位） | `rol_activity_naxos_travel.dds` | `approach to Thera volcanic sea cliffs, black volcanic stone, sea wind and embers` |
-| Location | 已接线（占位） | `rol_activity_naxos_location.dds` | `underground palace of Thera, black-gold colonnades, ancient imperial statues` |
+| Travel | 已接线（round 6 / 无人场景） | `rol_activity_naxos_travel.dds` | `empty Aegean volcanic coast at dusk, black rock, sea cliffs, unoccupied boat` |
+| Location | 已接线（round 6 / 无人场景） | `rol_activity_naxos_location.dds` | `empty black-stone Aegean sanctuary terrace, gold geometry, equipment only` |
 | `0990` Arrival | 已接线（无人场景） | `rol_event_naxos_0990_arrival.dds` | `Empty sea-cliff entrance, sealed door, black stone and cold Aegean light; see rol_rival_legacy_image_prompts.md §7` |
 | `1000` Antechamber | 已接线（无人场景） | `rol_event_naxos_1000_antechamber.dds` | `Empty black-gold geometric doors and braziers, no imperial figures; see rol_rival_legacy_image_prompts.md §7` |
 | `1002` Verification | 已接线（无人场景） | `rol_event_naxos_1002_verification.dds` | `Empty mechanism hall and testing altar; see rol_rival_legacy_image_prompts.md §7` |
@@ -107,33 +107,33 @@
 
 | 场景 | 状态 | 文件 | Prompt |
 |---|---|---|---|
-| Discovery | 已接线（占位） | `rol_event_sevilla_discovery.dds` | `magical sea chart on tavern table in old port of Sevilla, candlelight, salt mist` |
-| Travel | 已接线（占位） | `rol_activity_sevilla_travel.dds` | `forbidden ocean voyage, black waves, distant lightning, sailing ship into mist` |
-| Location | 已接线（占位） | `rol_activity_sevilla_location.dds` | `quays of Triana, Iberian port, ropes and cargo crates, golden sea breeze` |
-| `0990` Quays | 已接线（占位） | `rol_event_sevilla_0990_quays.dds` | `old sailing ships and dock lanterns, busy harbor district, excitement before departure` |
-| `1000` Smugglers | 已接线（占位） | `rol_event_sevilla_1000_smugglers.dds` | `hidden cove, rough smugglers, weathered fast boats, illicit deal atmosphere` |
-| `1002` Stormwall | 已接线（占位） | `rol_event_sevilla_1002_stormwall.dds` | `magnetic storm wall at world's edge, black sea vortex, purple-red sky` |
-| `1001` Terminal | 已接线（占位） | `rol_event_sevilla_1001_terminal.dds` | `perfectly calm mirror sea, glowing astrolabe floating above water` |
-| `1090` Summary | 已接线（占位） | `rol_event_sevilla_1090_summary.dds` | `triumphant return to Sevilla harbor, astrolabe with navigation charts on display` |
+| Discovery | 已接线（round 7 / 无人场景） | `rol_event_sevilla_discovery.dds` | `empty maritime discovery room, covered instrument, blank parchment, salt mist` |
+| Travel | 已接线（round 6 / 无人场景） | `rol_activity_sevilla_travel.dds` | `empty Atlantic travel seascape, unoccupied sailing ship, storm clouds, no crew` |
+| Location | 已接线（round 6 / 无人场景） | `rol_activity_sevilla_location.dds` | `empty medieval Atlantic harbor, stone quay, furled ship, ropes and chests` |
+| `0990` Quays | 已接线（round 7 / 无人场景） | `rol_event_sevilla_0990_quays.dds` | `empty Triana quays, furled ships, lanterns and cargo crates` |
+| `1000` Smugglers | 已接线（round 7 / 无人场景） | `rol_event_sevilla_1000_smugglers.dds` | `empty hidden cove, unoccupied boats, sealed crates, sea cave` |
+| `1002` Stormwall | 已接线（round 7 / 无人场景） | `rol_event_sevilla_1002_stormwall.dds` | `empty storm wall, black ocean vortex, purple lightning` |
+| `1001` Terminal | 已接线（round 7 / 无人场景） | `rol_event_sevilla_1001_terminal.dds` | `empty mirror sea, circular brass geometry, pale horizon` |
+| `1090` Summary | 已接线（round 7 / 无人场景） | `rol_event_sevilla_1090_summary.dds` | `empty return harbor, covered navigation table, dawn mist` |
 
 ### 5.5 Carthage / Ash-Forged Mask
 
 | 场景 | 状态 | 文件 | Prompt |
 |---|---|---|---|
-| Discovery | 已接线（占位） | `rol_event_carthage_discovery.dds` | `storm-stripped black sands outside ruined Carthage, half-buried temple revealed under rare sandstorm, ominous desert night` |
-| Travel | 已接线（占位） | `rol_activity_carthage_travel.dds` | `night caravan across black sand desert, cold stars, ash-laden wind, silent dread` |
-| Location | 已接线（占位） | `rol_activity_carthage_location.dds` | `half-buried Carthaginian temple entrance, ash-dark stone, broken reliefs, cold starlight` |
-| `0990` Arrival | 已接线（占位） | `rol_event_carthage_0990_arrival.dds` | `desert expedition reaching a half-buried temple after sandstorm, black dunes, buried threshold, night entry mood` |
+| Discovery | 已接线（round 7 / 无人场景） | `rol_event_carthage_discovery.dds` | `empty black-sand Punic discovery, buried entrance, bronze tools, cold stars` |
+| Travel | 已接线（round 6 / 无人场景） | `rol_activity_carthage_travel.dds` | `empty black-sand desert route, cold stars, distant ruins, no caravan or animals` |
+| Location | 已接线（round 6 / 无人场景） | `rol_activity_carthage_location.dds` | `empty black-sand sanctuary approach, buried Punic ruins, bronze tools, no figures` |
+| `0990` Arrival | 已接线（round 7 / 无人场景） | `rol_event_carthage_0990_arrival.dds` | `empty buried Carthaginian arrival, black dunes, stone threshold, cold night` |
 | `1000` Desert | 已接线（占位） | `rol_event_carthage_1000_desert.dds` | `black desert under freezing stars, Bedouin guides and ancient charts, cursed salt and ash, Carthaginian ruins in the distance` |
-| `1002` Ash Temple | 已接线（占位） | `rol_event_carthage_1002_ash_temple.dds` | `interior of buried temple filled with ash and impossible starlight, ghostly war elephants, ancient Punic tragedy` |
-| `1001` Terminal | 已接线（占位） | `rol_event_carthage_1001_terminal.dds` | `ash-forged golden mask on weathered stone dais beneath a shaft of cold starlight, old gold, dread majesty` |
-| `1090` Summary | 已接线（占位） | `rol_event_carthage_1090_summary.dds` | `black-sand expedition returning from the buried sanctuary, relic record table, cold desert dawn, haunted triumph` |
+| `1002` Ash Temple | 已接线（round 7 / 无人场景） | `rol_event_carthage_1002_ash_temple.dds` | `empty buried ash temple, fractured columns, starlight, bronze braziers` |
+| `1001` Terminal | 已接线（round 7 / 无人场景） | `rol_event_carthage_1001_terminal.dds` | `empty black-sand terminal chamber, covered dais, cold starlight` |
+| `1090` Summary | 已接线（round 7 / 无人场景） | `rol_event_carthage_1090_summary.dds` | `empty Carthaginian record room, covered table, desert dawn` |
 
 ### 5.6 Legend Circle / 四链总揭示
 
 | 场景 | 状态 | 文件 | Prompt |
 |---|---|---|---|
-| `rol_legend_circle.0001` | 已接线（占位） | `rol_event_legend_circle_revelation.dds` | `Mediterranean-centered legendary revelation scene, relic discoveries forming an arc around the Mediterranean and Alps, colossal sacred atmosphere, dark gold and deep blue` |
+| `rol_legend_circle.0001` | 已接线（round 7 / 无人场景） | `rol_event_legend_circle_revelation.dds` | `empty circular observatory, five unoccupied pedestals, restrained blue-gold light` |
 
 ---
 
