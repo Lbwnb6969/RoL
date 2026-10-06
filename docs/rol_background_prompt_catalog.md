@@ -14,6 +14,13 @@
 - **原版占位**：当前仍读原版文件名或原版美术
 - **尚未创建**：当前资源位已明确需要，但仓内暂无文件
 
+### 资源保留与生图边界
+
+- 旧版已经制作完成、内容可用且与当前场景一致的图片直接保留，不重复调用生图 API。
+- 只有明确标为“占位”、内容错误、带人物而场景需要空背景，或确实缺失的资源才进入生图批次。
+- 生成前先读取现有 DDS 和本目录中的同源 Prompt，确认场景、色调、道具和构图能延续；生成后才按目标尺寸转换并接线。
+- 被替换的旧资源移动到 `archive/replaced_assets/` 保存，保留其 Git 记录，方便回退和比较。
+
 ---
 
 ## 2) 统一规格与通用 Prompt 前缀
@@ -38,9 +45,9 @@
 | 链 | 状态 | Basename / 文件 | Prompt |
 |---|---|---|---|
 | Rome / Mars | 已接线（隐式匹配） | `activity_rol_seek_mars_blade.dds` / `activity_rol_seek_mars_blade_header.dds` / `illustrations/activities/activity_rol_seek_mars_blade.dds` / `activity_header_backgrounds/activity_rol_seek_mars_blade.dds` | `Roman war relic emblem, sacred crimson sword sigil, bronze laurel, martial atmosphere` |
-| Munich / Nibelung | 尚未创建 | `activity_rol_seek_nibelung_sphere*` | `frozen star sphere sigil, icy runes, cobalt glow, alpine occult expedition emblem` |
-| Naxos / Thera | 尚未创建 | `activity_rol_seek_naxos_guard*` | `golden imperial guardian crest, spear motif, sacred halo, black-gold expedition emblem` |
-| Sevilla / Astrolabe | 尚未创建 | `activity_rol_seek_astrolabe_of_ocean*` | `oceanic astrolabe emblem, brass rings, blue pointer, forbidden maritime sigil` |
+| Munich / Nibelung | 已接线（旧版资源保留） | `activity_rol_seek_nibelung_sphere*` | `frozen star sphere sigil, icy runes, cobalt glow, alpine occult expedition emblem` |
+| Naxos / Thera | 已接线（旧版资源保留） | `activity_rol_seek_naxos_guard*` | `golden imperial guardian crest, spear motif, sacred halo, black-gold expedition emblem` |
+| Sevilla / Astrolabe | 已接线（旧版资源保留） | `activity_rol_seek_astrolabe_of_ocean*` | `oceanic astrolabe emblem, brass rings, blue pointer, forbidden maritime sigil` |
 | Carthage / Ash-Forged Mask | 已接线（隐式匹配，占位） | `activity_rol_seek_ash_forged_mask.dds` / `activity_rol_seek_ash_forged_mask_header.dds` / `illustrations/activities/activity_rol_seek_ash_forged_mask.dds` / `activity_header_backgrounds/activity_rol_seek_ash_forged_mask.dds` | `ash-forged golden mask emblem, black sand, cold starlight, Carthaginian desert relic expedition crest` |
 | 统一筹备模块 | 已接线（占位） | `gfx/interface/icons/activity_option_categories/rol_option_expedition_preparation.dds` | `expedition planning ledger, hired retainers, bundled gear, premium CK3 option-category icon` |
 
@@ -124,7 +131,7 @@
 | Travel | 已接线（round 6 / 无人场景） | `rol_activity_carthage_travel.dds` | `empty black-sand desert route, cold stars, distant ruins, no caravan or animals` |
 | Location | 已接线（round 6 / 无人场景） | `rol_activity_carthage_location.dds` | `empty black-sand sanctuary approach, buried Punic ruins, bronze tools, no figures` |
 | `0990` Arrival | 已接线（round 7 / 无人场景） | `rol_event_carthage_0990_arrival.dds` | `empty buried Carthaginian arrival, black dunes, stone threshold, cold night` |
-| `1000` Desert | 已接线（占位） | `rol_event_carthage_1000_desert.dds` | `black desert under freezing stars, Bedouin guides and ancient charts, cursed salt and ash, Carthaginian ruins in the distance` |
+| `1000` Desert | 已接线（旧版保留 / 无需重生图） | `rol_event_carthage_1000_desert.dds` | `black desert under freezing stars, empty ancient charts and tools, cursed salt and ash, Carthaginian ruins in the distance; preserve the usable legacy scene` |
 | `1002` Ash Temple | 已接线（round 7 / 无人场景） | `rol_event_carthage_1002_ash_temple.dds` | `empty buried ash temple, fractured columns, starlight, bronze braziers` |
 | `1001` Terminal | 已接线（round 7 / 无人场景） | `rol_event_carthage_1001_terminal.dds` | `empty black-sand terminal chamber, covered dais, cold starlight` |
 | `1090` Summary | 已接线（round 7 / 无人场景） | `rol_event_carthage_1090_summary.dds` | `empty Carthaginian record room, covered table, desert dawn` |
@@ -156,7 +163,9 @@
 
 ### 6.4 当前最稳妥的替换策略
 - 已接线文件统一**同名覆盖**。
-- 未接线或仍在用原版占位的资源，先补文件，再改 visual / GUI / basename 接线。
+- 旧版已有且内容可用的文件直接保留，不为“看起来旧”而重复生成。
+- 仅对明确的占位图、缺失图或与场景要求冲突的图补文件，再改 visual / GUI / basename 接线。
+- 每次生图前先对照本清单和现有 DDS，避免覆盖已经完成的旧版资源。
 - 活动图标透明问题先看 alpha 是否真实存在，再清 `gfx` 缓存，不要只看导出格式名。
 
 ### 6.5 当前新增视觉基线
