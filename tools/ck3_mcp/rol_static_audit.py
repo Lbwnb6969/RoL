@@ -120,9 +120,9 @@ LOC_KEY_RE = re.compile(r'^\s+([A-Za-z0-9_.-]+):(?:\d+)?\s*(?:"|$)')
 GFX_REF_RE = re.compile(r"(?:\"|=\s*)(gfx/[^\"\s]+)")
 LOC_REF_RE = re.compile(r"\b(?:title|desc|name|flavor|text)\s*=\s*(rol_[A-Za-z0-9_.-]+)")
 
-# Newly generated event scenes are kept on the canonical CK3 background
-# contract. Older RoL placeholders are intentionally left alone until their
-# individual replacement batches are reviewed.
+# Canonical generated or explicitly retained event scenes are kept on the CK3
+# background contract. Usable legacy assets outside this list are intentionally
+# retained and are not regenerated merely because they predate this audit.
 DDS_ASSETS = {
     "gfx/interface/illustrations/event_scenes/rol_event_rival_expedition.dds": (1592, 848, b"DXT1"),
     "gfx/interface/illustrations/event_scenes/rol_event_relic_scholarly_study.dds": (1592, 848, b"DXT1"),

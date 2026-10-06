@@ -13,14 +13,14 @@ CK3 1.20 “Crozier / By God Alone” 于 2026-09-30 发布，当前 1.20 分支
 
 ## 2. 当前系统盘点
 
-RoL 已经有五条正式远征：Rome、Munich、Naxos/Thera、Sevilla、Carthage；每条链包含 discovery、activity、arrival、阶段检定、Tier4-only 终局和结算事件。公共层已经抽出筹备选项、进度、冷却、日志、竞争者、artifact 创建、legacy 和总事件接口。
+RoL 已经有五条正式远征：Rome、Munich、Naxos/Thera、Sevilla、Carthage；每条链包含 discovery、activity、arrival、阶段检定、Tier4 完整圣物终局、Tier2/3 部分成功和失败结算事件。公共层已经抽出筹备选项、进度、冷却、日志、竞争者、artifact 创建、legacy 和总事件接口。
 
-当前的结构性空缺有四个：
+当前仍保留的结构性空缺有两个：
 
-1. 五条链的主线奖励仍主要是一次性奖励；本轮已补上遗物换主与碎片升级的第一层生命周期。
-2. rival 已能制造 counterfeit；本轮已补上合作契约、积怨和后续声誉意见，勒索与放逐仍可继续扩展。
-3. `rol_legend_circle` 目前固定为四链计数，Carthage 的内容价值与总事件脱节。
-4. 活动选项、阶段检定和奖励数值仍分散在多条链中，未来增加地区时容易复制粘贴漂移。
+1. 活动选项、阶段检定和奖励数值仍分散在多条链中，未来增加地区时容易复制粘贴漂移。
+2. 交互式活动规划页、筹备修正和完整奖励上下文仍需要在适配 1.20 的存档中由玩家做一次窗口验证。
+
+本轮已完成的第一批扩展包括遗物换主与碎片升级生命周期、竞争者合作/对抗关系、五链终局增强和 Tier2/3 部分成功。`rol_legend_circle` 仍保持四链兼容计数，Carthage 通过独立五重圆环事件接入，不改写旧存档语义。
 
 ## 3. 推荐实施顺序
 
@@ -28,7 +28,7 @@ RoL 已经有五条正式远征：Rome、Munich、Naxos/Thera、Sevilla、Cartha
 
 - 目标版本、模组版本和文档统一为 1.20.0.3 / 1.00。
 - 五条活动显式接入 `header_background`。
-- 运行 BOM、前缀、smoke 检查，并在游戏中分别打开一次活动规划页和结算页。
+- 运行 BOM、前缀、smoke 检查；游戏内活动规划页、部分成功结算和 Tier4 奖励由项目维护者在本轮静态收尾后自行验证。
 
 ### P1：Relic Legacy 2.0（第一批已实现）
 
@@ -94,4 +94,4 @@ RoL 已经有五条正式远征：Rome、Munich、Naxos/Thera、Sevilla、Cartha
 - 活动 tooltip 的成功率与实际检定一致。
 - 新奖励有 toast、日志和失败/冷却反馈。
 - artifact 不重复创建、不覆盖原版图标、不改变旧存档已有物品的 slot 语义。
-- 先做最小 console smoke，再做一条完整活动流程；只有失败或新增风险出现时才扩大测试。
+- 先做最小静态/console smoke，再由维护者选择一条完整活动流程；只有失败或新增风险出现时才扩大测试。
