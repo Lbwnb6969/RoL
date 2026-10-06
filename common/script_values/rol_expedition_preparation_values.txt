@@ -167,3 +167,16 @@ rol_expedition_failure_chance_90_value = {
 	min = 5
 	max = 95
 }
+rol_expedition_display_success_chance_value = {
+	value = var:rol_expedition_display_base_chance
+	add = rol_expedition_preparation_success_chance_modifier
+	min = 5
+	max = 95
+}
+
+rol_expedition_display_failure_chance_value = {
+	value = 100
+	subtract = rol_expedition_display_success_chance_value
+	min = 5
+	max = 95
+}

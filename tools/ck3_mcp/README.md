@@ -47,6 +47,7 @@
 - `header_background` 与活动 `background.texture` 是否指向真源中存在的文件；
 - 每条链是否保留 Tier 4 完整圣物路由，以及 Tier 2/3 的部分成功收束；
 - 每条链是否仍有多个事件选项和 `random_list` 挑战分支；
+- 每个挑战分支是否保存基准概率，并让英中结果 tooltip 显示与实际权重一致的成功 / 失败百分比；
 - English / Simplified Chinese 的 RoL 本地化键是否一一对应且无重复；
 - 脚本中出现的 RoL-owned `gfx/` 引用是否都能解析到真源文件。
 

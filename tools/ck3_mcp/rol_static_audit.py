@@ -302,6 +302,67 @@ def check_success_model(root: Path, errors: list[str]) -> int:
     return success_refs
 
 
+def _random_list_block(text: str, start: int) -> tuple[int, str] | None:
+    """Return the end offset and body for a CK3 random_list block."""
+    token_end = text.find("{", start)
+    if token_end < 0:
+        return None
+    depth = 0
+    for index in range(token_end, len(text)):
+        if text[index] == "{":
+            depth += 1
+        elif text[index] == "}":
+            depth -= 1
+            if depth == 0:
+                return index + 1, text[token_end + 1:index]
+    return None
+
+
+def check_chance_tooltips(root: Path, errors: list[str]) -> tuple[int, int]:
+    """Keep result tooltips tied to the exact branch and preparation modifier."""
+    challenge_lists = 0
+    assignments = 0
+    for path in sorted((root / "events").glob("rol_quest_*_events.txt")):
+        text = read_text(path)
+        cursor = 0
+        while True:
+            start = text.find("random_list = {", cursor)
+            if start < 0:
+                break
+            parsed = _random_list_block(text, start)
+            if parsed is None:
+                errors.append(f"chance tooltip: unclosed random_list in {path}")
+                break
+            end, body = parsed
+            base = re.search(r"rol_expedition_success_chance_(\d+)_value", body)
+            if base:
+                challenge_lists += 1
+                line_start = text.rfind("\n", 0, start) + 1
+                prefix = text[max(line_start - 240, 0):start]
+                expected = rf"set_variable\s*=\s*\{{\s*name\s*=\s*rol_expedition_display_base_chance\s+value\s*=\s*{base.group(1)}\s*\}}"
+                if re.search(expected, prefix):
+                    assignments += 1
+                else:
+                    errors.append(f"chance tooltip: {path} random_list lacks base chance assignment ({base.group(1)}%)")
+            cursor = end
+
+    tooltip_keys = 0
+    for language in ("english", "simp_chinese"):
+        for path in sorted((root / "localization" / language).glob("rol_*.yml")):
+            text = read_text(path)
+            keys = re.findall(r"^\s+rol_quest_[A-Za-z0-9_.-]+\.tt\.(?:success|failure):0\s+\"", text, re.MULTILINE)
+            if not keys:
+                continue
+            tooltip_keys += len(keys)
+            for token in ("rol_expedition_display_success_chance_value", "rol_expedition_display_failure_chance_value"):
+                count = text.count(token)
+                if count != len(keys):
+                    errors.append(f"chance tooltip: {path} has {len(keys)} result keys but {count} references to {token}")
+    if assignments != challenge_lists:
+        errors.append(f"chance tooltip: base chance assignments do not cover all challenge lists ({assignments}/{challenge_lists})")
+    return challenge_lists, tooltip_keys
+
+
 def check_branch_model(root: Path, errors: list[str]) -> int:
     """Ensure every chain keeps explicit choice and partial-ending routes."""
     total_options = 0
@@ -327,13 +388,14 @@ def audit(root: Path) -> int:
     gfx_count = check_rol_gfx_references(root, errors)
     dds_count = check_dds_assets(root, errors)
     success_model_refs = check_success_model(root, errors)
+    chance_lists, chance_tooltips = check_chance_tooltips(root, errors)
     branch_options = check_branch_model(root, errors)
     if errors:
         print(f"[FAIL] RoL static audit failed: {len(errors)} issue(s)")
         for error in errors:
             print(f"  - {error}")
         return 1
-    print(f"[OK] RoL static audit passed: {len(CHAINS)} activities, {english_count} English keys, {chinese_count} Chinese keys, {gfx_count} RoL gfx references, {dds_count} canonical DDS assets, {success_model_refs} high-chance branches, {branch_options} event choices with partial endings")
+    print(f"[OK] RoL static audit passed: {len(CHAINS)} activities, {english_count} English keys, {chinese_count} Chinese keys, {gfx_count} RoL gfx references, {dds_count} canonical DDS assets, {success_model_refs} high-chance branches, {chance_lists} chance lists, {chance_tooltips} chance tooltip keys, {branch_options} event choices with partial endings")
     return 0
 
 

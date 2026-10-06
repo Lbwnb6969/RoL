@@ -85,57 +85,57 @@
  rol_quest_sevilla.1050.b.flavor:0 "Crush hesitation and press the voyage onward."
  rol_quest_sevilla.1090.a.flavor:0 "Commit the expedition's outcome to record."
 
- rol_quest_munich.1000.a.tt.success:0 "#P Success:#! You decipher the frozen sky-script and guide the party through the gate."
+ rol_quest_munich.1000.a.tt.success:0 "#P Success:#! You decipher the frozen sky-script and guide the party through the gate.\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
  rol_quest_munich.1000.a.tt.failure:0 "#N Failure:#! The ice-gate's backlash tears the party's nerve apart.
-#N The expedition ends immediately and enters a 2-year cooldown.#!"
- rol_quest_munich.1000.b.tt.success:0 "#P Success:#! Steel and resolve break the ice-gate open for the descent."
+#N The expedition ends immediately and enters a 2-year cooldown.#!\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
+ rol_quest_munich.1000.b.tt.success:0 "#P Success:#! Steel and resolve break the ice-gate open for the descent.\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
  rol_quest_munich.1000.b.tt.failure:0 "#N Failure:#! The brute assault falters, and the cold exacts a heavy price.
-#N The expedition ends immediately and enters a 2-year cooldown.#!"
- rol_quest_munich.1002.a.tt.success:0 "#P Success:#! You steady the party's minds and push the abyss back for now."
+#N The expedition ends immediately and enters a 2-year cooldown.#!\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
+ rol_quest_munich.1002.a.tt.success:0 "#P Success:#! You steady the party's minds and push the abyss back for now.\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
  rol_quest_munich.1002.a.tt.failure:0 "#N Failure:#! Hallucination and dread shatter the party's mental defenses.
-#N The expedition ends immediately and enters a 2-year cooldown.#!"
- rol_quest_munich.1002.b.tt.success:0 "#P Success:#! Reverence quiets the star-noise, and the expedition can continue."
+#N The expedition ends immediately and enters a 2-year cooldown.#!\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
+ rol_quest_munich.1002.b.tt.success:0 "#P Success:#! Reverence quiets the star-noise, and the expedition can continue.\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
  rol_quest_munich.1002.b.tt.failure:0 "#N Failure:#! Prayer fails to quiet the star-noise, and panic takes over.
-#N The expedition ends immediately and enters a 2-year cooldown.#!"
- rol_quest_naxos.1000.a.tt.success:0 "#P Success:#! The first seal shatters, and the palace opens deeper below."
+#N The expedition ends immediately and enters a 2-year cooldown.#!\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
+ rol_quest_naxos.1000.a.tt.success:0 "#P Success:#! The first seal shatters, and the palace opens deeper below.\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
  rol_quest_naxos.1000.a.tt.failure:0 "#N Failure:#! Your line collapses outright at the very first seal.
-#N The expedition ends immediately and enters a 2-year cooldown.#!"
- rol_quest_naxos.1002.a.tt.success:0 "#P Success:#! Your command holds the verification line together, and the process continues."
+#N The expedition ends immediately and enters a 2-year cooldown.#!\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
+ rol_quest_naxos.1002.a.tt.success:0 "#P Success:#! Your command holds the verification line together, and the process continues.\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
  rol_quest_naxos.1002.a.tt.failure:0 "#N Failure:#! The hall's countermeasures crush your command structure.
-#N The expedition ends immediately and enters a 2-year cooldown.#!"
- rol_quest_naxos.1002.b.tt.success:0 "#P Success:#! You dismantle the verification sequence layer by layer and reopen the path."
+#N The expedition ends immediately and enters a 2-year cooldown.#!\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
+ rol_quest_naxos.1002.b.tt.success:0 "#P Success:#! You dismantle the verification sequence layer by layer and reopen the path.\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
  rol_quest_naxos.1002.b.tt.failure:0 "#N Failure:#! The sequence slips beyond your control, and the whole chamber turns hostile.
-#N The expedition ends immediately and enters a 2-year cooldown.#!"
- rol_quest_naxos.1003.a.tt.success:0 "#P Success:#! You break the gate array head-on, and the final threshold starts to answer."
+#N The expedition ends immediately and enters a 2-year cooldown.#!\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
+ rol_quest_naxos.1003.a.tt.success:0 "#P Success:#! You break the gate array head-on, and the final threshold starts to answer.\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
  rol_quest_naxos.1003.a.tt.failure:0 "#N Failure:#! The gate array smashes your assault apart.
-#N The expedition ends immediately and enters a 2-year cooldown.#!"
- rol_quest_naxos.1003.b.tt.success:0 "#P Success:#! You sever the array's core and force the final gate to yield."
+#N The expedition ends immediately and enters a 2-year cooldown.#!\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
+ rol_quest_naxos.1003.b.tt.success:0 "#P Success:#! You sever the array's core and force the final gate to yield.\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
  rol_quest_naxos.1003.b.tt.failure:0 "#N Failure:#! The flank collapses, and order at the final gate breaks with it.
-#N The expedition ends immediately and enters a 2-year cooldown.#!"
- rol_quest_rome.1000.a.tt.success:0 "#P Success:#! You seize the initiative by force and keep the expedition moving."
+#N The expedition ends immediately and enters a 2-year cooldown.#!\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
+ rol_quest_rome.1000.a.tt.success:0 "#P Success:#! You seize the initiative by force and keep the expedition moving.\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
  rol_quest_rome.1000.a.tt.failure:0 "#N Failure:#! You are wounded in the push, and the party is forced to break.
-#N The expedition ends immediately and enters a 2-year cooldown.#!"
- rol_quest_rome.1002.a.tt.success:0 "#P Success:#! You carve a path through the collapse and keep the party advancing."
+#N The expedition ends immediately and enters a 2-year cooldown.#!\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
+ rol_quest_rome.1002.a.tt.success:0 "#P Success:#! You carve a path through the collapse and keep the party advancing.\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
  rol_quest_rome.1002.a.tt.failure:0 "#N Failure:#! Falling stone and fresh wounds bring the party to collapse.
-#N The expedition ends immediately and enters a 2-year cooldown.#!"
- rol_quest_rome.1003.a.tt.success:0 "#P Success:#! The oath-script yields, and the altar lets you pass onward."
+#N The expedition ends immediately and enters a 2-year cooldown.#!\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
+ rol_quest_rome.1003.a.tt.success:0 "#P Success:#! The oath-script yields, and the altar lets you pass onward.\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
  rol_quest_rome.1003.a.tt.failure:0 "#N Failure:#! The altar's backlash crushes both your nerve and your formation.
-#N The expedition ends immediately and enters a 2-year cooldown.#!"
- rol_quest_rome.1003.b.tt.success:0 "#P Success:#! You brute-force the altar's answer and barely keep momentum alive."
+#N The expedition ends immediately and enters a 2-year cooldown.#!\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
+ rol_quest_rome.1003.b.tt.success:0 "#P Success:#! You brute-force the altar's answer and barely keep momentum alive.\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
  rol_quest_rome.1003.b.tt.failure:0 "#N Failure:#! The gamble spins out of control and the party falls apart on the spot.
-#N The expedition ends immediately and enters a 2-year cooldown.#!"
- rol_quest_rome.1004.a.tt.success:0 "#P Success:#! The guardian line breaks before you, and the end lies close ahead."
+#N The expedition ends immediately and enters a 2-year cooldown.#!\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
+ rol_quest_rome.1004.a.tt.success:0 "#P Success:#! The guardian line breaks before you, and the end lies close ahead.\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
  rol_quest_rome.1004.a.tt.failure:0 "#N Failure:#! You are bloodied before the final gate, and the whole assault collapses.
-#N The expedition ends immediately and enters a 2-year cooldown.#!"
- rol_quest_sevilla.1000.a.tt.success:0 "#P Success:#! You win the sailors over, and the fleet finally takes true shape."
+#N The expedition ends immediately and enters a 2-year cooldown.#!\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
+ rol_quest_sevilla.1000.a.tt.success:0 "#P Success:#! You win the sailors over, and the fleet finally takes true shape.\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
  rol_quest_sevilla.1000.a.tt.failure:0 "#N Failure:#! Negotiation collapses, and both the bay and your venture come apart.
-#N The expedition ends immediately and enters a 2-year cooldown.#!"
- rol_quest_sevilla.1000.b.tt.success:0 "#P Success:#! Your will dominates the bay, and the voyage still obeys your command."
+#N The expedition ends immediately and enters a 2-year cooldown.#!\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
+ rol_quest_sevilla.1000.b.tt.success:0 "#P Success:#! Your will dominates the bay, and the voyage still obeys your command.\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
  rol_quest_sevilla.1000.b.tt.failure:0 "#N Failure:#! Sheer pressure cannot hold the harbor together, and the party splinters first.
-#N The expedition ends immediately and enters a 2-year cooldown.#!"
- rol_quest_sevilla.1002.a.tt.success:0 "#P Success:#! You read through the stormwall's lies and guide the fleet onward."
+#N The expedition ends immediately and enters a 2-year cooldown.#!\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
+ rol_quest_sevilla.1002.a.tt.success:0 "#P Success:#! You read through the stormwall's lies and guide the fleet onward.\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
  rol_quest_sevilla.1002.a.tt.failure:0 "#N Failure:#! The stormwall and your crew's fear swallow your judgment whole.
-#N The expedition ends immediately and enters a 2-year cooldown.#!"
- rol_quest_sevilla.1002.b.tt.success:0 "#P Success:#! Discipline holds the fleet together, and the stormwall is forced open."
+#N The expedition ends immediately and enters a 2-year cooldown.#!\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
+ rol_quest_sevilla.1002.b.tt.success:0 "#P Success:#! Discipline holds the fleet together, and the stormwall is forced open.\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
  rol_quest_sevilla.1002.b.tt.failure:0 "#N Failure:#! The fleet cannot withstand the stormwall's pressure and breaks apart.
-#N The expedition ends immediately and enters a 2-year cooldown.#!"
+#N The expedition ends immediately and enters a 2-year cooldown.#!\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"

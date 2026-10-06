@@ -62,6 +62,7 @@ rol_quest_naxos.1000 = {
 			prowess >= 25
 			}
 			}
+			set_variable = { name = rol_expedition_display_base_chance value = 90 }
 			random_list = {
 				0 = {
 					modifier = { add = rol_expedition_success_chance_90_value }
@@ -91,6 +92,7 @@ rol_quest_naxos.1000 = {
 			prowess >= 12
 			}
 			}
+			set_variable = { name = rol_expedition_display_base_chance value = 75 }
 			random_list = {
 				0 = {
 					modifier = { add = rol_expedition_success_chance_75_value }
@@ -114,6 +116,7 @@ rol_quest_naxos.1000 = {
 			}
 		}
 		else = {
+			set_variable = { name = rol_expedition_display_base_chance value = 45 }
 			random_list = {
 				0 = {
 					modifier = { add = rol_expedition_success_chance_45_value }
@@ -233,6 +236,7 @@ rol_quest_naxos.1002 = {
 		custom_tooltip = rol_quest_naxos.1002.a.tt
 		if = {
 			limit = { diplomacy >= 25 }
+			set_variable = { name = rol_expedition_display_base_chance value = 90 }
 			random_list = {
 				0 = {
 					modifier = { add = rol_expedition_success_chance_90_value }
@@ -256,6 +260,7 @@ rol_quest_naxos.1002 = {
 		}
 		else_if = {
 			limit = { diplomacy >= 14 }
+			set_variable = { name = rol_expedition_display_base_chance value = 75 }
 			random_list = {
 				0 = {
 					modifier = { add = rol_expedition_success_chance_75_value }
@@ -278,6 +283,7 @@ rol_quest_naxos.1002 = {
 			}
 		}
 		else = {
+			set_variable = { name = rol_expedition_display_base_chance value = 45 }
 			random_list = {
 				0 = {
 					modifier = { add = rol_expedition_success_chance_45_value }
@@ -308,6 +314,7 @@ rol_quest_naxos.1002 = {
 		custom_tooltip = rol_quest_naxos.1002.b.tt
 		if = {
 			limit = { learning >= 25 }
+			set_variable = { name = rol_expedition_display_base_chance value = 90 }
 			random_list = {
 				0 = {
 					modifier = { add = rol_expedition_success_chance_90_value }
@@ -331,6 +338,7 @@ rol_quest_naxos.1002 = {
 		}
 		else_if = {
 			limit = { learning >= 15 }
+			set_variable = { name = rol_expedition_display_base_chance value = 80 }
 			random_list = {
 				0 = {
 					modifier = { add = rol_expedition_success_chance_80_value }
@@ -353,6 +361,7 @@ rol_quest_naxos.1002 = {
 			}
 		}
 		else = {
+			set_variable = { name = rol_expedition_display_base_chance value = 50 }
 			random_list = {
 				0 = {
 					modifier = { add = rol_expedition_success_chance_50_value }
@@ -460,6 +469,7 @@ rol_quest_naxos.1003 = {
 			prowess >= 25
 			}
 			}
+			set_variable = { name = rol_expedition_display_base_chance value = 90 }
 			random_list = {
 				0 = {
 					modifier = { add = rol_expedition_success_chance_90_value }
@@ -489,6 +499,7 @@ rol_quest_naxos.1003 = {
 			prowess >= 13
 			}
 			}
+			set_variable = { name = rol_expedition_display_base_chance value = 70 }
 			random_list = {
 				0 = {
 					modifier = { add = rol_expedition_success_chance_70_value }
@@ -512,6 +523,7 @@ rol_quest_naxos.1003 = {
 			}
 		}
 		else = {
+			set_variable = { name = rol_expedition_display_base_chance value = 40 }
 			random_list = {
 				0 = {
 					modifier = { add = rol_expedition_success_chance_40_value }
@@ -543,6 +555,7 @@ rol_quest_naxos.1003 = {
 		custom_tooltip = rol_quest_naxos.1003.b.tt
 		if = {
 			limit = { intrigue >= 25 }
+			set_variable = { name = rol_expedition_display_base_chance value = 70 }
 			random_list = {
 				0 = {
 					modifier = { add = rol_expedition_success_chance_70_value }
@@ -567,6 +580,7 @@ rol_quest_naxos.1003 = {
 		}
 		else_if = {
 			limit = { intrigue >= 16 }
+			set_variable = { name = rol_expedition_display_base_chance value = 55 }
 			random_list = {
 				0 = {
 					modifier = { add = rol_expedition_success_chance_55_value }
@@ -590,6 +604,7 @@ rol_quest_naxos.1003 = {
 			}
 		}
 		else = {
+			set_variable = { name = rol_expedition_display_base_chance value = 40 }
 			random_list = {
 				0 = {
 					modifier = { add = rol_expedition_success_chance_40_value }

@@ -57,6 +57,7 @@ rol_quest_munich.1000 = {
 		custom_tooltip = rol_quest_munich.1000.a.base_tt
 		if = {
 			limit = { learning >= 25 }
+			set_variable = { name = rol_expedition_display_base_chance value = 90 }
 			random_list = {
 				0 = {
 					modifier = { add = rol_expedition_success_chance_90_value }
@@ -80,6 +81,7 @@ rol_quest_munich.1000 = {
 		}
 		else_if = {
 			limit = { learning >= 18 }
+			set_variable = { name = rol_expedition_display_base_chance value = 80 }
 			random_list = {
 				0 = {
 					modifier = { add = rol_expedition_success_chance_80_value }
@@ -102,6 +104,7 @@ rol_quest_munich.1000 = {
 			}
 		}
 		else = {
+			set_variable = { name = rol_expedition_display_base_chance value = 50 }
 			random_list = {
 				0 = {
 					modifier = { add = rol_expedition_success_chance_50_value }
@@ -137,6 +140,7 @@ rol_quest_munich.1000 = {
 			prowess >= 25
 			}
 			}
+			set_variable = { name = rol_expedition_display_base_chance value = 90 }
 			random_list = {
 				0 = {
 					modifier = { add = rol_expedition_success_chance_90_value }
@@ -166,6 +170,7 @@ rol_quest_munich.1000 = {
 			prowess >= 14
 			}
 			}
+			set_variable = { name = rol_expedition_display_base_chance value = 65 }
 			random_list = {
 				0 = {
 					modifier = { add = rol_expedition_success_chance_65_value }
@@ -189,6 +194,7 @@ rol_quest_munich.1000 = {
 			}
 		}
 		else = {
+			set_variable = { name = rol_expedition_display_base_chance value = 40 }
 			random_list = {
 				0 = {
 					modifier = { add = rol_expedition_success_chance_40_value }
@@ -299,6 +305,7 @@ rol_quest_munich.1002 = {
 		custom_tooltip = rol_quest_munich.1002.a.base_tt
 		if = {
 			limit = { diplomacy >= 25 }
+			set_variable = { name = rol_expedition_display_base_chance value = 90 }
 			random_list = {
 				0 = {
 					modifier = { add = rol_expedition_success_chance_90_value }
@@ -322,6 +329,7 @@ rol_quest_munich.1002 = {
 		}
 		else_if = {
 			limit = { diplomacy >= 16 }
+			set_variable = { name = rol_expedition_display_base_chance value = 75 }
 			random_list = {
 				0 = {
 					modifier = { add = rol_expedition_success_chance_75_value }
@@ -344,6 +352,7 @@ rol_quest_munich.1002 = {
 			}
 		}
 		else = {
+			set_variable = { name = rol_expedition_display_base_chance value = 45 }
 			random_list = {
 				0 = {
 					modifier = { add = rol_expedition_success_chance_45_value }
@@ -373,6 +382,7 @@ rol_quest_munich.1002 = {
 		custom_tooltip = rol_quest_munich.1002.b.base_tt
 		if = {
 			limit = { piety_level >= 3 }
+			set_variable = { name = rol_expedition_display_base_chance value = 90 }
 			random_list = {
 				0 = {
 					modifier = { add = rol_expedition_success_chance_90_value }
@@ -396,6 +406,7 @@ rol_quest_munich.1002 = {
 		}
 		else_if = {
 			limit = { piety_level >= 2 }
+			set_variable = { name = rol_expedition_display_base_chance value = 90 }
 			random_list = {
 				0 = {
 					modifier = { add = rol_expedition_success_chance_90_value }
@@ -418,6 +429,7 @@ rol_quest_munich.1002 = {
 			}
 		}
 		else = {
+			set_variable = { name = rol_expedition_display_base_chance value = 50 }
 			random_list = {
 				0 = {
 					modifier = { add = rol_expedition_success_chance_50_value }

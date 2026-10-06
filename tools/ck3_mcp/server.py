@@ -38,7 +38,12 @@ USER_DIR = Path(
 )
 LOG_DIR = USER_DIR / "logs"
 ARTIFACT_DIR = ROOT / "tools" / "ck3_mcp" / "artifacts"
-SCRIPT_DIR = Path(r"C:\Users\Administrator\.codex\skills\rol-ck3-modder\scripts")
+LOCAL_SCRIPT_DIR = ROOT / "tools" / "ck3_mcp"
+SKILL_SCRIPT_DIR = Path(r"C:\Users\Administrator\.codex\skills\rol-ck3-modder\scripts")
+SCRIPT_DIR = LOCAL_SCRIPT_DIR if all(
+    (LOCAL_SCRIPT_DIR / name).exists()
+    for name in ("check_bom_utf8.py", "check_rol_prefix.py", "rol_smoke_checks.py")
+) else SKILL_SCRIPT_DIR
 STATIC_AUDIT_SCRIPT = ROOT / "tools" / "ck3_mcp" / "rol_static_audit.py"
 DDS_AUDIT_SCRIPT = ROOT / "tools" / "ck3_mcp" / "rol_dds_audit.py"
 
