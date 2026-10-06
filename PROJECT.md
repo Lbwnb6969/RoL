@@ -21,6 +21,7 @@
 - 当前工作顺序调整为“静态审计与可回归工具优先，必要时再做最小游戏窗口验证”；完整活动点击流程不再作为每轮默认门槛。
 - 事件背景默认只生成环境与道具，不生成人物、动物、雕像或人形轮廓；人物由事件代码的肖像和 `window_characters` 叠加。
 - 新生成事件背景统一先输出高质量 PNG，再裁切到 `1592x848` 并转换为 `BC1/DXT1`；旧占位图按批次替换并保留到废弃目录。
+- 圣物活动的高属性分支基线设为单次 90%（整备修正后封顶 95%）；三次随机检定的标准整备成功率约 72.9%，四段链通过一次稳定推进选项后同样约 72.9%。
 
 ## Progress
 
@@ -39,6 +40,8 @@
 - 已完成第二批四张无人场景背景：竞争者契约、传承转手、碎片远征、碎片嵌合；它们替换了四张重复的带人物占位图，并分别采用外交帐篷、军械库、遗迹通道、圣物工坊环境。
 - 已完成 Naxos / Thera 七张无人事件背景：海崖发现、抵达、前厅、终局、验证厅、custodes 门、总结厅；统一采用黑色火山石、爱琴海冷光和旧金色几何纹样，并移除了原图中的守卫、雕像和盔甲人形。
 - Munich 六张事件背景原有内容已经是无人冰雪场景；本轮仅按中心裁切统一到 `1592x848 / BC1(DXT1)`，保留 Nibelung 的冷蓝、星光和冰窟构图。
+- 已统一五条圣物活动的高属性随机检定：新增 90%/失败互补 script value，替换原 85% 高属性分支；多结局阈值和失败冷却保持不变，模型记录在 `docs/rol_success_model.md`。
+- 已生成并接入五条活动的无人主图与同源 header：Rome、Munich、Naxos、Sevilla、Carthage 各一套，分别符合 `1592x848 / DXT1` 与 `1100x440 / DXT1`。
 - 已用本机 CK3 1.20 启动加载回归：新决策本地化和 AI 检查项已修正，RoL 相关脚本不再产生启动错误；日志剩余错误来自原版 GUI/数据和书签内容。
 - 已新增 `tools/ck3_mcp` 本地 stdio MCP：基于 CK3 官方 `-debug_mode`、`-run_console_action` 接口和 Windows 原生 `SendInput` 提供环境探测、开发者模式启动/停止、命令行与窗口 console、日志读取/快照、RoL 静态检查和组合 smoke test；运行时产物被 `.gitignore` 忽略且日志只复制不删除。
 - 已通过 MCP 协议握手、工具列表、环境探测、RoL 静态验证和 CK3 `debug_mode` console action；该探针加载了 RoL 事件命名空间与事件文件，返回码为 0，未发现 RoL error.log 条目。
@@ -46,7 +49,7 @@
 - 已完成一次完整游戏内 smoke：MCP 使用 `-skip -play=e_byzantium` 进入可操作角色，`ck3_send_console` 触发 `event rol_relic_fragment.0001`，随后读取 error.log 未发现 `rol_` 条目，并保存了日志快照。
 - 已增强 MCP 窗口回归工具：`ck3_send_console`、`ck3_click`、`ck3_capture_screen` 先校验 CK3 HWND 是否真正处于 Windows 前景；激活失败时拒绝输入/点击/截图，避免误操作其他全屏程序；已在真实 CK3 窗口完成 launch、console、click、stop 协议回归。
 - 已新增仓库内 `tools/ck3_mcp/rol_static_audit.py` 与 MCP `ck3_static_audit`：静态检查五条活动统一契约、活动背景文件、英中本地化键对齐/重复键和 RoL 自有 gfx 引用；该检查不启动 CK3，可作为每轮脚本与文案改动后的快速门槛。
-- 已新增 `tools/ck3_mcp/png_to_dds_bc1.py`，并把二十张 canonical 背景的 DDS 尺寸与 DXT1 fourCC 纳入静态审计；带人物草稿已移动到 `output/imagegen/rejected/rol_round1_with_people/` 保存。
+- 已新增 `tools/ck3_mcp/png_to_dds_bc1.py`，并把三十张 canonical 背景的 DDS 尺寸与 DXT1 fourCC 纳入静态审计；带人物草稿已移动到 `output/imagegen/rejected/rol_round1_with_people/` 保存。
 - 已新增 `tools/ck3_mcp/rol_dds_audit.py` 与 MCP `ck3_dds_audit`，按资源目录检查 DDS 头、压缩标记和尺寸；历史尺寸只报 warning，损坏格式才阻断验证，并已纳入 `ck3_validate_mod`。
 - 已将 MCP `ck3_launch.wait_seconds` 上限扩展到 180 秒，并在返回结构中加入 `window_hwnd` / `window_ready`，用于区分新开局和大型存档的加载阶段。
 - 已为 `ck3_send_console` 增加 `close_console` 参数；执行事件或脚本命令后可自动收起开发者控制台，继续做事件窗口截图和点击回归。

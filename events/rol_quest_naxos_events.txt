@@ -64,7 +64,7 @@ rol_quest_naxos.1000 = {
 			}
 			random_list = {
 				0 = {
-					modifier = { add = rol_expedition_success_chance_85_value }
+					modifier = { add = rol_expedition_success_chance_90_value }
 					desc = rol_quest_naxos.1000.a.tt.success
 					add_prestige = 70
 					hidden_effect = {
@@ -73,7 +73,7 @@ rol_quest_naxos.1000 = {
 					}
 				}
 				0 = {
-					modifier = { add = rol_expedition_failure_chance_85_value }
+					modifier = { add = rol_expedition_failure_chance_90_value }
 					desc = rol_quest_naxos.1000.a.tt.failure
 					add_trait = wounded_1
 					add_prestige = -85
@@ -235,7 +235,7 @@ rol_quest_naxos.1002 = {
 			limit = { diplomacy >= 25 }
 			random_list = {
 				0 = {
-					modifier = { add = rol_expedition_success_chance_85_value }
+					modifier = { add = rol_expedition_success_chance_90_value }
 					desc = rol_quest_naxos.1002.a.tt.success
 					add_prestige = 90
 					hidden_effect = {
@@ -244,7 +244,7 @@ rol_quest_naxos.1002 = {
 					}
 				}
 				0 = {
-					modifier = { add = rol_expedition_failure_chance_85_value }
+					modifier = { add = rol_expedition_failure_chance_90_value }
 					desc = rol_quest_naxos.1002.a.tt.failure
 					add_stress = 25
 					hidden_effect = {
@@ -310,7 +310,7 @@ rol_quest_naxos.1002 = {
 			limit = { learning >= 25 }
 			random_list = {
 				0 = {
-					modifier = { add = rol_expedition_success_chance_85_value }
+					modifier = { add = rol_expedition_success_chance_90_value }
 					desc = rol_quest_naxos.1002.b.tt.success
 					add_piety = 110
 					hidden_effect = {
@@ -319,7 +319,7 @@ rol_quest_naxos.1002 = {
 					}
 				}
 				0 = {
-					modifier = { add = rol_expedition_failure_chance_85_value }
+					modifier = { add = rol_expedition_failure_chance_90_value }
 					desc = rol_quest_naxos.1002.b.tt.failure
 					add_stress = 20
 					hidden_effect = {
@@ -462,7 +462,7 @@ rol_quest_naxos.1003 = {
 			}
 			random_list = {
 				0 = {
-					modifier = { add = rol_expedition_success_chance_85_value }
+					modifier = { add = rol_expedition_success_chance_90_value }
 					desc = rol_quest_naxos.1003.a.tt.success
 					add_prestige = 100
 					hidden_effect = {
@@ -471,7 +471,7 @@ rol_quest_naxos.1003 = {
 					}
 				}
 				0 = {
-					modifier = { add = rol_expedition_failure_chance_85_value }
+					modifier = { add = rol_expedition_failure_chance_90_value }
 					desc = rol_quest_naxos.1003.a.tt.failure
 					add_trait = wounded_1
 					add_prestige = -110

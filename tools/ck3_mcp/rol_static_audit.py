@@ -102,6 +102,16 @@ DDS_ASSETS = {
     "gfx/interface/illustrations/event_scenes/rol_event_munich_1001_terminal.dds": (1592, 848, b"DXT1"),
     "gfx/interface/illustrations/event_scenes/rol_event_munich_1002_abyss.dds": (1592, 848, b"DXT1"),
     "gfx/interface/illustrations/event_scenes/rol_event_munich_1090_summary.dds": (1592, 848, b"DXT1"),
+    "gfx/interface/illustrations/activities/activity_rol_seek_mars_blade.dds": (1592, 848, b"DXT1"),
+    "gfx/interface/illustrations/activities/activity_rol_seek_nibelung_sphere.dds": (1592, 848, b"DXT1"),
+    "gfx/interface/illustrations/activities/activity_rol_seek_naxos_guard.dds": (1592, 848, b"DXT1"),
+    "gfx/interface/illustrations/activities/activity_rol_seek_astrolabe_of_ocean.dds": (1592, 848, b"DXT1"),
+    "gfx/interface/illustrations/activities/activity_rol_seek_ash_forged_mask.dds": (1592, 848, b"DXT1"),
+    "gfx/interface/illustrations/activity_header_backgrounds/activity_rol_seek_mars_blade.dds": (1100, 440, b"DXT1"),
+    "gfx/interface/illustrations/activity_header_backgrounds/activity_rol_seek_nibelung_sphere.dds": (1100, 440, b"DXT1"),
+    "gfx/interface/illustrations/activity_header_backgrounds/activity_rol_seek_naxos_guard.dds": (1100, 440, b"DXT1"),
+    "gfx/interface/illustrations/activity_header_backgrounds/activity_rol_seek_astrolabe_of_ocean.dds": (1100, 440, b"DXT1"),
+    "gfx/interface/illustrations/activity_header_backgrounds/activity_rol_seek_ash_forged_mask.dds": (1100, 440, b"DXT1"),
 }
 
 
@@ -220,6 +230,25 @@ def check_dds_assets(root: Path, errors: list[str]) -> int:
     return checked
 
 
+def check_success_model(root: Path, errors: list[str]) -> int:
+    values_path = root / "common/script_values/rol_expedition_preparation_values.txt"
+    values = read_text(values_path) if values_path.exists() else ""
+    for value in ("rol_expedition_success_chance_90_value", "rol_expedition_failure_chance_90_value"):
+        if not re.search(rf"^\s*{re.escape(value)}\s*=\s*\{{", values, re.MULTILINE):
+            errors.append(f"success model: missing {value}")
+    success_refs = 0
+    failure_refs = 0
+    for path in sorted((root / "events").glob("rol_quest_*_events.txt")):
+        text = read_text(path)
+        success_refs += text.count("rol_expedition_success_chance_90_value")
+        failure_refs += text.count("rol_expedition_failure_chance_90_value")
+        if "rol_expedition_success_chance_85_value" in text or "rol_expedition_failure_chance_85_value" in text:
+            errors.append(f"success model: stale 85% branch remains in {path}")
+    if success_refs != failure_refs:
+        errors.append(f"success model: 90% success/failure reference counts differ ({success_refs}/{failure_refs})")
+    return success_refs
+
+
 def audit(root: Path) -> int:
     errors: list[str] = []
     if not root.exists():
@@ -230,12 +259,13 @@ def audit(root: Path) -> int:
     english_count, chinese_count = check_localization_parity(root, errors)
     gfx_count = check_rol_gfx_references(root, errors)
     dds_count = check_dds_assets(root, errors)
+    success_model_refs = check_success_model(root, errors)
     if errors:
         print(f"[FAIL] RoL static audit failed: {len(errors)} issue(s)")
         for error in errors:
             print(f"  - {error}")
         return 1
-    print(f"[OK] RoL static audit passed: {len(CHAINS)} activities, {english_count} English keys, {chinese_count} Chinese keys, {gfx_count} RoL gfx references, {dds_count} canonical DDS assets")
+    print(f"[OK] RoL static audit passed: {len(CHAINS)} activities, {english_count} English keys, {chinese_count} Chinese keys, {gfx_count} RoL gfx references, {dds_count} canonical DDS assets, {success_model_refs} high-chance branches")
     return 0
 
 

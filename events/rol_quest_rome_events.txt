@@ -84,7 +84,7 @@ rol_quest_rome.1000 = {
 			}
 			random_list = {
 				0 = {
-					modifier = { add = rol_expedition_success_chance_85_value }
+					modifier = { add = rol_expedition_success_chance_90_value }
 					desc = rol_quest_rome.1000.a.tt.success
 					add_prestige = 90
 					hidden_effect = {
@@ -93,7 +93,7 @@ rol_quest_rome.1000 = {
 					}
 				}
 				0 = {
-					modifier = { add = rol_expedition_failure_chance_85_value }
+					modifier = { add = rol_expedition_failure_chance_90_value }
 					desc = rol_quest_rome.1000.a.tt.failure
 					add_trait = wounded_1
 					add_prestige = -90
@@ -289,7 +289,7 @@ rol_quest_rome.1002 = {
 			limit = { prowess >= 25 }
 			random_list = {
 				0 = {
-					modifier = { add = rol_expedition_success_chance_85_value }
+					modifier = { add = rol_expedition_success_chance_90_value }
 					desc = rol_quest_rome.1002.a.tt.success
 					add_prestige = 70
 					hidden_effect = {
@@ -298,7 +298,7 @@ rol_quest_rome.1002 = {
 					}
 				}
 				0 = {
-					modifier = { add = rol_expedition_failure_chance_85_value }
+					modifier = { add = rol_expedition_failure_chance_90_value }
 					desc = rol_quest_rome.1002.a.tt.failure
 					add_trait = wounded_1
 					add_prestige = -70
@@ -466,7 +466,7 @@ rol_quest_rome.1003 = {
 			limit = { learning >= 25 }
 			random_list = {
 				0 = {
-					modifier = { add = rol_expedition_success_chance_85_value }
+					modifier = { add = rol_expedition_success_chance_90_value }
 					desc = rol_quest_rome.1003.a.tt.success
 					add_piety = 90
 					hidden_effect = {
@@ -475,7 +475,7 @@ rol_quest_rome.1003 = {
 					}
 				}
 				0 = {
-					modifier = { add = rol_expedition_failure_chance_85_value }
+					modifier = { add = rol_expedition_failure_chance_90_value }
 					desc = rol_quest_rome.1003.a.tt.failure
 					add_stress = 30
 					hidden_effect = {
@@ -643,7 +643,7 @@ rol_quest_rome.1004 = {
 			}
 			random_list = {
 				0 = {
-					modifier = { add = rol_expedition_success_chance_85_value }
+					modifier = { add = rol_expedition_success_chance_90_value }
 					desc = rol_quest_rome.1004.a.tt.success
 					add_prestige = 120
 					hidden_effect = {
@@ -652,7 +652,7 @@ rol_quest_rome.1004 = {
 					}
 				}
 				0 = {
-					modifier = { add = rol_expedition_failure_chance_85_value }
+					modifier = { add = rol_expedition_failure_chance_90_value }
 					desc = rol_quest_rome.1004.a.tt.failure
 					add_trait = wounded_1
 					add_prestige = -90

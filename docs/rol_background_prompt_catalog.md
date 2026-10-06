@@ -44,6 +44,8 @@
 | Carthage / Ash-Forged Mask | 已接线（隐式匹配，占位） | `activity_rol_seek_ash_forged_mask.dds` / `activity_rol_seek_ash_forged_mask_header.dds` / `illustrations/activities/activity_rol_seek_ash_forged_mask.dds` / `activity_header_backgrounds/activity_rol_seek_ash_forged_mask.dds` | `ash-forged golden mask emblem, black sand, cold starlight, Carthaginian desert relic expedition crest` |
 | 统一筹备模块 | 已接线（占位） | `gfx/interface/icons/activity_option_categories/rol_option_expedition_preparation.dds` | `expedition planning ledger, hired retainers, bundled gear, premium CK3 option-category icon` |
 
+五条活动的大图和 header 已在 round 5 统一替换为无人环境图；每条活动从同一张生成源图裁出 `1592x848 / DXT1` 主图和 `1100x440 / DXT1` header，提示词记录在 `docs/imagegen_batches/rol_round5_activity_no_characters.jsonl`。活动窗口中的人物继续由 `window_characters` 提供。
+
 ---
 
 ## 4) Artifact 图标 / Prompt
