@@ -18,6 +18,7 @@
 - 采用 1.20 新增的 `header_background` 字段，为五条活动显式接线已有 RoL header DDS；旅行和地点背景继续沿用当前 `background` 逻辑。
 - 不因版本迁移自动把 Carthage 并入 `rol_legend_circle`；是否计入总事件属于内容设计决策。
 - 先完成版本兼容和可回归验证，再分阶段扩展遗物传承、竞争者、碎片升级和跨链终局。
+- 当前工作顺序调整为“静态审计与可回归工具优先，必要时再做最小游戏窗口验证”；完整活动点击流程不再作为每轮默认门槛。
 
 ## Progress
 
@@ -39,15 +40,16 @@
 - 已通过 MCP `ck3_launch` 启动带 `-debug_mode` 的真实 CK3 窗口，并通过 `ck3_send_console` 找到窗口句柄、发送 `debug_mode` 命令，随后用 `ck3_stop` 正常结束会话；窗口测试日志未出现 RoL 错误。
 - 已完成一次完整游戏内 smoke：MCP 使用 `-skip -play=e_byzantium` 进入可操作角色，`ck3_send_console` 触发 `event rol_relic_fragment.0001`，随后读取 error.log 未发现 `rol_` 条目，并保存了日志快照。
 - 已增强 MCP 窗口回归工具：`ck3_send_console`、`ck3_click`、`ck3_capture_screen` 先校验 CK3 HWND 是否真正处于 Windows 前景；激活失败时拒绝输入/点击/截图，避免误操作其他全屏程序；已在真实 CK3 窗口完成 launch、console、click、stop 协议回归。
+- 已新增仓库内 `tools/ck3_mcp/rol_static_audit.py` 与 MCP `ck3_static_audit`：静态检查五条活动统一契约、活动背景文件、英中本地化键对齐/重复键和 RoL 自有 gfx 引用；该检查不启动 CK3，可作为每轮脚本与文案改动后的快速门槛。
 - 已将 MCP `ck3_launch.wait_seconds` 上限扩展到 180 秒，并在返回结构中加入 `window_hwnd` / `window_ready`，用于区分新开局和大型存档的加载阶段。
 - 已为 `ck3_send_console` 增加 `close_console` 参数；执行事件或脚本命令后可自动收起开发者控制台，继续做事件窗口截图和点击回归。
 - 已完成一次真实窗口事件回归：新开局 `-skip -play=e_byzantium` 后触发 `event rol_relic_discovery.1000`，截图确认中文事件文案和 Rome 地宫背景正确显示；`close_console=true` 后控制台不会遮挡事件窗口。
 
 ## Next steps
 
-1. 用 MCP 启动 1.20 游戏窗口并载入一个可回归存档，继续完成一次可交互活动流程，验证 activity header、活动背景、筹备选项、artifact modifier 和四条碎片决策。
-2. 在代码验证和游戏内回归完成后，才按提示词生成并筛选新增图片，替换占位 DDS。
-3. 再评估可选五链终局分支、圣物互相组合和 AI 远征开放的平衡目标。
+1. 先用 `ck3_static_audit`、`ck3_validate_mod` 固化后续脚本/本地化/资源改动的快速回归；发现静态问题时优先修复，不启动游戏反复试错。
+2. 在静态契约和资源清单稳定后，只选一个最小窗口流程验证 activity header、活动背景、筹备选项和 artifact modifier；不再每轮重复完整活动点击。
+3. 静态与最小游戏回归稳定后，按提示词生成并筛选新增图片，替换占位 DDS，再评估五链终局分支、圣物组合和 AI 远征开放的平衡目标。
 
 ## Unresolved issues
 

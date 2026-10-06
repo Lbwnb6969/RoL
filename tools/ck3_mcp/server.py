@@ -39,6 +39,7 @@ USER_DIR = Path(
 LOG_DIR = USER_DIR / "logs"
 ARTIFACT_DIR = ROOT / "tools" / "ck3_mcp" / "artifacts"
 SCRIPT_DIR = Path(r"C:\Users\Administrator\.codex\skills\rol-ck3-modder\scripts")
+STATIC_AUDIT_SCRIPT = ROOT / "tools" / "ck3_mcp" / "rol_static_audit.py"
 
 _tracked_process: subprocess.Popen[str] | None = None
 
@@ -588,6 +589,7 @@ def _snapshot_logs() -> dict[str, Any]:
 
 def _validate_mod() -> dict[str, Any]:
     commands = [
+        [sys.executable, str(STATIC_AUDIT_SCRIPT), str(ROOT)],
         [sys.executable, str(SCRIPT_DIR / "check_bom_utf8.py"), str(ROOT)],
         [sys.executable, str(SCRIPT_DIR / "check_rol_prefix.py"), str(ROOT)],
         [sys.executable, str(SCRIPT_DIR / "rol_smoke_checks.py"), str(ROOT)],
@@ -601,6 +603,24 @@ def _validate_mod() -> dict[str, Any]:
         passed = passed and completed.returncode == 0
     text = "\n\n".join(f"$ {' '.join(item['command'])}\n{item['stdout']}{item['stderr']}" for item in results)
     return _text_result("RoL validation passed." if passed else "RoL validation failed.\n" + text, passed=passed, results=results)
+
+
+def _static_audit() -> dict[str, Any]:
+    completed = subprocess.run(
+        [sys.executable, str(STATIC_AUDIT_SCRIPT), str(ROOT)],
+        cwd=str(ROOT),
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    passed = completed.returncode == 0
+    output = completed.stdout + completed.stderr
+    return _text_result(
+        "RoL static audit passed." if passed else "RoL static audit failed.\n" + output,
+        passed=passed,
+        output=output,
+        returncode=completed.returncode,
+    )
 
 
 def _smoke_test() -> dict[str, Any]:
@@ -672,8 +692,13 @@ TOOLS = [
         "inputSchema": {"type": "object", "properties": {}},
     },
     {
+        "name": "ck3_static_audit",
+        "description": "Run the fast repository-local RoL activity, localization, and owned-gfx static audit without launching CK3.",
+        "inputSchema": {"type": "object", "properties": {}},
+    },
+    {
         "name": "ck3_validate_mod",
-        "description": "Run the bundled BOM, rol_ prefix, and RoL smoke validation scripts.",
+        "description": "Run the fast RoL static audit plus BOM, rol_ prefix, and RoL smoke validation scripts.",
         "inputSchema": {"type": "object", "properties": {}},
     },
     {
@@ -712,6 +737,8 @@ def _call_tool(name: str, args: dict[str, Any]) -> dict[str, Any]:
         return _read_logs(args)
     if name == "ck3_snapshot_logs":
         return _snapshot_logs()
+    if name == "ck3_static_audit":
+        return _static_audit()
     if name == "ck3_validate_mod":
         return _validate_mod()
     if name == "ck3_smoke_test":

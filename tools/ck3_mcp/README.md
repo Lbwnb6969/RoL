@@ -31,9 +31,22 @@
 - `ck3_capture_screen` / `ck3_click` / `ck3_hotkey`：捕获当前 CK3 屏幕、按窗口相对坐标点击或发送受限快捷键，用于实际事件选项和活动 UI 回归；例如 `alt+a` 打开活动列表。
 - `ck3_read_logs`：读取受限长度的日志尾部并支持关键字过滤。
 - `ck3_snapshot_logs`：把日志复制到时间戳目录，保留原始日志。
-- `ck3_validate_mod`：运行 RoL 的 BOM、ID 前缀和 smoke 检查。
+- `ck3_static_audit`：不启动游戏，快速检查五条活动的统一结构、活动背景文件、英中本地化键对齐和 RoL 自有 `gfx` 引用。
+- `ck3_validate_mod`：运行静态审计、BOM、ID 前缀和 smoke 检查。
 - `ck3_smoke_test`：组合静态检查、CK3 1.20 开发者控制台初始化探针和 RoL 日志过滤。
 
 完整游戏窗口测试仍可通过 `ck3_launch` 启动，再在游戏内打开开发者控制台。命令行 console action 适合重复的、可回归的脚本测试；它与完整窗口会话互斥，避免两个 CK3 进程同时写同一组日志。
+
+## Static-first workflow
+
+优先运行 `ck3_static_audit`，它不启动 CK3，适合每次脚本或文案改动后的快速反馈。活动定义按五条正式链统一检查：
+
+- discovery event 是否接到对应活动入口事件；
+- activity 是否包含显示、可开始、有效性、地点、阶段、host/guest intents、结算和图形字段；
+- `header_background` 与活动 `background.texture` 是否指向真源中存在的文件；
+- English / Simplified Chinese 的 RoL 本地化键是否一一对应且无重复；
+- 脚本中出现的 RoL-owned `gfx/` 引用是否都能解析到真源文件。
+
+这套审计借鉴了当前 Workshop 中 RICE / VIET 活动的共同结构，但只验证 RoL 自有路径，避免把原版 GUI 覆盖文件里的 vanilla 资源误报为缺失。通过后再运行 `ck3_validate_mod`；只有需要确认 Clausewitz 实际加载或窗口 UI 接线时，才使用 `ck3_smoke_test` 或完整窗口工具。
 
 窗口输入、点击和截图会先确认目标 CK3 窗口已经成为 Windows 前景窗口；如果系统的前景锁定策略或其他全屏程序阻止激活，工具会返回错误并拒绝注入输入，避免误操作其他程序。截图功能使用已安装的 Pillow `ImageGrab`；缺少 Pillow 时，窗口级工具会明确报告依赖缺失。
