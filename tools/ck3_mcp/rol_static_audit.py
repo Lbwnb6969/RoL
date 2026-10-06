@@ -8,6 +8,7 @@ overrides are resolved by CK3's base game and are outside this audit's scope.
 from __future__ import annotations
 
 import re
+import struct
 import sys
 from pathlib import Path
 
@@ -76,6 +77,15 @@ REQUIRED_ACTIVITY_BLOCKS = (
 LOC_KEY_RE = re.compile(r'^\s+([A-Za-z0-9_.-]+):(?:\d+)?\s*(?:"|$)')
 GFX_REF_RE = re.compile(r"(?:\"|=\s*)(gfx/[^\"\s]+)")
 LOC_REF_RE = re.compile(r"\b(?:title|desc|name|flavor|text)\s*=\s*(rol_[A-Za-z0-9_.-]+)")
+
+# Newly generated event scenes are kept on the canonical CK3 background
+# contract. Older RoL placeholders are intentionally left alone until their
+# individual replacement batches are reviewed.
+DDS_ASSETS = {
+    "gfx/interface/illustrations/event_scenes/rol_event_rival_expedition.dds": (1592, 848, b"DXT1"),
+    "gfx/interface/illustrations/event_scenes/rol_event_relic_scholarly_study.dds": (1592, 848, b"DXT1"),
+    "gfx/interface/illustrations/event_scenes/rol_event_relic_new_owner.dds": (1592, 848, b"DXT1"),
+}
 
 
 def read_text(path: Path) -> str:
@@ -170,6 +180,29 @@ def check_rol_gfx_references(root: Path, errors: list[str]) -> int:
     return references
 
 
+def check_dds_assets(root: Path, errors: list[str]) -> int:
+    checked = 0
+    for relative, (expected_width, expected_height, expected_fourcc) in DDS_ASSETS.items():
+        path = root / relative
+        if not path.exists():
+            errors.append(f"dds: missing generated asset {relative}")
+            continue
+        data = path.read_bytes()
+        if len(data) < 128 or data[:4] != b"DDS ":
+            errors.append(f"dds: invalid header {relative}")
+            continue
+        height, width = struct.unpack_from("<II", data, 12)
+        fourcc = data[84:88]
+        if (width, height, fourcc) != (expected_width, expected_height, expected_fourcc):
+            errors.append(
+                f"dds: {relative} is {width}x{height}/{fourcc!r}; "
+                f"expected {expected_width}x{expected_height}/{expected_fourcc!r}"
+            )
+            continue
+        checked += 1
+    return checked
+
+
 def audit(root: Path) -> int:
     errors: list[str] = []
     if not root.exists():
@@ -179,12 +212,13 @@ def audit(root: Path) -> int:
         check_chain(root, name, chain, errors)
     english_count, chinese_count = check_localization_parity(root, errors)
     gfx_count = check_rol_gfx_references(root, errors)
+    dds_count = check_dds_assets(root, errors)
     if errors:
         print(f"[FAIL] RoL static audit failed: {len(errors)} issue(s)")
         for error in errors:
             print(f"  - {error}")
         return 1
-    print(f"[OK] RoL static audit passed: {len(CHAINS)} activities, {english_count} English keys, {chinese_count} Chinese keys, {gfx_count} RoL gfx references")
+    print(f"[OK] RoL static audit passed: {len(CHAINS)} activities, {english_count} English keys, {chinese_count} Chinese keys, {gfx_count} RoL gfx references, {dds_count} canonical DDS assets")
     return 0
 
 

@@ -49,4 +49,6 @@
 
 这套审计借鉴了当前 Workshop 中 RICE / VIET 活动的共同结构，但只验证 RoL 自有路径，避免把原版 GUI 覆盖文件里的 vanilla 资源误报为缺失。通过后再运行 `ck3_validate_mod`；只有需要确认 Clausewitz 实际加载或窗口 UI 接线时，才使用 `ck3_smoke_test` 或完整窗口工具。
 
+生成事件背景时，`tools/ck3_mcp/png_to_dds_bc1.py` 会居中裁切并缩放 PNG，再写出标准 `DDS / BC1(DXT1)`；静态审计会锁定当前三张新背景为 `1592x848 / DXT1`。事件背景不放人物，人物由 CK3 事件代码叠加。
+
 窗口输入、点击和截图会先确认目标 CK3 窗口已经成为 Windows 前景窗口；如果系统的前景锁定策略或其他全屏程序阻止激活，工具会返回错误并拒绝注入输入，避免误操作其他程序。截图功能使用已安装的 Pillow `ImageGrab`；缺少 Pillow 时，窗口级工具会明确报告依赖缺失。

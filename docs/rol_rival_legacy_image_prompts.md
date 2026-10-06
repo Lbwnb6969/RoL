@@ -7,10 +7,13 @@
 
 ## 1. 通用生成要求
 
+事件背景默认只画环境和道具，不生成人物、动物、尸体、雕像或人形图案。人物由 CK3 事件的 `left_portrait`、`right_portrait` 和 `window_characters` 叠加；背景要给这些肖像以及中央事件文字留出安静的负空间。若某张图确实需要表现人物动作，应单独作为角色插画处理，不要替换事件背景。
+
 将下面这段附加在每条提示词末尾：
 
 ```text
 Wide 16:9 event background for a medieval grand-strategy game, 1592x848 composition, historically grounded medieval dark-fantasy matte painting, realistic painterly texture, cinematic but restrained lighting, solemn atmosphere, detailed architecture and period objects, clear depth, no modern objects, no text, no letters, no logo, no watermark, no interface, no decorative frame. Keep the central 65 percent readable and uncluttered for event text; avoid important faces or objects at the extreme left and right edges. Do not imitate a specific living artist.
+No people, no human figures, no animals, no corpses, no statues, no carved faces, no silhouettes, no hands, no footprints, and no reflections of people; the scene must be empty and ready for CK3 code-driven portraits to overlay.
 ```
 
 统一负面约束：
@@ -28,7 +31,7 @@ Avoid anime, cartoon, glossy mobile-game art, exaggerated high fantasy, oversize
 - 构图目的：兼容五条远征，不出现任何单一圣物，既可解释为同行宾客，也可解释为后来赶上的宫廷人物。
 
 ```text
-A tense encounter at a temporary medieval archaeological expedition camp at dusk. An ambiguous rival has just arrived beside a weathered map table, placing a sealed bundle of copied clues, fragments, and an aged route map before the expedition leader. In the background are pack animals, canvas shelters, lanterns, digging tools, guards, and distant ancient ruins. The rival's evidence looks persuasive but subtly suspicious. Mediterranean and Central European expedition details are blended carefully so the scene can serve several different relic quests. Suspicion, negotiation, and restrained danger; muted earth colors, iron gray, old gold, and warm lantern light. No relic itself is visible and no outcome is predetermined.
+A deserted temporary medieval archaeological expedition camp at dusk, moments after an unknown competitor left evidence on a weathered map table. A sealed bundle of copied clues, fragments, and an aged route map rests beside wax seals and measuring tools; the evidence looks persuasive but subtly suspicious. Canvas shelters, empty lantern stands, digging tools, coiled rope, and distant ancient ruins establish the expedition without showing a single person or animal. Mediterranean and Central European details are blended carefully so the scene can serve several relic quests. Suspicion, negotiation, and restrained danger; muted earth colors, iron gray, old gold, and warm lantern light. No relic itself is visible and no outcome is predetermined.
 ```
 
 ### 2.2 学者研究真品
@@ -38,7 +41,7 @@ A tense encounter at a temporary medieval archaeological expedition camp at dusk
 - 构图目的：可同时容纳剑、星界球、星盘或面具中的任意一件，画面不要锁死具体圣物造型。
 
 ```text
-A guarded medieval palace study prepared for the examination of a legendary relic. A valuable object rests beneath a partially opened dark cloth on a heavy oak table, its exact form deliberately obscured so it could be a sword, celestial sphere, astrolabe, or ceremonial mask. Scholars examine surrounding sketches, measuring cords, wax tablets, magnifying lenses, and historical records while armed household guards watch from a respectful distance. Candlelight and one shaft of cool daylight reveal dust and careful craftsmanship. The mood balances intellectual wonder with fear of damaging something irreplaceable; quiet prestige, no explosive magic.
+An empty guarded medieval palace study prepared for the examination of a legendary relic. A valuable object rests beneath a partially opened dark cloth on a heavy oak table, its exact form deliberately obscured so it could be a sword, celestial sphere, astrolabe, or ceremonial mask. Surrounding sketches, measuring cords, wax tablets, magnifying lenses, sealed records, empty chairs, and a distant weapons rack show that scholars and guards were expected but have stepped away. Candlelight and one shaft of cool daylight reveal dust and careful craftsmanship. The mood balances intellectual wonder with fear of damaging something irreplaceable; quiet prestige, no explosive magic, no identifiable artifact silhouette.
 ```
 
 ### 2.3 真品更换主人
@@ -48,7 +51,7 @@ A guarded medieval palace study prepared for the examination of a legendary reli
 - 构图目的：表现传承、赠予或夺取后的新归属，不描绘具体取得方式。
 
 ```text
-A solemn medieval great hall at first light, prepared for the formal acceptance of a legendary relic by a new owner. A long object-sized reliquary chest stands open on a low stone dais, but the relic inside is mostly hidden by rich folded cloth and reflected light, allowing the scene to represent several different artifacts. Old banners and extinguished candles suggest the previous owner's legacy; newly lit braziers and assembled witnesses mark the beginning of another chapter. The atmosphere is ceremonial, politically charged, and slightly uneasy rather than triumphant. A visual transition from shadowed past on one side to restrained golden dawn on the other.
+An empty solemn medieval great hall at first light, prepared for the formal acceptance of a legendary relic by a new owner. A long object-sized reliquary chest stands open on a low stone dais, but the relic inside is mostly hidden by rich folded cloth and reflected light, allowing the scene to represent several different artifacts. Old banners and extinguished candles suggest the previous owner's legacy; newly lit braziers, an unused ceremonial table, and a clear aisle mark the beginning of another chapter. The atmosphere is ceremonial, politically charged, and slightly uneasy rather than triumphant. A visual transition from shadowed past on one side to restrained golden dawn on the other, with no witnesses visible.
 ```
 
 ## 3. 第二优先级
