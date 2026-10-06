@@ -7,6 +7,7 @@
  rol_relic_debug_carthage_fail_now:0 "[ROL DEBUG] Carthage fail-now invoked"
  rol_relic_debug_carthage_terminal_tier4_reward:0 "[ROL DEBUG] Carthage terminal Tier4 reward branch"
  rol_relic_debug_carthage_terminal_below_tier4_fail:0 "[ROL DEBUG] Carthage terminal below Tier4 fail branch"
+ rol_relic_debug_carthage_partial_finalize:0 "[ROL DEBUG] Carthage partial ending finalized"
 
  rol_relic_discovery.1600.t:0 "The Ash-Temple Beneath the Salt"
  rol_relic_discovery.1600.desc:0 "A rare sandstorm outside Tunis strips away layers of cursed salt and reveals the upper vaults of a half-buried temple near Qartajana. Survivors speak of star-cold ash, ghostly war-elephants, and a golden face hidden where Carthage made its last vow against oblivion."
@@ -95,6 +96,7 @@
  rol_quest_carthage.1001.desc:0 "A single spear of star-cold light falls through the cracked vault and fixes upon a weathered stone dais. There, amidst fused gold, dead ash, and the lingering smell of a city burned into legend, rests the face carried into the desert when Carthage chose ruin over surrender. Even before you touch it, the mask feels less like treasure than like a command that survived its makers."
  rol_quest_carthage.1001.desc.tier_4:0 "When your fingers close over the gold, the sanctuary does not resist. The bitter cold within the mask bends instead of breaking you, and the grief of a lost power settles into something harder: discipline, command, and the terrible calm of a city that met extinction standing upright. Hannibal's unfinished defiance does not possess you. It recognizes you."
  rol_quest_carthage.1001.desc.below_tier4:0 "The moment you touch the gold, winter seizes your hand and spreads through the marrow. The sanctuary's last vow refuses to break for you. All that remains is to stagger back from the dais knowing you reached the truth, yet proved unequal to mastering it."
+ rol_quest_carthage.1001.desc.partial:0 "The sanctuary refuses to release the mask, but you recover enough of its ash-marked pattern to prove the legend is real. The complete relic will require another descent."
  rol_quest_carthage.1001.a:0 "Let the old Mediterranean remember."
  rol_quest_carthage.1001.a.tt:0 "If the final trial yields, you claim the mask. Otherwise the expedition fails and enters a 2-year cooldown."
  rol_quest_carthage.1001.a.flavor:0 "Take the final answer by hand, or be refused by it."

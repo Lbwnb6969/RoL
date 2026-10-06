@@ -31,7 +31,7 @@
 - `ck3_capture_screen` / `ck3_click` / `ck3_hotkey`：捕获当前 CK3 屏幕、按窗口相对坐标点击或发送受限快捷键，用于实际事件选项和活动 UI 回归；例如 `alt+a` 打开活动列表。
 - `ck3_read_logs`：读取受限长度的日志尾部并支持关键字过滤。
 - `ck3_snapshot_logs`：把日志复制到时间戳目录，保留原始日志。
-- `ck3_static_audit`：不启动游戏，快速检查五条活动的统一结构、活动背景文件、英中本地化键对齐和 RoL 自有 `gfx` 引用。
+- `ck3_static_audit`：不启动游戏，快速检查五条活动的统一结构、终局部分成功路由、随机挑战与多选项分支、活动背景文件、英中本地化键对齐和 RoL 自有 `gfx` 引用。
 - `ck3_dds_audit`：不启动游戏，检查 RoL DDS 头、压缩标记和资源尺寸；历史资源的非规范尺寸以警告列出，损坏头才会失败。
 - `ck3_validate_mod`：运行静态审计、BOM、ID 前缀和 smoke 检查。
 - `ck3_smoke_test`：组合静态检查、CK3 1.20 开发者控制台初始化探针和 RoL 日志过滤。
@@ -45,6 +45,8 @@
 - discovery event 是否接到对应活动入口事件；
 - activity 是否包含显示、可开始、有效性、地点、阶段、host/guest intents、结算和图形字段；
 - `header_background` 与活动 `background.texture` 是否指向真源中存在的文件；
+- 每条链是否保留 Tier 4 完整圣物路由，以及 Tier 2/3 的部分成功收束；
+- 每条链是否仍有多个事件选项和 `random_list` 挑战分支；
 - English / Simplified Chinese 的 RoL 本地化键是否一一对应且无重复；
 - 脚本中出现的 RoL-owned `gfx/` 引用是否都能解析到真源文件。
 

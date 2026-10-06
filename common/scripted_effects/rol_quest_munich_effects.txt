@@ -173,6 +173,22 @@ rol_munich_quest_success_finalize_effect = {
 	rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_nibelung_success_finalize }
 }
 
+rol_munich_quest_partial_finalize_effect = {
+	rol_munich_clamp_success_progress_effect = yes
+	rol_munich_store_success_result_effect = yes
+	rol_munich_apply_tiered_bonus_reward_effect = yes
+	rol_apply_expedition_preparation_success_bonus_effect = yes
+	rol_store_recent_expedition_preparation_effect = yes
+	rol_relic_partial_success_finalize_effect = {
+		PARTIAL_MODIFIER = rol_partial_relic_evidence_modifier
+		COOLDOWN_MODIFIER = rol_nibelung_quest_cooldown_modifier
+		SUMMARY_EVENT = rol_quest_munich.1090
+		DEBUG_KEY = rol_relic_debug_nibelung_partial_finalize
+	}
+	rol_clear_context_nibelung_regalia_effect = yes
+	rol_munich_quest_abort_effect = yes
+}
+
 rol_apply_nibelung_activity_cooldown_effect = {
 	rol_relic_apply_cooldown_effect = {
 		COOLDOWN_MODIFIER = rol_nibelung_quest_cooldown_modifier

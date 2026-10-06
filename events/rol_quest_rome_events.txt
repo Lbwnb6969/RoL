@@ -837,6 +837,14 @@ rol_quest_rome.1001 = {
 			triggered_desc = {
 				trigger = {
 					rol_relic_context_is_mars_trigger = yes
+					exists = scope:activity
+					scope:activity.var:activity_special_type_progression >= 30
+				}
+				desc = rol_quest_rome.1001.desc.mars.partial
+			}
+			triggered_desc = {
+				trigger = {
+					rol_relic_context_is_mars_trigger = yes
 					OR = {
 						NOT = { exists = scope:activity }
 						AND = {
@@ -892,6 +900,10 @@ rol_quest_rome.1001 = {
 
 			rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_mars_terminal_tier4_reward }
 			rol_rome_quest_success_finalize_effect = yes
+		}
+		else_if = {
+			limit = { exists = scope:activity scope:activity.var:activity_special_type_progression >= 30 }
+			rol_rome_quest_partial_finalize_effect = yes
 		}
 		else = {
 			rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_mars_terminal_below_tier4_fail }

@@ -69,6 +69,7 @@
  rol_quest_sevilla.1001.desc:0 "At the center of the dead-calm waters, the Astrolabe floats above the surface like a second moon. Its brass teeth awaken at your touch, and the sea itself seems to lean closer to hear the verdict."
  rol_quest_sevilla.1001.desc.tier_4:0 "Light pours through the gears as if dawn itself has been trapped inside the relic. The fleet witnesses an omen for a new age of navigation, and the Astrolabe of Ocean-Sea becomes yours."
  rol_quest_sevilla.1001.desc.below_tier4:0 "The final harmony slips away. The glow sinks beneath the mirror-sea, and the waters refuse your claim."
+ rol_quest_sevilla.1001.desc.partial:0 "The final harmony slips away, but your navigators preserve a workable fragment of the route. The Astrolabe remains beyond reach for now."
  rol_quest_sevilla.1001.a:0 "Let all horizons yield before me."
  rol_quest_sevilla.1001.a.tt:0 "Only a full final alignment lets you bring the omen home. Otherwise the expedition fails and enters a 2-year cooldown."
 

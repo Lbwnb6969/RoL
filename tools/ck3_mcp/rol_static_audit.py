@@ -20,6 +20,8 @@ CHAINS = {
         "events": "events/rol_quest_rome_events.txt",
         "discovery": "rol_relic_discovery.1000",
         "entry": "rol_quest_rome.0990",
+        "terminal": "rol_quest_rome.1001",
+        "partial_effect": "rol_rome_quest_partial_finalize_effect",
         "completion_flag": "rol_mars_blade_claimed",
     },
     "munich": {
@@ -28,6 +30,8 @@ CHAINS = {
         "events": "events/rol_quest_munich_events.txt",
         "discovery": "rol_relic_discovery.1300",
         "entry": "rol_quest_munich.0990",
+        "terminal": "rol_quest_munich.1001",
+        "partial_effect": "rol_munich_quest_partial_finalize_effect",
         "completion_flag": "rol_nibelung_sphere_claimed",
     },
     "naxos": {
@@ -36,6 +40,8 @@ CHAINS = {
         "events": "events/rol_quest_naxos_events.txt",
         "discovery": "rol_relic_discovery.1400",
         "entry": "rol_quest_naxos.0990",
+        "terminal": "rol_quest_naxos.1001",
+        "partial_effect": "rol_naxos_quest_partial_finalize_effect",
         "completion_flag": "rol_naxos_unit_unlocked",
     },
     "sevilla": {
@@ -44,6 +50,8 @@ CHAINS = {
         "events": "events/rol_quest_sevilla_events.txt",
         "discovery": "rol_relic_discovery.1500",
         "entry": "rol_quest_sevilla.0990",
+        "terminal": "rol_quest_sevilla.1001",
+        "partial_effect": "rol_sevilla_quest_partial_finalize_effect",
         "completion_flag": "rol_astrolabe_of_ocean_claimed",
     },
     "carthage": {
@@ -52,6 +60,8 @@ CHAINS = {
         "events": "events/rol_quest_carthage_events.txt",
         "discovery": "rol_relic_discovery.1600",
         "entry": "rol_quest_carthage.0990",
+        "terminal": "rol_quest_carthage.1001",
+        "partial_effect": "rol_carthage_quest_partial_finalize_effect",
         "completion_flag": "rol_ash_forged_mask_claimed",
     },
 }
@@ -144,6 +154,20 @@ def check_chain(root: Path, name: str, chain: dict[str, str], errors: list[str])
         errors.append(f"{name}: discovery event {chain['discovery']} is not wired")
     if chain["completion_flag"] not in events:
         errors.append(f"{name}: completion flag {chain['completion_flag']} is not present in event chain")
+    if chain["partial_effect"] not in events:
+        errors.append(f"{name}: partial ending effect {chain['partial_effect']} is missing")
+    terminal_match = re.search(
+        rf"^\s*{re.escape(chain['terminal'])}\s*=\s*\{{(?P<body>.*?)(?=^\s*rol_[A-Za-z0-9_]+\.[0-9]+\s*=\s*\{{|\Z)",
+        events,
+        re.MULTILINE | re.DOTALL,
+    )
+    if not terminal_match:
+        errors.append(f"{name}: terminal event {chain['terminal']} is missing")
+    elif chain["partial_effect"] not in terminal_match.group("body"):
+        errors.append(f"{name}: terminal event {chain['terminal']} has no partial ending route")
+    option_count = len(re.findall(r"^\s+option\s*=\s*\{", events, re.MULTILINE))
+    if option_count < 6:
+        errors.append(f"{name}: event chain exposes only {option_count} options; expected multiple branch choices")
 
     for ref in re.findall(r'header_background\s*=\s*"([^"]+)"', activity):
         path = root / ref
@@ -249,6 +273,20 @@ def check_success_model(root: Path, errors: list[str]) -> int:
     return success_refs
 
 
+def check_branch_model(root: Path, errors: list[str]) -> int:
+    """Ensure every chain keeps explicit choice and partial-ending routes."""
+    total_options = 0
+    for name, chain in CHAINS.items():
+        events_path = root / chain["events"]
+        if not events_path.exists():
+            continue
+        events = read_text(events_path)
+        total_options += len(re.findall(r"^\s+option\s*=\s*\{", events, re.MULTILINE))
+        if "random_list = {" not in events:
+            errors.append(f"{name}: no random_list challenge branch remains")
+    return total_options
+
+
 def audit(root: Path) -> int:
     errors: list[str] = []
     if not root.exists():
@@ -260,12 +298,13 @@ def audit(root: Path) -> int:
     gfx_count = check_rol_gfx_references(root, errors)
     dds_count = check_dds_assets(root, errors)
     success_model_refs = check_success_model(root, errors)
+    branch_options = check_branch_model(root, errors)
     if errors:
         print(f"[FAIL] RoL static audit failed: {len(errors)} issue(s)")
         for error in errors:
             print(f"  - {error}")
         return 1
-    print(f"[OK] RoL static audit passed: {len(CHAINS)} activities, {english_count} English keys, {chinese_count} Chinese keys, {gfx_count} RoL gfx references, {dds_count} canonical DDS assets, {success_model_refs} high-chance branches")
+    print(f"[OK] RoL static audit passed: {len(CHAINS)} activities, {english_count} English keys, {chinese_count} Chinese keys, {gfx_count} RoL gfx references, {dds_count} canonical DDS assets, {success_model_refs} high-chance branches, {branch_options} event choices with partial endings")
     return 0
 
 

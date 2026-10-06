@@ -51,6 +51,7 @@
  rol_quest_munich.1001.desc.tier_3:0 "Aurora-like colors flood the chamber as the sphere rises to your palm in near-perfect resonance."
  rol_quest_munich.1001.desc.tier_4:0 "A pillar of starlight pierces the earth above Munich. The relic circles you like a loyal moon."
  rol_quest_munich.1001.desc.below_tier4:0 "The final resonance shatters before it completes. The starlight gutters out, and the sanctum denies you."
+ rol_quest_munich.1001.desc.partial:0 "The resonance breaks before the sphere can be claimed, but you preserve a stable star-map fragment that can guide a later descent."
  rol_quest_munich.1001.a:0 "Let the heavens witness me."
  rol_quest_munich.1001.a.tt:0 "Only a full final resonance secures the claim. Otherwise the expedition fails and enters a 2-year cooldown."
 

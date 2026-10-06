@@ -8,6 +8,7 @@
  rol_relic_debug_mars_fail_now:0 "[ROL DEBUG] Mars fail-now invoked"
  rol_relic_debug_mars_terminal_tier4_reward:0 "[ROL DEBUG] Mars terminal Tier4 reward branch"
  rol_relic_debug_mars_terminal_below_tier4_fail:0 "[ROL DEBUG] Mars terminal below Tier4 fail branch"
+ rol_relic_debug_mars_partial_finalize:0 "[ROL DEBUG] Mars partial ending finalized"
 
  rol_relic_debug_nibelung_stage_progress:0 "[ROL DEBUG] Nibelung stage progressed"
  rol_relic_debug_nibelung_success_finalize:0 "[ROL DEBUG] Nibelung success finalized"
@@ -15,6 +16,7 @@
  rol_relic_debug_nibelung_fail_now:0 "[ROL DEBUG] Nibelung fail-now invoked"
  rol_relic_debug_nibelung_terminal_tier4_reward:0 "[ROL DEBUG] Nibelung terminal Tier4 reward branch"
  rol_relic_debug_nibelung_terminal_below_tier4_fail:0 "[ROL DEBUG] Nibelung terminal below Tier4 fail branch"
+ rol_relic_debug_nibelung_partial_finalize:0 "[ROL DEBUG] Nibelung partial ending finalized"
 
  rol_relic_debug_naxos_stage_progress:0 "[ROL DEBUG] Naxos stage progressed"
  rol_relic_debug_naxos_success_finalize:0 "[ROL DEBUG] Naxos success finalized"
@@ -22,6 +24,7 @@
  rol_relic_debug_naxos_fail_now:0 "[ROL DEBUG] Naxos fail-now invoked"
  rol_relic_debug_naxos_terminal_tier4_reward:0 "[ROL DEBUG] Naxos terminal Tier4 reward branch"
  rol_relic_debug_naxos_terminal_below_tier4_fail:0 "[ROL DEBUG] Naxos terminal below Tier4 fail branch"
+ rol_relic_debug_naxos_partial_finalize:0 "[ROL DEBUG] Naxos partial ending finalized"
 
  rol_relic_debug_astrolabe_stage_progress:0 "[ROL DEBUG] Astrolabe stage progressed"
  rol_relic_debug_astrolabe_success_finalize:0 "[ROL DEBUG] Astrolabe success finalized"
@@ -29,3 +32,4 @@
  rol_relic_debug_astrolabe_fail_now:0 "[ROL DEBUG] Astrolabe fail-now invoked"
  rol_relic_debug_astrolabe_terminal_tier4_reward:0 "[ROL DEBUG] Astrolabe terminal Tier4 reward branch"
  rol_relic_debug_astrolabe_terminal_below_tier4_fail:0 "[ROL DEBUG] Astrolabe terminal below Tier4 fail branch"
+ rol_relic_debug_astrolabe_partial_finalize:0 "[ROL DEBUG] Astrolabe partial ending finalized"

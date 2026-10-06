@@ -36,3 +36,8 @@ rol_legend_circle_dynasty_modifier = {
 }
 rol_carthage_quest_cooldown_modifier = {
 }
+
+rol_partial_relic_evidence_modifier = {
+	icon = learning_positive
+	learning = 1
+}

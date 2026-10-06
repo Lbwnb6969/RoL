@@ -88,6 +88,7 @@
  rol_quest_naxos.1001.desc.tier_3:0 "You came close, but not enough."
  rol_quest_naxos.1001.desc.tier_4:0 "All trials complete. The palace grants Custodes command authority."
  rol_quest_naxos.1001.desc.below_tier4:0 "The last interface withdraws its answer. The palace falls silent, and the verdict is not yours."
+ rol_quest_naxos.1001.desc.partial:0 "The command lock stays sealed, but the palace leaves you a usable sequence of marks. You have evidence for a future attempt, not the full authority."
  rol_quest_naxos.1001.a:0 "Issue the Custodes order."
  rol_quest_naxos.1001.a.tt:0 "Only a full final authorization answers your command. Otherwise the expedition fails and enters a 2-year cooldown."
 

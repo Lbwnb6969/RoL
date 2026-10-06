@@ -2,7 +2,7 @@
 
 ## Current goal
 
-将 Relics of Legends 适配 Crusader Kings III 1.20.0.3，并保留现有五条圣物远征链的稳定性；在完成兼容迁移后，形成一份按优先级可执行的系统深化与内容拓宽路线图。
+将 Relics of Legends 适配 Crusader Kings III 1.20.0.3，并把五条圣物搜索活动扩展成有明确分支、部分成功与完整圣物终局的可回归系统；高综合属性角色的完整圣物成功率目标约为 70%，随后再用最小游戏流程确认活动 UI、事件与奖励。
 
 ## Requirements
 
@@ -41,6 +41,8 @@
 - 已完成 Naxos / Thera 七张无人事件背景：海崖发现、抵达、前厅、终局、验证厅、custodes 门、总结厅；统一采用黑色火山石、爱琴海冷光和旧金色几何纹样，并移除了原图中的守卫、雕像和盔甲人形。
 - Munich 六张事件背景原有内容已经是无人冰雪场景；本轮仅按中心裁切统一到 `1592x848 / BC1(DXT1)`，保留 Nibelung 的冷蓝、星光和冰窟构图。
 - 已统一五条圣物活动的高属性随机检定：新增 90%/失败互补 script value，替换原 85% 高属性分支；多结局阈值和失败冷却保持不变，模型记录在 `docs/rol_success_model.md`。
+- 已把五条活动的 Tier 2/3 低于完整圣物门槛路径接成可达的“部分成功”终局：记录活动日志、保留进度奖励、给予 5 年圣物证据学习修正并进入 2 年冷却；只有 Tier 4 发放唯一完整圣物。
+- 已用 CK3 1.20 `-run_console_action=debug_mode` 重新加载新增终局代码；五个 quest namespace 均加载，error.log 为空。此前发现的部分成功调试键与活动日志标题缺失已修复。
 - 已生成并接入五条活动的无人主图与同源 header：Rome、Munich、Naxos、Sevilla、Carthage 各一套，分别符合 `1592x848 / DXT1` 与 `1100x440 / DXT1`。
 - 已用本机 CK3 1.20 启动加载回归：新决策本地化和 AI 检查项已修正，RoL 相关脚本不再产生启动错误；日志剩余错误来自原版 GUI/数据和书签内容。
 - 已新增 `tools/ck3_mcp` 本地 stdio MCP：基于 CK3 官方 `-debug_mode`、`-run_console_action` 接口和 Windows 原生 `SendInput` 提供环境探测、开发者模式启动/停止、命令行与窗口 console、日志读取/快照、RoL 静态检查和组合 smoke test；运行时产物被 `.gitignore` 忽略且日志只复制不删除。
@@ -49,6 +51,7 @@
 - 已完成一次完整游戏内 smoke：MCP 使用 `-skip -play=e_byzantium` 进入可操作角色，`ck3_send_console` 触发 `event rol_relic_fragment.0001`，随后读取 error.log 未发现 `rol_` 条目，并保存了日志快照。
 - 已增强 MCP 窗口回归工具：`ck3_send_console`、`ck3_click`、`ck3_capture_screen` 先校验 CK3 HWND 是否真正处于 Windows 前景；激活失败时拒绝输入/点击/截图，避免误操作其他全屏程序；已在真实 CK3 窗口完成 launch、console、click、stop 协议回归。
 - 已新增仓库内 `tools/ck3_mcp/rol_static_audit.py` 与 MCP `ck3_static_audit`：静态检查五条活动统一契约、活动背景文件、英中本地化键对齐/重复键和 RoL 自有 gfx 引用；该检查不启动 CK3，可作为每轮脚本与文案改动后的快速门槛。
+- 已扩展 `rol_static_audit.py`：检查每条活动的终局部分成功路由、随机挑战分支和至少多选项事件，并统计分支选项数量。
 - 已新增 `tools/ck3_mcp/png_to_dds_bc1.py`，并把三十张 canonical 背景的 DDS 尺寸与 DXT1 fourCC 纳入静态审计；带人物草稿已移动到 `output/imagegen/rejected/rol_round1_with_people/` 保存。
 - 已新增 `tools/ck3_mcp/rol_dds_audit.py` 与 MCP `ck3_dds_audit`，按资源目录检查 DDS 头、压缩标记和尺寸；历史尺寸只报 warning，损坏格式才阻断验证，并已纳入 `ck3_validate_mod`。
 - 已将 MCP `ck3_launch.wait_seconds` 上限扩展到 180 秒，并在返回结构中加入 `window_hwnd` / `window_ready`，用于区分新开局和大型存档的加载阶段。
@@ -58,12 +61,12 @@
 ## Next steps
 
 1. 先用 `ck3_static_audit`、`ck3_validate_mod` 固化后续脚本/本地化/资源改动的快速回归；发现静态问题时优先修复，不启动游戏反复试错。
-2. 在静态契约和资源清单稳定后，只选一个最小窗口流程验证 activity header、活动背景、筹备选项和 artifact modifier；不再每轮重复完整活动点击。
+2. 在静态契约和资源清单稳定后，只选一个最小窗口流程验证 activity header、活动背景、筹备选项、部分成功结算和 Tier 4 artifact modifier；不再每轮重复完整活动点击。
 3. 继续按无人场景规则生成 Rome、Munich、Sevilla、Carthage 的关键阶段背景与活动大图，逐批转换 DDS 并做静态审计；最后再选一个最小窗口流程验证实际显示效果。
 
 ## Unresolved issues
 
-- 已完成 CK3 进程级脚本加载回归；尚未通过可交互游戏窗口逐项执行控制台事件和活动流程。
+- 已完成 CK3 进程级脚本加载回归；尚未通过可交互游戏窗口逐项执行控制台事件和活动流程，部分成功奖励仍需真实活动上下文确认。
 - 启动器描述符仍位于 Documents 侧并正确指向 `C:\\CK3Mods\\RoL`；本轮按项目规范不修改 Documents 侧副本，若启动器仍显示旧版本号，应优先让启动器重新生成元数据。
 - 当前 1.20.0.3 的宗教/圣物系统可作为后续接入点，但直接把 RoL artifact 改成 holy relic 需要额外 DLC 条件和存档兼容测试。
 - AI 仍按玩家专用活动设计（`ai_will_do = 0`），是否开放 AI 远征需要单独的平衡目标。

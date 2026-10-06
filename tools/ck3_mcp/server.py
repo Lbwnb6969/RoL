@@ -711,7 +711,7 @@ TOOLS = [
     },
     {
         "name": "ck3_static_audit",
-        "description": "Run the fast repository-local RoL activity, localization, owned-gfx, and canonical generated-DDS static audit without launching CK3.",
+        "description": "Run the fast repository-local RoL activity contract, partial-ending branch, localization, owned-gfx, and canonical generated-DDS static audit without launching CK3.",
         "inputSchema": {"type": "object", "properties": {}},
     },
     {
@@ -721,7 +721,7 @@ TOOLS = [
     },
     {
         "name": "ck3_validate_mod",
-        "description": "Run the fast RoL static audit plus BOM, rol_ prefix, and RoL smoke validation scripts.",
+        "description": "Run the fast RoL static and DDS audits plus BOM, rol_ prefix, and RoL smoke validation scripts.",
         "inputSchema": {"type": "object", "properties": {}},
     },
     {

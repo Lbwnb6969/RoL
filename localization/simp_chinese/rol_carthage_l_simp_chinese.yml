@@ -7,6 +7,7 @@
  rol_relic_debug_carthage_fail_now:0 "[ROL 调试] 已调用迦太基立即失败"
  rol_relic_debug_carthage_terminal_tier4_reward:0 "[ROL 调试] 迦太基终局进入 Tier4 发奖分支"
  rol_relic_debug_carthage_terminal_below_tier4_fail:0 "[ROL 调试] 迦太基终局进入低于 Tier4 的失败分支"
+ rol_relic_debug_carthage_partial_finalize:0 "[ROL 调试] 迦太基部分成功终局已结算"
 
  rol_relic_discovery.1600.t:0 "盐地之下的灰烬神庙"
  rol_relic_discovery.1600.desc:0 "突尼斯外海吹来的罕见沙暴刮去了大片受诅盐碱土，令卡塔贾纳附近一座半埋神庙的上层穹顶重见天日。幸存者只提到几件事：星光般冰冷的灰烬、在黑暗里行进的战象幽影，以及一张藏在地下誓约尽头的黄金面具。"
@@ -95,6 +96,7 @@
  rol_quest_carthage.1001.desc:0 "一道星寒般的光矛从破裂穹顶直落下来，钉在风化石台之上。熔金、死灰与一座城市被焚成传说后的残味之间，静静躺着那张曾在迦太基选择毁灭而非屈服之夜被带入沙海的面具。哪怕还未触碰，它给人的感觉也不像一件财富，而更像一条在制造者死去后依旧存活下来的命令。"
  rol_quest_carthage.1001.desc.tier_4:0 "当你的手指真正扣住那层黄金时，整座圣所并没有反抗。面具中的刺骨寒意没有折断你，反而被你压弯；一个失落强权的悲愿，也在这一刻凝成更坚硬的东西——纪律、统御，以及一座城市站着迎向灭亡时才会有的可怖平静。汉尼拔未竟的抗争并没有附体，它只是承认了你。"
  rol_quest_carthage.1001.desc.below_tier4:0 "当你触到黄金的瞬间，极寒便沿着骨髓蔓延开来。圣所最后的誓约拒绝为你断裂。你所能做的，只是从石台前踉跄退开，明白自己确实抵达了真相，却依旧不足以将其真正驯服。"
+ rol_quest_carthage.1001.desc.partial:0 "圣所拒绝交出面具，但你仍带回了足以证明传说真实存在的灰烬刻痕。完整圣物还需要下一次深入。"
  rol_quest_carthage.1001.a:0 "让旧日地中海再次记住我。"
  rol_quest_carthage.1001.a.tt:0 "若最终门槛被你突破，你将夺得面具；否则本次远征失败并进入2年冷却。"
  rol_quest_carthage.1001.a.flavor:0 "亲手夺取那最后的回答，或被它当场拒绝。"

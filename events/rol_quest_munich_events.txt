@@ -558,6 +558,13 @@ rol_quest_munich.1001 = {
 			}
 			triggered_desc = {
 				trigger = {
+					exists = scope:activity
+					scope:activity.var:activity_special_type_progression >= 35
+				}
+				desc = rol_quest_munich.1001.desc.partial
+			}
+			triggered_desc = {
+				trigger = {
 					OR = {
 						NOT = { exists = scope:activity }
 						AND = {
@@ -601,6 +608,10 @@ rol_quest_munich.1001 = {
 
 			rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_nibelung_terminal_tier4_reward }
 			rol_munich_quest_success_finalize_effect = yes
+		}
+		else_if = {
+			limit = { exists = scope:activity scope:activity.var:activity_special_type_progression >= 35 }
+			rol_munich_quest_partial_finalize_effect = yes
 		}
 		else = {
 			rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_nibelung_terminal_below_tier4_fail }

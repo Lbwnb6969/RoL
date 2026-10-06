@@ -269,6 +269,13 @@ rol_quest_carthage.1001 = {
 			triggered_desc = { trigger = { exists = scope:activity scope:activity.var:activity_special_type_progression >= 55 } desc = rol_quest_carthage.1001.desc.tier_4 }
 			triggered_desc = {
 				trigger = {
+					exists = scope:activity
+					scope:activity.var:activity_special_type_progression >= 35
+				}
+				desc = rol_quest_carthage.1001.desc.partial
+			}
+			triggered_desc = {
+				trigger = {
 					OR = {
 						NOT = { exists = scope:activity }
 						AND = { exists = scope:activity scope:activity.var:activity_special_type_progression < 55 }
@@ -297,6 +304,10 @@ rol_quest_carthage.1001 = {
 			else = { error_log = "[ROL][ERROR] Failed to grant artifact rol_ash_forged_mask in rol_quest_carthage.1001" }
 			rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_carthage_terminal_tier4_reward }
 			rol_carthage_quest_success_finalize_effect = yes
+		}
+		else_if = {
+			limit = { exists = scope:activity scope:activity.var:activity_special_type_progression >= 35 }
+			rol_carthage_quest_partial_finalize_effect = yes
 		}
 		else = {
 			rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_carthage_terminal_below_tier4_fail }

@@ -69,6 +69,7 @@
  rol_quest_munich.1001.desc.tier_3:0 "球体悬浮于掌心之上，极光般的色彩淹没地底。你听见的不是声音，而是一整片星海的脉搏。"
  rol_quest_munich.1001.desc.tier_4:0 "宇宙与灵魂在此刻共鸣。一束纯净星光刺穿地层直上慕尼黑夜空，万民仰望异象，而你如半神般走出地宫。"
  rol_quest_munich.1001.desc.below_tier4:0 "最终共鸣在完成前破碎。星辉黯去，圣所拒绝了你。"
+ rol_quest_munich.1001.desc.partial:0 "最终共鸣在星界球认主前破碎，但你保住了一段稳定的星图残片，足以指引下一次深入。"
  rol_quest_munich.1001.a:0 "让群星见证我的统治。"
  rol_quest_munich.1001.a.tt:0 "唯有最终共鸣真正完成，你才能带回此行的答案；否则本次远征失败并进入2年冷却。"
 

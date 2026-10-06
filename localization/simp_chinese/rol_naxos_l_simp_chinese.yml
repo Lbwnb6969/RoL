@@ -86,6 +86,7 @@
  rol_quest_naxos.1001.desc.tier_3:0 "你已非常接近成功，却仍差最后一步。"
  rol_quest_naxos.1001.desc.tier_4:0 "全部试炼完成。宫殿向你授予禁军指挥权。"
  rol_quest_naxos.1001.desc.below_tier4:0 "最后一道界面收回了回应。宫殿归于寂静，而答案并不属于你。"
+ rol_quest_naxos.1001.desc.partial:0 "指挥锁仍未开启，但宫殿留下了一组可用的刻痕。你带回了下一次尝试的证据，却还没有完整的权柄。"
  rol_quest_naxos.1001.a:0 "下达禁军征召令。"
  rol_quest_naxos.1001.a.tt:0 "唯有最终裁决真正承认你的号令，你才算完成此行；否则本次远征失败并进入2年冷却。"
 

@@ -724,6 +724,13 @@ rol_quest_naxos.1001 = {
 			}
 			triggered_desc = {
 				trigger = {
+					exists = scope:activity
+					scope:activity.var:activity_special_type_progression >= 30
+				}
+				desc = rol_quest_naxos.1001.desc.partial
+			}
+			triggered_desc = {
+				trigger = {
 					OR = {
 						NOT = { exists = scope:activity }
 						AND = {
@@ -758,6 +765,10 @@ rol_quest_naxos.1001 = {
 			play_sound_effect = "event:/DLC/EP1/SFX/UI/Notifications/court_grandeur_toast_lvl_up"
 			rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_naxos_terminal_tier4_reward }
 			rol_naxos_quest_success_finalize_effect = yes
+		}
+		else_if = {
+			limit = { exists = scope:activity scope:activity.var:activity_special_type_progression >= 30 }
+			rol_naxos_quest_partial_finalize_effect = yes
 		}
 		else = {
 			rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_naxos_terminal_below_tier4_fail }

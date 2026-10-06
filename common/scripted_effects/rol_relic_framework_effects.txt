@@ -94,6 +94,41 @@ rol_relic_log_success_effect = {
 	}
 }
 
+# 活动日志：部分成功（找到线索，但未取得完整圣物）
+rol_relic_log_partial_success_effect = {
+	scope:activity ?= {
+		add_activity_log_entry = {
+			key = rol_relic_activity_partial_success_log
+			character = root
+			score = 60
+			tags = { complete good }
+			show_in_conclusion = yes
+		}
+	}
+}
+
+# 统一收束部分成功：保留进度奖励，留下线索，并进入短期冷却。
+# 调用方负责先存储对应链的成功档位，再清理链上下文。
+rol_relic_partial_success_finalize_effect = {
+	add_character_modifier = {
+		modifier = $PARTIAL_MODIFIER$
+		years = 5
+	}
+	rol_relic_apply_cooldown_effect = {
+		COOLDOWN_MODIFIER = $COOLDOWN_MODIFIER$
+		COOLDOWN_YEARS = 2
+	}
+	rol_relic_log_partial_success_effect = yes
+	send_interface_toast = {
+		type = event_toast_effect_good
+		title = rol_relic_partial_success_toast_title
+		desc = rol_relic_partial_success_toast_desc
+		left_icon = root
+	}
+	trigger_event = { id = $SUMMARY_EVENT$ days = 1 }
+	rol_relic_debug_trace_effect = { DEBUG_KEY = $DEBUG_KEY$ }
+}
+
 # 活动日志：失败
 rol_relic_log_failure_effect = {
 	scope:activity ?= {
