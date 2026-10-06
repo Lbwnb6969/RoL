@@ -72,8 +72,10 @@ REQUIRED_ACTIVITY_BLOCKS = (
     "window_characters",
 )
 
-LOC_KEY_RE = re.compile(r"^\s+([A-Za-z0-9_.-]+):\d+\s")
+# CK3 accepts both key:0 "..." and key: "..." localization forms.
+LOC_KEY_RE = re.compile(r'^\s+([A-Za-z0-9_.-]+):(?:\d+)?\s*(?:"|$)')
 GFX_REF_RE = re.compile(r"(?:\"|=\s*)(gfx/[^\"\s]+)")
+LOC_REF_RE = re.compile(r"\b(?:title|desc|name|flavor|text)\s*=\s*(rol_[A-Za-z0-9_.-]+)")
 
 
 def read_text(path: Path) -> str:
@@ -138,6 +140,15 @@ def check_localization_parity(root: Path, errors: list[str]) -> tuple[int, int]:
         errors.append(f"localization: missing simp_chinese key {key}")
     for key in sorted(chinese - english):
         errors.append(f"localization: missing english key {key}")
+    for directory in (root / "common", root / "events"):
+        for path in directory.rglob("*.txt"):
+            for value in LOC_REF_RE.findall(read_text(path)):
+                # Variable names such as rol_rome_stage_count are not loc
+                # keys. Dotted event keys and activity keys are display text.
+                if value in english or value in chinese:
+                    continue
+                if "." in value or value.startswith("activity_rol_"):
+                    errors.append(f"localization: missing display key {value} referenced by {path}")
     return len(english), len(chinese)
 
 
