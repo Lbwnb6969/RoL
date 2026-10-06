@@ -58,7 +58,10 @@
 - 已新增仓库内 `tools/ck3_mcp/rol_static_audit.py` 与 MCP `ck3_static_audit`：静态检查五条活动统一契约、活动背景文件、英中本地化键对齐/重复键和 RoL 自有 gfx 引用；该检查不启动 CK3，可作为每轮脚本与文案改动后的快速门槛。
 - 已补齐 MCP `ck3_validate_mod` 依赖的 BOM、`rol_` 前缀和脚本结构 smoke 校验脚本，避免组合验证引用缺失文件。
 - 已清理背景提示词、竞争者/传承图像清单和窗口回归手册中的过期“待生成/仍缺活动图标”描述，使文档状态与当前 DDS 清单一致；继续遵守旧版可用资源保留规则。
+- 已同步完整交接文档的当前日期、Tier2/3 部分成功语义、动态概率 tooltip 和“旧版资源保留”规则，避免后续会话按旧的 Tier4-only / 占位图描述继续实现。
 - 已扩展 `rol_static_audit.py`：检查每条活动的终局部分成功路由、随机挑战分支和至少多选项事件，并统计分支选项数量。
+- 已扩展 `rol_static_audit.py`：静态锁定四条碎片路线的决策入口、原始圣物、两级 modifier、三种挑战选项以及成功/失败效果接线。
+- 已扩展活动静态契约：Rome、Munich、Sevilla、Carthage 的终点事件必须包含唯一圣物创建效果，Naxos 必须包含终局单位奖励接线。
 - 已新增 `tools/ck3_mcp/png_to_dds_bc1.py`，并把三十张 canonical 背景的 DDS 尺寸与 DXT1 fourCC 纳入静态审计；带人物草稿已移动到 `output/imagegen/rejected/rol_round1_with_people/` 保存。
 - 已新增 `tools/ck3_mcp/rol_dds_audit.py` 与 MCP `ck3_dds_audit`，按资源目录检查 DDS 头、压缩标记和尺寸；历史尺寸只报 warning，损坏格式才阻断验证，并已纳入 `ck3_validate_mod`。
 - 已将 MCP `ck3_launch.wait_seconds` 上限扩展到 180 秒，并在返回结构中加入 `window_hwnd` / `window_ready`，用于区分新开局和大型存档的加载阶段。

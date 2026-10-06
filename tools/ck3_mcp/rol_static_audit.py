@@ -23,6 +23,7 @@ CHAINS = {
         "terminal": "rol_quest_rome.1001",
         "partial_effect": "rol_rome_quest_partial_finalize_effect",
         "completion_flag": "rol_mars_blade_claimed",
+        "artifact_effect": "rol_create_blade_of_mars_effect",
     },
     "munich": {
         "activity": "activity_rol_seek_nibelung_sphere",
@@ -33,6 +34,7 @@ CHAINS = {
         "terminal": "rol_quest_munich.1001",
         "partial_effect": "rol_munich_quest_partial_finalize_effect",
         "completion_flag": "rol_nibelung_sphere_claimed",
+        "artifact_effect": "rol_create_nibelung_star_sphere_effect",
     },
     "naxos": {
         "activity": "activity_rol_seek_naxos_guard",
@@ -43,6 +45,7 @@ CHAINS = {
         "terminal": "rol_quest_naxos.1001",
         "partial_effect": "rol_naxos_quest_partial_finalize_effect",
         "completion_flag": "rol_naxos_unit_unlocked",
+        "terminal_reward": "rol_naxos_unit_unlocked",
     },
     "sevilla": {
         "activity": "activity_rol_seek_astrolabe_of_ocean",
@@ -53,6 +56,7 @@ CHAINS = {
         "terminal": "rol_quest_sevilla.1001",
         "partial_effect": "rol_sevilla_quest_partial_finalize_effect",
         "completion_flag": "rol_astrolabe_of_ocean_claimed",
+        "artifact_effect": "rol_create_astrolabe_of_ocean_effect",
     },
     "carthage": {
         "activity": "activity_rol_seek_ash_forged_mask",
@@ -63,6 +67,34 @@ CHAINS = {
         "terminal": "rol_quest_carthage.1001",
         "partial_effect": "rol_carthage_quest_partial_finalize_effect",
         "completion_flag": "rol_ash_forged_mask_claimed",
+        "artifact_effect": "rol_create_ash_forged_mask_effect",
+    },
+}
+
+FRAGMENT_ROUTES = {
+    "mars": {
+        "artifact": "rol_blade_of_mars",
+        "route_flag": "rol_fragment_route_mars",
+        "decision": "rol_seek_mars_fragment_decision",
+        "modifiers": ("rol_blade_fragment_1_modifier", "rol_blade_fragment_2_modifier"),
+    },
+    "nibelung": {
+        "artifact": "rol_nibelung_star_sphere",
+        "route_flag": "rol_fragment_route_nibelung",
+        "decision": "rol_seek_nibelung_fragment_decision",
+        "modifiers": ("rol_nibelung_fragment_1_modifier", "rol_nibelung_fragment_2_modifier"),
+    },
+    "astrolabe": {
+        "artifact": "rol_astrolabe_of_ocean",
+        "route_flag": "rol_fragment_route_astrolabe",
+        "decision": "rol_seek_astrolabe_fragment_decision",
+        "modifiers": ("rol_astrolabe_fragment_1_modifier", "rol_astrolabe_fragment_2_modifier"),
+    },
+    "ash": {
+        "artifact": "rol_ash_forged_mask",
+        "route_flag": "rol_fragment_route_ash",
+        "decision": "rol_seek_ash_fragment_decision",
+        "modifiers": ("rol_ash_fragment_1_modifier", "rol_ash_fragment_2_modifier"),
     },
 }
 
@@ -194,6 +226,10 @@ def check_chain(root: Path, name: str, chain: dict[str, str], errors: list[str])
         errors.append(f"{name}: terminal event {chain['terminal']} is missing")
     elif chain["partial_effect"] not in terminal_match.group("body"):
         errors.append(f"{name}: terminal event {chain['terminal']} has no partial ending route")
+    elif chain.get("artifact_effect") and chain["artifact_effect"] not in terminal_match.group("body"):
+        errors.append(f"{name}: terminal event {chain['terminal']} has no unique artifact reward route")
+    elif chain.get("terminal_reward") and chain["terminal_reward"] not in terminal_match.group("body"):
+        errors.append(f"{name}: terminal event {chain['terminal']} has no terminal reward route")
     option_count = len(re.findall(r"^\s+option\s*=\s*\{", events, re.MULTILINE))
     if option_count < 6:
         errors.append(f"{name}: event chain exposes only {option_count} options; expected multiple branch choices")
@@ -377,6 +413,47 @@ def check_branch_model(root: Path, errors: list[str]) -> int:
     return total_options
 
 
+def check_fragment_model(root: Path, errors: list[str]) -> int:
+    """Verify the four optional fragment routes remain internally wired."""
+    decisions_path = root / "common/decisions/rol_fragment_decisions.txt"
+    effects_path = root / "common/scripted_effects/rol_relic_fragment_effects.txt"
+    modifiers_path = root / "common/modifiers/rol_fragment_modifiers.txt"
+    events_path = root / "events/rol_relic_fragment_events.txt"
+    texts = {}
+    for path in (decisions_path, effects_path, modifiers_path, events_path):
+        if not path.exists():
+            errors.append(f"fragment model: missing {path}")
+            continue
+        texts[path] = read_text(path)
+    decisions = texts.get(decisions_path, "")
+    effects = texts.get(effects_path, "")
+    modifiers = texts.get(modifiers_path, "")
+    events = texts.get(events_path, "")
+    if events and len(re.findall(r"^rol_relic_fragment\.0001\s*=\s*\{", events, re.MULTILINE)) != 1:
+        errors.append("fragment model: challenge event rol_relic_fragment.0001 is missing or duplicated")
+    if events and len(re.findall(r"^\s+option\s*=\s*\{", events, re.MULTILINE)) < 3:
+        errors.append("fragment model: challenge event exposes fewer than three skill options")
+    for name, route in FRAGMENT_ROUTES.items():
+        if route["decision"] not in decisions:
+            errors.append(f"fragment model: {name} decision {route['decision']} is not wired")
+        if route["route_flag"] not in decisions or route["route_flag"] not in events:
+            errors.append(f"fragment model: {name} route flag {route['route_flag']} is not wired in both entry and event")
+        if route["artifact"] not in decisions or route["artifact"] not in events:
+            errors.append(f"fragment model: {name} artifact type {route['artifact']} is not wired in both entry and event")
+        for modifier in route["modifiers"]:
+            if not re.search(rf"^\s*{re.escape(modifier)}\s*=\s*\{{", modifiers, re.MULTILINE):
+                errors.append(f"fragment model: missing modifier definition {modifier}")
+            if modifier not in effects:
+                errors.append(f"fragment model: {modifier} is never applied by the success effect")
+            if modifier.endswith("_2_modifier") and modifier not in decisions:
+                errors.append(f"fragment model: {modifier} is not used to gate its decision")
+    if events and events.count("rol_relic_fragment_success_effect = yes") < 3:
+        errors.append("fragment model: success outcome is not present for all three challenge options")
+    if events and events.count("rol_relic_fragment_failure_effect = yes") < 3:
+        errors.append("fragment model: failure outcome is not present for all three challenge options")
+    return len(FRAGMENT_ROUTES)
+
+
 def audit(root: Path) -> int:
     errors: list[str] = []
     if not root.exists():
@@ -390,12 +467,13 @@ def audit(root: Path) -> int:
     success_model_refs = check_success_model(root, errors)
     chance_lists, chance_tooltips = check_chance_tooltips(root, errors)
     branch_options = check_branch_model(root, errors)
+    fragment_routes = check_fragment_model(root, errors)
     if errors:
         print(f"[FAIL] RoL static audit failed: {len(errors)} issue(s)")
         for error in errors:
             print(f"  - {error}")
         return 1
-    print(f"[OK] RoL static audit passed: {len(CHAINS)} activities, {english_count} English keys, {chinese_count} Chinese keys, {gfx_count} RoL gfx references, {dds_count} canonical DDS assets, {success_model_refs} high-chance branches, {chance_lists} chance lists, {chance_tooltips} chance tooltip keys, {branch_options} event choices with partial endings")
+    print(f"[OK] RoL static audit passed: {len(CHAINS)} activities, {fragment_routes} fragment routes, {english_count} English keys, {chinese_count} Chinese keys, {gfx_count} RoL gfx references, {dds_count} canonical DDS assets, {success_model_refs} high-chance branches, {chance_lists} chance lists, {chance_tooltips} chance tooltip keys, {branch_options} event choices with partial endings")
     return 0
 
 

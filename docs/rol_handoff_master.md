@@ -1,6 +1,6 @@
 ﻿# RoL 新对话完整交接文档（Master Handoff）
 
-> 当前快照日期：2026-10-05
+> 当前快照日期：2026-10-06
 > 真源目录：`C:\CK3Mods\RoL`  
 > 当前启动器描述符：`C:\Users\Falcons的Niko本人的PC\Documents\Paradox Interactive\Crusader Kings III\mod\RoL.mod` -> `path="C:/CK3Mods/RoL"`
 
@@ -21,7 +21,7 @@
 
 ---
 
-## 1) 当前正式主线快照（2026-03-29）
+## 1) 当前正式主线快照（2026-10-06）
 
 | 地区 | Discovery | Activity | 最终结果 | 永久完成标记 | 是否计入 `rol_legend_circle` |
 |---|---|---|---|---|---|
@@ -76,7 +76,7 @@
 ### 3.2 活动 UI / 文案基线
 - `host_intents` 当前默认只保留 `rol_relic_hunt_intent`。
 - 所有可点击 option 必须带 `flavor = ...`。
-- RNG 选项 tooltip 应显示**精确成功 / 失败百分比**。
+- RNG 结果 tooltip 已通过 `rol_expedition_display_*_chance_value` 显示**精确成功 / 失败百分比**，并由静态审计覆盖 64 个挑战列表。
 - “终止远征并进入 2 年冷却”只能写在 failure outcome 最底部一次。
 - 活动主描述 / host_desc / selection_tooltip 不直接剧透最终奖励。
 
@@ -87,7 +87,7 @@
 - `common/decisions/rol_decisions.txt`
 - `events/rol_test_events.txt`
 
-### 3.4 五条正式活动链真实结算阈值基线（2026-03-29）
+### 3.4 五条正式活动链真实结算阈值基线（2026-10-06）
 
 | 活动 | 起始进度 | 主阶段高成功参考值 | Tier4 | Tier3 | Tier2 |
 |---|---:|---:|---:|---:|---:|
@@ -97,10 +97,10 @@
 | Sevilla | `35` | `55` | `55` | `45` | `35` |
 | Carthage / Qartajana | `35` | `55` | `55` | `45` | `35` |
 
-- 当前五条正式链都按“**Tier4-only + 严格高成功**”收口。
-- **主阶段没失败 ≠ 自动 Tier4**；若某段只拿到 `medium / tiny` 成功，终局不保证过线。
+- 当前五条正式链都按“**Tier4 完整圣物 + Tier2/3 部分成功 + Tier1 以下失败**”收口。
+- **主阶段没失败 ≠ 自动 Tier4**；若某段只拿到 `medium / tiny` 成功，终局会保留对应部分奖励并进入部分成功结算。
 - `1050` 宾客正向事件的定位仍是**额外余量**，不是终局 Tier4 必需条件。
-- 终局继续保持 **Tier4-only** 发放最终圣物 / 解锁；低于 Tier4 仍判失败并进入冷却。
+- 终局保持 **Tier4-only** 发放最终圣物 / 解锁；Tier2/3 记录部分成功、保留进度奖励并进入短期冷却，低于 Tier2 才判失败并进入冷却。
 
 ---
 
@@ -157,7 +157,7 @@
   - `rol_event_carthage_1090_summary.dds`
   - `rol_activity_carthage_travel.dds`
   - `rol_activity_carthage_location.dds`
-- 当前 scene 占位图已存在，且事件背景 registry 已补齐，可继续同名替换最终图。
+- 当前 scene DDS 已接入且通过尺寸 / 压缩审计；旧版可用资源继续保留，只有明确占位、缺失或场景冲突时才同名替换。
 
 ---
 
