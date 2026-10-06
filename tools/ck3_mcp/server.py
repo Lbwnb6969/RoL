@@ -300,6 +300,78 @@ def _send_console_hotkey(hotkey: str) -> None:
         emit(0x2A, KEYEVENTF_KEYUP)
 
 
+_HOTKEY_SCANS = {
+    "alt": 0x38,
+    "ctrl": 0x1D,
+    "shift": 0x2A,
+    "a": 0x1E,
+    "c": 0x2E,
+    "d": 0x20,
+    "e": 0x12,
+    "f": 0x21,
+    "i": 0x17,
+    "l": 0x26,
+    "m": 0x32,
+    "p": 0x19,
+    "q": 0x10,
+    "r": 0x13,
+    "s": 0x1F,
+    "t": 0x14,
+    "v": 0x2F,
+    "x": 0x2D,
+    "z": 0x2C,
+    "enter": 0x1C,
+    "escape": 0x01,
+    "esc": 0x01,
+}
+
+
+def _send_hotkey(combo: str) -> list[str]:
+    """Send a small allowlisted scan-code hotkey after foreground validation."""
+    if os.name != "nt":
+        raise RuntimeError("ck3_hotkey requires Windows")
+    keys = [part.strip().lower() for part in combo.split("+") if part.strip()]
+    if len(keys) < 2 or len(keys) > 3 or any(key not in _HOTKEY_SCANS for key in keys):
+        raise ValueError("hotkey must use 2-3 allowlisted keys, for example alt+a")
+    modifiers = [key for key in keys[:-1] if key in {"alt", "ctrl", "shift"}]
+    if len(modifiers) != len(keys) - 1 or keys[-1] in {"alt", "ctrl", "shift"}:
+        raise ValueError("hotkey modifiers must come first and the final key must be non-modifier")
+
+    user32 = ctypes.windll.user32
+    KEYEVENTF_KEYUP = 0x0002
+    KEYEVENTF_SCANCODE = 0x0008
+    INPUT_KEYBOARD = 1
+
+    class KEYBDINPUT(ctypes.Structure):
+        _fields_ = [
+            ("wVk", wintypes.WORD),
+            ("wScan", wintypes.WORD),
+            ("dwFlags", wintypes.DWORD),
+            ("time", wintypes.DWORD),
+            ("dwExtraInfo", ctypes.POINTER(wintypes.ULONG)),
+        ]
+
+    class INPUT(ctypes.Structure):
+        _fields_ = [
+            ("type", wintypes.DWORD),
+            ("ki", KEYBDINPUT),
+            ("padding", wintypes.BYTE * 8),
+        ]
+
+    def emit(key: str, flags: int) -> None:
+        event = INPUT(type=INPUT_KEYBOARD, ki=KEYBDINPUT(wVk=0, wScan=_HOTKEY_SCANS[key], dwFlags=KEYEVENTF_SCANCODE | flags, time=0, dwExtraInfo=None))
+        if user32.SendInput(1, ctypes.byref(event), ctypes.sizeof(INPUT)) != 1:
+            raise OSError("SendInput failed")
+
+    for key in modifiers:
+        emit(key, 0)
+    emit(keys[-1], 0)
+    emit(keys[-1], KEYEVENTF_KEYUP)
+    for key in reversed(modifiers):
+        emit(key, KEYEVENTF_KEYUP)
+    return keys
+
+
 def _window_rect(hwnd: int) -> tuple[int, int, int, int]:
     rect = wintypes.RECT()
     if not ctypes.windll.user32.GetWindowRect(hwnd, ctypes.byref(rect)):
@@ -396,6 +468,24 @@ def _click_window(args: dict[str, Any]) -> dict[str, Any]:
         return _text_result(f"Clicked CK3 window at ({x}, {y}).", hwnd=hwnd, window_rect=[left, top, right, bottom], x=x, y=y)
     except OSError as exc:
         return _error(f"Could not click CK3 window: {exc}")
+
+
+def _hotkey_window(args: dict[str, Any]) -> dict[str, Any]:
+    if os.name != "nt":
+        return _error("ck3_hotkey requires Windows")
+    combo = str(args.get("hotkey", "")).strip()
+    hwnd = _find_ck3_window(args.get("window_title"))
+    if hwnd is None:
+        return _error("No visible CK3 window matched the running ck3.exe process.")
+    try:
+        if not _activate_window(hwnd):
+            foreground = ctypes.windll.user32.GetForegroundWindow()
+            return _error(f"Could not bring CK3 window {hwnd} to the foreground; refusing to inject hotkey (foreground={foreground}).")
+        keys = _send_hotkey(combo)
+        time.sleep(max(0.1, min(float(args.get("wait_seconds", 1.0)), 30.0)))
+        return _text_result(f"Sent CK3 hotkey {combo}.", hwnd=hwnd, keys=keys)
+    except (OSError, RuntimeError, ValueError) as exc:
+        return _error(f"Could not send hotkey: {exc}")
 
 
 def _stop() -> dict[str, Any]:
@@ -567,6 +657,11 @@ TOOLS = [
         "inputSchema": {"type": "object", "required": ["x", "y"], "properties": {"x": {"type": "integer"}, "y": {"type": "integer"}, "window_title": {"type": "string"}, "wait_seconds": {"type": "number"}}},
     },
     {
+        "name": "ck3_hotkey",
+        "description": "Send an allowlisted keyboard shortcut to the visible CK3 window after foreground validation.",
+        "inputSchema": {"type": "object", "required": ["hotkey"], "properties": {"hotkey": {"type": "string", "description": "Two or three keys joined by +, for example alt+a."}, "window_title": {"type": "string"}, "wait_seconds": {"type": "number"}}},
+    },
+    {
         "name": "ck3_read_logs",
         "description": "Read a bounded tail of CK3 logs, optionally filtered by text.",
         "inputSchema": {"type": "object", "properties": {"files": {"type": "array", "items": {"type": "string", "enum": ["error", "game", "setup", "debug"]}}, "tail_lines": {"type": "integer"}, "contains": {"type": "string"}}},
@@ -611,6 +706,8 @@ def _call_tool(name: str, args: dict[str, Any]) -> dict[str, Any]:
         return _capture_screen(args)
     if name == "ck3_click":
         return _click_window(args)
+    if name == "ck3_hotkey":
+        return _hotkey_window(args)
     if name == "ck3_read_logs":
         return _read_logs(args)
     if name == "ck3_snapshot_logs":

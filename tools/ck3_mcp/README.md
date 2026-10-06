@@ -28,7 +28,7 @@
 - `ck3_process` / `ck3_launch` / `ck3_stop`：管理开发者模式测试会话；`ck3_launch` 可用 `loadsave` 载入指定存档，等待时间可配置到 180 秒，并返回目标窗口是否已出现。
 - `ck3_run_console_action`：调用 CK3 官方 console action 接口执行事件、决策调试或脚本探针。
 - `ck3_send_console`：通过 Windows 原生输入把一条命令送入可见的 CK3 开发者控制台，适合完整游戏窗口中的交互测试；传入 `close_console=true` 可在命令执行后自动收起控制台，便于继续截图或点击事件窗口。
-- `ck3_capture_screen` / `ck3_click`：捕获当前 CK3 屏幕并按窗口相对坐标点击，用于实际事件选项和活动 UI 回归。
+- `ck3_capture_screen` / `ck3_click` / `ck3_hotkey`：捕获当前 CK3 屏幕、按窗口相对坐标点击或发送受限快捷键，用于实际事件选项和活动 UI 回归；例如 `alt+a` 打开活动列表。
 - `ck3_read_logs`：读取受限长度的日志尾部并支持关键字过滤。
 - `ck3_snapshot_logs`：把日志复制到时间戳目录，保留原始日志。
 - `ck3_validate_mod`：运行 RoL 的 BOM、ID 前缀和 smoke 检查。
