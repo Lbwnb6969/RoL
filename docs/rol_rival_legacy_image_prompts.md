@@ -125,7 +125,7 @@ A night oath ceremony in an ancient Aegean sanctuary after the death of a comman
 - 背景键：rol_bg_rival_pact
 
 ```text
-A restrained medieval diplomatic chamber inside a temporary relic expedition headquarters. The expedition leader and an ambiguous rival stand on opposite sides of a scarred oak table covered with route maps, wax seals, shared notes, and a small open purse. A single lantern illuminates hands, maps, and the uneasy distance between the two figures; guards and expedition equipment remain soft in the background. The scene should communicate a practical pact between competitors, with shared credit and future distrust, without showing any specific relic.
+An empty restrained medieval diplomatic chamber inside a temporary relic expedition headquarters. A scarred oak table holds route maps with no readable writing, wax seals, shared notes, two unopened travel satchels, and a small open purse. A single lantern illuminates the table while canvas walls, rolled maps, spare bedrolls, and expedition equipment recede into cool shadow. The scene communicates a practical pact between competitors through objects left ready for negotiation, with shared credit and future distrust, without showing any specific relic. No people, animals, hands, silhouettes, statues, or human-shaped shadows.
 ```
 
 ### 6.2 圣物转手
@@ -134,7 +134,7 @@ A restrained medieval diplomatic chamber inside a temporary relic expedition hea
 - 背景键：rol_bg_relic_legacy_transfer
 
 ```text
-A solemn medieval armory prepared for the transfer of an inherited legendary relic. A covered reliquary rests on a stone workbench between an old household banner and a newly prepared set of travel gear. Witnesses remain in shadow while a gloved hand reaches toward the covered object, leaving the exact artifact ambiguous. Warm forge light, dark iron, folded cloth, sealed documents, and a quiet sense of political succession; no visible writing, no explicit theft, no specific sword, sphere, astrolabe, or mask.
+An empty solemn medieval armory prepared for the transfer of an inherited legendary relic. A covered reliquary rests on a stone workbench between an old household banner and a newly prepared set of travel gear. An unused ceremonial stand, folded gloves, sealed documents with no readable writing, dark iron racks, and warm forge light communicate political succession without showing a hand or witness. The exact artifact remains ambiguous beneath the cloth; no explicit theft, no specific sword, sphere, astrolabe, or mask. No people, animals, statues, silhouettes, or human-shaped shadows.
 ```
 
 ### 6.3 碎片远征
@@ -143,7 +143,7 @@ A solemn medieval armory prepared for the transfer of an inherited legendary rel
 - 背景键：rol_bg_fragment_expedition
 
 ```text
-A compact medieval excavation at the mouth of a newly uncovered chamber. An expedition leader studies a fragment-sized piece of worked metal and stone beside measuring tools, rope, oil lamps, and a half-cleared threshold. The larger legendary relic is absent from the scene; only clues to a matching fragment appear. Narrow passage walls, dust, careful hands, and a small uncertain opening create the feeling of a dangerous short expedition. Neutral materials and lighting must keep the image compatible with a martial blade, celestial sphere, ocean astrolabe, or funerary mask.
+A compact empty medieval excavation at the mouth of a newly uncovered chamber. A fragment-sized piece of worked metal and stone rests beside measuring tools, rope, oil lamps, chalk marks with no readable writing, and a half-cleared threshold. The larger legendary relic is absent; only clues to a matching fragment appear. Narrow passage walls, damp roots, dust, and a small uncertain opening create the feeling of a dangerous short expedition. Neutral materials and lighting keep the image compatible with a martial blade, celestial sphere, ocean astrolabe, or funerary mask. No people, animals, hands, footprints, statues, silhouettes, or human-shaped shadows.
 ```
 
 ### 6.4 碎片嵌合升级
@@ -152,7 +152,7 @@ A compact medieval excavation at the mouth of a newly uncovered chamber. An expe
 - 背景键：rol_bg_fragment_upgrade
 
 ```text
-A medieval reliquary workshop at the moment a recovered fragment is fitted into a legendary object hidden beneath a dark cloth. The fragment is visible only as a small distinctive piece locking into a larger silhouette, while the exact relic remains deliberately ambiguous. A scholar, craftsperson, and silent guard observe the alignment; chisels, clamps, wax, and old diagrams rest on the table. The mood is precise and consequential, with controlled golden light, no explosive magic, no readable writing, and enough calm central space for event text.
+A quiet empty medieval reliquary workshop prepared for fitting a recovered fragment into a legendary object hidden beneath a dark cloth. The fragment is visible only as a small distinctive piece beside clamps, chisels, wax, alignment cords, and old diagrams with no readable writing; the exact relic remains deliberately ambiguous. An unused work stool, covered tools, and a stone hearth suggest careful craftsmanship without showing any observer. The mood is precise and consequential, with controlled golden light, no explosive magic, and calm central space for event text. No people, animals, hands, statues, silhouettes, or human-shaped shadows.
 ```
 
 统一规格继续使用 1592 x 848、横向 16:9、无透明通道，最终转换为 DDS / BC1 (DXT1)。所有提示词都要求无文字、无徽标、无水印，并为中央事件文本保留清晰区域。

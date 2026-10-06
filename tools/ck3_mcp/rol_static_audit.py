@@ -85,6 +85,10 @@ DDS_ASSETS = {
     "gfx/interface/illustrations/event_scenes/rol_event_rival_expedition.dds": (1592, 848, b"DXT1"),
     "gfx/interface/illustrations/event_scenes/rol_event_relic_scholarly_study.dds": (1592, 848, b"DXT1"),
     "gfx/interface/illustrations/event_scenes/rol_event_relic_new_owner.dds": (1592, 848, b"DXT1"),
+    "gfx/interface/illustrations/event_scenes/rol_event_rival_pact.dds": (1592, 848, b"DXT1"),
+    "gfx/interface/illustrations/event_scenes/rol_event_relic_legacy_transfer.dds": (1592, 848, b"DXT1"),
+    "gfx/interface/illustrations/event_scenes/rol_event_fragment_expedition.dds": (1592, 848, b"DXT1"),
+    "gfx/interface/illustrations/event_scenes/rol_event_fragment_upgrade.dds": (1592, 848, b"DXT1"),
 }
 
 
