@@ -78,14 +78,14 @@
 
 | 场景 | 状态 | 文件 | Prompt |
 |---|---|---|---|
-| Discovery | 已接线（占位） | `rol_event_munich_discovery.dds` | `Bavarian mountain omen, ancient stone gate buried in snow, pale starlight, cold mist` |
+| Discovery | 已接线（无人场景 / 已统一尺寸） | `rol_event_munich_discovery.dds` | `Bavarian mountain omen, empty ancient stone gate buried in snow, pale starlight, cold mist` |
 | Travel | 已接线（占位） | `rol_activity_munich_travel.dds` | `expedition through Alpine blizzard trail, cold blue daylight, whipping snow` |
 | Location | 已接线（占位） | `rol_activity_munich_location.dds` | `frozen star crypt, frost-covered pillars, ancient sarcophagi, cold blue reflections` |
-| `0990` Arrival | 已接线（占位） | `rol_event_munich_0990_arrival.dds` | `mouth of the star crypt, split ice gate, swirling snow fog, faint runic glow` |
-| `1000` Frost | 已接线（占位） | `rol_event_munich_1000_frost.dds` | `core frost corridor, giant frozen gate, chained ice, piercing blue-white light` |
-| `1002` Abyss | 已接线（占位） | `rol_event_munich_1002_abyss.dds` | `abyssal cavern with mirrored ice reflecting stars, cold violet illusions` |
-| `1001` Terminal | 已接线（占位） | `rol_event_munich_1001_terminal.dds` | `Nibelung star sphere floating above frozen dais, starlight raining down` |
-| `1090` Summary | 已接线（占位） | `rol_event_munich_1090_summary.dds` | `quiet post-expedition snow camp beside star crypt, scholarly triumph` |
+| `0990` Arrival | 已接线（无人场景 / 已统一尺寸） | `rol_event_munich_0990_arrival.dds` | `empty ice crypt antechamber, frost pillars, blue star light` |
+| `1000` Frost | 已接线（无人场景 / 已统一尺寸） | `rol_event_munich_1000_frost.dds` | `empty frozen gate chained in blue-white light` |
+| `1002` Abyss | 已接线（无人场景 / 已统一尺寸） | `rol_event_munich_1002_abyss.dds` | `empty mirrored ice cavern with violet star reflections` |
+| `1001` Terminal | 已接线（无人场景 / 已统一尺寸） | `rol_event_munich_1001_terminal.dds` | `empty frozen dais beneath a star beam, ambiguous sphere kept quiet` |
+| `1090` Summary | 已接线（无人场景 / 已统一尺寸） | `rol_event_munich_1090_summary.dds` | `empty snow camp and star crypt, maps and firelight, no expedition figures` |
 
 ### 5.3 Naxos / Thera
 

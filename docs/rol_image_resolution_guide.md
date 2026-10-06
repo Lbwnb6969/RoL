@@ -50,12 +50,14 @@
 - 推荐：**1592 x 848**
 - 推荐格式：**DDS / BC1(DXT1)**
 - 默认：**无透明**
+- 现存旧 RoL 活动大图为 `1592 x 841 / DXT1`；这是历史资源警告，不要把它复制到新事件背景。新替换图按 `1592 x 848` 生成并先做最小 UI 验证。
 
 ### 2.4 Header 背景
 - 路径：`gfx/interface/illustrations/activity_header_backgrounds/`
 - 推荐：**1100 x 440**
 - 推荐格式：**DDS / BC1(DXT1)**
 - 默认：**无透明**
+- 现存旧 RoL header 为 `1100 x 442 / DXT1`；保留到对应批次替换前，审计会将其列为 warning。
 
 ### Carthage 当前例子
 - `activity_rol_seek_ash_forged_mask.dds`
