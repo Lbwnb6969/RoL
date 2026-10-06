@@ -39,10 +39,13 @@
 - 已通过 MCP `ck3_launch` 启动带 `-debug_mode` 的真实 CK3 窗口，并通过 `ck3_send_console` 找到窗口句柄、发送 `debug_mode` 命令，随后用 `ck3_stop` 正常结束会话；窗口测试日志未出现 RoL 错误。
 - 已完成一次完整游戏内 smoke：MCP 使用 `-skip -play=e_byzantium` 进入可操作角色，`ck3_send_console` 触发 `event rol_relic_fragment.0001`，随后读取 error.log 未发现 `rol_` 条目，并保存了日志快照。
 - 已增强 MCP 窗口回归工具：`ck3_send_console`、`ck3_click`、`ck3_capture_screen` 先校验 CK3 HWND 是否真正处于 Windows 前景；激活失败时拒绝输入/点击/截图，避免误操作其他全屏程序；已在真实 CK3 窗口完成 launch、console、click、stop 协议回归。
+- 已将 MCP `ck3_launch.wait_seconds` 上限扩展到 180 秒，并在返回结构中加入 `window_hwnd` / `window_ready`，用于区分新开局和大型存档的加载阶段。
+- 已为 `ck3_send_console` 增加 `close_console` 参数；执行事件或脚本命令后可自动收起开发者控制台，继续做事件窗口截图和点击回归。
+- 已完成一次真实窗口事件回归：新开局 `-skip -play=e_byzantium` 后触发 `event rol_relic_discovery.1000`，截图确认中文事件文案和 Rome 地宫背景正确显示；`close_console=true` 后控制台不会遮挡事件窗口。
 
 ## Next steps
 
-1. 用 MCP 启动 1.20 游戏窗口并载入一个可回归存档，完成一次可交互活动流程，验证 header、活动背景、选项、artifact modifier 和四条碎片决策。
+1. 用 MCP 启动 1.20 游戏窗口并载入一个可回归存档，继续完成一次可交互活动流程，验证 activity header、活动背景、筹备选项、artifact modifier 和四条碎片决策。
 2. 在代码验证和游戏内回归完成后，才按提示词生成并筛选新增图片，替换占位 DDS。
 3. 再评估可选五链终局分支、圣物互相组合和 AI 远征开放的平衡目标。
 
@@ -54,3 +57,5 @@
 - AI 仍按玩家专用活动设计（`ai_will_do = 0`），是否开放 AI 远征需要单独的平衡目标。
 - 新增碎片系统依赖 CK3 1.20 对 artifact scope 的 `add_artifact_modifier` 行为；当前已通过项目 smoke 检查，但仍需游戏内 console/事件回归确认。
 - MCP 的命令行 console action 和窗口 console 注入已可用；当前已在新开局角色上触发碎片远征事件，完整存档中的 artifact 转移、升级和活动选项点击仍需选定适配 1.20 的测试存档逐项回归。窗口截图依赖 Pillow `ImageGrab`，并受桌面前景锁定与其他全屏程序影响；工具现在会在激活失败时安全拒绝操作。
+- “克里特将军”存档已成功进入可操作界面，MCP 触发 `event rol_relic_discovery.0001` 并在 debug log 中确认执行；首次截图仍被开发者控制台覆盖，下一步用 `close_console=true` 验证事件弹窗本身。
+- 已确认 `rol_relic_discovery.1000` 的发现按钮只结束发现事件并保留远征入口，活动仍需从 CK3 活动界面手动打开；当前已验证发现事件窗口，尚未完成活动规划页、筹备选项和结算页的完整点击流程。

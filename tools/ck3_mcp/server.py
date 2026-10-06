@@ -117,14 +117,17 @@ def _launch(args: dict[str, Any]) -> dict[str, Any]:
         command.extend(str(value) for value in args["extra_args"])
     try:
         _tracked_process = subprocess.Popen(command, cwd=str(GAME_ROOT))
-        wait_seconds = max(0.0, min(float(args.get("wait_seconds", 3)), 60.0))
+        wait_seconds = max(0.0, min(float(args.get("wait_seconds", 3)), 180.0))
         if wait_seconds:
             time.sleep(wait_seconds)
+        window = _find_ck3_window(args.get("window_title"))
         return _text_result(
             f"Started CK3 (pid={_tracked_process.pid}) with developer mode={bool(args.get('debug_mode', True))}.",
             pid=_tracked_process.pid,
             command=command,
             process=_process_snapshot(),
+            window_hwnd=window,
+            window_ready=window is not None,
         )
     except OSError as exc:
         return _error(f"Could not start CK3: {exc}")
@@ -257,6 +260,9 @@ def _send_console(args: dict[str, Any]) -> dict[str, Any]:
         _send_unicode_text(command)
         _send_enter()
         time.sleep(max(0.1, min(float(args.get("wait_seconds", 1.0)), 30.0)))
+        if args.get("close_console", False):
+            _send_console_hotkey(hotkey)
+            time.sleep(0.2)
         return _text_result(f"Sent developer console command to window {hwnd}: {command}", hwnd=hwnd, command=command, logs={name: _tail(path, 80, args.get("log_filter")) for name, path in _log_paths().items()})
     except (OSError, RuntimeError, ValueError) as exc:
         return _error(f"Could not send console command: {exc}")
@@ -533,7 +539,7 @@ TOOLS = [
     {
         "name": "ck3_launch",
         "description": "Launch CK3 with developer mode enabled by default for an interactive test session.",
-        "inputSchema": {"type": "object", "properties": {"debug_mode": {"type": "boolean"}, "suppress_error_log": {"type": "boolean"}, "skip_checksum": {"type": "boolean"}, "window_title": {"type": "string"}, "loadsave": {"type": "string"}, "wait_seconds": {"type": "number"}, "extra_args": {"type": "array", "items": {"type": "string"}}}},
+        "inputSchema": {"type": "object", "properties": {"debug_mode": {"type": "boolean"}, "suppress_error_log": {"type": "boolean"}, "skip_checksum": {"type": "boolean"}, "window_title": {"type": "string"}, "loadsave": {"type": "string"}, "wait_seconds": {"type": "number", "minimum": 0, "maximum": 180}, "extra_args": {"type": "array", "items": {"type": "string"}}}},
     },
     {
         "name": "ck3_stop",
@@ -548,7 +554,7 @@ TOOLS = [
     {
         "name": "ck3_send_console",
         "description": "Send one developer console command to the visible CK3 window using Windows native input.",
-        "inputSchema": {"type": "object", "required": ["command"], "properties": {"command": {"type": "string"}, "window_title": {"type": "string"}, "console_hotkey": {"type": "string", "enum": ["oem3", "shift_oem3", "oem5", "shift_oem5"]}, "wait_seconds": {"type": "number"}, "log_filter": {"type": "string"}}},
+        "inputSchema": {"type": "object", "required": ["command"], "properties": {"command": {"type": "string"}, "window_title": {"type": "string"}, "console_hotkey": {"type": "string", "enum": ["oem3", "shift_oem3", "oem5", "shift_oem5"]}, "wait_seconds": {"type": "number"}, "close_console": {"type": "boolean"}, "log_filter": {"type": "string"}}},
     },
     {
         "name": "ck3_capture_screen",
