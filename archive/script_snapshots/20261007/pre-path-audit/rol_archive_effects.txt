@@ -1,0 +1,153 @@
+﻿# Called inside a valid record-experience payoff, before its mode is cleared.
+rol_relic_use_record_knowledge_effect = {
+ if = {
+  limit = { rol_relic_use_project_valid_trigger = yes var:rol_relic_use_mode = 3 }
+  remove_character_modifier = rol_star_observations_modifier
+  add_character_modifier = { modifier = rol_star_observations_modifier years = 10 }
+  add_character_flag = rol_heard_astrolabe_legend
+  send_interface_toast = { type = event_toast_effect_good title = rol_archive_knowledge_title desc = rol_archive_star_knowledge_desc left_icon = root }
+ }
+ else_if = {
+  limit = { rol_relic_use_project_valid_trigger = yes var:rol_relic_use_mode = 5 }
+  remove_character_modifier = rol_ocean_routes_modifier
+  add_character_modifier = { modifier = rol_ocean_routes_modifier years = 10 }
+  add_character_flag = rol_heard_naxos_legend
+  send_interface_toast = { type = event_toast_effect_good title = rol_archive_knowledge_title desc = rol_archive_ocean_knowledge_desc left_icon = root }
+ }
+}
+
+rol_archive_chart_route_effect = {
+ if = {
+  limit = { $QUALIFICATION$ = yes gold >= 40 }
+  rol_expedition_prepared_route_effect = { COST = 40 QUALIFICATION = $QUALIFICATION$ NEXT_EVENT = $NEXT_EVENT$ }
+  remove_character_modifier = $CHART$
+ }
+}
+
+# Snapshot a record on the heir, merging instead of overwriting other bequests.
+rol_archive_pack_record_effect = {
+ if = {
+  limit = { OR = { has_character_modifier = $MODIFIER$ has_character_flag = rol_archive_$NAME$ } }
+  scope:rol_archive_heir = { add_character_flag = rol_archive_$NAME$ }
+ }
+}
+
+# Heir scope. Entries are original donor snapshots, not re-rolled participants.
+rol_archive_enqueue_pact_effect = {
+ if = {
+  limit = {
+   exists = scope:rol_archive_pact_source
+   NOT = { any_in_list = { variable = rol_archive_pact_sources this = scope:rol_archive_pact_source } }
+  }
+  add_to_variable_list = { name = rol_archive_pact_sources target = scope:rol_archive_pact_source }
+ }
+}
+
+# on_death runs on the about-to-die player. The heir may still be AI at this instant.
+rol_archive_export_effect = {
+ if = {
+  limit = {
+   is_ai = no
+   exists = player_heir
+   player_heir = { is_alive = yes }
+   rol_archive_source_has_records_trigger = yes
+   NOT = { has_character_flag = rol_archive_exported }
+  }
+  add_character_flag = rol_archive_exported
+  save_scope_as = rol_archive_donor
+  player_heir = { save_scope_as = rol_archive_heir }
+  rol_archive_pack_record_effect = { NAME = mars_notes MODIFIER = rol_expedition_mars_notes_modifier }
+  rol_archive_pack_record_effect = { NAME = nibelung_notes MODIFIER = rol_expedition_nibelung_notes_modifier }
+  rol_archive_pack_record_effect = { NAME = naxos_notes MODIFIER = rol_expedition_naxos_notes_modifier }
+  rol_archive_pack_record_effect = { NAME = astrolabe_notes MODIFIER = rol_expedition_astrolabe_notes_modifier }
+  rol_archive_pack_record_effect = { NAME = carthage_notes MODIFIER = rol_expedition_carthage_notes_modifier }
+  rol_archive_pack_record_effect = { NAME = star_observations MODIFIER = rol_star_observations_modifier }
+  rol_archive_pack_record_effect = { NAME = ocean_routes MODIFIER = rol_ocean_routes_modifier }
+
+  if = {
+   limit = { rol_archive_has_personal_pact_trigger = yes }
+   set_variable = { name = rol_bequest_partner value = var:rol_expedition_companion_partner }
+   set_variable = { name = rol_bequest_role value = var:rol_expedition_companion_role }
+   save_scope_as = rol_archive_pact_source
+   scope:rol_archive_heir = { rol_archive_enqueue_pact_effect = yes }
+  }
+  # Carry unresolved earlier bequests, even if the recipient dies before reviewing.
+  every_in_list = {
+   variable = rol_archive_pact_sources
+   save_scope_as = rol_archive_pact_source
+   scope:rol_archive_heir = { rol_archive_enqueue_pact_effect = yes }
+  }
+  scope:rol_archive_heir = {
+   if = { limit = { rol_archive_has_cargo_trigger = yes } trigger_event = { id = rol_archive.0001 days = 7 } }
+   if = { limit = { rol_archive_has_pacts_trigger = yes } rol_archive_open_pact_effect = { DAYS = 8 } }
+  }
+ }
+}
+
+rol_archive_clear_cargo_effect = {
+ remove_character_flag = rol_archive_mars_notes
+ remove_character_flag = rol_archive_nibelung_notes
+ remove_character_flag = rol_archive_naxos_notes
+ remove_character_flag = rol_archive_astrolabe_notes
+ remove_character_flag = rol_archive_carthage_notes
+ remove_character_flag = rol_archive_star_observations
+ remove_character_flag = rol_archive_ocean_routes
+}
+
+rol_archive_restore_record_effect = {
+ if = {
+  limit = { has_character_flag = rol_archive_$NAME$ NOT = { has_character_modifier = $MODIFIER$ } }
+  add_character_modifier = { modifier = $MODIFIER$ years = 5 }
+ }
+}
+
+rol_archive_accept_records_effect = {
+ if = {
+  limit = { rol_archive_has_cargo_trigger = yes prestige >= 50 }
+  add_prestige = -50
+  rol_archive_restore_record_effect = { NAME = mars_notes MODIFIER = rol_expedition_mars_notes_modifier }
+  rol_archive_restore_record_effect = { NAME = nibelung_notes MODIFIER = rol_expedition_nibelung_notes_modifier }
+  rol_archive_restore_record_effect = { NAME = naxos_notes MODIFIER = rol_expedition_naxos_notes_modifier }
+  rol_archive_restore_record_effect = { NAME = astrolabe_notes MODIFIER = rol_expedition_astrolabe_notes_modifier }
+  rol_archive_restore_record_effect = { NAME = carthage_notes MODIFIER = rol_expedition_carthage_notes_modifier }
+  rol_archive_restore_record_effect = { NAME = star_observations MODIFIER = rol_star_observations_modifier }
+  rol_archive_restore_record_effect = { NAME = ocean_routes MODIFIER = rol_ocean_routes_modifier }
+
+  if = { limit = { has_character_modifier = rol_expedition_mars_notes_modifier } add_character_flag = rol_heard_mars_legend }
+  if = { limit = { has_character_modifier = rol_expedition_nibelung_notes_modifier } add_character_flag = rol_heard_nibelung_legend }
+  if = { limit = { has_character_modifier = rol_expedition_naxos_notes_modifier } add_character_flag = rol_heard_naxos_legend }
+  if = { limit = { has_character_modifier = rol_expedition_astrolabe_notes_modifier } add_character_flag = rol_heard_astrolabe_legend }
+  if = { limit = { has_character_modifier = rol_expedition_carthage_notes_modifier } add_character_flag = rol_heard_carthage_legend }
+  if = { limit = { has_character_modifier = rol_star_observations_modifier } add_character_flag = rol_heard_astrolabe_legend }
+  if = { limit = { has_character_modifier = rol_ocean_routes_modifier } add_character_flag = rol_heard_naxos_legend }
+  rol_archive_clear_cargo_effect = yes
+ }
+}
+
+rol_archive_open_pact_effect = {
+ if = {
+  limit = { rol_archive_has_pacts_trigger = yes }
+  random_in_list = { variable = rol_archive_pact_sources save_scope_as = rol_archive_pact_source }
+  trigger_event = { id = rol_archive.0002 days = $DAYS$ }
+ }
+}
+
+rol_archive_drop_selected_pact_effect = {
+ if = {
+  limit = { rol_archive_selected_pact_trigger = yes }
+  remove_list_variable = { name = rol_archive_pact_sources target = scope:rol_archive_pact_source }
+ }
+}
+
+rol_archive_adopt_pact_effect = {
+ if = {
+  limit = { rol_archive_can_adopt_pact_trigger = yes }
+  set_variable = { name = rol_expedition_companion_partner value = scope:rol_archive_pact_source.var:rol_bequest_partner }
+  set_variable = { name = rol_expedition_companion_role value = scope:rol_archive_pact_source.var:rol_bequest_role }
+  # Personal expertise and the predecessor's earned XP are never inherited.
+  set_variable = { name = rol_expedition_companion_earned_xp value = 0 }
+  add_character_flag = rol_expedition_companion_settlement_pending
+  rol_archive_drop_selected_pact_effect = yes
+  trigger_event = { id = rol_expedition_companion.0002 days = 1 }
+ }
+}

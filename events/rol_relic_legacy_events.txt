@@ -3,19 +3,63 @@
 # First holder event: the relic asks its owner to embody its legend.
 rol_relic_legacy.0001 = {
 	type = character_event title = rol_relic_legacy.0001.t desc = rol_relic_legacy.0001.desc theme = stewardship
-	trigger = { rol_has_true_artifact_relic_trigger = yes NOT = { has_character_flag = rol_relic_legacy_duty_cooldown } }
-	immediate = { random_character_artifact = { limit = { OR = { artifact_type = rol_blade_of_mars artifact_type = rol_nibelung_star_sphere artifact_type = rol_astrolabe_of_ocean artifact_type = rol_ash_forged_mask } } save_scope_as = rol_legacy_artifact } add_character_flag = { flag = rol_relic_legacy_duty_cooldown years = 5 } }
-	option = { name = rol_relic_legacy.0001.a flavor = rol_relic_legacy.0001.a.flavor add_prestige = 100 add_stress = 15 }
-	option = { name = rol_relic_legacy.0001.b flavor = rol_relic_legacy.0001.b.flavor add_piety = 75 add_stress = -15 }
+	trigger = { is_alive = yes is_ai = no rol_has_true_artifact_relic_trigger = yes NOT = { has_character_flag = rol_relic_legacy_duty_cooldown } }
+	immediate = { random_character_artifact = { limit = { OR = { artifact_type = rol_blade_of_mars artifact_type = rol_nibelung_star_sphere artifact_type = rol_astrolabe_of_ocean artifact_type = rol_ash_forged_mask } } save_scope_as = rol_legacy_artifact } add_character_flag = { flag = rol_relic_legacy_duty_cooldown years = 5 } rol_legacy_recurring_begin_effect = { NAME = duty } }
+	option = {
+		name = rol_relic_legacy.0001.a flavor = rol_relic_legacy.0001.a.flavor
+		trigger = { rol_legacy_duty_choice_trigger = yes }
+		if = {
+			limit = { rol_legacy_duty_choice_trigger = yes }
+			add_prestige = 100 add_stress = 15
+			rol_legacy_recurring_close_effect = { NAME = duty }
+		}
+	}
+	option = {
+		name = rol_relic_legacy.0001.b flavor = rol_relic_legacy.0001.b.flavor
+		trigger = { rol_legacy_duty_choice_trigger = yes }
+		if = {
+			limit = { rol_legacy_duty_choice_trigger = yes }
+			add_piety = 75 add_stress = -15
+			rol_legacy_recurring_close_effect = { NAME = duty }
+		}
+	}
+	option = {
+		name = rol_legacy_unavailable_option
+		flavor = rol_legacy_unavailable_flavor
+		trigger = { NOT = { rol_legacy_duty_choice_trigger = yes } }
+		rol_legacy_recurring_close_effect = { NAME = duty }
+	}
 }
 
 # Second holder event: court scholars or warriors ask to use the relic.
 rol_relic_legacy.0002 = {
 	type = character_event title = rol_relic_legacy.0002.t desc = rol_relic_legacy.0002.desc theme = learning
-	trigger = { rol_has_true_artifact_relic_trigger = yes NOT = { has_character_flag = rol_relic_legacy_study_cooldown } }
-	immediate = { random_character_artifact = { limit = { OR = { artifact_type = rol_blade_of_mars artifact_type = rol_nibelung_star_sphere artifact_type = rol_astrolabe_of_ocean artifact_type = rol_ash_forged_mask } } save_scope_as = rol_legacy_artifact } add_character_flag = { flag = rol_relic_legacy_study_cooldown years = 5 } }
-	option = { name = rol_relic_legacy.0002.a flavor = rol_relic_legacy.0002.a.flavor trigger = { gold >= 50 } remove_short_term_gold = 50 add_prestige = 125 }
-	option = { name = rol_relic_legacy.0002.b flavor = rol_relic_legacy.0002.b.flavor add_piety = 50 }
+	trigger = { is_alive = yes is_ai = no rol_has_true_artifact_relic_trigger = yes NOT = { has_character_flag = rol_relic_legacy_study_cooldown } }
+	immediate = { random_character_artifact = { limit = { OR = { artifact_type = rol_blade_of_mars artifact_type = rol_nibelung_star_sphere artifact_type = rol_astrolabe_of_ocean artifact_type = rol_ash_forged_mask } } save_scope_as = rol_legacy_artifact } add_character_flag = { flag = rol_relic_legacy_study_cooldown years = 5 } rol_legacy_recurring_begin_effect = { NAME = study } }
+	option = {
+		name = rol_relic_legacy.0002.a flavor = rol_relic_legacy.0002.a.flavor
+		trigger = { rol_legacy_study_choice_trigger = yes gold >= 50 }
+		if = {
+			limit = { rol_legacy_study_choice_trigger = yes gold >= 50 }
+			remove_short_term_gold = 50 add_prestige = 125
+			rol_legacy_recurring_close_effect = { NAME = study }
+		}
+	}
+	option = {
+		name = rol_relic_legacy.0002.b flavor = rol_relic_legacy.0002.b.flavor
+		trigger = { rol_legacy_study_choice_trigger = yes }
+		if = {
+			limit = { rol_legacy_study_choice_trigger = yes }
+			add_piety = 50
+			rol_legacy_recurring_close_effect = { NAME = study }
+		}
+	}
+	option = {
+		name = rol_legacy_unavailable_option
+		flavor = rol_legacy_unavailable_flavor
+		trigger = { NOT = { rol_legacy_study_choice_trigger = yes } }
+		rol_legacy_recurring_close_effect = { NAME = study }
+	}
 }
 
 rol_relic_legacy.0003 = {
@@ -36,7 +80,7 @@ rol_relic_legacy.0003 = {
   if = {
    limit = { rol_legacy_selected_artifact_owned_trigger = yes NOT = { has_character_flag = rol_relic_legacy_transition_cooldown } }
    add_character_flag = { flag = rol_relic_legacy_transition_cooldown years = 5 }
-   add_character_flag = rol_legacy_transition_choice_open
+   rol_legacy_recurring_begin_effect = { NAME = transition }
   }
  }
  option = {
@@ -63,7 +107,7 @@ rol_relic_legacy.0003 = {
      add_dynasty_prestige = 100
     }
    }
-   remove_character_flag = rol_legacy_transition_choice_open
+   rol_legacy_recurring_close_effect = { NAME = transition }
   }
  }
  option = {
@@ -82,7 +126,7 @@ rol_relic_legacy.0003 = {
     modifier = rol_relic_legacy_concealed_modifier
     years = 5
    }
-   remove_character_flag = rol_legacy_transition_choice_open
+   rol_legacy_recurring_close_effect = { NAME = transition }
   }
  }
  option = {
@@ -110,31 +154,75 @@ rol_relic_legacy.0003 = {
     }
     add_learning_lifestyle_xp = 100
    }
-   remove_character_flag = rol_legacy_transition_choice_open
+   rol_legacy_recurring_close_effect = { NAME = transition }
   }
  }
  option = {
   name = rol_relic_legacy.0003.d
   flavor = rol_relic_legacy.0003.d.flavor
   trigger = { NOT = { rol_legacy_transition_choice_trigger = yes } }
-  remove_character_flag = rol_legacy_transition_choice_open
+  rol_legacy_recurring_close_effect = { NAME = transition }
  }
 }
 
 rol_relic_legacy.0101 = {
 	type = character_event title = rol_relic_legacy.0101.t desc = rol_relic_legacy.0101.desc theme = martial
-	trigger = { has_character_flag = rol_naxos_unit_unlocked NOT = { has_character_flag = rol_naxos_review_cooldown } }
-	immediate = { add_character_flag = { flag = rol_naxos_review_cooldown years = 5 } }
-	option = { name = rol_relic_legacy.0101.a flavor = rol_relic_legacy.0101.a.flavor trigger = { gold >= 40 } add_prestige = 100 remove_short_term_gold = 40 }
-	option = { name = rol_relic_legacy.0101.b flavor = rol_relic_legacy.0101.b.flavor add_piety = 60 }
+	trigger = { is_alive = yes is_ai = no has_character_flag = rol_naxos_unit_unlocked NOT = { has_character_flag = rol_naxos_review_cooldown } }
+	immediate = { add_character_flag = { flag = rol_naxos_review_cooldown years = 5 } rol_legacy_recurring_begin_effect = { NAME = review } }
+	option = {
+		name = rol_relic_legacy.0101.a flavor = rol_relic_legacy.0101.a.flavor
+		trigger = { rol_legacy_review_choice_trigger = yes gold >= 40 }
+		if = {
+			limit = { rol_legacy_review_choice_trigger = yes gold >= 40 }
+			add_prestige = 100 remove_short_term_gold = 40
+			rol_legacy_recurring_close_effect = { NAME = review }
+		}
+	}
+	option = {
+		name = rol_relic_legacy.0101.b flavor = rol_relic_legacy.0101.b.flavor
+		trigger = { rol_legacy_review_choice_trigger = yes }
+		if = {
+			limit = { rol_legacy_review_choice_trigger = yes }
+			add_piety = 60
+			rol_legacy_recurring_close_effect = { NAME = review }
+		}
+	}
+	option = {
+		name = rol_legacy_unavailable_option
+		flavor = rol_legacy_unavailable_flavor
+		trigger = { NOT = { rol_legacy_review_choice_trigger = yes } }
+		rol_legacy_recurring_close_effect = { NAME = review }
+	}
 }
 
 rol_relic_legacy.0102 = {
 	type = character_event title = rol_relic_legacy.0102.t desc = rol_relic_legacy.0102.desc theme = martial
-	trigger = { has_character_flag = rol_naxos_unit_unlocked NOT = { has_character_flag = rol_naxos_veteran_cooldown } }
-	immediate = { add_character_flag = { flag = rol_naxos_veteran_cooldown years = 5 } }
-	option = { name = rol_relic_legacy.0102.a flavor = rol_relic_legacy.0102.a.flavor trigger = { gold >= 75 } remove_short_term_gold = 75 add_prestige = 150 }
-	option = { name = rol_relic_legacy.0102.b flavor = rol_relic_legacy.0102.b.flavor add_stress = -20 }
+	trigger = { is_alive = yes is_ai = no has_character_flag = rol_naxos_unit_unlocked NOT = { has_character_flag = rol_naxos_veteran_cooldown } }
+	immediate = { add_character_flag = { flag = rol_naxos_veteran_cooldown years = 5 } rol_legacy_recurring_begin_effect = { NAME = veteran } }
+	option = {
+		name = rol_relic_legacy.0102.a flavor = rol_relic_legacy.0102.a.flavor
+		trigger = { rol_legacy_veteran_choice_trigger = yes gold >= 75 }
+		if = {
+			limit = { rol_legacy_veteran_choice_trigger = yes gold >= 75 }
+			remove_short_term_gold = 75 add_prestige = 150
+			rol_legacy_recurring_close_effect = { NAME = veteran }
+		}
+	}
+	option = {
+		name = rol_relic_legacy.0102.b flavor = rol_relic_legacy.0102.b.flavor
+		trigger = { rol_legacy_veteran_choice_trigger = yes }
+		if = {
+			limit = { rol_legacy_veteran_choice_trigger = yes }
+			add_stress = -20
+			rol_legacy_recurring_close_effect = { NAME = veteran }
+		}
+	}
+	option = {
+		name = rol_legacy_unavailable_option
+		flavor = rol_legacy_unavailable_flavor
+		trigger = { NOT = { rol_legacy_veteran_choice_trigger = yes } }
+		rol_legacy_recurring_close_effect = { NAME = veteran }
+	}
 }
 
 rol_relic_legacy.0103 = {

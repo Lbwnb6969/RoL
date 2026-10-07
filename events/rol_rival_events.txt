@@ -21,6 +21,7 @@ rol_rival.1000 = {
 		trigger = { prestige >= 50 NOT = { has_character_flag = rol_rival_pact_choice_pending } }
 		if = {
 			limit = { rol_rival_route_active_trigger = yes prestige >= 50 NOT = { has_character_flag = rol_rival_pact_choice_pending } }
+			rol_rival_new_pact_effect = yes
 			set_variable = { name = rol_rival_pact_partner value = scope:rol_expedition_rival }
 			add_character_flag = rol_rival_pact_choice_pending
 			add_prestige = -50
@@ -69,6 +70,10 @@ rol_rival.1001 = {
 	override_background = { reference = rol_bg_rival_pact }
 	left_portrait = scope:rol_expedition_rival
 	trigger = { is_ai = no rol_rival_pact_choice_trigger = yes }
+	immediate = {
+		# Initialize legacy pending records without replacing a captured new pact.
+		if = { limit = { NOT = { has_variable = rol_rival_pact_generation } } rol_rival_capture_pact_effect = yes }
+	}
 	option = {
 		name = rol_rival.1001.a
 		flavor = rol_rival.1001.a.flavor

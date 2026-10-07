@@ -142,6 +142,7 @@ rol_archive_drop_selected_pact_effect = {
 rol_archive_adopt_pact_effect = {
  if = {
   limit = { rol_archive_can_adopt_pact_trigger = yes }
+  rol_expedition_companion_new_agreement_effect = yes
   set_variable = { name = rol_expedition_companion_partner value = scope:rol_archive_pact_source.var:rol_bequest_partner }
   set_variable = { name = rol_expedition_companion_role value = scope:rol_archive_pact_source.var:rol_bequest_role }
   # Personal expertise and the predecessor's earned XP are never inherited.

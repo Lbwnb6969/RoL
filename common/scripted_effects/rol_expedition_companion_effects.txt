@@ -78,6 +78,7 @@ rol_expedition_companion_accept_effect = {
 			NOT = { rol_expedition_companion_pending_trigger = yes }
 			NOT = { has_character_flag = rol_expedition_companion_in_field }
 		}
+		rol_expedition_companion_new_agreement_effect = yes
 		set_variable = { name = rol_expedition_companion_partner value = $PARTNER$ }
 		set_variable = { name = rol_expedition_companion_role value = $ROLE$ }
 		set_variable = { name = rol_expedition_companion_earned_xp value = 0 }
@@ -217,4 +218,25 @@ rol_expedition_companion_refuse_effect = {
 		}
 		rol_expedition_companion_clear_effect = yes
 	}
+}
+
+# New contracts advance once; opening/reopening a settlement only captures it.
+# A legacy pending pact receives its first generation when displayed.
+rol_expedition_companion_new_agreement_effect = {
+ if = {
+  limit = { NOT = { has_variable = rol_expedition_companion_generation } }
+  set_variable = { name = rol_expedition_companion_generation value = 0 }
+ }
+ change_variable = { name = rol_expedition_companion_generation add = 1 }
+}
+
+rol_expedition_companion_capture_settlement_effect = {
+ if = {
+  limit = { rol_expedition_companion_pending_trigger = yes }
+  if = {
+   limit = { NOT = { has_variable = rol_expedition_companion_generation } }
+   set_variable = { name = rol_expedition_companion_generation value = 1 }
+  }
+  save_scope_value_as = { name = rol_expedition_companion_generation value = var:rol_expedition_companion_generation }
+ }
 }

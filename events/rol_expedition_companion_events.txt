@@ -45,6 +45,7 @@ rol_expedition_companion.0002 = {
 	title = rol_expedition_companion.0002.t
 	desc = {
 		first_valid = {
+			triggered_desc = { trigger = { NOT = { rol_expedition_companion_settlement_choice_trigger = yes } } desc = rol_expedition_companion.0002.desc.closed }
 			triggered_desc = { trigger = { NOT = { rol_expedition_companion_partner_alive_trigger = yes } } desc = rol_expedition_companion.0002.desc.absent }
 			triggered_desc = { trigger = { var:rol_expedition_companion_role = 1 } desc = rol_expedition_companion.0002.desc.scholar }
 			triggered_desc = { trigger = { var:rol_expedition_companion_role = 2 } desc = rol_expedition_companion.0002.desc.guard }
@@ -56,6 +57,7 @@ rol_expedition_companion.0002 = {
 	left_portrait = root
 	trigger = { is_alive = yes is_ai = no rol_expedition_companion_pending_trigger = yes }
 	immediate = {
+		rol_expedition_companion_capture_settlement_effect = yes
 		if = {
 			limit = { rol_expedition_companion_partner_alive_trigger = yes }
 			var:rol_expedition_companion_partner = { save_scope_as = rol_expedition_companion }
@@ -64,39 +66,39 @@ rol_expedition_companion.0002 = {
 	option = {
 		name = rol_expedition_companion.0002.a
 		flavor = rol_expedition_companion.0002.a.flavor
-		trigger = {
+		trigger = { rol_expedition_companion_settlement_choice_trigger = yes
 			rol_expedition_companion_partner_alive_trigger = yes
 			OR = { var:rol_expedition_companion_role != 2 gold >= 50 }
 			OR = { var:rol_expedition_companion_role != 1 prestige >= 50 }
 			OR = { var:rol_expedition_companion_role != 3 prestige >= 75 }
 		}
 		custom_tooltip = rol_expedition_companion_honour_tt
-		rol_expedition_companion_honour_effect = yes
+		if = { limit = { rol_expedition_companion_settlement_choice_trigger = yes } rol_expedition_companion_honour_effect = yes }
 	}
 	option = {
 		name = rol_expedition_companion.0002.b
 		flavor = rol_expedition_companion.0002.b.flavor
-		trigger = { rol_expedition_companion_partner_alive_trigger = yes gold >= 25 }
+		trigger = { rol_expedition_companion_settlement_choice_trigger = yes rol_expedition_companion_partner_alive_trigger = yes gold >= 25 }
 		custom_tooltip = rol_expedition_companion_compromise_tt
-		rol_expedition_companion_compromise_effect = yes
+		if = { limit = { rol_expedition_companion_settlement_choice_trigger = yes } rol_expedition_companion_compromise_effect = yes }
 	}
 	option = {
 		name = rol_expedition_companion.0002.c
 		flavor = rol_expedition_companion.0002.c.flavor
-		trigger = { rol_expedition_companion_partner_alive_trigger = yes }
+		trigger = { rol_expedition_companion_settlement_choice_trigger = yes rol_expedition_companion_partner_alive_trigger = yes }
 		custom_tooltip = rol_expedition_companion_refuse_tt
-		rol_expedition_companion_refuse_effect = yes
+		if = { limit = { rol_expedition_companion_settlement_choice_trigger = yes } rol_expedition_companion_refuse_effect = yes }
 	}
 	option = {
 		name = rol_expedition_companion.0002.d
 		flavor = rol_expedition_companion.0002.d.flavor
-		trigger = { rol_expedition_companion_partner_alive_trigger = yes }
+		trigger = { rol_expedition_companion_settlement_choice_trigger = yes rol_expedition_companion_partner_alive_trigger = yes }
 		custom_tooltip = rol_expedition_companion_defer_tt
 	}
 	option = {
 		name = rol_expedition_companion.0002.e
 		flavor = rol_expedition_companion.0002.e.flavor
-		trigger = { NOT = { rol_expedition_companion_partner_alive_trigger = yes } }
-		if = { limit = { rol_expedition_companion_pending_trigger = yes } rol_expedition_companion_clear_effect = yes }
+		trigger = { OR = { NOT = { rol_expedition_companion_settlement_choice_trigger = yes } NOT = { rol_expedition_companion_partner_alive_trigger = yes } } }
+		if = { limit = { rol_expedition_companion_settlement_choice_trigger = yes } rol_expedition_companion_clear_effect = yes }
 	}
 }

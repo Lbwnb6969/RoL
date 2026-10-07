@@ -38,3 +38,26 @@ rol_relic_legacy_record_transfer_effect = {
 		}
 	}
 }
+
+# Each annual window owns a captured generation. A five-year-old window cannot
+# spend a later event's qualification, even if the same relic is still owned.
+rol_legacy_recurring_begin_effect = {
+ if = {
+  limit = { NOT = { has_variable = rol_legacy_$NAME$_generation } }
+  set_variable = { name = rol_legacy_$NAME$_generation value = 0 }
+ }
+ change_variable = { name = rol_legacy_$NAME$_generation add = 1 }
+ save_scope_value_as = { name = rol_legacy_$NAME$_generation value = var:rol_legacy_$NAME$_generation }
+ add_character_flag = rol_legacy_$NAME$_choice_open
+}
+
+rol_legacy_recurring_close_effect = {
+ if = {
+  limit = {
+   has_character_flag = rol_legacy_$NAME$_choice_open
+   exists = scope:rol_legacy_$NAME$_generation
+   scope:rol_legacy_$NAME$_generation = var:rol_legacy_$NAME$_generation
+  }
+  remove_character_flag = rol_legacy_$NAME$_choice_open
+ }
+}

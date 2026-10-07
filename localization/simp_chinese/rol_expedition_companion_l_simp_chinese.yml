@@ -49,3 +49,5 @@
  rol_settle_expedition_pact_decision_desc:0 "重新处理对一位特定同行者作出的承诺。可以充分履约、协商补偿，或了结争议。"
  rol_settle_expedition_pact_decision_tooltip:0 "重开原约定，不重新选人，也不产生额外奖励。"
  rol_settle_expedition_pact_decision_confirm:0 "打开约定"
+
+ rol_expedition_companion.0002.desc.closed:0 "这份约定已经有了答复，可以将旧记录收起。"

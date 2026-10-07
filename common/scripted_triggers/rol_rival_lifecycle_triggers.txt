@@ -12,6 +12,12 @@
 
 rol_rival_pact_choice_trigger = {
 	has_character_flag = rol_rival_pact_choice_pending
+	# Missing generation is an old pending save; the event initializes it once.
+	trigger_if = {
+		limit = { has_variable = rol_rival_pact_generation }
+		exists = scope:rol_rival_pact_generation
+		scope:rol_rival_pact_generation = var:rol_rival_pact_generation
+	}
 	exists = var:rol_rival_pact_partner
 	exists = scope:rol_expedition_rival
 	scope:rol_expedition_rival = var:rol_rival_pact_partner

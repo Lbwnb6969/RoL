@@ -81,3 +81,9 @@ rol_expedition_rival_candidate_trigger = {
 		this != scope:rol_expedition_host.var:rol_expedition_companion_partner
 	}
 }
+
+rol_expedition_companion_settlement_choice_trigger = {
+ rol_expedition_companion_pending_trigger = yes
+ exists = scope:rol_expedition_companion_generation
+ scope:rol_expedition_companion_generation = var:rol_expedition_companion_generation
+}

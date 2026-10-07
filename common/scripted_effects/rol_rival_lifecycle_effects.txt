@@ -5,6 +5,7 @@ rol_rival_reopen_pact_effect = {
 		if = {
 			limit = { exists = var:rol_rival_pact_partner var:rol_rival_pact_partner = { is_alive = yes } }
 			var:rol_rival_pact_partner = { save_scope_as = rol_expedition_rival }
+			rol_rival_capture_pact_effect = yes
 			trigger_event = rol_rival.1001
 		}
 		else = {
@@ -18,6 +19,11 @@ rol_rival_close_selected_pact_effect = {
 	if = {
 		limit = {
 			has_character_flag = rol_rival_pact_choice_pending
+			trigger_if = {
+				limit = { has_variable = rol_rival_pact_generation }
+				exists = scope:rol_rival_pact_generation
+				scope:rol_rival_pact_generation = var:rol_rival_pact_generation
+			}
 			OR = {
 				NOT = { exists = var:rol_rival_pact_partner }
 				AND = { exists = scope:rol_expedition_rival scope:rol_expedition_rival = var:rol_rival_pact_partner }
@@ -26,4 +32,21 @@ rol_rival_close_selected_pact_effect = {
 		remove_character_flag = rol_rival_pact_choice_pending
 		remove_variable = rol_rival_pact_partner
 	}
+}
+
+rol_rival_new_pact_effect = {
+	if = {
+		limit = { NOT = { has_variable = rol_rival_pact_generation } }
+		set_variable = { name = rol_rival_pact_generation value = 0 }
+	}
+	change_variable = { name = rol_rival_pact_generation add = 1 }
+	rol_rival_capture_pact_effect = yes
+}
+
+rol_rival_capture_pact_effect = {
+	if = {
+		limit = { NOT = { has_variable = rol_rival_pact_generation } }
+		set_variable = { name = rol_rival_pact_generation value = 1 }
+	}
+	save_scope_value_as = { name = rol_rival_pact_generation value = var:rol_rival_pact_generation }
 }

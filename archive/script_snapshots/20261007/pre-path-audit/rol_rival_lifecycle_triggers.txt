@@ -1,0 +1,19 @@
+﻿rol_rival_route_active_trigger = {
+	exists = scope:rol_expedition_rival
+	scope:rol_expedition_rival = { is_alive = yes }
+	OR = {
+		AND = { has_character_flag = rol_rival_route_mars rol_rome_quest_active_trigger = yes }
+		AND = { has_character_flag = rol_rival_route_nibelung rol_munich_quest_active_trigger = yes }
+		AND = { has_character_flag = rol_rival_route_naxos rol_naxos_quest_active_trigger = yes }
+		AND = { has_character_flag = rol_rival_route_astrolabe rol_sevilla_quest_active_trigger = yes }
+		AND = { has_character_flag = rol_rival_route_carthage rol_carthage_quest_active_trigger = yes }
+	}
+}
+
+rol_rival_pact_choice_trigger = {
+	has_character_flag = rol_rival_pact_choice_pending
+	exists = var:rol_rival_pact_partner
+	exists = scope:rol_expedition_rival
+	scope:rol_expedition_rival = var:rol_rival_pact_partner
+	scope:rol_expedition_rival = { is_alive = yes }
+}

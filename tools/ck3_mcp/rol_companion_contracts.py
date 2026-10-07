@@ -173,6 +173,7 @@ def check_companion_contract(root: Path, errors: list[str]) -> int:
                 model.call("rol_expedition_companion_honour_effect", host)
                 assert host.prestige == 200 and not host.xp, "dead participant is paid or replaced"
                 close = next(v for k, _, v in settlement if k == "option" and get(v, "name").endswith(".e"))
+                model.run(get(settlement, "immediate"), host)
                 model.run([n for n in close if n[0] == "if"], host)
                 assert "rol_expedition_companion_partner" not in host.variables, "absent contract does not clear"
             else:

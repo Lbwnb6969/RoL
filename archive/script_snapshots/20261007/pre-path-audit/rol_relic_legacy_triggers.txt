@@ -1,0 +1,30 @@
+﻿rol_has_true_artifact_relic_trigger = {
+	any_character_artifact = {
+		OR = {
+			artifact_type = rol_blade_of_mars
+			artifact_type = rol_nibelung_star_sphere
+			artifact_type = rol_astrolabe_of_ocean
+			artifact_type = rol_ash_forged_mask
+		}
+	}
+}
+
+rol_legacy_selected_artifact_owned_trigger = {
+	exists = scope:rol_legacy_artifact
+	scope:rol_legacy_artifact = { artifact_owner = root }
+}
+
+rol_legacy_transition_choice_trigger = {
+	has_character_flag = rol_legacy_transition_choice_open
+	rol_legacy_selected_artifact_owned_trigger = yes
+}
+
+rol_naxos_legacy_choice_trigger = {
+	NOT = { has_character_flag = rol_naxos_unit_unlocked }
+	exists = scope:rol_naxos_predecessor
+	scope:rol_naxos_predecessor = {
+		this != root
+		has_character_flag = rol_naxos_unit_unlocked
+		NOT = { has_character_flag = rol_naxos_inheritance_answered }
+	}
+}

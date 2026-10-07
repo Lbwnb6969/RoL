@@ -49,3 +49,5 @@
  rol_settle_expedition_pact_decision_desc:0 "Return to the promise made to a particular expedition partner. Choose to fulfil it, negotiate compensation, or close the dispute."
  rol_settle_expedition_pact_decision_tooltip:0 "Reopen the existing agreement. Does not select another person or generate new rewards."
  rol_settle_expedition_pact_decision_confirm:0 "Open the agreement"
+
+ rol_expedition_companion.0002.desc.closed:0 "This agreement has already been answered. I can put the old record aside."

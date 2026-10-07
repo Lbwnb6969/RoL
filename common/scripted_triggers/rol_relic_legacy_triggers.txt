@@ -15,7 +15,10 @@ rol_legacy_selected_artifact_owned_trigger = {
 }
 
 rol_legacy_transition_choice_trigger = {
+	is_alive = yes
 	has_character_flag = rol_legacy_transition_choice_open
+	exists = scope:rol_legacy_transition_generation
+	scope:rol_legacy_transition_generation = var:rol_legacy_transition_generation
 	rol_legacy_selected_artifact_owned_trigger = yes
 }
 
@@ -27,4 +30,36 @@ rol_naxos_legacy_choice_trigger = {
 		has_character_flag = rol_naxos_unit_unlocked
 		NOT = { has_character_flag = rol_naxos_inheritance_answered }
 	}
+}
+
+rol_legacy_duty_choice_trigger = {
+ is_alive = yes
+ has_character_flag = rol_legacy_duty_choice_open
+ exists = scope:rol_legacy_duty_generation
+ scope:rol_legacy_duty_generation = var:rol_legacy_duty_generation
+ rol_legacy_selected_artifact_owned_trigger = yes
+}
+
+rol_legacy_study_choice_trigger = {
+ is_alive = yes
+ has_character_flag = rol_legacy_study_choice_open
+ exists = scope:rol_legacy_study_generation
+ scope:rol_legacy_study_generation = var:rol_legacy_study_generation
+ rol_legacy_selected_artifact_owned_trigger = yes
+}
+
+rol_legacy_review_choice_trigger = {
+ is_alive = yes
+ has_character_flag = rol_legacy_review_choice_open
+ exists = scope:rol_legacy_review_generation
+ scope:rol_legacy_review_generation = var:rol_legacy_review_generation
+ has_character_flag = rol_naxos_unit_unlocked
+}
+
+rol_legacy_veteran_choice_trigger = {
+ is_alive = yes
+ has_character_flag = rol_legacy_veteran_choice_open
+ exists = scope:rol_legacy_veteran_generation
+ scope:rol_legacy_veteran_generation = var:rol_legacy_veteran_generation
+ has_character_flag = rol_naxos_unit_unlocked
 }

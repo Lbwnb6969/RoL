@@ -1,0 +1,40 @@
+﻿# Relics of Legends - artifact provenance bookkeeping
+
+# Explicit test entry: retain the item scope across dispatch.
+rol_relic_legacy_debug_transition_effect = {
+	if = {
+		limit = { rol_has_true_artifact_relic_trigger = yes NOT = { has_character_flag = rol_relic_legacy_transition_cooldown } }
+		random_character_artifact = {
+			limit = { OR = { artifact_type = rol_blade_of_mars artifact_type = rol_nibelung_star_sphere artifact_type = rol_astrolabe_of_ocean artifact_type = rol_ash_forged_mask } }
+			save_scope_as = rol_legacy_artifact
+		}
+		trigger_event = rol_relic_legacy.0003
+	}
+}
+
+rol_relic_legacy_register_new_artifact_effect = {
+	if = {
+		limit = { exists = scope:newly_created_artifact }
+		scope:newly_created_artifact = {
+			set_variable = {
+				name = rol_relic_legacy_transfer_count
+				value = 0
+			}
+		}
+	}
+}
+
+rol_relic_legacy_record_transfer_effect = {
+	if = {
+		limit = { exists = scope:rol_legacy_artifact }
+		scope:rol_legacy_artifact = {
+			if = {
+				limit = { has_variable = rol_relic_legacy_transfer_count }
+				change_variable = { name = rol_relic_legacy_transfer_count add = 1 }
+			}
+			else = {
+				set_variable = { name = rol_relic_legacy_transfer_count value = 1 }
+			}
+		}
+	}
+}
