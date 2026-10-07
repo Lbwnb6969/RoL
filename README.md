@@ -3,7 +3,7 @@
 A narrative relic-hunting mod for **Crusader Kings III** that adds handcrafted expedition chains, legendary rewards, custom event scenes, and a multi-chain grand reveal event.
 
 > 中文名：**传奇圣遗物 / Relics of Legends**  
-> 当前仓库快照基线：**2026-10-05**
+> 当前仓库快照基线：**2026-10-07**
 > 当前 `descriptor.mod`：
 > - `name = "Relics of Legends"`
 > - `version = "1.00"`
@@ -50,6 +50,14 @@ RoL also includes a special cross-chain culmination event:
 Current rule:
 - **Rome + Munich + Naxos + Sevilla** count toward the grand reveal
 - **Carthage currently does not count toward it** by design
+
+Completing Carthage as well unlocks the separate fivefold event `rol_legend_circle.0002`.
+
+### Connected character and relic systems
+
+Five expeditions now feed three expertise tracks, temporary study focuses and regional retry notes. Actual attending specialists offer help and earned routes; paying the original companion builds reputation and future candidate priority. Four relics and the Naxos tradition have ten mutually exclusive uses with delayed project outcomes. Sphere observations and astrolabe charts unlock optional routes; seven kinds of records and original companion agreements can pass to heirs without copying personal XP.
+
+The four development stages and MCP static validation are complete. Gameplay, delayed scopes and UI still need the maintainer's game test. Existing usable art is retained. See [the completion audit](docs/rol_completion_audit_20261007.md) and [console test guide](docs/rol_console_test_guide.md), sections 7.1 and 12–15.
 
 ---
 

@@ -28,3 +28,7 @@
  rol_relic_fragment.0002.t: "更深的共鸣"
  rol_relic_fragment.0002.desc: "找回的残片已经嵌入[ROOT.Char.GetFirstNamePossessive]圣物。它的平衡、重量与古老刻痕，都暗示着一段远超残片本身的历史。"
  rol_relic_fragment.0002.a: "让新的传奇沉淀下来。"
+ rol_relic_fragment.0001.desc.invalid:0 "动身时记录的圣物已经不再属于我，或它已完成全部碎片升级。无法把这次工作转到另一件圣物上。可以结束远征，不再检定或领奖；已经投入的费用不退还。"
+ rol_relic_fragment.0001.d:0 "结束这次碎片远征。"
+ rol_relic_fragment.0001.d.flavor:0 "先确定工作属于谁，再谈修复。"
+ rol_fragment_cancel_tt:0 "关闭原物品的远征记录，无新压力或奖励，费用不退、决策冷却保留。"

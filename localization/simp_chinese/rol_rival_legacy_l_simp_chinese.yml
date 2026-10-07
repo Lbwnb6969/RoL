@@ -71,3 +71,5 @@
   rol_relic_legacy.0003.c: "把它托付给学者。"
   rol_relic_legacy.0003.c.flavor: "经过考证的遗产可以超越一座宫廷的寿命。"
  rol_relic_legacy.0003.c.legacy: "反复转手的圣物，会让学者留下更多问题。"
+ rol_relic_legacy.0003.d:0 "这件圣物已经换主，关闭旧记录。"
+ rol_relic_legacy.0003.d.flavor:0 "别人的物品，不能继续替我的宫廷赢得声誉。"

@@ -334,27 +334,30 @@ effect rol_carthage_quest_fail_now_effect = yes
 
 ```txt
 effect rol_create_blade_of_mars_effect = yes
-event rol_relic_legacy.0003
+effect rol_relic_legacy_debug_transition_effect = yes
 ```
 
-预期：事件显示 `rol_bg_relic_legacy_transfer`，并提供公开传承、秘密藏匿、学者研究三种选择；同一角色五年内不会重复触发换主事件。
+预期：事件显示 `rol_bg_relic_legacy_transfer`，并提供公开传承、秘密藏匿、学者研究三种选择；同一角色五年内不会重复触发换主事件。研究需100金币。调试入口保存实际持有物品的作用域；单独 `event rol_relic_legacy.0003` 无此作用域不能证明正常换主流程。已有对应圣物时跳过创建命令。领奖前再转手应仅有关闭选项，不再支付奖励。
 
 ### 碎片远征最小 smoke
 
 ```txt
 effect add_character_flag = rol_mars_blade_claimed
 effect rol_create_blade_of_mars_effect = yes
-effect add_character_flag = rol_fragment_route_mars
-event rol_relic_fragment.0001
+effect rol_relic_fragment_begin_effect = { ROUTE = mars TYPE = rol_blade_of_mars LAST_MODIFIER = rol_blade_fragment_2_modifier }
 ```
 
-预期：事件显示 `rol_bg_fragment_expedition`；成功后给当前 Mars artifact 追加一级 modifier，并在一天后显示 `rol_bg_fragment_upgrade` 的确认事件。再次使用同一路线可追加二级 modifier；失败会增加压力并清除 route flag。
+预期：一天后事件显示 `rol_bg_fragment_expedition`；成功给最初选中的 Mars artifact 追加一级 modifier，再过一天显示 `rol_bg_fragment_upgrade`。下一次成功追加二级，失败增加20压力并清除路线/指针；取消不退款且不奖励。已有圣物时跳过创建。此调试 effect 不扣决策费用、不执行决策冷却；正式决策需验证实际扣120金币、两年冷却和一次只开一个项目。第三种挑战另需50金币，只有成功时扣除。
 
-其余三条路线只需替换 artifact 创建 effect 和 route flag：
+其余三条路线替换创建 effect，并使用下表参数调用相同 begin effect：
 
-- `rol_create_nibelung_star_sphere_effect` + `rol_fragment_route_nibelung`
-- `rol_create_astrolabe_of_ocean_effect` + `rol_fragment_route_astrolabe`
-- `rol_create_ash_forged_mask_effect` + `rol_fragment_route_ash`
+| 创建 effect | ROUTE | TYPE | LAST_MODIFIER |
+|---|---|---|---|
+| `rol_create_nibelung_star_sphere_effect` | nibelung | rol_nibelung_star_sphere | rol_nibelung_fragment_2_modifier |
+| `rol_create_astrolabe_of_ocean_effect` | astrolabe | rol_astrolabe_of_ocean | rol_astrolabe_fragment_2_modifier |
+| `rol_create_ash_forged_mask_effect` | ash | rol_ash_forged_mask | rol_ash_fragment_2_modifier |
+
+边界：开始后把原物品转给别人，或销毁原物品，即使自己另持同类型圣物也不能改选它升级。窗口应允许取消，无升级/威望/失败压力；取消不清两年冷却。已满二级不再出现正常入口。源代码模型覆盖这些状态，但需实测排队事件与物品变量在引擎中的保存行为。
 
 竞争者事件依赖活动上下文，优先从五条正式活动的阶段选项进入；若只直接执行 `event rol_rival.1000`，没有 `scope:activity` 时不应把它作为完整回归结果。
 

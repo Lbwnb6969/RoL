@@ -447,10 +447,10 @@ def check_fragment_model(root: Path, errors: list[str]) -> int:
     for name, route in FRAGMENT_ROUTES.items():
         if route["decision"] not in decisions:
             errors.append(f"fragment model: {name} decision {route['decision']} is not wired")
-        if route["route_flag"] not in decisions or route["route_flag"] not in events:
-            errors.append(f"fragment model: {name} route flag {route['route_flag']} is not wired in both entry and event")
-        if route["artifact"] not in decisions or route["artifact"] not in events:
-            errors.append(f"fragment model: {name} artifact type {route['artifact']} is not wired in both entry and event")
+        if route["route_flag"] not in effects or "rol_fragment_any_route_trigger = yes" not in events:
+            errors.append(f"fragment model: {name} shared route entry/event guard is not wired")
+        if route["artifact"] not in decisions or "rol_fragment_target_valid_trigger = yes" not in events:
+            errors.append(f"fragment model: {name} original artifact validity is not wired")
         for modifier in route["modifiers"]:
             if not re.search(rf"^\s*{re.escape(modifier)}\s*=\s*\{{", modifiers, re.MULTILINE):
                 errors.append(f"fragment model: missing modifier definition {modifier}")
@@ -483,6 +483,8 @@ def audit(root: Path) -> int:
     companion_routes = check_companion_contract(root, errors)
     relic_use_modes = check_relic_use_contract(root, errors)
     cross_routes, inherited_records = check_archive_contract(root, errors)
+    from rol_relic_safety_contracts import check_relic_safety_contract
+    check_relic_safety_contract(root, errors)
     if errors:
         print(f"[FAIL] RoL static audit failed: {len(errors)} issue(s)")
         for error in errors:

@@ -15,13 +15,13 @@ rol_seek_mars_fragment_decision = {
 	}
 	is_valid_showing_failures_only = {
 		is_available_adult = yes
+		NOT = { rol_fragment_any_route_trigger = yes }
 		is_at_war = no
 		gold >= 120
 	}
-	minimum_cost = { gold = 120 }
+	cost = { gold = 120 }
 	effect = {
-		add_character_flag = rol_fragment_route_mars
-		trigger_event = { id = rol_relic_fragment.0001 days = 1 }
+		rol_relic_fragment_begin_effect = { ROUTE = mars TYPE = rol_blade_of_mars LAST_MODIFIER = rol_blade_fragment_2_modifier }
 	}
 	ai_potential = { always = no }
 }
@@ -41,13 +41,13 @@ rol_seek_nibelung_fragment_decision = {
 	}
 	is_valid_showing_failures_only = {
 		is_available_adult = yes
+		NOT = { rol_fragment_any_route_trigger = yes }
 		is_at_war = no
 		gold >= 120
 	}
-	minimum_cost = { gold = 120 }
+	cost = { gold = 120 }
 	effect = {
-		add_character_flag = rol_fragment_route_nibelung
-		trigger_event = { id = rol_relic_fragment.0001 days = 1 }
+		rol_relic_fragment_begin_effect = { ROUTE = nibelung TYPE = rol_nibelung_star_sphere LAST_MODIFIER = rol_nibelung_fragment_2_modifier }
 	}
 	ai_potential = { always = no }
 }
@@ -67,13 +67,13 @@ rol_seek_astrolabe_fragment_decision = {
 	}
 	is_valid_showing_failures_only = {
 		is_available_adult = yes
+		NOT = { rol_fragment_any_route_trigger = yes }
 		is_at_war = no
 		gold >= 120
 	}
-	minimum_cost = { gold = 120 }
+	cost = { gold = 120 }
 	effect = {
-		add_character_flag = rol_fragment_route_astrolabe
-		trigger_event = { id = rol_relic_fragment.0001 days = 1 }
+		rol_relic_fragment_begin_effect = { ROUTE = astrolabe TYPE = rol_astrolabe_of_ocean LAST_MODIFIER = rol_astrolabe_fragment_2_modifier }
 	}
 	ai_potential = { always = no }
 }
@@ -93,13 +93,13 @@ rol_seek_ash_fragment_decision = {
 	}
 	is_valid_showing_failures_only = {
 		is_available_adult = yes
+		NOT = { rol_fragment_any_route_trigger = yes }
 		is_at_war = no
 		gold >= 120
 	}
-	minimum_cost = { gold = 120 }
+	cost = { gold = 120 }
 	effect = {
-		add_character_flag = rol_fragment_route_ash
-		trigger_event = { id = rol_relic_fragment.0001 days = 1 }
+		rol_relic_fragment_begin_effect = { ROUTE = ash TYPE = rol_ash_forged_mask LAST_MODIFIER = rol_ash_fragment_2_modifier }
 	}
 	ai_potential = { always = no }
 }

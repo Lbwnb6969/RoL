@@ -28,3 +28,7 @@
  rol_relic_fragment.0002.t: "A Deeper Resonance"
  rol_relic_fragment.0002.desc: "The recovered fragment has been fitted into [ROOT.Char.GetFirstNamePossessive] relic. Its balance, weight, and old marks now suggest a history larger than the fragment alone."
  rol_relic_fragment.0002.a: "Let the new legend settle."
+ rol_relic_fragment.0001.desc.invalid:0 "The relic recorded at departure is no longer mine, or it already has all fragment upgrades. This work cannot be transferred to another relic. End the expedition without another trial or reward; invested costs are not refunded."
+ rol_relic_fragment.0001.d:0 "End this fragment expedition."
+ rol_relic_fragment.0001.d.flavor:0 "Establish whose work this is before repairing anything."
+ rol_fragment_cancel_tt:0 "Close the original item's expedition without new stress or rewards. No refund; keep the decision cooldown."

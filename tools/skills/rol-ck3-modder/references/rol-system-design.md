@@ -39,6 +39,8 @@ For each modifier, decide recipient (character/artifact/dynasty/county), source,
 
 - Mutually exclusive relic uses can support combat, research, public display or navigation. Specify switching cost and any maintenance obligation; implement only uses within the requested scope.
 - Grant artifact benefits to the intended owned artifact, not a random artifact. Revalidate ownership before an upgrade or delayed payoff.
+- Snapshot the selected artifact on entry and reuse that pointer; a delayed event must not pick a replacement of the same type after the original changes owner. Offer a neutral invalid-project closure and clear its state.
+- In native decisions, `minimum_cost` blocks unaffordable entry but does not charge. Put the actual fee in the committing decision's `cost`, or use an explicitly guarded payment effect once. Check additional paid event options against current funds. Installed `pam_saint_decisions.txt` documents the picker/commit distinction.
 - Guard one-time rewards and fragment levels so repeated console/event calls do not duplicate artifacts or permanently stack the same benefit. Respect existing cooldowns and completion semantics.
 - For expiring or conditional benefits, explain expiry/conditions to the player. Reuse opinion, stress, prestige and short-term modifiers where they express the actual consequence.
 

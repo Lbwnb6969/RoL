@@ -248,6 +248,7 @@ rol_quest_sevilla.1000 = {
 	}
 	option = {
 		name = rol_archive_sevilla_route_option
+		flavor = rol_archive_sevilla_route_flavor
 		trigger = { rol_star_chart_route_trigger = yes gold >= 40 }
 		custom_tooltip = rol_archive_sevilla_route_tt
 		rol_archive_chart_route_effect = {

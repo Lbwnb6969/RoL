@@ -8,3 +8,13 @@
 		}
 	}
 }
+
+rol_legacy_selected_artifact_owned_trigger = {
+	exists = scope:rol_legacy_artifact
+	scope:rol_legacy_artifact = { artifact_owner = root }
+}
+
+rol_legacy_transition_choice_trigger = {
+	has_character_flag = rol_legacy_transition_choice_open
+	rol_legacy_selected_artifact_owned_trigger = yes
+}

@@ -95,6 +95,7 @@ class State:
     ai: bool = False
     lists: dict = field(default_factory=dict)
     event_contexts: list = field(default_factory=list)
+    learning_lifestyle_xp: float = 0
 
 
 class Model:
@@ -120,7 +121,11 @@ class Model:
         relic_triggers = root / "common/scripted_triggers/rol_relic_use_triggers.txt"
         if relic_triggers.exists():
             self.triggers.update({k: v for k, _, v in parse(relic_triggers.read_text(encoding="utf-8-sig"))})
-        for directory, container, filename in (("scripted_effects", self.effects, "rol_archive_effects.txt"), ("scripted_triggers", self.triggers, "rol_archive_triggers.txt")):
+        for directory, container, filename in (
+            ("scripted_effects", self.effects, "rol_archive_effects.txt"), ("scripted_triggers", self.triggers, "rol_archive_triggers.txt"),
+            ("scripted_effects", self.effects, "rol_relic_fragment_effects.txt"), ("scripted_triggers", self.triggers, "rol_fragment_triggers.txt"),
+            ("scripted_effects", self.effects, "rol_relic_legacy_effects.txt"), ("scripted_triggers", self.triggers, "rol_relic_legacy_triggers.txt"),
+        ):
             path = root / "common" / directory / filename
             if path.exists(): container.update({k: v for k, _, v in parse(path.read_text(encoding="utf-8-sig"))})
 
@@ -311,6 +316,7 @@ class Model:
                 current.xp[track] = min(100, current.xp.get(track, 0) + self.number(get(value, "value"), state, scope))
             elif key == "add_stress": current.stress = max(0, current.stress + self.number(value, state, scope))
             elif key == "add_prestige": current.prestige += self.number(value, state, scope)
+            elif key == "add_learning_lifestyle_xp": current.learning_lifestyle_xp += self.number(value, state, scope)
             elif key == "add_gold": current.gold += self.number(value, state, scope)
             elif key == "remove_short_term_gold": current.gold -= self.number(value, state, scope)
             elif key == "add_opinion": current.opinions.append((self.reference(get(value, "target"), state, scope), get(value, "modifier")))

@@ -71,3 +71,5 @@
   rol_relic_legacy.0003.c: "Entrust it to scholars."
   rol_relic_legacy.0003.c.flavor: "A measured legacy can outlive a single court."
  rol_relic_legacy.0003.c.legacy: "Repeated transfers give the scholars another century of questions."
+ rol_relic_legacy.0003.d:0 "This record is no longer valid; close it."
+ rol_relic_legacy.0003.d.flavor:0 "Another holder's relic cannot keep earning my court new credit."

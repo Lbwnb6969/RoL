@@ -1,77 +1,112 @@
 ﻿namespace = rol_relic_fragment
 
 rol_relic_fragment.0001 = {
-	type = character_event
-	title = rol_relic_fragment.0001.t
-	desc = rol_relic_fragment.0001.desc
-	theme = learning
-	override_background = { reference = rol_bg_fragment_expedition }
-	trigger = {
-		is_ai = no
-		is_alive = yes
-		OR = {
-			has_character_flag = rol_fragment_route_mars
-			has_character_flag = rol_fragment_route_nibelung
-			has_character_flag = rol_fragment_route_astrolabe
-			has_character_flag = rol_fragment_route_ash
-		}
-	}
-	immediate = {
-		if = {
-			limit = { has_character_flag = rol_fragment_route_mars }
-			random_character_artifact = { limit = { artifact_type = rol_blade_of_mars } save_scope_as = rol_fragment_artifact }
-		}
-		else_if = {
-			limit = { has_character_flag = rol_fragment_route_nibelung }
-			random_character_artifact = { limit = { artifact_type = rol_nibelung_star_sphere } save_scope_as = rol_fragment_artifact }
-		}
-		else_if = {
-			limit = { has_character_flag = rol_fragment_route_astrolabe }
-			random_character_artifact = { limit = { artifact_type = rol_astrolabe_of_ocean } save_scope_as = rol_fragment_artifact }
-		}
-		else_if = {
-			limit = { has_character_flag = rol_fragment_route_ash }
-			random_character_artifact = { limit = { artifact_type = rol_ash_forged_mask } save_scope_as = rol_fragment_artifact }
-		}
-	}
-	option = {
-		name = rol_relic_fragment.0001.a
-		flavor = rol_relic_fragment.0001.a.flavor
-		skill = learning
-		random_list = {
-			70 = { desc = rol_relic_fragment.0001.success add_learning_lifestyle_xp = 125 hidden_effect = { rol_relic_fragment_success_effect = yes } }
-			30 = { desc = rol_relic_fragment.0001.failure hidden_effect = { rol_relic_fragment_failure_effect = yes } }
-		}
-	}
-	option = {
-		name = rol_relic_fragment.0001.b
-		flavor = rol_relic_fragment.0001.b.flavor
-		skill = prowess
-		random_list = {
-			60 = { desc = rol_relic_fragment.0001.success add_prestige = 50 hidden_effect = { rol_relic_fragment_success_effect = yes } }
-			40 = { desc = rol_relic_fragment.0001.failure hidden_effect = { rol_relic_fragment_failure_effect = yes } }
-		}
-	}
-	option = {
-		name = rol_relic_fragment.0001.c
-		flavor = rol_relic_fragment.0001.c.flavor
-		skill = stewardship
-		random_list = {
-			65 = { desc = rol_relic_fragment.0001.success remove_short_term_gold = 50 hidden_effect = { rol_relic_fragment_success_effect = yes } }
-			35 = { desc = rol_relic_fragment.0001.failure hidden_effect = { rol_relic_fragment_failure_effect = yes } }
-		}
-	}
+ type = character_event
+ title = rol_relic_fragment.0001.t
+ desc = {
+  first_valid = {
+   triggered_desc = { trigger = { NOT = { rol_fragment_target_valid_trigger = yes } } desc = rol_relic_fragment.0001.desc.invalid }
+   desc = rol_relic_fragment.0001.desc
+  }
+ }
+ theme = learning
+ override_background = { reference = rol_bg_fragment_expedition }
+ trigger = { is_ai = no is_alive = yes rol_fragment_any_route_trigger = yes }
+ immediate = { if = { limit = { exists = var:rol_fragment_target } var:rol_fragment_target = { save_scope_as = rol_fragment_artifact } } }
+ option = {
+  name = rol_relic_fragment.0001.a
+  flavor = rol_relic_fragment.0001.a.flavor
+  skill = learning
+  trigger = { rol_fragment_target_valid_trigger = yes }
+  if = {
+   limit = { rol_fragment_target_valid_trigger = yes }
+   random_list = {
+    70 = {
+     desc = rol_relic_fragment.0001.success
+     add_learning_lifestyle_xp = 125
+     hidden_effect = {
+      rol_relic_fragment_success_effect = yes
+     }
+    }
+    30 = {
+     desc = rol_relic_fragment.0001.failure
+     hidden_effect = {
+      rol_relic_fragment_failure_effect = yes
+     }
+    }
+   }
+  }
+  else = { rol_clear_fragment_route_effect = yes }
+ }
+ option = {
+  name = rol_relic_fragment.0001.b
+  flavor = rol_relic_fragment.0001.b.flavor
+  skill = prowess
+  trigger = { rol_fragment_target_valid_trigger = yes }
+  if = {
+   limit = { rol_fragment_target_valid_trigger = yes }
+   random_list = {
+    60 = {
+     desc = rol_relic_fragment.0001.success
+     add_prestige = 50
+     hidden_effect = {
+      rol_relic_fragment_success_effect = yes
+     }
+    }
+    40 = {
+     desc = rol_relic_fragment.0001.failure
+     hidden_effect = {
+      rol_relic_fragment_failure_effect = yes
+     }
+    }
+   }
+  }
+  else = { rol_clear_fragment_route_effect = yes }
+ }
+ option = {
+  name = rol_relic_fragment.0001.c
+  flavor = rol_relic_fragment.0001.c.flavor
+  skill = stewardship
+  trigger = { rol_fragment_target_valid_trigger = yes gold >= 50 }
+  if = {
+   limit = { rol_fragment_target_valid_trigger = yes gold >= 50 }
+   random_list = {
+    65 = {
+     desc = rol_relic_fragment.0001.success
+     remove_short_term_gold = 50
+     hidden_effect = {
+      rol_relic_fragment_success_effect = yes
+     }
+    }
+    35 = {
+     desc = rol_relic_fragment.0001.failure
+     hidden_effect = {
+      rol_relic_fragment_failure_effect = yes
+     }
+    }
+   }
+  }
+  else = { rol_clear_fragment_route_effect = yes }
+ }
+
+ option = { name = rol_relic_fragment.0001.d flavor = rol_relic_fragment.0001.d.flavor custom_tooltip = rol_fragment_cancel_tt rol_clear_fragment_route_effect = yes }
 }
 
 rol_relic_fragment.0002 = {
-	type = character_event
-	title = rol_relic_fragment.0002.t
-	desc = rol_relic_fragment.0002.desc
-	theme = stewardship
-	override_background = { reference = rol_bg_fragment_upgrade }
-	trigger = { is_ai = no is_alive = yes has_character_flag = rol_fragment_upgrade_pending }
-	option = {
-		name = rol_relic_fragment.0002.a
-		remove_character_flag = rol_fragment_upgrade_pending
-	}
+ type = character_event
+ title = rol_relic_fragment.0002.t
+ desc = rol_relic_fragment.0002.desc
+ theme = stewardship
+ override_background = {
+  reference = rol_bg_fragment_upgrade
+ }
+ trigger = {
+  is_ai = no
+  is_alive = yes
+  has_character_flag = rol_fragment_upgrade_pending
+ }
+ option = {
+  name = rol_relic_fragment.0002.a
+  remove_character_flag = rol_fragment_upgrade_pending
+ }
 }
