@@ -145,6 +145,7 @@ rol_sevilla_store_failure_result_effect = {
 }
 
 rol_sevilla_quest_success_finalize_effect = {
+	rol_expedition_growth_finish_effect = { ROUTE = astrolabe RESULT_XP = 30 LEAVE_NOTES = no }
 	rol_sevilla_clamp_success_progress_effect = yes
 	rol_sevilla_store_success_result_effect = yes
 	rol_sevilla_apply_tiered_bonus_reward_effect = yes
@@ -173,6 +174,7 @@ rol_sevilla_quest_success_finalize_effect = {
 }
 
 rol_sevilla_quest_partial_finalize_effect = {
+	rol_expedition_growth_finish_effect = { ROUTE = astrolabe RESULT_XP = 20 LEAVE_NOTES = yes }
 	rol_sevilla_clamp_success_progress_effect = yes
 	rol_sevilla_store_success_result_effect = yes
 	rol_sevilla_apply_tiered_bonus_reward_effect = yes
@@ -189,6 +191,11 @@ rol_sevilla_quest_partial_finalize_effect = {
 }
 
 rol_apply_astrolabe_activity_cooldown_effect = {
+	if = {
+		limit = { has_variable = rol_sevilla_stage_count var:rol_sevilla_stage_count >= 1 }
+		rol_expedition_growth_finish_effect = { ROUTE = astrolabe RESULT_XP = 10 LEAVE_NOTES = no }
+	}
+	else = { rol_expedition_growth_abandon_effect = yes }
 	rol_relic_apply_cooldown_effect = {
 		COOLDOWN_MODIFIER = rol_astrolabe_quest_cooldown_modifier
 		COOLDOWN_YEARS = 2

@@ -146,6 +146,7 @@ rol_munich_store_failure_result_effect = {
 }
 
 rol_munich_quest_success_finalize_effect = {
+	rol_expedition_growth_finish_effect = { ROUTE = nibelung RESULT_XP = 30 LEAVE_NOTES = no }
 	rol_munich_clamp_success_progress_effect = yes
 	rol_munich_store_success_result_effect = yes
 	rol_munich_apply_tiered_bonus_reward_effect = yes
@@ -174,6 +175,7 @@ rol_munich_quest_success_finalize_effect = {
 }
 
 rol_munich_quest_partial_finalize_effect = {
+	rol_expedition_growth_finish_effect = { ROUTE = nibelung RESULT_XP = 20 LEAVE_NOTES = yes }
 	rol_munich_clamp_success_progress_effect = yes
 	rol_munich_store_success_result_effect = yes
 	rol_munich_apply_tiered_bonus_reward_effect = yes
@@ -190,6 +192,11 @@ rol_munich_quest_partial_finalize_effect = {
 }
 
 rol_apply_nibelung_activity_cooldown_effect = {
+	if = {
+		limit = { has_variable = rol_munich_stage_count var:rol_munich_stage_count >= 1 }
+		rol_expedition_growth_finish_effect = { ROUTE = nibelung RESULT_XP = 10 LEAVE_NOTES = no }
+	}
+	else = { rol_expedition_growth_abandon_effect = yes }
 	rol_relic_apply_cooldown_effect = {
 		COOLDOWN_MODIFIER = rol_nibelung_quest_cooldown_modifier
 		COOLDOWN_YEARS = 2

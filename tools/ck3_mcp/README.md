@@ -50,6 +50,7 @@
 - 每个挑战分支是否保存基准概率，并让英中结果 tooltip 显示与实际权重一致的成功 / 失败百分比；
 - 四条碎片路线的决策、原始圣物、两级 artifact modifier、三种挑战选项和成功 / 失败效果是否完整接线；
 - Rome、Munich、Sevilla、Carthage 的终点唯一圣物奖励以及 Naxos 的终局单位奖励是否仍在终点事件内；
+- 五条活动成长/笔记入口与结算是否接线；`rol_growth_contracts.py` 用有限源码模型检查笔记的地区消费、重复兑现守卫、研习替换，以及实际/显示概率算式。该模型不启动游戏，也不证明引擎作用域或特质UI；
 - English / Simplified Chinese 的 RoL 本地化键是否一一对应且无重复；
 - 脚本中出现的 RoL-owned `gfx/` 引用是否都能解析到真源文件。
 

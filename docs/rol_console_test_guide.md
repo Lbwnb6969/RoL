@@ -477,7 +477,7 @@ event rol_quest_carthage.1090
 - 原版 / NPC 的 regalia 不再被 Nibelung 星界球封面污染
 
 ### 11.3 `@rol_legendary_icon!` 透明验证
-1. 删除 `Documents/Paradox Interactive/Crusader Kings III/gfx`
+1. 在游戏与启动器关闭时，把 `Documents/Paradox Interactive/Crusader Kings III/gfx` 移到带日期的缓存备份目录
 2. 完整重启启动器与游戏
 3. 打开任意使用 `@rol_legendary_icon!` 的文本
 
@@ -497,3 +497,69 @@ event rol_quest_carthage.1090
 - 不再出现缺英文、空白文本、回退 key
 - Rome / Munich / Carthage 的活跃事件标题、正文、按钮均有英文
 - `error.log` 不再报相关 missing loc
+
+## 12. 人物成长与地区笔记（2026-10-07）
+
+此节由维护者在独立测试存档执行；代理本轮不启动游戏。静态通过不等于特质界面、作用域和定时事件已经在引擎中验证。
+
+### 12.1 最小复盘与特质检查
+
+```text
+effect rol_expedition_growth_debug_queue_effect = yes
+```
+
+预期：打开“旅途留下的本领”，显示20点经验。选择考据、探险或交涉后获得“遗物探寻者”特质，对应轨道增加20经验并出现三年研习；勤勉/勇敢/合群匹配方向时失去5压力。打开特质检查三个轨道和20/60/100阈值显示。本轮特质有意复用原版 traveler 图标。
+
+```text
+event rol_expedition_growth.0001
+```
+
+预期：没有待处理经验时该事件不应自然显示；即使控制台强制打开并重复选择，也不会增加经验、刷新研习或重复减少压力。确需再测另一方向，重新执行 debug queue，然后选另一个方向；此前的研习消失，不同时保留三个BUFF。
+
+若自动复盘因角色状态未打开，观察决策“复盘远征经历”：它只在待处理经验存在时出现，打开已有复盘，不产生新经验。
+
+### 12.2 最小地区笔记检查
+
+以 Rome 为例：
+
+```text
+effect add_character_modifier = { modifier = rol_expedition_mars_notes_modifier years = 10 }
+effect add_character_flag = rol_heard_mars_legend
+effect remove_character_flag = rol_mars_blade_claimed
+effect remove_character_modifier = rol_mars_quest_cooldown_modifier
+event rol_relic_discovery.1000
+```
+
+从真实活动界面开始 Rome 远征，选择标准筹备。预期：出发时地区笔记消失并有“循着上次的发现”提示；活动二元检定显示增益后的精确概率，高属性90%分支变为95%。高/极致筹备仍封顶95%，不能达到100%。同一个活动的后续检定继续保有增益，不能因为笔记已消耗而再次失去增益。
+
+其他地区对应修正：`rol_expedition_nibelung_notes_modifier`、`rol_expedition_naxos_notes_modifier`、`rol_expedition_astrolabe_notes_modifier`、`rol_expedition_carthage_notes_modifier`。持有 Rome 笔记时开始别的地区远征，不应消耗 Rome 笔记或得到其增益。
+
+### 12.3 真实结算检查
+
+- 完整成功：两天后30点复盘经验，唯一奖励与原流程一致，不额外产生新的地区笔记。
+- Tier2/3 部分成功：两天后20点经验，并获得同地区十年笔记；原有五年证据学习修正和两年冷却保留。不能得到完整圣物或完整完成flag。
+- 已完成至少一阶段后失败：10点经验，不给地区笔记；冷却与失败总结保持。
+- 未完成任何阶段的失败/撤退：无复盘经验；反复出发后立即退出不能刷经验。
+- 重复 finalize：成长结算资格已关闭，不重复增加经验或发笔记。直接无活动上下文调用 finalize 不能验证真实结算，也不会得到新的成长奖励。
+
+十年笔记到期、三年研习到期需要游戏时间验证；源码模型只核对时长参数与状态操作。若时间推进异常或事件错位，保留 `error.log` 中相关 `rol_` 行供后续定位。
+
+### 12.4 测试状态清理
+
+以下仅清理新增成长状态，测试存档中执行。移除特质会丢失该人物已经积累的三个专长轨道：
+
+```text
+effect remove_trait = rol_relic_seeker
+effect remove_character_flag = rol_expedition_growth_pending
+effect remove_variable = rol_expedition_growth_pending_xp
+effect remove_character_modifier = rol_expedition_research_focus_modifier
+effect remove_character_modifier = rol_expedition_exploration_focus_modifier
+effect remove_character_modifier = rol_expedition_negotiation_focus_modifier
+effect remove_character_modifier = rol_expedition_mars_notes_modifier
+effect remove_character_modifier = rol_expedition_nibelung_notes_modifier
+effect remove_character_modifier = rol_expedition_naxos_notes_modifier
+effect remove_character_modifier = rol_expedition_astrolabe_notes_modifier
+effect remove_character_modifier = rol_expedition_carthage_notes_modifier
+```
+
+活动中的笔记增益属于当前 activity，清理角色修正不会倒扣已经用于该次远征的笔记。活动结束后自然弃用该activity状态。

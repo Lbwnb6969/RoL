@@ -1,0 +1,41 @@
+﻿namespace = rol_expedition_growth
+
+rol_expedition_growth.0001 = {
+	type = character_event
+	title = rol_expedition_growth.0001.t
+	desc = rol_expedition_growth.0001.desc
+	theme = learning
+	override_background = { reference = rol_bg_relic_scholarly_study }
+	trigger = {
+		is_alive = yes
+		is_ai = no
+		rol_expedition_growth_pending_trigger = yes
+	}
+	option = {
+		name = rol_expedition_growth.0001.a
+		flavor = rol_expedition_growth.0001.a.flavor
+		rol_expedition_growth_choose_focus_effect = {
+			TRACK = rol_research
+			FOCUS_MODIFIER = rol_expedition_research_focus_modifier
+			MATCHING_TRAIT = diligent
+		}
+	}
+	option = {
+		name = rol_expedition_growth.0001.b
+		flavor = rol_expedition_growth.0001.b.flavor
+		rol_expedition_growth_choose_focus_effect = {
+			TRACK = rol_exploration
+			FOCUS_MODIFIER = rol_expedition_exploration_focus_modifier
+			MATCHING_TRAIT = brave
+		}
+	}
+	option = {
+		name = rol_expedition_growth.0001.c
+		flavor = rol_expedition_growth.0001.c.flavor
+		rol_expedition_growth_choose_focus_effect = {
+			TRACK = rol_negotiation
+			FOCUS_MODIFIER = rol_expedition_negotiation_focus_modifier
+			MATCHING_TRAIT = gregarious
+		}
+	}
+}

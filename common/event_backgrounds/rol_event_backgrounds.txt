@@ -319,3 +319,11 @@ rol_bg_fragment_upgrade = {
 		ambience = "event:/SFX/Events/Backgrounds/throneroom_western"
 	}
 }
+
+rol_bg_relic_scholarly_study = {
+	background = {
+		reference = "gfx/interface/illustrations/event_scenes/rol_event_relic_scholarly_study.dds"
+		environment = "environment_frontend_west_main"
+		ambience = "event:/SFX/Events/Backgrounds/throneroom_western"
+	}
+}

@@ -12,6 +12,11 @@ import struct
 import sys
 from pathlib import Path
 
+if __package__:
+    from .rol_growth_contracts import check_growth_contract
+else:
+    from rol_growth_contracts import check_growth_contract
+
 
 CHAINS = {
     "rome": {
@@ -468,12 +473,13 @@ def audit(root: Path) -> int:
     chance_lists, chance_tooltips = check_chance_tooltips(root, errors)
     branch_options = check_branch_model(root, errors)
     fragment_routes = check_fragment_model(root, errors)
+    growth_routes = check_growth_contract(root, errors)
     if errors:
         print(f"[FAIL] RoL static audit failed: {len(errors)} issue(s)")
         for error in errors:
             print(f"  - {error}")
         return 1
-    print(f"[OK] RoL static audit passed: {len(CHAINS)} activities, {fragment_routes} fragment routes, {english_count} English keys, {chinese_count} Chinese keys, {gfx_count} RoL gfx references, {dds_count} canonical DDS assets, {success_model_refs} high-chance branches, {chance_lists} chance lists, {chance_tooltips} chance tooltip keys, {branch_options} event choices with partial endings")
+    print(f"[OK] RoL static audit passed: {len(CHAINS)} activities, {fragment_routes} fragment routes, {growth_routes} growth routes, {english_count} English keys, {chinese_count} Chinese keys, {gfx_count} RoL gfx references, {dds_count} canonical DDS assets, {success_model_refs} high-chance branches, {chance_lists} chance lists, {chance_tooltips} chance tooltip keys, {branch_options} event choices with partial endings")
     return 0
 
 

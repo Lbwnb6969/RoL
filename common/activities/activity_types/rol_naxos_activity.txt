@@ -36,6 +36,7 @@ activity_rol_seek_naxos_guard = {
 			rol_relic_clear_recent_result_effect = yes
 			rol_clear_rival_route_effect = yes
 			rol_set_context_naxos_relic_effect = yes
+			rol_expedition_growth_begin_effect = { ROUTE = naxos }
 			if = {
 				limit = { has_variable = rol_naxos_stage_count }
 				remove_variable = rol_naxos_stage_count
@@ -230,6 +231,7 @@ activity_rol_seek_naxos_guard = {
 
 	on_complete = {
 		scope:host = {
+			rol_expedition_growth_abandon_effect = yes
 
 			if = {
 				limit = { has_variable = rol_naxos_stage_count }

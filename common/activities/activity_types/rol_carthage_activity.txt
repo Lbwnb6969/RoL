@@ -36,6 +36,7 @@ activity_rol_seek_ash_forged_mask = {
 			rol_relic_clear_recent_result_effect = yes
 			rol_clear_rival_route_effect = yes
 			rol_set_context_carthage_helmet_effect = yes
+			rol_expedition_growth_begin_effect = { ROUTE = carthage }
 			if = {
 				limit = { has_variable = rol_carthage_stage_count }
 				remove_variable = rol_carthage_stage_count
@@ -230,6 +231,7 @@ activity_rol_seek_ash_forged_mask = {
 
 	on_complete = {
 		scope:host = {
+			rol_expedition_growth_abandon_effect = yes
 			rol_clear_context_carthage_helmet_effect = yes
 			if = {
 				limit = { has_variable = rol_carthage_stage_count }

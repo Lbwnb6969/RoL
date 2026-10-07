@@ -1,0 +1,82 @@
+﻿# Called only by the actual host's activity on_start, after route context setup.
+rol_expedition_growth_begin_effect = {
+	if = {
+		limit = { exists = scope:activity }
+		scope:activity = {
+			set_variable = { name = rol_expedition_growth_open value = 1 }
+			set_variable = { name = rol_expedition_journal_bonus value = 0 }
+		}
+		if = {
+			limit = { has_character_modifier = rol_expedition_$ROUTE$_notes_modifier }
+			remove_character_modifier = rol_expedition_$ROUTE$_notes_modifier
+			scope:activity = { set_variable = { name = rol_expedition_journal_bonus value = 5 } }
+			send_interface_toast = {
+				type = event_toast_effect_good
+				title = rol_expedition_journal_used_title
+				desc = rol_expedition_journal_used_desc
+				left_icon = root
+			}
+		}
+	}
+}
+
+# RESULT_XP: 30 full / 20 partial / 10 failure with completed stages.
+# The activity owns the replay guard; direct finalize commands cannot farm XP.
+rol_expedition_growth_finish_effect = {
+	if = {
+		limit = {
+			exists = scope:activity
+			scope:activity = { var:rol_expedition_growth_open = 1 }
+		}
+		scope:activity = { set_variable = { name = rol_expedition_growth_open value = 0 } }
+		if = {
+			limit = { always = $LEAVE_NOTES$ }
+			remove_character_modifier = rol_expedition_$ROUTE$_notes_modifier
+			add_character_modifier = { modifier = rol_expedition_$ROUTE$_notes_modifier years = 10 }
+		}
+		if = {
+			limit = { NOT = { has_variable = rol_expedition_growth_pending_xp } }
+			set_variable = { name = rol_expedition_growth_pending_xp value = 0 }
+		}
+		change_variable = { name = rol_expedition_growth_pending_xp add = $RESULT_XP$ }
+		if = {
+			limit = { NOT = { has_character_flag = rol_expedition_growth_pending } }
+			add_character_flag = rol_expedition_growth_pending
+			trigger_event = { id = rol_expedition_growth.0001 days = 2 }
+		}
+	}
+}
+
+# An abandoned expedition without completed stages gives no expertise.
+rol_expedition_growth_abandon_effect = {
+	scope:activity ?= { set_variable = { name = rol_expedition_growth_open value = 0 } }
+}
+
+# The same guard covers all reflection choices, including manual event replay.
+rol_expedition_growth_choose_focus_effect = {
+	if = {
+		limit = { rol_expedition_growth_pending_trigger = yes }
+		if = {
+			limit = { NOT = { has_trait = rol_relic_seeker } }
+			add_trait = rol_relic_seeker
+		}
+		add_trait_xp = { trait = rol_relic_seeker track = $TRACK$ value = var:rol_expedition_growth_pending_xp }
+		remove_character_modifier = rol_expedition_research_focus_modifier
+		remove_character_modifier = rol_expedition_exploration_focus_modifier
+		remove_character_modifier = rol_expedition_negotiation_focus_modifier
+		add_character_modifier = { modifier = $FOCUS_MODIFIER$ years = 3 }
+		if = { limit = { has_trait = $MATCHING_TRAIT$ } add_stress = -5 }
+		remove_character_flag = rol_expedition_growth_pending
+		remove_variable = rol_expedition_growth_pending_xp
+	}
+}
+
+# Explicit test helper: queues 20 reflection XP once, never creates an artifact.
+rol_expedition_growth_debug_queue_effect = {
+	if = {
+		limit = { NOT = { rol_expedition_growth_pending_trigger = yes } }
+		set_variable = { name = rol_expedition_growth_pending_xp value = 20 }
+		add_character_flag = rol_expedition_growth_pending
+		trigger_event = rol_expedition_growth.0001
+	}
+}

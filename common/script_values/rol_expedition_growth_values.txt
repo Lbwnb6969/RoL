@@ -1,0 +1,18 @@
+﻿rol_expedition_journal_success_chance_modifier = {
+	value = 0
+	if = {
+		limit = {
+			exists = scope:activity
+			scope:activity = { has_variable = rol_expedition_journal_bonus }
+		}
+		add = scope:activity.var:rol_expedition_journal_bonus
+	}
+}
+
+rol_expedition_growth_pending_xp_value = {
+	value = 0
+	if = {
+		limit = { has_variable = rol_expedition_growth_pending_xp }
+		add = var:rol_expedition_growth_pending_xp
+	}
+}

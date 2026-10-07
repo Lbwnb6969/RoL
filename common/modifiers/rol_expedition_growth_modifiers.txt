@@ -1,0 +1,21 @@
+﻿# RoL expedition reflection. Only one focus benefit is active at a time.
+rol_expedition_research_focus_modifier = {
+	icon = learning_positive
+	monthly_learning_lifestyle_xp_gain_mult = 0.05
+}
+rol_expedition_exploration_focus_modifier = {
+	icon = martial_positive
+	character_travel_speed_mult = 0.05
+}
+rol_expedition_negotiation_focus_modifier = {
+	icon = diplomacy_positive
+	general_opinion = 3
+}
+
+# Evidence is visible on the character; the next matching departure consumes it.
+# Its probability benefit lives in the shared script value, not in a stat buff.
+rol_expedition_mars_notes_modifier = { icon = learning_positive }
+rol_expedition_nibelung_notes_modifier = { icon = learning_positive }
+rol_expedition_naxos_notes_modifier = { icon = learning_positive }
+rol_expedition_astrolabe_notes_modifier = { icon = learning_positive }
+rol_expedition_carthage_notes_modifier = { icon = learning_positive }

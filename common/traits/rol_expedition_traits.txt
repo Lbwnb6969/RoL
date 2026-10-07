@@ -1,0 +1,27 @@
+﻿ # RoL earned expertise: tracks use the vanilla multi-track trait format.
+rol_relic_seeker = {
+	category = lifestyle
+	icon = traveler.dds
+	ruler_designer_cost = 0
+	random_creation = 0
+	birth = 0
+	shown_in_ruler_designer = no
+	desc = trait_rol_relic_seeker_desc
+	tracks = {
+		rol_research = {
+			20 = { learning = 1 }
+			60 = { learning = 2 }
+			100 = { learning = 3 monthly_learning_lifestyle_xp_gain_mult = 0.05 }
+		}
+		rol_exploration = {
+			20 = { character_travel_safety = 2 }
+			60 = { character_travel_safety = 4 prowess = 1 }
+			100 = { character_travel_safety = 5 prowess = 2 character_travel_speed_mult = 0.05 }
+		}
+		rol_negotiation = {
+			20 = { diplomacy = 1 }
+			60 = { diplomacy = 2 }
+			100 = { diplomacy = 3 general_opinion = 3 }
+		}
+	}
+}
