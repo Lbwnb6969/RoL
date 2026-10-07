@@ -1,0 +1,2 @@
+﻿rol_archive_death_on_action = { effect = { rol_archive_export_effect = yes } }
+on_death = { on_actions = { rol_archive_death_on_action } }

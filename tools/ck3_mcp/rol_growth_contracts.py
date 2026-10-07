@@ -91,6 +91,10 @@ class State:
     owner: State | None = None
     artifacts: list = field(default_factory=list)
     flag_durations: dict = field(default_factory=dict)
+    player_heir: State | None = None
+    ai: bool = False
+    lists: dict = field(default_factory=dict)
+    event_contexts: list = field(default_factory=list)
 
 
 class Model:
@@ -116,6 +120,9 @@ class Model:
         relic_triggers = root / "common/scripted_triggers/rol_relic_use_triggers.txt"
         if relic_triggers.exists():
             self.triggers.update({k: v for k, _, v in parse(relic_triggers.read_text(encoding="utf-8-sig"))})
+        for directory, container, filename in (("scripted_effects", self.effects, "rol_archive_effects.txt"), ("scripted_triggers", self.triggers, "rol_archive_triggers.txt")):
+            path = root / "common" / directory / filename
+            if path.exists(): container.update({k: v for k, _, v in parse(path.read_text(encoding="utf-8-sig"))})
 
     def current(self, state: State, scope):
         return state if scope == "actor" else state.activity if scope == "activity" else scope
@@ -131,6 +138,7 @@ class Model:
             return (base.variables if isinstance(base, State) else (base or {})).get(name)
         if value == "root": return state
         if value == "this": return self.current(state, scope)
+        if value == "player_heir": return self.current(state, scope).player_heir
         if value == "scope:activity": return state.activity
         if value.startswith("scope:"): return state.scopes.get(value[6:])
         if value.startswith("var:"): return self.variables(state, scope).get(value[4:])
@@ -164,6 +172,11 @@ class Model:
                 return not self.condition(get(value, "limit"), state, scope) or self.condition([n for n in value if n[0] != "limit"], state, scope)
             if key == "custom_description":
                 return self.condition([n for n in value if n[0] != "text"], state, scope)
+            if key == "player_heir":
+                return current.player_heir is not None and self.condition(value, state, current.player_heir)
+            if key == "is_ai": return current.ai == (value == "yes")
+            if key == "any_in_list":
+                return any(self.condition([n for n in value if n[0] != "variable"], state, item) for item in current.lists.get(get(value, "variable"), []))
             if key.startswith(("scope:", "var:")) and isinstance(value, list):
                 target = self.reference(key, state, scope)
                 return target is not None and self.condition(value, state, "activity" if key == "scope:activity" else target)
@@ -255,6 +268,18 @@ class Model:
                     raise ValueError(f"required scope is missing: {key}")
                 self.run(value, state, "activity" if key == "scope:activity" else target)
             elif key == "save_scope_as": state.scopes[value] = current
+            elif key == "player_heir":
+                if current.player_heir is not None: self.run(value, state, current.player_heir)
+                elif op != "?=": raise ValueError("required player heir is missing")
+            elif key in ("add_to_variable_list", "remove_list_variable"):
+                entries = current.lists.setdefault(get(value, "name"), [])
+                target = self.reference(get(value, "target"), state, scope)
+                if key == "add_to_variable_list": entries.append(target)
+                elif target in entries: entries.remove(target)
+            elif key in ("every_in_list", "random_in_list"):
+                entries = list(current.lists.get(get(value, "variable"), []))
+                body = [n for n in value if n[0] != "variable"]
+                for item in (entries[:1] if key == "random_in_list" else entries): self.run(body, state, item)
             elif key == "save_scope_value_as": state.scopes[get(value, "name")] = self.number(get(value, "value"), state, scope)
             elif key == "random_character_artifact":
                 candidates = [artifact for artifact in current.artifacts if artifact.owner is current and self.condition(get(value, "limit"), state, artifact)]
@@ -290,7 +315,10 @@ class Model:
             elif key == "remove_short_term_gold": current.gold -= self.number(value, state, scope)
             elif key == "add_opinion": current.opinions.append((self.reference(get(value, "target"), state, scope), get(value, "modifier")))
             elif key.startswith("activity_special_type_progression_"): state.progress_effects.append(key)  # native operation recorded, not emulated
-            elif key == "trigger_event": state.events.append(get(value, "id") if isinstance(value, list) else value)
+            elif key == "trigger_event":
+                event = get(value, "id") if isinstance(value, list) else value
+                current.events.append(event)
+                current.event_contexts.append((event, dict(state.scopes)))
             elif key == "send_interface_toast": pass  # presentation only
             elif key in self.effects: self.call(key, state, {k: v for k, _, v in value} if isinstance(value, list) else {}, scope)
             else: raise ValueError(f"unsupported effect {key}")

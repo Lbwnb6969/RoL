@@ -1,0 +1,66 @@
+﻿rol_archive_has_cargo_trigger = {
+ OR = {
+  has_character_flag = rol_archive_mars_notes
+  has_character_flag = rol_archive_nibelung_notes
+  has_character_flag = rol_archive_naxos_notes
+  has_character_flag = rol_archive_astrolabe_notes
+  has_character_flag = rol_archive_carthage_notes
+  has_character_flag = rol_archive_star_observations
+  has_character_flag = rol_archive_ocean_routes
+ }
+}
+
+rol_archive_has_pacts_trigger = {
+ any_in_list = { variable = rol_archive_pact_sources always = yes }
+}
+
+rol_archive_has_personal_pact_trigger = {
+ OR = { has_character_flag = rol_expedition_companion_in_field rol_expedition_companion_pending_trigger = yes }
+ exists = var:rol_expedition_companion_partner
+ OR = { var:rol_expedition_companion_role = 1 var:rol_expedition_companion_role = 2 var:rol_expedition_companion_role = 3 }
+}
+
+rol_archive_source_has_records_trigger = {
+ OR = {
+  rol_archive_has_cargo_trigger = yes
+  rol_archive_has_pacts_trigger = yes
+  rol_archive_has_personal_pact_trigger = yes
+  has_character_modifier = rol_expedition_mars_notes_modifier
+  has_character_modifier = rol_expedition_nibelung_notes_modifier
+  has_character_modifier = rol_expedition_naxos_notes_modifier
+  has_character_modifier = rol_expedition_astrolabe_notes_modifier
+  has_character_modifier = rol_expedition_carthage_notes_modifier
+  has_character_modifier = rol_star_observations_modifier
+  has_character_modifier = rol_ocean_routes_modifier
+ }
+}
+
+rol_archive_selected_pact_trigger = {
+ exists = scope:rol_archive_pact_source
+ any_in_list = { variable = rol_archive_pact_sources this = scope:rol_archive_pact_source }
+}
+
+rol_archive_selected_partner_alive_trigger = {
+ rol_archive_selected_pact_trigger = yes
+ exists = scope:rol_archive_pact_source.var:rol_bequest_partner
+ scope:rol_archive_pact_source.var:rol_bequest_partner = { is_alive = yes }
+ scope:rol_archive_pact_source = { OR = { var:rol_bequest_role = 1 var:rol_bequest_role = 2 var:rol_bequest_role = 3 } }
+}
+
+rol_archive_can_adopt_pact_trigger = {
+ rol_archive_selected_partner_alive_trigger = yes
+ NOT = { has_character_flag = rol_expedition_companion_in_field }
+ NOT = { rol_expedition_companion_pending_trigger = yes }
+}
+
+rol_star_chart_route_trigger = {
+ rol_expedition_first_trial_trigger = yes
+ has_character_flag = rol_relic_context_astrolabe
+ has_character_modifier = rol_star_observations_modifier
+}
+
+rol_ocean_chart_route_trigger = {
+ rol_expedition_first_trial_trigger = yes
+ has_character_flag = rol_relic_context_naxos
+ has_character_modifier = rol_ocean_routes_modifier
+}

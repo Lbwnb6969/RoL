@@ -48,6 +48,8 @@ For each modifier, decide recipient (character/artifact/dynasty/county), source,
 - Keep old four-chain Legend Circle and separate fivefold enhancement semantics intact unless explicitly redesigned.
 - Decide what inheritance transfers: artifact, research notes, agreements, or obligations. Keep personal expertise separate from family knowledge and let successors respond to inherited duties.
 - Handle old saves without new variables/flags; initialize when entering the feature rather than assuming historical events ran. Use stable existing IDs unless migration is part of the task.
+- Verify callback timing from installed `common/on_action/death.txt`: in 1.20, `on_death` runs on the about-to-die character. Check that the predecessor is the player and the `player_heir` is alive; do not assume the heir already has `is_ai = no`. Gate the delayed recipient event after succession instead.
+- For inherited obligations, snapshot the original participant/terms, merge distinct sources without replacing a recipient's personal pact, and retain unread sources through another succession. Keep inherited earned XP at zero. For delayed repeatable projects, capture a monotonically increasing generation in the event and match it before payout or cleanup; a pending flag alone does not distinguish an old event from a new job.
 
 ## Minimum Meaningful Verification
 

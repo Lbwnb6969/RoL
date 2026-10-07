@@ -1,0 +1,14 @@
+﻿rol_review_inherited_records_decision = {
+ picture = { reference = "gfx/interface/illustrations/decisions/decision_smith.dds" }
+ ai_check_interval = 0
+ is_shown = { is_ai = no rol_archive_has_cargo_trigger = yes }
+ effect = { trigger_event = rol_archive.0001 }
+ ai_potential = { always = no }
+}
+rol_review_inherited_pacts_decision = {
+ picture = { reference = "gfx/interface/illustrations/decisions/decision_smith.dds" }
+ ai_check_interval = 0
+ is_shown = { is_ai = no rol_archive_has_pacts_trigger = yes }
+ effect = { rol_archive_open_pact_effect = { DAYS = 1 } }
+ ai_potential = { always = no }
+}

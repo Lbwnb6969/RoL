@@ -1,0 +1,58 @@
+﻿namespace = rol_archive
+
+rol_archive.0001 = {
+ type = character_event
+ title = rol_archive.0001.t
+ desc = rol_archive.0001.desc
+ theme = learning
+ override_background = { reference = rol_bg_relic_scholarly_study }
+ trigger = { is_ai = no is_alive = yes rol_archive_has_cargo_trigger = yes }
+ option = {
+  name = rol_archive.0001.a
+  trigger = { prestige >= 50 }
+  custom_tooltip = rol_archive_accept_tt
+  rol_archive_accept_records_effect = yes
+ }
+ option = { name = rol_archive.0001.b custom_tooltip = rol_archive_defer_records_tt }
+ option = { name = rol_archive.0001.c custom_tooltip = rol_archive_discard_records_tt rol_archive_clear_cargo_effect = yes }
+}
+
+rol_archive.0002 = {
+ type = character_event
+ title = rol_archive.0002.t
+ desc = {
+  first_valid = {
+   triggered_desc = { trigger = { NOT = { rol_archive_selected_partner_alive_trigger = yes } } desc = rol_archive.0002.desc.absent }
+   triggered_desc = { trigger = { NOT = { rol_archive_can_adopt_pact_trigger = yes } } desc = rol_archive.0002.desc.busy }
+   desc = rol_archive.0002.desc
+  }
+ }
+ theme = diplomacy
+ override_background = { reference = rol_bg_relic_legacy_transfer }
+ left_portrait = root
+ trigger = { is_ai = no is_alive = yes rol_archive_selected_pact_trigger = yes }
+ immediate = {
+  if = {
+   limit = { rol_archive_selected_partner_alive_trigger = yes }
+   scope:rol_archive_pact_source.var:rol_bequest_partner = { save_scope_as = rol_archive_partner }
+  }
+ }
+ option = {
+  name = rol_archive.0002.a
+  trigger = { rol_archive_can_adopt_pact_trigger = yes }
+  custom_tooltip = rol_archive_adopt_tt
+  rol_archive_adopt_pact_effect = yes
+ }
+ option = {
+  name = rol_archive.0002.b
+  trigger = { rol_archive_selected_partner_alive_trigger = yes }
+  custom_tooltip = rol_archive_decline_pact_tt
+  rol_archive_drop_selected_pact_effect = yes
+ }
+ option = { name = rol_archive.0002.c custom_tooltip = rol_archive_defer_pact_tt }
+ option = {
+  name = rol_archive.0002.d
+  trigger = { NOT = { rol_archive_selected_partner_alive_trigger = yes } }
+  rol_archive_drop_selected_pact_effect = yes
+ }
+}

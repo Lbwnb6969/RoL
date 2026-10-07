@@ -1,0 +1,3 @@
+﻿# One-use knowledge items, not passive bonuses. Native activity guards consume them.
+rol_star_observations_modifier = { icon = stewardship_positive }
+rol_ocean_routes_modifier = { icon = stewardship_positive }

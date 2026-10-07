@@ -16,10 +16,12 @@ if __package__:
     from .rol_growth_contracts import check_growth_contract
     from .rol_companion_contracts import check_companion_contract
     from .rol_relic_use_contracts import check_relic_use_contract
+    from .rol_archive_contracts import check_archive_contract
 else:
     from rol_growth_contracts import check_growth_contract
     from rol_companion_contracts import check_companion_contract
     from rol_relic_use_contracts import check_relic_use_contract
+    from rol_archive_contracts import check_archive_contract
 
 
 CHAINS = {
@@ -480,12 +482,13 @@ def audit(root: Path) -> int:
     growth_routes = check_growth_contract(root, errors)
     companion_routes = check_companion_contract(root, errors)
     relic_use_modes = check_relic_use_contract(root, errors)
+    cross_routes, inherited_records = check_archive_contract(root, errors)
     if errors:
         print(f"[FAIL] RoL static audit failed: {len(errors)} issue(s)")
         for error in errors:
             print(f"  - {error}")
         return 1
-    print(f"[OK] RoL static audit passed: {len(CHAINS)} activities, {fragment_routes} fragment routes, {growth_routes} growth routes, {companion_routes} companion routes, {relic_use_modes} relic use modes, {english_count} English keys, {chinese_count} Chinese keys, {gfx_count} RoL gfx references, {dds_count} canonical DDS assets, {success_model_refs} high-chance branches, {chance_lists} chance lists, {chance_tooltips} chance tooltip keys, {branch_options} event choices with partial endings")
+    print(f"[OK] RoL static audit passed: {len(CHAINS)} activities, {fragment_routes} fragment routes, {growth_routes} growth routes, {companion_routes} companion routes, {relic_use_modes} relic use modes, {cross_routes} cross-chain routes, {inherited_records} inherited records, {english_count} English keys, {chinese_count} Chinese keys, {gfx_count} RoL gfx references, {dds_count} canonical DDS assets, {success_model_refs} high-chance branches, {chance_lists} chance lists, {chance_tooltips} chance tooltip keys, {branch_options} event choices with partial endings")
     return 0
 
 

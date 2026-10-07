@@ -47,7 +47,7 @@ rol_relic_changed_owner_on_action = {
 rol_naxos_death_on_action = {
 	effect = {
 		if = {
-			limit = { has_character_flag = rol_naxos_unit_unlocked exists = player_heir player_heir = { is_ai = no is_alive = yes } }
+			limit = { is_ai = no has_character_flag = rol_naxos_unit_unlocked exists = player_heir player_heir = { is_alive = yes } }
 			save_scope_as = rol_naxos_predecessor
 			player_heir = { trigger_event = { id = rol_relic_legacy.0103 days = 7 } }
 		}

@@ -91,6 +91,7 @@ rol_relic_use_record_experience_effect = {
   else_if = { limit = { var:rol_relic_use_mode = 9 } add_trait_xp = { trait = rol_relic_seeker track = rol_exploration value = 10 } if = { limit = { has_trait = brave } add_stress = -5 } }
   else_if = { limit = { var:rol_relic_use_mode = 10 } add_trait_xp = { trait = rol_relic_seeker track = rol_exploration value = 10 } if = { limit = { has_trait = diligent } add_stress = -5 } }
 
+  rol_relic_use_record_knowledge_effect = yes
   rol_relic_use_clear_pending_effect = yes
  }
 }

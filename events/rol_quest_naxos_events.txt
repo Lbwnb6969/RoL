@@ -191,6 +191,16 @@ rol_quest_naxos.1000 = {
 			NEXT_EVENT = rol_quest_naxos.1010
 		}
 	}
+	option = {
+		name = rol_archive_naxos_route_option
+		trigger = { rol_ocean_chart_route_trigger = yes gold >= 40 }
+		custom_tooltip = rol_archive_naxos_route_tt
+		rol_archive_chart_route_effect = {
+			QUALIFICATION = rol_ocean_chart_route_trigger
+			CHART = rol_ocean_routes_modifier
+			NEXT_EVENT = rol_quest_naxos.1010
+		}
+	}
 }
 
 rol_quest_naxos.1010 = {

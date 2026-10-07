@@ -246,6 +246,16 @@ rol_quest_sevilla.1000 = {
 			NEXT_EVENT = rol_quest_sevilla.1010
 		}
 	}
+	option = {
+		name = rol_archive_sevilla_route_option
+		trigger = { rol_star_chart_route_trigger = yes gold >= 40 }
+		custom_tooltip = rol_archive_sevilla_route_tt
+		rol_archive_chart_route_effect = {
+			QUALIFICATION = rol_star_chart_route_trigger
+			CHART = rol_star_observations_modifier
+			NEXT_EVENT = rol_quest_sevilla.1010
+		}
+	}
 }
 
 rol_quest_sevilla.1010 = {

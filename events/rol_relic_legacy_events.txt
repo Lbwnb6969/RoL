@@ -66,6 +66,6 @@ rol_relic_legacy.0102 = {
 rol_relic_legacy.0103 = {
 	type = character_event title = rol_relic_legacy.0103.t desc = rol_relic_legacy.0103.desc theme = martial
 	trigger = { is_ai = no is_alive = yes NOT = { has_character_flag = rol_naxos_unit_unlocked } }
-	option = { name = rol_relic_legacy.0103.a flavor = rol_relic_legacy.0103.a.flavor trigger = { prestige >= 500 martial >= 10 } add_prestige = -500 remove_short_term_gold = 100 add_character_flag = rol_naxos_unit_unlocked }
+	option = { name = rol_relic_legacy.0103.a flavor = rol_relic_legacy.0103.a.flavor trigger = { prestige >= 500 gold >= 100 martial >= 10 } add_prestige = -500 remove_short_term_gold = 100 add_character_flag = rol_naxos_unit_unlocked }
 	option = { name = rol_relic_legacy.0103.b flavor = rol_relic_legacy.0103.b.flavor add_piety = 50 }
 }
