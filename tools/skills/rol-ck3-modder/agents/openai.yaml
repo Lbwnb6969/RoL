@@ -1,0 +1,7 @@
+﻿interface:
+  display_name: "RoL CK3 Modder"
+  short_description: "CK3 RoL 静态优先开发：活动、人物特质、圣物联动、事件与资源验证"
+  default_prompt: "Use $rol-ck3-modder to read PROJECT.md and implement a CK3 RoL change under C:\\CK3Mods\\RoL with static-first validation and the current game-testing instructions."
+
+policy:
+  allow_implicit_invocation: true

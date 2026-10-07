@@ -67,6 +67,7 @@
 - 已将 MCP `ck3_launch.wait_seconds` 上限扩展到 180 秒，并在返回结构中加入 `window_hwnd` / `window_ready`，用于区分新开局和大型存档的加载阶段。
 - 已为 `ck3_send_console` 增加 `close_console` 参数；执行事件或脚本命令后可自动收起开发者控制台，继续做事件窗口截图和点击回归。
 - 已完成一次真实窗口事件回归：新开局 `-skip -play=e_byzantium` 后触发 `event rol_relic_discovery.1000`，截图确认中文事件文案和 Rome 地宫背景正确显示；`close_console=true` 后控制台不会遮挡事件窗口。
+- 已更新 `rol-ck3-modder` 技能及参考文档，并把维护副本纳入 `tools/skills/rol-ck3-modder`；两个已安装发现入口同步。旧 skill 与 Documents 同步脚本归档到 `archive/retired_skills/20261007/`。新规则覆盖静态优先、Tier2/3 部分成功、动态概率、旧图保留，以及特质/人物关系/BUFF/跨链状态的生产、消费与清理；这些扩展示例仍是提案，尚未实现。
 
 ## Next steps
 
