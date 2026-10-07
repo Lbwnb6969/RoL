@@ -21,6 +21,7 @@ Connect a requested mechanic through: player choice -> durable result -> later e
 ## Companions and Rivals
 
 - Select suitable existing characters for scholars, guards, guides or sponsors where possible; record the selected participant for later consequences rather than selecting a different random person at payoff time.
+- Check the body of vanilla availability triggers before using them on activity participants. In CK3 1.20, `is_available_adult` rejects `involved_activity` (and travel); it is unsuitable for an already attending companion. Require actual attendance separately from alive/adult/not imprisoned/not incapable checks. Revalidate both at selection and at the aid consumer; settlement may intentionally remain payable after departure.
 - Event portraits, outcomes and saved scopes must refer to the same participant. Guard against dead/missing participants and changed ownership; choose a proportionate fallback or close the unresolved thread.
 - Define cooperation terms and subsequent obligations: shared credit, payment, a court role, public recognition or access to research. Breaking terms can create opinion loss, a grievance or a follow-up event.
 - Use cooldowns and bounded follow-ups. Prefer scoped on-actions/decisions/delayed events over frequent global character scans. Do not create recurring rival NPCs without a lifecycle.
@@ -52,6 +53,7 @@ For each modifier, decide recipient (character/artifact/dynasty/county), source,
 
 - Trace entry -> state creation -> later consumer -> cleanup, including failure and replay.
 - Inspect scope type and participant/owner validity at each delayed event. Script shape checks cannot prove runtime scopes.
+- A source model must not assume that an unfamiliar vanilla helper means what its name suggests. Verify the helper against installed source, model only the semantics needed, and record unsupported native behavior as a runtime uncertainty.
 - For probabilistic changes, compare actual formula, caps and tooltip, and compute only meaningful route probabilities with explicit assumptions.
 - Extend static contracts only when they can catch real broken wiring. Do not add wording-matching tests as a proxy for behavior.
 - When game testing is left to the user, provide the new console/decision entry, expected state, reset instructions and the runtime uncertainty; do not launch CK3.

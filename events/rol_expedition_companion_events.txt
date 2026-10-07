@@ -1,0 +1,102 @@
+﻿namespace = rol_expedition_companion
+
+rol_expedition_companion.0001 = {
+	type = character_event
+	title = rol_expedition_companion.0001.t
+	desc = rol_expedition_companion.0001.desc
+	theme = diplomacy
+	override_background = { reference = rol_bg_rival_pact }
+	left_portrait = scope:rol_expedition_candidate_preview
+	trigger = {
+		is_ai = no
+		exists = scope:activity
+		scope:activity = { var:rol_expedition_companion_offer = 1 var:rol_expedition_growth_open = 1 }
+	}
+	option = {
+		name = rol_expedition_companion.0001.a
+		flavor = rol_expedition_companion.0001.a.flavor
+		trigger = { exists = scope:rol_expedition_candidate_scholar scope:rol_expedition_candidate_scholar = { rol_expedition_companion_fit_trigger = yes } scope:activity = { any_attending_character = { this = scope:rol_expedition_candidate_scholar } } }
+		custom_tooltip = rol_expedition_companion_scholar_terms_tt
+		rol_expedition_companion_accept_effect = { PARTNER = scope:rol_expedition_candidate_scholar ROLE = 1 }
+	}
+	option = {
+		name = rol_expedition_companion.0001.b
+		flavor = rol_expedition_companion.0001.b.flavor
+		trigger = { exists = scope:rol_expedition_candidate_guard scope:rol_expedition_candidate_guard = { rol_expedition_companion_fit_trigger = yes } scope:activity = { any_attending_character = { this = scope:rol_expedition_candidate_guard } } }
+		custom_tooltip = rol_expedition_companion_guard_terms_tt
+		rol_expedition_companion_accept_effect = { PARTNER = scope:rol_expedition_candidate_guard ROLE = 2 }
+	}
+	option = {
+		name = rol_expedition_companion.0001.c
+		flavor = rol_expedition_companion.0001.c.flavor
+		trigger = { exists = scope:rol_expedition_candidate_envoy scope:rol_expedition_candidate_envoy = { rol_expedition_companion_fit_trigger = yes } scope:activity = { any_attending_character = { this = scope:rol_expedition_candidate_envoy } } }
+		custom_tooltip = rol_expedition_companion_envoy_terms_tt
+		rol_expedition_companion_accept_effect = { PARTNER = scope:rol_expedition_candidate_envoy ROLE = 3 }
+	}
+	option = {
+		name = rol_expedition_companion.0001.d
+		flavor = rol_expedition_companion.0001.d.flavor
+		rol_expedition_companion_continue_effect = yes
+	}
+}
+
+rol_expedition_companion.0002 = {
+	type = character_event
+	title = rol_expedition_companion.0002.t
+	desc = {
+		first_valid = {
+			triggered_desc = { trigger = { NOT = { rol_expedition_companion_partner_alive_trigger = yes } } desc = rol_expedition_companion.0002.desc.absent }
+			triggered_desc = { trigger = { var:rol_expedition_companion_role = 1 } desc = rol_expedition_companion.0002.desc.scholar }
+			triggered_desc = { trigger = { var:rol_expedition_companion_role = 2 } desc = rol_expedition_companion.0002.desc.guard }
+			desc = rol_expedition_companion.0002.desc.envoy
+		}
+	}
+	theme = diplomacy
+	override_background = { reference = rol_bg_relic_legacy_transfer }
+	left_portrait = root
+	trigger = { is_alive = yes is_ai = no rol_expedition_companion_pending_trigger = yes }
+	immediate = {
+		if = {
+			limit = { rol_expedition_companion_partner_alive_trigger = yes }
+			var:rol_expedition_companion_partner = { save_scope_as = rol_expedition_companion }
+		}
+	}
+	option = {
+		name = rol_expedition_companion.0002.a
+		flavor = rol_expedition_companion.0002.a.flavor
+		trigger = {
+			rol_expedition_companion_partner_alive_trigger = yes
+			OR = { var:rol_expedition_companion_role != 2 gold >= 50 }
+			OR = { var:rol_expedition_companion_role != 1 prestige >= 50 }
+			OR = { var:rol_expedition_companion_role != 3 prestige >= 75 }
+		}
+		custom_tooltip = rol_expedition_companion_honour_tt
+		rol_expedition_companion_honour_effect = yes
+	}
+	option = {
+		name = rol_expedition_companion.0002.b
+		flavor = rol_expedition_companion.0002.b.flavor
+		trigger = { rol_expedition_companion_partner_alive_trigger = yes gold >= 25 }
+		custom_tooltip = rol_expedition_companion_compromise_tt
+		rol_expedition_companion_compromise_effect = yes
+	}
+	option = {
+		name = rol_expedition_companion.0002.c
+		flavor = rol_expedition_companion.0002.c.flavor
+		trigger = { rol_expedition_companion_partner_alive_trigger = yes }
+		custom_tooltip = rol_expedition_companion_refuse_tt
+		rol_expedition_companion_refuse_effect = yes
+	}
+	option = {
+		name = rol_expedition_companion.0002.d
+		flavor = rol_expedition_companion.0002.d.flavor
+		trigger = { rol_expedition_companion_partner_alive_trigger = yes }
+		custom_tooltip = rol_expedition_companion_defer_tt
+	}
+	option = {
+		name = rol_expedition_companion.0002.e
+		flavor = rol_expedition_companion.0002.e.flavor
+		trigger = { NOT = { rol_expedition_companion_partner_alive_trigger = yes } }
+		if = { limit = { rol_expedition_companion_pending_trigger = yes } rol_expedition_companion_clear_effect = yes }
+	}
+}

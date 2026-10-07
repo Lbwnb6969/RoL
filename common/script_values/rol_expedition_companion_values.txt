@@ -1,0 +1,18 @@
+﻿rol_expedition_companion_scholar_chance_modifier = {
+	value = 0
+	if = { limit = { rol_expedition_companion_scholar_trigger = yes } add = 3 }
+}
+
+# A prior fulfilled partner is preferred only if actually attending and qualified.
+rol_expedition_companion_scholar_order_value = {
+	value = learning
+	if = { limit = { exists = scope:rol_expedition_trusted_companion this = scope:rol_expedition_trusted_companion } add = 100 }
+}
+rol_expedition_companion_guard_order_value = {
+	value = prowess
+	if = { limit = { exists = scope:rol_expedition_trusted_companion this = scope:rol_expedition_trusted_companion } add = 100 }
+}
+rol_expedition_companion_envoy_order_value = {
+	value = diplomacy
+	if = { limit = { exists = scope:rol_expedition_trusted_companion this = scope:rol_expedition_trusted_companion } add = 100 }
+}

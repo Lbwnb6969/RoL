@@ -25,14 +25,14 @@ rol_select_expedition_rival_effect = {
 	save_scope_as = rol_expedition_host
 	scope:activity = {
 		random_attending_character = {
-			limit = { this != scope:rol_expedition_host is_alive = yes is_adult = yes }
+			limit = { rol_expedition_rival_candidate_trigger = yes }
 			save_scope_as = rol_expedition_rival
 		}
 	}
 	if = {
 		limit = { NOT = { exists = scope:rol_expedition_rival } }
 		random_courtier_or_guest = {
-			limit = { this != root is_alive = yes is_adult = yes }
+			limit = { rol_expedition_rival_candidate_trigger = yes }
 			save_scope_as = rol_expedition_rival
 		}
 	}

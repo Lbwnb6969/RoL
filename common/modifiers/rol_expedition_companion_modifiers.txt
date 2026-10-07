@@ -1,0 +1,2 @@
+﻿rol_expedition_kept_word_modifier = { icon = diplomacy_positive general_opinion = 3 }
+rol_expedition_broken_word_modifier = { icon = diplomacy_negative general_opinion = -3 }

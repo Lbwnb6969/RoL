@@ -9,6 +9,13 @@ rol_rival.1000 = {
 	left_portrait = scope:rol_expedition_rival
 	trigger = { is_ai = no exists = scope:activity exists = scope:rol_expedition_rival }
 	option = {
+		name = rol_rival.1000.d
+		flavor = rol_rival.1000.d.flavor
+		trigger = { rol_expedition_companion_envoy_trigger = yes }
+		custom_tooltip = rol_expedition_companion_mediation_tt
+		rol_expedition_companion_mediate_effect = yes
+	}
+	option = {
 		name = rol_rival.1000.a
 		flavor = rol_rival.1000.a.flavor
 		add_prestige = -50

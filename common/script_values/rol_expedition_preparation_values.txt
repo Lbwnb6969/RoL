@@ -2,6 +2,7 @@
 
 rol_expedition_preparation_success_chance_modifier = {
 	add = rol_expedition_journal_success_chance_modifier
+	add = rol_expedition_companion_scholar_chance_modifier
 	if = {
 		limit = { rol_expedition_preparation_supreme_trigger = yes }
 		add = 20

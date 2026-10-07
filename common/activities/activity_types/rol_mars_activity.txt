@@ -37,6 +37,7 @@ activity_rol_seek_mars_blade = {
 			rol_clear_rival_route_effect = yes
 			rol_set_context_mars_weapon_effect = yes
 			rol_expedition_growth_begin_effect = { ROUTE = mars }
+			rol_expedition_companion_begin_effect = yes
 
 			if = {
 				limit = { has_variable = rol_rome_stage_count }
@@ -244,6 +245,7 @@ activity_rol_seek_mars_blade = {
 
 	on_complete = {
 		scope:host = {
+			rol_expedition_companion_finish_effect = { STAGE_VARIABLE = rol_rome_stage_count }
 			rol_expedition_growth_abandon_effect = yes
 
 			rol_clear_context_mars_weapon_effect = yes

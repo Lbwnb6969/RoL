@@ -37,6 +37,7 @@ activity_rol_seek_astrolabe_of_ocean = {
 			rol_clear_rival_route_effect = yes
 			rol_set_context_astrolabe_accessory_effect = yes
 			rol_expedition_growth_begin_effect = { ROUTE = astrolabe }
+			rol_expedition_companion_begin_effect = yes
 
 			if = {
 				limit = { has_variable = rol_sevilla_stage_count }
@@ -237,6 +238,7 @@ activity_rol_seek_astrolabe_of_ocean = {
 
 	on_complete = {
 		scope:host = {
+			rol_expedition_companion_finish_effect = { STAGE_VARIABLE = rol_sevilla_stage_count }
 			rol_expedition_growth_abandon_effect = yes
 
 			rol_clear_context_astrolabe_accessory_effect = yes

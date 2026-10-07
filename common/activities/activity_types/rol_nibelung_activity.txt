@@ -37,6 +37,7 @@ activity_rol_seek_nibelung_sphere = {
 			rol_clear_rival_route_effect = yes
 			rol_set_context_nibelung_regalia_effect = yes
 			rol_expedition_growth_begin_effect = { ROUTE = nibelung }
+			rol_expedition_companion_begin_effect = yes
 
 			if = {
 				limit = { has_variable = rol_munich_stage_count }
@@ -237,6 +238,7 @@ activity_rol_seek_nibelung_sphere = {
 
 	on_complete = {
 		scope:host = {
+			rol_expedition_companion_finish_effect = { STAGE_VARIABLE = rol_munich_stage_count }
 			rol_expedition_growth_abandon_effect = yes
 
 			rol_clear_context_nibelung_regalia_effect = yes

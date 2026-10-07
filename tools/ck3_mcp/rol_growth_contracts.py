@@ -63,7 +63,7 @@ def expand(nodes: list, parameters: dict) -> list:
     return [(scalar(k), op, expand(v, parameters) if isinstance(v, list) else scalar(v)) for k, op, v in nodes]
 
 
-@dataclass
+@dataclass(eq=False)
 class State:
     variables: dict = field(default_factory=dict)
     flags: set = field(default_factory=set)
@@ -74,32 +74,72 @@ class State:
     stress: float = 20
     activity: dict | None = field(default_factory=dict)
     preparation: str = "standard"
+    gold: float = 200
+    prestige: float = 200
+    learning: float = 15
+    prowess: float = 15
+    diplomacy: float = 15
+    alive: bool = True
+    adult: bool = True
+    available: bool = True
+    imprisoned: bool = False
+    scopes: dict = field(default_factory=dict)
+    attendees: list = field(default_factory=list)
+    opinions: list = field(default_factory=list)
+    progress_effects: list = field(default_factory=list)
 
 
 class Model:
     def __init__(self, root: Path):
         self.effects = dict((k, v) for k, _, v in parse((root / "common/scripted_effects/rol_expedition_growth_effects.txt").read_text(encoding="utf-8-sig")))
+        companion_effects = root / "common/scripted_effects/rol_expedition_companion_effects.txt"
+        if companion_effects.exists():
+            self.effects.update({k: v for k, _, v in parse(companion_effects.read_text(encoding="utf-8-sig"))})
+            rival = parse((root / "common/scripted_effects/rol_rival_effects.txt").read_text(encoding="utf-8-sig"))
+            self.effects["rol_clear_rival_route_effect"] = get(rival, "rol_clear_rival_route_effect")
         self.triggers = {}
         self.values = {}
         for name, directory, files in (
-            (self.triggers, "scripted_triggers", ("rol_expedition_growth_triggers.txt", "rol_expedition_preparation_triggers.txt")),
-            (self.values, "script_values", ("rol_expedition_growth_values.txt", "rol_expedition_preparation_values.txt")),
+            (self.triggers, "scripted_triggers", ("rol_expedition_growth_triggers.txt", "rol_expedition_preparation_triggers.txt", "rol_expedition_companion_triggers.txt")),
+            (self.values, "script_values", ("rol_expedition_growth_values.txt", "rol_expedition_preparation_values.txt", "rol_expedition_companion_values.txt")),
         ):
             for filename in files:
                 nodes = parse((root / "common" / directory / filename).read_text(encoding="utf-8-sig"))
                 name.update({k: v for k, _, v in nodes})
 
-    def number(self, value: str, state: State, scope: str = "actor") -> float:
-        if value.startswith("scope:activity.var:"):
-            return state.activity[value.split("var:", 1)[1]]
-        if value.startswith("var:"):
-            return (state.variables if scope == "actor" else state.activity)[value[4:]]
+    def current(self, state: State, scope):
+        return state if scope == "actor" else state.activity if scope == "activity" else scope
+
+    def variables(self, state: State, scope) -> dict:
+        current = self.current(state, scope)
+        return current.variables if isinstance(current, State) else (current if current is not None else {})
+
+    def reference(self, value: str, state: State, scope="actor"):
+        if ".var:" in value:
+            prefix, name = value.split(".var:", 1)
+            base = self.reference(prefix, state, scope)
+            return (base.variables if isinstance(base, State) else (base or {})).get(name)
+        if value == "root": return state
+        if value == "this": return self.current(state, scope)
+        if value == "scope:activity": return state.activity
+        if value.startswith("scope:"): return state.scopes.get(value[6:])
+        if value.startswith("var:"): return self.variables(state, scope).get(value[4:])
+        raise ValueError(f"unsupported reference {value}")
+
+    def number(self, value: str, state: State, scope="actor"):
+        if value.startswith(("scope:", "var:", "root.var:")):
+            resolved = self.reference(value, state, scope)
+            if resolved is None: raise ValueError(f"missing value {value}")
+            return resolved
+        if value in ("learning", "prowess", "diplomacy", "gold", "prestige"):
+            return getattr(self.current(state, scope), value)
         if value in self.values:
             return self.calculate(self.values[value], state, scope)
         return float(value)
 
-    def condition(self, nodes: list, state: State, scope: str = "actor") -> bool:
+    def condition(self, nodes: list, state: State, scope="actor") -> bool:
         def entry(key, op, value):
+            current = self.current(state, scope)
             if key == "NOT":
                 return not self.condition(value, state, scope)
             if key == "OR":
@@ -109,29 +149,52 @@ class Model:
             if key == "always":
                 return value == "yes"
             if key == "exists":
-                if value != "scope:activity":
-                    raise ValueError(f"unsupported exists {value}")
-                return state.activity is not None
-            if key == "scope:activity":
-                return state.activity is not None and self.condition(value, state, "activity")
+                return self.reference(value, state, scope) is not None
+            if key == "trigger_if":
+                return not self.condition(get(value, "limit"), state, scope) or self.condition([n for n in value if n[0] != "limit"], state, scope)
+            if key.startswith(("scope:", "var:")) and isinstance(value, list):
+                target = self.reference(key, state, scope)
+                return target is not None and self.condition(value, state, "activity" if key == "scope:activity" else target)
             if key == "has_variable":
-                return value in (state.variables if scope == "actor" else (state.activity or {}))
+                return value in self.variables(state, scope)
             if key in ("has_character_flag", "has_character_modifier", "has_trait"):
-                collection = {"has_character_flag": state.flags, "has_character_modifier": state.modifiers, "has_trait": state.traits}[key]
+                collection = {"has_character_flag": current.flags, "has_character_modifier": current.modifiers, "has_trait": current.traits}[key]
                 return value in collection
+            if key in ("is_alive", "is_adult", "is_imprisoned", "is_available_adult"):
+                result = {"is_alive": current.alive, "is_adult": current.adult, "is_imprisoned": current.imprisoned, "is_available_adult": current.alive and current.adult and current.available}[key]
+                return result if value == "yes" else not result
+            if key == "any_attending_character":
+                return any(self.condition(value, state, person) for person in state.attendees)
+            if key == "has_trait_xp":
+                comparison = next(n for n in value if n[0] == "value")
+                return get(value, "trait") in current.traits and comparison[1] == ">=" and current.xp.get(get(value, "track"), 0) >= float(comparison[2])
             if key == "has_activity_option":
                 return get(value, "option") == f"rol_expedition_preparation_{state.preparation}"
             if key in self.triggers:
                 result = self.condition(self.triggers[key], state, scope)
                 return result if value == "yes" else not result
             if key.startswith("var:"):
-                variables = state.variables if scope == "actor" else (state.activity or {})
+                variables = self.variables(state, scope)
                 if key[4:] not in variables:
                     return False
                 left, right = self.number(key, state, scope), self.number(value, state, scope)
-                return {"=": left == right, "!=": left != right, ">": left > right, "<": left < right, ">=": left >= right, "<=": left <= right}[op]
+                return self.compare(left, op, right)
+            if key == "this":
+                return self.compare(current, op, self.reference(value, state, scope))
+            if key in ("learning", "prowess", "diplomacy", "gold", "prestige"):
+                return self.compare(getattr(current, key), op, self.number(value, state, scope))
             raise ValueError(f"unsupported condition {key}")
         return all(entry(*node) for node in nodes)
+
+    @staticmethod
+    def compare(left, op, right):
+        if op == "=": return left == right
+        if op == "!=": return left != right
+        if op == ">=": return left >= right
+        if op == "<=": return left <= right
+        if op == ">": return left > right
+        if op == "<": return left < right
+        raise ValueError(f"unsupported comparison {op}")
 
     def selected(self, nodes: list, state: State, scope: str):
         taken = False
@@ -161,29 +224,42 @@ class Model:
     def call(self, name: str, state: State, parameters: dict | None = None):
         self.run(expand(self.effects[name], parameters or {}), state)
 
-    def run(self, nodes: list, state: State, scope: str = "actor"):
+    def run(self, nodes: list, state: State, scope="actor"):
         for key, op, value in self.selected(nodes, state, scope):
-            variables = state.variables if scope == "actor" else state.activity
-            if key == "scope:activity":
-                if state.activity is None:
+            current = self.current(state, scope)
+            variables = self.variables(state, scope)
+            if key.startswith(("scope:", "var:")) and isinstance(value, list):
+                target = self.reference(key, state, scope)
+                if target is None:
                     if op == "?=": continue
-                    raise ValueError("required activity scope is missing")
-                self.run(value, state, "activity")
+                    raise ValueError(f"required scope is missing: {key}")
+                self.run(value, state, "activity" if key == "scope:activity" else target)
+            elif key == "save_scope_as": state.scopes[value] = current
+            elif key == "ordered_attending_character":
+                candidates = [person for person in state.attendees if self.condition(get(value, "limit"), state, person)]
+                candidates.sort(key=lambda person: self.number(get(value, "order_by"), state, person), reverse=True)
+                body = [n for n in value if n[0] not in ("limit", "order_by", "max")]
+                for person in candidates[:int(get(value, "max"))]: self.run(body, state, person)
             elif key in ("set_variable", "change_variable"):
                 name = get(value, "name")
                 operand = get(value, "value" if key == "set_variable" else "add")
                 number = self.number(operand, state, scope)
                 variables[name] = number if key == "set_variable" else variables[name] + number
             elif key == "remove_variable": variables.pop(value, None)
-            elif key == "add_character_flag": state.flags.add(value)
-            elif key == "remove_character_flag": state.flags.discard(value)
-            elif key == "add_character_modifier": state.modifiers[get(value, "modifier")] = self.number(get(value, "years"), state)
-            elif key == "remove_character_modifier": state.modifiers.pop(value, None)
-            elif key == "add_trait": state.traits.add(value)
+            elif key == "add_character_flag": current.flags.add(value)
+            elif key == "remove_character_flag": current.flags.discard(value)
+            elif key == "add_character_modifier": current.modifiers[get(value, "modifier")] = self.number(get(value, "years"), state, scope)
+            elif key == "remove_character_modifier": current.modifiers.pop(value, None)
+            elif key == "add_trait": current.traits.add(value)
             elif key == "add_trait_xp":
                 track = get(value, "track")
-                state.xp[track] = min(100, state.xp.get(track, 0) + self.number(get(value, "value"), state))
-            elif key == "add_stress": state.stress = max(0, state.stress + self.number(value, state))
+                current.xp[track] = min(100, current.xp.get(track, 0) + self.number(get(value, "value"), state, scope))
+            elif key == "add_stress": current.stress = max(0, current.stress + self.number(value, state, scope))
+            elif key == "add_prestige": current.prestige += self.number(value, state, scope)
+            elif key == "add_gold": current.gold += self.number(value, state, scope)
+            elif key == "remove_short_term_gold": current.gold -= self.number(value, state, scope)
+            elif key == "add_opinion": current.opinions.append((self.reference(get(value, "target"), state, scope), get(value, "modifier")))
+            elif key.startswith("activity_special_type_progression_"): state.progress_effects.append(key)  # native operation recorded, not emulated
             elif key == "trigger_event": state.events.append(get(value, "id") if isinstance(value, list) else value)
             elif key == "send_interface_toast": pass  # presentation only
             elif key in self.effects: self.call(key, state, {k: v for k, _, v in value} if isinstance(value, list) else {})

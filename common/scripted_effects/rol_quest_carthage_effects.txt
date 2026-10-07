@@ -145,6 +145,7 @@ rol_carthage_store_failure_result_effect = {
 }
 
 rol_carthage_quest_success_finalize_effect = {
+	rol_expedition_companion_finish_effect = { STAGE_VARIABLE = rol_carthage_stage_count }
 	rol_expedition_growth_finish_effect = { ROUTE = carthage RESULT_XP = 30 LEAVE_NOTES = no }
 	rol_carthage_clamp_success_progress_effect = yes
 	rol_carthage_store_success_result_effect = yes
@@ -173,6 +174,7 @@ rol_carthage_quest_success_finalize_effect = {
 }
 
 rol_carthage_quest_partial_finalize_effect = {
+	rol_expedition_companion_finish_effect = { STAGE_VARIABLE = rol_carthage_stage_count }
 	rol_expedition_growth_finish_effect = { ROUTE = carthage RESULT_XP = 20 LEAVE_NOTES = yes }
 	rol_carthage_clamp_success_progress_effect = yes
 	rol_carthage_store_success_result_effect = yes
@@ -195,6 +197,7 @@ rol_apply_carthage_activity_cooldown_effect = {
 		rol_expedition_growth_finish_effect = { ROUTE = carthage RESULT_XP = 10 LEAVE_NOTES = no }
 	}
 	else = { rol_expedition_growth_abandon_effect = yes }
+	rol_expedition_companion_finish_effect = { STAGE_VARIABLE = rol_carthage_stage_count }
 	rol_relic_apply_cooldown_effect = {
 		COOLDOWN_MODIFIER = rol_carthage_quest_cooldown_modifier
 		COOLDOWN_YEARS = 2

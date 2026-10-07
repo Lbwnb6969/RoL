@@ -15,3 +15,9 @@ rol_expedition_grudge_opinion = {
 		years = 5
 		decaying = yes
 }
+
+rol_expedition_fulfilled_pact_opinion = {
+	opinion = 25
+	years = 5
+	decaying = yes
+}

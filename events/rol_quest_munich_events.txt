@@ -21,7 +21,7 @@ rol_quest_munich.0990 = {
 		
 		flavor = rol_quest_munich.0990.a.flavor
 		hidden_effect = {
-			trigger_event = { id = rol_quest_munich.1000 days = 1 }
+			rol_expedition_companion_offer_effect = { NEXT_EVENT = rol_quest_munich.1000 }
 		}
 	}
 }
@@ -228,6 +228,29 @@ rol_quest_munich.1000 = {
 		hidden_effect = {
 			scope:activity ?= { activity_special_type_progression_negative_major = yes }
 			trigger_event = { id = rol_quest_munich.1012 days = 1 }
+		}
+	}
+
+	option = {
+		name = rol_expedition_guard_route_option
+		flavor = rol_expedition_guard_route_flavor
+		trigger = { rol_expedition_first_trial_trigger = yes rol_expedition_companion_guard_trigger = yes gold >= 75 }
+		custom_tooltip = rol_expedition_guard_route_tt
+		rol_expedition_prepared_route_effect = {
+			COST = 75
+			QUALIFICATION = rol_expedition_companion_guard_trigger
+			NEXT_EVENT = rol_quest_munich.1010
+		}
+	}
+	option = {
+		name = rol_expedition_expert_route_option
+		flavor = rol_expedition_expert_route_flavor
+		trigger = { rol_expedition_expert_route_trigger = yes gold >= 100 }
+		custom_tooltip = rol_expedition_expert_route_tt
+		rol_expedition_prepared_route_effect = {
+			COST = 100
+			QUALIFICATION = rol_expedition_expert_route_trigger
+			NEXT_EVENT = rol_quest_munich.1010
 		}
 	}
 }

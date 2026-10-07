@@ -1,0 +1,83 @@
+﻿rol_expedition_companion_partner_alive_trigger = {
+	has_variable = rol_expedition_companion_partner
+	exists = var:rol_expedition_companion_partner
+	var:rol_expedition_companion_partner = { is_alive = yes }
+}
+
+# Vanilla is_available_adult excludes involved_activity; do not use it for attendees.
+rol_expedition_companion_fit_trigger = {
+	is_alive = yes
+	is_adult = yes
+	is_imprisoned = no
+	NOT = { has_trait = incapable }
+}
+
+rol_expedition_companion_present_trigger = {
+	exists = scope:activity
+	rol_expedition_companion_partner_alive_trigger = yes
+	scope:activity = {
+		var:rol_expedition_companion_open = 1
+		any_attending_character = {
+			this = root.var:rol_expedition_companion_partner
+			rol_expedition_companion_fit_trigger = yes
+		}
+	}
+}
+
+rol_expedition_companion_scholar_trigger = {
+	rol_expedition_companion_present_trigger = yes
+	scope:activity = { var:rol_expedition_companion_role = 1 }
+}
+
+rol_expedition_companion_guard_trigger = {
+	rol_expedition_companion_present_trigger = yes
+	scope:activity = { var:rol_expedition_companion_role = 2 }
+}
+
+rol_expedition_companion_envoy_trigger = {
+	rol_expedition_companion_present_trigger = yes
+	scope:activity = {
+		var:rol_expedition_companion_role = 3
+		var:rol_expedition_companion_mediation_used = 0
+	}
+}
+
+rol_expedition_companion_pending_trigger = {
+	has_character_flag = rol_expedition_companion_settlement_pending
+}
+
+rol_expedition_first_trial_trigger = {
+	exists = scope:activity
+	scope:activity = {
+		var:rol_expedition_growth_open = 1
+		var:rol_expedition_first_trial_used = 0
+	}
+	OR = {
+		AND = { has_character_flag = rol_relic_context_mars OR = { NOT = { has_variable = rol_rome_stage_count } var:rol_rome_stage_count = 0 } }
+		AND = { has_character_flag = rol_relic_context_nibelung OR = { NOT = { has_variable = rol_munich_stage_count } var:rol_munich_stage_count = 0 } }
+		AND = { has_character_flag = rol_relic_context_naxos OR = { NOT = { has_variable = rol_naxos_stage_count } var:rol_naxos_stage_count = 0 } }
+		AND = { has_character_flag = rol_relic_context_astrolabe OR = { NOT = { has_variable = rol_sevilla_stage_count } var:rol_sevilla_stage_count = 0 } }
+		AND = { has_character_flag = rol_relic_context_carthage OR = { NOT = { has_variable = rol_carthage_stage_count } var:rol_carthage_stage_count = 0 } }
+	}
+}
+
+rol_expedition_expert_route_trigger = {
+	rol_expedition_first_trial_trigger = yes
+	has_trait = rol_relic_seeker
+	OR = {
+		has_trait_xp = { trait = rol_relic_seeker track = rol_research value >= 60 }
+		has_trait_xp = { trait = rol_relic_seeker track = rol_exploration value >= 60 }
+		has_trait_xp = { trait = rol_relic_seeker track = rol_negotiation value >= 60 }
+	}
+}
+
+# Evaluated on a potential rival, with the original host saved by the selector.
+rol_expedition_rival_candidate_trigger = {
+	this != scope:rol_expedition_host
+	is_alive = yes
+	is_adult = yes
+	trigger_if = {
+		limit = { exists = scope:rol_expedition_host.var:rol_expedition_companion_partner }
+		this != scope:rol_expedition_host.var:rol_expedition_companion_partner
+	}
+}
