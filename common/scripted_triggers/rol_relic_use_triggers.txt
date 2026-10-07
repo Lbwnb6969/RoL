@@ -1,0 +1,59 @@
+﻿rol_relic_use_ready_trigger = {
+ custom_description = {
+  text = rol_relic_use_ready_tt
+  is_alive = yes
+  is_adult = yes
+  NOT = { has_character_flag = rol_relic_use_pending }
+  NOT = { has_character_flag = rol_relic_use_cooldown }
+  gold >= 50
+ }
+}
+
+rol_relic_use_candidate_owned_trigger = {
+ exists = scope:rol_relic_use_candidate
+ scope:rol_relic_use_candidate = { artifact_owner = root }
+}
+
+# Artifact scope.
+rol_relic_has_use_mode_trigger = {
+ OR = {
+  has_artifact_modifier = rol_relic_use_1_field_modifier
+  has_artifact_modifier = rol_relic_use_1_oath_modifier
+  has_artifact_modifier = rol_relic_use_2_study_modifier
+  has_artifact_modifier = rol_relic_use_2_display_modifier
+  has_artifact_modifier = rol_relic_use_3_navigation_modifier
+  has_artifact_modifier = rol_relic_use_3_teaching_modifier
+  has_artifact_modifier = rol_relic_use_4_dread_modifier
+  has_artifact_modifier = rol_relic_use_4_restoration_modifier
+ }
+}
+
+rol_relic_use_pending_trigger = {
+ has_character_flag = rol_relic_use_pending
+ has_variable = rol_relic_use_generation
+ has_variable = rol_relic_use_mode
+}
+
+# Each delayed event carries its own generation. An old event cannot cash a new job.
+rol_relic_use_generation_matches_trigger = {
+ rol_relic_use_pending_trigger = yes
+ exists = scope:rol_relic_use_generation
+ scope:rol_relic_use_generation = var:rol_relic_use_generation
+}
+
+rol_relic_use_project_valid_trigger = {
+ rol_relic_use_generation_matches_trigger = yes
+ NOT = { has_character_flag = rol_relic_use_waiting }
+ OR = {
+  AND = { var:rol_relic_use_mode = 1 exists = var:rol_relic_use_artifact var:rol_relic_use_artifact = { artifact_owner = root artifact_type = rol_blade_of_mars has_artifact_modifier = rol_relic_use_1_field_modifier } }
+  AND = { var:rol_relic_use_mode = 2 exists = var:rol_relic_use_artifact var:rol_relic_use_artifact = { artifact_owner = root artifact_type = rol_blade_of_mars has_artifact_modifier = rol_relic_use_1_oath_modifier } }
+  AND = { var:rol_relic_use_mode = 3 exists = var:rol_relic_use_artifact var:rol_relic_use_artifact = { artifact_owner = root artifact_type = rol_nibelung_star_sphere has_artifact_modifier = rol_relic_use_2_study_modifier } }
+  AND = { var:rol_relic_use_mode = 4 exists = var:rol_relic_use_artifact var:rol_relic_use_artifact = { artifact_owner = root artifact_type = rol_nibelung_star_sphere has_artifact_modifier = rol_relic_use_2_display_modifier } }
+  AND = { var:rol_relic_use_mode = 5 exists = var:rol_relic_use_artifact var:rol_relic_use_artifact = { artifact_owner = root artifact_type = rol_astrolabe_of_ocean has_artifact_modifier = rol_relic_use_3_navigation_modifier } }
+  AND = { var:rol_relic_use_mode = 6 exists = var:rol_relic_use_artifact var:rol_relic_use_artifact = { artifact_owner = root artifact_type = rol_astrolabe_of_ocean has_artifact_modifier = rol_relic_use_3_teaching_modifier } }
+  AND = { var:rol_relic_use_mode = 7 exists = var:rol_relic_use_artifact var:rol_relic_use_artifact = { artifact_owner = root artifact_type = rol_ash_forged_mask has_artifact_modifier = rol_relic_use_4_dread_modifier } }
+  AND = { var:rol_relic_use_mode = 8 exists = var:rol_relic_use_artifact var:rol_relic_use_artifact = { artifact_owner = root artifact_type = rol_ash_forged_mask has_artifact_modifier = rol_relic_use_4_restoration_modifier } }
+  AND = { var:rol_relic_use_mode = 9 has_character_flag = rol_naxos_unit_unlocked has_character_modifier = rol_relic_use_5_field_modifier }
+  AND = { var:rol_relic_use_mode = 10 has_character_flag = rol_naxos_unit_unlocked has_character_modifier = rol_relic_use_5_training_modifier }
+ }
+}

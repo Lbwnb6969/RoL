@@ -16,6 +16,12 @@
 
 rol_relic_changed_owner_on_action = {
 	effect = {
+		# Artifact-bound equipment benefits leave the old owner immediately. All new
+		# owners (including AI) must choose their own use instead of inheriting a job.
+		if = {
+			limit = { rol_relic_has_use_mode_trigger = yes }
+			rol_relic_use_clear_artifact_modes_effect = yes
+		}
 		if = {
 			limit = {
 				OR = {

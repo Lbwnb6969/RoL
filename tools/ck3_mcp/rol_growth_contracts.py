@@ -87,6 +87,10 @@ class State:
     attendees: list = field(default_factory=list)
     opinions: list = field(default_factory=list)
     progress_effects: list = field(default_factory=list)
+    artifact_type: str = ""
+    owner: State | None = None
+    artifacts: list = field(default_factory=list)
+    flag_durations: dict = field(default_factory=dict)
 
 
 class Model:
@@ -97,6 +101,9 @@ class Model:
             self.effects.update({k: v for k, _, v in parse(companion_effects.read_text(encoding="utf-8-sig"))})
             rival = parse((root / "common/scripted_effects/rol_rival_effects.txt").read_text(encoding="utf-8-sig"))
             self.effects["rol_clear_rival_route_effect"] = get(rival, "rol_clear_rival_route_effect")
+        relic_effects = root / "common/scripted_effects/rol_relic_use_effects.txt"
+        if relic_effects.exists():
+            self.effects.update({k: v for k, _, v in parse(relic_effects.read_text(encoding="utf-8-sig"))})
         self.triggers = {}
         self.values = {}
         for name, directory, files in (
@@ -106,6 +113,9 @@ class Model:
             for filename in files:
                 nodes = parse((root / "common" / directory / filename).read_text(encoding="utf-8-sig"))
                 name.update({k: v for k, _, v in nodes})
+        relic_triggers = root / "common/scripted_triggers/rol_relic_use_triggers.txt"
+        if relic_triggers.exists():
+            self.triggers.update({k: v for k, _, v in parse(relic_triggers.read_text(encoding="utf-8-sig"))})
 
     def current(self, state: State, scope):
         return state if scope == "actor" else state.activity if scope == "activity" else scope
@@ -152,11 +162,18 @@ class Model:
                 return self.reference(value, state, scope) is not None
             if key == "trigger_if":
                 return not self.condition(get(value, "limit"), state, scope) or self.condition([n for n in value if n[0] != "limit"], state, scope)
+            if key == "custom_description":
+                return self.condition([n for n in value if n[0] != "text"], state, scope)
             if key.startswith(("scope:", "var:")) and isinstance(value, list):
                 target = self.reference(key, state, scope)
                 return target is not None and self.condition(value, state, "activity" if key == "scope:activity" else target)
             if key == "has_variable":
                 return value in self.variables(state, scope)
+            if key == "artifact_type": return current.artifact_type == value
+            if key == "artifact_owner": return current.owner is self.reference(value, state, scope)
+            if key == "has_artifact_modifier": return value in current.modifiers
+            if key == "any_character_artifact":
+                return any(artifact.owner is current and self.condition(value, state, artifact) for artifact in current.artifacts)
             if key in ("has_character_flag", "has_character_modifier", "has_trait"):
                 collection = {"has_character_flag": current.flags, "has_character_modifier": current.modifiers, "has_trait": current.traits}[key]
                 return value in collection
@@ -179,6 +196,9 @@ class Model:
                     return False
                 left, right = self.number(key, state, scope), self.number(value, state, scope)
                 return self.compare(left, op, right)
+            if key.startswith("scope:"):
+                left = self.reference(key, state, scope)
+                return left is not None and self.compare(left, op, self.number(value, state, scope))
             if key == "this":
                 return self.compare(current, op, self.reference(value, state, scope))
             if key in ("learning", "prowess", "diplomacy", "gold", "prestige"):
@@ -221,8 +241,8 @@ class Model:
             else: raise ValueError(f"unsupported value operation {key}")
         return total
 
-    def call(self, name: str, state: State, parameters: dict | None = None):
-        self.run(expand(self.effects[name], parameters or {}), state)
+    def call(self, name: str, state: State, parameters: dict | None = None, scope="actor"):
+        self.run(expand(self.effects[name], parameters or {}), state, scope)
 
     def run(self, nodes: list, state: State, scope="actor"):
         for key, op, value in self.selected(nodes, state, scope):
@@ -235,6 +255,11 @@ class Model:
                     raise ValueError(f"required scope is missing: {key}")
                 self.run(value, state, "activity" if key == "scope:activity" else target)
             elif key == "save_scope_as": state.scopes[value] = current
+            elif key == "save_scope_value_as": state.scopes[get(value, "name")] = self.number(get(value, "value"), state, scope)
+            elif key == "random_character_artifact":
+                candidates = [artifact for artifact in current.artifacts if artifact.owner is current and self.condition(get(value, "limit"), state, artifact)]
+                # Use the first qualifying item; this checks filtering, not CK3 randomness.
+                if candidates: self.run([n for n in value if n[0] != "limit"], state, candidates[0])
             elif key == "ordered_attending_character":
                 candidates = [person for person in state.attendees if self.condition(get(value, "limit"), state, person)]
                 candidates.sort(key=lambda person: self.number(get(value, "order_by"), state, person), reverse=True)
@@ -246,10 +271,15 @@ class Model:
                 number = self.number(operand, state, scope)
                 variables[name] = number if key == "set_variable" else variables[name] + number
             elif key == "remove_variable": variables.pop(value, None)
-            elif key == "add_character_flag": current.flags.add(value)
+            elif key == "add_character_flag":
+                flag = get(value, "flag") if isinstance(value, list) else value
+                current.flags.add(flag)
+                if isinstance(value, list): current.flag_durations[flag] = [(k, v) for k, _, v in value if k != "flag"]
             elif key == "remove_character_flag": current.flags.discard(value)
             elif key == "add_character_modifier": current.modifiers[get(value, "modifier")] = self.number(get(value, "years"), state, scope)
             elif key == "remove_character_modifier": current.modifiers.pop(value, None)
+            elif key == "add_artifact_modifier": current.modifiers[value] = None
+            elif key == "remove_artifact_modifier": current.modifiers.pop(value, None)
             elif key == "add_trait": current.traits.add(value)
             elif key == "add_trait_xp":
                 track = get(value, "track")
@@ -262,7 +292,7 @@ class Model:
             elif key.startswith("activity_special_type_progression_"): state.progress_effects.append(key)  # native operation recorded, not emulated
             elif key == "trigger_event": state.events.append(get(value, "id") if isinstance(value, list) else value)
             elif key == "send_interface_toast": pass  # presentation only
-            elif key in self.effects: self.call(key, state, {k: v for k, _, v in value} if isinstance(value, list) else {})
+            elif key in self.effects: self.call(key, state, {k: v for k, _, v in value} if isinstance(value, list) else {}, scope)
             else: raise ValueError(f"unsupported effect {key}")
 
 

@@ -1,0 +1,136 @@
+﻿# Artifact scope. Only use-mode modifiers are replaced; base and fragment benefits remain.
+rol_relic_use_clear_artifact_modes_effect = {
+ remove_artifact_modifier = rol_relic_use_1_field_modifier
+ remove_artifact_modifier = rol_relic_use_1_oath_modifier
+ remove_artifact_modifier = rol_relic_use_2_study_modifier
+ remove_artifact_modifier = rol_relic_use_2_display_modifier
+ remove_artifact_modifier = rol_relic_use_3_navigation_modifier
+ remove_artifact_modifier = rol_relic_use_3_teaching_modifier
+ remove_artifact_modifier = rol_relic_use_4_dread_modifier
+ remove_artifact_modifier = rol_relic_use_4_restoration_modifier
+
+}
+
+rol_relic_use_clear_naxos_modes_effect = {
+ remove_character_modifier = rol_relic_use_5_field_modifier
+ remove_character_modifier = rol_relic_use_5_training_modifier
+}
+
+rol_relic_use_clear_pending_effect = {
+ remove_character_flag = rol_relic_use_pending
+ remove_character_flag = rol_relic_use_waiting
+ remove_variable = rol_relic_use_artifact
+ remove_variable = rol_relic_use_mode
+ # Keep the monotonic generation and one-year cooldown; cancellation never refunds.
+}
+
+rol_relic_use_begin_project_effect = {
+ if = {
+  limit = { NOT = { has_variable = rol_relic_use_generation } }
+  set_variable = { name = rol_relic_use_generation value = 0 }
+ }
+ change_variable = { name = rol_relic_use_generation add = 1 }
+ set_variable = { name = rol_relic_use_mode value = $MODE$ }
+ add_character_flag = rol_relic_use_pending
+ add_character_flag = { flag = rol_relic_use_waiting days = 180 }
+ add_character_flag = { flag = rol_relic_use_cooldown years = 1 }
+ save_scope_value_as = { name = rol_relic_use_generation value = var:rol_relic_use_generation }
+ # One day after the waiting flag expires avoids same-tick expiry/event ordering.
+ trigger_event = { id = rol_relic_use.0003 days = 181 }
+}
+
+rol_relic_use_select_artifact_effect = {
+ if = {
+  limit = {
+   rol_relic_use_ready_trigger = yes
+   rol_relic_use_candidate_owned_trigger = yes
+   scope:rol_relic_use_candidate = { artifact_type = $TYPE$ }
+  }
+  remove_short_term_gold = 50
+  scope:rol_relic_use_candidate = {
+   rol_relic_use_clear_artifact_modes_effect = yes
+   add_artifact_modifier = $MODIFIER$
+  }
+  set_variable = { name = rol_relic_use_artifact value = scope:rol_relic_use_candidate }
+  rol_relic_use_begin_project_effect = { MODE = $MODE$ }
+ }
+}
+
+rol_relic_use_select_naxos_effect = {
+ if = {
+  limit = { rol_relic_use_ready_trigger = yes has_character_flag = rol_naxos_unit_unlocked }
+  remove_short_term_gold = 50
+  rol_relic_use_clear_naxos_modes_effect = yes
+  add_character_modifier = { modifier = $MODIFIER$ years = 3 }
+  remove_variable = rol_relic_use_artifact
+  rol_relic_use_begin_project_effect = { MODE = $MODE$ }
+ }
+}
+
+# Restores the current generation only for recovery; ordinary queued events keep their own.
+rol_relic_use_reopen_effect = {
+ if = {
+  limit = { rol_relic_use_pending_trigger = yes NOT = { has_character_flag = rol_relic_use_waiting } }
+  save_scope_value_as = { name = rol_relic_use_generation value = var:rol_relic_use_generation }
+  trigger_event = rol_relic_use.0003
+ }
+}
+
+rol_relic_use_record_experience_effect = {
+ if = {
+  limit = { rol_relic_use_project_valid_trigger = yes }
+  if = { limit = { NOT = { has_trait = rol_relic_seeker } } add_trait = rol_relic_seeker }
+  if = { limit = { var:rol_relic_use_mode = 1 } add_trait_xp = { trait = rol_relic_seeker track = rol_exploration value = 10 } if = { limit = { has_trait = brave } add_stress = -5 } }
+  else_if = { limit = { var:rol_relic_use_mode = 2 } add_trait_xp = { trait = rol_relic_seeker track = rol_negotiation value = 10 } if = { limit = { has_trait = just } add_stress = -5 } }
+  else_if = { limit = { var:rol_relic_use_mode = 3 } add_trait_xp = { trait = rol_relic_seeker track = rol_research value = 10 } if = { limit = { has_trait = diligent } add_stress = -5 } }
+  else_if = { limit = { var:rol_relic_use_mode = 4 } add_trait_xp = { trait = rol_relic_seeker track = rol_negotiation value = 10 } if = { limit = { has_trait = gregarious } add_stress = -5 } }
+  else_if = { limit = { var:rol_relic_use_mode = 5 } add_trait_xp = { trait = rol_relic_seeker track = rol_exploration value = 10 } if = { limit = { has_trait = brave } add_stress = -5 } }
+  else_if = { limit = { var:rol_relic_use_mode = 6 } add_trait_xp = { trait = rol_relic_seeker track = rol_research value = 10 } if = { limit = { has_trait = diligent } add_stress = -5 } }
+  else_if = { limit = { var:rol_relic_use_mode = 7 } add_trait_xp = { trait = rol_relic_seeker track = rol_negotiation value = 10 } if = { limit = { has_trait = ambitious } add_stress = -5 } }
+  else_if = { limit = { var:rol_relic_use_mode = 8 } add_trait_xp = { trait = rol_relic_seeker track = rol_research value = 10 } if = { limit = { has_trait = patient } add_stress = -5 } }
+  else_if = { limit = { var:rol_relic_use_mode = 9 } add_trait_xp = { trait = rol_relic_seeker track = rol_exploration value = 10 } if = { limit = { has_trait = brave } add_stress = -5 } }
+  else_if = { limit = { var:rol_relic_use_mode = 10 } add_trait_xp = { trait = rol_relic_seeker track = rol_exploration value = 10 } if = { limit = { has_trait = diligent } add_stress = -5 } }
+
+  rol_relic_use_clear_pending_effect = yes
+ }
+}
+
+rol_relic_use_publish_effect = {
+ if = {
+  limit = { rol_relic_use_project_valid_trigger = yes }
+  add_prestige = 100
+  rol_relic_use_clear_pending_effect = yes
+ }
+}
+
+# Only the matching old project may be closed. No rewards and no replacement artifact.
+rol_relic_use_close_invalid_effect = {
+ if = {
+  limit = { rol_relic_use_generation_matches_trigger = yes NOT = { has_character_flag = rol_relic_use_waiting } NOT = { rol_relic_use_project_valid_trigger = yes } }
+  rol_relic_use_clear_pending_effect = yes
+ }
+}
+
+# Retiring never refunds costs or clears the one-year cooldown.
+rol_relic_use_retire_artifact_effect = {
+ random_character_artifact = {
+  limit = { artifact_type = $TYPE$ rol_relic_has_use_mode_trigger = yes }
+  save_scope_as = rol_relic_use_candidate
+ }
+ if = {
+  limit = { rol_relic_use_candidate_owned_trigger = yes scope:rol_relic_use_candidate = { artifact_type = $TYPE$ rol_relic_has_use_mode_trigger = yes } }
+  scope:rol_relic_use_candidate = { rol_relic_use_clear_artifact_modes_effect = yes }
+  if = {
+   limit = { rol_relic_use_pending_trigger = yes exists = var:rol_relic_use_artifact var:rol_relic_use_artifact = scope:rol_relic_use_candidate }
+   rol_relic_use_clear_pending_effect = yes
+  }
+ }
+}
+
+rol_relic_use_retire_naxos_effect = {
+ rol_relic_use_clear_naxos_modes_effect = yes
+ if = {
+  limit = { rol_relic_use_pending_trigger = yes OR = { var:rol_relic_use_mode = 9 var:rol_relic_use_mode = 10 } }
+  rol_relic_use_clear_pending_effect = yes
+ }
+}

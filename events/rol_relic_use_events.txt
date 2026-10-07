@@ -1,0 +1,216 @@
+﻿namespace = rol_relic_use
+
+rol_relic_use.0001 = {
+ type = character_event
+ title = rol_relic_use.0001.t
+ desc = rol_relic_use.0001.desc
+ theme = learning
+ override_background = { reference = rol_bg_relic_scholarly_study }
+ trigger = { is_ai = no rol_relic_use_ready_trigger = yes }
+ option = { name = rol_relic_use.0001.1 trigger = { any_character_artifact = { artifact_type = rol_blade_of_mars } } trigger_event = rol_relic_use.1001 }
+ option = { name = rol_relic_use.0001.2 trigger = { any_character_artifact = { artifact_type = rol_nibelung_star_sphere } } trigger_event = rol_relic_use.1002 }
+ option = { name = rol_relic_use.0001.3 trigger = { any_character_artifact = { artifact_type = rol_astrolabe_of_ocean } } trigger_event = rol_relic_use.1003 }
+ option = { name = rol_relic_use.0001.4 trigger = { any_character_artifact = { artifact_type = rol_ash_forged_mask } } trigger_event = rol_relic_use.1004 }
+ option = { name = rol_relic_use.0001.5 trigger = { has_character_flag = rol_naxos_unit_unlocked } trigger_event = rol_relic_use.1005 }
+ option = { name = rol_relic_use.cancel }
+}
+
+rol_relic_use.1001 = {
+ type = character_event
+ title = rol_relic_use.1001.t
+ desc = rol_relic_use.1001.desc
+ theme = learning
+ override_background = { reference = rol_bg_rival_pact }
+ trigger = { is_ai = no rol_relic_use_ready_trigger = yes any_character_artifact = { artifact_type = rol_blade_of_mars } }
+ immediate = { random_character_artifact = { limit = { artifact_type = rol_blade_of_mars } save_scope_as = rol_relic_use_candidate } }
+ artifact = { target = scope:rol_relic_use_candidate position = lower_center_portrait }
+ option = {
+  name = rol_relic_use.1001.1
+  trigger = { rol_relic_use_ready_trigger = yes rol_relic_use_candidate_owned_trigger = yes scope:rol_relic_use_candidate = { artifact_type = rol_blade_of_mars } }
+  custom_tooltip = rol_relic_use_mode_1_tt
+  rol_relic_use_select_artifact_effect = { TYPE = rol_blade_of_mars MODE = 1 MODIFIER = rol_relic_use_1_field_modifier }
+ }
+ option = {
+  name = rol_relic_use.1001.2
+  trigger = { rol_relic_use_ready_trigger = yes rol_relic_use_candidate_owned_trigger = yes scope:rol_relic_use_candidate = { artifact_type = rol_blade_of_mars } }
+  custom_tooltip = rol_relic_use_mode_2_tt
+  rol_relic_use_select_artifact_effect = { TYPE = rol_blade_of_mars MODE = 2 MODIFIER = rol_relic_use_1_oath_modifier }
+ }
+ option = { name = rol_relic_use.cancel }
+}
+
+rol_relic_use.1002 = {
+ type = character_event
+ title = rol_relic_use.1002.t
+ desc = rol_relic_use.1002.desc
+ theme = learning
+ override_background = { reference = rol_bg_relic_scholarly_study }
+ trigger = { is_ai = no rol_relic_use_ready_trigger = yes any_character_artifact = { artifact_type = rol_nibelung_star_sphere } }
+ immediate = { random_character_artifact = { limit = { artifact_type = rol_nibelung_star_sphere } save_scope_as = rol_relic_use_candidate } }
+ artifact = { target = scope:rol_relic_use_candidate position = lower_center_portrait }
+ option = {
+  name = rol_relic_use.1002.1
+  trigger = { rol_relic_use_ready_trigger = yes rol_relic_use_candidate_owned_trigger = yes scope:rol_relic_use_candidate = { artifact_type = rol_nibelung_star_sphere } }
+  custom_tooltip = rol_relic_use_mode_3_tt
+  rol_relic_use_select_artifact_effect = { TYPE = rol_nibelung_star_sphere MODE = 3 MODIFIER = rol_relic_use_2_study_modifier }
+ }
+ option = {
+  name = rol_relic_use.1002.2
+  trigger = { rol_relic_use_ready_trigger = yes rol_relic_use_candidate_owned_trigger = yes scope:rol_relic_use_candidate = { artifact_type = rol_nibelung_star_sphere } }
+  custom_tooltip = rol_relic_use_mode_4_tt
+  rol_relic_use_select_artifact_effect = { TYPE = rol_nibelung_star_sphere MODE = 4 MODIFIER = rol_relic_use_2_display_modifier }
+ }
+ option = { name = rol_relic_use.cancel }
+}
+
+rol_relic_use.1003 = {
+ type = character_event
+ title = rol_relic_use.1003.t
+ desc = rol_relic_use.1003.desc
+ theme = learning
+ override_background = { reference = rol_bg_relic_scholarly_study }
+ trigger = { is_ai = no rol_relic_use_ready_trigger = yes any_character_artifact = { artifact_type = rol_astrolabe_of_ocean } }
+ immediate = { random_character_artifact = { limit = { artifact_type = rol_astrolabe_of_ocean } save_scope_as = rol_relic_use_candidate } }
+ artifact = { target = scope:rol_relic_use_candidate position = lower_center_portrait }
+ option = {
+  name = rol_relic_use.1003.1
+  trigger = { rol_relic_use_ready_trigger = yes rol_relic_use_candidate_owned_trigger = yes scope:rol_relic_use_candidate = { artifact_type = rol_astrolabe_of_ocean } }
+  custom_tooltip = rol_relic_use_mode_5_tt
+  rol_relic_use_select_artifact_effect = { TYPE = rol_astrolabe_of_ocean MODE = 5 MODIFIER = rol_relic_use_3_navigation_modifier }
+ }
+ option = {
+  name = rol_relic_use.1003.2
+  trigger = { rol_relic_use_ready_trigger = yes rol_relic_use_candidate_owned_trigger = yes scope:rol_relic_use_candidate = { artifact_type = rol_astrolabe_of_ocean } }
+  custom_tooltip = rol_relic_use_mode_6_tt
+  rol_relic_use_select_artifact_effect = { TYPE = rol_astrolabe_of_ocean MODE = 6 MODIFIER = rol_relic_use_3_teaching_modifier }
+ }
+ option = { name = rol_relic_use.cancel }
+}
+
+rol_relic_use.1004 = {
+ type = character_event
+ title = rol_relic_use.1004.t
+ desc = rol_relic_use.1004.desc
+ theme = learning
+ override_background = { reference = rol_bg_fragment_upgrade }
+ trigger = { is_ai = no rol_relic_use_ready_trigger = yes any_character_artifact = { artifact_type = rol_ash_forged_mask } }
+ immediate = { random_character_artifact = { limit = { artifact_type = rol_ash_forged_mask } save_scope_as = rol_relic_use_candidate } }
+ artifact = { target = scope:rol_relic_use_candidate position = lower_center_portrait }
+ option = {
+  name = rol_relic_use.1004.1
+  trigger = { rol_relic_use_ready_trigger = yes rol_relic_use_candidate_owned_trigger = yes scope:rol_relic_use_candidate = { artifact_type = rol_ash_forged_mask } }
+  custom_tooltip = rol_relic_use_mode_7_tt
+  rol_relic_use_select_artifact_effect = { TYPE = rol_ash_forged_mask MODE = 7 MODIFIER = rol_relic_use_4_dread_modifier }
+ }
+ option = {
+  name = rol_relic_use.1004.2
+  trigger = { rol_relic_use_ready_trigger = yes rol_relic_use_candidate_owned_trigger = yes scope:rol_relic_use_candidate = { artifact_type = rol_ash_forged_mask } }
+  custom_tooltip = rol_relic_use_mode_8_tt
+  rol_relic_use_select_artifact_effect = { TYPE = rol_ash_forged_mask MODE = 8 MODIFIER = rol_relic_use_4_restoration_modifier }
+ }
+ option = { name = rol_relic_use.cancel }
+}
+
+rol_relic_use.1005 = {
+ type = character_event
+ title = rol_relic_use.1005.t
+ desc = rol_relic_use.1005.desc
+ theme = learning
+ override_background = { reference = rol_bg_rival_pact }
+ trigger = { is_ai = no rol_relic_use_ready_trigger = yes has_character_flag = rol_naxos_unit_unlocked }
+ option = {
+  name = rol_relic_use.1005.1
+  trigger = { rol_relic_use_ready_trigger = yes has_character_flag = rol_naxos_unit_unlocked }
+  custom_tooltip = rol_relic_use_mode_9_tt
+  rol_relic_use_select_naxos_effect = { MODE = 9 MODIFIER = rol_relic_use_5_field_modifier }
+ }
+ option = {
+  name = rol_relic_use.1005.2
+  trigger = { rol_relic_use_ready_trigger = yes has_character_flag = rol_naxos_unit_unlocked }
+  custom_tooltip = rol_relic_use_mode_10_tt
+  rol_relic_use_select_naxos_effect = { MODE = 10 MODIFIER = rol_relic_use_5_training_modifier }
+ }
+ option = { name = rol_relic_use.cancel }
+}
+
+rol_relic_use.0003 = {
+ type = character_event
+ title = rol_relic_use.0003.t
+ desc = {
+  first_valid = {
+   triggered_desc = { trigger = { NOT = { rol_relic_use_project_valid_trigger = yes } } desc = rol_relic_use.0003.desc.invalid }
+   triggered_desc = { trigger = { var:rol_relic_use_mode = 1 } desc = rol_relic_use.0003.desc.1 }
+   triggered_desc = { trigger = { var:rol_relic_use_mode = 2 } desc = rol_relic_use.0003.desc.2 }
+   triggered_desc = { trigger = { var:rol_relic_use_mode = 3 } desc = rol_relic_use.0003.desc.3 }
+   triggered_desc = { trigger = { var:rol_relic_use_mode = 4 } desc = rol_relic_use.0003.desc.4 }
+   triggered_desc = { trigger = { var:rol_relic_use_mode = 5 } desc = rol_relic_use.0003.desc.5 }
+   triggered_desc = { trigger = { var:rol_relic_use_mode = 6 } desc = rol_relic_use.0003.desc.6 }
+   triggered_desc = { trigger = { var:rol_relic_use_mode = 7 } desc = rol_relic_use.0003.desc.7 }
+   triggered_desc = { trigger = { var:rol_relic_use_mode = 8 } desc = rol_relic_use.0003.desc.8 }
+   triggered_desc = { trigger = { var:rol_relic_use_mode = 9 } desc = rol_relic_use.0003.desc.9 }
+   triggered_desc = { trigger = { var:rol_relic_use_mode = 10 } desc = rol_relic_use.0003.desc.10 }
+
+   desc = rol_relic_use.0003.desc.invalid
+  }
+ }
+ theme = learning
+ override_background = { reference = rol_bg_relic_scholarly_study }
+ trigger = { is_ai = no is_alive = yes rol_relic_use_generation_matches_trigger = yes NOT = { has_character_flag = rol_relic_use_waiting } }
+ option = {
+  name = rol_relic_use.0003.a
+  trigger = { rol_relic_use_project_valid_trigger = yes }
+  custom_tooltip = rol_relic_use_record_tt
+  rol_relic_use_record_experience_effect = yes
+ }
+ option = {
+  name = rol_relic_use.0003.b
+  trigger = { rol_relic_use_project_valid_trigger = yes }
+  custom_tooltip = rol_relic_use_publish_tt
+  rol_relic_use_publish_effect = yes
+ }
+ option = {
+  name = rol_relic_use.0003.c
+  trigger = { rol_relic_use_project_valid_trigger = yes }
+  custom_tooltip = rol_relic_use_defer_tt
+ }
+ option = {
+  name = rol_relic_use.0003.d
+  trigger = { NOT = { rol_relic_use_project_valid_trigger = yes } }
+  rol_relic_use_close_invalid_effect = yes
+ }
+}
+
+rol_relic_use.0004 = {
+ type = character_event
+ title = rol_relic_use.0004.t
+ desc = rol_relic_use.0004.desc
+ theme = learning
+ override_background = { reference = rol_bg_relic_scholarly_study }
+ trigger = { is_ai = no }
+ option = {
+  name = rol_relic_use.0004.1
+  trigger = { any_character_artifact = { artifact_type = rol_blade_of_mars rol_relic_has_use_mode_trigger = yes } }
+  rol_relic_use_retire_artifact_effect = { TYPE = rol_blade_of_mars }
+ }
+ option = {
+  name = rol_relic_use.0004.2
+  trigger = { any_character_artifact = { artifact_type = rol_nibelung_star_sphere rol_relic_has_use_mode_trigger = yes } }
+  rol_relic_use_retire_artifact_effect = { TYPE = rol_nibelung_star_sphere }
+ }
+ option = {
+  name = rol_relic_use.0004.3
+  trigger = { any_character_artifact = { artifact_type = rol_astrolabe_of_ocean rol_relic_has_use_mode_trigger = yes } }
+  rol_relic_use_retire_artifact_effect = { TYPE = rol_astrolabe_of_ocean }
+ }
+ option = {
+  name = rol_relic_use.0004.4
+  trigger = { any_character_artifact = { artifact_type = rol_ash_forged_mask rol_relic_has_use_mode_trigger = yes } }
+  rol_relic_use_retire_artifact_effect = { TYPE = rol_ash_forged_mask }
+ }
+ option = {
+  name = rol_relic_use.0004.5
+  trigger = { OR = { has_character_modifier = rol_relic_use_5_field_modifier has_character_modifier = rol_relic_use_5_training_modifier } }
+  rol_relic_use_retire_naxos_effect = yes
+ }
+ option = { name = rol_relic_use.cancel }
+}

@@ -1,0 +1,41 @@
+﻿rol_relic_use_1_field_modifier = {
+ knight_effectiveness_mult = 0.05
+}
+
+rol_relic_use_1_oath_modifier = {
+ general_opinion = 3
+}
+
+rol_relic_use_2_study_modifier = {
+ monthly_learning_lifestyle_xp_gain_mult = 0.05
+}
+
+rol_relic_use_2_display_modifier = {
+ monthly_prestige_gain_mult = 0.05
+}
+
+rol_relic_use_3_navigation_modifier = {
+ character_travel_speed_mult = 0.05
+ character_travel_safety = 5
+}
+
+rol_relic_use_3_teaching_modifier = {
+ learning = 1
+ monthly_learning_lifestyle_xp_gain_mult = 0.03
+}
+
+rol_relic_use_4_dread_modifier = {
+ dread_gain_mult = 0.05
+}
+
+rol_relic_use_4_restoration_modifier = {
+ stress_loss_mult = 0.05
+}
+
+rol_relic_use_5_field_modifier = {
+ knight_effectiveness_mult = 0.05
+}
+
+rol_relic_use_5_training_modifier = {
+ monthly_martial_lifestyle_xp_gain_mult = 0.05
+}
