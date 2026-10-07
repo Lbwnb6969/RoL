@@ -77,6 +77,7 @@ class State:
     gold: float = 200
     prestige: float = 200
     learning: float = 15
+    martial: float = 15
     prowess: float = 15
     diplomacy: float = 15
     alive: bool = True
@@ -96,6 +97,11 @@ class State:
     lists: dict = field(default_factory=dict)
     event_contexts: list = field(default_factory=list)
     learning_lifestyle_xp: float = 0
+    piety: float = 0
+    house: State | None = None
+    dynasty: State | None = None
+    playable: bool = True
+    incapable: bool = False
 
 
 class Model:
@@ -122,9 +128,14 @@ class Model:
         if relic_triggers.exists():
             self.triggers.update({k: v for k, _, v in parse(relic_triggers.read_text(encoding="utf-8-sig"))})
         for directory, container, filename in (
+            ("scripted_triggers", self.triggers, "rol_quest_lifecycle_triggers.txt"),
+            ("scripted_triggers", self.triggers, "rol_rival_lifecycle_triggers.txt"),
+            ("scripted_effects", self.effects, "rol_quest_lifecycle_effects.txt"),
+            ("scripted_effects", self.effects, "rol_rival_lifecycle_effects.txt"),
             ("scripted_effects", self.effects, "rol_archive_effects.txt"), ("scripted_triggers", self.triggers, "rol_archive_triggers.txt"),
             ("scripted_effects", self.effects, "rol_relic_fragment_effects.txt"), ("scripted_triggers", self.triggers, "rol_fragment_triggers.txt"),
             ("scripted_effects", self.effects, "rol_relic_legacy_effects.txt"), ("scripted_triggers", self.triggers, "rol_relic_legacy_triggers.txt"),
+            ("scripted_effects", self.effects, "rol_legacy_attitude_effects.txt"),
         ):
             path = root / "common" / directory / filename
             if path.exists(): container.update({k: v for k, _, v in parse(path.read_text(encoding="utf-8-sig"))})
@@ -150,6 +161,8 @@ class Model:
         raise ValueError(f"unsupported reference {value}")
 
     def number(self, value: str, state: State, scope="actor"):
+        if value in ("root", "this", "player_heir"):
+            return self.reference(value, state, scope)
         if value.startswith(("scope:", "var:", "root.var:")):
             resolved = self.reference(value, state, scope)
             if resolved is None: raise ValueError(f"missing value {value}")
@@ -180,6 +193,8 @@ class Model:
             if key == "player_heir":
                 return current.player_heir is not None and self.condition(value, state, current.player_heir)
             if key == "is_ai": return current.ai == (value == "yes")
+            if key == "is_playable_character": return current.playable == (value == "yes")
+            if key == "is_incapable": return current.incapable == (value == "yes")
             if key == "any_in_list":
                 return any(self.condition([n for n in value if n[0] != "variable"], state, item) for item in current.lists.get(get(value, "variable"), []))
             if key.startswith(("scope:", "var:")) and isinstance(value, list):
@@ -205,6 +220,8 @@ class Model:
                 return get(value, "trait") in current.traits and comparison[1] == ">=" and current.xp.get(get(value, "track"), 0) >= float(comparison[2])
             if key == "has_activity_option":
                 return get(value, "option") == f"rol_expedition_preparation_{state.preparation}"
+            if key == "has_activity_type":
+                return isinstance(current, dict) and current.get("_activity_type") == value
             if key in self.triggers:
                 result = self.condition(self.triggers[key], state, scope)
                 return result if value == "yes" else not result
@@ -219,7 +236,7 @@ class Model:
                 return left is not None and self.compare(left, op, self.number(value, state, scope))
             if key == "this":
                 return self.compare(current, op, self.reference(value, state, scope))
-            if key in ("learning", "prowess", "diplomacy", "gold", "prestige"):
+            if key in ("learning", "martial", "prowess", "diplomacy", "gold", "prestige"):
                 return self.compare(getattr(current, key), op, self.number(value, state, scope))
             raise ValueError(f"unsupported condition {key}")
         return all(entry(*node) for node in nodes)
@@ -273,9 +290,10 @@ class Model:
                     raise ValueError(f"required scope is missing: {key}")
                 self.run(value, state, "activity" if key == "scope:activity" else target)
             elif key == "save_scope_as": state.scopes[value] = current
-            elif key == "player_heir":
-                if current.player_heir is not None: self.run(value, state, current.player_heir)
-                elif op != "?=": raise ValueError("required player heir is missing")
+            elif key in ("player_heir", "house", "dynasty"):
+                target = getattr(current, key)
+                if target is not None: self.run(value, state, target)
+                elif op != "?=": raise ValueError(f"required {key} is missing")
             elif key in ("add_to_variable_list", "remove_list_variable"):
                 entries = current.lists.setdefault(get(value, "name"), [])
                 target = self.reference(get(value, "target"), state, scope)
@@ -306,7 +324,9 @@ class Model:
                 current.flags.add(flag)
                 if isinstance(value, list): current.flag_durations[flag] = [(k, v) for k, _, v in value if k != "flag"]
             elif key == "remove_character_flag": current.flags.discard(value)
-            elif key == "add_character_modifier": current.modifiers[get(value, "modifier")] = self.number(get(value, "years"), state, scope)
+            elif key in ("add_character_modifier", "add_house_modifier", "add_dynasty_modifier"):
+                years = next((v for k, _, v in value if k == "years"), None)
+                current.modifiers[get(value, "modifier")] = self.number(years, state, scope) if years is not None else None
             elif key == "remove_character_modifier": current.modifiers.pop(value, None)
             elif key == "add_artifact_modifier": current.modifiers[value] = None
             elif key == "remove_artifact_modifier": current.modifiers.pop(value, None)
@@ -316,6 +336,8 @@ class Model:
                 current.xp[track] = min(100, current.xp.get(track, 0) + self.number(get(value, "value"), state, scope))
             elif key == "add_stress": current.stress = max(0, current.stress + self.number(value, state, scope))
             elif key == "add_prestige": current.prestige += self.number(value, state, scope)
+            elif key == "add_dynasty_prestige": current.prestige += self.number(value, state, scope)
+            elif key == "add_piety": current.piety += self.number(value, state, scope)
             elif key == "add_learning_lifestyle_xp": current.learning_lifestyle_xp += self.number(value, state, scope)
             elif key == "add_gold": current.gold += self.number(value, state, scope)
             elif key == "remove_short_term_gold": current.gold -= self.number(value, state, scope)
@@ -325,7 +347,13 @@ class Model:
                 event = get(value, "id") if isinstance(value, list) else value
                 current.events.append(event)
                 current.event_contexts.append((event, dict(state.scopes)))
+            elif key == "progress_activity_phase_after":
+                state.progress_effects.append((key, get(value, "days")))  # Native timing is not simulated.
             elif key == "send_interface_toast": pass  # presentation only
+            elif key in ("error_log", "play_sound_effect"): pass  # diagnostics/presentation only
+            elif key == "hidden_effect": self.run(value, state, scope)
+            elif key == "add_activity_log_entry":
+                state.activity.setdefault("_log_entries", []).append(get(value, "key"))
             elif key in self.effects: self.call(key, state, {k: v for k, _, v in value} if isinstance(value, list) else {}, scope)
             else: raise ValueError(f"unsupported effect {key}")
 
@@ -372,10 +400,10 @@ def check_growth_contract(root: Path, errors: list[str]) -> int:
             assert get(get(host, "rol_expedition_growth_begin_effect"), "ROUTE") == route, f"{chain}: wrong start route"
             effects = load(f"common/scripted_effects/rol_quest_{chain}_effects.txt")
             for ending, xp, notes in (("success", "30", "no"), ("partial", "20", "yes")):
-                body = get(effects, f"rol_{chain}_quest_{ending}_finalize_effect")
+                body = get(get(effects, f"rol_{chain}_quest_{ending}_finalize_effect"), "if")
                 params = dict((k, v) for k, _, v in get(body, "rol_expedition_growth_finish_effect"))
                 assert params == {"ROUTE": route, "RESULT_XP": xp, "LEAVE_NOTES": notes}, f"{chain}: wrong {ending} reward"
-            failure = get(effects, cooldown)
+            failure = [n for n in get(get(effects, cooldown), "if") if n[0] != "limit"]
             stage_guard = get(get(failure, "if"), "limit")
             assert (f"var:rol_{chain}_stage_count", ">=", "1") in stage_guard, f"{chain}: failure XP lacks completed-stage guard"
             failure_params = get(get(failure, "if"), "rol_expedition_growth_finish_effect")

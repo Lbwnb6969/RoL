@@ -3,44 +3,47 @@
 
 rol_carthage_quest_progress_effect = {
 	if = {
-		limit = { NOT = { has_variable = rol_carthage_stage_count } }
-		set_variable = {
-			name = rol_carthage_stage_count
-			value = 0
-		}
-	}
-
-	change_variable = {
-		name = rol_carthage_stage_count
-		add = 1
-	}
-
-	rol_relic_log_stage_effect = yes
-	rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_carthage_stage_progress }
-
-	if = {
-		limit = {
-			NOT = { has_character_flag = rol_carthage_guest_event_fired }
-			exists = scope:activity
-			scope:activity = {
-				any_attending_character = {
-					this != root
-				}
+		limit = { rol_carthage_quest_active_trigger = yes }
+		if = {
+			limit = { NOT = { has_variable = rol_carthage_stage_count } }
+			set_variable = {
+				name = rol_carthage_stage_count
+				value = 0
 			}
-			var:rol_carthage_stage_count >= 1
-			var:rol_carthage_stage_count < 2
 		}
-		add_character_flag = rol_carthage_guest_event_fired
-		add_character_flag = rol_rival_route_carthage
-		rol_try_rival_interlude_effect = { FALLBACK_EVENT = rol_quest_carthage.1050 }
-	}
 
-	if = {
-		limit = { var:rol_carthage_stage_count < 2 }
-		trigger_event = { id = rol_quest_carthage.1002 days = 14 }
-	}
-	else = {
-		trigger_event = { id = rol_quest_carthage.1001 days = 10 }
+		change_variable = {
+			name = rol_carthage_stage_count
+			add = 1
+		}
+
+		rol_relic_log_stage_effect = yes
+		rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_carthage_stage_progress }
+
+		if = {
+			limit = {
+				NOT = { has_character_flag = rol_carthage_guest_event_fired }
+				exists = scope:activity
+				scope:activity = {
+					any_attending_character = {
+						this != root
+					}
+				}
+				var:rol_carthage_stage_count >= 1
+				var:rol_carthage_stage_count < 2
+			}
+			add_character_flag = rol_carthage_guest_event_fired
+			add_character_flag = rol_rival_route_carthage
+			rol_try_rival_interlude_effect = { FALLBACK_EVENT = rol_quest_carthage.1050 }
+		}
+
+		if = {
+			limit = { var:rol_carthage_stage_count < 2 }
+			trigger_event = { id = rol_quest_carthage.1002 days = 14 }
+		}
+		else = {
+			trigger_event = { id = rol_quest_carthage.1001 days = 10 }
+		}
 	}
 }
 
@@ -145,83 +148,97 @@ rol_carthage_store_failure_result_effect = {
 }
 
 rol_carthage_quest_success_finalize_effect = {
-	rol_expedition_companion_finish_effect = { STAGE_VARIABLE = rol_carthage_stage_count }
-	rol_expedition_growth_finish_effect = { ROUTE = carthage RESULT_XP = 30 LEAVE_NOTES = no }
-	rol_carthage_clamp_success_progress_effect = yes
-	rol_carthage_store_success_result_effect = yes
-	rol_carthage_apply_tiered_bonus_reward_effect = yes
-	rol_apply_expedition_preparation_success_bonus_effect = yes
-	rol_store_recent_expedition_preparation_effect = yes
+	if = {
+		limit = { rol_carthage_quest_active_trigger = yes }
+		rol_expedition_companion_finish_effect = { STAGE_VARIABLE = rol_carthage_stage_count }
+		rol_expedition_growth_finish_effect = { ROUTE = carthage RESULT_XP = 30 LEAVE_NOTES = no }
+		rol_carthage_clamp_success_progress_effect = yes
+		rol_carthage_store_success_result_effect = yes
+		rol_carthage_apply_tiered_bonus_reward_effect = yes
+		rol_apply_expedition_preparation_success_bonus_effect = yes
+		rol_store_recent_expedition_preparation_effect = yes
 
-	add_character_flag = rol_ash_forged_mask_claimed
-	rol_check_legend_circle_fivefold_revelation_effect = yes
-	remove_character_flag = rol_heard_carthage_legend
-	remove_character_modifier = rol_carthage_quest_cooldown_modifier
+		add_character_flag = rol_ash_forged_mask_claimed
+		rol_check_legend_circle_fivefold_revelation_effect = yes
+		remove_character_flag = rol_heard_carthage_legend
+		remove_character_modifier = rol_carthage_quest_cooldown_modifier
 
-	rol_relic_log_success_effect = yes
-	send_interface_toast = {
-		type = event_toast_effect_good
-		title = rol_carthage_activity_success_toast_title
-		desc = rol_carthage_activity_success_toast_desc
-		left_icon = root
+		rol_relic_log_success_effect = yes
+		send_interface_toast = {
+			type = event_toast_effect_good
+			title = rol_carthage_activity_success_toast_title
+			desc = rol_carthage_activity_success_toast_desc
+			left_icon = this
+		}
+
+		trigger_event = { id = rol_quest_carthage.1090 days = 1 }
+
+		rol_clear_context_carthage_helmet_effect = yes
+		rol_carthage_quest_abort_effect = yes
+		rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_carthage_success_finalize }
+		rol_relic_quest_close_effect = yes
 	}
-
-	trigger_event = { id = rol_quest_carthage.1090 days = 1 }
-
-	rol_clear_context_carthage_helmet_effect = yes
-	rol_carthage_quest_abort_effect = yes
-	rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_carthage_success_finalize }
 }
 
 rol_carthage_quest_partial_finalize_effect = {
-	rol_expedition_companion_finish_effect = { STAGE_VARIABLE = rol_carthage_stage_count }
-	rol_expedition_growth_finish_effect = { ROUTE = carthage RESULT_XP = 20 LEAVE_NOTES = yes }
-	rol_carthage_clamp_success_progress_effect = yes
-	rol_carthage_store_success_result_effect = yes
-	rol_carthage_apply_tiered_bonus_reward_effect = yes
-	rol_apply_expedition_preparation_success_bonus_effect = yes
-	rol_store_recent_expedition_preparation_effect = yes
-	rol_relic_partial_success_finalize_effect = {
-		PARTIAL_MODIFIER = rol_partial_relic_evidence_modifier
-		COOLDOWN_MODIFIER = rol_carthage_quest_cooldown_modifier
-		SUMMARY_EVENT = rol_quest_carthage.1090
-		DEBUG_KEY = rol_relic_debug_carthage_partial_finalize
+	if = {
+		limit = { rol_carthage_quest_active_trigger = yes }
+		rol_expedition_companion_finish_effect = { STAGE_VARIABLE = rol_carthage_stage_count }
+		rol_expedition_growth_finish_effect = { ROUTE = carthage RESULT_XP = 20 LEAVE_NOTES = yes }
+		rol_carthage_clamp_success_progress_effect = yes
+		rol_carthage_store_success_result_effect = yes
+		rol_carthage_apply_tiered_bonus_reward_effect = yes
+		rol_store_recent_expedition_preparation_effect = yes
+		rol_relic_partial_success_finalize_effect = {
+			PARTIAL_MODIFIER = rol_partial_relic_evidence_modifier
+			COOLDOWN_MODIFIER = rol_carthage_quest_cooldown_modifier
+			SUMMARY_EVENT = rol_quest_carthage.1090
+			DEBUG_KEY = rol_relic_debug_carthage_partial_finalize
+		}
+		rol_clear_context_carthage_helmet_effect = yes
+		rol_carthage_quest_abort_effect = yes
+		rol_relic_quest_close_effect = yes
 	}
-	rol_clear_context_carthage_helmet_effect = yes
-	rol_carthage_quest_abort_effect = yes
 }
 
 rol_apply_carthage_activity_cooldown_effect = {
 	if = {
-		limit = { has_variable = rol_carthage_stage_count var:rol_carthage_stage_count >= 1 }
-		rol_expedition_growth_finish_effect = { ROUTE = carthage RESULT_XP = 10 LEAVE_NOTES = no }
-	}
-	else = { rol_expedition_growth_abandon_effect = yes }
-	rol_expedition_companion_finish_effect = { STAGE_VARIABLE = rol_carthage_stage_count }
-	rol_relic_apply_cooldown_effect = {
-		COOLDOWN_MODIFIER = rol_carthage_quest_cooldown_modifier
-		COOLDOWN_YEARS = 2
-	}
+		limit = { rol_carthage_quest_active_trigger = yes }
+		if = {
+			limit = { has_variable = rol_carthage_stage_count var:rol_carthage_stage_count >= 1 }
+			rol_expedition_growth_finish_effect = { ROUTE = carthage RESULT_XP = 10 LEAVE_NOTES = no }
+		}
+		else = { rol_expedition_growth_abandon_effect = yes }
+		rol_expedition_companion_finish_effect = { STAGE_VARIABLE = rol_carthage_stage_count }
+		rol_relic_apply_cooldown_effect = {
+			COOLDOWN_MODIFIER = rol_carthage_quest_cooldown_modifier
+			COOLDOWN_YEARS = 2
+		}
 
-	rol_carthage_store_failure_result_effect = yes
-	rol_relic_log_failure_effect = yes
-	send_interface_toast = {
-		type = event_toast_effect_bad
-		title = rol_carthage_activity_failure_toast_title
-		desc = rol_carthage_activity_failure_toast_desc
-		left_icon = root
+		rol_carthage_store_failure_result_effect = yes
+		rol_relic_log_failure_effect = yes
+		send_interface_toast = {
+			type = event_toast_effect_bad
+			title = rol_carthage_activity_failure_toast_title
+			desc = rol_carthage_activity_failure_toast_desc
+			left_icon = this
+		}
+
+		trigger_event = { id = rol_quest_carthage.1090 days = 1 }
+
+		rol_clear_context_carthage_helmet_effect = yes
+		rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_carthage_failure_finalize }
+		rol_relic_quest_close_effect = yes
 	}
-
-	trigger_event = { id = rol_quest_carthage.1090 days = 1 }
-
-	rol_clear_context_carthage_helmet_effect = yes
-	rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_carthage_failure_finalize }
 }
 
 rol_carthage_quest_fail_now_effect = {
-	rol_apply_carthage_activity_cooldown_effect = yes
-	rol_carthage_quest_abort_effect = yes
-	rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_carthage_fail_now }
+	if = {
+		limit = { rol_carthage_quest_active_trigger = yes }
+		rol_apply_carthage_activity_cooldown_effect = yes
+		rol_carthage_quest_abort_effect = yes
+		rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_carthage_fail_now }
+	}
 }
 
 rol_carthage_quest_abort_effect = {

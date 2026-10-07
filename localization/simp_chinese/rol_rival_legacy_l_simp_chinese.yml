@@ -1,4 +1,10 @@
 ﻿l_simp_chinese:
+ rol_rival_context_lost_option:0 "结束这场过时的会面。"
+ rol_review_rival_pact_decision:0 "处理竞争者的约定"
+ rol_review_rival_pact_decision_desc:0 "回到与原竞争者的约定。每份约定只结算一次；若对方已死，记录直接关闭，不付款也不发奖。"
+ rol_review_rival_pact_decision_tooltip:0 "重新打开尚未处理的约定。"
+ rol_review_rival_pact_decision_confirm:0 "审阅约定"
+ rol_rival_context_lost_flavor:0 "行程或人物已经改变；此处不再发奖或付款。"
  rol_rival.1000.t: "遗迹中的竞争者"
  rol_rival.1000.desc: "[rol_expedition_rival.GetTitledFirstName]赶上远征队，拿出一套与圣物埋藏地有关的不同说辞。无论此人是对手、伙伴还是骗子，现在都无法忽视。"
  rol_rival.1000.a: "付出代价，共享线索。"

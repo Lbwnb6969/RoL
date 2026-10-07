@@ -68,6 +68,8 @@ def check_relic_safety_contract(root: Path, errors: list[str]) -> int:
         for choice in range(3):
             for case in ("valid", "transfer", "poor", "count2"):
                 actor = State(activity=None, gold=99 if case == "poor" else 200)
+                attitudes = {"rol_relic_legacy_public_modifier", "rol_relic_legacy_concealed_modifier", "rol_relic_legacy_scholarly_modifier"}
+                actor.modifiers.update({name: 5 for name in attitudes})
                 artifact = State(artifact_type="rol_blade_of_mars", owner=actor,
                                  variables={"rol_relic_legacy_transfer_count": 2 if case == "count2" else 0})
                 actor.scopes["rol_legacy_artifact"] = artifact
@@ -81,6 +83,7 @@ def check_relic_safety_contract(root: Path, errors: list[str]) -> int:
                 model.run(reward, actor)
                 assert before == (actor.prestige, actor.gold, actor.stress, actor.learning_lifestyle_xp, actor.modifiers), "transition replays"
                 valid = case != "transfer" and not (case == "poor" and choice == 2)
+                assert len(attitudes & actor.modifiers.keys()) == (1 if valid else 3), "legacy attitudes stack or invalid choice strips old state"
                 assert actor.prestige == (275 if valid and choice == 0 else 200)
                 assert actor.stress == (10 if valid and choice == 1 else 20)
                 assert actor.learning_lifestyle_xp == ((250 if case == "count2" else 150) if valid and choice == 2 else 0)

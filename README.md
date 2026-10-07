@@ -57,7 +57,7 @@ Completing Carthage as well unlocks the separate fivefold event `rol_legend_circ
 
 Five expeditions now feed three expertise tracks, temporary study focuses and regional retry notes. Actual attending specialists offer help and earned routes; paying the original companion builds reputation and future candidate priority. Four relics and the Naxos tradition have ten mutually exclusive uses with delayed project outcomes. Sphere observations and astrolabe charts unlock optional routes; seven kinds of records and original companion agreements can pass to heirs without copying personal XP.
 
-The four development stages and MCP static validation are complete. Gameplay, delayed scopes and UI still need the maintainer's game test. Existing usable art is retained. See [the completion audit](docs/rol_completion_audit_20261007.md) and [console test guide](docs/rol_console_test_guide.md), sections 7.1 and 12–15.
+The four development stages and the comprehensive static review are complete. Retired vanilla GUI/global artifact-label overrides are archived; quality and type labels now use the current game's UI, while the legendary badge appears on RoL's own tier modifier. Gameplay, delayed scopes, UI and other mod combinations still need the maintainer's game test. Existing usable art is retained. See [the completion audit](docs/rol_completion_audit_20261007.md), [balance model](docs/rol_success_model.md) and [console test guide](docs/rol_console_test_guide.md), especially sections 6 and 16.
 
 ---
 

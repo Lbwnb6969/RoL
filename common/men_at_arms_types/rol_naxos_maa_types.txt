@@ -1,6 +1,6 @@
 ﻿# Relics of Legend - Naxos / Thera elite unit
 
-@provisions_cost_infantry_expensive = 12
+@rol_naxos_provisions_cost = 12
 
 rol_adeptus_custudes = {
 	type = heavy_infantry
@@ -27,7 +27,7 @@ rol_adeptus_custudes = {
 	buy_cost = { gold = accolade_heavy_infantry_recruitment_cost }
 	low_maintenance_cost = { gold = heavy_infantry_low_maint_cost }
 	high_maintenance_cost = { gold = heavy_infantry_high_maint_cost }
-	provision_cost = @provisions_cost_infantry_expensive
+	provision_cost = @rol_naxos_provisions_cost
 
 	stack = 4
 	ai_quality = {

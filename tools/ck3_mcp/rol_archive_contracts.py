@@ -52,7 +52,7 @@ def check_archive_contract(root: Path, errors: list[str]) -> int:
             assert f"rol_heard_{context}_legend" in host.flags, "chart does not reveal its route"
             chain_event = get(load(f"events/rol_quest_{chain}_events.txt"), f"rol_quest_{chain}.1000")
             option = next(v for k, _, v in chain_event if k == "option" and get(v, "name") == f"rol_archive_{chain}_route_option")
-            params = {k: v for k, _, v in get(option, "rol_archive_chart_route_effect")}
+            params = {k: v for k, _, v in get(get(option, "if"), "rol_archive_chart_route_effect")}
             assert params == {"QUALIFICATION": trigger, "CHART": chart, "NEXT_EVENT": f"rol_quest_{chain}.1010"}, "chart option is wired to wrong chain or evidence"
             for situation in ("correct", "wrong_region", "unaffordable", "already_used", "no_activity"):
                 actor = State(flags={f"rol_relic_context_{context}"}, modifiers={chart: 10}, variables={f"rol_{chain}_stage_count": 0}, activity={"rol_expedition_growth_open": 1, "rol_expedition_first_trial_used": 0})

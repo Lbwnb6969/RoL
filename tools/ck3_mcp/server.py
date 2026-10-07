@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -103,6 +104,20 @@ def _process_snapshot() -> dict[str, Any]:
     return {"running": running, "pids": pids, "tracked_pid": tracked.pid if tracked else None}
 
 
+def _launcher_descriptor() -> dict[str, Any]:
+    descriptor = USER_DIR / "mod" / "RoL.mod"
+    target = None
+    if descriptor.is_file():
+        match = re.search(r'^\s*path\s*=\s*"([^"]+)"', descriptor.read_text(encoding="utf-8-sig"), re.MULTILINE)
+        if match:
+            target = match.group(1)
+    return {
+        "path": str(descriptor), "exists": descriptor.is_file(), "target": target,
+        "matches_source": target is not None and Path(target).is_absolute()
+        and os.path.normcase(str(Path(target).resolve())) == os.path.normcase(str(ROOT.resolve())),
+    }
+
+
 def _launch(args: dict[str, Any]) -> dict[str, Any]:
     global _tracked_process
     if not GAME_EXE.exists():
@@ -112,7 +127,7 @@ def _launch(args: dict[str, Any]) -> dict[str, Any]:
     command = [str(GAME_EXE), "-nolauncher"]
     if args.get("debug_mode", True):
         command.append("-debug_mode")
-    if args.get("suppress_error_log", True):
+    if args.get("suppress_error_log", False):
         command.append("-suppress_error_log")
     if args.get("skip_checksum", True):
         command.append("-skip_checksum")
@@ -536,7 +551,7 @@ def _run_console_action(args: dict[str, Any]) -> dict[str, Any]:
     if stage_flag is None:
         return _error("stage must be main, clausewitz, or application")
     before = {name: path.stat().st_mtime_ns if path.exists() else None for name, path in _log_paths().items()}
-    argv = [str(GAME_EXE), "-nolauncher", "-suppress_error_log", "-skip_checksum"]
+    argv = [str(GAME_EXE), "-nolauncher", "-skip_checksum"]
     if args.get("debug_mode", True):
         argv.append("-debug_mode")
     argv.append(f"{stage_flag}={command}")
@@ -744,6 +759,7 @@ def _call_tool(name: str, args: dict[str, Any]) -> dict[str, Any]:
             f"RoL={ROOT}\nCK3={GAME_ROOT}\nExecutable={GAME_EXE}\nLogs={LOG_DIR}",
             rol_root=str(ROOT), game_root=str(GAME_ROOT), executable=str(GAME_EXE), executable_exists=GAME_EXE.exists(),
             descriptor=str(descriptor), descriptor_exists=descriptor.exists(), user_dir=str(USER_DIR), logs=str(LOG_DIR), process=_process_snapshot(),
+            launcher_descriptor=_launcher_descriptor(),
         )
     if name == "ck3_process":
         return _text_result(_json(_process_snapshot()), process=_process_snapshot())

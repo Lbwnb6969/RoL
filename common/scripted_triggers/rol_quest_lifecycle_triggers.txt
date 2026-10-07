@@ -1,0 +1,50 @@
+﻿# A delayed quest event must still belong to its original host and activity.
+# The closed marker is optional for old saves; missing means not yet settled.
+rol_relic_quest_open_trigger = {
+	is_alive = yes
+	exists = scope:activity
+	exists = scope:host
+	# Activity invalidation has an activity ROOT; compare the current character.
+	this = scope:host
+	scope:activity = { NOT = { var:rol_relic_quest_closed = 1 } }
+}
+
+rol_rome_quest_active_trigger = {
+	rol_relic_quest_open_trigger = yes
+	has_character_flag = rol_relic_context_mars
+	scope:activity = { has_activity_type = activity_rol_seek_mars_blade }
+}
+
+rol_munich_quest_active_trigger = {
+	rol_relic_quest_open_trigger = yes
+	has_character_flag = rol_relic_context_nibelung
+	scope:activity = { has_activity_type = activity_rol_seek_nibelung_sphere }
+}
+
+rol_naxos_quest_active_trigger = {
+	rol_relic_quest_open_trigger = yes
+	has_character_flag = rol_relic_context_naxos
+	scope:activity = { has_activity_type = activity_rol_seek_naxos_guard }
+}
+
+rol_sevilla_quest_active_trigger = {
+	rol_relic_quest_open_trigger = yes
+	has_character_flag = rol_relic_context_astrolabe
+	scope:activity = { has_activity_type = activity_rol_seek_astrolabe_of_ocean }
+}
+
+rol_carthage_quest_active_trigger = {
+	rol_relic_quest_open_trigger = yes
+	has_character_flag = rol_relic_context_carthage
+	scope:activity = { has_activity_type = activity_rol_seek_ash_forged_mask }
+}
+
+rol_relic_any_active_quest_trigger = {
+	OR = {
+		rol_rome_quest_active_trigger = yes
+		rol_munich_quest_active_trigger = yes
+		rol_naxos_quest_active_trigger = yes
+		rol_sevilla_quest_active_trigger = yes
+		rol_carthage_quest_active_trigger = yes
+	}
+}

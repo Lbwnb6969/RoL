@@ -24,6 +24,10 @@ def main() -> int:
     names = [tool["name"] for tool in response[2]["tools"]]
     assert len(names) == len(set(names)) and {"ck3_environment", "ck3_validate_mod"} <= set(names)
     assert response[3]["structuredContent"]["descriptor_exists"]
+    launcher = response[3]["structuredContent"]["launcher_descriptor"]
+    if launcher["exists"]:
+        assert launcher["matches_source"], f"launcher points away from source: {launcher['target']}"
+        print("[OK] Launcher descriptor targets the development source")
     validation = response[4]["structuredContent"]
     for item in validation["results"]:
         print(item["stdout"].strip())

@@ -11,6 +11,8 @@ rol_legend_circle.0001 = {
 	override_sound = { reference = "event:/SFX/Events/Themes/sfx_event_theme_type_learning" }
 
 	trigger = {
+		NOT = { has_character_flag = rol_legend_circle_0001_reward_claimed }
+		NOT = { has_character_modifier = rol_legend_circle_conqueror_modifier }
 		is_ai = no
 		has_character_flag = rol_legend_circle_revealed
 		rol_has_all_major_relic_completions_trigger = yes
@@ -20,22 +22,27 @@ rol_legend_circle.0001 = {
 		name = rol_legend_circle.0001.a
 		flavor = rol_legend_circle.0001.a.flavor
 		hidden_effect = {
-			play_sound_effect = "event:/DLC/EP1/SFX/UI/Notifications/court_grandeur_toast_lvl_up"
-			add_character_modifier = {
-				modifier = rol_legend_circle_conqueror_modifier
-			}
-			house ?= {
-				add_house_modifier = {
-					modifier = rol_legend_circle_house_modifier
-					years = 75
+			if = {
+				limit = { has_character_flag = rol_legend_circle_revealed rol_has_all_major_relic_completions_trigger = yes NOT = { has_character_flag = rol_legend_circle_0001_reward_claimed } NOT = { has_character_modifier = rol_legend_circle_conqueror_modifier } }
+				add_character_flag = rol_legend_circle_0001_reward_claimed
+				play_sound_effect = "event:/DLC/EP1/SFX/UI/Notifications/court_grandeur_toast_lvl_up"
+				add_character_modifier = {
+					modifier = rol_legend_circle_conqueror_modifier
 				}
-			}
-			dynasty ?= {
-				add_dynasty_modifier = {
-					modifier = rol_legend_circle_dynasty_modifier
-					years = 100
+				house ?= {
+					add_house_modifier = {
+						modifier = rol_legend_circle_house_modifier
+						years = 75
+					}
 				}
-				add_dynasty_prestige = 500
+				dynasty ?= {
+					add_dynasty_modifier = {
+						modifier = rol_legend_circle_dynasty_modifier
+						years = 100
+					}
+					add_dynasty_prestige = 500
+				}
+
 			}
 		}
 	}
@@ -48,6 +55,8 @@ rol_legend_circle.0002 = {
 	theme = learning
 	override_background = { reference = rol_bg_legend_circle_revelation }
 	trigger = {
+		NOT = { has_character_flag = rol_legend_circle_0002_reward_claimed }
+		NOT = { has_character_modifier = rol_legend_circle_fivefold_modifier }
 		is_ai = no
 		has_character_flag = rol_legend_circle_fivefold_revealed
 		rol_has_all_five_relic_completions_trigger = yes
@@ -56,14 +65,19 @@ rol_legend_circle.0002 = {
 		name = rol_legend_circle.0002.a
 		flavor = rol_legend_circle.0002.a.flavor
 		hidden_effect = {
-			play_sound_effect = "event:/DLC/EP1/SFX/UI/Notifications/court_grandeur_toast_lvl_up"
-			add_character_modifier = { modifier = rol_legend_circle_fivefold_modifier }
-			house ?= {
-				add_house_modifier = { modifier = rol_legend_circle_house_modifier years = 100 }
-			}
-			dynasty ?= {
-				add_dynasty_modifier = { modifier = rol_legend_circle_dynasty_fivefold_modifier years = 150 }
-				add_dynasty_prestige = 1000
+			if = {
+				limit = { has_character_flag = rol_legend_circle_fivefold_revealed rol_has_all_five_relic_completions_trigger = yes NOT = { has_character_flag = rol_legend_circle_0002_reward_claimed } NOT = { has_character_modifier = rol_legend_circle_fivefold_modifier } }
+				add_character_flag = rol_legend_circle_0002_reward_claimed
+				play_sound_effect = "event:/DLC/EP1/SFX/UI/Notifications/court_grandeur_toast_lvl_up"
+				add_character_modifier = { modifier = rol_legend_circle_fivefold_modifier }
+				house ?= {
+					add_house_modifier = { modifier = rol_legend_circle_house_modifier years = 100 }
+				}
+				dynasty ?= {
+					add_dynasty_modifier = { modifier = rol_legend_circle_dynasty_fivefold_modifier years = 150 }
+					add_dynasty_prestige = 1000
+				}
+
 			}
 		}
 	}

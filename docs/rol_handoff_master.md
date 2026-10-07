@@ -1,8 +1,10 @@
 ﻿# RoL 新对话完整交接文档（Master Handoff）
 
-> 当前快照日期：2026-10-06
+> 当前快照日期：2026-10-07
 > 真源目录：`C:\CK3Mods\RoL`  
 > 当前启动器描述符：`C:\Users\Falcons的Niko本人的PC\Documents\Paradox Interactive\Crusader Kings III\mod\RoL.mod` -> `path="C:/CK3Mods/RoL"`
+
+> 当前状态以 `PROJECT.md` 为准。全面审计已归档五个原版GUI/custom loc覆盖，装备品质/类型交由当前原版或用户UI模组，传奇徽记只挂RoL阶位modifier；禁止恢复退役界面。代理不启动游戏，本轮手测优先看控制台指南第16节，结算正例看第6节。下文早期ID直测不代表真实活动回归。
 
 ---
 
@@ -212,12 +214,13 @@
 
 ### 6.1 一键静态检查
 ```powershell
-python "C:\Users\Falcons的Niko本人的PC\.codex\skills\rol-ck3-modder\scripts\check_bom_utf8.py" "C:\CK3Mods\RoL"
-python "C:\Users\Falcons的Niko本人的PC\.codex\skills\rol-ck3-modder\scripts\check_rol_prefix.py" "C:\CK3Mods\RoL"
-python "C:\Users\Falcons的Niko本人的PC\.codex\skills\rol-ck3-modder\scripts\rol_smoke_checks.py" "C:\CK3Mods\RoL"
+python tools/ck3_mcp/rol_stdio_probe.py
+git diff --check
 ```
 
 ### 6.2 Carthage 直测
+
+仅为旧事件/背景预览索引；无host/activity上下文的finalize/fail现在不改变奖励或冷却。真实活动终局使用控制台指南第6节的带作用域命令；创建effect只适用于尚无该物品的测试副本。
 ```txt
 event rol_relic_discovery.1600
 event rol_quest_carthage.0990

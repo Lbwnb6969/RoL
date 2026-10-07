@@ -1,8 +1,7 @@
 ﻿#!/usr/bin/env python3
 """Fast, dependency-free static audit for the RoL CK3 content contract.
 
-This deliberately checks only RoL-owned references. Vanilla paths in GUI
-overrides are resolved by CK3's base game and are outside this audit's scope.
+Includes additive-loading and quest-lifecycle contracts; never launches CK3.
 """
 
 from __future__ import annotations
@@ -114,6 +113,8 @@ REQUIRED_ACTIVITY_BLOCKS = (
     "can_start_showing_failures_only",
     "is_valid",
     "on_start",
+    "on_invalidated",
+    "on_host_death",
     "province_filter_target",
     "is_location_valid",
     "phases",
@@ -485,11 +486,16 @@ def audit(root: Path) -> int:
     cross_routes, inherited_records = check_archive_contract(root, errors)
     from rol_relic_safety_contracts import check_relic_safety_contract
     check_relic_safety_contract(root, errors)
+    from rol_compatibility_contracts import check_compatibility_contract
+    from rol_quest_lifecycle_contracts import check_quest_lifecycle_contract
+    compatible_files, _ = check_compatibility_contract(root, errors)
+    settled_routes = check_quest_lifecycle_contract(root, errors)
     if errors:
         print(f"[FAIL] RoL static audit failed: {len(errors)} issue(s)")
         for error in errors:
             print(f"  - {error}")
         return 1
+    print(f"[OK] Compatibility and settlement: {compatible_files} active text files, {settled_routes} lifecycle routes")
     print(f"[OK] RoL static audit passed: {len(CHAINS)} activities, {fragment_routes} fragment routes, {growth_routes} growth routes, {companion_routes} companion routes, {relic_use_modes} relic use modes, {cross_routes} cross-chain routes, {inherited_records} inherited records, {english_count} English keys, {chinese_count} Chinese keys, {gfx_count} RoL gfx references, {dds_count} canonical DDS assets, {success_model_refs} high-chance branches, {chance_lists} chance lists, {chance_tooltips} chance tooltip keys, {branch_options} event choices with partial endings")
     return 0
 

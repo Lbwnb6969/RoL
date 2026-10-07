@@ -1,0 +1,29 @@
+﻿# Only the selected pact may be consumed; an older window cannot close a new one.
+rol_rival_reopen_pact_effect = {
+	if = {
+		limit = { has_character_flag = rol_rival_pact_choice_pending }
+		if = {
+			limit = { exists = var:rol_rival_pact_partner var:rol_rival_pact_partner = { is_alive = yes } }
+			var:rol_rival_pact_partner = { save_scope_as = rol_expedition_rival }
+			trigger_event = rol_rival.1001
+		}
+		else = {
+			remove_character_flag = rol_rival_pact_choice_pending
+			remove_variable = rol_rival_pact_partner
+		}
+	}
+}
+
+rol_rival_close_selected_pact_effect = {
+	if = {
+		limit = {
+			has_character_flag = rol_rival_pact_choice_pending
+			OR = {
+				NOT = { exists = var:rol_rival_pact_partner }
+				AND = { exists = scope:rol_expedition_rival scope:rol_expedition_rival = var:rol_rival_pact_partner }
+			}
+		}
+		remove_character_flag = rol_rival_pact_choice_pending
+		remove_variable = rol_rival_pact_partner
+	}
+}

@@ -28,7 +28,7 @@ rol_relic_debug_enable_effect = {
 	send_interface_toast = {
 		type = event_toast_effect_good
 		title = rol_relic_debug_enabled_toast
-		left_icon = root
+		left_icon = this
 	}
 }
 
@@ -37,7 +37,7 @@ rol_relic_debug_disable_effect = {
 	send_interface_toast = {
 		type = event_toast_effect_good
 		title = rol_relic_debug_disabled_toast
-		left_icon = root
+		left_icon = this
 	}
 }
 
@@ -50,7 +50,7 @@ rol_relic_debug_trace_effect = {
 		send_interface_toast = {
 			type = event_toast_effect_good
 			title = $DEBUG_KEY$
-			left_icon = root
+			left_icon = this
 		}
 		error_log = "[ROL][DEBUG] $DEBUG_KEY$"
 	}
@@ -61,7 +61,7 @@ rol_relic_log_stage_effect = {
 	scope:activity ?= {
 		add_activity_log_entry = {
 			key = rol_relic_activity_stage_log
-			character = root
+			character = scope:host
 			score = 20
 			show_in_conclusion = yes
 		}
@@ -75,7 +75,7 @@ rol_relic_log_success_effect = {
 			limit = { exists = scope:newly_created_artifact }
 			add_activity_log_entry = {
 				key = rol_relic_activity_success_log
-				character = root
+				character = scope:host
 				artifact = scope:newly_created_artifact
 				score = 90
 				tags = { complete good }
@@ -85,7 +85,7 @@ rol_relic_log_success_effect = {
 		else = {
 			add_activity_log_entry = {
 				key = rol_relic_activity_success_log
-				character = root
+				character = scope:host
 				score = 90
 				tags = { complete good }
 				show_in_conclusion = yes
@@ -99,7 +99,7 @@ rol_relic_log_partial_success_effect = {
 	scope:activity ?= {
 		add_activity_log_entry = {
 			key = rol_relic_activity_partial_success_log
-			character = root
+			character = scope:host
 			score = 60
 			tags = { complete good }
 			show_in_conclusion = yes
@@ -123,7 +123,7 @@ rol_relic_partial_success_finalize_effect = {
 		type = event_toast_effect_good
 		title = rol_relic_partial_success_toast_title
 		desc = rol_relic_partial_success_toast_desc
-		left_icon = root
+		left_icon = this
 	}
 	trigger_event = { id = $SUMMARY_EVENT$ days = 1 }
 	rol_relic_debug_trace_effect = { DEBUG_KEY = $DEBUG_KEY$ }
@@ -134,7 +134,7 @@ rol_relic_log_failure_effect = {
 	scope:activity ?= {
 		add_activity_log_entry = {
 			key = rol_relic_activity_failure_log
-			character = root
+			character = scope:host
 			score = 70
 			tags = { complete bad }
 			show_in_conclusion = yes

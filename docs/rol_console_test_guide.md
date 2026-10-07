@@ -1,4 +1,4 @@
-﻿# RoL 控制台测试指南 / 调试 / 重置
+# RoL 控制台测试指南 / 调试 / 重置
 
 > 真源目录：`C:\CK3Mods\RoL`  
 > 当前覆盖五条正式主线：Rome / Munich / Naxos / Sevilla / Carthage
@@ -6,7 +6,11 @@
 
 ---
 
+本轮不由代理启动游戏。先复制测试存档，在启动器开启 `-debug_mode`，由维护者打开控制台逐行执行。第16节为本次审计的优先验收顺序；以下直发/重置均只用于测试副本，不在正式存档删物品或清完成状态。
+
 ## 0. 调试模式
+
+以下只开启RoL调试提示，不替代游戏的 `-debug_mode` 启动参数。
 
 开启：
 ```txt
@@ -51,6 +55,8 @@ event rol_relic_discovery.1600   # Carthage / Qartajana
 ---
 
 ## 3. 五条正式活动链测试
+
+下列事件表是ID/背景预览索引。直接 `event` 不携带真实host/activity作用域，阶段按钮和终局不会正常推进或领奖；不能把依次强制弹窗当成完整活动测试。正式测试先给传闻，再从活动界面规划并实际出发，走正常阶段。带作用域的终局测试见第6节。
 
 ### 3.1 Rome：Mars 链
 ```txt
@@ -194,7 +200,7 @@ effect rol_create_nibelung_star_sphere_effect = yes
 预期：
 - 新生成的 `rol_nibelung_star_sphere` 出现在 **礼器 / regalia** 槽
 - 不再落到配饰 / 杂项槽
-- 旧存档历史实例若异常，删旧物后重新发放再测
+- 旧存档历史实例若异常，保留原存档和旧物，在独立测试副本另发新实例比较；不删除正式物品
 - 图标应来自 `rol_nibelung_star_sphere.dds`，不再借用 `artifact_regalia.dds`
 
 ### 5.4 Carthage 槽位验证
@@ -231,7 +237,7 @@ effect rol_create_ash_forged_mask_effect = yes
   - `stewardship = 6`
   - `monthly_prestige_gain_mult = 0.15`
   - `character_travel_safety = 15`
-  - `travel_speed_mult = 0.15`
+  - `character_travel_speed_mult = 0.15`
   - `monthly_stewardship_lifestyle_xp_gain_mult = 0.15`
 - `rol_ash_forged_mask_modifier`
   - `martial = 8`
@@ -244,87 +250,82 @@ effect rol_create_ash_forged_mask_effect = yes
 
 ---
 
-## 6. 成功结算模拟
+## 6. 带真实活动作用域的结算测试
 
-> 直接 `event rol_quest_*.1001` 时通常没有 `scope:activity`。  
-> 若要稳定测试成功 finalize，请优先用 effect。
+先用测试角色从活动界面正常开启目标RoL远征，等抵达且该活动已运行 `on_start`。执行下面任一终局命令前，保存尚未结算的测试副本；完整与部分测试分别重载这个副本。命令直接设置终局进度，只验证结算，不能替代完整远征的选择、概率或费用测试。
 
-### 6.1 Rome
-```txt
-effect remove_character_flag = rol_mars_blade_claimed
-effect rol_create_blade_of_mars_effect = yes
+### 6.1 Rome 完整成功
+
+```text
+effect save_scope_as = host involved_activity = { save_scope_as = activity set_variable = { name = activity_special_type_progression value = 100 } } trigger_event = rol_quest_rome.1001
+```
+
+预期：只新增一件Mars剑，Tier4基础250威望/150虔诚及所选筹备完整奖励，两天后30点复盘经验。已结算标记阻止再次领奖，活动阶段约一天内收尾并进入原版结束/归程流程，不继续占用365天。重复同一命令不得多发物品或经验；没有正在参加的活动时不要使用 `involved_activity` 命令。
+
+### 6.2 Rome 部分成功
+
+重载尚未结算的副本：
+
+```text
+effect save_scope_as = host involved_activity = { save_scope_as = activity set_variable = { name = activity_special_type_progression value = 40 } } trigger_event = rol_quest_rome.1001
+```
+
+预期：Tier2/3部分成果，没有Mars剑/完整完成flag，没有high或supreme的额外凯旋筹备奖励；有对应进度收益、五年证据、十年Mars笔记、两年冷却和20点复盘经验。约一天阶段收尾，重放不重复兑现或刷新冷却/笔记。
+
+### 6.3 其他四链
+
+在对应真实活动中，沿用同一命令，只替换最后的事件ID：
+
+| 地区 | 终局ID | 完整进度 | 部分测试进度 | 完整奖励 |
+|---|---|---:|---:|---|
+| Munich | `rol_quest_munich.1001` | 100 | 40 | 星界球，regalia槽 |
+| Naxos | `rol_quest_naxos.1001` | 100 | 40 | `rol_naxos_unit_unlocked`，招募权限，不自动生成兵团 |
+| Sevilla | `rol_quest_sevilla.1001` | 100 | 40 | 星盘 |
+| Carthage | `rol_quest_carthage.1001` | 100 | 40 | 金面，helmet槽 |
+
+每条分别验证完整30XP、部分20XP/当地笔记、完整筹备奖励与一次收尾。真实高谋略Naxos 1003.b成功现在给major，起点30加三次major应达到60；概率保持该分支原70%，不能误当90%。
+
+### 6.4 无上下文 / 错活动的负例
+
+不参加活动时执行：
+
+```text
+event rol_quest_rome.1001
 effect rol_rome_quest_success_finalize_effect = yes
+effect rol_rome_quest_partial_finalize_effect = yes
 ```
 
-### 6.2 Munich
-```txt
-effect remove_character_flag = rol_nibelung_sphere_claimed
-effect rol_create_nibelung_star_sphere_effect = yes
-effect rol_munich_quest_success_finalize_effect = yes
+预期：不发剑、威望/虔诚/XP/笔记/冷却，不改其他状态；控制台强制事件可能只显示通用文本。随后实际参加一次原版活动，在该活动中用6.1命令强制Rome终局，预期原版活动进度、费用、角色状态不被RoL改变。分别检查其余四链即可覆盖不同路线。
+
+### 6.5 筹备差异
+
+同一高属性角色分别比较low/standard/high/supreme，价格见第4节。90%基准的单关显示依次80/90/95/95；低基准极致仍可能高于high。完整成功high额外150威望/25宗族威望、supreme额外350/50；部分成功不获得这笔完整奖励。原有阶段与终局基础收益不包含在此差额中。
+
+### 6.6 四链总事件 / 老档
+
+只在新的测试副本中设置：
+
+```text
+effect add_character_flag = rol_mars_blade_claimed add_character_flag = rol_nibelung_sphere_claimed add_character_flag = rol_naxos_unit_unlocked add_character_flag = rol_astrolabe_of_ocean_claimed rol_check_legend_circle_revelation_effect = yes
 ```
 
-### 6.3 Naxos / Thera
-```txt
-effect remove_character_flag = rol_naxos_unit_unlocked
-effect rol_naxos_quest_success_finalize_effect = yes
-```
-
-### 6.4 Sevilla
-```txt
-effect remove_character_flag = rol_astrolabe_of_ocean_claimed
-effect rol_create_astrolabe_of_ocean_effect = yes
-effect rol_sevilla_quest_success_finalize_effect = yes
-```
-
-### 6.5 Carthage
-```txt
-effect remove_character_flag = rol_ash_forged_mask_claimed
-effect rol_create_ash_forged_mask_effect = yes
-effect rol_carthage_quest_success_finalize_effect = yes
-```
-
-### 6.6 筹备档位奖励验证
-1. 记录当前角色的 `[prestige|E]` 与 `[dynasty_prestige|E]`。
-2. 正常进入任意一条活动，分别测试 `low / standard / high / supreme`。
-3. 在同一能力档位下，观察 RNG option：
-   - 百分比会随筹备档位变化
-   - low 更难，high / supreme 更容易
-4. 最终仍只有达到各链 Tier4 才能拿到最终奖励。
-5. 成功结算后对比额外收益：
-   - `low`：无额外奖励
-   - `standard`：无额外奖励
-   - `high`：`+150 prestige / +25 dynasty prestige`
-   - `supreme`：`+350 prestige / +50 dynasty prestige`
-
-### 6.7 四链全通总事件 / 老档回填
-```txt
-effect add_character_flag = rol_mars_blade_claimed
-effect add_character_flag = rol_nibelung_sphere_claimed
-effect add_character_flag = rol_naxos_unit_unlocked
-effect add_character_flag = rol_astrolabe_of_ocean_claimed
-effect remove_character_flag = rol_legend_circle_revealed
-effect rol_check_legend_circle_revelation_effect = yes
-```
-
-预期：
-- `1` 天后触发 `rol_legend_circle.0001`
-- 该总事件仍只认旧四条核心主线
-- **Carthage 不会影响该总事件触发条件**
-- 事件背景继续读取 `rol_bg_legend_circle_revelation`
+预期：一天后 `rol_legend_circle.0001`，领奖500宗族威望及原有圆环修正；Carthage不影响旧四链条件。已拥有永久圆环修正的旧角色视为领过奖励，即使清revealed或强制事件也不再次领奖。不要为补领而删除旧修正/永久领奖flag。
 
 ---
 
 ## 7. 失败收口测试
 
-```txt
-effect rol_rome_quest_fail_now_effect = yes
-effect rol_munich_quest_fail_now_effect = yes
-effect rol_naxos_quest_fail_now_effect = yes
-effect rol_sevilla_quest_fail_now_effect = yes
-effect rol_carthage_quest_fail_now_effect = yes
+在已经抵达的真实Rome活动中：
+
+```text
+effect save_scope_as = host involved_activity = { save_scope_as = activity } rol_rome_quest_fail_now_effect = yes
 ```
 
-这些命令会添加 2 年冷却并弹出失败 toast。
+预期：失败toast、两年冷却、约一天阶段收尾；未完成阶段没有XP，完成至少一阶段后给10XP。同行约定仍对原人物结算，不重新找人。重复同命令不再奖励或刷新状态；活动取消/失效会走同一受保护收口。
+
+其他地区替换为 `rol_munich_quest_fail_now_effect` / `rol_naxos_quest_fail_now_effect` / `rol_sevilla_quest_fail_now_effect` / `rol_carthage_quest_fail_now_effect`，只用于对应真实活动。
+
+无活动时直接 `effect rol_rome_quest_fail_now_effect = yes` 等属于负例，预期不添加冷却/经验/结果，不弹正常失败奖励。
 
 ---
 
@@ -375,6 +376,8 @@ effect rol_check_legend_circle_fivefold_revelation_effect = yes
 预期：一天后触发 `rol_legend_circle.0002`，发放五重圆环角色修正、家族/宗族奖励和 1000 dynasty prestige；旧四链 `rol_legend_circle.0001` 的触发语义保持不变。
 
 ## 8. 重置命令
+
+仅用于一次性测试副本；重载结算前副本通常更可靠。不要在正在进行的活动中清上下文，也不要清永久圆环领奖资格或用途递增编号来模拟正常重试。
 
 ### 8.1 通用 recent result 清理
 ```txt
@@ -443,11 +446,12 @@ effect if = { limit = { has_variable = rol_carthage_stage_count } remove_variabl
 
 ## 10. 常见问题
 
-- `not a valid id`：通常是脚本没重载，或你改的是错误目录而不是真源目录。
-- 直接 `event rol_quest_*.1001` 看不到正常终局：因为没有活动上下文，优先用第 6 节的 finalize effect。
-- 泰拉活动成功后看不到兵种：执行 `effect rol_naxos_quest_success_finalize_effect = yes` 后，再到军事界面确认 `rol_adeptus_custudes` 是否可招募。
-- 没有 debug toast：先执行 `effect rol_relic_debug_enable_effect = yes`。
-- 背景 / 图标缓存异常：删除 `Documents/Paradox Interactive/Crusader Kings III/gfx` 后，完全重启启动器与游戏。
+- `not a valid id`：检查真源、启动器加载路径及脚本是否重载。
+- 直接 `event rol_quest_*.1001` 或无上下文finalize不发奖：当前是受保护的正确负例；正例用第6节的真实活动命令。
+- 泰拉兵种检查：正常完整结算后确认 `rol_adeptus_custudes` 可招募。仅测兵种UI时，可在测试副本执行 `effect add_character_flag = rol_naxos_unit_unlocked`；此命令不证明远征成功。
+- 没有RoL debug toast：用第0节的RoL调试开关；控制台仍需要游戏debug模式。
+- 背景/图标异常：先核对真源加载路径、接线与DDS。确需清缓存时，关闭游戏与启动器，把Documents侧 `gfx` 移到带日期的缓存备份目录，再重启；保留原缓存，不直接删除。
+- 装备品质/类型前缀：本轮已退役全局GUI与custom loc覆盖。不要把 `archive/retired_ui` 文件复制回活跃目录；按第16节比较模组组合与加载顺序。
 
 ---
 
@@ -741,3 +745,80 @@ effect remove_character_modifier = rol_ocean_routes_modifier
 ```
 
 清理来信不取消已经主动承担的个人约定，后者按第13节处理。不要重置前任 `rol_archive_exported` 重新打包正式状态；另开测试副本测真实回调。保留 `error.log` 中继承/图表相关 `rol_` 行。
+
+
+## 16. 本轮全面审计的优先验收（2026-10-07）
+
+先做16.1兼容回归，再做16.2生命周期；其余按相关模块抽查。用同一份测试存档副本，记录版本、模组清单/顺序和暂停时的费用/XP。下列命令由维护者执行，代理本轮没有游戏操作。
+
+### 16.1 原版与其他模组装备前缀（最高优先级）
+
+1. RoL关闭时保留原版与日常模组的武器/礼器等物品截图。覆盖普通、名作、稀有、卓越中的现有实例，记录品质和槽位/类型前缀，不更改原物品。
+2. 仅开启RoL，检查相同原版物品的背包卡片、详情、悬浮提示、赠送/继承等交互的选物列表。英文也抽查一件。
+3. 开RoL和日常模组组合，检查相同的第三方物品；换RoL与相关界面模组的相对加载顺序再抽查。记录失败界面与物品类型，避免只查一个背包卡片。
+4. 原版holy relic详情、宗教/情势界面仍应有当前版本的字段，不被旧版RoL GUI替换。RoL没有继续占用这些原版窗口。
+
+预期：原版和第三方品质/类型显示与关闭RoL时一致，如名作级礼器、稀有级武器不丢前缀。RoL真品仍走原版品质/类型，自己的修正列表显示 `@rol_legendary_icon!` 与传奇阶位；不要求全局原版品质被改名成“传奇”。若只在某组合失败，提供清单和顺序，不把单独RoL通过视为全组合兼容。
+
+仅在测试角色尚无RoL四件真品时可直发一次用于观察：
+
+```text
+effect rol_debug_grant_all_artifact_relics_effect = yes
+```
+
+直发不是唯一性测试；正常主线应由第6节或真实远征验证。
+
+### 16.2 结算、旧窗口、失效与死亡
+
+按第6节分别做完整/部分，按第7节做零进展/有进展失败。每次观察约一天阶段结束和归程，不出现一年停留；终局后不又变成一次失败奖励，重复事件不刷新XP/冷却/笔记或多发神器。
+
+让正常挑战窗口保持打开，在暂停时用第7节命令结束同一活动，再点击旧窗口。预期：无额外威望、虔诚、伤害、进度或下一阶段事件；按钮只关闭旧窗口。用已进入终局的存档再重放完整命令，物品数不增加。
+
+另通过游戏中的取消/人物失能等操作使远征实际失效，验证失效钩子；不要只用失败effect替代这一项。主办者死亡测试保留一个未调用档案快捷打包的副本，在有在途原同行约定时正常死亡并继承，按第15节观察资料/原NPC约定传递。继承人不拿前任个人XP、不把原同行换成另一个人；已死亡主办者的旧排队事件不领奖。原版死亡/继承与活动结束回调先后需要真实游戏确认。
+
+旧版本存档另留副本加载：没有新关闭标记的在途活动仍应能正常结算；已有完成flag和永久圆环奖励保持；此前完成物品不自动删除/重建。保存并读档后重复上述最小场景，确认指针和活动资格保留。
+
+### 16.3 圆环与最后一项继承
+
+在6.6四链测试领过一次后：
+
+```text
+event rol_legend_circle.0001
+```
+
+预期：不再增加500宗族威望、不刷新75/100年家族/宗族奖励。再增加第五链并检查：
+
+```text
+effect add_character_flag = rol_ash_forged_mask_claimed rol_check_legend_circle_fivefold_revelation_effect = yes
+```
+
+一天后五重圆环首次给1000宗族威望及既有修正；再次 `event rol_legend_circle.0002` 不重复支付/续期。比较暂停时即时变化，避免把日常被动宗族威望当重复奖励。
+
+在另一个接近完成的角色上，通过赠送/原版继承取得最后一件真品，或通过Naxos继承事件支付500威望/100金币（军事≥10），预期自动检查对应圆环。资金不足或已解锁时旧Naxos窗口不能重复收费/领奖。Naxos承接必须来自实际持有资格的原前任；放弃所得50虔诚亦只兑现一次，无前任作用域的强制 `.0103` 不付款或领奖。
+
+### 16.4 竞争者与传承互斥
+
+正常远征遇到竞争者时合作；记住原NPC，后续用恢复决策“处理竞争者的约定”或：
+
+```text
+effect rol_rival_reopen_pact_effect = yes
+```
+
+预期始终是原NPC。选50金币换100威望、150威望但恶化关系、或减10压力之一后，一次资格消费；再恢复/强制 `.1001` 不重复支付。金币不足50时付费选项不可执行；NPC已死亡时恢复只清旧记录，不收费、不换NPC、不领奖；旧A窗口不关闭新B约定。由旧版本排队且缺原对象变量的窗口可关闭，不补发不可靠奖励。
+
+已有真品时用7.1传承调试入口，选择公开取向；仅在测试副本清五年入口冷却，再次打开改选学术：
+
+```text
+effect remove_character_flag = rol_relic_legacy_transition_cooldown
+effect rol_relic_legacy_debug_transition_effect = yes
+```
+
+预期当前100金币门槛有效，三种传承取向最多留一种；转手后旧窗口不清当前修正、不付款、不领奖。不要用清冷却来验证正常五年触发频率。
+
+### 16.5 数值、定时与日志交付
+
+最小先抽查Mars用途与Naxos训练，再按12–15节测一次真实181天等待并在180天前保存/读档；取消、原物品转手和旧编号事件都不兑现新项目。三种研习、守信/失信、传承取向、物品两用途和Naxos两训练各自互斥；基底/阶位/碎片是独立累计来源。
+
+观察四件真品同时装备的实际收益、卸下后的消失，以及Naxos兵团4人/级的伤亡与维护。成本表与参考成功率见 `rol_success_model.md`；有限样本不能证明81%或90%的真实总体通过率。
+
+手测反馈保存：测试前后存档、操作顺序、模组清单/顺序、失败界面和当前会话相关 `error.log` / `game.log` 中 `rol_` 或 `[ROL]` 行。不要删除原日志或正式缓存，不要求已有原版错误的日志全空；检查本次动作后是否新增RoL错误。

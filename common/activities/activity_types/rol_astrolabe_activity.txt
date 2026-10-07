@@ -25,14 +25,21 @@ activity_rol_seek_astrolabe_of_ocean = {
 			is_alive = yes
 			is_imprisoned = no
 			NOT = { is_incapable = yes }
-			has_character_flag = rol_heard_astrolabe_legend
-			NOT = { has_character_flag = rol_astrolabe_of_ocean_claimed }
-			NOT = { has_character_modifier = rol_astrolabe_quest_cooldown_modifier }
+			# Settled quests stay valid until their one-day phase finish.
+			OR = {
+				scope:activity = { var:rol_relic_quest_closed = 1 }
+				AND = {
+					has_character_flag = rol_heard_astrolabe_legend
+					NOT = { has_character_flag = rol_astrolabe_of_ocean_claimed }
+					NOT = { has_character_modifier = rol_astrolabe_quest_cooldown_modifier }
+				}
+			}
 		}
 	}
 
 	on_start = {
 		scope:host = {
+			rol_relic_quest_begin_effect = yes
 			rol_relic_clear_recent_result_effect = yes
 			rol_clear_rival_route_effect = yes
 			rol_set_context_astrolabe_accessory_effect = yes
@@ -56,6 +63,22 @@ activity_rol_seek_astrolabe_of_ocean = {
 			show_in_conclusion = yes
 		}
 	}
+
+	on_invalidated = {
+		scope:host = { rol_sevilla_quest_fail_now_effect = yes }
+	}
+
+	on_host_death = {
+		scope:host = {
+			rol_expedition_growth_abandon_effect = yes
+			rol_clear_context_astrolabe_accessory_effect = yes
+			rol_sevilla_quest_abort_effect = yes
+			rol_relic_quest_close_effect = yes
+			# Preserve the original pact fields for the on_death archive snapshot.
+		}
+		invalidation_host_death_effect = yes
+	}
+
 
 	province_filter = landed_title
 	ai_province_filter = landed_title
@@ -238,6 +261,7 @@ activity_rol_seek_astrolabe_of_ocean = {
 
 	on_complete = {
 		scope:host = {
+			rol_sevilla_quest_fail_now_effect = yes
 			rol_expedition_companion_finish_effect = { STAGE_VARIABLE = rol_sevilla_stage_count }
 			rol_expedition_growth_abandon_effect = yes
 

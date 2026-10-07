@@ -7,10 +7,12 @@
 - 部分成功与失败使用各自结算描述；不要把低于 Tier4 的全部路径写成失败。
 - 概率 tooltip 与实际 script value 同源，避免手填固定百分比。
 
-## Legendary Display Override
+## Legendary Display and Compatibility
 
-- 使用 `common/customizable_localization` 针对 RoL artifact 定向覆盖。
-- 覆盖 `ARTIFACT_RARITY_AND_SLOT_TYPE` 时保留 fallback 给非 RoL artifact。
+- 原版品质/类型由原版GUI与 `ARTIFACT_RARITY_AND_TYPE` / `ARTIFACT_RARITY_AND_SLOT_TYPE` 处理；RoL不得覆盖这些全局key或整份原版GUI。fallback依赖调用上下文，不能据此宣称全局覆盖安全。
+- 传奇徽记放在 `rol_relic_tier_legendary_modifier` 的自有本地化名称中，复用 `@rol_legendary_icon!`；保留原版稀有度、类型和第三方界面接线。
+- 2026-10-07退役的五个原版GUI副本和custom loc只保留在 `archive/retired_ui/20261007`，不能恢复到加载目录。新增插件、texticon使用 `rol_` 自有名称和文件。
+- `rol_compatibility_contracts.py` 检查原版同路径替换、全局key、自有定义/引用及追加式on_action；静态通过后仍须比较原版、单独RoL和日常模组组合的卡片/详情/悬浮/交互选物。
 
 ## Text Icon
 

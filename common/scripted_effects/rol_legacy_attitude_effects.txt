@@ -1,0 +1,6 @@
+﻿# Switching legacy attitude replaces only this family, preserving all other buffs.
+rol_relic_legacy_clear_attitudes_effect = {
+	remove_character_modifier = rol_relic_legacy_public_modifier
+	remove_character_modifier = rol_relic_legacy_concealed_modifier
+	remove_character_modifier = rol_relic_legacy_scholarly_modifier
+}

@@ -1,4 +1,10 @@
 ﻿l_english:
+ rol_rival_context_lost_option:0 "Close this old encounter."
+ rol_review_rival_pact_decision:0 "Resolve the Rival's Pact"
+ rol_review_rival_pact_decision_desc:0 "Return to the agreement with your original rival. Each pact is resolved once; if the other party has died, the record closes without payment or reward."
+ rol_review_rival_pact_decision_tooltip:0 "Reopen your unresolved agreement."
+ rol_review_rival_pact_decision_confirm:0 "Review the pact"
+ rol_rival_context_lost_flavor:0 "The journey or the person has changed; no reward or payment is due here."
  rol_rival.1000.t: "A Rival in the Ruins"
  rol_rival.1000.desc: "[rol_expedition_rival.GetTitledFirstName] catches up with the expedition and produces a competing account of the relic's resting place. Whether rival, partner, or fraud, [rol_expedition_rival.GetSheHe] cannot now be ignored."
  rol_rival.1000.a: "Share the trail, for a price."

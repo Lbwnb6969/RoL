@@ -24,7 +24,7 @@
 
 ## 工具
 
-- `ck3_environment`：检查游戏、模组和日志路径。
+- `ck3_environment`：只读检查游戏、模组、日志路径及Documents侧 `RoL.mod` 的path是否指向当前真源；仓库descriptor存在不等于启动器已正确接线。
 - `ck3_process` / `ck3_launch` / `ck3_stop`：管理开发者模式测试会话；`ck3_launch` 可用 `loadsave` 载入指定存档，等待时间可配置到 180 秒，并返回目标窗口是否已出现。
 - `ck3_run_console_action`：调用 CK3 官方 console action 接口执行事件、决策调试或脚本探针。
 - `ck3_send_console`：通过 Windows 原生输入把一条命令送入可见的 CK3 开发者控制台，适合完整游戏窗口中的交互测试；传入 `close_console=true` 可在命令执行后自动收起控制台，便于继续截图或点击事件窗口。
@@ -40,6 +40,8 @@
 
 当前用户要求游戏测试由维护者完成，代理只调用只读环境/日志与静态验证工具，不调用启动、停止、输入或游戏 smoke。`python tools/ck3_mcp/rol_stdio_probe.py` 通过真实独立服务进程验证 initialize、无响应的 initialized 通知、15项工具目录、环境查询及组合静态验证，不启动游戏。
 
+`ck3_launch` 的 `suppress_error_log` 默认false，console action也不抑制错误日志，避免开发探针掩盖故障。本轮只静态检查参数，未重新执行运行时工具；旧游戏记录不代表新代码已加载。
+
 ## Static-first workflow
 
 优先运行 `ck3_static_audit`，它不启动 CK3，适合每次脚本或文案改动后的快速反馈。活动定义按五条正式链统一检查：
@@ -51,6 +53,8 @@
 - 每条链是否仍有多个事件选项和 `random_list` 挑战分支；
 - 每个挑战分支是否保存基准概率，并让英中结果 tooltip 显示与实际权重一致的成功 / 失败百分比；
 - 四条碎片路线的决策、原始圣物、两级 artifact modifier、三种挑战选项和成功 / 失败效果是否完整接线；
+- `rol_compatibility_contracts.py` 检查原版同路径替换、全局本地化key、自有注册项/重复/引用、追加式on_action和隐式图标；本轮退役的原版GUI/custom loc只在archive中，传奇徽记走自有modifier。未宣称任意其他模组组合已兼容；
+- `rol_quest_lifecycle_contracts.py` 检查五链原host/活动类型/地区/关闭状态、101个阶段按钮的点击资格复核、重复/错活动/死亡不发奖、已结算阶段收尾、失效/死亡/旧存档、圆环一次支付及竞争者原对象契约。阶段时间只检查接线，不模拟引擎时钟；
 - `rol_relic_safety_contracts.py` 检查碎片实际费用声明、原物品指针/归属、升级/失败重复保护、转手不替换目标，以及传承领奖资格/费用；四链和五链条件分别验证。模型不模拟原版扣费或装备收益；
 - Rome、Munich、Sevilla、Carthage 的终点唯一圣物奖励以及 Naxos 的终局单位奖励是否仍在终点事件内；
 - 五条活动成长/笔记入口与结算是否接线；`rol_growth_contracts.py` 用有限源码模型检查笔记的地区消费、重复兑现守卫、研习替换，以及实际/显示概率算式。该模型不启动游戏，也不证明引擎作用域或特质UI；
@@ -60,7 +64,7 @@
 - English / Simplified Chinese 的 RoL 本地化键是否一一对应且无重复；
 - 脚本中出现的 RoL-owned `gfx/` 引用是否都能解析到真源文件。
 
-这套审计借鉴了当前 Workshop 中 RICE / VIET 活动的共同结构，但只验证 RoL 自有路径，避免把原版 GUI 覆盖文件里的 vanilla 资源误报为缺失。通过后再运行 `ck3_validate_mod`；只有需要确认 Clausewitz 实际加载或窗口 UI 接线时，才使用 `ck3_smoke_test` 或完整窗口工具。
+活动结构参考本机原版与Workshop的既有模式；资源检查区分自有与原版引用，而活跃原版GUI覆盖被兼容门槛拒绝。一次 `ck3_validate_mod` 已组合各静态项，stdio探针还检查真实协议，不必逐项重复。游戏测试按当前用户要求交接；只有用户明确恢复代理操作时，才使用所需运行时工具。
 
 `ck3_dds_audit` 按目录区分事件背景、活动大图、header、活动图标和artifact图标。当前84张自有DDS通过；事件/活动背景目标 `1592x848 / DXT1`，header为 `1100x440`。历史非规范尺寸如再次出现会列为警告，损坏头或受规范锁定的资源不匹配则失败。
 

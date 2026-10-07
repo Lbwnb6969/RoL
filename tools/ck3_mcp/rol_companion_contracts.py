@@ -48,15 +48,15 @@ def check_companion_contract(root: Path, errors: list[str]) -> int:
             assert get(get(complete, "rol_expedition_companion_finish_effect"), "STAGE_VARIABLE") == f"rol_{chain}_stage_count", f"{chain}: cancellation does not close the same contract"
             chain_events = load(f"events/rol_quest_{chain}_events.txt")
             arrival_option = get(get(chain_events, f"rol_quest_{chain}.0990"), "option")
-            assert get(get(get(arrival_option, "hidden_effect"), "rol_expedition_companion_offer_effect"), "NEXT_EVENT") == f"rol_quest_{chain}.1000", f"{chain}: arrival bypasses companion offer"
+            assert get(get(get(get(arrival_option, "if"), "hidden_effect"), "rol_expedition_companion_offer_effect"), "NEXT_EVENT") == f"rol_quest_{chain}.1000", f"{chain}: arrival bypasses companion offer"
             trial = get(chain_events, f"rol_quest_{chain}.1000")
             for name, cost in (("rol_expedition_guard_route_option", "75"), ("rol_expedition_expert_route_option", "100")):
                 option = next(v for k, _, v in trial if k == "option" and get(v, "name") == name)
-                prepared = get(option, "rol_expedition_prepared_route_effect")
+                prepared = get(get(option, "if"), "rol_expedition_prepared_route_effect")
                 assert get(prepared, "COST") == cost and get(prepared, "NEXT_EVENT") == f"rol_quest_{chain}.1010", f"{chain}: prepared route does not reach normal success progression"
             effects = load(f"common/scripted_effects/rol_quest_{chain}_effects.txt")
             for name in (f"rol_{chain}_quest_success_finalize_effect", f"rol_{chain}_quest_partial_finalize_effect", cooldown):
-                assert get(get(get(effects, name), "rol_expedition_companion_finish_effect"), "STAGE_VARIABLE") == f"rol_{chain}_stage_count", f"{chain}: ending omits same-person settlement"
+                assert get(get(get(get(effects, name), "if"), "rol_expedition_companion_finish_effect"), "STAGE_VARIABLE") == f"rol_{chain}_stage_count", f"{chain}: ending omits same-person settlement"
             host, scholar, guard, envoy = party(chain)
             assert host.scopes["rol_expedition_candidate_scholar"] is scholar and host.scopes["rol_expedition_candidate_guard"] is guard and host.scopes["rol_expedition_candidate_envoy"] is envoy, "specialists do not match their attending qualification"
             model.call("rol_expedition_companion_accept_effect", host, {"PARTNER": "scope:rol_expedition_candidate_scholar", "ROLE": 1})

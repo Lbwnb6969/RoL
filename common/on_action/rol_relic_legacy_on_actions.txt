@@ -39,7 +39,11 @@ rol_relic_changed_owner_on_action = {
 			if = { limit = { artifact_type = rol_nibelung_star_sphere } scope:owner = { add_character_flag = rol_nibelung_sphere_claimed } }
 			if = { limit = { artifact_type = rol_astrolabe_of_ocean } scope:owner = { add_character_flag = rol_astrolabe_of_ocean_claimed } }
 			if = { limit = { artifact_type = rol_ash_forged_mask } scope:owner = { add_character_flag = rol_ash_forged_mask_claimed } }
-			scope:owner = { trigger_event = rol_relic_legacy.0003 }
+			scope:owner = {
+				rol_check_legend_circle_revelation_effect = yes
+				rol_check_legend_circle_fivefold_revelation_effect = yes
+				trigger_event = rol_relic_legacy.0003
+			}
 		}
 	}
 }

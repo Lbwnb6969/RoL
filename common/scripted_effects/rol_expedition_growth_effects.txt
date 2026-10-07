@@ -14,7 +14,7 @@ rol_expedition_growth_begin_effect = {
 				type = event_toast_effect_good
 				title = rol_expedition_journal_used_title
 				desc = rol_expedition_journal_used_desc
-				left_icon = root
+				left_icon = this
 			}
 		}
 	}

@@ -1,38 +1,40 @@
-﻿# RoL 静态优先开发手册
+# RoL 静态优先开发手册
 
-本项目的真源固定为 `C:\CK3Mods\RoL`。每次改动先完成静态闭环，再选择性启动 CK3；完整活动点击流程只在静态检查已经通过且需要确认 UI 接线时执行。
+真源固定为 `C:\CK3Mods\RoL`。当前用户要求由维护者手测，代理不启动/停止CK3、不执行console action、不发送窗口输入。先读 `PROJECT.md`；历史游戏记录不算本次修改的引擎验证。
 
-## 每轮最小闭环
+## 每轮最低充分闭环
+
+脚本/文案变更先运行相关源码契约或 `rol_static_audit.py`。涉及整体加载或MCP交接时，用一次组合验证即可，不重复逐项扫描：
 
 ```powershell
-python tools/ck3_mcp/rol_static_audit.py
-python tools/ck3_mcp/rol_dds_audit.py
-python tools/ck3_mcp/server.py  # 通过 MCP 调用 ck3_validate_mod
-python "C:\Users\Administrator\.codex\skills\rol-ck3-modder\scripts\check_bom_utf8.py" "C:\CK3Mods\RoL"
-python "C:\Users\Administrator\.codex\skills\rol-ck3-modder\scripts\check_rol_prefix.py" "C:\CK3Mods\RoL"
-python "C:\Users\Administrator\.codex\skills\rol-ck3-modder\scripts\rol_smoke_checks.py" "C:\CK3Mods\RoL"
+python tools/ck3_mcp/rol_stdio_probe.py
 git diff --check
 ```
 
-其中 `ck3_static_audit` 不启动游戏，专门验证：
+stdio探针验证真实MCP协议、15项工具、只读环境与启动器path、组合静态验证。组合涵盖：5条活动/生命周期、4碎片、成长/同行、10用途、2跨链/7继承资料，原版同路径与全局key兼容门槛、双语键、概率提示、资源接线、DDS、UTF-8 BOM/严格解码、前缀和smoke。当前英中各1214键、84张DDS；统计以当前脚本输出为准。
 
-- 五条活动都保留 discovery、activity entry、阶段、结算和 completion flag 的链路；
-- 活动共有字段（显示、可开始、有效性、地点、phase、host/guest intents、背景、window characters）齐全；
-- `header_background`、活动 `background.texture` 和 RoL 自有 `gfx/` 引用都能解析到真源文件；
-- 960 个当前英中 RoL 本地化键一一对应且没有重复键，包含 `key:0` 和 `key:` 两种 CK3 写法；
-- 旧的 effect / trigger / event ID 引用不被误判为资源或本地化键。
-- 新增事件背景必须通过尺寸和压缩检查；当前生成批次锁定为 `1592x848 / BC1(DXT1)`。
+独立入口按改动选择：`rol_quest_lifecycle_contracts.py`、`rol_compatibility_contracts.py`、`rol_dds_audit.py`、`check_bom_utf8.py`等。已通过后只因新改动、失败或明确新风险再扩大验证。仓库工具优先于旧skill备用脚本。
 
-## 参考模组中可复用的结构
+## 原版与模组兼容
 
-本机 Workshop 目录 `D:\SteamLibrary\steamapps\workshop\content\1158310` 中，RICE（`2273832430`）与 VIET（`2227658180`）的活动定义反复采用同一骨架：`is_shown` → `can_start` / `can_start_showing_failures_only` → `is_valid` → `on_invalidated` / `on_host_death` → `province_filter` → `phases` → `is_location_valid`。阶段事件通过 `on_phase_active` 触发，地点和背景单独接线。
+不交付整份原版GUI或全局 `ARTIFACT_RARITY_AND_TYPE` / slot key覆盖，不用fallback说明全局覆盖安全。原版/第三方品质与类型由它们各自的界面处理；RoL传奇徽记只挂自有阶位modifier名称。自有GUI插件、texticon、背景、图标保留 `rol_` 名称/路径，on_action只追加自有回调，不替换原逻辑。不恢复 `archive/retired_ui/20261007` 退役文件。
 
-RoL 在此基础上增加了自己的统一约束：活动必须有 `header_background`、双语本地化、`rol_relic_hunt_intent`、活动进度条和 Tier4 终局检查。引用 Workshop 代码时只复制结构和验证方法，不复制其 ID、命名空间或资源路径。
+新增检查扫描定义、重复、自有effect/trigger/value、事件、回调、背景、显式/隐式图标及加载文件。扫描与有限源码模型不能证明动态作用域、加载顺序或其他模组组合。
 
-## 何时才进游戏
+## 活动与延迟状态
 
-静态审计失败时不要启动游戏。静态通过后，优先使用 MCP 的 `ck3_run_console_action` 做一次加载探针；只有要确认活动窗口背景、header 或点击顺序时，才使用 `ck3_launch`、`ck3_send_console`、`ck3_capture_screen` 和 `ck3_click`。窗口工具会先验证 CK3 HWND 是前景窗口，失败时拒绝输入，截图也只复制到 `tools/ck3_mcp/artifacts/`，不删除原始日志。
+活动/事件先检验原host、活动类型、地区和关闭状态；弹窗后的按钮效果再验资格。完整/部分/失败只能结算一次，闭合阶段及清状态；已结算活动允许一天收尾，不被自己新加的完成flag/冷却取消。死亡不奖个人XP，原同行记录留给档案快照。
 
-## 资源替换顺序
+本机原版 `_activity_type.info` 明确：活动级on_start/is_valid/on_invalidated/on_host_death的ROOT是activity，on_complete的ROOT是当前参与者；切到scope:host不会改ROOT。主办者资格与人物toast用当前人物this，活动日志用scope:host，不能默认ROOT永远是主办者。
 
-先保持现有 DDS 占位图和文件名不变，确认脚本接线、分辨率和 alpha 规范，再调用生图 API。事件背景默认只生成环境和道具，不生成人物、动物、尸体、雕像或人形轮廓；人物由事件代码的肖像和 `window_characters` 叠加。生成图按地点、时代、光源与镜头构图写入提示词；筛选后用 `tools/ck3_mcp/png_to_dds_bc1.py` 裁切到 `1592x848` 并转换为 BC1，同名替换 DDS，清理 gfx 缓存并做一次最小窗口验证。重要旧图先复制到专门废弃目录并保留 Git 记录，禁止直接删除。
+延迟成果保存原对象和项目编号，消费一次资格，恢复只重开原记录。旧对象、死亡、转手、取消、缺钱与旧存档缺变量都需要明确边界。数值以当前源码为准，不把文档假定的关数当成整链通过率。
+
+## 游戏交接
+
+维护者先按 `docs/rol_console_test_guide.md` 第16节检查品质/类型与日常模组组合，再按6、7、12–15节检查真实活动、装备、定时、保存/读档与继承。直接 `event` 不自动提供host/activity上下文，无上下文终局不发奖属于正确负例。
+
+只有用户明确恢复代理侧游戏测试后，才选择与未确定行为对应的最小真实操作。MCP默认保留错误日志；日志只复制不删除，窗口工具验证前景。不要把旧日志或存在进程当成本次验证。
+
+## 资源维护
+
+先追踪加载路径→显式/隐式接线→缓存→DDS，不为可用旧图重复生图。事件环境图不生成人物，人物由脚本叠加；背景目标1592×848/BC1，header1100×440，图标按资源家族。需要替换时先归档重要旧图并保留Git记录；缓存排查由维护者关闭游戏后移动到日期备份目录，不直接删除。
