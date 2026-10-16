@@ -1,0 +1,76 @@
+{
+  "evidence": "finite source model; CK3 runtime not executed",
+  "routes": {
+    "rome": {
+      "states": 17905,
+      "outcomes": {
+        "failure": 7484,
+        "partial": 1230,
+        "full": 1278
+      }
+    },
+    "munich": {
+      "states": 6544,
+      "outcomes": {
+        "failure": 1791,
+        "partial": 420,
+        "full": 1392
+      }
+    },
+    "naxos": {
+      "states": 21892,
+      "outcomes": {
+        "failure": 7997,
+        "partial": 1104,
+        "full": 3288
+      }
+    },
+    "sevilla": {
+      "states": 8152,
+      "outcomes": {
+        "failure": 2601,
+        "partial": 498,
+        "full": 1470
+      }
+    },
+    "carthage": {
+      "states": 7528,
+      "outcomes": {
+        "failure": 1977,
+        "partial": 498,
+        "full": 1470
+      }
+    }
+  },
+  "event_options": 212,
+  "random_branches": 152,
+  "system_paths": [
+    "5 expert entrances -> native first-stage progress -> full settlement/reflection",
+    "5 partial outcomes -> cooldown -> notes consumed once -> full retry",
+    "10 use modes: menu -> 181-day event -> record/publish/defer+reopen/retire/loss (50 witnesses)",
+    "2 use records -> discovery without destination title -> 40-gold chart route -> full reward",
+    "4 fragment decisions x 3 challenges x 2 levels: success/failure + transferred target closes",
+    "yearly discovery plus county/barony title-gain entrances",
+    "5 complete activities on one host -> four/fivefold circle paid once -> no duplicate reward",
+    "artifact owner callback -> new-owner legacy choices -> circle; base/tier/fragments retained",
+    "Naxos death callback -> heir accept/decline -> single answered credential",
+    "active companion death -> AI heir snapshot -> adopt/decline/defer/dead partner -> pay original (0 inherited XP)",
+    "inherited records defer -> decision reopen -> five-year copies -> actual cross-chain activity completes",
+    "yearly legacy pulse -> all 4 holder/Naxos events -> both options and intentional no-event arms",
+    "4 annual windows: lost qualification/insufficient funds/replay/old generation have no payout",
+    "reopened companion window cannot pay/refuse/clear a later agreement; legacy pending pact remains payable",
+    "repeated pact with same rival: old choices/closure cannot consume the next agreement",
+    "fragment dynamic odds + masterwork c branch + 3 resonance attunements (.0002.a/b/c)",
+    "mid-expedition crisis remedy (.0010.a press on / .0010.b partial salvage / .0010.c retreat / .0010.d close)",
+    "rival recruitment (.1001.d) -> trusted companion + negotiation XP",
+    "multi-relic harmonization decision -> .0010.a/b/c doctrines + invalid close"
+  ],
+  "reachable_events": 104,
+  "discarded_after_close": [
+    "rol_quest_carthage.1002",
+    "rol_quest_munich.1002",
+    "rol_quest_naxos.1002",
+    "rol_quest_rome.1002",
+    "rol_quest_sevilla.1002"
+  ]
+}

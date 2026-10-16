@@ -1,0 +1,446 @@
+{
+  "start_bonus": {
+    "rome": {
+      "standard": {
+        "progress": 30.0,
+        "stress": 20
+      },
+      "supreme": {
+        "progress": 30.0,
+        "stress": 5.0
+      }
+    },
+    "munich": {
+      "standard": {
+        "progress": 35.0,
+        "stress": 20
+      },
+      "supreme": {
+        "progress": 35.0,
+        "stress": 5.0
+      }
+    },
+    "naxos": {
+      "standard": {
+        "progress": 30.0,
+        "stress": 20
+      },
+      "supreme": {
+        "progress": 30.0,
+        "stress": 5.0
+      }
+    },
+    "sevilla": {
+      "standard": {
+        "progress": 35.0,
+        "stress": 20
+      },
+      "supreme": {
+        "progress": 35.0,
+        "stress": 5.0
+      }
+    },
+    "carthage": {
+      "standard": {
+        "progress": 35.0,
+        "stress": 20
+      },
+      "supreme": {
+        "progress": 35.0,
+        "stress": 5.0
+      }
+    }
+  },
+  "fragment_saved_window_replay": {
+    "after_first": [
+      1075.0,
+      {
+        "rol_exploration": 5.0
+      }
+    ],
+    "after_second": [
+      1150.0,
+      {
+        "rol_exploration": 5.0
+      }
+    ]
+  },
+  "remedied_failure_progress_deltas": {
+    "rol_quest_carthage": {
+      "-10.0": 10,
+      "-5.0": 2
+    },
+    "rol_quest_munich": {
+      "-10.0": 9,
+      "-5.0": 3
+    },
+    "rol_quest_naxos": {
+      "-5.0": 6,
+      "-10.0": 9
+    },
+    "rol_quest_rome": {
+      "-10.0": 9,
+      "-5.0": 4
+    },
+    "rol_quest_sevilla": {
+      "0": 12
+    }
+  },
+  "real_salvage_tier4_witness": {
+    "before_final": 65.0,
+    "after_final_failure": 60.0,
+    "tier": 4.0,
+    "artifacts": 0,
+    "full_flag": false,
+    "trace": [
+      "rol_relic_discovery.0001",
+      "rol_relic_discovery.1300",
+      "rol_quest_munich.0990",
+      "rol_quest_munich.0990.a",
+      "rol_expedition_companion.0001",
+      "rol_expedition_companion.0001.d",
+      "rol_quest_munich.1000",
+      "rol_quest_munich.1000.a",
+      "rol_quest_munich.1010",
+      "rol_quest_munich.1010.a",
+      "rol_rival.1000",
+      "rol_rival.1000.c",
+      "rol_quest_munich.1021",
+      "rol_quest_munich.1021.a"
+    ]
+  },
+  "old_remedy_close_erases_new": {
+    "new_valid_before": true,
+    "old_close_available": true,
+    "new_valid_after": false,
+    "pending_after": false
+  },
+  "legacy_circle_migration": {
+    "fivefold_event_available": false,
+    "modifiers": [
+      "rol_legend_circle_conqueror_modifier",
+      "rol_legend_circle_fivefold_modifier"
+    ],
+    "cleanup_references": []
+  },
+  "circle_choice_order": [
+    {
+      "order": [
+        "0001",
+        "0002"
+      ],
+      "dynasty_prestige_awarded": 1500.0,
+      "dynasty_modifiers": [
+        "rol_legend_circle_dynasty_modifier",
+        "rol_legend_circle_dynasty_fivefold_modifier"
+      ],
+      "fourfold_reward_claimed": true
+    },
+    {
+      "order": [
+        "0002",
+        "0001"
+      ],
+      "dynasty_prestige_awarded": 1000.0,
+      "dynasty_modifiers": [
+        "rol_legend_circle_dynasty_fivefold_modifier"
+      ],
+      "fourfold_reward_claimed": false
+    }
+  ],
+  "harmonization_pairs": [
+    [
+      "rol_blade_of_mars",
+      "rol_nibelung_star_sphere"
+    ],
+    [
+      "rol_blade_of_mars",
+      "rol_astrolabe_of_ocean"
+    ],
+    [
+      "rol_blade_of_mars",
+      "rol_ash_forged_mask"
+    ],
+    [
+      "rol_blade_of_mars",
+      "naxos"
+    ],
+    [
+      "rol_nibelung_star_sphere",
+      "rol_astrolabe_of_ocean"
+    ],
+    [
+      "rol_nibelung_star_sphere",
+      "rol_ash_forged_mask"
+    ],
+    [
+      "rol_nibelung_star_sphere",
+      "naxos"
+    ],
+    [
+      "rol_astrolabe_of_ocean",
+      "rol_ash_forged_mask"
+    ],
+    [
+      "rol_astrolabe_of_ocean",
+      "naxos"
+    ],
+    [
+      "rol_ash_forged_mask",
+      "naxos"
+    ]
+  ],
+  "harmonization_after_loss": {
+    "qualifies": false,
+    "modifiers": [
+      "rol_resonance_sovereign_awe_modifier"
+    ],
+    "expires": {
+      "rol_resonance_sovereign_awe_modifier": 3650.0
+    }
+  },
+  "fragment_odds": [
+    {
+      "stat": 5,
+      "xp": 0,
+      "learning": 55.0,
+      "prowess": 50.0,
+      "stewardship": 75.0
+    },
+    {
+      "stat": 5,
+      "xp": 60,
+      "learning": 65.0,
+      "prowess": 60.0,
+      "stewardship": 80.0
+    },
+    {
+      "stat": 14,
+      "xp": 0,
+      "learning": 55.0,
+      "prowess": 50.0,
+      "stewardship": 75.0
+    },
+    {
+      "stat": 14,
+      "xp": 60,
+      "learning": 65.0,
+      "prowess": 60.0,
+      "stewardship": 80.0
+    },
+    {
+      "stat": 15,
+      "xp": 0,
+      "learning": 70.0,
+      "prowess": 65.0,
+      "stewardship": 85.0
+    },
+    {
+      "stat": 15,
+      "xp": 60,
+      "learning": 80.0,
+      "prowess": 75.0,
+      "stewardship": 90.0
+    },
+    {
+      "stat": 21,
+      "xp": 0,
+      "learning": 70.0,
+      "prowess": 65.0,
+      "stewardship": 85.0
+    },
+    {
+      "stat": 21,
+      "xp": 60,
+      "learning": 80.0,
+      "prowess": 75.0,
+      "stewardship": 90.0
+    },
+    {
+      "stat": 22,
+      "xp": 0,
+      "learning": 85.0,
+      "prowess": 80.0,
+      "stewardship": 95.0
+    },
+    {
+      "stat": 22,
+      "xp": 60,
+      "learning": 95.0,
+      "prowess": 90.0,
+      "stewardship": 95.0
+    },
+    {
+      "stat": 30,
+      "xp": 0,
+      "learning": 85.0,
+      "prowess": 80.0,
+      "stewardship": 95.0
+    },
+    {
+      "stat": 30,
+      "xp": 60,
+      "learning": 95.0,
+      "prowess": 90.0,
+      "stewardship": 95.0
+    }
+  ],
+  "multiline_localization_keys": [
+    {
+      "file": "localization/english/rol_activity_options_l_english.yml",
+      "line": 5,
+      "key": "rol_expedition_preparation_low_desc",
+      "new_regression": true
+    },
+    {
+      "file": "localization/english/rol_activity_options_l_english.yml",
+      "line": 11,
+      "key": "rol_expedition_preparation_standard_desc",
+      "new_regression": true
+    },
+    {
+      "file": "localization/english/rol_activity_options_l_english.yml",
+      "line": 17,
+      "key": "rol_expedition_preparation_high_desc",
+      "new_regression": true
+    },
+    {
+      "file": "localization/english/rol_activity_options_l_english.yml",
+      "line": 23,
+      "key": "rol_expedition_preparation_supreme_desc",
+      "new_regression": true
+    },
+    {
+      "file": "localization/english/rol_activity_ui_l_english.yml",
+      "line": 89,
+      "key": "rol_quest_munich.1000.a.tt.failure",
+      "new_regression": false
+    },
+    {
+      "file": "localization/english/rol_activity_ui_l_english.yml",
+      "line": 92,
+      "key": "rol_quest_munich.1000.b.tt.failure",
+      "new_regression": false
+    },
+    {
+      "file": "localization/english/rol_activity_ui_l_english.yml",
+      "line": 95,
+      "key": "rol_quest_munich.1002.a.tt.failure",
+      "new_regression": false
+    },
+    {
+      "file": "localization/english/rol_activity_ui_l_english.yml",
+      "line": 98,
+      "key": "rol_quest_munich.1002.b.tt.failure",
+      "new_regression": false
+    },
+    {
+      "file": "localization/english/rol_activity_ui_l_english.yml",
+      "line": 101,
+      "key": "rol_quest_naxos.1000.a.tt.failure",
+      "new_regression": false
+    },
+    {
+      "file": "localization/english/rol_activity_ui_l_english.yml",
+      "line": 104,
+      "key": "rol_quest_naxos.1002.a.tt.failure",
+      "new_regression": false
+    },
+    {
+      "file": "localization/english/rol_activity_ui_l_english.yml",
+      "line": 107,
+      "key": "rol_quest_naxos.1002.b.tt.failure",
+      "new_regression": false
+    },
+    {
+      "file": "localization/english/rol_activity_ui_l_english.yml",
+      "line": 110,
+      "key": "rol_quest_naxos.1003.a.tt.failure",
+      "new_regression": false
+    },
+    {
+      "file": "localization/english/rol_activity_ui_l_english.yml",
+      "line": 113,
+      "key": "rol_quest_naxos.1003.b.tt.failure",
+      "new_regression": false
+    },
+    {
+      "file": "localization/english/rol_activity_ui_l_english.yml",
+      "line": 116,
+      "key": "rol_quest_rome.1000.a.tt.failure",
+      "new_regression": false
+    },
+    {
+      "file": "localization/english/rol_activity_ui_l_english.yml",
+      "line": 119,
+      "key": "rol_quest_rome.1002.a.tt.failure",
+      "new_regression": false
+    },
+    {
+      "file": "localization/english/rol_activity_ui_l_english.yml",
+      "line": 122,
+      "key": "rol_quest_rome.1003.a.tt.failure",
+      "new_regression": false
+    },
+    {
+      "file": "localization/english/rol_activity_ui_l_english.yml",
+      "line": 125,
+      "key": "rol_quest_rome.1003.b.tt.failure",
+      "new_regression": false
+    },
+    {
+      "file": "localization/english/rol_activity_ui_l_english.yml",
+      "line": 128,
+      "key": "rol_quest_rome.1004.a.tt.failure",
+      "new_regression": false
+    },
+    {
+      "file": "localization/english/rol_activity_ui_l_english.yml",
+      "line": 131,
+      "key": "rol_quest_sevilla.1000.a.tt.failure",
+      "new_regression": false
+    },
+    {
+      "file": "localization/english/rol_activity_ui_l_english.yml",
+      "line": 134,
+      "key": "rol_quest_sevilla.1000.b.tt.failure",
+      "new_regression": false
+    },
+    {
+      "file": "localization/english/rol_activity_ui_l_english.yml",
+      "line": 137,
+      "key": "rol_quest_sevilla.1002.a.tt.failure",
+      "new_regression": false
+    },
+    {
+      "file": "localization/english/rol_activity_ui_l_english.yml",
+      "line": 140,
+      "key": "rol_quest_sevilla.1002.b.tt.failure",
+      "new_regression": false
+    },
+    {
+      "file": "localization/simp_chinese/rol_activity_options_l_simp_chinese.yml",
+      "line": 5,
+      "key": "rol_expedition_preparation_low_desc",
+      "new_regression": true
+    },
+    {
+      "file": "localization/simp_chinese/rol_activity_options_l_simp_chinese.yml",
+      "line": 11,
+      "key": "rol_expedition_preparation_standard_desc",
+      "new_regression": true
+    },
+    {
+      "file": "localization/simp_chinese/rol_activity_options_l_simp_chinese.yml",
+      "line": 17,
+      "key": "rol_expedition_preparation_high_desc",
+      "new_regression": true
+    },
+    {
+      "file": "localization/simp_chinese/rol_activity_options_l_simp_chinese.yml",
+      "line": 23,
+      "key": "rol_expedition_preparation_supreme_desc",
+      "new_regression": true
+    }
+  ]
+}

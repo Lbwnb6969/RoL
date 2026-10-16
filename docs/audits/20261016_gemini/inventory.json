@@ -1,0 +1,674 @@
+[
+  {
+    "path": "common/activities/activity_types/rol_astrolabe_activity.txt",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "c721fd60ca13b6c1c17615c7eaceaa073cf90b99905857bbbc2073a84cf4a701"
+  },
+  {
+    "path": "common/activities/activity_types/rol_carthage_activity.txt",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "493e062a7c0663e4a17309b07f811f89136d279f7bab7164d26ef157ce96a649"
+  },
+  {
+    "path": "common/activities/activity_types/rol_mars_activity.txt",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "753a9daa60ac5be32cda58ba627ee65ada1713b652e33f4aaca3c6aa15d1162b"
+  },
+  {
+    "path": "common/activities/activity_types/rol_naxos_activity.txt",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "5cb099b802f55c8caee79746388345f03631bf3c7ef1931f3cdbc772b02198da"
+  },
+  {
+    "path": "common/activities/activity_types/rol_nibelung_activity.txt",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "1409818d2cf4d5db8647ed31b99bc319445948d739c043240f7c279e9e52a563"
+  },
+  {
+    "path": "common/decisions/rol_archive_decisions.txt",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "18e7285fa9f9159fd34bec553f6793c35ea159dc142e19e8ff8382af56b10270"
+  },
+  {
+    "path": "common/decisions/rol_fragment_decisions.txt",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "c4ec81c771b565a036ec9139069ad9e86e63340b60a23878ad0af33cb2022703"
+  },
+  {
+    "path": "common/decisions/rol_relic_use_decisions.txt",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "8b03ca7c38fda3b6009fcf6b8ce4e53e5d2c352fe4af245973d7e796155c14a5"
+  },
+  {
+    "path": "common/event_backgrounds/rol_event_backgrounds.txt",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "920810dd02b17794fa4386a13b67d97ddfcf21112f4bdcc9577504a15d6d372e"
+  },
+  {
+    "path": "common/modifiers/rol_activity_modifiers.txt",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "7a26ff7722cd793599f3e6b2d6bf7f9b90882a7fb44b4e6aa5974a062632a9b6"
+  },
+  {
+    "path": "common/modifiers/rol_archive_modifiers.txt",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "f2df265fd73cf09ee4beb2871c3d8275c5baea7b1601046d8d83520d96e5d790"
+  },
+  {
+    "path": "common/modifiers/rol_fragment_modifiers.txt",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "a96d6c5ca3120ec26f30231b500676ddc0c7be8ee4ee51e100900856d15787e9"
+  },
+  {
+    "path": "common/modifiers/rol_legacy_modifiers.txt",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "33527c5cd930f169ffef7a867e666c19447474ed71482cda386d88ed41d940a5"
+  },
+  {
+    "path": "common/modifiers/rol_legend_circle_modifiers.txt",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "1613363a894857f8c0d6e7dc6bbc29636855450c88970a4609cabd1913ee7cee"
+  },
+  {
+    "path": "common/modifiers/rol_relic_use_modifiers.txt",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "023a28af1ca59f18efbd49013b5025f734b0bcd7fa73b4d934ddb57771075c17"
+  },
+  {
+    "path": "common/on_action/rol_archive_on_actions.txt",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "880208c1ea7eb5f3a5911e7b872eab96aed571d57dc2c4b3ea4369722933d938"
+  },
+  {
+    "path": "common/script_values/rol_expedition_preparation_values.txt",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "09cb90e93b31afa12d36ee7db0b8d9755e84e1dffa201cea1ade1e6183449549"
+  },
+  {
+    "path": "common/scripted_effects/rol_archive_effects.txt",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "0744c369471424b8f32e2713f2a03f080d1c06cbb28993632bfd0eb6478364cd"
+  },
+  {
+    "path": "common/scripted_effects/rol_artifact_creation_effects.txt",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "3b56bcd6f86c115ec1ff07e2e927a8a4747d05edba185a6b6f1ab7f0d199fab7"
+  },
+  {
+    "path": "common/scripted_effects/rol_expedition_companion_effects.txt",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "df748938b583b1af0cb12c8ab80ba5c939fd4b9fc48fd738a1c52f036e5fa0ea"
+  },
+  {
+    "path": "common/scripted_effects/rol_expedition_growth_effects.txt",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "8102305a01a5105188923c2625094f4047977b24aa3c54311cd9d28b21246e93"
+  },
+  {
+    "path": "common/scripted_effects/rol_expedition_preparation_effects.txt",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "5a97dbbdc9bf4f9d18d1f7f1dd60c0cb828dd0ff99a9c2f1327ad86ce2d239a3"
+  },
+  {
+    "path": "common/scripted_effects/rol_quest_carthage_effects.txt",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "1ca2cd2f22a97bd10c156b1912875b27dcd787d5f2a271f51d17a8523ad519e5"
+  },
+  {
+    "path": "common/scripted_effects/rol_quest_lifecycle_effects.txt",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "e5393dedbfa74f7e757490ebb1dded3628a0567ad3ff057e2d674127e3897ebf"
+  },
+  {
+    "path": "common/scripted_effects/rol_quest_munich_effects.txt",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "aba8e4fcf04337e32fa9cbf7838d1c96ef6315d42a4cd76ab9756ef52c6b0439"
+  },
+  {
+    "path": "common/scripted_effects/rol_quest_naxos_effects.txt",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "b32f5665456500adb40b7fd099d8f00dc76f40cc1421356bfec7b0301914fd8d"
+  },
+  {
+    "path": "common/scripted_effects/rol_quest_rome_effects.txt",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "312c896610e9fe6e5b0ce3cc4a43242e67e78215e3a622ae8f617a13398a8ba1"
+  },
+  {
+    "path": "common/scripted_effects/rol_quest_sevilla_effects.txt",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "a8dc4707dd51ff79a8d95809f4e67e2a059ab0d221603755ff715512cfb7b4fc"
+  },
+  {
+    "path": "common/scripted_effects/rol_relic_fragment_effects.txt",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "30f0b1010eb8b2349ff98e4651ce56075d92358aedf9e225261639b3db258c69"
+  },
+  {
+    "path": "common/scripted_effects/rol_relic_framework_effects.txt",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "db36450734facbe1cac2c104ee82fb5fb8c2024dfafead16b7f46502dd01f2b9"
+  },
+  {
+    "path": "common/scripted_effects/rol_relic_legacy_effects.txt",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "00b8ea03624484cb049f712cd34170c0ed289cf39797fe3728fd56150ddc7605"
+  },
+  {
+    "path": "common/scripted_effects/rol_relic_use_effects.txt",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "918bc89fb5fdfac60776a1843d6574ee5af1ba782248e027548464362b465e5f"
+  },
+  {
+    "path": "common/scripted_effects/rol_rival_lifecycle_effects.txt",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "d2ca4f5550fc5b566f65e34d769056506b0b4c19fec531deaf8083623a7810e5"
+  },
+  {
+    "path": "common/scripted_triggers/rol_activity_framework_triggers.txt",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "d7e1c0346908d7b9fd8f13ff7fa596cd0f86c24bc08fba3a4f7aa7c70861678a"
+  },
+  {
+    "path": "common/scripted_triggers/rol_archive_triggers.txt",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "a7268c0bdbb9ece649c8bed2b1fb38fbf37bb3aa4447d0ff4532d8be6dd0d004"
+  },
+  {
+    "path": "common/scripted_triggers/rol_expedition_companion_triggers.txt",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "e2e3e6ad5720187061c1281b9fc3c4d3746520ad29f7fa5a765c9a2588a07018"
+  },
+  {
+    "path": "common/scripted_triggers/rol_expedition_growth_triggers.txt",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "cda473fa374c549ae7941ce301cff7af4013c9c8a9daf9b0405c7cbb238f74d0"
+  },
+  {
+    "path": "common/scripted_triggers/rol_expedition_preparation_triggers.txt",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "8326bdf0f94f684fa30af0996df83138b395c17630e93ffbb0d73a9eb5d8be1d"
+  },
+  {
+    "path": "common/scripted_triggers/rol_fragment_triggers.txt",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "11e81263e55ada7ab1053fb86a6f05e10c0387c5f558b40feddf4c1bfe5ddc7b"
+  },
+  {
+    "path": "common/scripted_triggers/rol_relic_framework_triggers.txt",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "d754deb54dce6c4758ecbb8046b8e31aab4662f2876c14ed3d519c98563b816e"
+  },
+  {
+    "path": "common/scripted_triggers/rol_relic_legacy_triggers.txt",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "e25524553b039b0517acbd9385aefed7bafff21e2ad0de26277d00ced106bb37"
+  },
+  {
+    "path": "common/scripted_triggers/rol_relic_use_triggers.txt",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "6ebd5695c6860fcbd60ce02a628a1c33c79782736517013cb016efc17d3c7249"
+  },
+  {
+    "path": "common/scripted_triggers/rol_rival_lifecycle_triggers.txt",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "d86c9fb9acf40bdebce28b2288586c382c3588ab58105447c663de314b44bdda"
+  },
+  {
+    "path": "events/rol_archive_events.txt",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "81b5f3d31ee525128235ddb5c43f6f176f2ab3aed97aac9b13d1455e6f8539ff"
+  },
+  {
+    "path": "events/rol_expedition_companion_events.txt",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "2fa173f232ffc03fa4527f1064c66edf93dfdb1c45f718c0d2d5db1b9483ea37"
+  },
+  {
+    "path": "events/rol_expedition_growth_events.txt",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "4135a1d8df11eaa887ac465c832ae9734c1852ca8b2fdee50b74a667b4fcb719"
+  },
+  {
+    "path": "events/rol_legend_circle_events.txt",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "c59757a0e6e8ba0869127cb3ebecc6fc14c599c261e8c6825e634219e8c86022"
+  },
+  {
+    "path": "events/rol_quest_carthage_events.txt",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "796caeed872b0193b08998f137309a40723e15f71492233521dbc2ede215c249"
+  },
+  {
+    "path": "events/rol_quest_munich_events.txt",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "c7850b5c9e39ec11b4286c98a9e52be09862dcb102c80519ccff67c67b1fb5da"
+  },
+  {
+    "path": "events/rol_quest_naxos_events.txt",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "6e539f6808ffe7525dfd427c23627445f256b519ae0eda7a13050f0a1024c08d"
+  },
+  {
+    "path": "events/rol_quest_rome_events.txt",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "4723de68447ef6b310018f6d29a1bb44d7b0c666e7eb3685092bf1e7b49ce685"
+  },
+  {
+    "path": "events/rol_quest_sevilla_events.txt",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "8a05ed10d07075d344819bc76241b42ea8d0e2169dfd0a2fc652b8831895babe"
+  },
+  {
+    "path": "events/rol_relic_discovery_events.txt",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "929a3a5809c40a6e212b4f3afd81ccb6cb4b3a1bf1024caee76278b381ad000f"
+  },
+  {
+    "path": "events/rol_relic_fragment_events.txt",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "f1a0e92d7c46a1533c8f3c08b8d1072886f74d48396e31cfe72c7d3c4fe78030"
+  },
+  {
+    "path": "events/rol_relic_legacy_events.txt",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "64ca47b9dde509cede4d3e487d604824df93017eab52bb88264399db60c0d559"
+  },
+  {
+    "path": "events/rol_relic_use_events.txt",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "2ecb1a96fdbcd1ccd2befb5b8b65af980f05ed9fcde1e3341c2567b4b49ea922"
+  },
+  {
+    "path": "events/rol_rival_events.txt",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "ae5253e4860e3142458003b40d47871290b47085a749dd0c66e7b7615780f55a"
+  },
+  {
+    "path": "localization/english/rol_activity_options_l_english.yml",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "f53d4ffd0fb5a33569cc07a328bc5b76e27ff9286c0089a25a75ed1f7a00f5f4"
+  },
+  {
+    "path": "localization/english/rol_activity_ui_l_english.yml",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "ed9a730f20f233e971129dfaa59bca0179985126de8cda32b74e4297d922c4ce"
+  },
+  {
+    "path": "localization/english/rol_artifact_ui_l_english.yml",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "937fecf458e5c6acf0a1255add8dc38854414a621c86a203031cd759ff2058e8"
+  },
+  {
+    "path": "localization/english/rol_carthage_l_english.yml",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "51c334c316ed462e318ae27bcf7bdcd309ca81cf09569fac5d5d3abc40833c63"
+  },
+  {
+    "path": "localization/english/rol_debug_l_english.yml",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "8005f2ebffe56428c600fa2a7f5f1acfaa1d0e2498c91b70215f9941670ff78e"
+  },
+  {
+    "path": "localization/english/rol_expedition_companion_l_english.yml",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "e8c04ce3b5496bbfb21e9ad0c34d621754e7f9442ccb05a62c8d8c0e2114d716"
+  },
+  {
+    "path": "localization/english/rol_expedition_growth_l_english.yml",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "38215c4c5050ced574669cc4e1dad385d1406ece64207ca9fd794ab1dddf6ecb"
+  },
+  {
+    "path": "localization/english/rol_fragment_l_english.yml",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "2cc02de485e5173ae4c106df2fc22739b7ee78686bd7a1f4079c252ab4b7b4d0"
+  },
+  {
+    "path": "localization/english/rol_l_english.yml",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "da12adf20c8b44107ff5c037be683de42c1a8368e793a01cc9e00a738c0bda8f"
+  },
+  {
+    "path": "localization/english/rol_legend_circle_l_english.yml",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "58b196f70402f08ef675cbc4dc2a12cb3da2cf052ea4a29bb782a5c1386bef8e"
+  },
+  {
+    "path": "localization/english/rol_munich_l_english.yml",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "2c6f72f67d0bde8ab15b4ae9107fc9f79937a5a0181a12d464ec402bb48023a3"
+  },
+  {
+    "path": "localization/english/rol_naxos_l_english.yml",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "886b0416d4607de5205ae7b95c2100cf4cf196ce6b6bea5724e895c1e59064ea"
+  },
+  {
+    "path": "localization/english/rol_relic_discovery_l_english.yml",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "bb5cc5907868c501e4ca6437581b43724353bbbb2b2130256a100ae69dda74eb"
+  },
+  {
+    "path": "localization/english/rol_relic_use_l_english.yml",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "c8b816bad722f9530d69b0543729b5de3db05c2ea702b7509434f32a34acaef6"
+  },
+  {
+    "path": "localization/english/rol_rival_legacy_l_english.yml",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "6cfa0eb628157ee11d1adad48373cd799a7b677651b7e007f90a24fd56e8a739"
+  },
+  {
+    "path": "localization/english/rol_rome_l_english.yml",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "681887b308c67fa1e9c74567628ae421c2ef68cb1da383661b620bfc0a7d4917"
+  },
+  {
+    "path": "localization/english/rol_sevilla_l_english.yml",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "9eed8919ee381be83062ba86eafde4f63cb27af7fe74d912df748085dfd42122"
+  },
+  {
+    "path": "localization/simp_chinese/rol_activity_options_l_simp_chinese.yml",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "b82170402759c0de4fa48c47c733e0773635b10a206c9fb715c7d303f3ddbf09"
+  },
+  {
+    "path": "localization/simp_chinese/rol_activity_ui_l_simp_chinese.yml",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "1673bd78fc4d7120d542c946be9e4d1d577c4fddadc383f92306967d1d6a8cbf"
+  },
+  {
+    "path": "localization/simp_chinese/rol_artifact_ui_l_simp_chinese.yml",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "65d249dd44cfe62a98abec384dcea96963bcdf74ebda455e6f682b13fb0d79e4"
+  },
+  {
+    "path": "localization/simp_chinese/rol_carthage_l_simp_chinese.yml",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "988241382e30728ed552c9eee4ae143a35fd0576e0af1f99df31b8c9427991e3"
+  },
+  {
+    "path": "localization/simp_chinese/rol_debug_l_simp_chinese.yml",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "c9d2ecf60e60562a3e00e4bbfc5aed2603d760487edbf05db1255865e274ee64"
+  },
+  {
+    "path": "localization/simp_chinese/rol_expedition_companion_l_simp_chinese.yml",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "5a7e8dbfac18b2bea544b10498dad40afbf3b207c298a2da862effbfc4333cdb"
+  },
+  {
+    "path": "localization/simp_chinese/rol_expedition_growth_l_simp_chinese.yml",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "c76c7cb636f4ab0332b2618f28acd78db3a0b42bac23cf36e087e0f49a18580b"
+  },
+  {
+    "path": "localization/simp_chinese/rol_fragment_l_simp_chinese.yml",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "aeeddff253b03a9431a16e91b7c0f12dab409d9e563ac8dfea51710fd29a0abe"
+  },
+  {
+    "path": "localization/simp_chinese/rol_legend_circle_l_simp_chinese.yml",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "bfeb6fac52efbc734044b11a5837033973c330c0f060f45f869772305fc2b938"
+  },
+  {
+    "path": "localization/simp_chinese/rol_munich_l_simp_chinese.yml",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "15427947a26f06b55ed60cab049cdb0e082bafc96df23b793a1ddc57e9eb03d5"
+  },
+  {
+    "path": "localization/simp_chinese/rol_naxos_l_simp_chinese.yml",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "68d4b936958c009b3ca1190304c766a133711b45e7accf77d420c78c73936ddb"
+  },
+  {
+    "path": "localization/simp_chinese/rol_relic_discovery_l_simp_chinese.yml",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "71bca59c2819add41b5fdd067a13c98d27275491ad69cbf4a75bfb9d5ee676ba"
+  },
+  {
+    "path": "localization/simp_chinese/rol_relic_use_l_simp_chinese.yml",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "bc59a0621fb684684c7226c7f5dd9e026198be3e94c7df96cda2131a5ccc29a7"
+  },
+  {
+    "path": "localization/simp_chinese/rol_rival_legacy_l_simp_chinese.yml",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "a165db7e7c001757e581465189e2736fa340a5f5cd2013084a9467e4f0eea53a"
+  },
+  {
+    "path": "localization/simp_chinese/rol_rome_l_simp_chinese.yml",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "4c2ce3c727290e576cf4ea59ab951e57fe870c6aab803d8028d2870d17e9e008"
+  },
+  {
+    "path": "localization/simp_chinese/rol_sevilla_l_simp_chinese.yml",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "920cab6320ba78e9c07b58f94f9ccb8dc63e54396708184254279156172f9c40"
+  },
+  {
+    "path": "tools/ck3_mcp/rol_growth_contracts.py",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "153775e33598c6bccac6787183088f3d74a52e17313476f0a609115199eb088b"
+  },
+  {
+    "path": "tools/ck3_mcp/rol_path_contracts.py",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "0dbc9e6e4194ff5d19875bc85f3a53adb068bee9bce93cbdd79b608688004806"
+  },
+  {
+    "path": "tools/skills/rol-ck3-modder/agents/openai.yaml",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "b289f64fb32e36e4be26bea41714ca9c7ca65df6012ca34366d89c8d54e46342"
+  },
+  {
+    "path": "tools/skills/rol-ck3-modder/references/rol-localization-ui-assets.md",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "856d7bd9c80c47e41c7508bda8b3a8c4a8a35f0768fb3f38904ad2e1c00742f1"
+  },
+  {
+    "path": "tools/skills/rol-ck3-modder/references/rol-standards.md",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "7a08c3d088650758dafc5c4ed726690579a02ac7cc21366ae89b0e074dac90f1"
+  },
+  {
+    "path": "tools/skills/rol-ck3-modder/scripts/check_bom_utf8.py",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "b49b12f2e7d86f7362c6a9b0686b7709b6cd4a5080c7d89ab17819879ece3514"
+  },
+  {
+    "path": "tools/skills/rol-ck3-modder/scripts/rol_smoke_checks.py",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "006444fa99e9394a897c570ffcd00af6095a79cf41386edb2da2825399ac0215"
+  },
+  {
+    "path": "docs/imagegen_batches/rol_round1.jsonl",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "6e1ae018f1289831425f11f207e576506b838962738f4d1efb48fc26a4bc3685"
+  },
+  {
+    "path": "docs/imagegen_batches/rol_round2_no_characters.jsonl",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "e233dfe0737491ebeec1d0933e27591c9bc61c843cb0a051ffc61a010dec0c0e"
+  },
+  {
+    "path": "docs/imagegen_batches/rol_round3_no_characters.jsonl",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "73cc653a91ca37e7f1d952508d907223b549119968d928375965dab41b185239"
+  },
+  {
+    "path": "docs/imagegen_batches/rol_round4_naxos_no_characters.jsonl",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "5b8c067349f04eb191eb508a5866a3b3216737349fafc2a8af98ccf97bb38fac"
+  },
+  {
+    "path": "docs/imagegen_batches/rol_round5_activity_no_characters.jsonl",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "10e0ea393537c0fa4645f0ae8dabe4ecd43afe4ca5d04fbd93842f9c6cd3fc7b"
+  },
+  {
+    "path": "docs/imagegen_batches/rol_round6_activity_legacy_no_characters.jsonl",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "643df65ca2807f190b358a40089352937cd9fdb8eb643422aa19e6e77251ae9c"
+  },
+  {
+    "path": "docs/imagegen_batches/rol_round7_event_legacy_no_characters.jsonl",
+    "status": "changed",
+    "meaningful": true,
+    "sha256": "d97eb8872bac0d1a70a10d9c93b57cac6388138e405621d8d72eae023fcd00e9"
+  },
+  {
+    "path": "docs/rol_background_prompt_catalog.md",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "c215d1f9d6649760395bc79ad44161b00ce249f02076cd5d7f5d208b23fb46e9"
+  },
+  {
+    "path": "docs/rol_completion_audit_20261007.md",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "e6de5f40463208eeb6b80510bbe897e13940c93891f0de0474cf6d657a976edc"
+  },
+  {
+    "path": "docs/rol_console_test_guide.md",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "24e59fadaa6a6044fa4d74e2cdc216b0c0cbbd1b79970fa01500d29ea9844365"
+  },
+  {
+    "path": "docs/rol_image_resolution_guide.md",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "f93bf7559dc735c69f5a41eb53cdc49afaa578f82cb41c008eb737881c96dc21"
+  },
+  {
+    "path": "docs/rol_rival_legacy_image_prompts.md",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "3be2cf3cbad882ad968f4e4cc9830acbb3a68413ca446bcd0e5a8056c6353f85"
+  },
+  {
+    "path": "docs/rol_static_first_playbook.md",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "ebdf8de13723be8e9bfb71d63a4b735eccdf05c19cf5bbaf75911234d4428ddc"
+  },
+  {
+    "path": "docs/rol_success_model.md",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "b2c2dba6e4da0a10f55c7b3da58876d93cf5d70f9dc22a992005e7fcbf0c857c"
+  },
+  {
+    "path": "docs/rol_visual_replacement_guide.md",
+    "status": "changed",
+    "meaningful": false,
+    "sha256": "ccbc364b7f8eea845816cb106de37ee9646ef4a08b8ab299d8e8e1cfe13df1d4"
+  }
+]
