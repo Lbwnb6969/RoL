@@ -1,4 +1,4 @@
-﻿# RoL 新对话完整交接文档（Master Handoff）
+# RoL 新对话完整交接文档（Master Handoff）
 
 > 当前快照日期：2026-10-07
 > 真源目录：`C:\CK3Mods\RoL`  
@@ -72,7 +72,7 @@
 - 成功率修正：`-10 / 0 / +10 / +20`
 - 成功额外奖励：
   - `high = +150 prestige / +25 dynasty prestige`
-  - `supreme = +350 prestige / +50 dynasty prestige`
+  - `supreme = +500 prestige / +100 dynasty prestige`
 - 五条正式活动链都应接入该模块。
 
 ### 3.2 活动 UI / 文案基线

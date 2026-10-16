@@ -1,10 +1,18 @@
 ﻿# Relics of Legend - Unified expedition preparation effects
 
+rol_apply_expedition_preparation_start_bonus_effect = {
+	if = {
+		limit = { rol_expedition_preparation_supreme_trigger = yes }
+		add_stress = -15
+		scope:activity ?= { activity_special_type_progression_medium = yes }
+	}
+}
+
 rol_apply_expedition_preparation_success_bonus_effect = {
 	if = {
 		limit = { rol_expedition_preparation_supreme_trigger = yes }
-		add_prestige = 350
-		dynasty ?= { add_dynasty_prestige = 50 }
+		add_prestige = 500
+		dynasty ?= { add_dynasty_prestige = 100 }
 	}
 	else_if = {
 		limit = { rol_expedition_preparation_high_trigger = yes }

@@ -5,7 +5,7 @@ process, console, UI or mod script is modified. Expected defect assertions must
 be updated after fixes. It is not an engine integration test.
 """
 from pathlib import Path
-import sys,json,re,argparse
+import sys,json,re,argparse,subprocess
 args=argparse.ArgumentParser()
 args.add_argument('--root',type=Path,default=Path(r'C:\CK3Mods\ROL-gemini\RoL'))
 args.add_argument('--baseline',type=Path,default=Path(r'C:\CK3Mods\RoL'))
@@ -158,8 +158,10 @@ for p in (ROOT/'localization').rglob('*.yml'):
         if re.match(r'^\s*\w[\w.]*:\d*\s+"',line) and not re.search(r'(?<!\\)"\s*(?:#.*)?$',line.split('"',1)[1]):
             broken.append({'file':p.relative_to(ROOT).as_posix(),'line':n,'key':line.split(':')[0].strip()})
 for row in broken:
-    baseline=opts.baseline/row['file']
-    baseline_lines=baseline.read_text(encoding='utf-8-sig').splitlines()
+    # Keep this historical diagnostic tied to the audited baseline even after
+    # the development checkout has integrated the fixes.
+    baseline_bytes=subprocess.run(['git','-C',str(opts.baseline),'show','f6400dd:'+row['file']],capture_output=True,check=True).stdout
+    baseline_lines=baseline_bytes.decode('utf-8-sig').splitlines()
     original=next(s for s in baseline_lines if re.match(r'^\s*'+re.escape(row['key'])+r':',s))
     row['new_regression']=original.rstrip().endswith('"')
 report['multiline_localization_keys']=broken

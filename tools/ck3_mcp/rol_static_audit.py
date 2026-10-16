@@ -265,6 +265,8 @@ def check_localization_parity(root: Path, errors: list[str]) -> tuple[int, int]:
                 match = LOC_KEY_RE.match(line)
                 if not match:
                     continue
+                if not re.search(r'"\s*(?:#.*)?$', line.split('"', 1)[1]):
+                    errors.append(f"{language}: localization value crosses a physical line at {path}:{line_no}")
                 key = match.group(1)
                 if key in found:
                     errors.append(f"{language}: duplicate localization key {key} at {path}:{line_no} (first {locations[key]})")

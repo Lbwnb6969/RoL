@@ -38,6 +38,8 @@ activity_rol_seek_ash_forged_mask = {
 	}
 
 	on_start = {
+		activity_setup_special_type_progression_effect = yes
+		activity_special_type_progression_variable = { NUM = 35 }
 		scope:host = {
 			rol_relic_quest_begin_effect = yes
 			rol_relic_clear_recent_result_effect = yes
@@ -45,14 +47,13 @@ activity_rol_seek_ash_forged_mask = {
 			rol_set_context_carthage_helmet_effect = yes
 			rol_expedition_growth_begin_effect = { ROUTE = carthage }
 			rol_expedition_companion_begin_effect = yes
+			rol_apply_expedition_preparation_start_bonus_effect = yes
 			if = {
 				limit = { has_variable = rol_carthage_stage_count }
 				remove_variable = rol_carthage_stage_count
 			}
 			remove_character_flag = rol_carthage_guest_event_fired
 		}
-		activity_setup_special_type_progression_effect = yes
-		activity_special_type_progression_variable = { NUM = 35 }
 		add_activity_log_entry = {
 			key = rol_relic_activity_start_log
 			character = scope:host

@@ -182,3 +182,70 @@ rol_expedition_display_failure_chance_value = {
 	min = 5
 	max = 95
 }
+
+# Fragment expedition dynamic challenge odds (attribute + Relic Seeker expertise)
+rol_fragment_learning_success_chance_value = {
+	value = 55
+	if = { limit = { learning >= 15 } add = 15 }
+	if = { limit = { learning >= 22 } add = 15 }
+	if = {
+		limit = {
+			has_trait = rol_relic_seeker
+			has_trait_xp = { trait = rol_relic_seeker track = rol_research value >= 60 }
+		}
+		add = 10
+	}
+	min = 20
+	max = 95
+}
+
+rol_fragment_learning_failure_chance_value = {
+	value = 100
+	subtract = rol_fragment_learning_success_chance_value
+	min = 5
+	max = 80
+}
+
+rol_fragment_prowess_success_chance_value = {
+	value = 50
+	if = { limit = { prowess >= 15 } add = 15 }
+	if = { limit = { prowess >= 22 } add = 15 }
+	if = {
+		limit = {
+			has_trait = rol_relic_seeker
+			has_trait_xp = { trait = rol_relic_seeker track = rol_exploration value >= 60 }
+		}
+		add = 10
+	}
+	min = 20
+	max = 95
+}
+
+rol_fragment_prowess_failure_chance_value = {
+	value = 100
+	subtract = rol_fragment_prowess_success_chance_value
+	min = 5
+	max = 80
+}
+
+rol_fragment_stewardship_success_chance_value = {
+	value = 75
+	if = { limit = { stewardship >= 15 } add = 10 }
+	if = { limit = { stewardship >= 22 } add = 10 }
+	if = {
+		limit = {
+			has_trait = rol_relic_seeker
+			has_trait_xp = { trait = rol_relic_seeker track = rol_negotiation value >= 60 }
+		}
+		add = 5
+	}
+	min = 40
+	max = 95
+}
+
+rol_fragment_stewardship_failure_chance_value = {
+	value = 100
+	subtract = rol_fragment_stewardship_success_chance_value
+	min = 5
+	max = 60
+}

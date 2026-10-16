@@ -1,4 +1,4 @@
-﻿# Relics of Legends - Legacy 2.0 temporary states
+﻿# Relics of Legends - Legacy 2.0 & Multi-Relic Resonance states
 
 rol_relic_legacy_public_modifier = {
 	monthly_prestige_gain_mult = 0.05
@@ -23,4 +23,29 @@ rol_rival_pact_modifier = {
 rol_rival_grudge_modifier = {
 	general_opinion = -5
 	dread_gain_mult = 0.05
+}
+
+rol_resonance_imperial_might_modifier = {
+	icon = martial_positive
+	martial = 2
+	prowess = 3
+	knight_effectiveness_mult = 0.10
+	dread_gain_mult = 0.10
+}
+
+rol_resonance_cosmic_chart_modifier = {
+	icon = learning_positive
+	learning = 2
+	stewardship = 2
+	character_travel_speed_mult = 0.10
+	character_travel_safety = 10
+	monthly_learning_lifestyle_xp_gain_mult = 0.10
+}
+
+rol_resonance_sovereign_awe_modifier = {
+	icon = prestige_positive
+	diplomacy = 2
+	monthly_prestige_gain_mult = 0.10
+	general_opinion = 6
+	stress_loss_mult = 0.10
 }

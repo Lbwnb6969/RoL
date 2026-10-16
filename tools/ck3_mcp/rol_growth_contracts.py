@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """Source-driven checks for the expedition growth loop.
 
 The small evaluator covers only the effects/triggers/values used by this module.
@@ -80,6 +80,8 @@ class State:
     martial: float = 15
     prowess: float = 15
     diplomacy: float = 15
+    stewardship: float = 15
+    intrigue: float = 15
     alive: bool = True
     adult: bool = True
     available: bool = True
@@ -155,6 +157,7 @@ class Model:
         if value == "root": return state
         if value == "this": return self.current(state, scope)
         if value == "player_heir": return self.current(state, scope).player_heir
+        if value == "involved_activity": return self.current(state, scope).activity
         if value == "scope:activity": return state.activity
         if value.startswith("scope:"): return state.scopes.get(value[6:])
         if value.startswith("var:"): return self.variables(state, scope).get(value[4:])
@@ -167,7 +170,7 @@ class Model:
             resolved = self.reference(value, state, scope)
             if resolved is None: raise ValueError(f"missing value {value}")
             return resolved
-        if value in ("learning", "prowess", "diplomacy", "gold", "prestige"):
+        if value in ("learning", "martial", "prowess", "diplomacy", "stewardship", "intrigue", "gold", "prestige", "piety"):
             return getattr(self.current(state, scope), value)
         if value in self.values:
             return self.calculate(self.values[value], state, scope)
@@ -192,6 +195,8 @@ class Model:
                 return self.condition([n for n in value if n[0] != "text"], state, scope)
             if key == "player_heir":
                 return current.player_heir is not None and self.condition(value, state, current.player_heir)
+            if key == "involved_activity":
+                return current.activity is not None and self.condition(value, state, current.activity)
             if key == "is_ai": return current.ai == (value == "yes")
             if key == "is_playable_character": return current.playable == (value == "yes")
             if key == "is_incapable": return current.incapable == (value == "yes")
@@ -236,7 +241,7 @@ class Model:
                 return left is not None and self.compare(left, op, self.number(value, state, scope))
             if key == "this":
                 return self.compare(current, op, self.reference(value, state, scope))
-            if key in ("learning", "martial", "prowess", "diplomacy", "gold", "prestige"):
+            if key in ("learning", "martial", "prowess", "diplomacy", "stewardship", "intrigue", "gold", "prestige", "piety"):
                 return self.compare(getattr(current, key), op, self.number(value, state, scope))
             raise ValueError(f"unsupported condition {key}")
         return all(entry(*node) for node in nodes)
@@ -283,7 +288,10 @@ class Model:
         for key, op, value in self.selected(nodes, state, scope):
             current = self.current(state, scope)
             variables = self.variables(state, scope)
-            if key.startswith(("scope:", "var:")) and isinstance(value, list):
+            if key == "involved_activity":
+                if current.activity is not None:
+                    self.run(value, state, current.activity)
+            elif key.startswith(("scope:", "var:")) and isinstance(value, list):
                 target = self.reference(key, state, scope)
                 if target is None:
                     if op == "?=": continue

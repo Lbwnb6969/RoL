@@ -1,7 +1,34 @@
-﻿# Relics of Legends - Fragment upgrade modifiers
+﻿# Relics of Legends - Fragment upgrade & resonance modifiers
 
 rol_fragment_expedition_failure_modifier = {
 	stress_gain_mult = 0.10
+}
+
+rol_fragment_masterwork_surplus_modifier = {
+	icon = stewardship_positive
+	stewardship = 1
+	monthly_county_control_growth_factor = 0.10
+	monthly_stewardship_lifestyle_xp_gain_mult = 0.05
+}
+
+rol_fragment_resonance_might_modifier = {
+	icon = martial_positive
+	martial = 1
+	prowess = 2
+	dread_gain_mult = 0.05
+}
+
+rol_fragment_resonance_wisdom_modifier = {
+	icon = learning_positive
+	learning = 2
+	monthly_learning_lifestyle_xp_gain_mult = 0.05
+}
+
+rol_fragment_resonance_court_modifier = {
+	icon = prestige_positive
+	diplomacy = 1
+	general_opinion = 5
+	monthly_prestige_gain_mult = 0.05
 }
 
 rol_blade_fragment_1_modifier = {

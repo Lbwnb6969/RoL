@@ -1,6 +1,7 @@
 ﻿# Relics of Legend - 四链总完成检查 / 触发
 
 rol_check_legend_circle_revelation_effect = {
+	rol_legend_circle_migrate_effect = yes
 	if = {
 		limit = {
 			rol_has_all_major_relic_completions_trigger = yes
@@ -14,6 +15,7 @@ rol_check_legend_circle_revelation_effect = {
 }
 
 rol_check_legend_circle_fivefold_revelation_effect = {
+	rol_legend_circle_migrate_effect = yes
 	if = {
 		limit = {
 			rol_has_all_five_relic_completions_trigger = yes
@@ -22,5 +24,64 @@ rol_check_legend_circle_fivefold_revelation_effect = {
 		add_character_flag = rol_legend_circle_fivefold_revealed
 		rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_legend_circle_fivefold_triggered }
 		trigger_event = { id = rol_legend_circle.0002 days = 1 }
+	}
+}
+
+# Infer already paid legacy rewards from their permanent personal modifiers.
+# Idempotent, no currency or dynasty rewards are issued by migration itself.
+rol_legend_circle_migrate_effect = {
+	if = {
+		limit = { has_character_modifier = rol_legend_circle_conqueror_modifier }
+		add_character_flag = rol_legend_circle_0001_reward_claimed
+	}
+	if = {
+		limit = { has_character_modifier = rol_legend_circle_fivefold_modifier }
+		add_character_flag = rol_legend_circle_0002_reward_claimed
+		remove_character_modifier = rol_legend_circle_conqueror_modifier
+	}
+}
+
+rol_legend_circle_claim_fourfold_effect = {
+	rol_legend_circle_migrate_effect = yes
+	if = {
+		limit = {
+			has_character_flag = rol_legend_circle_revealed
+			rol_has_all_major_relic_completions_trigger = yes
+			NOT = { has_character_flag = rol_legend_circle_0001_reward_claimed }
+		}
+		add_character_flag = rol_legend_circle_0001_reward_claimed
+		play_sound_effect = "event:/DLC/EP1/SFX/UI/Notifications/court_grandeur_toast_lvl_up"
+		if = {
+			limit = { NOT = { has_character_modifier = rol_legend_circle_fivefold_modifier } }
+			add_character_modifier = { modifier = rol_legend_circle_conqueror_modifier }
+			house ?= { add_house_modifier = { modifier = rol_legend_circle_house_modifier years = 75 } }
+		}
+		dynasty ?= {
+			add_dynasty_modifier = { modifier = rol_legend_circle_dynasty_modifier years = 100 }
+			add_dynasty_prestige = 500
+		}
+	}
+}
+
+rol_legend_circle_claim_fivefold_effect = {
+	rol_legend_circle_migrate_effect = yes
+	if = {
+		limit = {
+			has_character_flag = rol_legend_circle_fivefold_revealed
+			rol_has_all_five_relic_completions_trigger = yes
+			NOT = { has_character_flag = rol_legend_circle_0002_reward_claimed }
+		}
+		# Settle the independent fourfold dynasty reward before upgrading the person.
+		add_character_flag = rol_legend_circle_revealed
+		rol_legend_circle_claim_fourfold_effect = yes
+		add_character_flag = rol_legend_circle_0002_reward_claimed
+		play_sound_effect = "event:/DLC/EP1/SFX/UI/Notifications/court_grandeur_toast_lvl_up"
+		remove_character_modifier = rol_legend_circle_conqueror_modifier
+		add_character_modifier = { modifier = rol_legend_circle_fivefold_modifier }
+		house ?= { add_house_modifier = { modifier = rol_legend_circle_house_modifier years = 100 } }
+		dynasty ?= {
+			add_dynasty_modifier = { modifier = rol_legend_circle_dynasty_fivefold_modifier years = 150 }
+			add_dynasty_prestige = 1000
+		}
 	}
 }

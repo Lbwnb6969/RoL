@@ -83,6 +83,7 @@ rol_quest_sevilla.1000 = {
 						desc = rol_quest_sevilla.1000.a.tt.failure
 						add_stress = 25
 						hidden_effect = {
+							rol_expedition_record_trial_failure_effect = { LOSS = 0 }
 							trigger_event = { id = rol_quest_sevilla.1011 days = 1 }
 						}
 					}
@@ -106,6 +107,7 @@ rol_quest_sevilla.1000 = {
 						desc = rol_quest_sevilla.1000.a.tt.failure
 						add_stress = 35
 						hidden_effect = {
+							rol_expedition_record_trial_failure_effect = { LOSS = 0 }
 							trigger_event = { id = rol_quest_sevilla.1011 days = 1 }
 						}
 					}
@@ -128,6 +130,7 @@ rol_quest_sevilla.1000 = {
 						desc = rol_quest_sevilla.1000.a.tt.failure
 						add_stress = 45
 						hidden_effect = {
+							rol_expedition_record_trial_failure_effect = { LOSS = 0 }
 							trigger_event = { id = rol_quest_sevilla.1011 days = 1 }
 						}
 					}
@@ -167,6 +170,7 @@ rol_quest_sevilla.1000 = {
 						add_trait = wounded_1
 						add_prestige = -80
 						hidden_effect = {
+							rol_expedition_record_trial_failure_effect = { LOSS = 0 }
 							trigger_event = { id = rol_quest_sevilla.1011 days = 1 }
 						}
 					}
@@ -196,6 +200,7 @@ rol_quest_sevilla.1000 = {
 						add_trait = wounded_1
 						add_prestige = -100
 						hidden_effect = {
+							rol_expedition_record_trial_failure_effect = { LOSS = 0 }
 							trigger_event = { id = rol_quest_sevilla.1011 days = 1 }
 						}
 					}
@@ -219,6 +224,7 @@ rol_quest_sevilla.1000 = {
 						add_trait = wounded_1
 						add_prestige = -120
 						hidden_effect = {
+							rol_expedition_record_trial_failure_effect = { LOSS = 0 }
 							trigger_event = { id = rol_quest_sevilla.1011 days = 1 }
 						}
 					}
@@ -319,7 +325,7 @@ rol_quest_sevilla.1011 = {
 		if = {
 			limit = { rol_sevilla_quest_active_trigger = yes }
 			hidden_effect = {
-				rol_sevilla_quest_fail_now_effect = yes
+				rol_expedition_try_remedy_or_fail_effect = { CHAIN = sevilla }
 			}
 		}
 	}
@@ -385,6 +391,7 @@ rol_quest_sevilla.1002 = {
 						desc = rol_quest_sevilla.1002.a.tt.failure
 						add_stress = 30
 						hidden_effect = {
+							rol_expedition_record_trial_failure_effect = { LOSS = 0 }
 							trigger_event = { id = rol_quest_sevilla.1021 days = 1 }
 						}
 					}
@@ -408,6 +415,7 @@ rol_quest_sevilla.1002 = {
 						desc = rol_quest_sevilla.1002.a.tt.failure
 						add_stress = 40
 						hidden_effect = {
+							rol_expedition_record_trial_failure_effect = { LOSS = 0 }
 							trigger_event = { id = rol_quest_sevilla.1021 days = 1 }
 						}
 					}
@@ -430,6 +438,7 @@ rol_quest_sevilla.1002 = {
 						desc = rol_quest_sevilla.1002.a.tt.failure
 						add_stress = 50
 						hidden_effect = {
+							rol_expedition_record_trial_failure_effect = { LOSS = 0 }
 							trigger_event = { id = rol_quest_sevilla.1021 days = 1 }
 						}
 					}
@@ -463,6 +472,7 @@ rol_quest_sevilla.1002 = {
 						desc = rol_quest_sevilla.1002.b.tt.failure
 						add_stress = 25
 						hidden_effect = {
+							rol_expedition_record_trial_failure_effect = { LOSS = 0 }
 							trigger_event = { id = rol_quest_sevilla.1021 days = 1 }
 						}
 					}
@@ -486,6 +496,7 @@ rol_quest_sevilla.1002 = {
 						desc = rol_quest_sevilla.1002.b.tt.failure
 						add_stress = 35
 						hidden_effect = {
+							rol_expedition_record_trial_failure_effect = { LOSS = 0 }
 							trigger_event = { id = rol_quest_sevilla.1021 days = 1 }
 						}
 					}
@@ -508,6 +519,7 @@ rol_quest_sevilla.1002 = {
 						desc = rol_quest_sevilla.1002.b.tt.failure
 						add_stress = 45
 						hidden_effect = {
+							rol_expedition_record_trial_failure_effect = { LOSS = 0 }
 							trigger_event = { id = rol_quest_sevilla.1021 days = 1 }
 						}
 					}
@@ -565,7 +577,7 @@ rol_quest_sevilla.1021 = {
 		if = {
 			limit = { rol_sevilla_quest_active_trigger = yes }
 			hidden_effect = {
-				rol_sevilla_quest_fail_now_effect = yes
+				rol_expedition_try_remedy_or_fail_effect = { CHAIN = sevilla }
 			}
 		}
 	}

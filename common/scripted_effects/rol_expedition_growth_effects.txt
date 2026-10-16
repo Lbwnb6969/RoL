@@ -2,9 +2,11 @@
 rol_expedition_growth_begin_effect = {
 	if = {
 		limit = { exists = scope:activity }
+		remove_character_flag = rol_expedition_remedy_pending
 		scope:activity = {
 			set_variable = { name = rol_expedition_growth_open value = 1 }
 			set_variable = { name = rol_expedition_journal_bonus value = 0 }
+			set_variable = { name = rol_expedition_remedy_used value = 0 }
 		}
 		if = {
 			limit = { has_character_modifier = rol_expedition_$ROUTE$_notes_modifier }
@@ -78,5 +80,127 @@ rol_expedition_growth_debug_queue_effect = {
 		set_variable = { name = rol_expedition_growth_pending_xp value = 20 }
 		add_character_flag = rol_expedition_growth_pending
 		trigger_event = rol_expedition_growth.0001
+	}
+}
+
+# Record only the loss caused by this roll; later interludes keep their own progress.
+rol_expedition_record_trial_failure_effect = {
+	scope:activity = { set_variable = { name = rol_expedition_trial_failure_loss value = $LOSS$ } }
+}
+
+rol_expedition_capture_remedy_window_effect = {
+	if = {
+		limit = { NOT = { has_variable = rol_expedition_remedy_generation } }
+		set_variable = { name = rol_expedition_remedy_generation value = 1 }
+	}
+	save_scope_value_as = { name = rol_expedition_remedy_generation value = var:rol_expedition_remedy_generation }
+}
+
+rol_expedition_close_remedy_window_effect = {
+	if = {
+		limit = {
+			exists = scope:rol_expedition_remedy_generation
+			scope:rol_expedition_remedy_generation = var:rol_expedition_remedy_generation
+		}
+		remove_character_flag = rol_expedition_remedy_pending
+	}
+}
+
+# Recover the current host's pending crisis after a legacy/unavailable window.
+rol_expedition_review_remedy_effect = {
+	if = {
+		limit = { has_character_flag = rol_expedition_remedy_pending exists = involved_activity }
+		save_scope_as = host
+		involved_activity = { save_scope_as = activity }
+		if = {
+			limit = {
+				rol_relic_any_active_quest_trigger = yes
+				scope:activity = { var:rol_expedition_growth_open = 1 var:rol_expedition_remedy_used = 1 }
+			}
+			rol_expedition_capture_remedy_window_effect = yes
+			trigger_event = rol_expedition_growth.0010
+		}
+	}
+}
+
+# Intercepts a stage roll failure once per expedition. Only experts, consumed
+# regional notes or an attending trusted partner can preserve a full-relic route.
+rol_expedition_try_remedy_or_fail_effect = {
+	if = {
+		limit = {
+			rol_$CHAIN$_quest_active_trigger = yes
+			rol_expedition_can_remedy_trigger = yes
+		}
+		scope:activity = { set_variable = { name = rol_expedition_remedy_used value = 1 } }
+		if = {
+			limit = { NOT = { has_variable = rol_expedition_remedy_generation } }
+			set_variable = { name = rol_expedition_remedy_generation value = 0 }
+		}
+		change_variable = { name = rol_expedition_remedy_generation add = 1 }
+		rol_expedition_capture_remedy_window_effect = yes
+		add_character_flag = rol_expedition_remedy_pending
+		trigger_event = { id = rol_expedition_growth.0010 days = 1 }
+	}
+	else_if = {
+		limit = { rol_$CHAIN$_quest_active_trigger = yes }
+		rol_$CHAIN$_quest_fail_now_effect = yes
+	}
+}
+
+rol_expedition_remedy_press_on_effect = {
+	if = {
+		limit = {
+			rol_expedition_remedy_window_valid_trigger = yes
+			rol_expedition_remedy_press_on_qualified_trigger = yes
+			scope:activity = { has_variable = rol_expedition_trial_failure_loss }
+			gold >= 50
+		}
+		remove_character_flag = rol_expedition_remedy_pending
+		remove_short_term_gold = 50
+		add_stress = 10
+		scope:activity = {
+			change_variable = { name = activity_special_type_progression add = var:rol_expedition_trial_failure_loss }
+			activity_special_type_progression_major = yes
+		}
+		if = { limit = { rol_rome_quest_active_trigger = yes } rol_rome_quest_progress_effect = yes }
+		else_if = { limit = { rol_munich_quest_active_trigger = yes } rol_munich_quest_progress_effect = yes }
+		else_if = { limit = { rol_naxos_quest_active_trigger = yes } rol_naxos_quest_progress_effect = yes }
+		else_if = { limit = { rol_sevilla_quest_active_trigger = yes } rol_sevilla_quest_progress_effect = yes }
+		else_if = { limit = { rol_carthage_quest_active_trigger = yes } rol_carthage_quest_progress_effect = yes }
+	}
+}
+
+rol_expedition_remedy_salvage_partial_effect = {
+	if = {
+		limit = { rol_expedition_remedy_window_valid_trigger = yes }
+		remove_character_flag = rol_expedition_remedy_pending
+		scope:activity = {
+			if = {
+				limit = { var:activity_special_type_progression < 35 }
+				set_variable = { name = activity_special_type_progression value = 35 }
+			}
+		}
+		if = { limit = { rol_rome_quest_active_trigger = yes } rol_rome_quest_partial_finalize_effect = yes }
+		else_if = { limit = { rol_munich_quest_active_trigger = yes } rol_munich_quest_partial_finalize_effect = yes }
+		else_if = { limit = { rol_naxos_quest_active_trigger = yes } rol_naxos_quest_partial_finalize_effect = yes }
+		else_if = { limit = { rol_sevilla_quest_active_trigger = yes } rol_sevilla_quest_partial_finalize_effect = yes }
+		else_if = { limit = { rol_carthage_quest_active_trigger = yes } rol_carthage_quest_partial_finalize_effect = yes }
+	}
+}
+
+rol_expedition_remedy_retreat_effect = {
+	if = {
+		limit = { rol_expedition_remedy_window_valid_trigger = yes }
+		remove_character_flag = rol_expedition_remedy_pending
+		add_stress = -15
+		if = {
+			limit = { has_trait = rol_relic_seeker }
+			add_trait_xp = { trait = rol_relic_seeker track = rol_exploration value = 5 }
+		}
+		if = { limit = { rol_rome_quest_active_trigger = yes } rol_rome_quest_fail_now_effect = yes }
+		else_if = { limit = { rol_munich_quest_active_trigger = yes } rol_munich_quest_fail_now_effect = yes }
+		else_if = { limit = { rol_naxos_quest_active_trigger = yes } rol_naxos_quest_fail_now_effect = yes }
+		else_if = { limit = { rol_sevilla_quest_active_trigger = yes } rol_sevilla_quest_fail_now_effect = yes }
+		else_if = { limit = { rol_carthage_quest_active_trigger = yes } rol_carthage_quest_fail_now_effect = yes }
 	}
 }

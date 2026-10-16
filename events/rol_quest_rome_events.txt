@@ -110,6 +110,7 @@ rol_quest_rome.1000 = {
 						add_prestige = -90
 						hidden_effect = {
 							scope:activity ?= { activity_special_type_progression_negative_major = yes }
+							rol_expedition_record_trial_failure_effect = { LOSS = 10 }
 							trigger_event = { id = rol_quest_rome.1011 days = 1 }
 						}
 					}
@@ -140,6 +141,7 @@ rol_quest_rome.1000 = {
 						add_prestige = -100
 						hidden_effect = {
 							scope:activity ?= { activity_special_type_progression_negative_major = yes }
+							rol_expedition_record_trial_failure_effect = { LOSS = 10 }
 							trigger_event = { id = rol_quest_rome.1011 days = 1 }
 						}
 					}
@@ -164,6 +166,7 @@ rol_quest_rome.1000 = {
 						add_prestige = -100
 						hidden_effect = {
 							scope:activity ?= { activity_special_type_progression_negative_major = yes }
+							rol_expedition_record_trial_failure_effect = { LOSS = 10 }
 							trigger_event = { id = rol_quest_rome.1011 days = 1 }
 						}
 					}
@@ -275,7 +278,7 @@ rol_quest_rome.1011 = {
 		if = {
 			limit = { rol_rome_quest_active_trigger = yes }
 			hidden_effect = {
-				rol_rome_quest_fail_now_effect = yes
+				rol_expedition_try_remedy_or_fail_effect = { CHAIN = rome }
 			}
 		}
 	}
@@ -366,6 +369,7 @@ rol_quest_rome.1002 = {
 						add_prestige = -70
 						hidden_effect = {
 							scope:activity ?= { activity_special_type_progression_negative = yes }
+							rol_expedition_record_trial_failure_effect = { LOSS = 5 }
 							trigger_event = { id = rol_quest_rome.1021 days = 1 }
 						}
 					}
@@ -391,6 +395,7 @@ rol_quest_rome.1002 = {
 						add_prestige = -80
 						hidden_effect = {
 							scope:activity ?= { activity_special_type_progression_negative = yes }
+							rol_expedition_record_trial_failure_effect = { LOSS = 5 }
 							trigger_event = { id = rol_quest_rome.1021 days = 1 }
 						}
 					}
@@ -415,6 +420,7 @@ rol_quest_rome.1002 = {
 						add_prestige = -100
 						hidden_effect = {
 							scope:activity ?= { activity_special_type_progression_negative_major = yes }
+							rol_expedition_record_trial_failure_effect = { LOSS = 10 }
 							trigger_event = { id = rol_quest_rome.1021 days = 1 }
 						}
 					}
@@ -473,7 +479,7 @@ rol_quest_rome.1021 = {
 		if = {
 			limit = { rol_rome_quest_active_trigger = yes }
 			hidden_effect = {
-				rol_rome_quest_fail_now_effect = yes
+				rol_expedition_try_remedy_or_fail_effect = { CHAIN = rome }
 			}
 		}
 	}
@@ -561,6 +567,7 @@ rol_quest_rome.1003 = {
 						add_stress = 30
 						hidden_effect = {
 							scope:activity ?= { activity_special_type_progression_negative = yes }
+							rol_expedition_record_trial_failure_effect = { LOSS = 5 }
 							trigger_event = { id = rol_quest_rome.1031 days = 1 }
 						}
 					}
@@ -585,6 +592,7 @@ rol_quest_rome.1003 = {
 						add_stress = 40
 						hidden_effect = {
 							scope:activity ?= { activity_special_type_progression_negative = yes }
+							rol_expedition_record_trial_failure_effect = { LOSS = 5 }
 							trigger_event = { id = rol_quest_rome.1031 days = 1 }
 						}
 					}
@@ -608,6 +616,7 @@ rol_quest_rome.1003 = {
 						add_stress = 60
 						hidden_effect = {
 							scope:activity ?= { activity_special_type_progression_negative_major = yes }
+							rol_expedition_record_trial_failure_effect = { LOSS = 10 }
 							trigger_event = { id = rol_quest_rome.1031 days = 1 }
 						}
 					}
@@ -640,6 +649,7 @@ rol_quest_rome.1003 = {
 					add_prestige = -50
 					hidden_effect = {
 						scope:activity ?= { activity_special_type_progression_negative_major = yes }
+						rol_expedition_record_trial_failure_effect = { LOSS = 10 }
 						trigger_event = { id = rol_quest_rome.1031 days = 1 }
 					}
 				}
@@ -682,7 +692,7 @@ rol_quest_rome.1031 = {
 		if = {
 			limit = { rol_rome_quest_active_trigger = yes }
 			hidden_effect = {
-				rol_rome_quest_fail_now_effect = yes
+				rol_expedition_try_remedy_or_fail_effect = { CHAIN = rome }
 			}
 		}
 	}
@@ -756,6 +766,7 @@ rol_quest_rome.1004 = {
 						add_prestige = -90
 						hidden_effect = {
 							scope:activity ?= { activity_special_type_progression_negative_major = yes }
+							rol_expedition_record_trial_failure_effect = { LOSS = 10 }
 							trigger_event = { id = rol_quest_rome.1041 days = 1 }
 						}
 					}
@@ -786,6 +797,7 @@ rol_quest_rome.1004 = {
 						add_prestige = -120
 						hidden_effect = {
 							scope:activity ?= { activity_special_type_progression_negative_major = yes }
+							rol_expedition_record_trial_failure_effect = { LOSS = 10 }
 							trigger_event = { id = rol_quest_rome.1041 days = 1 }
 						}
 					}
@@ -810,6 +822,7 @@ rol_quest_rome.1004 = {
 						add_prestige = -150
 						hidden_effect = {
 							scope:activity ?= { activity_special_type_progression_negative_major = yes }
+							rol_expedition_record_trial_failure_effect = { LOSS = 10 }
 							trigger_event = { id = rol_quest_rome.1041 days = 1 }
 						}
 					}
@@ -868,7 +881,7 @@ rol_quest_rome.1041 = {
 		if = {
 			limit = { rol_rome_quest_active_trigger = yes }
 			hidden_effect = {
-				rol_rome_quest_fail_now_effect = yes
+				rol_expedition_try_remedy_or_fail_effect = { CHAIN = rome }
 			}
 		}
 	}

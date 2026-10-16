@@ -16,6 +16,10 @@ rol_seek_mars_fragment_decision = {
 	is_valid_showing_failures_only = {
 		is_available_adult = yes
 		NOT = { rol_fragment_any_route_trigger = yes }
+		custom_description = {
+			text = rol_fragment_finish_resonance_first_tt
+			NOT = { has_character_flag = rol_fragment_upgrade_pending }
+		}
 		is_at_war = no
 		gold >= 120
 	}
@@ -42,6 +46,10 @@ rol_seek_nibelung_fragment_decision = {
 	is_valid_showing_failures_only = {
 		is_available_adult = yes
 		NOT = { rol_fragment_any_route_trigger = yes }
+		custom_description = {
+			text = rol_fragment_finish_resonance_first_tt
+			NOT = { has_character_flag = rol_fragment_upgrade_pending }
+		}
 		is_at_war = no
 		gold >= 120
 	}
@@ -68,6 +76,10 @@ rol_seek_astrolabe_fragment_decision = {
 	is_valid_showing_failures_only = {
 		is_available_adult = yes
 		NOT = { rol_fragment_any_route_trigger = yes }
+		custom_description = {
+			text = rol_fragment_finish_resonance_first_tt
+			NOT = { has_character_flag = rol_fragment_upgrade_pending }
+		}
 		is_at_war = no
 		gold >= 120
 	}
@@ -94,6 +106,10 @@ rol_seek_ash_fragment_decision = {
 	is_valid_showing_failures_only = {
 		is_available_adult = yes
 		NOT = { rol_fragment_any_route_trigger = yes }
+		custom_description = {
+			text = rol_fragment_finish_resonance_first_tt
+			NOT = { has_character_flag = rol_fragment_upgrade_pending }
+		}
 		is_at_war = no
 		gold >= 120
 	}

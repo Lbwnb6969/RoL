@@ -27,6 +27,12 @@ def check_relic_safety_contract(root: Path, errors: list[str]) -> int:
             assert "rol_fragment_target" not in actor.variables and "rol_fragment_route_" + route not in actor.flags
             assert actor.events.count("rol_relic_fragment.0002") == 1
             model.call("rol_relic_fragment_begin_effect", actor, params)
+            assert "rol_fragment_target" not in actor.variables and len(actor.events) == 2, "pending resonance overwritten"
+            resonance = get(load("events/rol_relic_fragment_events.txt"), "rol_relic_fragment.0002")
+            choice = next(v for k, _, v in resonance if k == "option" and get(v, "name") == "rol_relic_fragment.0002.b")
+            model.run([n for n in choice if n[0] == "rol_fragment_choose_resonance_effect"], actor)
+            assert "rol_fragment_upgrade_pending" not in actor.flags
+            model.call("rol_relic_fragment_begin_effect", actor, params)
             model.call("rol_relic_fragment_success_effect", actor)
             model.call("rol_relic_fragment_begin_effect", actor, params)
             assert last in artifact.modifiers and actor.prestige == 500 and len(actor.events) == 4

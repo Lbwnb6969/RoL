@@ -2,6 +2,7 @@
 	effect = {
 		if = {
 			limit = { is_ai = no is_alive = yes is_playable_character = yes }
+			rol_legend_circle_migrate_effect = yes
 			random_list = {
 				20 = { random_list = { 50 = { trigger_event = rol_relic_legacy.0001 } 50 = { trigger_event = rol_relic_legacy.0002 } } }
 				80 = { }

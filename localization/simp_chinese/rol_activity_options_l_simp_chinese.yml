@@ -2,13 +2,13 @@
 
  rol_option_expedition_preparation:0 "人员与装备等级"
  rol_expedition_preparation_low:0 "简陋筹备"
- rol_expedition_preparation_low_desc:0 "$EFFECT_LIST_BULLET$降低检定成功率\n$EFFECT_LIST_BULLET$成功时无额外[prestige|E]\n$EFFECT_LIST_BULLET$成功时无额外[dynasty_prestige|E]\n\n#weak 人手寒酸、装备陈旧、整备仓促，花费虽低，却会让每一道试炼都更加凶险。#!"
+ rol_expedition_preparation_low_desc:0 "$EFFECT_LIST_BULLET$降低检定成功率\n$EFFECT_LIST_BULLET$完整凯旋时无额外[prestige|E]\n$EFFECT_LIST_BULLET$完整凯旋时无额外[dynasty_prestige|E]\n\n#weak 人手寒酸、装备陈旧、整备仓促，花费虽低，却会让每一道试炼都更加凶险。#!"
  rol_expedition_preparation_standard:0 "标准筹备"
- rol_expedition_preparation_standard_desc:0 "$EFFECT_LIST_BULLET$检定成功率无额外修正\n$EFFECT_LIST_BULLET$成功时无额外[prestige|E]\n$EFFECT_LIST_BULLET$成功时无额外[dynasty_prestige|E]\n\n#weak 以可靠人手、合格装备与均衡预算维持当前远征基线。#!"
+ rol_expedition_preparation_standard_desc:0 "$EFFECT_LIST_BULLET$检定成功率无额外修正\n$EFFECT_LIST_BULLET$完整凯旋时无额外[prestige|E]\n$EFFECT_LIST_BULLET$完整凯旋时无额外[dynasty_prestige|E]\n\n#weak 以可靠人手、合格装备与均衡预算维持当前远征基线。#!"
  rol_expedition_preparation_high:0 "精良筹备"
- rol_expedition_preparation_high_desc:0 "$EFFECT_LIST_BULLET$提高检定成功率\n$EFFECT_LIST_BULLET$成功时额外获得 #P +150#! [prestige|E]\n$EFFECT_LIST_BULLET$成功时额外获得 #P +25#! [dynasty_prestige|E]\n\n#weak 更老练的人员与更精良的装备，会显著提高远征胜算，并放大凯旋后的声望。#!"
+ rol_expedition_preparation_high_desc:0 "$EFFECT_LIST_BULLET$提高检定成功率\n$EFFECT_LIST_BULLET$完整凯旋时额外获得 #P +150#! [prestige|E]\n$EFFECT_LIST_BULLET$完整凯旋时额外获得 #P +25#! [dynasty_prestige|E]\n\n#weak 更老练的人员与更精良的装备，会显著提高远征胜算，并放大凯旋后的声望。#!"
  rol_expedition_preparation_supreme:0 "至尊筹备"
- rol_expedition_preparation_supreme_desc:0 "$EFFECT_LIST_BULLET$显著提高检定成功率\n$EFFECT_LIST_BULLET$成功时额外获得 #P +350#! [prestige|E]\n$EFFECT_LIST_BULLET$成功时额外获得 #P +50#! [dynasty_prestige|E]\n\n#weak 由精选专家、奢华装备与极致后勤构成的远征，将把整场行动推向传奇规模。#!"
+ rol_expedition_preparation_supreme_desc:0 "$EFFECT_LIST_BULLET$显著提高检定成功率\n$EFFECT_LIST_BULLET$启程时即获得 #P +5#! 远征特殊进度并减轻 #P 15#! 压力\n$EFFECT_LIST_BULLET$完整凯旋时额外获得 #P +500#! [prestige|E]\n$EFFECT_LIST_BULLET$完整凯旋时额外获得 #P +100#! [dynasty_prestige|E]\n\n#weak 由精选专家、奢华装备与极致后勤构成的远征，不仅能在开局确立领先优势，更将把整场行动推向传奇规模。#!"
 
  rol_expedition_preparation_current_modifier_low_tt:0 "当前筹备会让这次检定 #N更加困难#!。"
  rol_expedition_preparation_current_modifier_standard_tt:0 "当前筹备对这次检定 #V没有额外修正#!。"

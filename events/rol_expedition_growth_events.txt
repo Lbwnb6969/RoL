@@ -39,3 +39,65 @@ rol_expedition_growth.0001 = {
 		}
 	}
 }
+
+rol_expedition_growth.0010 = {
+	type = character_event
+	title = rol_expedition_growth.0010.t
+	desc = {
+		first_valid = {
+			triggered_desc = { trigger = { NOT = { rol_expedition_remedy_window_valid_trigger = yes } } desc = rol_expedition_growth.0010.desc.closed }
+			desc = rol_expedition_growth.0010.desc
+		}
+	}
+	theme = martial
+	override_background = { reference = rol_bg_fragment_expedition }
+	trigger = {
+		is_alive = yes
+		is_ai = no
+		has_character_flag = rol_expedition_remedy_pending
+	}
+	immediate = {
+		# Upgrade a queued legacy crisis in its original open activity. Already open
+		# windows without a captured number remain neutral when clicked.
+		if = {
+			limit = {
+				rol_relic_any_active_quest_trigger = yes
+				has_character_flag = rol_expedition_remedy_pending
+				NOT = { exists = scope:rol_expedition_remedy_generation }
+			}
+			rol_expedition_capture_remedy_window_effect = yes
+		}
+	}
+	option = {
+		name = rol_expedition_growth.0010.a
+		flavor = rol_expedition_growth.0010.a.flavor
+		trigger = {
+			rol_expedition_remedy_window_valid_trigger = yes
+			rol_expedition_remedy_press_on_qualified_trigger = yes
+			scope:activity = { has_variable = rol_expedition_trial_failure_loss }
+			gold >= 50
+		}
+		custom_tooltip = rol_expedition_remedy_press_on_tt
+		rol_expedition_remedy_press_on_effect = yes
+	}
+	option = {
+		name = rol_expedition_growth.0010.b
+		flavor = rol_expedition_growth.0010.b.flavor
+		trigger = { rol_expedition_remedy_window_valid_trigger = yes }
+		custom_tooltip = rol_expedition_remedy_salvage_tt
+		rol_expedition_remedy_salvage_partial_effect = yes
+	}
+	option = {
+		name = rol_expedition_growth.0010.c
+		flavor = rol_expedition_growth.0010.c.flavor
+		trigger = { rol_expedition_remedy_window_valid_trigger = yes }
+		custom_tooltip = rol_expedition_remedy_retreat_tt
+		rol_expedition_remedy_retreat_effect = yes
+	}
+	option = {
+		name = rol_expedition_growth.0010.d
+		flavor = rol_expedition_growth.0010.d.flavor
+		trigger = { NOT = { rol_expedition_remedy_window_valid_trigger = yes } }
+		rol_expedition_close_remedy_window_effect = yes
+	}
+}

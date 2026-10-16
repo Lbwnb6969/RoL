@@ -1,10 +1,14 @@
-﻿# Relics of Legends - five-relic endgame rewards
+﻿# Relics of Legends - five-relic endgame rewards (upgraded from four-chain conqueror)
 
 rol_legend_circle_fivefold_modifier = {
 	icon = learning_positive
+	martial = 3
 	learning = 4
-	monthly_prestige_gain_mult = 0.15
-	monthly_piety_gain_mult = 0.10
+	diplomacy = 2
+	prowess = 4
+	monthly_prestige_gain_mult = 0.25
+	monthly_piety_gain_mult = 0.15
+	knight_effectiveness_mult = 0.12
 	general_opinion = 5
 }
 

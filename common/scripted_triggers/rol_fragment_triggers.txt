@@ -7,6 +7,12 @@
 }
 }
 
+rol_fragment_resonance_choice_trigger = {
+	has_character_flag = rol_fragment_upgrade_pending
+	exists = scope:rol_fragment_resonance_generation
+	scope:rol_fragment_resonance_generation = var:rol_fragment_resonance_generation
+}
+
 rol_fragment_target_valid_trigger = {
  exists = var:rol_fragment_target
  var:rol_fragment_target = { artifact_owner = root }

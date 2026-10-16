@@ -59,6 +59,39 @@ rol_rival.1000 = {
 			hidden_effect = { rol_clear_rival_route_effect = yes }
 		}
 	}
+	option = {
+		name = rol_rival.1000.e
+		flavor = rol_rival.1000.e.flavor
+		skill = intrigue
+		trigger = {
+			rol_rival_route_active_trigger = yes
+			OR = {
+				intrigue >= 14
+				rol_expedition_companion_guard_trigger = yes
+			}
+		}
+		if = {
+			limit = { rol_rival_route_active_trigger = yes }
+			random_list = {
+				0 = {
+					modifier = { add = 75 intrigue >= scope:rol_expedition_rival.intrigue }
+					modifier = { add = 45 intrigue < scope:rol_expedition_rival.intrigue }
+					desc = rol_rival.1000.e.success
+					add_prestige = 60
+					add_stress = -10
+					hidden_effect = { scope:activity = { activity_special_type_progression_major = yes } }
+				}
+				0 = {
+					modifier = { add = 25 intrigue >= scope:rol_expedition_rival.intrigue }
+					modifier = { add = 55 intrigue < scope:rol_expedition_rival.intrigue }
+					desc = rol_rival.1000.e.failure
+					add_stress = 20
+					hidden_effect = { scope:activity = { activity_special_type_progression_negative = yes } }
+				}
+			}
+			hidden_effect = { rol_clear_rival_route_effect = yes }
+		}
+	}
 	option = { name = rol_rival_context_lost_option flavor = rol_rival_context_lost_flavor trigger = { NOT = { rol_rival_route_active_trigger = yes } } }
 }
 
@@ -102,6 +135,39 @@ rol_rival.1001 = {
 		if = { limit = { rol_rival_pact_choice_trigger = yes }
 			add_stress = -10
 			scope:rol_expedition_rival = { add_opinion = { target = root modifier = rol_expedition_respect_opinion } }
+			rol_rival_close_selected_pact_effect = yes
+		}
+	}
+	option = {
+		name = rol_rival.1001.d
+		flavor = rol_rival.1001.d.flavor
+		trigger = {
+			rol_rival_pact_choice_trigger = yes
+			gold >= 75
+			OR = {
+				diplomacy >= 14
+				has_trait = rol_relic_seeker
+			}
+		}
+		if = {
+			limit = {
+				rol_rival_pact_choice_trigger = yes
+				gold >= 75
+				OR = {
+					diplomacy >= 14
+					has_trait = rol_relic_seeker
+				}
+			}
+			remove_short_term_gold = 75
+			add_prestige = 75
+			set_variable = { name = rol_expedition_trusted_companion value = scope:rol_expedition_rival }
+			scope:rol_expedition_rival = { add_opinion = { target = root modifier = rol_expedition_fulfilled_pact_opinion } }
+			add_opinion = { target = scope:rol_expedition_rival modifier = rol_expedition_fulfilled_pact_opinion }
+			if = {
+				limit = { NOT = { has_trait = rol_relic_seeker } }
+				add_trait = rol_relic_seeker
+			}
+			add_trait_xp = { trait = rol_relic_seeker track = rol_negotiation value = 10 }
 			rol_rival_close_selected_pact_effect = yes
 		}
 	}

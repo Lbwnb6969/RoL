@@ -1,92 +1,140 @@
 ﻿rol_clear_fragment_route_effect = {
- remove_character_flag = rol_fragment_route_mars
- remove_character_flag = rol_fragment_route_nibelung
- remove_character_flag = rol_fragment_route_astrolabe
- remove_character_flag = rol_fragment_route_ash
- remove_variable = rol_fragment_target
+	remove_character_flag = rol_fragment_route_mars
+	remove_character_flag = rol_fragment_route_nibelung
+	remove_character_flag = rol_fragment_route_astrolabe
+	remove_character_flag = rol_fragment_route_ash
+	remove_variable = rol_fragment_target
+}
+
+rol_clear_fragment_resonance_modifiers_effect = {
+	remove_character_modifier = rol_fragment_resonance_might_modifier
+	remove_character_modifier = rol_fragment_resonance_wisdom_modifier
+	remove_character_modifier = rol_fragment_resonance_court_modifier
+}
+
+rol_fragment_capture_resonance_effect = {
+	if = {
+		limit = { NOT = { has_variable = rol_fragment_resonance_generation } }
+		set_variable = { name = rol_fragment_resonance_generation value = 1 }
+	}
+	save_scope_value_as = { name = rol_fragment_resonance_generation value = var:rol_fragment_resonance_generation }
+}
+
+# Explicit review entry retains this upgrade's captured number.
+rol_fragment_review_resonance_effect = {
+	if = {
+		limit = { has_character_flag = rol_fragment_upgrade_pending }
+		rol_fragment_capture_resonance_effect = yes
+		trigger_event = rol_relic_fragment.0002
+	}
+}
+
+rol_fragment_choose_resonance_effect = {
+	if = {
+		limit = { rol_fragment_resonance_choice_trigger = yes }
+		remove_character_flag = rol_fragment_upgrade_pending
+		add_prestige = $PRESTIGE$
+		add_learning_lifestyle_xp = $LEARNING_XP$
+		add_piety = $PIETY$
+		add_stress = $STRESS$
+		rol_clear_fragment_resonance_modifiers_effect = yes
+		add_character_modifier = { modifier = $MODIFIER$ years = 5 }
+		if = {
+			limit = { NOT = { has_trait = rol_relic_seeker } }
+			add_trait = rol_relic_seeker
+		}
+		add_trait_xp = { trait = rol_relic_seeker track = $TRACK$ value = 5 }
+	}
 }
 
 # The committing decision pays its native cost; snapshot the actual item here.
 rol_relic_fragment_begin_effect = {
- if = {
-  limit = {
-   NOT = { rol_fragment_any_route_trigger = yes }
-   any_character_artifact = { artifact_type = $TYPE$ NOT = { has_artifact_modifier = $LAST_MODIFIER$ } }
-  }
-  random_character_artifact = {
-   limit = { artifact_type = $TYPE$ NOT = { has_artifact_modifier = $LAST_MODIFIER$ } }
-   save_scope_as = rol_fragment_artifact
-  }
-  set_variable = { name = rol_fragment_target value = scope:rol_fragment_artifact }
-  add_character_flag = rol_fragment_route_$ROUTE$
-  trigger_event = { id = rol_relic_fragment.0001 days = 1 }
- }
+	if = {
+		limit = {
+			NOT = { rol_fragment_any_route_trigger = yes }
+			NOT = { has_character_flag = rol_fragment_upgrade_pending }
+			any_character_artifact = { artifact_type = $TYPE$ NOT = { has_artifact_modifier = $LAST_MODIFIER$ } }
+		}
+		random_character_artifact = {
+			limit = { artifact_type = $TYPE$ NOT = { has_artifact_modifier = $LAST_MODIFIER$ } }
+			save_scope_as = rol_fragment_artifact
+		}
+		set_variable = { name = rol_fragment_target value = scope:rol_fragment_artifact }
+		add_character_flag = rol_fragment_route_$ROUTE$
+		trigger_event = { id = rol_relic_fragment.0001 days = 1 }
+	}
 }
 
 rol_relic_fragment_success_effect = {
- if = {
-  limit = { rol_fragment_target_valid_trigger = yes }
-  var:rol_fragment_target = { save_scope_as = rol_fragment_artifact }
-  if = {
-   limit = { has_character_flag = rol_fragment_route_mars }
-   if = {
-    limit = { scope:rol_fragment_artifact = { NOT = { has_artifact_modifier = rol_blade_fragment_1_modifier } } }
-    scope:rol_fragment_artifact = { add_artifact_modifier = rol_blade_fragment_1_modifier }
-    add_prestige = 100
-   }
-   else = {
-    scope:rol_fragment_artifact = { add_artifact_modifier = rol_blade_fragment_2_modifier }
-    add_prestige = 200
-   }
-  }
-  else_if = {
-   limit = { has_character_flag = rol_fragment_route_nibelung }
-   if = {
-    limit = { scope:rol_fragment_artifact = { NOT = { has_artifact_modifier = rol_nibelung_fragment_1_modifier } } }
-    scope:rol_fragment_artifact = { add_artifact_modifier = rol_nibelung_fragment_1_modifier }
-    add_prestige = 100
-   }
-   else = {
-    scope:rol_fragment_artifact = { add_artifact_modifier = rol_nibelung_fragment_2_modifier }
-    add_prestige = 200
-   }
-  }
-  else_if = {
-   limit = { has_character_flag = rol_fragment_route_astrolabe }
-   if = {
-    limit = { scope:rol_fragment_artifact = { NOT = { has_artifact_modifier = rol_astrolabe_fragment_1_modifier } } }
-    scope:rol_fragment_artifact = { add_artifact_modifier = rol_astrolabe_fragment_1_modifier }
-    add_prestige = 100
-   }
-   else = {
-    scope:rol_fragment_artifact = { add_artifact_modifier = rol_astrolabe_fragment_2_modifier }
-    add_prestige = 200
-   }
-  }
-  else_if = {
-   limit = { has_character_flag = rol_fragment_route_ash }
-   if = {
-    limit = { scope:rol_fragment_artifact = { NOT = { has_artifact_modifier = rol_ash_fragment_1_modifier } } }
-    scope:rol_fragment_artifact = { add_artifact_modifier = rol_ash_fragment_1_modifier }
-    add_prestige = 100
-   }
-   else = {
-    scope:rol_fragment_artifact = { add_artifact_modifier = rol_ash_fragment_2_modifier }
-    add_prestige = 200
-   }
-  }
+	if = {
+		limit = { rol_fragment_target_valid_trigger = yes }
+		var:rol_fragment_target = { save_scope_as = rol_fragment_artifact }
+		if = {
+			limit = { has_character_flag = rol_fragment_route_mars }
+			if = {
+				limit = { scope:rol_fragment_artifact = { NOT = { has_artifact_modifier = rol_blade_fragment_1_modifier } } }
+				scope:rol_fragment_artifact = { add_artifact_modifier = rol_blade_fragment_1_modifier }
+				add_prestige = 100
+			}
+			else = {
+				scope:rol_fragment_artifact = { add_artifact_modifier = rol_blade_fragment_2_modifier }
+				add_prestige = 200
+			}
+		}
+		else_if = {
+			limit = { has_character_flag = rol_fragment_route_nibelung }
+			if = {
+				limit = { scope:rol_fragment_artifact = { NOT = { has_artifact_modifier = rol_nibelung_fragment_1_modifier } } }
+				scope:rol_fragment_artifact = { add_artifact_modifier = rol_nibelung_fragment_1_modifier }
+				add_prestige = 100
+			}
+			else = {
+				scope:rol_fragment_artifact = { add_artifact_modifier = rol_nibelung_fragment_2_modifier }
+				add_prestige = 200
+			}
+		}
+		else_if = {
+			limit = { has_character_flag = rol_fragment_route_astrolabe }
+			if = {
+				limit = { scope:rol_fragment_artifact = { NOT = { has_artifact_modifier = rol_astrolabe_fragment_1_modifier } } }
+				scope:rol_fragment_artifact = { add_artifact_modifier = rol_astrolabe_fragment_1_modifier }
+				add_prestige = 100
+			}
+			else = {
+				scope:rol_fragment_artifact = { add_artifact_modifier = rol_astrolabe_fragment_2_modifier }
+				add_prestige = 200
+			}
+		}
+		else_if = {
+			limit = { has_character_flag = rol_fragment_route_ash }
+			if = {
+				limit = { scope:rol_fragment_artifact = { NOT = { has_artifact_modifier = rol_ash_fragment_1_modifier } } }
+				scope:rol_fragment_artifact = { add_artifact_modifier = rol_ash_fragment_1_modifier }
+				add_prestige = 100
+			}
+			else = {
+				scope:rol_fragment_artifact = { add_artifact_modifier = rol_ash_fragment_2_modifier }
+				add_prestige = 200
+			}
+		}
 
-  add_character_flag = { flag = rol_fragment_upgrade_pending years = 1 }
-  trigger_event = { id = rol_relic_fragment.0002 days = 1 }
- }
- rol_clear_fragment_route_effect = yes
+		if = {
+			limit = { NOT = { has_variable = rol_fragment_resonance_generation } }
+			set_variable = { name = rol_fragment_resonance_generation value = 0 }
+		}
+		change_variable = { name = rol_fragment_resonance_generation add = 1 }
+		rol_fragment_capture_resonance_effect = yes
+		add_character_flag = { flag = rol_fragment_upgrade_pending years = 1 }
+		trigger_event = { id = rol_relic_fragment.0002 days = 1 }
+	}
+	rol_clear_fragment_route_effect = yes
 }
 
 rol_relic_fragment_failure_effect = {
- if = {
-  limit = { rol_fragment_target_valid_trigger = yes }
-  add_stress = 20
-  add_character_modifier = { modifier = rol_fragment_expedition_failure_modifier years = 2 }
- }
- rol_clear_fragment_route_effect = yes
+	if = {
+		limit = { rol_fragment_target_valid_trigger = yes }
+		add_stress = 20
+		add_character_modifier = { modifier = rol_fragment_expedition_failure_modifier years = 2 }
+	}
+	rol_clear_fragment_route_effect = yes
 }

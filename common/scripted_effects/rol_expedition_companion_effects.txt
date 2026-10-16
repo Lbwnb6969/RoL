@@ -87,6 +87,14 @@ rol_expedition_companion_accept_effect = {
 			set_variable = { name = rol_expedition_companion_role value = $ROLE$ }
 			set_variable = { name = rol_expedition_companion_open value = 1 }
 		}
+		if = {
+			limit = {
+				exists = var:rol_expedition_trusted_companion
+				var:rol_expedition_trusted_companion = $PARTNER$
+			}
+			add_stress = -5
+			scope:activity = { activity_special_type_progression_tiny = yes }
+		}
 	}
 	rol_expedition_companion_continue_effect = yes
 }

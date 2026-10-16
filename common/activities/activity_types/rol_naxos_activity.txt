@@ -38,6 +38,8 @@ activity_rol_seek_naxos_guard = {
 	}
 
 	on_start = {
+		activity_setup_special_type_progression_effect = yes
+		activity_special_type_progression_variable = { NUM = 30 }
 		scope:host = {
 			rol_relic_quest_begin_effect = yes
 			rol_relic_clear_recent_result_effect = yes
@@ -45,6 +47,7 @@ activity_rol_seek_naxos_guard = {
 			rol_set_context_naxos_relic_effect = yes
 			rol_expedition_growth_begin_effect = { ROUTE = naxos }
 			rol_expedition_companion_begin_effect = yes
+			rol_apply_expedition_preparation_start_bonus_effect = yes
 			if = {
 				limit = { has_variable = rol_naxos_stage_count }
 				remove_variable = rol_naxos_stage_count
@@ -52,8 +55,6 @@ activity_rol_seek_naxos_guard = {
 			remove_character_flag = rol_naxos_guest_event_fired
 		}
 
-		activity_setup_special_type_progression_effect = yes
-		activity_special_type_progression_variable = { NUM = 30 }
 
 		add_activity_log_entry = {
 			key = rol_relic_activity_start_log

@@ -33,33 +33,82 @@ rol_naxos_legacy_choice_trigger = {
 }
 
 rol_legacy_duty_choice_trigger = {
- is_alive = yes
- has_character_flag = rol_legacy_duty_choice_open
- exists = scope:rol_legacy_duty_generation
- scope:rol_legacy_duty_generation = var:rol_legacy_duty_generation
- rol_legacy_selected_artifact_owned_trigger = yes
+	is_alive = yes
+	has_character_flag = rol_legacy_duty_choice_open
+	exists = scope:rol_legacy_duty_generation
+	scope:rol_legacy_duty_generation = var:rol_legacy_duty_generation
+	rol_legacy_selected_artifact_owned_trigger = yes
 }
 
 rol_legacy_study_choice_trigger = {
- is_alive = yes
- has_character_flag = rol_legacy_study_choice_open
- exists = scope:rol_legacy_study_generation
- scope:rol_legacy_study_generation = var:rol_legacy_study_generation
- rol_legacy_selected_artifact_owned_trigger = yes
+	is_alive = yes
+	has_character_flag = rol_legacy_study_choice_open
+	exists = scope:rol_legacy_study_generation
+	scope:rol_legacy_study_generation = var:rol_legacy_study_generation
+	rol_legacy_selected_artifact_owned_trigger = yes
 }
 
 rol_legacy_review_choice_trigger = {
- is_alive = yes
- has_character_flag = rol_legacy_review_choice_open
- exists = scope:rol_legacy_review_generation
- scope:rol_legacy_review_generation = var:rol_legacy_review_generation
- has_character_flag = rol_naxos_unit_unlocked
+	is_alive = yes
+	has_character_flag = rol_legacy_review_choice_open
+	exists = scope:rol_legacy_review_generation
+	scope:rol_legacy_review_generation = var:rol_legacy_review_generation
+	has_character_flag = rol_naxos_unit_unlocked
 }
 
 rol_legacy_veteran_choice_trigger = {
- is_alive = yes
- has_character_flag = rol_legacy_veteran_choice_open
- exists = scope:rol_legacy_veteran_generation
- scope:rol_legacy_veteran_generation = var:rol_legacy_veteran_generation
- has_character_flag = rol_naxos_unit_unlocked
+	is_alive = yes
+	has_character_flag = rol_legacy_veteran_choice_open
+	exists = scope:rol_legacy_veteran_generation
+	scope:rol_legacy_veteran_generation = var:rol_legacy_veteran_generation
+	has_character_flag = rol_naxos_unit_unlocked
+}
+
+rol_resonance_imperial_pair_trigger = {
+	any_character_artifact = { artifact_type = rol_blade_of_mars }
+	OR = {
+		any_character_artifact = { artifact_type = rol_ash_forged_mask }
+		has_character_flag = rol_naxos_unit_unlocked
+	}
+}
+
+rol_resonance_cosmic_pair_trigger = {
+	any_character_artifact = { artifact_type = rol_nibelung_star_sphere }
+	any_character_artifact = { artifact_type = rol_astrolabe_of_ocean }
+}
+
+rol_relic_count_at_least_two_trigger = {
+	OR = {
+		rol_resonance_imperial_pair_trigger = yes
+		rol_resonance_cosmic_pair_trigger = yes
+		AND = {
+			any_character_artifact = { artifact_type = rol_blade_of_mars }
+			OR = {
+				any_character_artifact = { artifact_type = rol_nibelung_star_sphere }
+				any_character_artifact = { artifact_type = rol_astrolabe_of_ocean }
+			}
+		}
+		AND = {
+			OR = {
+				any_character_artifact = { artifact_type = rol_nibelung_star_sphere }
+				any_character_artifact = { artifact_type = rol_astrolabe_of_ocean }
+			}
+			OR = {
+				any_character_artifact = { artifact_type = rol_ash_forged_mask }
+				has_character_flag = rol_naxos_unit_unlocked
+			}
+		}
+		AND = {
+			any_character_artifact = { artifact_type = rol_ash_forged_mask }
+			has_character_flag = rol_naxos_unit_unlocked
+		}
+	}
+}
+
+rol_legacy_resonance_choice_trigger = {
+	is_alive = yes
+	has_character_flag = rol_legacy_resonance_choice_open
+	exists = scope:rol_legacy_resonance_generation
+	scope:rol_legacy_resonance_generation = var:rol_legacy_resonance_generation
+	rol_relic_count_at_least_two_trigger = yes
 }

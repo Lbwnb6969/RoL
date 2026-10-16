@@ -32,9 +32,9 @@
  rol_quest_carthage.1000.b.base_tt:0 "[learning|E]检定。"
  rol_quest_carthage.1000.c.tt:0 "你终止本次远征：进入2年冷却。"
  rol_quest_carthage.1000.a.tt.success:0 "#P 成功：#!沙丘之间真的出现了一条隐蔽路线，你的队伍赶在地貌再次变动前抵达了掩埋圣所。\n#weak 成功率：[SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / 失败率：[SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
- rol_quest_carthage.1000.a.tt.failure:0 "#N 失败：#!错误引导与黑沙夜路彻底撕裂了队形。\n#N 远征立刻终止并进入2年冷却。#!\n#weak 成功率：[SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / 失败率：[SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
+ rol_quest_carthage.1000.a.tt.failure:0 "#N 失败：#!错误引导与黑沙夜路彻底撕裂了队形。\n#N 有探寻者特质、同地笔记或在场老搭档时，每场可保全部分成果或撤退一次；继续争取完整圣物还需任一轨道60XP、已消耗的同地笔记或在场老搭档。否则失败并进入2年冷却。#!\n#weak 成功率：[SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / 失败率：[SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
  rol_quest_carthage.1000.b.tt.success:0 "#P 成功：#!古老星图终于锁定了神庙真正方位，远征队及时抵达了入口。\n#weak 成功率：[SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / 失败率：[SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
- rol_quest_carthage.1000.b.tt.failure:0 "#N 失败：#!天象被误判，荒漠夺走了时间，也夺走了秩序。\n#N 远征立刻终止并进入2年冷却。#!\n#weak 成功率：[SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / 失败率：[SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
+ rol_quest_carthage.1000.b.tt.failure:0 "#N 失败：#!天象被误判，荒漠夺走了时间，也夺走了秩序。\n#N 有探寻者特质、同地笔记或在场老搭档时，每场可保全部分成果或撤退一次；继续争取完整圣物还需任一轨道60XP、已消耗的同地笔记或在场老搭档。否则失败并进入2年冷却。#!\n#weak 成功率：[SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / 失败率：[SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
  rol_quest_carthage.1000.a.flavor:0 "把命运交给真正懂沙丘、风向与星光的人。"
  rol_quest_carthage.1000.b.flavor:0 "让古老历法与禁忌天象去完成单靠勇气做不到的事。"
  rol_quest_carthage.1000.c.flavor:0 "趁荒漠还允许你抽身时主动折返。"
@@ -46,8 +46,8 @@
 
  rol_quest_carthage.1011.t:0 "迷失于黑沙"
  rol_quest_carthage.1011.desc:0 "荒漠并不会一下子吞掉所有人。它是循序渐进地下手：一次错位的判断、一支失落的火把、一条被风吞没的命令、一列再也没能完全归队的人影。等你真正意识到整场行军已被磨损到何种程度时，继续前进就等于把远征队交给一片足以抹去记忆本身的黑暗。"
- rol_quest_carthage.1011.a:0 "结束这次尝试。"
- rol_quest_carthage.1011.a.flavor:0 "接受荒漠的拒绝，先把人带回去。"
+ rol_quest_carthage.1011.a:0 "先评估队伍和现有证据。"
+ rol_quest_carthage.1011.a.flavor:0 "盘点损失，再决定能否保全成果或继续。"
 
  rol_quest_carthage.1012.t:0 "把荒漠留给以后"
  rol_quest_carthage.1012.desc:0 "你在黑夜彻底合拢之前下令撤退。没有人提出异议。等到天明，沙丘早已抚平了你们的行迹，受诅盐尘也带走了活人曾如此逼近真相的最后证据。"
@@ -63,9 +63,9 @@
  rol_quest_carthage.1002.b.base_tt:0 "[learning|E] / [piety_level|E]检定。"
  rol_quest_carthage.1002.c.tt:0 "你终止本次远征：进入2年冷却。"
  rol_quest_carthage.1002.a.tt.success:0 "#P 成功：#!你的意志压过了古战回响，神庙更深层的大门终于对你开启。\n#weak 成功率：[SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / 失败率：[SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
- rol_quest_carthage.1002.a.tt.failure:0 "#N 失败：#!死去的战争记忆击穿了整支队伍的纪律。\n#N 远征立刻终止并进入2年冷却。#!\n#weak 成功率：[SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / 失败率：[SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
+ rol_quest_carthage.1002.a.tt.failure:0 "#N 失败：#!死去的战争记忆击穿了整支队伍的纪律。\n#N 有探寻者特质、同地笔记或在场老搭档时，每场可保全部分成果或撤退一次；继续争取完整圣物还需任一轨道60XP、已消耗的同地笔记或在场老搭档。否则失败并进入2年冷却。#!\n#weak 成功率：[SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / 失败率：[SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
  rol_quest_carthage.1002.b.tt.success:0 "#P 成功：#!你让这片古老悲愿暂时平静下来，圣所允许你再向前一步。\n#weak 成功率：[SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / 失败率：[SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
- rol_quest_carthage.1002.b.tt.failure:0 "#N 失败：#!死灰记住的只有毁灭，神庙因此以恐慌与崩溃回应你。\n#N 远征立刻终止并进入2年冷却。#!\n#weak 成功率：[SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / 失败率：[SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
+ rol_quest_carthage.1002.b.tt.failure:0 "#N 失败：#!死灰记住的只有毁灭，神庙因此以恐慌与崩溃回应你。\n#N 有探寻者特质、同地笔记或在场老搭档时，每场可保全部分成果或撤退一次；继续争取完整圣物还需任一轨道60XP、已消耗的同地笔记或在场老搭档。否则失败并进入2年冷却。#!\n#weak 成功率：[SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / 失败率：[SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
  rol_quest_carthage.1002.a.flavor:0 "在古战回响感染活人之前先压碎它。"
  rol_quest_carthage.1002.b.flavor:0 "以见证者与解释者的姿态回应亡者，而不是沦为猎物。"
  rol_quest_carthage.1002.c.flavor:0 "在亡城夺走活人心智之前离开。"
@@ -77,8 +77,8 @@
 
  rol_quest_carthage.1021.t:0 "亡军压垮了活人"
  rol_quest_carthage.1021.desc:0 "灰烬已不再只是记忆，而成了一种推动人群崩裂的动势。它把恐慌变成命令，把命令变成惊惧，再把惊惧变成整支队伍的塌陷。直到这一刻你才意识到，这片废墟几乎已经教会你的部下如何赴死，而不是如何继续撑下去。"
- rol_quest_carthage.1021.a:0 "全员撤出。"
- rol_quest_carthage.1021.a.flavor:0 "在遗迹替你完成毁灭前立刻脱离。"
+ rol_quest_carthage.1021.a:0 "先评估队伍和现有证据。"
+ rol_quest_carthage.1021.a.flavor:0 "盘点损失，再决定能否保全成果或继续。"
 
  rol_quest_carthage.1022.t:0 "离开内殿"
  rol_quest_carthage.1022.desc:0 "你在纪律尚未完全崩散前主动切断深入。没人会把这次撤离错认成安全。圣所只是允许你离开，却并未真正屈服；它不过是暂时决定不在此刻此地把你们全部埋进灰里。"
@@ -115,7 +115,7 @@
 
  activity_rol_seek_ash_forged_mask:0 "浴火金面远征"
  activity_rol_seek_ash_forged_mask_desc:0 "你将穿越突尼斯外的黑沙地带，顺着被风暴剥开的凶兆与遗迹深入一座埋藏的迦太基圣所，逼迫那道在城市焚灭之夜被带入沙海的最后誓约作出回答。"
- activity_rol_seek_ash_forged_mask_host_desc:0 "$BULLET_WITH_TAB$可通过$rol_option_expedition_preparation$活动选项调整整备档位\n$BULLET_WITH_TAB$失败会立刻终止远征并进入2年冷却"
+ activity_rol_seek_ash_forged_mask_host_desc:0 "$BULLET_WITH_TAB$可通过$rol_option_expedition_preparation$活动选项调整整备档位\n$BULLET_WITH_TAB$符合条件时每场可补救一次；未获补救的失败终止远征并进入2年冷却"
  activity_rol_seek_ash_forged_mask_guest_desc:0 ""
  activity_rol_seek_ash_forged_mask_conclusion_desc:0 "外层沙痕很快会再次被风掩埋，但那座地下神庙已经对你作出了回答。"
  activity_rol_seek_ash_forged_mask_conclusion_desc_success_4:0 "你彻底征服了圣所最后的拒绝，并夺得了它守护的答案。"
@@ -124,7 +124,7 @@
  activity_rol_seek_ash_forged_mask_conclusion_desc_success_1:0 "你勉强活着穿过了黑沙。"
  activity_rol_seek_ash_forged_mask_conclusion_desc_failure:0 "你被迫撤回。远征队需休整两年。"
  activity_rol_seek_ash_forged_mask_conclusion_desc_fallback:0 "这场远征已经结束。"
- activity_rol_seek_ash_forged_mask_selection_tooltip:0 "从突尼斯出发，穿过被风暴揭开的黑沙、异象与埋藏誓所，去逼迫那座拒绝遗忘的古老神庙作出最终回答。\n\n失败会立刻终止远征并进入2年冷却。"
+ activity_rol_seek_ash_forged_mask_selection_tooltip:0 "从突尼斯出发，穿过被风暴揭开的黑沙、异象与埋藏誓所，去逼迫那座拒绝遗忘的古老神庙作出最终回答。\n\n符合条件时每场可补救一次；未获补救的失败终止远征并进入2年冷却。"
  activity_rol_seek_ash_forged_mask_predicted_cost:0 "本次远征的总花费，将高度取决于你选择的人手与装备档位。"
  activity_rol_seek_ash_forged_mask_province_desc:0 "远征目标位于[ROOT.Province.GetName]"
 

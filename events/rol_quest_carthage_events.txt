@@ -64,7 +64,7 @@ rol_quest_carthage.1000 = {
 				set_variable = { name = rol_expedition_display_base_chance value = 90 }
 				random_list = {
 					0 = { modifier = { add = rol_expedition_success_chance_90_value } desc = rol_quest_carthage.1000.a.tt.success add_prestige = 90 hidden_effect = { scope:activity ?= { activity_special_type_progression_major = yes } trigger_event = { id = rol_quest_carthage.1010 days = 1 } } }
-					0 = { modifier = { add = rol_expedition_failure_chance_90_value } desc = rol_quest_carthage.1000.a.tt.failure add_stress = 30 hidden_effect = { scope:activity ?= { activity_special_type_progression_negative_major = yes } trigger_event = { id = rol_quest_carthage.1011 days = 1 } } }
+					0 = { modifier = { add = rol_expedition_failure_chance_90_value } desc = rol_quest_carthage.1000.a.tt.failure add_stress = 30 hidden_effect = { scope:activity ?= { activity_special_type_progression_negative_major = yes } rol_expedition_record_trial_failure_effect = { LOSS = 10 } trigger_event = { id = rol_quest_carthage.1011 days = 1 } } }
 				}
 			}
 			else_if = {
@@ -72,14 +72,14 @@ rol_quest_carthage.1000 = {
 				set_variable = { name = rol_expedition_display_base_chance value = 75 }
 				random_list = {
 					0 = { modifier = { add = rol_expedition_success_chance_75_value } desc = rol_quest_carthage.1000.a.tt.success add_prestige = 70 hidden_effect = { scope:activity ?= { activity_special_type_progression_major = yes } trigger_event = { id = rol_quest_carthage.1010 days = 1 } } }
-					0 = { modifier = { add = rol_expedition_failure_chance_75_value } desc = rol_quest_carthage.1000.a.tt.failure add_stress = 40 hidden_effect = { scope:activity ?= { activity_special_type_progression_negative_major = yes } trigger_event = { id = rol_quest_carthage.1011 days = 1 } } }
+					0 = { modifier = { add = rol_expedition_failure_chance_75_value } desc = rol_quest_carthage.1000.a.tt.failure add_stress = 40 hidden_effect = { scope:activity ?= { activity_special_type_progression_negative_major = yes } rol_expedition_record_trial_failure_effect = { LOSS = 10 } trigger_event = { id = rol_quest_carthage.1011 days = 1 } } }
 				}
 			}
 			else = {
 				set_variable = { name = rol_expedition_display_base_chance value = 45 }
 				random_list = {
 					0 = { modifier = { add = rol_expedition_success_chance_45_value } desc = rol_quest_carthage.1000.a.tt.success add_prestige = 40 hidden_effect = { scope:activity ?= { activity_special_type_progression_medium = yes } trigger_event = { id = rol_quest_carthage.1010 days = 1 } } }
-					0 = { modifier = { add = rol_expedition_failure_chance_45_value } desc = rol_quest_carthage.1000.a.tt.failure add_stress = 50 hidden_effect = { scope:activity ?= { activity_special_type_progression_negative_major = yes } trigger_event = { id = rol_quest_carthage.1011 days = 1 } } }
+					0 = { modifier = { add = rol_expedition_failure_chance_45_value } desc = rol_quest_carthage.1000.a.tt.failure add_stress = 50 hidden_effect = { scope:activity ?= { activity_special_type_progression_negative_major = yes } rol_expedition_record_trial_failure_effect = { LOSS = 10 } trigger_event = { id = rol_quest_carthage.1011 days = 1 } } }
 				}
 			}
 		}
@@ -97,7 +97,7 @@ rol_quest_carthage.1000 = {
 				set_variable = { name = rol_expedition_display_base_chance value = 90 }
 				random_list = {
 					0 = { modifier = { add = rol_expedition_success_chance_90_value } desc = rol_quest_carthage.1000.b.tt.success add_piety = 90 hidden_effect = { scope:activity ?= { activity_special_type_progression_major = yes } trigger_event = { id = rol_quest_carthage.1010 days = 1 } } }
-					0 = { modifier = { add = rol_expedition_failure_chance_90_value } desc = rol_quest_carthage.1000.b.tt.failure add_stress = 25 hidden_effect = { scope:activity ?= { activity_special_type_progression_negative_major = yes } trigger_event = { id = rol_quest_carthage.1011 days = 1 } } }
+					0 = { modifier = { add = rol_expedition_failure_chance_90_value } desc = rol_quest_carthage.1000.b.tt.failure add_stress = 25 hidden_effect = { scope:activity ?= { activity_special_type_progression_negative_major = yes } rol_expedition_record_trial_failure_effect = { LOSS = 10 } trigger_event = { id = rol_quest_carthage.1011 days = 1 } } }
 				}
 			}
 			else_if = {
@@ -105,14 +105,14 @@ rol_quest_carthage.1000 = {
 				set_variable = { name = rol_expedition_display_base_chance value = 80 }
 				random_list = {
 					0 = { modifier = { add = rol_expedition_success_chance_80_value } desc = rol_quest_carthage.1000.b.tt.success add_piety = 70 hidden_effect = { scope:activity ?= { activity_special_type_progression_major = yes } trigger_event = { id = rol_quest_carthage.1010 days = 1 } } }
-					0 = { modifier = { add = rol_expedition_failure_chance_80_value } desc = rol_quest_carthage.1000.b.tt.failure add_stress = 35 hidden_effect = { scope:activity ?= { activity_special_type_progression_negative_major = yes } trigger_event = { id = rol_quest_carthage.1011 days = 1 } } }
+					0 = { modifier = { add = rol_expedition_failure_chance_80_value } desc = rol_quest_carthage.1000.b.tt.failure add_stress = 35 hidden_effect = { scope:activity ?= { activity_special_type_progression_negative_major = yes } rol_expedition_record_trial_failure_effect = { LOSS = 10 } trigger_event = { id = rol_quest_carthage.1011 days = 1 } } }
 				}
 			}
 			else = {
 				set_variable = { name = rol_expedition_display_base_chance value = 50 }
 				random_list = {
 					0 = { modifier = { add = rol_expedition_success_chance_50_value } desc = rol_quest_carthage.1000.b.tt.success add_piety = 45 hidden_effect = { scope:activity ?= { activity_special_type_progression_medium = yes } trigger_event = { id = rol_quest_carthage.1010 days = 1 } } }
-					0 = { modifier = { add = rol_expedition_failure_chance_50_value } desc = rol_quest_carthage.1000.b.tt.failure add_stress = 45 hidden_effect = { scope:activity ?= { activity_special_type_progression_negative_major = yes } trigger_event = { id = rol_quest_carthage.1011 days = 1 } } }
+					0 = { modifier = { add = rol_expedition_failure_chance_50_value } desc = rol_quest_carthage.1000.b.tt.failure add_stress = 45 hidden_effect = { scope:activity ?= { activity_special_type_progression_negative_major = yes } rol_expedition_record_trial_failure_effect = { LOSS = 10 } trigger_event = { id = rol_quest_carthage.1011 days = 1 } } }
 				}
 			}
 		}
@@ -181,7 +181,7 @@ rol_quest_carthage.1011 = {
 	trigger = { rol_carthage_quest_active_trigger = yes  is_ai = no }
 	option = { name = rol_quest_carthage.1011.a flavor = rol_quest_carthage.1011.a.flavor if = {
 			limit = { rol_carthage_quest_active_trigger = yes }
-			hidden_effect = { rol_carthage_quest_fail_now_effect = yes }
+			hidden_effect = { rol_expedition_try_remedy_or_fail_effect = { CHAIN = carthage } }
 		} }
 }
 
@@ -225,7 +225,7 @@ rol_quest_carthage.1002 = {
 				set_variable = { name = rol_expedition_display_base_chance value = 90 }
 				random_list = {
 					0 = { modifier = { add = rol_expedition_success_chance_90_value } desc = rol_quest_carthage.1002.a.tt.success add_prestige = 110 hidden_effect = { scope:activity ?= { activity_special_type_progression_major = yes } trigger_event = { id = rol_quest_carthage.1020 days = 1 } } }
-					0 = { modifier = { add = rol_expedition_failure_chance_90_value } desc = rol_quest_carthage.1002.a.tt.failure add_stress = 20 hidden_effect = { scope:activity ?= { activity_special_type_progression_negative = yes } trigger_event = { id = rol_quest_carthage.1021 days = 1 } } }
+					0 = { modifier = { add = rol_expedition_failure_chance_90_value } desc = rol_quest_carthage.1002.a.tt.failure add_stress = 20 hidden_effect = { scope:activity ?= { activity_special_type_progression_negative = yes } rol_expedition_record_trial_failure_effect = { LOSS = 5 } trigger_event = { id = rol_quest_carthage.1021 days = 1 } } }
 				}
 			}
 			else_if = {
@@ -233,14 +233,14 @@ rol_quest_carthage.1002 = {
 				set_variable = { name = rol_expedition_display_base_chance value = 65 }
 				random_list = {
 					0 = { modifier = { add = rol_expedition_success_chance_65_value } desc = rol_quest_carthage.1002.a.tt.success add_prestige = 85 hidden_effect = { scope:activity ?= { activity_special_type_progression_medium = yes } trigger_event = { id = rol_quest_carthage.1020 days = 1 } } }
-					0 = { modifier = { add = rol_expedition_failure_chance_65_value } desc = rol_quest_carthage.1002.a.tt.failure add_stress = 35 hidden_effect = { scope:activity ?= { activity_special_type_progression_negative_major = yes } trigger_event = { id = rol_quest_carthage.1021 days = 1 } } }
+					0 = { modifier = { add = rol_expedition_failure_chance_65_value } desc = rol_quest_carthage.1002.a.tt.failure add_stress = 35 hidden_effect = { scope:activity ?= { activity_special_type_progression_negative_major = yes } rol_expedition_record_trial_failure_effect = { LOSS = 10 } trigger_event = { id = rol_quest_carthage.1021 days = 1 } } }
 				}
 			}
 			else = {
 				set_variable = { name = rol_expedition_display_base_chance value = 40 }
 				random_list = {
 					0 = { modifier = { add = rol_expedition_success_chance_40_value } desc = rol_quest_carthage.1002.a.tt.success add_prestige = 50 hidden_effect = { scope:activity ?= { activity_special_type_progression_tiny = yes } trigger_event = { id = rol_quest_carthage.1020 days = 1 } } }
-					0 = { modifier = { add = rol_expedition_failure_chance_40_value } desc = rol_quest_carthage.1002.a.tt.failure add_stress = 45 hidden_effect = { scope:activity ?= { activity_special_type_progression_negative_major = yes } trigger_event = { id = rol_quest_carthage.1021 days = 1 } } }
+					0 = { modifier = { add = rol_expedition_failure_chance_40_value } desc = rol_quest_carthage.1002.a.tt.failure add_stress = 45 hidden_effect = { scope:activity ?= { activity_special_type_progression_negative_major = yes } rol_expedition_record_trial_failure_effect = { LOSS = 10 } trigger_event = { id = rol_quest_carthage.1021 days = 1 } } }
 				}
 			}
 		}
@@ -258,7 +258,7 @@ rol_quest_carthage.1002 = {
 				set_variable = { name = rol_expedition_display_base_chance value = 90 }
 				random_list = {
 					0 = { modifier = { add = rol_expedition_success_chance_90_value } desc = rol_quest_carthage.1002.b.tt.success add_piety = 120 hidden_effect = { scope:activity ?= { activity_special_type_progression_major = yes } trigger_event = { id = rol_quest_carthage.1020 days = 1 } } }
-					0 = { modifier = { add = rol_expedition_failure_chance_90_value } desc = rol_quest_carthage.1002.b.tt.failure add_stress = 15 hidden_effect = { scope:activity ?= { activity_special_type_progression_negative = yes } trigger_event = { id = rol_quest_carthage.1021 days = 1 } } }
+					0 = { modifier = { add = rol_expedition_failure_chance_90_value } desc = rol_quest_carthage.1002.b.tt.failure add_stress = 15 hidden_effect = { scope:activity ?= { activity_special_type_progression_negative = yes } rol_expedition_record_trial_failure_effect = { LOSS = 5 } trigger_event = { id = rol_quest_carthage.1021 days = 1 } } }
 				}
 			}
 			else_if = {
@@ -266,14 +266,14 @@ rol_quest_carthage.1002 = {
 				set_variable = { name = rol_expedition_display_base_chance value = 70 }
 				random_list = {
 					0 = { modifier = { add = rol_expedition_success_chance_70_value } desc = rol_quest_carthage.1002.b.tt.success add_piety = 90 hidden_effect = { scope:activity ?= { activity_special_type_progression_major = yes } trigger_event = { id = rol_quest_carthage.1020 days = 1 } } }
-					0 = { modifier = { add = rol_expedition_failure_chance_70_value } desc = rol_quest_carthage.1002.b.tt.failure add_stress = 25 hidden_effect = { scope:activity ?= { activity_special_type_progression_negative_major = yes } trigger_event = { id = rol_quest_carthage.1021 days = 1 } } }
+					0 = { modifier = { add = rol_expedition_failure_chance_70_value } desc = rol_quest_carthage.1002.b.tt.failure add_stress = 25 hidden_effect = { scope:activity ?= { activity_special_type_progression_negative_major = yes } rol_expedition_record_trial_failure_effect = { LOSS = 10 } trigger_event = { id = rol_quest_carthage.1021 days = 1 } } }
 				}
 			}
 			else = {
 				set_variable = { name = rol_expedition_display_base_chance value = 45 }
 				random_list = {
 					0 = { modifier = { add = rol_expedition_success_chance_45_value } desc = rol_quest_carthage.1002.b.tt.success add_piety = 55 hidden_effect = { scope:activity ?= { activity_special_type_progression_medium = yes } trigger_event = { id = rol_quest_carthage.1020 days = 1 } } }
-					0 = { modifier = { add = rol_expedition_failure_chance_45_value } desc = rol_quest_carthage.1002.b.tt.failure add_stress = 35 hidden_effect = { scope:activity ?= { activity_special_type_progression_negative_major = yes } trigger_event = { id = rol_quest_carthage.1021 days = 1 } } }
+					0 = { modifier = { add = rol_expedition_failure_chance_45_value } desc = rol_quest_carthage.1002.b.tt.failure add_stress = 35 hidden_effect = { scope:activity ?= { activity_special_type_progression_negative_major = yes } rol_expedition_record_trial_failure_effect = { LOSS = 10 } trigger_event = { id = rol_quest_carthage.1021 days = 1 } } }
 				}
 			}
 		}
@@ -313,7 +313,7 @@ rol_quest_carthage.1021 = {
 	trigger = { rol_carthage_quest_active_trigger = yes  is_ai = no }
 	option = { name = rol_quest_carthage.1021.a flavor = rol_quest_carthage.1021.a.flavor if = {
 			limit = { rol_carthage_quest_active_trigger = yes }
-			hidden_effect = { rol_carthage_quest_fail_now_effect = yes }
+			hidden_effect = { rol_expedition_try_remedy_or_fail_effect = { CHAIN = carthage } }
 		} }
 }
 

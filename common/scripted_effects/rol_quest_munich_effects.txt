@@ -1,4 +1,4 @@
-﻿# Mythic Relics - 慕尼黑地心任务链推进逻辑
+﻿# Mythic Relics - 慕尼黑地心任务链推进逻辑（已重构收敛至公共模板）
 # 变量：rol_munich_stage_count（角色作用域）
 
 rol_munich_quest_progress_effect = {
@@ -6,38 +6,18 @@ rol_munich_quest_progress_effect = {
 		limit = { rol_munich_quest_active_trigger = yes }
 		if = {
 			limit = { NOT = { has_variable = rol_munich_stage_count } }
-			set_variable = {
-				name = rol_munich_stage_count
-				value = 0
-			}
+			set_variable = { name = rol_munich_stage_count value = 0 }
 		}
-
-		change_variable = {
-			name = rol_munich_stage_count
-			add = 1
-		}
-
+		change_variable = { name = rol_munich_stage_count add = 1 }
 		rol_relic_log_stage_effect = yes
 		rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_nibelung_stage_progress }
-
-		# 宾客互动事件（每次活动至多触发一次）
-		if = {
-			limit = {
-				NOT = { has_character_flag = rol_nibelung_guest_event_fired }
-				exists = scope:activity
-				scope:activity = {
-					any_attending_character = {
-						this != root
-					}
-				}
-				var:rol_munich_stage_count >= 1
-				var:rol_munich_stage_count < 2
-			}
-			add_character_flag = rol_nibelung_guest_event_fired
-			add_character_flag = rol_rival_route_nibelung
-			rol_try_rival_interlude_effect = { FALLBACK_EVENT = rol_quest_munich.1050 }
+		rol_relic_try_guest_or_rival_interlude_effect = {
+			STAGE_VAR = rol_munich_stage_count
+			MAX_STAGE = 2
+			GUEST_FLAG = rol_nibelung_guest_event_fired
+			RIVAL_FLAG = rol_rival_route_nibelung
+			FALLBACK_EVENT = rol_quest_munich.1050
 		}
-
 		if = {
 			limit = { var:rol_munich_stage_count < 2 }
 			trigger_event = { id = rol_quest_munich.1002 days = 14 }
@@ -49,46 +29,22 @@ rol_munich_quest_progress_effect = {
 }
 
 rol_munich_clamp_success_progress_effect = {
-	scope:activity ?= {
-		if = {
-			limit = { var:activity_special_type_progression < 0 }
-			set_variable = {
-				name = activity_special_type_progression
-				value = 0
-			}
-		}
-		else_if = {
-			limit = { var:activity_special_type_progression > 100 }
-			set_variable = {
-				name = activity_special_type_progression
-				value = 100
-			}
-		}
-	}
+	rol_relic_clamp_activity_progress_effect = yes
 }
 
 rol_munich_apply_tiered_bonus_reward_effect = {
 	if = {
-		limit = {
-			exists = scope:activity
-			scope:activity.var:activity_special_type_progression >= 55
-		}
+		limit = { exists = scope:activity scope:activity.var:activity_special_type_progression >= 55 }
 		add_piety = 300
 		add_prestige = 200
 	}
 	else_if = {
-		limit = {
-			exists = scope:activity
-			scope:activity.var:activity_special_type_progression >= 45
-		}
+		limit = { exists = scope:activity scope:activity.var:activity_special_type_progression >= 45 }
 		add_piety = 200
 		add_prestige = 120
 	}
 	else_if = {
-		limit = {
-			exists = scope:activity
-			scope:activity.var:activity_special_type_progression >= 35
-		}
+		limit = { exists = scope:activity scope:activity.var:activity_special_type_progression >= 35 }
 		add_piety = 120
 		add_prestige = 60
 	}
@@ -98,54 +54,20 @@ rol_munich_apply_tiered_bonus_reward_effect = {
 }
 
 rol_munich_store_success_result_effect = {
-	if = {
-		limit = {
-			exists = scope:activity
-			scope:activity.var:activity_special_type_progression >= 55
-		}
-		set_variable = {
-			name = rol_recent_relic_result_tier
-			value = 4
-		}
+	rol_relic_store_tiered_success_result_effect = {
+		TIER4 = 55
+		TIER3 = 45
+		TIER2 = 35
+		SUCCESS_FLAG = rol_recent_nibelung_quest_success
+		FAILURE_FLAG = rol_recent_nibelung_quest_failure
 	}
-	else_if = {
-		limit = {
-			exists = scope:activity
-			scope:activity.var:activity_special_type_progression >= 45
-		}
-		set_variable = {
-			name = rol_recent_relic_result_tier
-			value = 3
-		}
-	}
-	else_if = {
-		limit = {
-			exists = scope:activity
-			scope:activity.var:activity_special_type_progression >= 35
-		}
-		set_variable = {
-			name = rol_recent_relic_result_tier
-			value = 2
-		}
-	}
-	else = {
-		set_variable = {
-			name = rol_recent_relic_result_tier
-			value = 1
-		}
-	}
-
-	add_character_flag = rol_recent_nibelung_quest_success
-	remove_character_flag = rol_recent_nibelung_quest_failure
 }
 
 rol_munich_store_failure_result_effect = {
-	set_variable = {
-		name = rol_recent_relic_result_tier
-		value = 0
+	rol_relic_store_failure_result_common_effect = {
+		SUCCESS_FLAG = rol_recent_nibelung_quest_success
+		FAILURE_FLAG = rol_recent_nibelung_quest_failure
 	}
-	add_character_flag = rol_recent_nibelung_quest_failure
-	remove_character_flag = rol_recent_nibelung_quest_success
 }
 
 rol_munich_quest_success_finalize_effect = {
@@ -156,29 +78,18 @@ rol_munich_quest_success_finalize_effect = {
 		rol_munich_clamp_success_progress_effect = yes
 		rol_munich_store_success_result_effect = yes
 		rol_munich_apply_tiered_bonus_reward_effect = yes
-		rol_apply_expedition_preparation_success_bonus_effect = yes
-		rol_store_recent_expedition_preparation_effect = yes
-
 		add_character_flag = rol_nibelung_sphere_claimed
 		rol_check_legend_circle_revelation_effect = yes
-		rol_check_legend_circle_fivefold_revelation_effect = yes
-		remove_character_flag = rol_heard_nibelung_legend
-		remove_character_modifier = rol_nibelung_quest_cooldown_modifier
-
-		rol_relic_log_success_effect = yes
-		send_interface_toast = {
-			type = event_toast_effect_good
-			title = rol_nibelung_activity_success_toast_title
-			desc = rol_nibelung_activity_success_toast_desc
-			left_icon = this
+		rol_relic_complete_success_tail_effect = {
+			HEARD_FLAG = rol_heard_nibelung_legend
+			COOLDOWN_MODIFIER = rol_nibelung_quest_cooldown_modifier
+			TOAST_TITLE = rol_nibelung_activity_success_toast_title
+			TOAST_DESC = rol_nibelung_activity_success_toast_desc
+			SUMMARY_EVENT = rol_quest_munich.1090
+			CLEAR_CONTEXT_EFFECT = rol_clear_context_nibelung_regalia_effect
+			ABORT_EFFECT = rol_munich_quest_abort_effect
+			DEBUG_KEY = rol_relic_debug_nibelung_success_finalize
 		}
-
-		trigger_event = { id = rol_quest_munich.1090 days = 1 }
-
-		rol_clear_context_nibelung_regalia_effect = yes
-		rol_munich_quest_abort_effect = yes
-		rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_nibelung_success_finalize }
-		rol_relic_quest_close_effect = yes
 	}
 }
 
@@ -187,6 +98,7 @@ rol_munich_quest_partial_finalize_effect = {
 		limit = { rol_munich_quest_active_trigger = yes }
 		rol_expedition_companion_finish_effect = { STAGE_VARIABLE = rol_munich_stage_count }
 		rol_expedition_growth_finish_effect = { ROUTE = nibelung RESULT_XP = 20 LEAVE_NOTES = yes }
+		rol_relic_cap_partial_progress_effect = { MAX = 54 }
 		rol_munich_clamp_success_progress_effect = yes
 		rol_munich_store_success_result_effect = yes
 		rol_munich_apply_tiered_bonus_reward_effect = yes
@@ -212,29 +124,18 @@ rol_apply_nibelung_activity_cooldown_effect = {
 		}
 		else = { rol_expedition_growth_abandon_effect = yes }
 		rol_expedition_companion_finish_effect = { STAGE_VARIABLE = rol_munich_stage_count }
-		rol_relic_apply_cooldown_effect = {
+		rol_relic_failure_finalize_tail_effect = {
 			COOLDOWN_MODIFIER = rol_nibelung_quest_cooldown_modifier
-			COOLDOWN_YEARS = 2
+			STORE_FAILURE_EFFECT = rol_munich_store_failure_result_effect
+			TOAST_TITLE = rol_nibelung_activity_failure_toast_title
+			TOAST_DESC = rol_nibelung_activity_failure_toast_desc
+			SUMMARY_EVENT = rol_quest_munich.1090
+			CLEAR_CONTEXT_EFFECT = rol_clear_context_nibelung_regalia_effect
+			DEBUG_KEY = rol_relic_debug_nibelung_failure_finalize
 		}
-
-		rol_munich_store_failure_result_effect = yes
-		rol_relic_log_failure_effect = yes
-		send_interface_toast = {
-			type = event_toast_effect_bad
-			title = rol_nibelung_activity_failure_toast_title
-			desc = rol_nibelung_activity_failure_toast_desc
-			left_icon = this
-		}
-
-		trigger_event = { id = rol_quest_munich.1090 days = 1 }
-
-		rol_clear_context_nibelung_regalia_effect = yes
-		rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_nibelung_failure_finalize }
-		rol_relic_quest_close_effect = yes
 	}
 }
 
-# 任一失败立即终止活动（统一收口）
 rol_munich_quest_fail_now_effect = {
 	if = {
 		limit = { rol_munich_quest_active_trigger = yes }
@@ -250,4 +151,3 @@ rol_munich_quest_abort_effect = {
 		remove_variable = rol_munich_stage_count
 	}
 }
-

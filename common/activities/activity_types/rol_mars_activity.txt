@@ -37,6 +37,8 @@ activity_rol_seek_mars_blade = {
 	}
 
 	on_start = {
+		activity_setup_special_type_progression_effect = yes
+		activity_special_type_progression_variable = { NUM = 30 }
 		scope:host = {
 			rol_relic_quest_begin_effect = yes
 			# 清理上一次结算残留并设置本次上下文
@@ -45,6 +47,7 @@ activity_rol_seek_mars_blade = {
 			rol_set_context_mars_weapon_effect = yes
 			rol_expedition_growth_begin_effect = { ROUTE = mars }
 			rol_expedition_companion_begin_effect = yes
+			rol_apply_expedition_preparation_start_bonus_effect = yes
 
 			if = {
 				limit = { has_variable = rol_rome_stage_count }
@@ -52,10 +55,6 @@ activity_rol_seek_mars_blade = {
 			}
 			remove_character_flag = rol_mars_guest_event_fired
 		}
-
-		# 初始化活动成功条
-		activity_setup_special_type_progression_effect = yes
-		activity_special_type_progression_variable = { NUM = 30 }
 
 		add_activity_log_entry = {
 			key = rol_relic_activity_start_log

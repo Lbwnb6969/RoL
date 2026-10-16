@@ -32,9 +32,9 @@
  rol_quest_carthage.1000.b.base_tt:0 "[learning|E] check."
  rol_quest_carthage.1000.c.tt:0 "You abort the expedition. 2-year cooldown."
  rol_quest_carthage.1000.a.tt.success:0 "#P Success:#! The desert yields a hidden route, and your column reaches the buried threshold before the dunes shift shut.\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
- rol_quest_carthage.1000.a.tt.failure:0 "#N Failure:#! False bearings and black sand break the column apart before the sanctuary is found.\n#N The expedition ends immediately and enters a 2-year cooldown.#!\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
+ rol_quest_carthage.1000.a.tt.failure:0 "#N Failure:#! False bearings and black sand break the column apart before the sanctuary is found.\n#N Once per expedition, a Relic Seeker, consumed regional notes or an attending trusted partner allows salvage or retreat. Pressing on additionally requires 60 XP in any track, consumed regional notes or that trusted partner. Otherwise the expedition fails with a 2-year cooldown.#!\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
  rol_quest_carthage.1000.b.tt.success:0 "#P Success:#! Ancient sky-lore fixes the temple's true bearing, and the expedition reaches the vault in time.\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
- rol_quest_carthage.1000.b.tt.failure:0 "#N Failure:#! The heavens are misread, and the desert consumes both time and order.\n#N The expedition ends immediately and enters a 2-year cooldown.#!\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
+ rol_quest_carthage.1000.b.tt.failure:0 "#N Failure:#! The heavens are misread, and the desert consumes both time and order.\n#N Once per expedition, a Relic Seeker, consumed regional notes or an attending trusted partner allows salvage or retreat. Pressing on additionally requires 60 XP in any track, consumed regional notes or that trusted partner. Otherwise the expedition fails with a 2-year cooldown.#!\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
  rol_quest_carthage.1000.a.flavor:0 "Trust living masters of dune, wind, and starlight."
  rol_quest_carthage.1000.b.flavor:0 "Let old calendars and forbidden skies do what courage alone cannot."
  rol_quest_carthage.1000.c.flavor:0 "Break off while the desert still permits it."
@@ -46,8 +46,8 @@
 
  rol_quest_carthage.1011.t:0 "Lost in the Black Dunes"
  rol_quest_carthage.1011.desc:0 "The desert does not devour you all at once. It does it by degrees: one false bearing, one lost torch, one order swallowed by wind, one line of people drifting out of place and never fully returning. By the time you recognize how badly the march has frayed, continuing would mean surrendering the expedition to a darkness vast enough to erase even memory."
- rol_quest_carthage.1011.a:0 "End the attempt."
- rol_quest_carthage.1011.a.flavor:0 "Accept the desert's refusal and save who you can."
+ rol_quest_carthage.1011.a:0 "Assess the party and the evidence first."
+ rol_quest_carthage.1011.a.flavor:0 "Assess the losses before salvaging the evidence or pressing on."
 
  rol_quest_carthage.1012.t:0 "The Desert Left Unanswered"
  rol_quest_carthage.1012.desc:0 "You order the retreat before the night can close completely around the expedition. No one argues. By dawn the dunes have already smoothed over your track, and the cursed salt has taken the last proof that living hands ever came this close."
@@ -63,9 +63,9 @@
  rol_quest_carthage.1002.b.base_tt:0 "[learning|E] / [piety_level|E] check."
  rol_quest_carthage.1002.c.tt:0 "You abort the expedition. 2-year cooldown."
  rol_quest_carthage.1002.a.tt.success:0 "#P Success:#! Your will cuts through the war-visions, and the temple's deeper chamber opens to you.\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
- rol_quest_carthage.1002.a.tt.failure:0 "#N Failure:#! The dead war-memory tears discipline apart and drives the expedition into collapse.\n#N The expedition ends immediately and enters a 2-year cooldown.#!\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
+ rol_quest_carthage.1002.a.tt.failure:0 "#N Failure:#! The dead war-memory tears discipline apart and drives the expedition into collapse.\n#N Once per expedition, a Relic Seeker, consumed regional notes or an attending trusted partner allows salvage or retreat. Pressing on additionally requires 60 XP in any track, consumed regional notes or that trusted partner. Otherwise the expedition fails with a 2-year cooldown.#!\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
  rol_quest_carthage.1002.b.tt.success:0 "#P Success:#! Reverence and understanding settle the old anguish, and the sanctuary permits one step more.\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
- rol_quest_carthage.1002.b.tt.failure:0 "#N Failure:#! The ash remembers only defeat, and the temple answers with panic and ruin.\n#N The expedition ends immediately and enters a 2-year cooldown.#!\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
+ rol_quest_carthage.1002.b.tt.failure:0 "#N Failure:#! The ash remembers only defeat, and the temple answers with panic and ruin.\n#N Once per expedition, a Relic Seeker, consumed regional notes or an attending trusted partner allows salvage or retreat. Pressing on additionally requires 60 XP in any track, consumed regional notes or that trusted partner. Otherwise the expedition fails with a 2-year cooldown.#!\n#weak Success chance: [SCOPE.ScriptValue('rol_expedition_display_success_chance_value')|0]% / Failure chance: [SCOPE.ScriptValue('rol_expedition_display_failure_chance_value')|0]%#!"
  rol_quest_carthage.1002.a.flavor:0 "Break the war-memory before it spreads through the living."
  rol_quest_carthage.1002.b.flavor:0 "Answer the dead as witness and interpreter, not as prey."
  rol_quest_carthage.1002.c.flavor:0 "Leave before the dead city claims your living minds."
@@ -77,8 +77,8 @@
 
  rol_quest_carthage.1021.t:0 "The Dead Charge Wins"
  rol_quest_carthage.1021.desc:0 "The ash is no longer memory but momentum. It turns panic into command, command into terror, and terror into collapse. Your people begin yielding to a dead army's last impossible charge, and you realize too late that the ruin has nearly taught them how to die instead of how to endure."
- rol_quest_carthage.1021.a:0 "Pull everyone out."
- rol_quest_carthage.1021.a.flavor:0 "Call the expedition off before the ruins finish the work."
+ rol_quest_carthage.1021.a:0 "Assess the party and the evidence first."
+ rol_quest_carthage.1021.a.flavor:0 "Assess the losses before salvaging the evidence or pressing on."
 
  rol_quest_carthage.1022.t:0 "Withdraw from the Sanctuary"
  rol_quest_carthage.1022.desc:0 "You break off the descent while enough discipline still remains to make withdrawal possible. No one mistakes the retreat for safety. The sanctuary lets you leave, but only with the grim understanding that it did not yield?only choose not to kill you here and now."
@@ -115,7 +115,7 @@
 
  activity_rol_seek_ash_forged_mask:0 "Ash-Forged Mask Expedition"
  activity_rol_seek_ash_forged_mask_desc:0 "Cross the black sands outside Tunis, follow storm-bared omens into a buried Carthaginian sanctuary, and force an answer from the last vow carried out into the desert when the city burned."
- activity_rol_seek_ash_forged_mask_host_desc:0 "$BULLET_WITH_TAB$Adjust your outlay through the $rol_option_expedition_preparation$ activity option\n$BULLET_WITH_TAB$Failure ends the expedition and applies a 2-year cooldown"
+ activity_rol_seek_ash_forged_mask_host_desc:0 "$BULLET_WITH_TAB$Adjust your outlay through the $rol_option_expedition_preparation$ activity option\n$BULLET_WITH_TAB$A qualified party can remedy one crisis; otherwise failure ends the expedition with a 2-year cooldown"
  activity_rol_seek_ash_forged_mask_guest_desc:0 ""
  activity_rol_seek_ash_forged_mask_conclusion_desc:0 "The dunes cover the outer scar once more, but the buried temple has already answered you."
  activity_rol_seek_ash_forged_mask_conclusion_desc_success_4:0 "You conquered the temple's deepest refusal and claimed its hidden answer."
@@ -124,7 +124,7 @@
  activity_rol_seek_ash_forged_mask_conclusion_desc_success_1:0 "You survived the black sand, but only by the narrowest margin."
  activity_rol_seek_ash_forged_mask_conclusion_desc_failure:0 "You were forced to withdraw. Two-year cooldown."
  activity_rol_seek_ash_forged_mask_conclusion_desc_fallback:0 "The expedition has concluded."
- activity_rol_seek_ash_forged_mask_selection_tooltip:0 "Lead an expedition from Tunis into storm-stripped black sands, buried vows, and a temple that answers only to absolute resolve.\n\nFailure ends the expedition and applies a 2-year cooldown."
+ activity_rol_seek_ash_forged_mask_selection_tooltip:0 "Lead an expedition from Tunis into storm-stripped black sands, buried vows, and a temple that answers only to absolute resolve.\n\nA qualified party can remedy one crisis; otherwise failure ends the expedition with a 2-year cooldown."
  activity_rol_seek_ash_forged_mask_predicted_cost:0 "The expedition's cost depends heavily on the personnel and equipment grade you select."
  activity_rol_seek_ash_forged_mask_province_desc:0 "Target location: [ROOT.Province.GetName]"
 

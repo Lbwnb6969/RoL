@@ -38,6 +38,8 @@ activity_rol_seek_astrolabe_of_ocean = {
 	}
 
 	on_start = {
+		activity_setup_special_type_progression_effect = yes
+		activity_special_type_progression_variable = { NUM = 35 }
 		scope:host = {
 			rol_relic_quest_begin_effect = yes
 			rol_relic_clear_recent_result_effect = yes
@@ -45,6 +47,7 @@ activity_rol_seek_astrolabe_of_ocean = {
 			rol_set_context_astrolabe_accessory_effect = yes
 			rol_expedition_growth_begin_effect = { ROUTE = astrolabe }
 			rol_expedition_companion_begin_effect = yes
+			rol_apply_expedition_preparation_start_bonus_effect = yes
 
 			if = {
 				limit = { has_variable = rol_sevilla_stage_count }
@@ -53,8 +56,6 @@ activity_rol_seek_astrolabe_of_ocean = {
 			remove_character_flag = rol_astrolabe_guest_event_fired
 		}
 
-		activity_setup_special_type_progression_effect = yes
-		activity_special_type_progression_variable = { NUM = 35 }
 
 		add_activity_log_entry = {
 			key = rol_relic_activity_start_log

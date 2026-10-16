@@ -1,4 +1,4 @@
-﻿# Relics of Legends - artifact provenance bookkeeping
+﻿# Relics of Legends - artifact provenance & multi-relic resonance bookkeeping
 
 # Explicit test entry: retain the item scope across dispatch.
 rol_relic_legacy_debug_transition_effect = {
@@ -42,22 +42,54 @@ rol_relic_legacy_record_transfer_effect = {
 # Each annual window owns a captured generation. A five-year-old window cannot
 # spend a later event's qualification, even if the same relic is still owned.
 rol_legacy_recurring_begin_effect = {
- if = {
-  limit = { NOT = { has_variable = rol_legacy_$NAME$_generation } }
-  set_variable = { name = rol_legacy_$NAME$_generation value = 0 }
- }
- change_variable = { name = rol_legacy_$NAME$_generation add = 1 }
- save_scope_value_as = { name = rol_legacy_$NAME$_generation value = var:rol_legacy_$NAME$_generation }
- add_character_flag = rol_legacy_$NAME$_choice_open
+	if = {
+		limit = { NOT = { has_variable = rol_legacy_$NAME$_generation } }
+		set_variable = { name = rol_legacy_$NAME$_generation value = 0 }
+	}
+	change_variable = { name = rol_legacy_$NAME$_generation add = 1 }
+	save_scope_value_as = { name = rol_legacy_$NAME$_generation value = var:rol_legacy_$NAME$_generation }
+	add_character_flag = rol_legacy_$NAME$_choice_open
 }
 
 rol_legacy_recurring_close_effect = {
- if = {
-  limit = {
-   has_character_flag = rol_legacy_$NAME$_choice_open
-   exists = scope:rol_legacy_$NAME$_generation
-   scope:rol_legacy_$NAME$_generation = var:rol_legacy_$NAME$_generation
-  }
-  remove_character_flag = rol_legacy_$NAME$_choice_open
- }
+	if = {
+		limit = {
+			has_character_flag = rol_legacy_$NAME$_choice_open
+			exists = scope:rol_legacy_$NAME$_generation
+			scope:rol_legacy_$NAME$_generation = var:rol_legacy_$NAME$_generation
+		}
+		remove_character_flag = rol_legacy_$NAME$_choice_open
+	}
+}
+
+rol_clear_relic_resonance_modifiers_effect = {
+	remove_character_modifier = rol_resonance_imperial_might_modifier
+	remove_character_modifier = rol_resonance_cosmic_chart_modifier
+	remove_character_modifier = rol_resonance_sovereign_awe_modifier
+}
+
+rol_relic_resonance_begin_effect = {
+	if = {
+		limit = {
+			rol_relic_count_at_least_two_trigger = yes
+			NOT = { has_character_flag = rol_relic_resonance_cooldown }
+		}
+		add_character_flag = { flag = rol_relic_resonance_cooldown years = 5 }
+		rol_legacy_recurring_begin_effect = { NAME = resonance }
+		trigger_event = rol_relic_legacy.0010
+	}
+}
+
+rol_relic_resonance_apply_effect = {
+	if = {
+		limit = { rol_legacy_resonance_choice_trigger = yes }
+		rol_clear_relic_resonance_modifiers_effect = yes
+		add_character_modifier = { modifier = $MODIFIER$ years = 10 }
+		if = {
+			limit = { NOT = { has_trait = rol_relic_seeker } }
+			add_trait = rol_relic_seeker
+		}
+		add_trait_xp = { trait = rol_relic_seeker track = $TRACK$ value = 15 }
+		rol_legacy_recurring_close_effect = { NAME = resonance }
+	}
 }

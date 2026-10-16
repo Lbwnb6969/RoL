@@ -84,6 +84,7 @@ rol_quest_munich.1000 = {
 						add_stress = 30
 						hidden_effect = {
 							scope:activity ?= { activity_special_type_progression_negative_major = yes }
+							rol_expedition_record_trial_failure_effect = { LOSS = 10 }
 							trigger_event = { id = rol_quest_munich.1011 days = 1 }
 						}
 					}
@@ -108,6 +109,7 @@ rol_quest_munich.1000 = {
 						add_stress = 40
 						hidden_effect = {
 							scope:activity ?= { activity_special_type_progression_negative_major = yes }
+							rol_expedition_record_trial_failure_effect = { LOSS = 10 }
 							trigger_event = { id = rol_quest_munich.1011 days = 1 }
 						}
 					}
@@ -131,6 +133,7 @@ rol_quest_munich.1000 = {
 						add_stress = 50
 						hidden_effect = {
 							scope:activity ?= { activity_special_type_progression_negative_major = yes }
+							rol_expedition_record_trial_failure_effect = { LOSS = 10 }
 							trigger_event = { id = rol_quest_munich.1011 days = 1 }
 						}
 					}
@@ -171,6 +174,7 @@ rol_quest_munich.1000 = {
 						add_prestige = -90
 						hidden_effect = {
 							scope:activity ?= { activity_special_type_progression_negative_major = yes }
+							rol_expedition_record_trial_failure_effect = { LOSS = 10 }
 							trigger_event = { id = rol_quest_munich.1011 days = 1 }
 						}
 					}
@@ -201,6 +205,7 @@ rol_quest_munich.1000 = {
 						add_prestige = -120
 						hidden_effect = {
 							scope:activity ?= { activity_special_type_progression_negative_major = yes }
+							rol_expedition_record_trial_failure_effect = { LOSS = 10 }
 							trigger_event = { id = rol_quest_munich.1011 days = 1 }
 						}
 					}
@@ -225,6 +230,7 @@ rol_quest_munich.1000 = {
 						add_prestige = -150
 						hidden_effect = {
 							scope:activity ?= { activity_special_type_progression_negative_major = yes }
+							rol_expedition_record_trial_failure_effect = { LOSS = 10 }
 							trigger_event = { id = rol_quest_munich.1011 days = 1 }
 						}
 					}
@@ -313,7 +319,7 @@ rol_quest_munich.1011 = {
 		if = {
 			limit = { rol_munich_quest_active_trigger = yes }
 			hidden_effect = {
-				rol_munich_quest_fail_now_effect = yes
+				rol_expedition_try_remedy_or_fail_effect = { CHAIN = munich }
 			}
 		}
 	}
@@ -380,6 +386,7 @@ rol_quest_munich.1002 = {
 						add_stress = 20
 						hidden_effect = {
 							scope:activity ?= { activity_special_type_progression_negative = yes }
+							rol_expedition_record_trial_failure_effect = { LOSS = 5 }
 							trigger_event = { id = rol_quest_munich.1021 days = 1 }
 						}
 					}
@@ -404,6 +411,7 @@ rol_quest_munich.1002 = {
 						add_stress = 35
 						hidden_effect = {
 							scope:activity ?= { activity_special_type_progression_negative_major = yes }
+							rol_expedition_record_trial_failure_effect = { LOSS = 10 }
 							trigger_event = { id = rol_quest_munich.1021 days = 1 }
 						}
 					}
@@ -427,6 +435,7 @@ rol_quest_munich.1002 = {
 						add_stress = 45
 						hidden_effect = {
 							scope:activity ?= { activity_special_type_progression_negative_major = yes }
+							rol_expedition_record_trial_failure_effect = { LOSS = 10 }
 							trigger_event = { id = rol_quest_munich.1021 days = 1 }
 						}
 					}
@@ -460,6 +469,7 @@ rol_quest_munich.1002 = {
 						add_stress = 15
 						hidden_effect = {
 							scope:activity ?= { activity_special_type_progression_negative = yes }
+							rol_expedition_record_trial_failure_effect = { LOSS = 5 }
 							trigger_event = { id = rol_quest_munich.1021 days = 1 }
 						}
 					}
@@ -484,6 +494,7 @@ rol_quest_munich.1002 = {
 						add_stress = 20
 						hidden_effect = {
 							scope:activity ?= { activity_special_type_progression_negative = yes }
+							rol_expedition_record_trial_failure_effect = { LOSS = 5 }
 							trigger_event = { id = rol_quest_munich.1021 days = 1 }
 						}
 					}
@@ -507,6 +518,7 @@ rol_quest_munich.1002 = {
 						add_stress = 35
 						hidden_effect = {
 							scope:activity ?= { activity_special_type_progression_negative_major = yes }
+							rol_expedition_record_trial_failure_effect = { LOSS = 10 }
 							trigger_event = { id = rol_quest_munich.1021 days = 1 }
 						}
 					}
@@ -565,7 +577,7 @@ rol_quest_munich.1021 = {
 		if = {
 			limit = { rol_munich_quest_active_trigger = yes }
 			hidden_effect = {
-				rol_munich_quest_fail_now_effect = yes
+				rol_expedition_try_remedy_or_fail_effect = { CHAIN = munich }
 			}
 		}
 	}

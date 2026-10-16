@@ -3,3 +3,51 @@
 	has_variable = rol_expedition_growth_pending_xp
 	var:rol_expedition_growth_pending_xp > 0
 }
+
+rol_expedition_trusted_companion_present_trigger = {
+	rol_expedition_companion_present_trigger = yes
+	has_variable = rol_expedition_trusted_companion
+	exists = var:rol_expedition_trusted_companion
+	var:rol_expedition_companion_partner = var:rol_expedition_trusted_companion
+}
+
+rol_expedition_can_remedy_trigger = {
+	rol_relic_any_active_quest_trigger = yes
+	exists = scope:activity
+	scope:activity = {
+		var:rol_expedition_growth_open = 1
+		NOT = { var:rol_expedition_remedy_used = 1 }
+	}
+	OR = {
+		has_trait = rol_relic_seeker
+		scope:activity = { var:rol_expedition_journal_bonus > 0 }
+		rol_expedition_trusted_companion_present_trigger = yes
+	}
+}
+
+rol_expedition_remedy_window_valid_trigger = {
+	rol_relic_any_active_quest_trigger = yes
+	exists = scope:activity
+	scope:activity = {
+		var:rol_expedition_growth_open = 1
+		var:rol_expedition_remedy_used = 1
+	}
+	has_character_flag = rol_expedition_remedy_pending
+	exists = scope:rol_expedition_remedy_generation
+	scope:rol_expedition_remedy_generation = var:rol_expedition_remedy_generation
+}
+
+rol_expedition_remedy_press_on_qualified_trigger = {
+	OR = {
+		AND = {
+			has_trait = rol_relic_seeker
+			OR = {
+				has_trait_xp = { trait = rol_relic_seeker track = rol_research value >= 60 }
+				has_trait_xp = { trait = rol_relic_seeker track = rol_exploration value >= 60 }
+				has_trait_xp = { trait = rol_relic_seeker track = rol_negotiation value >= 60 }
+			}
+		}
+		scope:activity = { var:rol_expedition_journal_bonus > 0 }
+		rol_expedition_trusted_companion_present_trigger = yes
+	}
+}

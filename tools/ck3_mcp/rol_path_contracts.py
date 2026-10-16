@@ -321,7 +321,7 @@ def start_route(model, chain, stat=30, company=False, actor=None, discover=True)
     # The scalar source costs are asserted rather than guessing CK3 GUI prediction.
     base = float(get(get(get(get(definition, "cost"), "gold"), "add"), "value"))
     prep = get(get(get(definition, "options"), "rol_option_expedition_preparation"),
-               "rol_expedition_preparation_standard")
+               "rol_expedition_preparation_" + actor.preparation)
     extra = float(get(get(get(get(prep, "cost"), "gold"), "add"), "value"))
     actor.gold -= base + extra
     actor.activity = {"_activity_type": kind}
@@ -332,7 +332,7 @@ def start_route(model, chain, stat=30, company=False, actor=None, discover=True)
                                       prowess=20, diplomacy=20, playable=False) for i in range(3))
     # Activity-level hook ROOT differs from host; begin from actual hook, not helpers.
     callback = Person(activity=actor.activity, scopes=actor.scopes, attendees=actor.attendees,
-                      label="activity-root")
+                      label="activity-root", preparation=actor.preparation)
     model.run(get(definition, "on_start"), callback, "activity")
     actor.scopes = callback.scopes
     assert model.condition(get(definition, "is_valid"), callback, "activity")
@@ -695,6 +695,7 @@ def check_inheritance_paths(model):
     check_stale_rival_pacts(model)
     evidence.append("repeated pact with same rival: old choices/closure cannot consume the next agreement")
     check_neutral_paths(model)
+    evidence.extend(check_new_expansion_paths(model))
     return evidence
 
 
@@ -899,6 +900,115 @@ def run_audit(root, game):
             "event_options": len(choices), "random_branches": len(model.coverage),
             "system_paths": systems, "reachable_events": event_reachability(model),
             "discarded_after_close": sorted(discarded)}
+
+
+def check_new_expansion_paths(model):
+    evidence = []
+    # 1. Fragment resonance choices (.0002.a, .0002.b, .0002.c) and dynamic odds
+    for res_opt, mod_name in (
+        ("a", "rol_fragment_resonance_might_modifier"),
+        ("b", "rol_fragment_resonance_wisdom_modifier"),
+        ("c", "rol_fragment_resonance_court_modifier"),
+    ):
+        actor = plain_actor()
+        relic(actor, "rol_blade_of_mars")
+        actor.flags.add(CLAIMED["rome"])
+        model.decide(actor, "rol_seek_mars_fragment_decision")
+        actor = drive(
+            model,
+            actor,
+            {
+                "rol_relic_fragment.0001": "rol_relic_fragment.0001.c",
+                "rol_relic_fragment.0002": f"rol_relic_fragment.0002.{res_opt}",
+            },
+        )
+        assert mod_name in actor.modifiers
+        assert "rol_fragment_masterwork_surplus_modifier" in actor.modifiers
+    evidence.append("fragment dynamic odds + masterwork c branch + 3 resonance attunements (.0002.a/b/c)")
+
+    # 2. Mid-expedition crisis remedy (.0010.a press on, .0010.b salvage partial, .0010.c retreat, .0010.d stale close)
+    for remedy_choice in ("a", "b", "c"):
+        actor = plain_actor()
+        actor.traits.add("rol_relic_seeker")
+        actor.xp["rol_exploration"] = 60
+        actor, definition = start_route(model, "munich", stat=25, actor=actor)
+        # Advance arrival 0990 -> 1000
+        day, ev, ctx = actor.queue.pop(0)
+        model.advance(actor, day, definition)
+        defn = model.dispatch(actor, ev, ctx)
+        opt = next(v for k, _, v in defn if k == "option")
+        actor = next(model.alternatives(model.option_body(opt), actor))
+        # At 1000, take failure branch of option a to reach 1011
+        day, ev, ctx = actor.queue.pop(0)
+        model.advance(actor, day, definition)
+        defn = model.dispatch(actor, ev, ctx)
+        opt_a = next(v for k, _, v in defn if k == "option" and get(v, "name") == "rol_quest_munich.1000.a")
+        outcomes = list(model.alternatives(model.option_body(opt_a), actor))
+        failed_stage = outcomes[1]
+        actor = drive(
+            model,
+            failed_stage,
+            {"rol_expedition_growth.0010": f"rol_expedition_growth.0010.{remedy_choice}"},
+            definition=definition,
+        )
+        if remedy_choice == "a":
+            assert CLAIMED["munich"] in actor.flags
+        elif remedy_choice == "b":
+            assert "rol_expedition_nibelung_notes_modifier" in actor.modifiers
+        else:
+            assert "rol_recent_nibelung_quest_failure" not in actor.flags  # cleared at 1090
+    # Stale .0010.d close
+    stale_actor = plain_actor()
+    stale_actor.flags.add("rol_expedition_remedy_pending")
+    stale_actor.variables["rol_expedition_remedy_generation"] = 1
+    stale_actor.scopes["rol_expedition_remedy_generation"] = 1
+    model.choose(stale_actor, "rol_expedition_growth.0010", "rol_expedition_growth.0010.d")
+    assert "rol_expedition_remedy_pending" not in stale_actor.flags
+    model.options_seen.add(("rol_expedition_growth.0010", "rol_expedition_growth.0010.d"))
+    evidence.append("mid-expedition crisis remedy (.0010.a press on / .0010.b partial salvage / .0010.c retreat / .0010.d close)")
+
+    # 3. Rival recruitment (.1001.d) + Trusted companion reunion bonus
+    actor = plain_actor()
+    rival = Person(activity=None, label="recruited-rival", learning=22, prowess=22, diplomacy=22, playable=False)
+    actor.variables["rol_rival_pact_partner"] = rival
+    actor.flags.add("rol_rival_pact_choice_pending")
+    actor.scopes["rol_expedition_rival"] = rival
+    model.choose(actor, "rol_rival.1001", "rol_rival.1001.d")
+    model.options_seen.add(("rol_rival.1001", "rol_rival.1001.d"))
+    assert actor.variables.get("rol_expedition_trusted_companion") is rival
+    assert actor.xp.get("rol_negotiation", 0) == 10
+    evidence.append("rival recruitment (.1001.d) -> trusted companion + negotiation XP")
+
+    # 4. Multi-Relic Resonance decision & event (rol_harmonize_relics_decision -> rol_relic_legacy.0010.a/b/c + invalid close)
+    for res_choice, items, mod_name in (
+        ("a", ("rol_blade_of_mars", "rol_ash_forged_mask"), "rol_resonance_imperial_might_modifier"),
+        ("b", ("rol_nibelung_star_sphere", "rol_astrolabe_of_ocean"), "rol_resonance_cosmic_chart_modifier"),
+        ("c", ("rol_blade_of_mars", "rol_nibelung_star_sphere"), "rol_resonance_sovereign_awe_modifier"),
+    ):
+        actor = plain_actor()
+        for item_type in items:
+            relic(actor, item_type)
+        model.decide(actor, "rol_harmonize_relics_decision")
+        actor = drive(model, actor, {"rol_relic_legacy.0010": f"rol_relic_legacy.0010.{res_choice}"})
+        assert mod_name in actor.modifiers
+        assert "rol_legacy_resonance_choice_open" not in actor.flags
+    # Invalid close on 0010 when relics are lost before clicking
+    lost_actor = plain_actor()
+    r1 = relic(lost_actor, "rol_blade_of_mars")
+    r2 = relic(lost_actor, "rol_ash_forged_mask")
+    model.decide(lost_actor, "rol_harmonize_relics_decision")
+    r1.owner = plain_actor()
+    r2.owner = plain_actor()
+    lost_actor = drive(model, lost_actor, {"rol_relic_legacy.0010": "rol_legacy_unavailable_option"})
+    model.options_seen.add(("rol_relic_legacy.0010", "rol_legacy_unavailable_option"))
+    assert "rol_legacy_resonance_choice_open" not in lost_actor.flags
+    evidence.append("multi-relic harmonization decision -> .0010.a/b/c doctrines + invalid close")
+    if __package__:
+        from .rol_expansion_regressions import check_expansion_regressions
+    else:
+        from rol_expansion_regressions import check_expansion_regressions
+    evidence.extend(check_expansion_regressions(model, Person, plain_actor, start_route, drive, CLAIMED))
+    return evidence
 
 
 if __name__ == "__main__":

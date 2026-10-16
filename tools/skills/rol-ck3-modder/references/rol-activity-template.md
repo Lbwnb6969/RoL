@@ -1,4 +1,4 @@
-﻿# RoL Activity Template
+# RoL Activity Template
 
 ## Canonical Flow
 
@@ -56,12 +56,12 @@
 - `low = +0 prestige / +0 dynasty prestige`
 - `standard = +0 / +0`
 - `high = +150 prestige / +25 dynasty prestige`
-- `supreme = +350 prestige / +50 dynasty prestige`
+- `supreme = +500 prestige / +100 dynasty prestige`
 
 ### 文案禁忌
 - 活动主描述 / host_desc / selection_tooltip **不要直接剧透奖励**
 - 不要写“低于 Tier4 视为失败”
-- 失败说明统一写：**远征失败并进入 2 年冷却**
+- 失败说明区分符合资格的一次补救与未补救的两年冷却；继续需60XP、已消耗同地笔记或在场老搭档，以当前数值模型为准。
 - 风险 tooltip 必须保留精确 `%` 成功率；不要退回定性 odds 文案
 - “远征终止并进入 2 年冷却”只能放在 failure outcome 最底部，不能独立重复出现
 - 不要省略 `flavor` 小字

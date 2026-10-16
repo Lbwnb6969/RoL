@@ -132,7 +132,9 @@ def check_quest_lifecycle_contract(root: Path, errors: list[str]) -> int:
                 result = State(flags=set(core), dynasty=State(activity=None), house=State(activity=None))
                 if old_paid: result.modifiers[modifier] = None
                 model.run(payoff, result)
-                assert result.dynasty.prestige == 200 + (0 if old_paid else reward)
+                # A fresh fivefold claim also settles the independent fourfold
+                # dynasty reward, regardless of which window was clicked first.
+                assert result.dynasty.prestige == 200 + (0 if old_paid else reward + (500 if suffix == "0002" else 0))
                 before = snapshot(result)
                 model.run(payoff, result)
                 assert snapshot(result) == before, f"circle {suffix}: repeat event refreshes rewards"

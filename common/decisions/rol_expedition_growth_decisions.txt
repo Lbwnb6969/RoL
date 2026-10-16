@@ -11,3 +11,33 @@ rol_review_expedition_journal_decision = {
 	effect = { trigger_event = rol_expedition_growth.0001 }
 	ai_potential = { always = no }
 }
+
+rol_review_expedition_crisis_decision = {
+	picture = { reference = "gfx/interface/illustrations/decisions/decision_smith.dds" }
+	ai_check_interval = 0
+	is_shown = {
+		is_playable_character = yes
+		is_ai = no
+		has_character_flag = rol_expedition_remedy_pending
+		exists = involved_activity
+	}
+	is_valid_showing_failures_only = {
+		is_alive = yes
+		involved_activity = { var:rol_expedition_growth_open = 1 var:rol_expedition_remedy_used = 1 }
+	}
+	effect = { rol_expedition_review_remedy_effect = yes }
+	ai_potential = { always = no }
+}
+
+rol_review_fragment_resonance_decision = {
+	picture = { reference = "gfx/interface/illustrations/decisions/decision_smith.dds" }
+	ai_check_interval = 0
+	is_shown = {
+		is_playable_character = yes
+		is_ai = no
+		has_character_flag = rol_fragment_upgrade_pending
+	}
+	is_valid_showing_failures_only = { is_alive = yes }
+	effect = { rol_fragment_review_resonance_effect = yes }
+	ai_potential = { always = no }
+}

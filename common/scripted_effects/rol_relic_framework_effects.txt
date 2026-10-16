@@ -261,3 +261,145 @@ rol_clear_context_carthage_helmet_effect = {
 		RELIC_ARCHETYPE_FLAG = rol_relic_context_helmet
 	}
 }
+
+# 共享参数化工具：将活动成功进度钳制在 0~100
+rol_relic_cap_partial_progress_effect = {
+	scope:activity = {
+		if = {
+			limit = { var:activity_special_type_progression > $MAX$ }
+			set_variable = { name = activity_special_type_progression value = $MAX$ }
+		}
+	}
+}
+
+rol_relic_clamp_activity_progress_effect = {
+	scope:activity ?= {
+		if = {
+			limit = { var:activity_special_type_progression < 0 }
+			set_variable = {
+				name = activity_special_type_progression
+				value = 0
+			}
+		}
+		else_if = {
+			limit = { var:activity_special_type_progression > 100 }
+			set_variable = {
+				name = activity_special_type_progression
+				value = 100
+			}
+		}
+	}
+}
+
+# 共享参数化工具：按各链阈值存储最近一次成功等级与标记
+rol_relic_store_tiered_success_result_effect = {
+	if = {
+		limit = {
+			exists = scope:activity
+			scope:activity.var:activity_special_type_progression >= $TIER4$
+		}
+		set_variable = {
+			name = rol_recent_relic_result_tier
+			value = 4
+		}
+	}
+	else_if = {
+		limit = {
+			exists = scope:activity
+			scope:activity.var:activity_special_type_progression >= $TIER3$
+		}
+		set_variable = {
+			name = rol_recent_relic_result_tier
+			value = 3
+		}
+	}
+	else_if = {
+		limit = {
+			exists = scope:activity
+			scope:activity.var:activity_special_type_progression >= $TIER2$
+		}
+		set_variable = {
+			name = rol_recent_relic_result_tier
+			value = 2
+		}
+	}
+	else = {
+		set_variable = {
+			name = rol_recent_relic_result_tier
+			value = 1
+		}
+	}
+	add_character_flag = $SUCCESS_FLAG$
+	remove_character_flag = $FAILURE_FLAG$
+}
+
+# 共享参数化工具：存储最近一次失败标记
+rol_relic_store_failure_result_common_effect = {
+	set_variable = {
+		name = rol_recent_relic_result_tier
+		value = 0
+	}
+	add_character_flag = $FAILURE_FLAG$
+	remove_character_flag = $SUCCESS_FLAG$
+}
+
+# 共享参数化工具：阶段推进时的宾客或竞争者插曲触发（每场远征至多一次）
+rol_relic_try_guest_or_rival_interlude_effect = {
+	if = {
+		limit = {
+			NOT = { has_character_flag = $GUEST_FLAG$ }
+			exists = scope:activity
+			scope:activity = {
+				any_attending_character = {
+					this != root
+				}
+			}
+			var:$STAGE_VAR$ >= 1
+			var:$STAGE_VAR$ < $MAX_STAGE$
+		}
+		add_character_flag = $GUEST_FLAG$
+		add_character_flag = $RIVAL_FLAG$
+		rol_try_rival_interlude_effect = { FALLBACK_EVENT = $FALLBACK_EVENT$ }
+	}
+}
+
+# 共享参数化工具：完整成功收尾公共逻辑
+rol_relic_complete_success_tail_effect = {
+	rol_apply_expedition_preparation_success_bonus_effect = yes
+	rol_store_recent_expedition_preparation_effect = yes
+	rol_check_legend_circle_fivefold_revelation_effect = yes
+	remove_character_flag = $HEARD_FLAG$
+	remove_character_modifier = $COOLDOWN_MODIFIER$
+	rol_relic_log_success_effect = yes
+	send_interface_toast = {
+		type = event_toast_effect_good
+		title = $TOAST_TITLE$
+		desc = $TOAST_DESC$
+		left_icon = this
+	}
+	trigger_event = { id = $SUMMARY_EVENT$ days = 1 }
+	$CLEAR_CONTEXT_EFFECT$ = yes
+	$ABORT_EFFECT$ = yes
+	rol_relic_debug_trace_effect = { DEBUG_KEY = $DEBUG_KEY$ }
+	rol_relic_quest_close_effect = yes
+}
+
+# 共享参数化工具：失败收尾公共逻辑
+rol_relic_failure_finalize_tail_effect = {
+	rol_relic_apply_cooldown_effect = {
+		COOLDOWN_MODIFIER = $COOLDOWN_MODIFIER$
+		COOLDOWN_YEARS = 2
+	}
+	$STORE_FAILURE_EFFECT$ = yes
+	rol_relic_log_failure_effect = yes
+	send_interface_toast = {
+		type = event_toast_effect_bad
+		title = $TOAST_TITLE$
+		desc = $TOAST_DESC$
+		left_icon = this
+	}
+	trigger_event = { id = $SUMMARY_EVENT$ days = 1 }
+	$CLEAR_CONTEXT_EFFECT$ = yes
+	rol_relic_debug_trace_effect = { DEBUG_KEY = $DEBUG_KEY$ }
+	rol_relic_quest_close_effect = yes
+}
