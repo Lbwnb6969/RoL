@@ -1,0 +1,184 @@
+﻿# Relics of Legend - Unified expedition preparation values
+
+rol_expedition_preparation_success_chance_modifier = {
+	add = rol_expedition_journal_success_chance_modifier
+	add = rol_expedition_companion_scholar_chance_modifier
+	if = {
+		limit = { rol_expedition_preparation_supreme_trigger = yes }
+		add = 20
+	}
+	else_if = {
+		limit = { rol_expedition_preparation_high_trigger = yes }
+		add = 10
+	}
+	else_if = {
+		limit = { rol_expedition_preparation_low_trigger = yes }
+		add = -10
+	}
+}
+
+rol_expedition_success_chance_35_value = {
+	value = 35
+	add = rol_expedition_preparation_success_chance_modifier
+	min = 5
+	max = 95
+}
+
+rol_expedition_failure_chance_35_value = {
+	value = 100
+	subtract = rol_expedition_success_chance_35_value
+	min = 5
+	max = 95
+}
+
+rol_expedition_success_chance_40_value = {
+	value = 40
+	add = rol_expedition_preparation_success_chance_modifier
+	min = 5
+	max = 95
+}
+
+rol_expedition_failure_chance_40_value = {
+	value = 100
+	subtract = rol_expedition_success_chance_40_value
+	min = 5
+	max = 95
+}
+
+rol_expedition_success_chance_45_value = {
+	value = 45
+	add = rol_expedition_preparation_success_chance_modifier
+	min = 5
+	max = 95
+}
+
+rol_expedition_failure_chance_45_value = {
+	value = 100
+	subtract = rol_expedition_success_chance_45_value
+	min = 5
+	max = 95
+}
+
+rol_expedition_success_chance_50_value = {
+	value = 50
+	add = rol_expedition_preparation_success_chance_modifier
+	min = 5
+	max = 95
+}
+
+rol_expedition_failure_chance_50_value = {
+	value = 100
+	subtract = rol_expedition_success_chance_50_value
+	min = 5
+	max = 95
+}
+
+rol_expedition_success_chance_55_value = {
+	value = 55
+	add = rol_expedition_preparation_success_chance_modifier
+	min = 5
+	max = 95
+}
+
+rol_expedition_failure_chance_55_value = {
+	value = 100
+	subtract = rol_expedition_success_chance_55_value
+	min = 5
+	max = 95
+}
+
+rol_expedition_success_chance_65_value = {
+	value = 65
+	add = rol_expedition_preparation_success_chance_modifier
+	min = 5
+	max = 95
+}
+
+rol_expedition_failure_chance_65_value = {
+	value = 100
+	subtract = rol_expedition_success_chance_65_value
+	min = 5
+	max = 95
+}
+
+rol_expedition_success_chance_70_value = {
+	value = 70
+	add = rol_expedition_preparation_success_chance_modifier
+	min = 5
+	max = 95
+}
+
+rol_expedition_failure_chance_70_value = {
+	value = 100
+	subtract = rol_expedition_success_chance_70_value
+	min = 5
+	max = 95
+}
+
+rol_expedition_success_chance_75_value = {
+	value = 75
+	add = rol_expedition_preparation_success_chance_modifier
+	min = 5
+	max = 95
+}
+
+rol_expedition_failure_chance_75_value = {
+	value = 100
+	subtract = rol_expedition_success_chance_75_value
+	min = 5
+	max = 95
+}
+
+rol_expedition_success_chance_80_value = {
+	value = 80
+	add = rol_expedition_preparation_success_chance_modifier
+	min = 5
+	max = 95
+}
+
+rol_expedition_failure_chance_80_value = {
+	value = 100
+	subtract = rol_expedition_success_chance_80_value
+	min = 5
+	max = 95
+}
+
+rol_expedition_success_chance_85_value = {
+	value = 85
+	add = rol_expedition_preparation_success_chance_modifier
+	min = 5
+	max = 95
+}
+
+rol_expedition_failure_chance_85_value = {
+	value = 100
+	subtract = rol_expedition_success_chance_85_value
+	min = 5
+	max = 95
+}
+rol_expedition_success_chance_90_value = {
+	value = 90
+	add = rol_expedition_preparation_success_chance_modifier
+	min = 5
+	max = 95
+}
+
+rol_expedition_failure_chance_90_value = {
+	value = 100
+	subtract = rol_expedition_success_chance_90_value
+	min = 5
+	max = 95
+}
+rol_expedition_display_success_chance_value = {
+	value = var:rol_expedition_display_base_chance
+	add = rol_expedition_preparation_success_chance_modifier
+	min = 5
+	max = 95
+}
+
+rol_expedition_display_failure_chance_value = {
+	value = 100
+	subtract = rol_expedition_display_success_chance_value
+	min = 5
+	max = 95
+}

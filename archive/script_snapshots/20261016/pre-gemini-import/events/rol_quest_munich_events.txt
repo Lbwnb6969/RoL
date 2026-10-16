@@ -1,0 +1,807 @@
+﻿namespace = rol_quest_munich
+
+# Mythic Relics - 慕尼黑：尼伯龙根星界球活动事件链
+
+rol_quest_munich.0990 = {
+	type = character_event
+	title = rol_quest_munich.0990.t
+	desc = rol_quest_munich.0990.desc
+	theme = learning
+	override_background = { reference = rol_bg_munich_0990_arrival }
+	override_sound = { reference = "event:/SFX/Events/Themes/sfx_event_theme_type_faith" }
+
+	trigger = {
+		rol_munich_quest_active_trigger = yes
+		is_ai = no
+		has_character_flag = rol_heard_nibelung_legend
+		NOT = { has_character_flag = rol_nibelung_sphere_claimed }
+	}
+
+	option = {
+		name = rol_quest_munich.0990.a
+
+		flavor = rol_quest_munich.0990.a.flavor
+		if = {
+			limit = { rol_munich_quest_active_trigger = yes }
+			hidden_effect = {
+				rol_expedition_companion_offer_effect = { NEXT_EVENT = rol_quest_munich.1000 }
+			}
+		}
+	}
+}
+
+rol_quest_munich.1000 = {
+	type = character_event
+	title = rol_quest_munich.1000.t
+	desc = rol_quest_munich.1000.desc
+	theme = learning
+	override_background = { reference = rol_bg_munich_1000_frost }
+	override_sound = { reference = "event:/SFX/Events/Themes/sfx_event_theme_type_learning" }
+
+	trigger = {
+		rol_munich_quest_active_trigger = yes
+		is_ai = no
+		has_character_flag = rol_heard_nibelung_legend
+		NOT = { has_character_flag = rol_nibelung_sphere_claimed }
+	}
+
+	immediate = {
+		if = {
+			limit = { rol_munich_quest_active_trigger = yes }
+			if = {
+				limit = { NOT = { has_variable = rol_munich_stage_count } }
+				set_variable = {
+					name = rol_munich_stage_count
+					value = 0
+				}
+			}
+		}
+	}
+
+	option = {
+		name = rol_quest_munich.1000.a
+		flavor = rol_quest_munich.1000.a.flavor
+		skill = learning
+		custom_tooltip = rol_quest_munich.1000.a.base_tt
+		if = {
+			limit = { rol_munich_quest_active_trigger = yes }
+			if = {
+				limit = { learning >= 25 }
+				set_variable = { name = rol_expedition_display_base_chance value = 90 }
+				random_list = {
+					0 = {
+						modifier = { add = rol_expedition_success_chance_90_value }
+						desc = rol_quest_munich.1000.a.tt.success
+						add_piety = 120
+						hidden_effect = {
+							scope:activity ?= { activity_special_type_progression_major = yes }
+							trigger_event = { id = rol_quest_munich.1010 days = 1 }
+						}
+					}
+					0 = {
+						modifier = { add = rol_expedition_failure_chance_90_value }
+						desc = rol_quest_munich.1000.a.tt.failure
+						add_stress = 30
+						hidden_effect = {
+							scope:activity ?= { activity_special_type_progression_negative_major = yes }
+							trigger_event = { id = rol_quest_munich.1011 days = 1 }
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = { learning >= 18 }
+				set_variable = { name = rol_expedition_display_base_chance value = 80 }
+				random_list = {
+					0 = {
+						modifier = { add = rol_expedition_success_chance_80_value }
+						desc = rol_quest_munich.1000.a.tt.success
+						add_piety = 100
+						hidden_effect = {
+							scope:activity ?= { activity_special_type_progression_major = yes }
+							trigger_event = { id = rol_quest_munich.1010 days = 1 }
+						}
+					}
+					0 = {
+						modifier = { add = rol_expedition_failure_chance_80_value }
+						desc = rol_quest_munich.1000.a.tt.failure
+						add_stress = 40
+						hidden_effect = {
+							scope:activity ?= { activity_special_type_progression_negative_major = yes }
+							trigger_event = { id = rol_quest_munich.1011 days = 1 }
+						}
+					}
+				}
+			}
+			else = {
+				set_variable = { name = rol_expedition_display_base_chance value = 50 }
+				random_list = {
+					0 = {
+						modifier = { add = rol_expedition_success_chance_50_value }
+						desc = rol_quest_munich.1000.a.tt.success
+						add_piety = 60
+						hidden_effect = {
+							scope:activity ?= { activity_special_type_progression_medium = yes }
+							trigger_event = { id = rol_quest_munich.1010 days = 1 }
+						}
+					}
+					0 = {
+						modifier = { add = rol_expedition_failure_chance_50_value }
+						desc = rol_quest_munich.1000.a.tt.failure
+						add_stress = 50
+						hidden_effect = {
+							scope:activity ?= { activity_special_type_progression_negative_major = yes }
+							trigger_event = { id = rol_quest_munich.1011 days = 1 }
+						}
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = rol_quest_munich.1000.b
+		flavor = rol_quest_munich.1000.b.flavor
+		skill = martial
+		custom_tooltip = rol_quest_munich.1000.b.base_tt
+		if = {
+			limit = { rol_munich_quest_active_trigger = yes }
+			if = {
+				limit = {
+					OR = {
+						martial >= 25
+						prowess >= 25
+					}
+				}
+				set_variable = { name = rol_expedition_display_base_chance value = 90 }
+				random_list = {
+					0 = {
+						modifier = { add = rol_expedition_success_chance_90_value }
+						desc = rol_quest_munich.1000.b.tt.success
+						add_prestige = 105
+						hidden_effect = {
+							scope:activity ?= { activity_special_type_progression_major = yes }
+							trigger_event = { id = rol_quest_munich.1010 days = 1 }
+						}
+					}
+					0 = {
+						modifier = { add = rol_expedition_failure_chance_90_value }
+						desc = rol_quest_munich.1000.b.tt.failure
+						add_trait = wounded_1
+						add_prestige = -90
+						hidden_effect = {
+							scope:activity ?= { activity_special_type_progression_negative_major = yes }
+							trigger_event = { id = rol_quest_munich.1011 days = 1 }
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					OR = {
+						martial >= 16
+						prowess >= 14
+					}
+				}
+				set_variable = { name = rol_expedition_display_base_chance value = 65 }
+				random_list = {
+					0 = {
+						modifier = { add = rol_expedition_success_chance_65_value }
+						desc = rol_quest_munich.1000.b.tt.success
+						add_prestige = 90
+						hidden_effect = {
+							scope:activity ?= { activity_special_type_progression_medium = yes }
+							trigger_event = { id = rol_quest_munich.1010 days = 1 }
+						}
+					}
+					0 = {
+						modifier = { add = rol_expedition_failure_chance_65_value }
+						desc = rol_quest_munich.1000.b.tt.failure
+						add_trait = wounded_1
+						add_prestige = -120
+						hidden_effect = {
+							scope:activity ?= { activity_special_type_progression_negative_major = yes }
+							trigger_event = { id = rol_quest_munich.1011 days = 1 }
+						}
+					}
+				}
+			}
+			else = {
+				set_variable = { name = rol_expedition_display_base_chance value = 40 }
+				random_list = {
+					0 = {
+						modifier = { add = rol_expedition_success_chance_40_value }
+						desc = rol_quest_munich.1000.b.tt.success
+						add_prestige = 60
+						hidden_effect = {
+							scope:activity ?= { activity_special_type_progression_tiny = yes }
+							trigger_event = { id = rol_quest_munich.1010 days = 1 }
+						}
+					}
+					0 = {
+						modifier = { add = rol_expedition_failure_chance_40_value }
+						desc = rol_quest_munich.1000.b.tt.failure
+						add_trait = wounded_1
+						add_prestige = -150
+						hidden_effect = {
+							scope:activity ?= { activity_special_type_progression_negative_major = yes }
+							trigger_event = { id = rol_quest_munich.1011 days = 1 }
+						}
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = rol_quest_munich.1000.c
+
+		flavor = rol_quest_munich.1000.c.flavor
+		custom_tooltip = rol_quest_munich.1000.c.tt
+		if = {
+			limit = { rol_munich_quest_active_trigger = yes }
+			add_prestige = -50
+			hidden_effect = {
+				scope:activity ?= { activity_special_type_progression_negative_major = yes }
+				trigger_event = { id = rol_quest_munich.1012 days = 1 }
+			}
+		}
+	}
+
+	option = {
+		name = rol_expedition_guard_route_option
+		flavor = rol_expedition_guard_route_flavor
+		trigger = { rol_expedition_first_trial_trigger = yes rol_expedition_companion_guard_trigger = yes gold >= 75 }
+		custom_tooltip = rol_expedition_guard_route_tt
+		if = {
+			limit = { rol_munich_quest_active_trigger = yes }
+			rol_expedition_prepared_route_effect = {
+				COST = 75
+				QUALIFICATION = rol_expedition_companion_guard_trigger
+				NEXT_EVENT = rol_quest_munich.1010
+			}
+		}
+	}
+	option = {
+		name = rol_expedition_expert_route_option
+		flavor = rol_expedition_expert_route_flavor
+		trigger = { rol_expedition_expert_route_trigger = yes gold >= 100 }
+		custom_tooltip = rol_expedition_expert_route_tt
+		if = {
+			limit = { rol_munich_quest_active_trigger = yes }
+			rol_expedition_prepared_route_effect = {
+				COST = 100
+				QUALIFICATION = rol_expedition_expert_route_trigger
+				NEXT_EVENT = rol_quest_munich.1010
+			}
+		}
+	}
+}
+
+# 第一阶段结果反馈
+rol_quest_munich.1010 = {
+	type = character_event
+	title = rol_quest_munich.1010.t
+	desc = rol_quest_munich.1010.desc
+	theme = learning
+	override_background = { reference = dungeon }
+	trigger = { rol_munich_quest_active_trigger = yes  is_ai = no }
+	option = {
+		name = rol_quest_munich.1010.a
+
+		flavor = rol_quest_munich.1010.a.flavor
+		if = {
+			limit = { rol_munich_quest_active_trigger = yes }
+			hidden_effect = {
+				rol_munich_quest_progress_effect = yes
+			}
+		}
+	}
+}
+
+rol_quest_munich.1011 = {
+	type = character_event
+	title = rol_quest_munich.1011.t
+	desc = rol_quest_munich.1011.desc
+	theme = learning
+	override_background = { reference = dungeon }
+	trigger = { rol_munich_quest_active_trigger = yes  is_ai = no }
+	option = {
+		name = rol_quest_munich.1011.a
+
+		flavor = rol_quest_munich.1011.a.flavor
+		if = {
+			limit = { rol_munich_quest_active_trigger = yes }
+			hidden_effect = {
+				rol_munich_quest_fail_now_effect = yes
+			}
+		}
+	}
+}
+
+rol_quest_munich.1012 = {
+	type = character_event
+	title = rol_quest_munich.1012.t
+	desc = rol_quest_munich.1012.desc
+	theme = learning
+	override_background = { reference = dungeon }
+	trigger = { rol_munich_quest_active_trigger = yes  is_ai = no }
+	option = {
+		name = rol_quest_munich.1012.a
+
+		flavor = rol_quest_munich.1012.a.flavor
+		if = {
+			limit = { rol_munich_quest_active_trigger = yes }
+			hidden_effect = {
+				rol_munich_quest_fail_now_effect = yes
+			}
+		}
+	}
+}
+
+rol_quest_munich.1002 = {
+	type = character_event
+	title = rol_quest_munich.1002.t
+	desc = rol_quest_munich.1002.desc
+	theme = diplomacy
+	override_background = { reference = rol_bg_munich_1002_abyss }
+	override_sound = { reference = "event:/SFX/Events/Themes/sfx_event_theme_type_learning" }
+
+	trigger = {
+		rol_munich_quest_active_trigger = yes
+		is_ai = no
+		has_variable = rol_munich_stage_count
+		NOT = { has_character_flag = rol_nibelung_sphere_claimed }
+	}
+
+	option = {
+		name = rol_quest_munich.1002.a
+		flavor = rol_quest_munich.1002.a.flavor
+		skill = diplomacy
+		custom_tooltip = rol_quest_munich.1002.a.base_tt
+		if = {
+			limit = { rol_munich_quest_active_trigger = yes }
+			if = {
+				limit = { diplomacy >= 25 }
+				set_variable = { name = rol_expedition_display_base_chance value = 90 }
+				random_list = {
+					0 = {
+						modifier = { add = rol_expedition_success_chance_90_value }
+						desc = rol_quest_munich.1002.a.tt.success
+						add_prestige = 120
+						hidden_effect = {
+							scope:activity ?= { activity_special_type_progression_major = yes }
+							trigger_event = { id = rol_quest_munich.1020 days = 1 }
+						}
+					}
+					0 = {
+						modifier = { add = rol_expedition_failure_chance_90_value }
+						desc = rol_quest_munich.1002.a.tt.failure
+						add_stress = 20
+						hidden_effect = {
+							scope:activity ?= { activity_special_type_progression_negative = yes }
+							trigger_event = { id = rol_quest_munich.1021 days = 1 }
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = { diplomacy >= 16 }
+				set_variable = { name = rol_expedition_display_base_chance value = 75 }
+				random_list = {
+					0 = {
+						modifier = { add = rol_expedition_success_chance_75_value }
+						desc = rol_quest_munich.1002.a.tt.success
+						add_prestige = 100
+						hidden_effect = {
+							scope:activity ?= { activity_special_type_progression_major = yes }
+							trigger_event = { id = rol_quest_munich.1020 days = 1 }
+						}
+					}
+					0 = {
+						modifier = { add = rol_expedition_failure_chance_75_value }
+						desc = rol_quest_munich.1002.a.tt.failure
+						add_stress = 35
+						hidden_effect = {
+							scope:activity ?= { activity_special_type_progression_negative_major = yes }
+							trigger_event = { id = rol_quest_munich.1021 days = 1 }
+						}
+					}
+				}
+			}
+			else = {
+				set_variable = { name = rol_expedition_display_base_chance value = 45 }
+				random_list = {
+					0 = {
+						modifier = { add = rol_expedition_success_chance_45_value }
+						desc = rol_quest_munich.1002.a.tt.success
+						add_prestige = 60
+						hidden_effect = {
+							scope:activity ?= { activity_special_type_progression_medium = yes }
+							trigger_event = { id = rol_quest_munich.1020 days = 1 }
+						}
+					}
+					0 = {
+						modifier = { add = rol_expedition_failure_chance_45_value }
+						desc = rol_quest_munich.1002.a.tt.failure
+						add_stress = 45
+						hidden_effect = {
+							scope:activity ?= { activity_special_type_progression_negative_major = yes }
+							trigger_event = { id = rol_quest_munich.1021 days = 1 }
+						}
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = rol_quest_munich.1002.b
+		flavor = rol_quest_munich.1002.b.flavor
+		custom_tooltip = rol_quest_munich.1002.b.base_tt
+		if = {
+			limit = { rol_munich_quest_active_trigger = yes }
+			if = {
+				limit = { piety_level >= 3 }
+				set_variable = { name = rol_expedition_display_base_chance value = 90 }
+				random_list = {
+					0 = {
+						modifier = { add = rol_expedition_success_chance_90_value }
+						desc = rol_quest_munich.1002.b.tt.success
+						add_piety = 140
+						hidden_effect = {
+							scope:activity ?= { activity_special_type_progression_major = yes }
+							trigger_event = { id = rol_quest_munich.1020 days = 1 }
+						}
+					}
+					0 = {
+						modifier = { add = rol_expedition_failure_chance_90_value }
+						desc = rol_quest_munich.1002.b.tt.failure
+						add_stress = 15
+						hidden_effect = {
+							scope:activity ?= { activity_special_type_progression_negative = yes }
+							trigger_event = { id = rol_quest_munich.1021 days = 1 }
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = { piety_level >= 2 }
+				set_variable = { name = rol_expedition_display_base_chance value = 90 }
+				random_list = {
+					0 = {
+						modifier = { add = rol_expedition_success_chance_90_value }
+						desc = rol_quest_munich.1002.b.tt.success
+						add_piety = 120
+						hidden_effect = {
+							scope:activity ?= { activity_special_type_progression_major = yes }
+							trigger_event = { id = rol_quest_munich.1020 days = 1 }
+						}
+					}
+					0 = {
+						modifier = { add = rol_expedition_failure_chance_90_value }
+						desc = rol_quest_munich.1002.b.tt.failure
+						add_stress = 20
+						hidden_effect = {
+							scope:activity ?= { activity_special_type_progression_negative = yes }
+							trigger_event = { id = rol_quest_munich.1021 days = 1 }
+						}
+					}
+				}
+			}
+			else = {
+				set_variable = { name = rol_expedition_display_base_chance value = 50 }
+				random_list = {
+					0 = {
+						modifier = { add = rol_expedition_success_chance_50_value }
+						desc = rol_quest_munich.1002.b.tt.success
+						add_piety = 70
+						hidden_effect = {
+							scope:activity ?= { activity_special_type_progression_medium = yes }
+							trigger_event = { id = rol_quest_munich.1020 days = 1 }
+						}
+					}
+					0 = {
+						modifier = { add = rol_expedition_failure_chance_50_value }
+						desc = rol_quest_munich.1002.b.tt.failure
+						add_stress = 35
+						hidden_effect = {
+							scope:activity ?= { activity_special_type_progression_negative_major = yes }
+							trigger_event = { id = rol_quest_munich.1021 days = 1 }
+						}
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = rol_quest_munich.1002.c
+
+		flavor = rol_quest_munich.1002.c.flavor
+		custom_tooltip = rol_quest_munich.1002.c.tt
+		if = {
+			limit = { rol_munich_quest_active_trigger = yes }
+			add_stress = 15
+			hidden_effect = {
+				scope:activity ?= { activity_special_type_progression_negative_major = yes }
+				trigger_event = { id = rol_quest_munich.1022 days = 1 }
+			}
+		}
+	}
+}
+
+rol_quest_munich.1020 = {
+	type = character_event
+	title = rol_quest_munich.1020.t
+	desc = rol_quest_munich.1020.desc
+	theme = learning
+	override_background = { reference = ce1_catacombs }
+	trigger = { rol_munich_quest_active_trigger = yes  is_ai = no }
+	option = {
+		name = rol_quest_munich.1020.a
+
+		flavor = rol_quest_munich.1020.a.flavor
+		if = {
+			limit = { rol_munich_quest_active_trigger = yes }
+			hidden_effect = {
+				rol_munich_quest_progress_effect = yes
+			}
+		}
+	}
+}
+
+rol_quest_munich.1021 = {
+	type = character_event
+	title = rol_quest_munich.1021.t
+	desc = rol_quest_munich.1021.desc
+	theme = learning
+	override_background = { reference = ce1_catacombs }
+	trigger = { rol_munich_quest_active_trigger = yes  is_ai = no }
+	option = {
+		name = rol_quest_munich.1021.a
+
+		flavor = rol_quest_munich.1021.a.flavor
+		if = {
+			limit = { rol_munich_quest_active_trigger = yes }
+			hidden_effect = {
+				rol_munich_quest_fail_now_effect = yes
+			}
+		}
+	}
+}
+
+rol_quest_munich.1022 = {
+	type = character_event
+	title = rol_quest_munich.1022.t
+	desc = rol_quest_munich.1022.desc
+	theme = learning
+	override_background = { reference = ce1_catacombs }
+	trigger = { rol_munich_quest_active_trigger = yes  is_ai = no }
+	option = {
+		name = rol_quest_munich.1022.a
+
+		flavor = rol_quest_munich.1022.a.flavor
+		if = {
+			limit = { rol_munich_quest_active_trigger = yes }
+			hidden_effect = {
+				rol_munich_quest_fail_now_effect = yes
+			}
+		}
+	}
+}
+
+# 宾客插曲：星冢议论
+rol_quest_munich.1050 = {
+	type = character_event
+	title = rol_quest_munich.1050.t
+	desc = rol_quest_munich.1050.desc
+	theme = diplomacy
+	override_background = { reference = ce1_catacombs }
+
+	trigger = {
+		rol_munich_quest_active_trigger = yes
+		is_ai = no
+		exists = scope:activity
+		scope:activity = {
+			any_attending_character = {
+				this != root
+			}
+		}
+	}
+
+	option = {
+		name = rol_quest_munich.1050.a
+
+		flavor = rol_quest_munich.1050.a.flavor
+		if = {
+			limit = { rol_munich_quest_active_trigger = yes }
+			hidden_effect = {
+				scope:activity ?= { activity_special_type_progression_tiny = yes }
+				add_piety = 35
+			}
+		}
+	}
+
+	option = {
+		name = rol_quest_munich.1050.b
+
+		flavor = rol_quest_munich.1050.b.flavor
+		if = {
+			limit = { rol_munich_quest_active_trigger = yes }
+			hidden_effect = {
+				scope:activity ?= { activity_special_type_progression_negative = yes }
+				add_stress = 20
+			}
+		}
+	}
+}
+
+rol_quest_munich.1001 = {
+	type = character_event
+	title = rol_quest_munich.1001.t
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					exists = scope:activity
+					scope:activity.var:activity_special_type_progression >= 55
+				}
+				desc = rol_quest_munich.1001.desc.tier_4
+			}
+			triggered_desc = {
+				trigger = {
+					exists = scope:activity
+					scope:activity.var:activity_special_type_progression >= 35
+				}
+				desc = rol_quest_munich.1001.desc.partial
+			}
+			triggered_desc = {
+				trigger = {
+					OR = {
+						NOT = { exists = scope:activity }
+						AND = {
+							exists = scope:activity
+							scope:activity.var:activity_special_type_progression < 55
+						}
+					}
+				}
+				desc = rol_quest_munich.1001.desc.below_tier4
+			}
+			desc = rol_quest_munich.1001.desc
+		}
+	}
+	theme = learning
+	override_background = { reference = rol_success_bg_munich }
+	override_sound = { reference = "event:/SFX/Events/Themes/sfx_event_theme_type_learning" }
+
+	trigger = {
+		rol_munich_quest_active_trigger = yes
+		is_ai = no
+	}
+
+	immediate = {
+		if = {
+			limit = { rol_munich_quest_active_trigger = yes }
+			if = {
+				limit = { has_character_flag = rol_nibelung_sphere_claimed }
+				error_log = "[ROL][DUPLICATE] rol_quest_munich.1001 fired after claim; skipping artifact grant"
+			}
+			else_if = {
+				limit = {
+					exists = scope:activity
+					scope:activity.var:activity_special_type_progression >= 55
+				}
+				play_sound_effect = "event:/DLC/EP1/SFX/UI/Notifications/court_grandeur_toast_lvl_up"
+				rol_create_nibelung_star_sphere_effect = yes
+
+				if = {
+					limit = { exists = scope:newly_created_artifact }
+					rol_munich_quest_success_finalize_effect = yes
+				}
+				else = {
+					error_log = "[ROL][ERROR] Failed to grant artifact rol_nibelung_star_sphere in rol_quest_munich.1001"
+					rol_munich_quest_fail_now_effect = yes
+				}
+
+				rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_nibelung_terminal_tier4_reward }
+			}
+			else_if = {
+				limit = { exists = scope:activity scope:activity.var:activity_special_type_progression >= 35 }
+				rol_munich_quest_partial_finalize_effect = yes
+			}
+			else = {
+				rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_nibelung_terminal_below_tier4_fail }
+				rol_munich_quest_fail_now_effect = yes
+			}
+
+		}
+	}
+
+	option = {
+		name = rol_quest_munich.1001.a
+
+		flavor = rol_quest_munich.1001.a.flavor
+		custom_tooltip = rol_quest_munich.1001.a.tt
+	}
+}
+
+rol_quest_munich.1090 = {
+	type = character_event
+	title = rol_quest_munich.1090.t
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					has_character_flag = rol_recent_nibelung_quest_success
+					has_character_flag = rol_recent_expedition_preparation_supreme
+					has_variable = rol_recent_relic_result_tier
+					var:rol_recent_relic_result_tier >= 4
+				}
+				desc = rol_quest_munich.1090.desc.success_4.supreme
+			}
+			triggered_desc = {
+				trigger = {
+					has_character_flag = rol_recent_nibelung_quest_success
+					has_character_flag = rol_recent_expedition_preparation_high
+					has_variable = rol_recent_relic_result_tier
+					var:rol_recent_relic_result_tier >= 4
+				}
+				desc = rol_quest_munich.1090.desc.success_4.high
+			}
+			triggered_desc = {
+				trigger = {
+					has_character_flag = rol_recent_nibelung_quest_success
+					has_variable = rol_recent_relic_result_tier
+					var:rol_recent_relic_result_tier >= 4
+				}
+				desc = rol_quest_munich.1090.desc.success_4.standard
+			}
+			triggered_desc = {
+				trigger = {
+					has_character_flag = rol_recent_nibelung_quest_success
+					has_variable = rol_recent_relic_result_tier
+					var:rol_recent_relic_result_tier >= 3
+				}
+				desc = rol_quest_munich.1090.desc.success_3
+			}
+			triggered_desc = {
+				trigger = {
+					has_character_flag = rol_recent_nibelung_quest_success
+					has_variable = rol_recent_relic_result_tier
+					var:rol_recent_relic_result_tier >= 2
+				}
+				desc = rol_quest_munich.1090.desc.success_2
+			}
+			triggered_desc = {
+				trigger = { has_character_flag = rol_recent_nibelung_quest_success }
+				desc = rol_quest_munich.1090.desc.success_1
+			}
+			triggered_desc = {
+				trigger = { has_character_flag = rol_recent_nibelung_quest_failure }
+				desc = rol_quest_munich.1090.desc.failure
+			}
+			desc = rol_quest_munich.1090.desc.fallback
+		}
+	}
+	theme = learning
+	override_background = { reference = rol_bg_munich_1090_summary }
+
+	trigger = {
+		is_ai = no
+		OR = {
+			has_character_flag = rol_recent_nibelung_quest_success
+			has_character_flag = rol_recent_nibelung_quest_failure
+		}
+	}
+
+	option = {
+		name = rol_quest_munich.1090.a
+
+		flavor = rol_quest_munich.1090.a.flavor
+		hidden_effect = {
+			rol_relic_clear_recent_result_effect = yes
+		}
+	}
+}
+

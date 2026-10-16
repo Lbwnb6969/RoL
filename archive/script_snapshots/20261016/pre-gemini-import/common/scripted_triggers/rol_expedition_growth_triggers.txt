@@ -1,0 +1,5 @@
+﻿rol_expedition_growth_pending_trigger = {
+	has_character_flag = rol_expedition_growth_pending
+	has_variable = rol_expedition_growth_pending_xp
+	var:rol_expedition_growth_pending_xp > 0
+}

@@ -1,0 +1,31 @@
+﻿rol_arrange_relic_use_decision = {
+ picture = { reference = "gfx/interface/illustrations/decisions/decision_smith.dds" }
+ ai_check_interval = 0
+ is_shown = { is_ai = no OR = { rol_has_true_artifact_relic_trigger = yes has_character_flag = rol_naxos_unit_unlocked } }
+ is_valid_showing_failures_only = { rol_relic_use_ready_trigger = yes }
+ effect = { trigger_event = rol_relic_use.0001 }
+ ai_potential = { always = no }
+}
+
+rol_review_relic_use_decision = {
+ picture = { reference = "gfx/interface/illustrations/decisions/decision_smith.dds" }
+ ai_check_interval = 0
+ is_shown = { is_ai = no rol_relic_use_pending_trigger = yes NOT = { has_character_flag = rol_relic_use_waiting } }
+ effect = { rol_relic_use_reopen_effect = yes }
+ ai_potential = { always = no }
+}
+
+rol_retire_relic_use_decision = {
+ picture = { reference = "gfx/interface/illustrations/decisions/decision_smith.dds" }
+ ai_check_interval = 0
+ is_shown = {
+  is_ai = no
+  OR = {
+   any_character_artifact = { rol_relic_has_use_mode_trigger = yes }
+   has_character_modifier = rol_relic_use_5_field_modifier
+   has_character_modifier = rol_relic_use_5_training_modifier
+  }
+ }
+ effect = { trigger_event = rol_relic_use.0004 }
+ ai_potential = { always = no }
+}

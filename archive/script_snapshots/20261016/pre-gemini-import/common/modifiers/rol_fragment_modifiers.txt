@@ -1,0 +1,45 @@
+﻿# Relics of Legends - Fragment upgrade modifiers
+
+rol_fragment_expedition_failure_modifier = {
+	stress_gain_mult = 0.10
+}
+
+rol_blade_fragment_1_modifier = {
+	prowess = 2
+	monthly_prestige_gain_mult = 0.03
+}
+
+rol_blade_fragment_2_modifier = {
+	prowess = 3
+	army_damage_mult = 0.03
+}
+
+rol_nibelung_fragment_1_modifier = {
+	learning = 2
+	stress_loss_mult = 0.03
+}
+
+rol_nibelung_fragment_2_modifier = {
+	monthly_piety_gain_mult = 0.04
+	monthly_learning_lifestyle_xp_gain_mult = 0.05
+}
+
+rol_astrolabe_fragment_1_modifier = {
+	character_travel_safety = 5
+	character_travel_speed_mult = 0.05
+}
+
+rol_astrolabe_fragment_2_modifier = {
+	monthly_stewardship_lifestyle_xp_gain_mult = 0.05
+	monthly_prestige_gain_mult = 0.04
+}
+
+rol_ash_fragment_1_modifier = {
+	dread_gain_mult = 0.05
+	monthly_county_control_growth_factor = 0.05
+}
+
+rol_ash_fragment_2_modifier = {
+	prowess = 2
+	dread_gain_mult = 0.05
+}

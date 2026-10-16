@@ -1,0 +1,19 @@
+﻿rol_fragment_any_route_trigger = {
+ OR = {
+  has_character_flag = rol_fragment_route_mars
+  has_character_flag = rol_fragment_route_nibelung
+  has_character_flag = rol_fragment_route_astrolabe
+  has_character_flag = rol_fragment_route_ash
+}
+}
+
+rol_fragment_target_valid_trigger = {
+ exists = var:rol_fragment_target
+ var:rol_fragment_target = { artifact_owner = root }
+ OR = {
+  AND = { has_character_flag = rol_fragment_route_mars var:rol_fragment_target = { artifact_type = rol_blade_of_mars NOT = { has_artifact_modifier = rol_blade_fragment_2_modifier } } }
+  AND = { has_character_flag = rol_fragment_route_nibelung var:rol_fragment_target = { artifact_type = rol_nibelung_star_sphere NOT = { has_artifact_modifier = rol_nibelung_fragment_2_modifier } } }
+  AND = { has_character_flag = rol_fragment_route_astrolabe var:rol_fragment_target = { artifact_type = rol_astrolabe_of_ocean NOT = { has_artifact_modifier = rol_astrolabe_fragment_2_modifier } } }
+  AND = { has_character_flag = rol_fragment_route_ash var:rol_fragment_target = { artifact_type = rol_ash_forged_mask NOT = { has_artifact_modifier = rol_ash_fragment_2_modifier } } }
+ }
+}

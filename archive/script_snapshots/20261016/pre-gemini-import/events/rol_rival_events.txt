@@ -1,0 +1,109 @@
+﻿namespace = rol_rival
+
+rol_rival.1000 = {
+	type = character_event
+	title = rol_rival.1000.t
+	desc = rol_rival.1000.desc
+	theme = intrigue
+	override_background = { reference = rol_bg_rival_expedition }
+	left_portrait = scope:rol_expedition_rival
+	trigger = { is_ai = no rol_rival_route_active_trigger = yes }
+	option = {
+		name = rol_rival.1000.d
+		flavor = rol_rival.1000.d.flavor
+		trigger = { rol_expedition_companion_envoy_trigger = yes }
+		custom_tooltip = rol_expedition_companion_mediation_tt
+		if = { limit = { rol_rival_route_active_trigger = yes } rol_expedition_companion_mediate_effect = yes }
+	}
+	option = {
+		name = rol_rival.1000.a
+		flavor = rol_rival.1000.a.flavor
+		trigger = { prestige >= 50 NOT = { has_character_flag = rol_rival_pact_choice_pending } }
+		if = {
+			limit = { rol_rival_route_active_trigger = yes prestige >= 50 NOT = { has_character_flag = rol_rival_pact_choice_pending } }
+			rol_rival_new_pact_effect = yes
+			set_variable = { name = rol_rival_pact_partner value = scope:rol_expedition_rival }
+			add_character_flag = rol_rival_pact_choice_pending
+			add_prestige = -50
+			add_character_flag = { flag = rol_rival_cooperation_active years = 2 }
+			add_character_modifier = { modifier = rol_rival_pact_modifier years = 5 }
+			scope:rol_expedition_rival = { add_opinion = { target = root modifier = rol_expedition_cooperation_opinion } }
+			hidden_effect = {
+				scope:activity = { activity_special_type_progression_tiny = yes }
+				trigger_event = { id = rol_rival.1001 days = 1 }
+				rol_clear_rival_route_effect = yes
+			}
+		}
+	}
+	option = {
+		name = rol_rival.1000.b
+		flavor = rol_rival.1000.b.flavor
+		skill = prowess
+		if = { limit = { rol_rival_route_active_trigger = yes }
+			random_list = {
+				0 = { modifier = { add = 70 prowess >= scope:rol_expedition_rival.prowess } modifier = { add = 35 prowess < scope:rol_expedition_rival.prowess } desc = rol_rival.1000.b.success scope:rol_expedition_rival = { add_opinion = { target = root modifier = rol_expedition_respect_opinion } } hidden_effect = { scope:activity = { activity_special_type_progression_major = yes } } }
+				0 = { modifier = { add = 30 prowess >= scope:rol_expedition_rival.prowess } modifier = { add = 65 prowess < scope:rol_expedition_rival.prowess } desc = rol_rival.1000.b.failure add_trait = wounded_1 add_character_flag = { flag = rol_rival_grudge_active years = 2 } add_character_modifier = { modifier = rol_rival_grudge_modifier years = 5 } scope:rol_expedition_rival = { add_opinion = { target = root modifier = rol_expedition_grudge_opinion } } hidden_effect = { scope:activity = { activity_special_type_progression_negative_major = yes } } }
+			}
+			hidden_effect = { rol_clear_rival_route_effect = yes }
+		}
+	}
+	option = {
+		name = rol_rival.1000.c
+		flavor = rol_rival.1000.c.flavor
+		skill = learning
+		if = { limit = { rol_rival_route_active_trigger = yes }
+			random_list = {
+				65 = { desc = rol_rival.1000.c.success add_prestige = 75 hidden_effect = { scope:activity = { activity_special_type_progression_medium = yes } } }
+				35 = { desc = rol_rival.1000.c.failure add_stress = 25 hidden_effect = { rol_create_counterfeit_effect = yes rol_rival_counterfeit_failure_effect = yes } }
+			}
+			hidden_effect = { rol_clear_rival_route_effect = yes }
+		}
+	}
+	option = { name = rol_rival_context_lost_option flavor = rol_rival_context_lost_flavor trigger = { NOT = { rol_rival_route_active_trigger = yes } } }
+}
+
+rol_rival.1001 = {
+	type = character_event
+	title = rol_rival.1001.t
+	desc = rol_rival.1001.desc
+	theme = diplomacy
+	override_background = { reference = rol_bg_rival_pact }
+	left_portrait = scope:rol_expedition_rival
+	trigger = { is_ai = no rol_rival_pact_choice_trigger = yes }
+	immediate = {
+		# Initialize legacy pending records without replacing a captured new pact.
+		if = { limit = { NOT = { has_variable = rol_rival_pact_generation } } rol_rival_capture_pact_effect = yes }
+	}
+	option = {
+		name = rol_rival.1001.a
+		flavor = rol_rival.1001.a.flavor
+		trigger = { rol_rival_pact_choice_trigger = yes gold >= 50 }
+		if = { limit = { rol_rival_pact_choice_trigger = yes gold >= 50 }
+			remove_short_term_gold = 50
+			add_prestige = 100
+			scope:rol_expedition_rival = { add_opinion = { target = root modifier = rol_expedition_cooperation_opinion } }
+			rol_rival_close_selected_pact_effect = yes
+		}
+	}
+	option = {
+		name = rol_rival.1001.b
+		flavor = rol_rival.1001.b.flavor
+		trigger = { rol_rival_pact_choice_trigger = yes }
+		if = { limit = { rol_rival_pact_choice_trigger = yes }
+			add_prestige = 150
+			scope:rol_expedition_rival = { add_opinion = { target = root modifier = rol_expedition_grudge_opinion } }
+			rol_rival_close_selected_pact_effect = yes
+		}
+	}
+	option = {
+		name = rol_rival.1001.c
+		flavor = rol_rival.1001.c.flavor
+		trigger = { rol_rival_pact_choice_trigger = yes }
+		if = { limit = { rol_rival_pact_choice_trigger = yes }
+			add_stress = -10
+			scope:rol_expedition_rival = { add_opinion = { target = root modifier = rol_expedition_respect_opinion } }
+			rol_rival_close_selected_pact_effect = yes
+		}
+	}
+	option = { name = rol_rival_context_lost_option flavor = rol_rival_context_lost_flavor trigger = { NOT = { rol_rival_pact_choice_trigger = yes } } rol_rival_close_selected_pact_effect = yes }
+}

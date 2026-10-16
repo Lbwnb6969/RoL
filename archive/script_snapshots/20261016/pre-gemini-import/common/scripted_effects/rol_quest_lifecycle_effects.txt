@@ -1,0 +1,12 @@
+﻿# Host scope. Keep this separate from XP qualification so old active saves work.
+rol_relic_quest_begin_effect = {
+	scope:activity ?= { set_variable = { name = rol_relic_quest_closed value = 0 } }
+}
+
+# Settle once and finish the phase, rather than leaving the host away for a year.
+rol_relic_quest_close_effect = {
+	scope:activity ?= {
+		set_variable = { name = rol_relic_quest_closed value = 1 }
+		progress_activity_phase_after = { days = 1 }
+	}
+}

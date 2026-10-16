@@ -1,0 +1,338 @@
+﻿# Mythic Relics - 突尼斯：迦太基浴火金面远征
+activity_rol_seek_ash_forged_mask = {
+	is_shown = {
+		is_playable_character = yes
+		is_ai = no
+		has_character_flag = rol_heard_carthage_legend
+		NOT = { has_character_flag = rol_ash_forged_mask_claimed }
+	}
+
+	can_start_showing_failures_only = {
+		is_available_adult = yes
+		is_at_war = no
+		gold >= 280
+		NOT = { is_activity_type_on_cooldown = activity_rol_seek_ash_forged_mask }
+		custom_tooltip = {
+			text = rol_carthage_quest_on_cooldown_tt
+			NOT = { has_character_modifier = rol_carthage_quest_cooldown_modifier }
+		}
+	}
+
+	is_valid = {
+		scope:host = {
+			is_playable_character = yes
+			is_ai = no
+			is_alive = yes
+			is_imprisoned = no
+			NOT = { is_incapable = yes }
+			# Settled quests stay valid until their one-day phase finish.
+			OR = {
+				scope:activity = { var:rol_relic_quest_closed = 1 }
+				AND = {
+					has_character_flag = rol_heard_carthage_legend
+					NOT = { has_character_flag = rol_ash_forged_mask_claimed }
+					NOT = { has_character_modifier = rol_carthage_quest_cooldown_modifier }
+				}
+			}
+		}
+	}
+
+	on_start = {
+		scope:host = {
+			rol_relic_quest_begin_effect = yes
+			rol_relic_clear_recent_result_effect = yes
+			rol_clear_rival_route_effect = yes
+			rol_set_context_carthage_helmet_effect = yes
+			rol_expedition_growth_begin_effect = { ROUTE = carthage }
+			rol_expedition_companion_begin_effect = yes
+			if = {
+				limit = { has_variable = rol_carthage_stage_count }
+				remove_variable = rol_carthage_stage_count
+			}
+			remove_character_flag = rol_carthage_guest_event_fired
+		}
+		activity_setup_special_type_progression_effect = yes
+		activity_special_type_progression_variable = { NUM = 35 }
+		add_activity_log_entry = {
+			key = rol_relic_activity_start_log
+			character = scope:host
+			score = 10
+			show_in_conclusion = yes
+		}
+	}
+
+	on_invalidated = {
+		scope:host = { rol_carthage_quest_fail_now_effect = yes }
+	}
+
+	on_host_death = {
+		scope:host = {
+			rol_expedition_growth_abandon_effect = yes
+			rol_clear_context_carthage_helmet_effect = yes
+			rol_carthage_quest_abort_effect = yes
+			rol_relic_quest_close_effect = yes
+			# Preserve the original pact fields for the on_death archive snapshot.
+		}
+		invalidation_host_death_effect = yes
+	}
+
+
+	province_filter = landed_title
+	ai_province_filter = landed_title
+	province_filter_target = b_qartajana
+
+	is_location_valid = {
+		OR = {
+			barony = title:b_qartajana
+			county = title:c_tunis
+		}
+	}
+
+	is_single_location = yes
+	wait_time_before_start = { days = 7 }
+	max_guest_arrival_delay_time = { months = 6 }
+	max_guests = 12
+	allow_zero_guest_invites = yes
+	open_invite = no
+
+	guest_invite_rules = {
+		rules = {
+			2 = activity_invite_rule_lovers
+			2 = activity_invite_rule_rivals_if_appropriate
+			3 = activity_invite_rule_extended_family
+			5 = activity_invite_rule_knights
+			6 = activity_invite_mp
+		}
+		defaults = {
+			1 = activity_invite_rule_friends
+			1 = activity_invite_rule_close_family
+			3 = activity_invite_rule_courtiers
+			4 = activity_invite_rule_guests
+			1 = activity_invite_spouses
+		}
+	}
+
+	can_be_activity_guest = {
+		is_adult = yes
+		is_healthy = yes
+		is_available = yes
+		in_diplomatic_range = scope:host
+		is_playable_character = no
+	}
+
+	guest_join_chance = {
+		base = 10
+		base_activity_modifier = yes
+		activity_guest_shared_ai_accept_modifier = yes
+	}
+
+	options = {
+		rol_option_expedition_preparation = {
+			rol_expedition_preparation_low = {
+				cost = {
+					gold = {
+						add = {
+							value = 30
+							desc = rol_expedition_preparation_low
+						}
+					}
+				}
+			}
+			rol_expedition_preparation_standard = {
+				default = yes
+				cost = {
+					gold = {
+						add = {
+							value = 150
+							desc = rol_expedition_preparation_standard
+						}
+					}
+				}
+			}
+			rol_expedition_preparation_high = {
+				cost = {
+					gold = {
+						add = {
+							value = 600
+							desc = rol_expedition_preparation_high
+						}
+					}
+				}
+			}
+			rol_expedition_preparation_supreme = {
+				cost = {
+					gold = {
+						add = {
+							value = 1750
+							desc = rol_expedition_preparation_supreme
+						}
+					}
+				}
+			}
+		}
+	}
+
+	phases = {
+		rol_carthage_descent_phase = {
+			is_predefined = yes
+			order = 1
+			select_scripted_location = {
+				title:b_qartajana.title_province = { save_scope_as = province }
+			}
+			location_source = scripted
+			on_phase_active = {
+				if = {
+					limit = { this = scope:host }
+					scope:activity = { progress_activity_phase_after = { days = 365 } }
+					trigger_event = rol_quest_carthage.0990
+				}
+			}
+		}
+	}
+
+	cooldown = { days = 1 }
+	cost = {
+		gold = {
+			add = {
+				value = 250
+				desc = rol_seek_ash_forged_mask_cost_desc
+			}
+		}
+	}
+	ui_predicted_cost = {
+		gold = {
+			value = 250
+		}
+	}
+
+	host_intents = {
+		intents = { rol_relic_hunt_intent }
+		default = rol_relic_hunt_intent
+	}
+
+	guest_intents = {
+		intents = { reduce_stress_intent }
+		default = reduce_stress_intent
+	}
+
+	conclusion_description = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					has_character_flag = rol_recent_carthage_quest_success
+					has_variable = rol_recent_relic_result_tier
+					var:rol_recent_relic_result_tier >= 4
+				}
+				desc = activity_rol_seek_ash_forged_mask_conclusion_desc_success_4
+			}
+			triggered_desc = {
+				trigger = {
+					has_character_flag = rol_recent_carthage_quest_success
+					has_variable = rol_recent_relic_result_tier
+					var:rol_recent_relic_result_tier >= 3
+				}
+				desc = activity_rol_seek_ash_forged_mask_conclusion_desc_success_3
+			}
+			triggered_desc = {
+				trigger = {
+					has_character_flag = rol_recent_carthage_quest_success
+					has_variable = rol_recent_relic_result_tier
+					var:rol_recent_relic_result_tier >= 2
+				}
+				desc = activity_rol_seek_ash_forged_mask_conclusion_desc_success_2
+			}
+			triggered_desc = {
+				trigger = { has_character_flag = rol_recent_carthage_quest_success }
+				desc = activity_rol_seek_ash_forged_mask_conclusion_desc_success_1
+			}
+			triggered_desc = {
+				trigger = { has_character_flag = rol_recent_carthage_quest_failure }
+				desc = activity_rol_seek_ash_forged_mask_conclusion_desc_failure
+			}
+			desc = activity_rol_seek_ash_forged_mask_conclusion_desc_fallback
+		}
+	}
+
+	on_complete = {
+		scope:host = {
+			rol_carthage_quest_fail_now_effect = yes
+			rol_expedition_companion_finish_effect = { STAGE_VARIABLE = rol_carthage_stage_count }
+			rol_expedition_growth_abandon_effect = yes
+			rol_clear_context_carthage_helmet_effect = yes
+			if = {
+				limit = { has_variable = rol_carthage_stage_count }
+				remove_variable = rol_carthage_stage_count
+			}
+		}
+	}
+
+	header_background = "gfx/interface/illustrations/activity_header_backgrounds/activity_rol_seek_ash_forged_mask.dds"
+
+	background = {
+		trigger = { rol_activity_host_at_activity_location_trigger = yes }
+		texture = "gfx/interface/illustrations/event_scenes/rol_activity_carthage_location.dds"
+		environment = "environment_event_fp1_tribal_temple"
+		ambience = "event:/DLC/FP1/SFX/Events/event_temple"
+	}
+
+	background = {
+		texture = "gfx/interface/illustrations/event_scenes/rol_activity_carthage_travel.dds"
+		environment = "environment_travel_desert"
+		ambience = "event:/SFX/Events/Backgrounds/desert_day"
+	}
+
+	window_characters = {
+		host = {
+			camera = camera_event_center
+			effect = {
+				if = {
+					limit = { rol_activity_host_at_activity_location_trigger = yes }
+					scope:host = { add_to_list = characters }
+				}
+			}
+			scripted_animation = { animation = idle }
+		}
+		travel_host = {
+			camera = camera_event_horse_left
+			effect = {
+				if = {
+					limit = { rol_activity_host_traveling_trigger = yes }
+					scope:host = { add_to_list = characters }
+				}
+			}
+			scripted_animation = { animation = jockey_walk }
+		}
+		guest = {
+			camera = camera_body_right
+			effect = {
+				if = {
+					limit = {
+						rol_activity_host_at_activity_location_trigger = yes
+						scope:player ?= { this != scope:host }
+					}
+					scope:player ?= { add_to_list = characters }
+				}
+				else = {
+					if = {
+						limit = { rol_activity_host_at_activity_location_trigger = yes }
+						every_attending_character = {
+							limit = {
+								location = scope:activity.activity_location
+								this != scope:host
+							}
+							add_to_list = characters
+						}
+					}
+				}
+			}
+			scripted_animation = { animation = idle }
+		}
+	}
+
+	activity_window_widgets = {
+		rol_carthage_success_bar = "activity_plugin_widgets_summary"
+	}
+
+	ai_will_do = { value = 0 }
+	ai_check_interval = 0
+}

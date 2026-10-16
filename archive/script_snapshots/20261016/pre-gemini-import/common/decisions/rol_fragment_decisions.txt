@@ -1,0 +1,105 @@
+﻿# Relics of Legends - short fragment expeditions
+
+rol_seek_mars_fragment_decision = {
+	picture = { reference = "gfx/interface/illustrations/decisions/decision_smith.dds" }
+	ai_check_interval = 0
+	cooldown = { years = 2 }
+	is_shown = {
+		is_playable_character = yes
+		is_ai = no
+		has_character_flag = rol_mars_blade_claimed
+		any_character_artifact = {
+			artifact_type = rol_blade_of_mars
+			NOT = { has_artifact_modifier = rol_blade_fragment_2_modifier }
+		}
+	}
+	is_valid_showing_failures_only = {
+		is_available_adult = yes
+		NOT = { rol_fragment_any_route_trigger = yes }
+		is_at_war = no
+		gold >= 120
+	}
+	cost = { gold = 120 }
+	effect = {
+		rol_relic_fragment_begin_effect = { ROUTE = mars TYPE = rol_blade_of_mars LAST_MODIFIER = rol_blade_fragment_2_modifier }
+	}
+	ai_potential = { always = no }
+}
+
+rol_seek_nibelung_fragment_decision = {
+	picture = { reference = "gfx/interface/illustrations/decisions/decision_smith.dds" }
+	ai_check_interval = 0
+	cooldown = { years = 2 }
+	is_shown = {
+		is_playable_character = yes
+		is_ai = no
+		has_character_flag = rol_nibelung_sphere_claimed
+		any_character_artifact = {
+			artifact_type = rol_nibelung_star_sphere
+			NOT = { has_artifact_modifier = rol_nibelung_fragment_2_modifier }
+		}
+	}
+	is_valid_showing_failures_only = {
+		is_available_adult = yes
+		NOT = { rol_fragment_any_route_trigger = yes }
+		is_at_war = no
+		gold >= 120
+	}
+	cost = { gold = 120 }
+	effect = {
+		rol_relic_fragment_begin_effect = { ROUTE = nibelung TYPE = rol_nibelung_star_sphere LAST_MODIFIER = rol_nibelung_fragment_2_modifier }
+	}
+	ai_potential = { always = no }
+}
+
+rol_seek_astrolabe_fragment_decision = {
+	picture = { reference = "gfx/interface/illustrations/decisions/decision_smith.dds" }
+	ai_check_interval = 0
+	cooldown = { years = 2 }
+	is_shown = {
+		is_playable_character = yes
+		is_ai = no
+		has_character_flag = rol_astrolabe_of_ocean_claimed
+		any_character_artifact = {
+			artifact_type = rol_astrolabe_of_ocean
+			NOT = { has_artifact_modifier = rol_astrolabe_fragment_2_modifier }
+		}
+	}
+	is_valid_showing_failures_only = {
+		is_available_adult = yes
+		NOT = { rol_fragment_any_route_trigger = yes }
+		is_at_war = no
+		gold >= 120
+	}
+	cost = { gold = 120 }
+	effect = {
+		rol_relic_fragment_begin_effect = { ROUTE = astrolabe TYPE = rol_astrolabe_of_ocean LAST_MODIFIER = rol_astrolabe_fragment_2_modifier }
+	}
+	ai_potential = { always = no }
+}
+
+rol_seek_ash_fragment_decision = {
+	picture = { reference = "gfx/interface/illustrations/decisions/decision_smith.dds" }
+	ai_check_interval = 0
+	cooldown = { years = 2 }
+	is_shown = {
+		is_playable_character = yes
+		is_ai = no
+		has_character_flag = rol_ash_forged_mask_claimed
+		any_character_artifact = {
+			artifact_type = rol_ash_forged_mask
+			NOT = { has_artifact_modifier = rol_ash_fragment_2_modifier }
+		}
+	}
+	is_valid_showing_failures_only = {
+		is_available_adult = yes
+		NOT = { rol_fragment_any_route_trigger = yes }
+		is_at_war = no
+		gold >= 120
+	}
+	cost = { gold = 120 }
+	effect = {
+		rol_relic_fragment_begin_effect = { ROUTE = ash TYPE = rol_ash_forged_mask LAST_MODIFIER = rol_ash_fragment_2_modifier }
+	}
+	ai_potential = { always = no }
+}

@@ -1,0 +1,263 @@
+﻿# Mythic Relics - 多地点神兵活动通用模板
+
+# 设定上下文（角色作用域）
+rol_relic_set_context_effect = {
+	add_character_flag = rol_relic_context_active
+	add_character_flag = $RELIC_CONTEXT_FLAG$
+	add_character_flag = $RELIC_ARCHETYPE_FLAG$
+}
+
+# 清理上下文（角色作用域）
+rol_relic_clear_context_effect = {
+	remove_character_flag = rol_relic_context_active
+	remove_character_flag = $RELIC_CONTEXT_FLAG$
+	remove_character_flag = $RELIC_ARCHETYPE_FLAG$
+}
+
+# 通用冷却（角色作用域）
+rol_relic_apply_cooldown_effect = {
+	add_character_modifier = {
+		modifier = $COOLDOWN_MODIFIER$
+		years = $COOLDOWN_YEARS$
+	}
+}
+
+# DEBUG开关（角色作用域）
+rol_relic_debug_enable_effect = {
+	add_character_flag = rol_relic_debug_mode
+	send_interface_toast = {
+		type = event_toast_effect_good
+		title = rol_relic_debug_enabled_toast
+		left_icon = this
+	}
+}
+
+rol_relic_debug_disable_effect = {
+	remove_character_flag = rol_relic_debug_mode
+	send_interface_toast = {
+		type = event_toast_effect_good
+		title = rol_relic_debug_disabled_toast
+		left_icon = this
+	}
+}
+
+# DEBUG追踪（角色作用域）
+# 调用示例：
+# rol_relic_debug_trace_effect = { DEBUG_KEY = rol_relic_debug_mars_stage_progress }
+rol_relic_debug_trace_effect = {
+	if = {
+		limit = { has_character_flag = rol_relic_debug_mode }
+		send_interface_toast = {
+			type = event_toast_effect_good
+			title = $DEBUG_KEY$
+			left_icon = this
+		}
+		error_log = "[ROL][DEBUG] $DEBUG_KEY$"
+	}
+}
+
+# 活动日志：阶段推进
+rol_relic_log_stage_effect = {
+	scope:activity ?= {
+		add_activity_log_entry = {
+			key = rol_relic_activity_stage_log
+			character = scope:host
+			score = 20
+			show_in_conclusion = yes
+		}
+	}
+}
+
+# 活动日志：成功
+rol_relic_log_success_effect = {
+	scope:activity ?= {
+		if = {
+			limit = { exists = scope:newly_created_artifact }
+			add_activity_log_entry = {
+				key = rol_relic_activity_success_log
+				character = scope:host
+				artifact = scope:newly_created_artifact
+				score = 90
+				tags = { complete good }
+				show_in_conclusion = yes
+			}
+		}
+		else = {
+			add_activity_log_entry = {
+				key = rol_relic_activity_success_log
+				character = scope:host
+				score = 90
+				tags = { complete good }
+				show_in_conclusion = yes
+			}
+		}
+	}
+}
+
+# 活动日志：部分成功（找到线索，但未取得完整圣物）
+rol_relic_log_partial_success_effect = {
+	scope:activity ?= {
+		add_activity_log_entry = {
+			key = rol_relic_activity_partial_success_log
+			character = scope:host
+			score = 60
+			tags = { complete good }
+			show_in_conclusion = yes
+		}
+	}
+}
+
+# 统一收束部分成功：保留进度奖励，留下线索，并进入短期冷却。
+# 调用方负责先存储对应链的成功档位，再清理链上下文。
+rol_relic_partial_success_finalize_effect = {
+	add_character_modifier = {
+		modifier = $PARTIAL_MODIFIER$
+		years = 5
+	}
+	rol_relic_apply_cooldown_effect = {
+		COOLDOWN_MODIFIER = $COOLDOWN_MODIFIER$
+		COOLDOWN_YEARS = 2
+	}
+	rol_relic_log_partial_success_effect = yes
+	send_interface_toast = {
+		type = event_toast_effect_good
+		title = rol_relic_partial_success_toast_title
+		desc = rol_relic_partial_success_toast_desc
+		left_icon = this
+	}
+	trigger_event = { id = $SUMMARY_EVENT$ days = 1 }
+	rol_relic_debug_trace_effect = { DEBUG_KEY = $DEBUG_KEY$ }
+}
+
+# 活动日志：失败
+rol_relic_log_failure_effect = {
+	scope:activity ?= {
+		add_activity_log_entry = {
+			key = rol_relic_activity_failure_log
+			character = scope:host
+			score = 70
+			tags = { complete bad }
+			show_in_conclusion = yes
+		}
+	}
+}
+
+# 记录最近一次成功结算时使用的整备档位（供后续结算提示使用）
+rol_store_recent_expedition_preparation_effect = {
+	remove_character_flag = rol_recent_expedition_preparation_low
+	remove_character_flag = rol_recent_expedition_preparation_standard
+	remove_character_flag = rol_recent_expedition_preparation_high
+	remove_character_flag = rol_recent_expedition_preparation_supreme
+
+	if = {
+		limit = { rol_expedition_preparation_supreme_trigger = yes }
+		add_character_flag = rol_recent_expedition_preparation_supreme
+	}
+	else_if = {
+		limit = { rol_expedition_preparation_high_trigger = yes }
+		add_character_flag = rol_recent_expedition_preparation_high
+	}
+	else_if = {
+		limit = { rol_expedition_preparation_low_trigger = yes }
+		add_character_flag = rol_recent_expedition_preparation_low
+	}
+	else = {
+		add_character_flag = rol_recent_expedition_preparation_standard
+	}
+}
+
+# 清理临时结算状态（角色作用域）
+rol_relic_clear_recent_result_effect = {
+	remove_character_flag = rol_recent_mars_quest_success
+	remove_character_flag = rol_recent_mars_quest_failure
+	remove_character_flag = rol_recent_nibelung_quest_success
+	remove_character_flag = rol_recent_nibelung_quest_failure
+	remove_character_flag = rol_recent_naxos_quest_success
+	remove_character_flag = rol_recent_naxos_quest_failure
+	remove_character_flag = rol_recent_sevilla_quest_success
+	remove_character_flag = rol_recent_sevilla_quest_failure
+	remove_character_flag = rol_recent_carthage_quest_success
+	remove_character_flag = rol_recent_carthage_quest_failure
+	remove_character_flag = rol_recent_expedition_preparation_low
+	remove_character_flag = rol_recent_expedition_preparation_standard
+	remove_character_flag = rol_recent_expedition_preparation_high
+	remove_character_flag = rol_recent_expedition_preparation_supreme
+	if = {
+		limit = { has_variable = rol_recent_relic_result_tier }
+		remove_variable = rol_recent_relic_result_tier
+	}
+}
+
+# 罗马战神玛尔斯之剑：上下文包装（示例，供后续地点复用）
+rol_set_context_mars_weapon_effect = {
+	rol_relic_set_context_effect = {
+		RELIC_CONTEXT_FLAG = rol_relic_context_mars
+		RELIC_ARCHETYPE_FLAG = rol_relic_context_weapon
+	}
+}
+
+rol_clear_context_mars_weapon_effect = {
+	rol_relic_clear_context_effect = {
+		RELIC_CONTEXT_FLAG = rol_relic_context_mars
+		RELIC_ARCHETYPE_FLAG = rol_relic_context_weapon
+	}
+}
+
+# 慕尼黑样例：礼器类神物（尼伯龙根星界球）
+rol_set_context_nibelung_regalia_effect = {
+	rol_relic_set_context_effect = {
+		RELIC_CONTEXT_FLAG = rol_relic_context_nibelung
+		RELIC_ARCHETYPE_FLAG = rol_relic_context_regalia
+	}
+}
+
+rol_clear_context_nibelung_regalia_effect = {
+	rol_relic_clear_context_effect = {
+		RELIC_CONTEXT_FLAG = rol_relic_context_nibelung
+		RELIC_ARCHETYPE_FLAG = rol_relic_context_regalia
+	}
+}
+
+# 纳克索斯样例：帝皇遗迹（军团解锁）
+rol_set_context_naxos_relic_effect = {
+	rol_relic_set_context_effect = {
+		RELIC_CONTEXT_FLAG = rol_relic_context_naxos
+		RELIC_ARCHETYPE_FLAG = rol_relic_context_weapon
+	}
+}
+
+rol_clear_context_naxos_relic_effect = {
+	rol_relic_clear_context_effect = {
+		RELIC_CONTEXT_FLAG = rol_relic_context_naxos
+		RELIC_ARCHETYPE_FLAG = rol_relic_context_weapon
+	}
+}
+
+# 塞维利亚样例：配饰类神物（大洋统御星盘）
+rol_set_context_astrolabe_accessory_effect = {
+	rol_relic_set_context_effect = {
+		RELIC_CONTEXT_FLAG = rol_relic_context_astrolabe
+		RELIC_ARCHETYPE_FLAG = rol_relic_context_accessory
+	}
+}
+
+rol_clear_context_astrolabe_accessory_effect = {
+	rol_relic_clear_context_effect = {
+		RELIC_CONTEXT_FLAG = rol_relic_context_astrolabe
+		RELIC_ARCHETYPE_FLAG = rol_relic_context_accessory
+	}
+}
+# 突尼斯样例：头具类神物（浴火金面）
+rol_set_context_carthage_helmet_effect = {
+	rol_relic_set_context_effect = {
+		RELIC_CONTEXT_FLAG = rol_relic_context_carthage
+		RELIC_ARCHETYPE_FLAG = rol_relic_context_helmet
+	}
+}
+
+rol_clear_context_carthage_helmet_effect = {
+	rol_relic_clear_context_effect = {
+		RELIC_CONTEXT_FLAG = rol_relic_context_carthage
+		RELIC_ARCHETYPE_FLAG = rol_relic_context_helmet
+	}
+}

@@ -1,0 +1,16 @@
+﻿l_english:
+
+ rol_option_expedition_preparation:0 "Personnel & Equipment"
+ rol_expedition_preparation_low:0 "Makeshift"
+ rol_expedition_preparation_low_desc:0 "$EFFECT_LIST_BULLET$Lower check success chances\n$EFFECT_LIST_BULLET$No bonus [prestige|E] on success\n$EFFECT_LIST_BULLET$No bonus [dynasty_prestige|E] on success\n\n#weak Thin crews, worn gear, and hurried preparations keep costs low, but every trial becomes harsher.#!"
+ rol_expedition_preparation_standard:0 "Standard"
+ rol_expedition_preparation_standard_desc:0 "$EFFECT_LIST_BULLET$No extra modifier to check success chances\n$EFFECT_LIST_BULLET$No bonus [prestige|E] on success\n$EFFECT_LIST_BULLET$No bonus [dynasty_prestige|E] on success\n\n#weak Reliable hands, adequate equipment, and a balanced purse keep the expedition on its current footing.#!"
+ rol_expedition_preparation_high:0 "Elite"
+ rol_expedition_preparation_high_desc:0 "$EFFECT_LIST_BULLET$Higher check success chances\n$EFFECT_LIST_BULLET$#P +150#! [prestige|E] on success\n$EFFECT_LIST_BULLET$#P +25#! [dynasty_prestige|E] on success\n\n#weak Veteran retainers and refined gear improve the expedition's odds and magnify the glory of a triumphant return.#!"
+ rol_expedition_preparation_supreme:0 "Supreme"
+ rol_expedition_preparation_supreme_desc:0 "$EFFECT_LIST_BULLET$Significantly higher check success chances\n$EFFECT_LIST_BULLET$#P +350#! [prestige|E] on success\n$EFFECT_LIST_BULLET$#P +50#! [dynasty_prestige|E] on success\n\n#weak Handpicked specialists, lavish equipment, and relentless logistics turn the expedition into a legendary undertaking.#!"
+
+ rol_expedition_preparation_current_modifier_low_tt:0 "Current preparation makes this check #N harder#!."
+ rol_expedition_preparation_current_modifier_standard_tt:0 "Current preparation adds #V no extra modifier#! to this check."
+ rol_expedition_preparation_current_modifier_high_tt:0 "Current preparation makes this check #P easier#!."
+ rol_expedition_preparation_current_modifier_supreme_tt:0 "Current preparation makes this check #P significantly easier#!."

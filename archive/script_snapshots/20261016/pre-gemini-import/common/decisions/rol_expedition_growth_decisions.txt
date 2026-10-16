@@ -1,0 +1,13 @@
+﻿ # Recovery entry if an old pending reflection could not open (e.g. imprisonment).
+rol_review_expedition_journal_decision = {
+	picture = { reference = "gfx/interface/illustrations/decisions/decision_smith.dds" }
+	ai_check_interval = 0
+	is_shown = {
+		is_playable_character = yes
+		is_ai = no
+		rol_expedition_growth_pending_trigger = yes
+	}
+	is_valid_showing_failures_only = { is_available_adult = yes }
+	effect = { trigger_event = rol_expedition_growth.0001 }
+	ai_potential = { always = no }
+}

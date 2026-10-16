@@ -1,0 +1,242 @@
+﻿# Actor variables preserve the contracted person beyond the activity scope.
+rol_expedition_companion_begin_effect = {
+	scope:activity ?= {
+		set_variable = { name = rol_expedition_companion_open value = 0 }
+		set_variable = { name = rol_expedition_companion_role value = 0 }
+		set_variable = { name = rol_expedition_companion_offer value = 0 }
+		set_variable = { name = rol_expedition_companion_mediation_used value = 0 }
+		set_variable = { name = rol_expedition_first_trial_used value = 0 }
+	}
+	# Recover a contract whose previous activity was invalidated without on_complete.
+	if = {
+		limit = { has_character_flag = rol_expedition_companion_in_field }
+		remove_character_flag = rol_expedition_companion_in_field
+		set_variable = { name = rol_expedition_companion_earned_xp value = 0 }
+		add_character_flag = rol_expedition_companion_settlement_pending
+		trigger_event = { id = rol_expedition_companion.0002 days = 4 }
+	}
+}
+
+rol_expedition_companion_offer_effect = {
+	if = {
+		limit = {
+			exists = scope:activity
+			scope:activity = { var:rol_expedition_growth_open = 1 var:rol_expedition_companion_offer = 0 }
+			NOT = { rol_expedition_companion_pending_trigger = yes }
+			NOT = { has_character_flag = rol_expedition_companion_in_field }
+		}
+		save_scope_as = rol_expedition_companion_host
+		if = {
+			limit = { exists = var:rol_expedition_trusted_companion var:rol_expedition_trusted_companion = { is_alive = yes } }
+			var:rol_expedition_trusted_companion = { save_scope_as = rol_expedition_trusted_companion }
+		}
+		scope:activity = {
+			ordered_attending_character = {
+				limit = { this != scope:rol_expedition_companion_host rol_expedition_companion_fit_trigger = yes learning >= 12 }
+				order_by = rol_expedition_companion_scholar_order_value
+				max = 1
+				save_scope_as = rol_expedition_candidate_scholar
+			}
+			ordered_attending_character = {
+				limit = { this != scope:rol_expedition_companion_host rol_expedition_companion_fit_trigger = yes prowess >= 12 }
+				order_by = rol_expedition_companion_guard_order_value
+				max = 1
+				save_scope_as = rol_expedition_candidate_guard
+			}
+			ordered_attending_character = {
+				limit = { this != scope:rol_expedition_companion_host rol_expedition_companion_fit_trigger = yes diplomacy >= 12 }
+				order_by = rol_expedition_companion_envoy_order_value
+				max = 1
+				save_scope_as = rol_expedition_candidate_envoy
+			}
+		}
+		if = {
+			limit = { OR = { exists = scope:rol_expedition_candidate_scholar exists = scope:rol_expedition_candidate_guard exists = scope:rol_expedition_candidate_envoy } }
+			if = { limit = { exists = scope:rol_expedition_candidate_scholar } scope:rol_expedition_candidate_scholar = { save_scope_as = rol_expedition_candidate_preview } }
+			else_if = { limit = { exists = scope:rol_expedition_candidate_guard } scope:rol_expedition_candidate_guard = { save_scope_as = rol_expedition_candidate_preview } }
+			else = { scope:rol_expedition_candidate_envoy = { save_scope_as = rol_expedition_candidate_preview } }
+			scope:activity = { set_variable = { name = rol_expedition_companion_offer value = 1 } }
+			trigger_event = { id = rol_expedition_companion.0001 days = 1 }
+		}
+		else = { trigger_event = { id = $NEXT_EVENT$ days = 1 } }
+	}
+	else = { trigger_event = { id = $NEXT_EVENT$ days = 1 } }
+}
+
+# Selected character scope was captured once by the offer, never re-rolled at payment.
+rol_expedition_companion_accept_effect = {
+	if = {
+		limit = {
+			exists = scope:activity
+			exists = $PARTNER$
+			$PARTNER$ = { rol_expedition_companion_fit_trigger = yes }
+			scope:activity = {
+				var:rol_expedition_companion_offer = 1
+				var:rol_expedition_growth_open = 1
+				any_attending_character = { this = $PARTNER$ }
+			}
+			NOT = { rol_expedition_companion_pending_trigger = yes }
+			NOT = { has_character_flag = rol_expedition_companion_in_field }
+		}
+		rol_expedition_companion_new_agreement_effect = yes
+		set_variable = { name = rol_expedition_companion_partner value = $PARTNER$ }
+		set_variable = { name = rol_expedition_companion_role value = $ROLE$ }
+		set_variable = { name = rol_expedition_companion_earned_xp value = 0 }
+		add_character_flag = rol_expedition_companion_in_field
+		scope:activity = {
+			set_variable = { name = rol_expedition_companion_role value = $ROLE$ }
+			set_variable = { name = rol_expedition_companion_open value = 1 }
+		}
+	}
+	rol_expedition_companion_continue_effect = yes
+}
+
+rol_expedition_companion_continue_effect = {
+	if = {
+		limit = { exists = scope:activity scope:activity = { var:rol_expedition_companion_offer = 1 var:rol_expedition_growth_open = 1 } }
+		scope:activity = { set_variable = { name = rol_expedition_companion_offer value = 2 } }
+		if = { limit = { has_character_flag = rol_relic_context_mars } trigger_event = { id = rol_quest_rome.1000 days = 1 } }
+		else_if = { limit = { has_character_flag = rol_relic_context_nibelung } trigger_event = { id = rol_quest_munich.1000 days = 1 } }
+		else_if = { limit = { has_character_flag = rol_relic_context_naxos } trigger_event = { id = rol_quest_naxos.1000 days = 1 } }
+		else_if = { limit = { has_character_flag = rol_relic_context_astrolabe } trigger_event = { id = rol_quest_sevilla.1000 days = 1 } }
+		else_if = { limit = { has_character_flag = rol_relic_context_carthage } trigger_event = { id = rol_quest_carthage.1000 days = 1 } }
+	}
+}
+
+# Once per first challenge. Native major progression is the same as a strong normal success.
+rol_expedition_prepared_route_effect = {
+	if = {
+		limit = {
+			rol_expedition_first_trial_trigger = yes
+			gold >= $COST$
+			$QUALIFICATION$ = yes
+		}
+		remove_short_term_gold = $COST$
+		scope:activity = {
+			set_variable = { name = rol_expedition_first_trial_used value = 1 }
+			activity_special_type_progression_major = yes
+		}
+		trigger_event = { id = $NEXT_EVENT$ days = 1 }
+	}
+}
+
+rol_expedition_companion_mediate_effect = {
+	if = {
+		limit = { rol_expedition_companion_envoy_trigger = yes exists = scope:rol_expedition_rival scope:rol_expedition_rival = { is_alive = yes } }
+		scope:activity = {
+			set_variable = { name = rol_expedition_companion_mediation_used value = 1 }
+			activity_special_type_progression_medium = yes
+		}
+		add_stress = -10
+		scope:rol_expedition_rival = { add_opinion = { target = root modifier = rol_expedition_respect_opinion } }
+		rol_clear_rival_route_effect = yes
+	}
+}
+
+rol_expedition_companion_finish_effect = {
+	if = {
+		limit = { exists = scope:activity has_character_flag = rol_expedition_companion_in_field scope:activity = { var:rol_expedition_companion_open = 1 } }
+		scope:activity = { set_variable = { name = rol_expedition_companion_open value = 0 } }
+		remove_character_flag = rol_expedition_companion_in_field
+		set_variable = { name = rol_expedition_companion_earned_xp value = 0 }
+		if = {
+			limit = { has_variable = $STAGE_VARIABLE$ var:$STAGE_VARIABLE$ >= 1 }
+			set_variable = { name = rol_expedition_companion_earned_xp value = 10 }
+		}
+		add_character_flag = rol_expedition_companion_settlement_pending
+		trigger_event = { id = rol_expedition_companion.0002 days = 4 }
+	}
+}
+
+rol_expedition_companion_clear_effect = {
+	remove_character_flag = rol_expedition_companion_settlement_pending
+	remove_character_flag = rol_expedition_companion_in_field
+	remove_variable = rol_expedition_companion_partner
+	remove_variable = rol_expedition_companion_role
+	remove_variable = rol_expedition_companion_earned_xp
+}
+
+rol_expedition_companion_award_xp_effect = {
+	if = {
+		limit = { has_variable = rol_expedition_companion_earned_xp var:rol_expedition_companion_earned_xp > 0 }
+		if = { limit = { NOT = { has_trait = rol_relic_seeker } } add_trait = rol_relic_seeker }
+		if = { limit = { var:rol_expedition_companion_role = 1 } add_trait_xp = { trait = rol_relic_seeker track = rol_research value = $XP$ } }
+		else_if = { limit = { var:rol_expedition_companion_role = 2 } add_trait_xp = { trait = rol_relic_seeker track = rol_exploration value = $XP$ } }
+		else_if = { limit = { var:rol_expedition_companion_role = 3 } add_trait_xp = { trait = rol_relic_seeker track = rol_negotiation value = $XP$ } }
+	}
+}
+
+rol_expedition_companion_honour_effect = {
+	if = {
+		limit = {
+			rol_expedition_companion_pending_trigger = yes
+			rol_expedition_companion_partner_alive_trigger = yes
+			OR = { var:rol_expedition_companion_role != 2 gold >= 50 }
+			OR = { var:rol_expedition_companion_role != 1 prestige >= 50 }
+			OR = { var:rol_expedition_companion_role != 3 prestige >= 75 }
+		}
+		var:rol_expedition_companion_partner = { save_scope_as = rol_expedition_companion }
+		if = { limit = { var:rol_expedition_companion_role = 1 } add_prestige = -50 }
+		else_if = { limit = { var:rol_expedition_companion_role = 2 } remove_short_term_gold = 50 scope:rol_expedition_companion = { add_gold = 50 } }
+		else_if = { limit = { var:rol_expedition_companion_role = 3 } add_prestige = -75 }
+		set_variable = { name = rol_expedition_trusted_companion value = scope:rol_expedition_companion }
+		scope:rol_expedition_companion = { add_opinion = { target = root modifier = rol_expedition_fulfilled_pact_opinion } }
+		add_opinion = { target = scope:rol_expedition_companion modifier = rol_expedition_fulfilled_pact_opinion }
+		remove_character_modifier = rol_expedition_broken_word_modifier
+		remove_character_modifier = rol_expedition_kept_word_modifier
+		add_character_modifier = { modifier = rol_expedition_kept_word_modifier years = 3 }
+		rol_expedition_companion_award_xp_effect = { XP = 10 }
+		rol_expedition_companion_clear_effect = yes
+	}
+}
+
+rol_expedition_companion_compromise_effect = {
+	if = {
+		limit = { rol_expedition_companion_pending_trigger = yes rol_expedition_companion_partner_alive_trigger = yes gold >= 25 }
+		var:rol_expedition_companion_partner = { save_scope_as = rol_expedition_companion }
+		remove_short_term_gold = 25
+		scope:rol_expedition_companion = { add_gold = 25 add_opinion = { target = root modifier = rol_expedition_respect_opinion } }
+		rol_expedition_companion_award_xp_effect = { XP = 5 }
+		rol_expedition_companion_clear_effect = yes
+	}
+}
+
+rol_expedition_companion_refuse_effect = {
+	if = {
+		limit = { rol_expedition_companion_pending_trigger = yes }
+		if = {
+			limit = { rol_expedition_companion_partner_alive_trigger = yes }
+			var:rol_expedition_companion_partner = { add_opinion = { target = root modifier = rol_expedition_grudge_opinion } }
+			if = {
+				limit = { exists = var:rol_expedition_trusted_companion var:rol_expedition_trusted_companion = var:rol_expedition_companion_partner }
+				remove_variable = rol_expedition_trusted_companion
+			}
+			remove_character_modifier = rol_expedition_kept_word_modifier
+			remove_character_modifier = rol_expedition_broken_word_modifier
+			add_character_modifier = { modifier = rol_expedition_broken_word_modifier years = 3 }
+			if = { limit = { OR = { has_trait = honest has_trait = just } } add_stress = 15 }
+		}
+		rol_expedition_companion_clear_effect = yes
+	}
+}
+
+# New contracts advance once; opening/reopening a settlement only captures it.
+# A legacy pending pact receives its first generation when displayed.
+rol_expedition_companion_new_agreement_effect = {
+ if = {
+  limit = { NOT = { has_variable = rol_expedition_companion_generation } }
+  set_variable = { name = rol_expedition_companion_generation value = 0 }
+ }
+ change_variable = { name = rol_expedition_companion_generation add = 1 }
+}
+
+rol_expedition_companion_capture_settlement_effect = {
+ if = {
+  limit = { rol_expedition_companion_pending_trigger = yes }
+  if = {
+   limit = { NOT = { has_variable = rol_expedition_companion_generation } }
+   set_variable = { name = rol_expedition_companion_generation value = 1 }
+  }
+  save_scope_value_as = { name = rol_expedition_companion_generation value = var:rol_expedition_companion_generation }
+ }
+}
