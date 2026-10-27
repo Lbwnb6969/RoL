@@ -1,0 +1,91 @@
+﻿# First valid entry, as documented by vanilla _custom_loc.info. No state writes.
+
+rol_family_archive_mars_notes_status = {
+ type = character
+ text = { trigger = { NOT = { exists = house } } localization_key = rol_family_archive_status_no_house }
+ text = {
+  trigger = { house = { var:rol_family_archive_mars_notes = 1 } has_character_modifier = rol_expedition_mars_notes_modifier }
+  localization_key = rol_family_archive_status_saved_copy
+ }
+ text = { trigger = { house = { var:rol_family_archive_mars_notes = 1 } } localization_key = rol_family_archive_status_saved_missing }
+ text = { trigger = { has_character_modifier = rol_expedition_mars_notes_modifier } localization_key = rol_family_archive_status_unrecorded_copy }
+ text = { localization_key = rol_family_archive_status_unrecorded_missing fallback = yes }
+}
+
+rol_family_archive_nibelung_notes_status = {
+ type = character
+ text = { trigger = { NOT = { exists = house } } localization_key = rol_family_archive_status_no_house }
+ text = {
+  trigger = { house = { var:rol_family_archive_nibelung_notes = 1 } has_character_modifier = rol_expedition_nibelung_notes_modifier }
+  localization_key = rol_family_archive_status_saved_copy
+ }
+ text = { trigger = { house = { var:rol_family_archive_nibelung_notes = 1 } } localization_key = rol_family_archive_status_saved_missing }
+ text = { trigger = { has_character_modifier = rol_expedition_nibelung_notes_modifier } localization_key = rol_family_archive_status_unrecorded_copy }
+ text = { localization_key = rol_family_archive_status_unrecorded_missing fallback = yes }
+}
+
+rol_family_archive_naxos_notes_status = {
+ type = character
+ text = { trigger = { NOT = { exists = house } } localization_key = rol_family_archive_status_no_house }
+ text = {
+  trigger = { house = { var:rol_family_archive_naxos_notes = 1 } has_character_modifier = rol_expedition_naxos_notes_modifier }
+  localization_key = rol_family_archive_status_saved_copy
+ }
+ text = { trigger = { house = { var:rol_family_archive_naxos_notes = 1 } } localization_key = rol_family_archive_status_saved_missing }
+ text = { trigger = { has_character_modifier = rol_expedition_naxos_notes_modifier } localization_key = rol_family_archive_status_unrecorded_copy }
+ text = { localization_key = rol_family_archive_status_unrecorded_missing fallback = yes }
+}
+
+rol_family_archive_astrolabe_notes_status = {
+ type = character
+ text = { trigger = { NOT = { exists = house } } localization_key = rol_family_archive_status_no_house }
+ text = {
+  trigger = { house = { var:rol_family_archive_astrolabe_notes = 1 } has_character_modifier = rol_expedition_astrolabe_notes_modifier }
+  localization_key = rol_family_archive_status_saved_copy
+ }
+ text = { trigger = { house = { var:rol_family_archive_astrolabe_notes = 1 } } localization_key = rol_family_archive_status_saved_missing }
+ text = { trigger = { has_character_modifier = rol_expedition_astrolabe_notes_modifier } localization_key = rol_family_archive_status_unrecorded_copy }
+ text = { localization_key = rol_family_archive_status_unrecorded_missing fallback = yes }
+}
+
+rol_family_archive_carthage_notes_status = {
+ type = character
+ text = { trigger = { NOT = { exists = house } } localization_key = rol_family_archive_status_no_house }
+ text = {
+  trigger = { house = { var:rol_family_archive_carthage_notes = 1 } has_character_modifier = rol_expedition_carthage_notes_modifier }
+  localization_key = rol_family_archive_status_saved_copy
+ }
+ text = { trigger = { house = { var:rol_family_archive_carthage_notes = 1 } } localization_key = rol_family_archive_status_saved_missing }
+ text = { trigger = { has_character_modifier = rol_expedition_carthage_notes_modifier } localization_key = rol_family_archive_status_unrecorded_copy }
+ text = { localization_key = rol_family_archive_status_unrecorded_missing fallback = yes }
+}
+
+rol_family_archive_star_observations_status = {
+ type = character
+ text = { trigger = { NOT = { exists = house } } localization_key = rol_family_archive_status_no_house }
+ text = {
+  trigger = { house = { var:rol_family_archive_star_observations = 1 } has_character_modifier = rol_star_observations_modifier }
+  localization_key = rol_family_archive_status_saved_copy
+ }
+ text = { trigger = { house = { var:rol_family_archive_star_observations = 1 } } localization_key = rol_family_archive_status_saved_missing }
+ text = { trigger = { has_character_modifier = rol_star_observations_modifier } localization_key = rol_family_archive_status_unrecorded_copy }
+ text = { localization_key = rol_family_archive_status_unrecorded_missing fallback = yes }
+}
+
+rol_family_archive_ocean_routes_status = {
+ type = character
+ text = { trigger = { NOT = { exists = house } } localization_key = rol_family_archive_status_no_house }
+ text = {
+  trigger = { house = { var:rol_family_archive_ocean_routes = 1 } has_character_modifier = rol_ocean_routes_modifier }
+  localization_key = rol_family_archive_status_saved_copy
+ }
+ text = { trigger = { house = { var:rol_family_archive_ocean_routes = 1 } } localization_key = rol_family_archive_status_saved_missing }
+ text = { trigger = { has_character_modifier = rol_ocean_routes_modifier } localization_key = rol_family_archive_status_unrecorded_copy }
+ text = { localization_key = rol_family_archive_status_unrecorded_missing fallback = yes }
+}
+
+rol_family_archive_print_status = {
+ type = character
+ text = { trigger = { has_character_flag = rol_family_archive_print_cooldown } localization_key = rol_family_archive_status_cooldown }
+ text = { localization_key = rol_family_archive_status_ready fallback = yes }
+}

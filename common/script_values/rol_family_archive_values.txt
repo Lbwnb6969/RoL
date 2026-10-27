@@ -5,3 +5,15 @@
 		subtract = 50
 	}
 }
+
+# Interface only: count the same records the paid edition consumer can read.
+rol_family_archive_record_count_value = {
+	value = 0
+	if = { limit = { exists = house house = { var:rol_family_archive_mars_notes = 1 } } add = 1 }
+	if = { limit = { exists = house house = { var:rol_family_archive_nibelung_notes = 1 } } add = 1 }
+	if = { limit = { exists = house house = { var:rol_family_archive_naxos_notes = 1 } } add = 1 }
+	if = { limit = { exists = house house = { var:rol_family_archive_astrolabe_notes = 1 } } add = 1 }
+	if = { limit = { exists = house house = { var:rol_family_archive_carthage_notes = 1 } } add = 1 }
+	if = { limit = { exists = house house = { var:rol_family_archive_star_observations = 1 } } add = 1 }
+	if = { limit = { exists = house house = { var:rol_family_archive_ocean_routes = 1 } } add = 1 }
+}

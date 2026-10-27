@@ -1,0 +1,8 @@
+Use case: historical-scene
+Asset type: Crusader Kings III decision illustration, final opaque 1100 x 440 wide banner for compiling and printing house manuscripts.
+Primary request: An unoccupied medieval noble house archive. A well-used open parchment codex and several rolled expedition charts lie on a dark oak reading desk, with a compact stack of leather-bound folios, simple brass book clasps and a wax seal. Shelved manuscripts recede into a modest stone alcove.
+Style/medium: Painterly historical strategy-game illustration, convincing material texture, visible brushwork, restrained detail and strong readable masses at small size. Consistent with CK3's illustrated decision banners and RoL's quiet scholarly scenes.
+Composition/framing: Extra wide horizontal scene. The open codex and charts form one clear central still-life, entirely within the central 70 percent of width and central 65 percent of height, with generous breathing room for a 2.5:1 crop. Eye level just above the desk. Keep the left and right corners dark and quiet.
+Lighting/mood: Warm candlelight across aged parchment and worn leather, faint cool window light behind; patient, lived-in work of preserving family knowledge. Rich brown, muted blue grey and old gold, moderate contrast.
+Text: No readable words, letters or numbers. Only indistinct ink strokes and abstract chart markings on parchment; no glowing script.
+Constraints: Opaque painted image. No people, hands, animals, statues, human silhouettes, faces or portraits. No printing press, modern furniture, modern instruments, UI, frame, logo, watermark or pasted text. No weapons or smithing tools. No oversized fantasy relics. The books and charts must remain the focal subject.

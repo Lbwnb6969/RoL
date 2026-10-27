@@ -32,6 +32,7 @@
 | Activity Header 图标 | `164x164 / DDS BC3 / 透明` | `gfx/interface/icons/activities/` | `close-up heraldic activity icon, ornate fantasy UI asset, clean silhouette, transparent background` |
 | Activity 大图 | `1592x848 / DDS BC1 / 无透明` | `gfx/interface/illustrations/activities/` | `wide CK3 activity illustration, painterly fantasy scene, cinematic lighting, no text, no UI` |
 | Activity Header 背景 | `1100x440 / DDS BC1 / 无透明` | `gfx/interface/illustrations/activity_header_backgrounds/` | `wide fantasy activity header background, strong central composition, no text, no UI` |
+| Decision 插图 | `1100x440 / DDS BC1 / 无透明` | `gfx/interface/illustrations/decisions/` | `wide painterly medieval decision illustration, readable central props, no people, no UI` |
 | Artifact 图标 | `240x240 / DDS BC3 / 透明` | `gfx/interface/icons/artifact/` | `centered artifact icon, premium fantasy item art, sharp silhouette, transparent background` |
 | Activity 选项分类图标 | `96x120 / DDS / 透明` | `gfx/interface/icons/activity_option_categories/` | `centered activity option category icon, expedition ledger, hired retainers, bundled gear, clean CK3 UI asset, transparent background` |
 
@@ -172,3 +173,12 @@
 - Carthage 事件背景 key 已补齐到 `common/event_backgrounds/rol_event_backgrounds.txt`
 - `rol_legendary_icon.dds` 需保持：`60x60`、真透明背景、大金星 + 两颗环绕小星
 
+
+## 家族书库决策插图（2026-10-27，第六批）
+
+- 状态：已接线；`rol_catalogue_family_knowledge_decision` 与 `rol_print_family_knowledge_decision` 共用 `gfx/interface/illustrations/decisions/rol_family_archive.dds`，替换原版铁匠占位引用，不修改原版文件。
+- 成品：1100×440、BC1/DXT1、无透明，与本机原版 `decision_smith.dds` 的决策横幅尺寸/不透明度一致；原生铁匠图仍由游戏本体提供。
+- 源图：`art/source/20261027/rol_family_archive_decision.png`，1983×793 RGB。提示词见 [原始提示词](art_prompts/rol_family_archive_decision_20261027.txt)。
+- 生成方式：按维护者 `image_generate.md`，使用现有 `euzhi_image_gen.py` CLI、`gpt-image-2`、high，申请1792×768，服务返回上述尺寸。凭证只在子进程环境中使用；仓库不保存凭证。
+- 场景：无人家族书库，橡木案上的摊开羊皮纸册、航路图、皮装底本与蜡封，暖烛光及冷窗光。没有铁匠/人物/动物/雕像、现代物件、UI或可读文字。
+- 转换：`python tools/ck3_mcp/png_to_dds_bc1.py art/source/20261027/rol_family_archive_decision.png gfx/interface/illustrations/decisions/rol_family_archive.dds --width 1100 --height 440`。已回读生产DDS并人工查看构图，书页和图表在横幅中完整；真实决策遮罩仍由维护者手测。

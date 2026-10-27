@@ -29,6 +29,8 @@ def _expected(path: Path) -> tuple[set[tuple[int, int]], str] | None:
         return {(1592, 848)}, "activity illustration"
     if "activity_header_backgrounds" in parts:
         return {(1100, 440)}, "activity header background"
+    if "illustrations" in parts and "decisions" in parts:
+        return {(1100, 440)}, "decision illustration"
     if "icons" in parts and "activities" in parts:
         return {(80, 80), (164, 164)}, "activity icon"
     if "icons" in parts and "artifact" in parts:

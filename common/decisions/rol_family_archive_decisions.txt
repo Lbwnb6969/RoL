@@ -1,5 +1,5 @@
 ﻿rol_catalogue_family_knowledge_decision = {
-	picture = { reference = "gfx/interface/illustrations/decisions/decision_smith.dds" }
+	picture = { reference = "gfx/interface/illustrations/decisions/rol_family_archive.dds" }
 	ai_check_interval = 0
 	is_shown = { rol_family_archive_actor_trigger = yes rol_family_archive_has_knowledge_trigger = yes }
 	effect = { rol_family_archive_open_effect = { EVENT = rol_family_archive.0001 } }
@@ -7,7 +7,7 @@
 }
 
 rol_print_family_knowledge_decision = {
-	picture = { reference = "gfx/interface/illustrations/decisions/decision_smith.dds" }
+	picture = { reference = "gfx/interface/illustrations/decisions/rol_family_archive.dds" }
 	ai_check_interval = 0
 	is_shown = { rol_family_archive_actor_trigger = yes rol_family_archive_has_catalogue_trigger = yes }
 	is_valid_showing_failures_only = {
