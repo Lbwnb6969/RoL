@@ -1,0 +1,24 @@
+﻿rol_relic_preservation_project_trigger = {
+	rol_relic_use_project_valid_trigger = yes
+	var:rol_relic_use_mode = 8
+	rol_family_archive_actor_trigger = yes
+}
+
+# Opening the catalogue captures this house; clicks must still belong to it.
+rol_relic_preservation_window_trigger = {
+	rol_relic_preservation_project_trigger = yes
+	rol_family_archive_window_valid_trigger = yes
+}
+
+rol_relic_preservation_available_trigger = {
+	exists = house
+	OR = {
+		AND = { has_character_modifier = rol_expedition_mars_notes_modifier house = { NOT = { has_variable = rol_family_archive_mars_notes } } }
+		AND = { has_character_modifier = rol_expedition_nibelung_notes_modifier house = { NOT = { has_variable = rol_family_archive_nibelung_notes } } }
+		AND = { has_character_modifier = rol_expedition_naxos_notes_modifier house = { NOT = { has_variable = rol_family_archive_naxos_notes } } }
+		AND = { has_character_modifier = rol_expedition_astrolabe_notes_modifier house = { NOT = { has_variable = rol_family_archive_astrolabe_notes } } }
+		AND = { has_character_modifier = rol_expedition_carthage_notes_modifier house = { NOT = { has_variable = rol_family_archive_carthage_notes } } }
+		AND = { has_character_modifier = rol_star_observations_modifier house = { NOT = { has_variable = rol_family_archive_star_observations } } }
+		AND = { has_character_modifier = rol_ocean_routes_modifier house = { NOT = { has_variable = rol_family_archive_ocean_routes } } }
+	}
+}

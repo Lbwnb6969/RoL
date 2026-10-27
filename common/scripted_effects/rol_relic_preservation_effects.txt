@@ -1,0 +1,21 @@
+﻿# Restoration research can preserve one real source instead of personal rewards.
+rol_relic_preservation_open_effect = {
+	if = {
+		limit = { rol_relic_preservation_project_trigger = yes rol_relic_preservation_available_trigger = yes }
+		house = { save_scope_as = rol_family_archive_house }
+		# Keep the original result window's project generation in the event context.
+		trigger_event = rol_relic_use.0005
+	}
+}
+
+rol_relic_preservation_catalogue_effect = {
+	if = {
+		limit = {
+			rol_relic_preservation_window_trigger = yes
+			has_character_modifier = $MODIFIER$
+			scope:rol_family_archive_house = { NOT = { has_variable = rol_family_archive_$NAME$ } }
+		}
+		scope:rol_family_archive_house = { set_variable = { name = rol_family_archive_$NAME$ value = 1 } }
+		rol_relic_use_clear_pending_effect = yes
+	}
+}

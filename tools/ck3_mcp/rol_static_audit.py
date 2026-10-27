@@ -502,6 +502,8 @@ def audit(root: Path) -> int:
     feedback_types = check_expedition_feedback_contract(root, errors)
     from rol_scholar_growth_contracts import check_scholar_growth_contract
     scholar_witnesses = check_scholar_growth_contract(root, errors)
+    from rol_relic_preservation_contracts import check_relic_preservation_contract
+    preservation_witnesses = check_relic_preservation_contract(root, errors)
     from rol_compatibility_contracts import check_compatibility_contract
     from rol_quest_lifecycle_contracts import check_quest_lifecycle_contract
     compatible_files, _ = check_compatibility_contract(root, errors)
@@ -516,6 +518,7 @@ def audit(root: Path) -> int:
     print(f"[OK] Observation and mastery: {commission_witnesses} commission, {negotiation_witnesses} negotiation, {exploration_witnesses} exploration witnesses")
     print(f"[OK] Expedition feedback: {feedback_types} committed and attributed log types")
     print(f"[OK] Scholar growth: {scholar_witnesses} earned-growth, original-person and exact-odds witnesses")
+    print(f"[OK] Restoration preservation: {preservation_witnesses} original-project and house-archive witnesses")
     print(f"[OK] RoL static audit passed: {len(CHAINS)} activities, {fragment_routes} fragment routes, {growth_routes} growth routes, {companion_routes} companion routes, {relic_use_modes} relic use modes, {cross_routes} cross-chain routes, {inherited_records} inherited records, {english_count} English keys, {chinese_count} Chinese keys, {gfx_count} RoL gfx references, {dds_count} canonical DDS assets, {success_model_refs} high-chance branches, {chance_lists} chance lists, {chance_tooltips} chance tooltip keys, {branch_options} event choices with partial endings")
     return 0
 

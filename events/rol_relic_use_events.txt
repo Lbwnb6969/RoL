@@ -209,10 +209,81 @@ rol_relic_use.0003 = {
   custom_tooltip = rol_relic_use_defer_tt
  }
  option = {
+  name = rol_relic_preservation_option
+  flavor = rol_relic_preservation_flavor
+  trigger = { rol_relic_preservation_project_trigger = yes rol_relic_preservation_available_trigger = yes }
+  custom_tooltip = rol_relic_preservation_terms_tt
+  rol_relic_preservation_open_effect = yes
+ }
+ option = {
   name = rol_relic_use.0003.d
   trigger = { NOT = { rol_relic_use_project_valid_trigger = yes } }
   rol_relic_use_close_invalid_effect = yes
  }
+}
+
+rol_relic_use.0005 = {
+ type = character_event
+ title = rol_relic_preservation_title
+ desc = {
+  first_valid = {
+   triggered_desc = { trigger = { OR = { NOT = { rol_relic_preservation_window_trigger = yes } NOT = { rol_relic_preservation_available_trigger = yes } } } desc = rol_relic_preservation_invalid_desc }
+   desc = rol_relic_preservation_desc
+  }
+ }
+ theme = learning
+ override_background = { reference = rol_bg_relic_scholarly_study }
+ trigger = { is_ai = no is_alive = yes rol_relic_use_generation_matches_trigger = yes NOT = { has_character_flag = rol_relic_use_waiting } }
+ option = {
+  name = rol_family_archive.0001.mars_notes
+  flavor = rol_relic_preservation_flavor
+  trigger = { rol_relic_preservation_window_trigger = yes has_character_modifier = rol_expedition_mars_notes_modifier scope:rol_family_archive_house = { NOT = { has_variable = rol_family_archive_mars_notes } } }
+  custom_tooltip = rol_relic_preservation_terms_tt
+  rol_relic_preservation_catalogue_effect = { NAME = mars_notes MODIFIER = rol_expedition_mars_notes_modifier }
+ }
+ option = {
+  name = rol_family_archive.0001.nibelung_notes
+  flavor = rol_relic_preservation_flavor
+  trigger = { rol_relic_preservation_window_trigger = yes has_character_modifier = rol_expedition_nibelung_notes_modifier scope:rol_family_archive_house = { NOT = { has_variable = rol_family_archive_nibelung_notes } } }
+  custom_tooltip = rol_relic_preservation_terms_tt
+  rol_relic_preservation_catalogue_effect = { NAME = nibelung_notes MODIFIER = rol_expedition_nibelung_notes_modifier }
+ }
+ option = {
+  name = rol_family_archive.0001.naxos_notes
+  flavor = rol_relic_preservation_flavor
+  trigger = { rol_relic_preservation_window_trigger = yes has_character_modifier = rol_expedition_naxos_notes_modifier scope:rol_family_archive_house = { NOT = { has_variable = rol_family_archive_naxos_notes } } }
+  custom_tooltip = rol_relic_preservation_terms_tt
+  rol_relic_preservation_catalogue_effect = { NAME = naxos_notes MODIFIER = rol_expedition_naxos_notes_modifier }
+ }
+ option = {
+  name = rol_family_archive.0001.astrolabe_notes
+  flavor = rol_relic_preservation_flavor
+  trigger = { rol_relic_preservation_window_trigger = yes has_character_modifier = rol_expedition_astrolabe_notes_modifier scope:rol_family_archive_house = { NOT = { has_variable = rol_family_archive_astrolabe_notes } } }
+  custom_tooltip = rol_relic_preservation_terms_tt
+  rol_relic_preservation_catalogue_effect = { NAME = astrolabe_notes MODIFIER = rol_expedition_astrolabe_notes_modifier }
+ }
+ option = {
+  name = rol_family_archive.0001.carthage_notes
+  flavor = rol_relic_preservation_flavor
+  trigger = { rol_relic_preservation_window_trigger = yes has_character_modifier = rol_expedition_carthage_notes_modifier scope:rol_family_archive_house = { NOT = { has_variable = rol_family_archive_carthage_notes } } }
+  custom_tooltip = rol_relic_preservation_terms_tt
+  rol_relic_preservation_catalogue_effect = { NAME = carthage_notes MODIFIER = rol_expedition_carthage_notes_modifier }
+ }
+ option = {
+  name = rol_family_archive.0001.star_observations
+  flavor = rol_relic_preservation_flavor
+  trigger = { rol_relic_preservation_window_trigger = yes has_character_modifier = rol_star_observations_modifier scope:rol_family_archive_house = { NOT = { has_variable = rol_family_archive_star_observations } } }
+  custom_tooltip = rol_relic_preservation_terms_tt
+  rol_relic_preservation_catalogue_effect = { NAME = star_observations MODIFIER = rol_star_observations_modifier }
+ }
+ option = {
+  name = rol_family_archive.0001.ocean_routes
+  flavor = rol_relic_preservation_flavor
+  trigger = { rol_relic_preservation_window_trigger = yes has_character_modifier = rol_ocean_routes_modifier scope:rol_family_archive_house = { NOT = { has_variable = rol_family_archive_ocean_routes } } }
+  custom_tooltip = rol_relic_preservation_terms_tt
+  rol_relic_preservation_catalogue_effect = { NAME = ocean_routes MODIFIER = rol_ocean_routes_modifier }
+ }
+ option = { name = rol_family_archive.close flavor = rol_family_archive.close.flavor custom_tooltip = rol_relic_use_defer_tt }
 }
 
 rol_relic_use.0004 = {
