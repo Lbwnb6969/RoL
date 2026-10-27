@@ -94,6 +94,7 @@ rol_expedition_companion_accept_effect = {
 			}
 			add_stress = -5
 			scope:activity = { activity_special_type_progression_tiny = yes }
+			rol_expedition_feedback_effect = { KEY = rol_expedition_feedback_reunion CONTRIBUTOR = scope:host.var:rol_expedition_companion_partner }
 		}
 	}
 	rol_expedition_companion_continue_effect = yes
@@ -124,6 +125,7 @@ rol_expedition_prepared_route_effect = {
 			set_variable = { name = rol_expedition_first_trial_used value = 1 }
 			activity_special_type_progression_major = yes
 		}
+		rol_expedition_feedback_effect = { KEY = $LOG_KEY$ CONTRIBUTOR = $CONTRIBUTOR$ }
 		trigger_event = { id = $NEXT_EVENT$ days = 1 }
 	}
 }
@@ -137,6 +139,7 @@ rol_expedition_companion_mediate_effect = {
 		}
 		add_stress = -10
 		scope:rol_expedition_rival = { add_opinion = { target = root modifier = rol_expedition_respect_opinion } }
+		rol_expedition_feedback_effect = { KEY = rol_expedition_feedback_mediation CONTRIBUTOR = scope:host.var:rol_expedition_companion_partner }
 		rol_clear_rival_route_effect = yes
 	}
 }

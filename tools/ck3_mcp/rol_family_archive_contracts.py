@@ -94,6 +94,7 @@ def check_family_archive_contract(root: Path, errors: list[str], model=None) -> 
                 model.call("rol_archive_chart_route_effect", heir, {
                     "QUALIFICATION": "rol_star_chart_route_trigger" if name == "star_observations" else "rol_ocean_chart_route_trigger",
                     "CHART": modifier, "NEXT_EVENT": "rol_quest_" + chain + ".1010",
+                    "LOG_KEY": "rol_expedition_feedback_star_chart" if name == "star_observations" else "rol_expedition_feedback_ocean_chart",
                 })
                 assert heir.gold == 920 and heir.activity["rol_expedition_first_trial_used"] == 1, "printed chart bypasses the existing route charge or limit"
             assert modifier not in heir.modifiers, "existing expedition does not consume the edition"

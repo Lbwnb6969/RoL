@@ -61,6 +61,8 @@ The October 27 expansion adds identity-bound rival reunions and house-owned know
 
 An old companion can now conduct sphere observations: pay for charts and develop that person's research, or credit their work publicly. Exploration masters can exchange the crisis fee for greater stress; negotiation masters can credit a personally earned guard's work with prestige. These choices retain the original project/contract identity and replace existing payouts. Acceptance steps are in section 20 of the guide.
 
+Expedition logs now record the actual source of prepared routes, original contributors, regional records and crisis decisions. Section 21 covers log and conclusion-page acceptance; no new gameplay costs or rewards were added in this feedback pass.
+
 The four development stages and the comprehensive static review are complete. Retired vanilla GUI/global artifact-label overrides are archived; quality and type labels now use the current game's UI, while the legendary badge appears on RoL's own tier modifier. Gameplay, delayed scopes, UI and other mod combinations still need the maintainer's game test. Existing usable art is retained. See [the completion audit](docs/rol_completion_audit_20261007.md), [balance model](docs/rol_success_model.md) and [console test guide](docs/rol_console_test_guide.md), especially sections 6 and 16.
 
 ---

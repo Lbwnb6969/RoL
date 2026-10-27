@@ -12,6 +12,7 @@ rol_expedition_growth_begin_effect = {
 			limit = { has_character_modifier = rol_expedition_$ROUTE$_notes_modifier }
 			remove_character_modifier = rol_expedition_$ROUTE$_notes_modifier
 			scope:activity = { set_variable = { name = rol_expedition_journal_bonus value = 5 } }
+			rol_expedition_feedback_effect = { KEY = rol_expedition_feedback_$ROUTE$_notes CONTRIBUTOR = scope:host }
 			send_interface_toast = {
 				type = event_toast_effect_good
 				title = rol_expedition_journal_used_title
@@ -35,6 +36,7 @@ rol_expedition_growth_finish_effect = {
 			limit = { always = $LEAVE_NOTES$ }
 			remove_character_modifier = rol_expedition_$ROUTE$_notes_modifier
 			add_character_modifier = { modifier = rol_expedition_$ROUTE$_notes_modifier years = 10 }
+			rol_expedition_feedback_effect = { KEY = rol_expedition_feedback_$ROUTE$_evidence CONTRIBUTOR = scope:host }
 		}
 		if = {
 			limit = { NOT = { has_variable = rol_expedition_growth_pending_xp } }
@@ -154,6 +156,7 @@ rol_expedition_remedy_press_on_effect = {
 			QUALIFICATION = rol_expedition_remedy_press_on_qualified_trigger
 			COST = 50
 			STRESS = 10
+			LOG_KEY = rol_expedition_feedback_paid_recovery
 		}
 	}
 }
@@ -163,6 +166,7 @@ rol_expedition_master_exploration_effect = {
 		QUALIFICATION = rol_expedition_master_exploration_trigger
 		COST = 0
 		STRESS = 25
+		LOG_KEY = rol_expedition_feedback_master_recovery
 	}
 }
 
@@ -181,6 +185,7 @@ rol_expedition_remedy_continue_effect = {
 			change_variable = { name = activity_special_type_progression add = var:rol_expedition_trial_failure_loss }
 			activity_special_type_progression_major = yes
 		}
+		rol_expedition_feedback_effect = { KEY = $LOG_KEY$ CONTRIBUTOR = scope:host }
 		if = { limit = { rol_rome_quest_active_trigger = yes } rol_rome_quest_progress_effect = yes }
 		else_if = { limit = { rol_munich_quest_active_trigger = yes } rol_munich_quest_progress_effect = yes }
 		else_if = { limit = { rol_naxos_quest_active_trigger = yes } rol_naxos_quest_progress_effect = yes }
@@ -193,6 +198,7 @@ rol_expedition_remedy_salvage_partial_effect = {
 	if = {
 		limit = { rol_expedition_remedy_window_valid_trigger = yes }
 		remove_character_flag = rol_expedition_remedy_pending
+		rol_expedition_feedback_effect = { KEY = rol_expedition_feedback_salvage CONTRIBUTOR = scope:host }
 		scope:activity = {
 			if = {
 				limit = { var:activity_special_type_progression < 35 }
@@ -211,6 +217,7 @@ rol_expedition_remedy_retreat_effect = {
 	if = {
 		limit = { rol_expedition_remedy_window_valid_trigger = yes }
 		remove_character_flag = rol_expedition_remedy_pending
+		rol_expedition_feedback_effect = { KEY = rol_expedition_feedback_retreat CONTRIBUTOR = scope:host }
 		add_stress = -15
 		if = {
 			limit = { has_trait = rol_relic_seeker }

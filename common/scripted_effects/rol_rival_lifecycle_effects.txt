@@ -94,6 +94,7 @@ rol_rival_research_with_old_partner_effect = {
 		scope:activity = { activity_special_type_progression_medium = yes }
 		scope:rol_expedition_rival = { add_opinion = { target = root modifier = rol_expedition_respect_opinion } }
 		add_opinion = { target = scope:rol_expedition_rival modifier = rol_expedition_respect_opinion }
+		rol_expedition_feedback_effect = { KEY = rol_expedition_feedback_joint_research CONTRIBUTOR = scope:rol_expedition_rival }
 		rol_clear_rival_route_effect = yes
 	}
 }
@@ -105,6 +106,7 @@ rol_rival_reconcile_old_partner_effect = {
 		scope:rol_expedition_rival = { add_gold = 50 add_opinion = { target = root modifier = rol_expedition_respect_opinion } }
 		add_opinion = { target = scope:rol_expedition_rival modifier = rol_expedition_respect_opinion }
 		rol_rival_remember_relationship_effect = { FLAG = rol_rival_cooperation_active }
+		rol_expedition_feedback_effect = { KEY = rol_expedition_feedback_reconciliation CONTRIBUTOR = scope:rol_expedition_rival }
 		rol_clear_rival_route_effect = yes
 	}
 }

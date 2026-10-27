@@ -257,6 +257,8 @@ rol_quest_sevilla.1000 = {
 			rol_expedition_prepared_route_effect = {
 				COST = 75
 				QUALIFICATION = rol_expedition_companion_guard_trigger
+				LOG_KEY = rol_expedition_feedback_guard_route
+				CONTRIBUTOR = scope:host.var:rol_expedition_companion_partner
 				NEXT_EVENT = rol_quest_sevilla.1010
 			}
 		}
@@ -271,6 +273,8 @@ rol_quest_sevilla.1000 = {
 			rol_expedition_prepared_route_effect = {
 				COST = 100
 				QUALIFICATION = rol_expedition_expert_route_trigger
+				LOG_KEY = rol_expedition_feedback_expert_route
+				CONTRIBUTOR = scope:host
 				NEXT_EVENT = rol_quest_sevilla.1010
 			}
 		}
@@ -284,6 +288,7 @@ rol_quest_sevilla.1000 = {
 			limit = { rol_sevilla_quest_active_trigger = yes }
 			rol_archive_chart_route_effect = {
 				QUALIFICATION = rol_star_chart_route_trigger
+				LOG_KEY = rol_expedition_feedback_star_chart
 				CHART = rol_star_observations_modifier
 				NEXT_EVENT = rol_quest_sevilla.1010
 			}

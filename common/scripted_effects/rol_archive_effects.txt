@@ -19,7 +19,7 @@ rol_relic_use_record_knowledge_effect = {
 rol_archive_chart_route_effect = {
  if = {
   limit = { $QUALIFICATION$ = yes gold >= 40 }
-  rol_expedition_prepared_route_effect = { COST = 40 QUALIFICATION = $QUALIFICATION$ NEXT_EVENT = $NEXT_EVENT$ }
+  rol_expedition_prepared_route_effect = { COST = 40 QUALIFICATION = $QUALIFICATION$ NEXT_EVENT = $NEXT_EVENT$ LOG_KEY = $LOG_KEY$ CONTRIBUTOR = scope:host }
   remove_character_modifier = $CHART$
  }
 }

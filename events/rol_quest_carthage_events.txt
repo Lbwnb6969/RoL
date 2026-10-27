@@ -139,6 +139,8 @@ rol_quest_carthage.1000 = {
 			rol_expedition_prepared_route_effect = {
 				COST = 75
 				QUALIFICATION = rol_expedition_companion_guard_trigger
+				LOG_KEY = rol_expedition_feedback_guard_route
+				CONTRIBUTOR = scope:host.var:rol_expedition_companion_partner
 				NEXT_EVENT = rol_quest_carthage.1010
 			}
 		}
@@ -153,6 +155,8 @@ rol_quest_carthage.1000 = {
 			rol_expedition_prepared_route_effect = {
 				COST = 100
 				QUALIFICATION = rol_expedition_expert_route_trigger
+				LOG_KEY = rol_expedition_feedback_expert_route
+				CONTRIBUTOR = scope:host
 				NEXT_EVENT = rol_quest_carthage.1010
 			}
 		}

@@ -130,7 +130,7 @@ def check_observation_commission_contract(root: Path, errors: list[str], model=N
                 actor.flags.add("rol_relic_context_astrolabe")
                 actor.scopes.update(activity=actor.activity, host=actor)
                 model.call("rol_archive_chart_route_effect", actor, {"QUALIFICATION": "rol_star_chart_route_trigger",
-                           "CHART": chart, "NEXT_EVENT": "rol_quest_sevilla.1010"})
+                           "CHART": chart, "NEXT_EVENT": "rol_quest_sevilla.1010", "LOG_KEY": "rol_expedition_feedback_star_chart"})
                 assert actor.gold == 3860 and chart not in actor.modifiers and actor.activity["rol_expedition_first_trial_used"] == 1, "commissioned chart does not enter its actual 40-gold route consumer"
                 assert scholar.xp == {"rol_research": 10} and not actor.xp
             count += 1

@@ -141,6 +141,7 @@ class Model:
             ("scripted_effects", self.effects, "rol_relic_fragment_effects.txt"), ("scripted_triggers", self.triggers, "rol_fragment_triggers.txt"),
             ("scripted_effects", self.effects, "rol_relic_legacy_effects.txt"), ("scripted_triggers", self.triggers, "rol_relic_legacy_triggers.txt"),
             ("scripted_effects", self.effects, "rol_legacy_attitude_effects.txt"),
+            ("scripted_effects", self.effects, "rol_expedition_feedback_effects.txt"),
         ):
             path = root / "common" / directory / filename
             if path.exists(): container.update({k: v for k, _, v in parse(path.read_text(encoding="utf-8-sig"))})
@@ -376,6 +377,15 @@ class Model:
             elif key == "hidden_effect": self.run(value, state, scope)
             elif key == "add_activity_log_entry":
                 state.activity.setdefault("_log_entries", []).append(get(value, "key"))
+                record = {"key": get(value, "key")}
+                for field in ("character", "target"):
+                    values = [v for k, _, v in value if k == field]
+                    if values:
+                        person = self.reference(values[0], state, scope)
+                        # Labels are character identities in PathModel. Capture a
+                        # scalar, so logs do not add cyclic actors to state snapshots.
+                        record[field] = getattr(person, "label", id(person)) if person is not None else None
+                state.activity.setdefault("_log_records", []).append(record)
             elif key in self.effects: self.call(key, state, {k: v for k, _, v in value} if isinstance(value, list) else {}, scope)
             else: raise ValueError(f"unsupported effect {key}")
 

@@ -115,13 +115,14 @@ def check_companion_contract(root: Path, errors: list[str]) -> int:
 
         host, scholar, guard, envoy = party()
         model.call("rol_expedition_companion_accept_effect", host, {"PARTNER": "scope:rol_expedition_candidate_guard", "ROLE": 2})
-        params = {"COST": 75, "QUALIFICATION": "rol_expedition_companion_guard_trigger", "NEXT_EVENT": "rol_quest_rome.1010"}
+        params = {"COST": 75, "QUALIFICATION": "rol_expedition_companion_guard_trigger", "NEXT_EVENT": "rol_quest_rome.1010", "LOG_KEY": "rol_expedition_feedback_guard_route", "CONTRIBUTOR": "scope:host.var:rol_expedition_companion_partner"}
         model.call("rol_expedition_prepared_route_effect", host, params)
         model.call("rol_expedition_prepared_route_effect", host, params)
         assert host.gold == 125 and len(host.progress_effects) == 1 and host.events.count("rol_quest_rome.1010") == 1, "guard route is not one-use"
         host.traits.add("rol_relic_seeker")
         host.xp["rol_research"] = 60
-        model.call("rol_expedition_prepared_route_effect", host, {"COST": 100, "QUALIFICATION": "rol_expedition_expert_route_trigger", "NEXT_EVENT": "rol_quest_rome.1010"})
+        expert_params = {"COST": 100, "QUALIFICATION": "rol_expedition_expert_route_trigger", "NEXT_EVENT": "rol_quest_rome.1010", "LOG_KEY": "rol_expedition_feedback_expert_route", "CONTRIBUTOR": "scope:host"}
+        model.call("rol_expedition_prepared_route_effect", host, expert_params)
         assert host.gold == 125 and len(host.progress_effects) == 1, "expert route bypasses shared first-trial limit"
         for reason in ("left", "dead"):
             host, _, guard, _ = party()
@@ -134,7 +135,7 @@ def check_companion_contract(root: Path, errors: list[str]) -> int:
             expert, *_ = party()
             expert.traits.add("rol_relic_seeker")
             expert.xp["rol_research"] = xp
-            model.call("rol_expedition_prepared_route_effect", expert, {"COST": 100, "QUALIFICATION": "rol_expedition_expert_route_trigger", "NEXT_EVENT": "rol_quest_rome.1010"})
+            model.call("rol_expedition_prepared_route_effect", expert, expert_params)
             assert expert.gold == (100 if xp == 60 else 200), "expert route ignores its experience threshold"
 
         host, scholar, guard, envoy = party()

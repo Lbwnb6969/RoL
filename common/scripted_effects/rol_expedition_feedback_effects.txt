@@ -1,0 +1,14 @@
+﻿# Called only inside a committed, guarded action. The host and contributor are
+# captured by add_activity_log_entry, not read from mutable variables by the UI.
+# Native target/TARGET_CHARACTER precedent: tour_phase_tour_grounds.txt:3813.
+rol_expedition_feedback_effect = {
+	scope:activity = {
+		add_activity_log_entry = {
+			key = $KEY$
+			character = scope:host
+			target = $CONTRIBUTOR$
+			score = 40
+			show_in_conclusion = yes
+		}
+	}
+}
