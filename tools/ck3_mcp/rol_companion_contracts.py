@@ -41,6 +41,53 @@ def check_companion_contract(root: Path, errors: list[str]) -> int:
             model.call("rol_expedition_companion_offer_effect", host, {"NEXT_EVENT": f"rol_quest_{chain}.1000"})
             return host, scholar, guard, envoy
 
+        companion_effects = load("common/scripted_effects/rol_expedition_companion_effects.txt")
+        queue = get(companion_effects, "rol_expedition_companion_queue_settlement_effect")
+        queue_body = get(queue, "if")
+        queue_keys = [key for key, _, _ in queue_body if key != "limit"]
+        assert queue_keys.index("save_scope_value_as") < queue_keys.index("trigger_event"), "settlement identity is not saved before the delayed event is queued"
+        assert get(get(queue_body, "trigger_event"), "id") == "rol_expedition_companion.0002", "settlement queue targets another event"
+        for effect_name, delay in (("rol_expedition_companion_begin_effect", "4"), ("rol_expedition_companion_finish_effect", "4")):
+            queued = get(get(get(companion_effects, effect_name), "if"), "rol_expedition_companion_queue_settlement_effect")
+            assert get(queued, "DAYS") == delay, f"{effect_name}: settlement delay changed"
+        archive_effects = load("common/scripted_effects/rol_archive_effects.txt")
+        adopted = get(get(archive_effects, "rol_archive_adopt_pact_effect"), "if")
+        assert get(get(adopted, "rol_expedition_companion_queue_settlement_effect"), "DAYS") == "1", "inherited agreement bypasses identity capture"
+
+        # Each delayed settlement carries its own generation, even after a new pact replaces the live one.
+        host, scholar, guard, envoy = party()
+        model.call("rol_expedition_companion_accept_effect", host, {"PARTNER": "scope:rol_expedition_candidate_scholar", "ROLE": 1})
+        host.variables["rol_rome_stage_count"] = 1
+        model.call("rol_expedition_companion_finish_effect", host, {"STAGE_VARIABLE": "rol_rome_stage_count"})
+        old_context = host.event_contexts[-1][1]
+        assert old_context["rol_expedition_companion_generation"] == 1, "first queued settlement did not capture its generation"
+        model.call("rol_expedition_companion_honour_effect", host)
+        model.call("rol_expedition_companion_new_agreement_effect", host)
+        host.variables["rol_expedition_companion_partner"] = envoy
+        host.variables["rol_expedition_companion_role"] = 3
+        host.variables["rol_expedition_companion_earned_xp"] = 0
+        host.flags.add("rol_expedition_companion_settlement_pending")
+        model.call("rol_expedition_companion_queue_settlement_effect", host, {"DAYS": 4})
+        new_context = host.event_contexts[-1][1]
+        assert new_context["rol_expedition_companion_generation"] == 2, "second queued settlement did not capture its generation"
+        old_live_scopes = host.scopes
+        host.scopes = dict(old_context)
+        model.run(get(settlement, "immediate"), host)
+        assert host.scopes["rol_expedition_companion_generation"] == 1, "opening an old event overwrote its captured identity"
+        assert not model.condition(model.triggers["rol_expedition_companion_settlement_choice_trigger"], host), "old settlement became valid for the new agreement"
+        stale_close = next(v for k, _, v in settlement if k == "option" and get(v, "name").endswith(".e"))
+        model.run([node for node in stale_close if node[0] == "if"], host)
+        assert "rol_expedition_companion_settlement_pending" in host.flags and host.variables["rol_expedition_companion_partner"] is envoy, "old event cleared the new agreement"
+        host.scopes = dict(new_context)
+        model.run(get(settlement, "immediate"), host)
+        assert model.condition(model.triggers["rol_expedition_companion_settlement_choice_trigger"], host), "new settlement lost its own identity"
+        host.scopes = old_live_scopes
+
+        legacy = State(flags={"rol_expedition_companion_settlement_pending"}, variables={"rol_expedition_companion_role": 1, "rol_expedition_companion_partner": scholar})
+        model.run(get(settlement, "immediate"), legacy)
+        assert legacy.variables["rol_expedition_companion_generation"] == 1 and legacy.scopes["rol_expedition_companion_generation"] == 1, "legacy pending agreement did not receive a recoverable identity"
+        assert model.condition(model.triggers["rol_expedition_companion_settlement_choice_trigger"], legacy), "legacy recovery cannot settle its original agreement"
+
         for chain, (_, filename, cooldown) in ROUTES.items():
             activity = load(f"common/activities/activity_types/{filename}")[0][2]
             assert get(get(get(activity, "on_start"), "scope:host"), "rol_expedition_companion_begin_effect") == "yes", f"{chain}: companion initialization missing"

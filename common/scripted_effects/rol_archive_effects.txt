@@ -149,6 +149,6 @@ rol_archive_adopt_pact_effect = {
   set_variable = { name = rol_expedition_companion_earned_xp value = 0 }
   add_character_flag = rol_expedition_companion_settlement_pending
   rol_archive_drop_selected_pact_effect = yes
-  trigger_event = { id = rol_expedition_companion.0002 days = 1 }
+  rol_expedition_companion_queue_settlement_effect = { DAYS = 1 }
  }
 }

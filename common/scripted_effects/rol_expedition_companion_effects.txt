@@ -13,7 +13,7 @@ rol_expedition_companion_begin_effect = {
 		remove_character_flag = rol_expedition_companion_in_field
 		set_variable = { name = rol_expedition_companion_earned_xp value = 0 }
 		add_character_flag = rol_expedition_companion_settlement_pending
-		trigger_event = { id = rol_expedition_companion.0002 days = 4 }
+		rol_expedition_companion_queue_settlement_effect = { DAYS = 4 }
 	}
 }
 
@@ -192,7 +192,7 @@ rol_expedition_companion_finish_effect = {
 			set_variable = { name = rol_expedition_companion_earned_xp value = 10 }
 		}
 		add_character_flag = rol_expedition_companion_settlement_pending
-		trigger_event = { id = rol_expedition_companion.0002 days = 4 }
+		rol_expedition_companion_queue_settlement_effect = { DAYS = 4 }
 	}
 }
 
@@ -293,13 +293,31 @@ rol_expedition_companion_new_agreement_effect = {
  change_variable = { name = rol_expedition_companion_generation add = 1 }
 }
 
+# Legacy pending agreements receive an identity the first time they are opened.
+rol_expedition_companion_ensure_generation_effect = {
+ if = {
+  limit = { rol_expedition_companion_pending_trigger = yes NOT = { has_variable = rol_expedition_companion_generation } }
+  set_variable = { name = rol_expedition_companion_generation value = 1 }
+ }
+}
+
 rol_expedition_companion_capture_settlement_effect = {
  if = {
   limit = { rol_expedition_companion_pending_trigger = yes }
+  rol_expedition_companion_ensure_generation_effect = yes
   if = {
-   limit = { NOT = { has_variable = rol_expedition_companion_generation } }
-   set_variable = { name = rol_expedition_companion_generation value = 1 }
+   limit = { NOT = { exists = scope:rol_expedition_companion_generation } }
+   save_scope_value_as = { name = rol_expedition_companion_generation value = var:rol_expedition_companion_generation }
   }
+ }
+}
+
+# Preserve the agreement identity in each delayed event's saved scope.
+rol_expedition_companion_queue_settlement_effect = {
+ if = {
+  limit = { rol_expedition_companion_pending_trigger = yes }
+  rol_expedition_companion_ensure_generation_effect = yes
   save_scope_value_as = { name = rol_expedition_companion_generation value = var:rol_expedition_companion_generation }
+  trigger_event = { id = rol_expedition_companion.0002 days = $DAYS$ }
  }
 }
