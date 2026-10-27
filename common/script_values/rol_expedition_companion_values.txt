@@ -1,6 +1,25 @@
 ﻿rol_expedition_companion_scholar_chance_modifier = {
 	value = 0
-	if = { limit = { rol_expedition_companion_scholar_trigger = yes } add = 3 }
+	if = {
+		limit = { rol_expedition_companion_scholar_trigger = yes }
+		value = rol_expedition_scholar_basic_bonus_value
+		if = {
+			limit = { var:rol_expedition_companion_partner = { rol_expedition_scholar_experienced_trigger = yes } }
+			value = rol_expedition_scholar_experienced_bonus_value
+		}
+	}
+}
+
+rol_expedition_scholar_basic_bonus_value = { value = 3 }
+rol_expedition_scholar_experienced_bonus_value = { value = 5 }
+
+# Evaluated directly on the candidate for the invitation's numeric tooltip.
+rol_expedition_scholar_personal_bonus_value = {
+	value = rol_expedition_scholar_basic_bonus_value
+	if = {
+		limit = { rol_expedition_scholar_experienced_trigger = yes }
+		value = rol_expedition_scholar_experienced_bonus_value
+	}
 }
 
 # A prior fulfilled partner is preferred only if actually attending and qualified.

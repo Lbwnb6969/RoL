@@ -9,7 +9,7 @@
  rol_expedition_companion.0001.c.flavor:0 "一个能说服人的声音，或许能省下一场争斗。"
  rol_expedition_companion.0001.d:0 "不必订约，我们自己应付。"
  rol_expedition_companion.0001.d.flavor:0 "原有远征路线依然可用。"
- rol_expedition_companion_scholar_terms_tt:0 "这位学者活着且实际同行时，远征二元检定成功率提高#V 3个百分点#!，仍封顶95%，显示概率同步计算。承诺归来时共享研究声誉，花费50威望。"
+ rol_expedition_companion_scholar_terms_tt:0 "[rol_expedition_candidate_scholar.GetTitledFirstName]活着且实际同行时，远征二元检定成功率提高#V [rol_expedition_candidate_scholar.MakeScope.ScriptValue('rol_expedition_scholar_personal_bonus_value')|0]个百分点#!。普通学者提供3个百分点；其本人有探寻者特质且考据达到60经验时提供5个百分点。读取学者本人的经验，仍封顶95%，显示概率同步计算。承诺归来时共享研究声誉，花费50威望。"
  rol_expedition_companion_guard_terms_tt:0 "这位护卫活着且实际同行时，解锁一次花费75金币的确定成功开局路线。另承诺归来时支付50金币。仅跳过第一道检定，其余阶段和Tier4门槛仍需完成。"
  rol_expedition_companion_envoy_terms_tt:0 "这位交涉者活着且实际同行时，解锁一次和平解决竞争者争执的选项，改善远征进度并减少10压力。承诺归来时公开认可其贡献，花费75威望。竞争者不保证出现。"
  rol_expedition_guard_route_option:0 "让护卫准备一条稳妥的通路。"

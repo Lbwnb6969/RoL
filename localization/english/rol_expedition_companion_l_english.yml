@@ -9,7 +9,7 @@
  rol_expedition_companion.0001.c.flavor:0 "A capable voice can spare us a drawn blade."
  rol_expedition_companion.0001.d:0 "We can manage without a formal agreement."
  rol_expedition_companion.0001.d.flavor:0 "The original expedition routes remain open."
- rol_expedition_companion_scholar_terms_tt:0 "While this scholar is alive and attending, binary expedition checks gain #V +3 percentage points#! success chance, capped at 95% and included in the displayed odds. Promise shared credit on return, costing 50 prestige."
+ rol_expedition_companion_scholar_terms_tt:0 "While [rol_expedition_candidate_scholar.GetTitledFirstName] is alive and attending, binary expedition checks gain #V +[rol_expedition_candidate_scholar.MakeScope.ScriptValue('rol_expedition_scholar_personal_bonus_value')|0] percentage points#!. An ordinary scholar provides 3 points; a scholar with the seeker trait and 60 Research experience provides 5. Uses the scholar's own experience, still capped at 95% and included in displayed odds. Promise shared credit on return, costing 50 prestige."
  rol_expedition_companion_guard_terms_tt:0 "While this guard is alive and attending, unlock one guaranteed opening route costing 75 gold. Promise an additional 50 gold on return. This bypasses only the first trial; the remaining expedition and Tier4 requirement still apply."
  rol_expedition_companion_envoy_terms_tt:0 "While this envoy is alive and attending, unlock one peaceful settlement of a rival encounter, improving expedition progress and losing 10 stress. Promise public recognition on return, costing 75 prestige. A rival encounter is not guaranteed."
  rol_expedition_guard_route_option:0 "Let our guard prepare a secure passage."

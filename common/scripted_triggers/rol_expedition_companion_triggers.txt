@@ -29,6 +29,12 @@ rol_expedition_companion_scholar_trigger = {
 	scope:activity = { var:rol_expedition_companion_role = 1 }
 }
 
+# Person scope: the scholar's earned research, never the host's expertise.
+rol_expedition_scholar_experienced_trigger = {
+	has_trait = rol_relic_seeker
+	has_trait_xp = { trait = rol_relic_seeker track = rol_research value >= 60 }
+}
+
 rol_expedition_companion_guard_trigger = {
 	rol_expedition_companion_present_trigger = yes
 	scope:activity = { var:rol_expedition_companion_role = 2 }
