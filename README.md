@@ -3,7 +3,7 @@
 A narrative relic-hunting mod for **Crusader Kings III** that adds handcrafted expedition chains, legendary rewards, custom event scenes, and a multi-chain grand reveal event.
 
 > 中文名：**传奇圣遗物 / Relics of Legends**  
-> 当前仓库快照基线：**2026-10-07**
+> 当前施工基线：**2026-10-27**，系统深化方案见 [施工队列](docs/rol_system_deepening_20261027.md)
 > 当前 `descriptor.mod`：
 > - `name = "Relics of Legends"`
 > - `version = "1.00"`
@@ -56,6 +56,8 @@ Completing Carthage as well unlocks the separate fivefold event `rol_legend_circ
 ### Connected character and relic systems
 
 Five expeditions now feed three expertise tracks, temporary study focuses and regional retry notes. Actual attending specialists offer help and earned routes; paying the original companion builds reputation and future candidate priority. Four relics and the Naxos tradition have ten mutually exclusive uses with delayed project outcomes. Sphere observations and astrolabe charts unlock optional routes; seven kinds of records and original companion agreements can pass to heirs without copying personal XP.
+
+The October 27 expansion adds identity-bound rival reunions and house-owned knowledge collections. Catalogue seven kinds of existing notes/charts, then let members of the same house buy limited editions for future expeditions. Fragment challenge recovery now retains the original task identity. See [the current construction plan](docs/rol_system_deepening_20261027.md) and section 19 of [the game acceptance guide](docs/rol_console_test_guide.md).
 
 The four development stages and the comprehensive static review are complete. Retired vanilla GUI/global artifact-label overrides are archived; quality and type labels now use the current game's UI, while the legendary badge appears on RoL's own tier modifier. Gameplay, delayed scopes, UI and other mod combinations still need the maintainer's game test. Existing usable art is retained. See [the completion audit](docs/rol_completion_audit_20261007.md), [balance model](docs/rol_success_model.md) and [console test guide](docs/rol_console_test_guide.md), especially sections 6 and 16.
 
