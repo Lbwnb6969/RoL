@@ -748,6 +748,7 @@ def check_neutral_paths(model):
     actor, definition = start_route(model, "rome", company=True)
     actor.scopes["rol_expedition_rival"] = actor.attendees[1]
     actor.flags.add("rol_rival_route_mars")
+    model.call("rol_rival_begin_encounter_effect", actor)
     rival_event = model.dispatch(actor, "rol_rival.1000", dict(actor.scopes))
     actor.scopes["rol_expedition_rival"].alive = False
     close = next(v for k, _, v in rival_event if k == "option" and get(v, "name") == "rol_rival_context_lost_option")
@@ -892,6 +893,17 @@ def run_audit(root, game):
     model = PathModel(root, game)
     routes, choices, discarded = explore_quests(model)
     systems = check_system_paths(model)
+    if __package__:
+        from .rol_rival_relationship_contracts import check_rival_relationship_contract
+        from .rol_family_archive_contracts import check_family_archive_contract
+    else:
+        from rol_rival_relationship_contracts import check_rival_relationship_contract
+        from rol_family_archive_contracts import check_family_archive_contract
+    errors = []
+    rival_witnesses = check_rival_relationship_contract(root, errors, model=model)
+    family_records = check_family_archive_contract(root, errors, model=model)
+    assert not errors, "; ".join(errors)
+    systems.append(f"{rival_witnesses} identity-bound rival witnesses; {family_records} house knowledge records with catalogue/print consumers")
     choices |= model.options_seen
     all_choices = {(event, get(v, "name")) for event, nodes in model.events.items()
                    for k, _, v in nodes if k == "option"}

@@ -1,0 +1,46 @@
+﻿# The archive belongs to a house, rather than to an individual's completion flags.
+rol_family_archive_actor_trigger = {
+	is_ai = no
+	is_alive = yes
+	is_adult = yes
+	exists = house
+}
+
+# Menus retain their original house; moving to another house invalidates them.
+rol_family_archive_window_valid_trigger = {
+	rol_family_archive_actor_trigger = yes
+	exists = scope:rol_family_archive_house
+	house = { this = scope:rol_family_archive_house }
+}
+
+rol_family_archive_master_researcher_trigger = {
+	has_trait = rol_relic_seeker
+	has_trait_xp = { trait = rol_relic_seeker track = rol_research value >= 100 }
+}
+
+rol_family_archive_has_knowledge_trigger = {
+	OR = {
+		has_character_modifier = rol_expedition_mars_notes_modifier
+		has_character_modifier = rol_expedition_nibelung_notes_modifier
+		has_character_modifier = rol_expedition_naxos_notes_modifier
+		has_character_modifier = rol_expedition_astrolabe_notes_modifier
+		has_character_modifier = rol_expedition_carthage_notes_modifier
+		has_character_modifier = rol_star_observations_modifier
+		has_character_modifier = rol_ocean_routes_modifier
+	}
+}
+
+rol_family_archive_has_catalogue_trigger = {
+	exists = house
+	house = {
+		OR = {
+			has_variable = rol_family_archive_mars_notes
+			has_variable = rol_family_archive_nibelung_notes
+			has_variable = rol_family_archive_naxos_notes
+			has_variable = rol_family_archive_astrolabe_notes
+			has_variable = rol_family_archive_carthage_notes
+			has_variable = rol_family_archive_star_observations
+			has_variable = rol_family_archive_ocean_routes
+		}
+	}
+}

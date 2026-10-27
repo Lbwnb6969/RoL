@@ -74,8 +74,7 @@ rol_expedition_expert_route_trigger = {
 # Evaluated on a potential rival, with the original host saved by the selector.
 rol_expedition_rival_candidate_trigger = {
 	this != scope:rol_expedition_host
-	is_alive = yes
-	is_adult = yes
+	rol_expedition_companion_fit_trigger = yes
 	trigger_if = {
 		limit = { exists = scope:rol_expedition_host.var:rol_expedition_companion_partner }
 		this != scope:rol_expedition_host.var:rol_expedition_companion_partner

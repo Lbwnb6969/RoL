@@ -1,6 +1,10 @@
 ﻿rol_rival_route_active_trigger = {
 	exists = scope:rol_expedition_rival
-	scope:rol_expedition_rival = { is_alive = yes }
+	scope:rol_expedition_rival = { rol_expedition_companion_fit_trigger = yes }
+	exists = var:rol_rival_encounter_partner
+	scope:rol_expedition_rival = var:rol_rival_encounter_partner
+	exists = scope:rol_rival_encounter_generation
+	scope:rol_rival_encounter_generation = var:rol_rival_encounter_generation
 	OR = {
 		AND = { has_character_flag = rol_rival_route_mars rol_rome_quest_active_trigger = yes }
 		AND = { has_character_flag = rol_rival_route_nibelung rol_munich_quest_active_trigger = yes }
@@ -8,6 +12,39 @@
 		AND = { has_character_flag = rol_rival_route_astrolabe rol_sevilla_quest_active_trigger = yes }
 		AND = { has_character_flag = rol_rival_route_carthage rol_carthage_quest_active_trigger = yes }
 	}
+}
+
+# Relationship memory is distinct from the payable pact, which may be closed.
+# Old global flags without a recorded person never identify a new opponent.
+rol_rival_known_partner_attending_trigger = {
+	exists = scope:activity
+	exists = var:rol_rival_relationship_partner
+	OR = {
+		has_character_flag = rol_rival_cooperation_active
+		has_character_flag = rol_rival_grudge_active
+	}
+	scope:activity = {
+		any_attending_character = {
+			this = scope:rol_expedition_host.var:rol_rival_relationship_partner
+			rol_expedition_rival_candidate_trigger = yes
+		}
+	}
+}
+
+rol_rival_known_selected_partner_trigger = {
+	rol_rival_known_partner_attending_trigger = yes
+	exists = scope:rol_expedition_rival
+	scope:rol_expedition_rival = var:rol_rival_relationship_partner
+}
+
+rol_rival_known_cooperator_present_trigger = {
+	rol_rival_known_selected_partner_trigger = yes
+	has_character_flag = rol_rival_cooperation_active
+}
+
+rol_rival_known_grudge_present_trigger = {
+	rol_rival_known_selected_partner_trigger = yes
+	has_character_flag = rol_rival_grudge_active
 }
 
 rol_rival_pact_choice_trigger = {

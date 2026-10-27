@@ -1,0 +1,7 @@
+﻿rol_family_archive_catalogue_cost_value = {
+	value = 100
+	if = {
+		limit = { rol_family_archive_master_researcher_trigger = yes }
+		subtract = 50
+	}
+}

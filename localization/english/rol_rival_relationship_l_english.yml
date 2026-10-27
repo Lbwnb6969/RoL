@@ -1,0 +1,10 @@
+﻿l_english:
+ rol_rival_remember_cooperation_tt:0 "For ten years, cooperation is remembered with this person. If they attend a later expedition and remain eligible, they take priority as the rival and can offer a peaceful research route."
+ rol_rival_remember_grudge_risk_tt:0 "Defeat leaves a ten-year grievance with this person. That grievance affects only encounters with them, never another rival."
+ rol_rival_remember_grudge_tt:0 "This person remembers the broken agreement for ten years. If they attend a later expedition, you can pay them 50 Gold to reconcile."
+ rol_rival_reunion_research_option:0 "Compare our notes, as we did before."
+ rol_rival_reunion_research_flavor:0 "We have already learned how to work together. There is no need to gamble the expedition on another contest."
+ rol_rival_reunion_research_tt:0 "Gain 5 expedition progress and mutual respect with this same partner. Resolves this encounter once; grants no experience and requires no random check."
+ rol_rival_reunion_reconcile_option:0 "Pay 50 Gold and settle our quarrel."
+ rol_rival_reunion_reconcile_flavor:0 "An old grievance should not decide what happens in these ruins. Let the compensation end it."
+ rol_rival_reunion_reconcile_tt:0 "Pay this same person 50 Gold and gain mutual respect. Their grievance becomes ten years of cooperation. Resolves this encounter once; grants no expedition progress or experience."

@@ -50,3 +50,61 @@ rol_rival_capture_pact_effect = {
 	}
 	save_scope_value_as = { name = rol_rival_pact_generation value = var:rol_rival_pact_generation }
 }
+
+# Advance at dispatch, not at window opening. Replaying an old same-person
+# window cannot spend the next expedition's encounter.
+rol_rival_begin_encounter_effect = {
+	if = {
+		limit = { NOT = { has_variable = rol_rival_encounter_generation } }
+		set_variable = { name = rol_rival_encounter_generation value = 0 }
+	}
+	change_variable = { name = rol_rival_encounter_generation add = 1 }
+	set_variable = { name = rol_rival_encounter_partner value = scope:rol_expedition_rival }
+	save_scope_value_as = { name = rol_rival_encounter_generation value = var:rol_rival_encounter_generation }
+}
+
+rol_rival_clear_invalid_relationship_effect = {
+	if = {
+		limit = {
+			OR = {
+				NOT = { exists = var:rol_rival_relationship_partner }
+				var:rol_rival_relationship_partner = { is_alive = no }
+				NOT = { OR = { has_character_flag = rol_rival_cooperation_active has_character_flag = rol_rival_grudge_active } }
+			}
+		}
+		remove_variable = rol_rival_relationship_partner
+		remove_character_flag = rol_rival_cooperation_active
+		remove_character_flag = rol_rival_grudge_active
+	}
+}
+
+# Only real choices call this effect after their encounter/pact guard succeeds.
+rol_rival_remember_relationship_effect = {
+	set_variable = { name = rol_rival_relationship_partner value = scope:rol_expedition_rival }
+	remove_character_flag = rol_rival_cooperation_active
+	remove_character_flag = rol_rival_grudge_active
+	# Longer than the two-year failed-expedition cooldown, so a normal retry can
+	# actually encounter the same person's remembered cooperation or grievance.
+	add_character_flag = { flag = $FLAG$ years = 10 }
+}
+
+rol_rival_research_with_old_partner_effect = {
+	if = {
+		limit = { rol_rival_route_active_trigger = yes rol_rival_known_cooperator_present_trigger = yes }
+		scope:activity = { activity_special_type_progression_medium = yes }
+		scope:rol_expedition_rival = { add_opinion = { target = root modifier = rol_expedition_respect_opinion } }
+		add_opinion = { target = scope:rol_expedition_rival modifier = rol_expedition_respect_opinion }
+		rol_clear_rival_route_effect = yes
+	}
+}
+
+rol_rival_reconcile_old_partner_effect = {
+	if = {
+		limit = { rol_rival_route_active_trigger = yes rol_rival_known_grudge_present_trigger = yes gold >= 50 }
+		remove_short_term_gold = 50
+		scope:rol_expedition_rival = { add_gold = 50 add_opinion = { target = root modifier = rol_expedition_respect_opinion } }
+		add_opinion = { target = scope:rol_expedition_rival modifier = rol_expedition_respect_opinion }
+		rol_rival_remember_relationship_effect = { FLAG = rol_rival_cooperation_active }
+		rol_clear_rival_route_effect = yes
+	}
+}

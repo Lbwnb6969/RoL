@@ -177,6 +177,7 @@ def check_expansion_regressions(model, Person, plain_actor, start_route, drive, 
             model.run(model.option_body(candidate), a)
     assert (rewards(a), a.variables, a.queue) == before
     model.choose(a, event, "rol_relic_fragment.0001.e")
+    model.options_seen.add((event, "rol_relic_fragment.0001.e"))
     assert "rol_fragment_route_nibelung" in a.flags and a.variables["rol_fragment_target"] is sphere
     a.scopes = current_context
     a = drive(model, a)

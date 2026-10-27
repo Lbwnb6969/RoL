@@ -156,7 +156,8 @@ class Model:
             return (base.variables if isinstance(base, State) else (base or {})).get(name)
         if value == "root": return state
         if value == "this": return self.current(state, scope)
-        if value == "player_heir": return self.current(state, scope).player_heir
+        if value in ("player_heir", "house", "dynasty"):
+            return getattr(self.current(state, scope), value)
         if value == "involved_activity": return self.current(state, scope).activity
         if value == "scope:activity": return state.activity
         if value.startswith("scope:"): return state.scopes.get(value[6:])
@@ -164,7 +165,7 @@ class Model:
         raise ValueError(f"unsupported reference {value}")
 
     def number(self, value: str, state: State, scope="actor"):
-        if value in ("root", "this", "player_heir"):
+        if value in ("root", "this", "player_heir", "house", "dynasty"):
             return self.reference(value, state, scope)
         if value.startswith(("scope:", "var:", "root.var:")):
             resolved = self.reference(value, state, scope)
@@ -193,8 +194,9 @@ class Model:
                 return not self.condition(get(value, "limit"), state, scope) or self.condition([n for n in value if n[0] != "limit"], state, scope)
             if key == "custom_description":
                 return self.condition([n for n in value if n[0] != "text"], state, scope)
-            if key == "player_heir":
-                return current.player_heir is not None and self.condition(value, state, current.player_heir)
+            if key in ("player_heir", "house", "dynasty"):
+                target = getattr(current, key)
+                return target is not None and self.condition(value, state, target)
             if key == "involved_activity":
                 return current.activity is not None and self.condition(value, state, current.activity)
             if key == "is_ai": return current.ai == (value == "yes")
@@ -327,6 +329,7 @@ class Model:
                 number = self.number(operand, state, scope)
                 variables[name] = number if key == "set_variable" else variables[name] + number
             elif key == "remove_variable": variables.pop(value, None)
+            elif key == "clear_saved_scope": state.scopes.pop(value, None)
             elif key == "add_character_flag":
                 flag = get(value, "flag") if isinstance(value, list) else value
                 current.flags.add(flag)

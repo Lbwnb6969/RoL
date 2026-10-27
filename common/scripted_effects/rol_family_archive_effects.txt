@@ -1,0 +1,40 @@
+﻿# Vanilla references: tgp_house_blocs.1001.b sets a variable inside house;
+# japan_set_house_effect saves the current house before changing membership.
+rol_family_archive_open_effect = {
+	if = {
+		limit = { rol_family_archive_actor_trigger = yes }
+		house = { save_scope_as = rol_family_archive_house }
+		trigger_event = $EVENT$
+	}
+}
+
+# Record existing knowledge only; no migration infers books from completion flags.
+rol_family_archive_catalogue_effect = {
+	if = {
+		limit = {
+			rol_family_archive_window_valid_trigger = yes
+			has_character_modifier = $MODIFIER$
+			gold >= rol_family_archive_catalogue_cost_value
+			scope:rol_family_archive_house = { NOT = { has_variable = rol_family_archive_$NAME$ } }
+		}
+		remove_short_term_gold = rol_family_archive_catalogue_cost_value
+		scope:rol_family_archive_house = { set_variable = { name = rol_family_archive_$NAME$ value = 1 } }
+	}
+}
+
+# Editions use the existing one-use knowledge modifiers and their normal consumers.
+rol_family_archive_print_effect = {
+	if = {
+		limit = {
+			rol_family_archive_window_valid_trigger = yes
+			gold >= 40
+			NOT = { has_character_flag = rol_family_archive_print_cooldown }
+			NOT = { has_character_modifier = $MODIFIER$ }
+			scope:rol_family_archive_house = { var:rol_family_archive_$NAME$ = 1 }
+		}
+		remove_short_term_gold = 40
+		add_character_modifier = { modifier = $MODIFIER$ years = 5 }
+		add_character_flag = $HEARD_FLAG$
+		add_character_flag = { flag = rol_family_archive_print_cooldown years = 3 }
+	}
+}

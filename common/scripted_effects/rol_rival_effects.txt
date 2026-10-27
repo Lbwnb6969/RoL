@@ -1,13 +1,14 @@
 ﻿rol_try_rival_interlude_effect = {
+	rol_select_expedition_rival_effect = yes
 	if = {
-		limit = { has_character_flag = rol_rival_cooperation_active }
+		limit = { rol_rival_known_cooperator_present_trigger = yes }
 		random_list = {
 			75 = { rol_fire_rival_or_fallback_effect = { FALLBACK_EVENT = $FALLBACK_EVENT$ } }
 			25 = { trigger_event = { id = $FALLBACK_EVENT$ days = 4 } rol_clear_rival_route_effect = yes }
 		}
 	}
 	else_if = {
-		limit = { has_character_flag = rol_rival_grudge_active }
+		limit = { rol_rival_known_grudge_present_trigger = yes }
 		random_list = {
 			70 = { rol_fire_rival_or_fallback_effect = { FALLBACK_EVENT = $FALLBACK_EVENT$ } }
 			30 = { trigger_event = { id = $FALLBACK_EVENT$ days = 4 } rol_clear_rival_route_effect = yes }
@@ -23,25 +24,42 @@
 
 rol_select_expedition_rival_effect = {
 	save_scope_as = rol_expedition_host
-	scope:activity = {
-		random_attending_character = {
-			limit = { rol_expedition_rival_candidate_trigger = yes }
-			save_scope_as = rol_expedition_rival
+	# A carried event scope must never resurrect the last expedition's opponent.
+	# Native precedent: 00_accolades_scripted_effects.txt, clear_saved_scope.
+	clear_saved_scope = rol_expedition_rival
+	rol_rival_clear_invalid_relationship_effect = yes
+	if = {
+		limit = { rol_rival_known_partner_attending_trigger = yes }
+		var:rol_rival_relationship_partner = { save_scope_as = rol_expedition_rival }
+	}
+	else = {
+		scope:activity = {
+			random_attending_character = {
+				limit = { rol_expedition_rival_candidate_trigger = yes }
+				save_scope_as = rol_expedition_rival
+			}
 		}
 	}
 	if = {
 		limit = { NOT = { exists = scope:rol_expedition_rival } }
 		random_courtier_or_guest = {
-			limit = { rol_expedition_rival_candidate_trigger = yes }
+			limit = {
+				rol_expedition_rival_candidate_trigger = yes
+				# A remembered opponent must attend; do not summon an absent old foe.
+				trigger_if = {
+					limit = { exists = scope:rol_expedition_host.var:rol_rival_relationship_partner }
+					this != scope:rol_expedition_host.var:rol_rival_relationship_partner
+				}
+			}
 			save_scope_as = rol_expedition_rival
 		}
 	}
 }
 
 rol_fire_rival_or_fallback_effect = {
-	rol_select_expedition_rival_effect = yes
 	if = {
 		limit = { exists = scope:rol_expedition_rival }
+		rol_rival_begin_encounter_effect = yes
 		trigger_event = { id = rol_rival.1000 days = 4 }
 	}
 	else = {
@@ -73,4 +91,5 @@ rol_clear_rival_route_effect = {
 	remove_character_flag = rol_rival_route_astrolabe
 	remove_character_flag = rol_rival_route_carthage
 	remove_character_flag = rol_rival_route_naxos
+	remove_variable = rol_rival_encounter_partner
 }

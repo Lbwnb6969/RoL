@@ -1,0 +1,10 @@
+﻿l_simp_chinese:
+ rol_rival_remember_cooperation_tt:0 "与此人记下十年的合作关系。此人日后实际出席远征且仍符合条件时，优先成为本场竞争者，并可选择共同考据。"
+ rol_rival_remember_grudge_risk_tt:0 "落败会与此人留下十年的积怨。积怨只影响与本人的重逢，不会套用到其他竞争者身上。"
+ rol_rival_remember_grudge_tt:0 "此人会记住这次毁约十年。日后本人出席远征时，你可向其支付50金币调解旧怨。"
+ rol_rival_reunion_research_option:0 "像从前那样，一起核对笔记。"
+ rol_rival_reunion_research_flavor:0 "我们已知道如何分工，不必再用一场较量决定远征的前途。"
+ rol_rival_reunion_research_tt:0 "远征进度增加5，并与同一位旧识互相尊重。本场相遇只结算一次；不奖励经验，不进行随机检定。"
+ rol_rival_reunion_reconcile_option:0 "支付50金币，了结我们的争执。"
+ rol_rival_reunion_reconcile_flavor:0 "不该让旧怨决定这片遗迹里的命运。这笔补偿就当是争端的终点。"
+ rol_rival_reunion_reconcile_tt:0 "向这位原竞争者支付50金币，双方互相尊重。与本人的积怨改为十年合作。本场相遇只结算一次；不奖励远征进度或经验。"
