@@ -58,6 +58,28 @@ rol_expedition_companion_pending_trigger = {
 	has_character_flag = rol_expedition_companion_settlement_pending
 }
 
+# Person scope, evaluated on the envoy captured by this original encounter.
+rol_expedition_envoy_experienced_trigger = {
+	has_trait = rol_relic_seeker
+	has_trait_xp = { trait = rol_relic_seeker track = rol_negotiation value >= 60 }
+}
+
+rol_expedition_envoy_accord_trigger = {
+	rol_rival_route_active_trigger = yes
+	rol_expedition_companion_envoy_trigger = yes
+	exists = scope:rol_rival_encounter_envoy
+	scope:rol_rival_encounter_envoy = var:rol_expedition_companion_partner
+	scope:rol_rival_encounter_envoy = { rol_expedition_envoy_experienced_trigger = yes }
+	prestige >= rol_expedition_envoy_accord_cost_value
+	NOT = {
+		AND = {
+			has_character_flag = rol_rival_cooperation_active
+			exists = var:rol_rival_relationship_partner
+			var:rol_rival_relationship_partner = scope:rol_expedition_rival
+		}
+	}
+}
+
 rol_expedition_first_trial_trigger = {
 	exists = scope:activity
 	scope:activity = {

@@ -170,6 +170,17 @@ rol_expedition_companion_mediate_effect = {
 	}
 }
 
+# Relationship memory is agreed before the existing mediation consumes its window.
+rol_expedition_envoy_accord_effect = {
+	if = {
+		limit = { rol_expedition_envoy_accord_trigger = yes }
+		add_prestige = rol_expedition_envoy_accord_payment_value
+		rol_rival_remember_relationship_effect = { FLAG = rol_rival_cooperation_active }
+		rol_expedition_feedback_effect = { KEY = rol_expedition_feedback_envoy_accord CONTRIBUTOR = scope:rol_expedition_rival }
+		rol_expedition_companion_mediate_effect = yes
+	}
+}
+
 rol_expedition_companion_finish_effect = {
 	if = {
 		limit = { exists = scope:activity has_character_flag = rol_expedition_companion_in_field scope:activity = { var:rol_expedition_companion_open = 1 } }

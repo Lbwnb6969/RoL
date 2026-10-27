@@ -25,6 +25,12 @@ rol_expedition_scholar_personal_bonus_value = {
 rol_expedition_guard_basic_cost_value = { value = 75 }
 rol_expedition_guard_experienced_cost_value = { value = 50 }
 
+rol_expedition_envoy_accord_cost_value = { value = 75 }
+rol_expedition_envoy_accord_payment_value = {
+	value = 0
+	subtract = rol_expedition_envoy_accord_cost_value
+}
+
 # Invitation evaluates directly on its original candidate.
 rol_expedition_guard_personal_cost_value = {
 	value = rol_expedition_guard_basic_cost_value

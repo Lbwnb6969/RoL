@@ -11,6 +11,8 @@
  rol_expedition_feedback_reunion:0 "[CHARACTER.GetShortUIName|U] worked with [TARGET_CHARACTER.GetShortUIName] again; familiar teamwork eased stress and gave the party an early advantage."
  rol_expedition_feedback_mediation_title:0 "An Envoy Settles the Dispute"
  rol_expedition_feedback_mediation:0 "[TARGET_CHARACTER.GetShortUIName|U] settled a rival dispute for [CHARACTER.GetShortUINamePossessive] party, allowing the expedition to advance. This completed mediation counted toward the envoy's Negotiation practice."
+ rol_expedition_feedback_envoy_accord_title:0 "Mediation Becomes a Lasting Accord"
+ rol_expedition_feedback_envoy_accord:0 "Through an envoy's accord, [CHARACTER.GetShortUIName] spent prestige to remember the original rival [TARGET_CHARACTER.GetShortUIName] as an associate for ten years. This replaces the last remembered person and allows joint research when the associate attends a later expedition."
  rol_expedition_feedback_joint_research_title:0 "Comparing Evidence with an Old Associate"
  rol_expedition_feedback_joint_research:0 "[CHARACTER.GetShortUIName|U] compared evidence with the original associate [TARGET_CHARACTER.GetShortUIName], gaining 5 expedition progress with certainty."
  rol_expedition_feedback_reconciliation_title:0 "Compensating the Original Rival"

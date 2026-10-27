@@ -16,6 +16,13 @@ rol_rival.1000 = {
 		if = { limit = { rol_rival_route_active_trigger = yes } rol_expedition_companion_mediate_effect = yes }
 	}
 	option = {
+		name = rol_expedition_envoy_accord_option
+		flavor = rol_expedition_envoy_accord_flavor
+		trigger = { rol_expedition_envoy_accord_trigger = yes }
+		custom_tooltip = rol_expedition_envoy_accord_tt
+		rol_expedition_envoy_accord_effect = yes
+	}
+	option = {
 		name = rol_rival.1000.a
 		flavor = rol_rival.1000.a.flavor
 		custom_tooltip = rol_rival_remember_cooperation_tt

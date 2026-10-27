@@ -105,6 +105,7 @@ def check_expedition_feedback_contract(root: Path, errors: list[str], model=None
         # Envoy and rival entries name the actual contributor. Their existing
         # once-only route closure also closes their opportunity to write a log.
         for kind, name, key in (("envoy", "rol_rival.1000.d", "mediation"),
+                                ("accord", "rol_expedition_envoy_accord_option", "envoy_accord"),
                                 ("cooperation", "rol_rival_reunion_research_option", "joint_research"),
                                 ("grudge", "rol_rival_reunion_reconcile_option", "reconciliation")):
             actor, _, _ = opening(role=3)
@@ -112,12 +113,16 @@ def check_expedition_feedback_contract(root: Path, errors: list[str], model=None
             rival = next(p for p in actor.attendees if p is not actor and p is not envoy)
             actor.scopes.update(rol_expedition_host=actor, rol_expedition_rival=rival)
             actor.flags.add("rol_rival_route_mars")
-            if kind != "envoy":
+            if kind == "accord":
+                envoy.traits.add("rol_relic_seeker")
+                envoy.xp["rol_negotiation"] = 60
+            elif kind != "envoy":
                 actor.variables["rol_rival_relationship_partner"] = rival
                 actor.flags.add(f"rol_rival_{kind}_active")
             model.call("rol_rival_begin_encounter_effect", actor)
             model.choose(actor, "rol_rival.1000", name)
             require(actor, key, envoy if kind == "envoy" else rival)
+            if kind == "accord": require(actor, "mediation", envoy)
             before = list(records(actor))
             model.run(body("rol_rival.1000", name), actor)
             assert records(actor) == before, "closed rival encounter writes another success"

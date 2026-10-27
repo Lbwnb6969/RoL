@@ -11,6 +11,8 @@
  rol_expedition_feedback_reunion:0 "[CHARACTER.GetShortUIName|U]再次与[TARGET_CHARACTER.GetShortUIName]合作，熟悉的分工减轻了压力，并为队伍带来起步优势。"
  rol_expedition_feedback_mediation_title:0 "交涉者化解争执"
  rol_expedition_feedback_mediation:0 "[TARGET_CHARACTER.GetShortUIName|U]为[CHARACTER.GetShortUIName]的队伍化解了竞争争执，远征得以继续推进。这次实际调解计入了该交涉者的交涉历练。"
+ rol_expedition_feedback_envoy_accord_title:0 "调解成为长期和议"
+ rol_expedition_feedback_envoy_accord:0 "在交涉者促成的和议中，[CHARACTER.GetShortUIName]花费威望，与原竞争者[TARGET_CHARACTER.GetShortUIName]建立了十年合作记忆。这位新合作者替换最近一位旧识，下次实际同行时可继续共同考据。"
  rol_expedition_feedback_joint_research_title:0 "与旧识共同考据"
  rol_expedition_feedback_joint_research:0 "[CHARACTER.GetShortUIName|U]与原合作者[TARGET_CHARACTER.GetShortUIName]核对证据，确定增加了5点远征进度。"
  rol_expedition_feedback_reconciliation_title:0 "补偿原竞争者"

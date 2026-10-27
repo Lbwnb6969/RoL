@@ -61,6 +61,12 @@ rol_rival_begin_encounter_effect = {
 	change_variable = { name = rol_rival_encounter_generation add = 1 }
 	set_variable = { name = rol_rival_encounter_partner value = scope:rol_expedition_rival }
 	save_scope_value_as = { name = rol_rival_encounter_generation value = var:rol_rival_encounter_generation }
+	# Capture the actual envoy before the encounter window's delay.
+	clear_saved_scope = rol_rival_encounter_envoy
+	if = {
+		limit = { rol_expedition_companion_envoy_trigger = yes }
+		var:rol_expedition_companion_partner = { save_scope_as = rol_rival_encounter_envoy }
+	}
 }
 
 rol_rival_clear_invalid_relationship_effect = {
