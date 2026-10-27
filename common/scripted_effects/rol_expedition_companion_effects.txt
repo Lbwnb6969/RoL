@@ -130,9 +130,31 @@ rol_expedition_prepared_route_effect = {
 	}
 }
 
+rol_expedition_guard_route_effect = {
+	if = {
+		limit = {
+			rol_expedition_first_trial_trigger = yes
+			rol_expedition_companion_guard_trigger = yes
+			gold >= rol_expedition_guard_route_cost_value
+		}
+		# Commit the price before the work raises the original guard's experience.
+		rol_expedition_prepared_route_effect = {
+			COST = rol_expedition_guard_route_cost_value
+			QUALIFICATION = rol_expedition_companion_guard_trigger
+			LOG_KEY = rol_expedition_feedback_guard_route
+			CONTRIBUTOR = scope:host.var:rol_expedition_companion_partner
+			NEXT_EVENT = $NEXT_EVENT$
+		}
+		var:rol_expedition_companion_partner = {
+			if = { limit = { NOT = { has_trait = rol_relic_seeker } } add_trait = rol_relic_seeker }
+			add_trait_xp = { trait = rol_relic_seeker track = rol_exploration value = 10 }
+		}
+	}
+}
+
 rol_expedition_companion_mediate_effect = {
 	if = {
-		limit = { rol_expedition_companion_envoy_trigger = yes exists = scope:rol_expedition_rival scope:rol_expedition_rival = { is_alive = yes } }
+		limit = { rol_rival_route_active_trigger = yes rol_expedition_companion_envoy_trigger = yes }
 		scope:activity = {
 			set_variable = { name = rol_expedition_companion_mediation_used value = 1 }
 			activity_special_type_progression_medium = yes
@@ -140,6 +162,10 @@ rol_expedition_companion_mediate_effect = {
 		add_stress = -10
 		scope:rol_expedition_rival = { add_opinion = { target = root modifier = rol_expedition_respect_opinion } }
 		rol_expedition_feedback_effect = { KEY = rol_expedition_feedback_mediation CONTRIBUTOR = scope:host.var:rol_expedition_companion_partner }
+		var:rol_expedition_companion_partner = {
+			if = { limit = { NOT = { has_trait = rol_relic_seeker } } add_trait = rol_relic_seeker }
+			add_trait_xp = { trait = rol_relic_seeker track = rol_negotiation value = 10 }
+		}
 		rol_clear_rival_route_effect = yes
 	}
 }

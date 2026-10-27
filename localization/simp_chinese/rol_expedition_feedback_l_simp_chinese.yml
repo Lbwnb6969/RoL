@@ -1,6 +1,6 @@
 ﻿l_simp_chinese:
  rol_expedition_feedback_guard_route_title:0 "护卫开路"
- rol_expedition_feedback_guard_route:0 "[TARGET_CHARACTER.GetShortUIName|U]为[CHARACTER.GetShortUIName]的队伍保障通行，以稳定路线通过了第一道难关。"
+ rol_expedition_feedback_guard_route:0 "[TARGET_CHARACTER.GetShortUIName|U]为[CHARACTER.GetShortUIName]的队伍保障通行，以稳定路线通过了第一道难关。这次实际开路计入了该护卫的探险历练。"
  rol_expedition_feedback_expert_route_title:0 "以专长筹划路线"
  rol_expedition_feedback_expert_route:0 "[CHARACTER.GetShortUIName|U]凭远征专长安排了稳定开局，后续难关仍须逐一克服。"
  rol_expedition_feedback_star_chart_title:0 "观测图指路"
@@ -10,7 +10,7 @@
  rol_expedition_feedback_reunion_title:0 "老搭档再度同行"
  rol_expedition_feedback_reunion:0 "[CHARACTER.GetShortUIName|U]再次与[TARGET_CHARACTER.GetShortUIName]合作，熟悉的分工减轻了压力，并为队伍带来起步优势。"
  rol_expedition_feedback_mediation_title:0 "交涉者化解争执"
- rol_expedition_feedback_mediation:0 "[TARGET_CHARACTER.GetShortUIName|U]为[CHARACTER.GetShortUIName]的队伍化解了竞争争执，远征得以继续推进。"
+ rol_expedition_feedback_mediation:0 "[TARGET_CHARACTER.GetShortUIName|U]为[CHARACTER.GetShortUIName]的队伍化解了竞争争执，远征得以继续推进。这次实际调解计入了该交涉者的交涉历练。"
  rol_expedition_feedback_joint_research_title:0 "与旧识共同考据"
  rol_expedition_feedback_joint_research:0 "[CHARACTER.GetShortUIName|U]与原合作者[TARGET_CHARACTER.GetShortUIName]核对证据，确定增加了5点远征进度。"
  rol_expedition_feedback_reconciliation_title:0 "补偿原竞争者"

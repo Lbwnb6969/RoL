@@ -250,17 +250,11 @@ rol_quest_sevilla.1000 = {
 	option = {
 		name = rol_expedition_guard_route_option
 		flavor = rol_expedition_guard_route_flavor
-		trigger = { rol_expedition_first_trial_trigger = yes rol_expedition_companion_guard_trigger = yes gold >= 75 }
+		trigger = { rol_expedition_first_trial_trigger = yes rol_expedition_companion_guard_trigger = yes gold >= rol_expedition_guard_route_cost_value }
 		custom_tooltip = rol_expedition_guard_route_tt
 		if = {
 			limit = { rol_sevilla_quest_active_trigger = yes }
-			rol_expedition_prepared_route_effect = {
-				COST = 75
-				QUALIFICATION = rol_expedition_companion_guard_trigger
-				LOG_KEY = rol_expedition_feedback_guard_route
-				CONTRIBUTOR = scope:host.var:rol_expedition_companion_partner
-				NEXT_EVENT = rol_quest_sevilla.1010
-			}
+			rol_expedition_guard_route_effect = { NEXT_EVENT = rol_quest_sevilla.1010 }
 		}
 	}
 	option = {

@@ -507,6 +507,8 @@ def audit(root: Path) -> int:
     preservation_witnesses = check_relic_preservation_contract(root, errors)
     from rol_archive_status_contracts import check_archive_status_contract
     archive_status_witnesses = check_archive_status_contract(root, errors)
+    from rol_field_companion_growth_contracts import check_field_companion_growth_contract
+    field_growth_witnesses = check_field_companion_growth_contract(root, errors)
     from rol_compatibility_contracts import check_compatibility_contract
     from rol_quest_lifecycle_contracts import check_quest_lifecycle_contract
     compatible_files, _ = check_compatibility_contract(root, errors)
@@ -523,6 +525,7 @@ def audit(root: Path) -> int:
     print(f"[OK] Scholar growth: {scholar_witnesses} earned-growth, original-person and exact-odds witnesses")
     print(f"[OK] Restoration preservation: {preservation_witnesses} original-project and house-archive witnesses")
     print(f"[OK] Archive status: {archive_status_witnesses} live house/copy and bilingual display witnesses")
+    print(f"[OK] Companion field growth: {field_growth_witnesses} original worker, dynamic price and one-use witnesses")
     print(f"[OK] RoL static audit passed: {len(CHAINS)} activities, {fragment_routes} fragment routes, {growth_routes} growth routes, {companion_routes} companion routes, {relic_use_modes} relic use modes, {cross_routes} cross-chain routes, {inherited_records} inherited records, {english_count} English keys, {chinese_count} Chinese keys, {gfx_count} RoL gfx references, {dds_count} canonical DDS assets, {success_model_refs} high-chance branches, {chance_lists} chance lists, {chance_tooltips} chance tooltip keys, {branch_options} event choices with partial endings")
     return 0
 

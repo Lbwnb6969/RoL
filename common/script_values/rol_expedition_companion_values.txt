@@ -22,6 +22,30 @@ rol_expedition_scholar_personal_bonus_value = {
 	}
 }
 
+rol_expedition_guard_basic_cost_value = { value = 75 }
+rol_expedition_guard_experienced_cost_value = { value = 50 }
+
+# Invitation evaluates directly on its original candidate.
+rol_expedition_guard_personal_cost_value = {
+	value = rol_expedition_guard_basic_cost_value
+	if = {
+		limit = { rol_expedition_guard_experienced_trigger = yes }
+		value = rol_expedition_guard_experienced_cost_value
+	}
+}
+
+# Action/tooltip evaluate on the host and require the actual contracted guard.
+rol_expedition_guard_route_cost_value = {
+	value = rol_expedition_guard_basic_cost_value
+	if = {
+		limit = {
+			rol_expedition_companion_guard_trigger = yes
+			var:rol_expedition_companion_partner = { rol_expedition_guard_experienced_trigger = yes }
+		}
+		value = rol_expedition_guard_experienced_cost_value
+	}
+}
+
 # A prior fulfilled partner is preferred only if actually attending and qualified.
 rol_expedition_companion_scholar_order_value = {
 	value = learning

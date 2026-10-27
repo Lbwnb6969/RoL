@@ -903,6 +903,7 @@ def run_audit(root, game):
         from .rol_scholar_growth_contracts import check_scholar_growth_contract
         from .rol_relic_preservation_contracts import check_relic_preservation_contract
         from .rol_archive_status_contracts import check_archive_status_contract
+        from .rol_field_companion_growth_contracts import check_field_companion_growth_contract
     else:
         from rol_rival_relationship_contracts import check_rival_relationship_contract
         from rol_family_archive_contracts import check_family_archive_contract
@@ -913,6 +914,7 @@ def run_audit(root, game):
         from rol_scholar_growth_contracts import check_scholar_growth_contract
         from rol_relic_preservation_contracts import check_relic_preservation_contract
         from rol_archive_status_contracts import check_archive_status_contract
+        from rol_field_companion_growth_contracts import check_field_companion_growth_contract
     errors = []
     rival_witnesses = check_rival_relationship_contract(root, errors, model=model)
     family_records = check_family_archive_contract(root, errors, model=model)
@@ -923,6 +925,7 @@ def run_audit(root, game):
     scholar_witnesses = check_scholar_growth_contract(root, errors, model=model)
     preservation_witnesses = check_relic_preservation_contract(root, errors, model=model)
     archive_status_witnesses = check_archive_status_contract(root, errors, model=model)
+    field_growth_witnesses = check_field_companion_growth_contract(root, errors, model=model)
     assert not errors, "; ".join(errors)
     systems.append(f"{rival_witnesses} identity-bound rival witnesses; {family_records} house knowledge records with catalogue/print consumers")
     systems.append(f"{commission_witnesses} original-scholar commissions; {negotiation_witnesses} guard-credit and {exploration_witnesses} master-detour witnesses")
@@ -930,6 +933,7 @@ def run_audit(root, game):
     systems.append(f"{scholar_witnesses} scholar-growth witnesses: original commissioned observer, attending help, tier boundaries and exact odds")
     systems.append(f"{preservation_witnesses} restoration witnesses: seven genuine sources, original job/house, mutually exclusive rewards and paid heir editions")
     systems.append(f"{archive_status_witnesses} read-only archive status witnesses: live house, personal sources, real catalogue/printing/expiry and bilingual wiring")
+    systems.append(f"{field_growth_witnesses} original guard/envoy field-work witnesses: personal growth, six-job threshold, five dynamic fees and replay isolation")
     choices |= model.options_seen
     all_choices = {(event, get(v, "name")) for event, nodes in model.events.items()
                    for k, _, v in nodes if k == "option"}

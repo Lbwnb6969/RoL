@@ -50,10 +50,12 @@ def check_companion_contract(root: Path, errors: list[str]) -> int:
             arrival_option = get(get(chain_events, f"rol_quest_{chain}.0990"), "option")
             assert get(get(get(get(arrival_option, "if"), "hidden_effect"), "rol_expedition_companion_offer_effect"), "NEXT_EVENT") == f"rol_quest_{chain}.1000", f"{chain}: arrival bypasses companion offer"
             trial = get(chain_events, f"rol_quest_{chain}.1000")
-            for name, cost in (("rol_expedition_guard_route_option", "75"), ("rol_expedition_expert_route_option", "100")):
+            for name, effect in (("rol_expedition_guard_route_option", "rol_expedition_guard_route_effect"), ("rol_expedition_expert_route_option", "rol_expedition_prepared_route_effect")):
                 option = next(v for k, _, v in trial if k == "option" and get(v, "name") == name)
-                prepared = get(get(option, "if"), "rol_expedition_prepared_route_effect")
-                assert get(prepared, "COST") == cost and get(prepared, "NEXT_EVENT") == f"rol_quest_{chain}.1010", f"{chain}: prepared route does not reach normal success progression"
+                prepared = get(get(option, "if"), effect)
+                assert get(prepared, "NEXT_EVENT") == f"rol_quest_{chain}.1010", f"{chain}: prepared route does not reach normal success progression"
+                if effect == "rol_expedition_prepared_route_effect":
+                    assert get(prepared, "COST") == "100", f"{chain}: expert route price changed"
             effects = load(f"common/scripted_effects/rol_quest_{chain}_effects.txt")
             for name in (f"rol_{chain}_quest_success_finalize_effect", f"rol_{chain}_quest_partial_finalize_effect", cooldown):
                 assert get(get(get(get(effects, name), "if"), "rol_expedition_companion_finish_effect"), "STAGE_VARIABLE") == f"rol_{chain}_stage_count", f"{chain}: ending omits same-person settlement"
@@ -115,9 +117,9 @@ def check_companion_contract(root: Path, errors: list[str]) -> int:
 
         host, scholar, guard, envoy = party()
         model.call("rol_expedition_companion_accept_effect", host, {"PARTNER": "scope:rol_expedition_candidate_guard", "ROLE": 2})
-        params = {"COST": 75, "QUALIFICATION": "rol_expedition_companion_guard_trigger", "NEXT_EVENT": "rol_quest_rome.1010", "LOG_KEY": "rol_expedition_feedback_guard_route", "CONTRIBUTOR": "scope:host.var:rol_expedition_companion_partner"}
-        model.call("rol_expedition_prepared_route_effect", host, params)
-        model.call("rol_expedition_prepared_route_effect", host, params)
+        params = {"NEXT_EVENT": "rol_quest_rome.1010"}
+        model.call("rol_expedition_guard_route_effect", host, params)
+        model.call("rol_expedition_guard_route_effect", host, params)
         assert host.gold == 125 and len(host.progress_effects) == 1 and host.events.count("rol_quest_rome.1010") == 1, "guard route is not one-use"
         host.traits.add("rol_relic_seeker")
         host.xp["rol_research"] = 60
@@ -129,7 +131,7 @@ def check_companion_contract(root: Path, errors: list[str]) -> int:
             model.call("rol_expedition_companion_accept_effect", host, {"PARTNER": "scope:rol_expedition_candidate_guard", "ROLE": 2})
             if reason == "left": host.attendees.remove(guard)
             else: guard.alive = False
-            model.call("rol_expedition_prepared_route_effect", host, params)
+            model.call("rol_expedition_guard_route_effect", host, params)
             assert host.gold == 200 and not host.progress_effects, "departed/dead guard still opens prepared route"
         for xp in (59, 60):
             expert, *_ = party()
@@ -141,6 +143,10 @@ def check_companion_contract(root: Path, errors: list[str]) -> int:
         host, scholar, guard, envoy = party()
         model.call("rol_expedition_companion_accept_effect", host, {"PARTNER": "scope:rol_expedition_candidate_envoy", "ROLE": 3})
         host.scopes["rol_expedition_rival"] = State(activity=None)
+        host.scopes.update(host=host, activity=host.activity)
+        host.activity["_activity_type"] = "activity_rol_seek_mars_blade"
+        host.flags.add("rol_rival_route_mars")
+        model.call("rol_rival_begin_encounter_effect", host)
         model.call("rol_expedition_companion_mediate_effect", host)
         model.call("rol_expedition_companion_mediate_effect", host)
         assert host.stress == 10 and len(host.progress_effects) == 1, "envoy mediation can be replayed"
