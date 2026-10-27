@@ -209,6 +209,21 @@ rol_expedition_companion_compromise_effect = {
 	}
 }
 
+# A different form of payment, not a discount or another expertise reward.
+rol_expedition_companion_master_credit_effect = {
+	if = {
+		limit = { rol_expedition_companion_master_credit_trigger = yes }
+		add_prestige = -100
+		scope:rol_expedition_companion = {
+			add_prestige = 100
+			add_opinion = { target = root modifier = rol_expedition_respect_opinion }
+		}
+		add_opinion = { target = scope:rol_expedition_companion modifier = rol_expedition_respect_opinion }
+		set_variable = { name = rol_expedition_trusted_companion value = scope:rol_expedition_companion }
+		rol_expedition_companion_clear_effect = yes
+	}
+}
+
 rol_expedition_companion_refuse_effect = {
 	if = {
 		limit = { rol_expedition_companion_pending_trigger = yes }

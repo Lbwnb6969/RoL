@@ -1,0 +1,4 @@
+﻿l_english:
+ rol_expedition_companion_master_credit_option:0 "Let the court hear whose courage brought us home."
+ rol_expedition_companion_master_credit_flavor:0 "An experienced negotiator can turn a cash fee into credit the original guard agrees to share."
+ rol_expedition_companion_master_credit_tt:0 "Spend 100 Prestige and grant that same guard 100 Prestige instead of paying Gold. Gain mutual +10 Opinion for five years and retain this person as a trusted companion. Requires 100 Negotiation expertise and personal stage progress under this agreement. Grants no expertise XP or new reputation modifier; inherited agreements do not qualify."

@@ -89,6 +89,9 @@ class State:
     scopes: dict = field(default_factory=dict)
     attendees: list = field(default_factory=list)
     opinions: list = field(default_factory=list)
+    # Native relationship totals are supplied snapshots, not inferred from modifiers.
+    opinion_values: dict = field(default_factory=dict)
+    court_owner: State | None = None
     progress_effects: list = field(default_factory=list)
     artifact_type: str = ""
     owner: State | None = None
@@ -156,7 +159,7 @@ class Model:
             return (base.variables if isinstance(base, State) else (base or {})).get(name)
         if value == "root": return state
         if value == "this": return self.current(state, scope)
-        if value in ("player_heir", "house", "dynasty"):
+        if value in ("player_heir", "house", "dynasty", "court_owner"):
             return getattr(self.current(state, scope), value)
         if value == "involved_activity": return self.current(state, scope).activity
         if value == "scope:activity": return state.activity
@@ -165,7 +168,7 @@ class Model:
         raise ValueError(f"unsupported reference {value}")
 
     def number(self, value: str, state: State, scope="actor"):
-        if value in ("root", "this", "player_heir", "house", "dynasty"):
+        if value in ("root", "this", "player_heir", "house", "dynasty", "court_owner"):
             return self.reference(value, state, scope)
         if value.startswith(("scope:", "var:", "root.var:")):
             resolved = self.reference(value, state, scope)
@@ -194,9 +197,17 @@ class Model:
                 return not self.condition(get(value, "limit"), state, scope) or self.condition([n for n in value if n[0] != "limit"], state, scope)
             if key == "custom_description":
                 return self.condition([n for n in value if n[0] != "text"], state, scope)
-            if key in ("player_heir", "house", "dynasty"):
+            if key in ("player_heir", "house", "dynasty", "court_owner") and isinstance(value, list):
                 target = getattr(current, key)
                 return target is not None and self.condition(value, state, target)
+            if key == "court_owner":
+                return self.compare(current.court_owner, op, self.reference(value, state, scope))
+            if key == "opinion":
+                if len(value) != 2:
+                    raise ValueError("only a target and value comparison are supported for opinion")
+                target = self.reference(get(value, "target"), state, scope)
+                comparison = next(node for node in value if node[0] == "value")
+                return self.compare(current.opinion_values.get(target, 0), comparison[1], self.number(comparison[2], state, scope))
             if key == "involved_activity":
                 return current.activity is not None and self.condition(value, state, current.activity)
             if key == "is_ai": return current.ai == (value == "yes")

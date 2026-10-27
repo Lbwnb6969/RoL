@@ -83,6 +83,13 @@ rol_expedition_companion.0002 = {
 		if = { limit = { rol_expedition_companion_settlement_choice_trigger = yes } rol_expedition_companion_compromise_effect = yes }
 	}
 	option = {
+		name = rol_expedition_companion_master_credit_option
+		flavor = rol_expedition_companion_master_credit_flavor
+		trigger = { rol_expedition_companion_master_credit_trigger = yes }
+		custom_tooltip = rol_expedition_companion_master_credit_tt
+		rol_expedition_companion_master_credit_effect = yes
+	}
+	option = {
 		name = rol_expedition_companion.0002.c
 		flavor = rol_expedition_companion.0002.c.flavor
 		trigger = { rol_expedition_companion_settlement_choice_trigger = yes rol_expedition_companion_partner_alive_trigger = yes }

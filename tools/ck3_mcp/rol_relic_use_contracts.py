@@ -62,15 +62,17 @@ def check_relic_use_contract(root: Path, errors: list[str]) -> int:
         for kind, type_, names, tracks, personalities in USES:
             config = get(events, f"rol_relic_use.100{kind}")
             options = [v for k, _, v in config if k == "option"]
-            assert len(options) == 3, f"{kind}: two uses and free cancel required"
-            assert {k for k, _, _ in options[2]} == {"name"}, f"{kind}: cancel modifies state"
+            assert len(options) == (4 if kind == 2 else 3), f"{kind}: original uses/cancel or sphere commission missing"
+            ordinary = [next(v for v in options if get(v, "name") == f"rol_relic_use.100{kind}.{choice}") for choice in (1, 2)]
+            cancel = next(v for v in options if get(v, "name") == "rol_relic_use.cancel")
+            assert {k for k, _, _ in cancel} == {"name"}, f"{kind}: cancel modifies state"
             end_option = next(v for k, _, v in retire if k == "option" and get(v, "name") == f"rol_relic_use.0004.{kind}")
             for index, (name, track, personality) in enumerate(zip(names, tracks, personalities)):
                 mode = kind * 2 - 1 + index
                 modifier = f"rol_relic_use_{kind}_{name}_modifier"
                 get(modifiers, modifier)
                 effect = "rol_relic_use_select_naxos_effect" if kind == 5 else "rol_relic_use_select_artifact_effect"
-                params = {k: v for k, _, v in get(options[index], effect)}
+                params = {k: v for k, _, v in get(ordinary[index], effect)}
                 assert params["MODE"] == str(mode) and params["MODIFIER"] == modifier, f"{kind}: mode modifier mismatch"
                 if type_: assert params["TYPE"] == type_, f"{kind}: wrong artifact type"
                 host, artifact, decoy = setup(kind, type_)

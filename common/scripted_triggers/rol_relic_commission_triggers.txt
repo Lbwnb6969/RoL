@@ -1,0 +1,28 @@
+﻿# Court membership: vanilla 00_councillor_triggers.txt, court_owner = root.
+# Consent: commission_epic_events.txt, opinion = { target = root value >= ... }.
+rol_relic_use_commission_candidate_trigger = {
+ exists = scope:rol_relic_use_commission_candidate
+ scope:rol_relic_use_commission_candidate = {
+  this != root
+  rol_expedition_companion_fit_trigger = yes
+  court_owner = root
+  learning >= 12
+  opinion = { target = root value >= 0 }
+ }
+}
+
+# Once agreed, falling opinion or learning does not renegotiate the promise.
+rol_relic_use_commission_partner_valid_trigger = {
+ exists = var:rol_relic_use_commission_partner
+ var:rol_relic_use_commission_partner = {
+  this != root
+  rol_expedition_companion_fit_trigger = yes
+  court_owner = root
+ }
+}
+
+rol_relic_use_commission_project_trigger = {
+ has_character_flag = rol_relic_use_commissioned
+ var:rol_relic_use_mode = 3
+ rol_relic_use_project_valid_trigger = yes
+}

@@ -1,0 +1,4 @@
+﻿l_english:
+ rol_expedition_master_exploration_option:0 "I will lead the detour myself."
+ rol_expedition_master_exploration_flavor:0 "My experience can replace hired help, but the burden will be mine."
+ rol_expedition_master_exploration_tt:0 "Requires 100 Exploration experience. Spend no gold and gain 25 base Stress instead of paying 50 gold and gaining 10 base Stress. Recover only the progress lost in this trial, then gain 10 progress and continue to the next stage. Uses this expedition's single crisis recovery; grants no immediate experience and does not bypass later trials or the full-reward threshold."

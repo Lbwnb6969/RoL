@@ -1,0 +1,4 @@
+﻿l_simp_chinese:
+ rol_expedition_companion_master_credit_option:0 "让宫廷知道，是谁的勇气护送了我们。"
+ rol_expedition_companion_master_credit_flavor:0 "熟谙交涉之道，才能让原护卫同意以共同功绩替代现金报酬。"
+ rol_expedition_companion_master_credit_tt:0 "花费100威望，将100威望授予原护卫，不支付金币。双方获得五年+10好感，并将此人保留为老搭档。需要100点交涉专长，且本次个人约定已有阶段进展。不给专长经验或新的声誉修正；继承来的约定不能选择此项。"

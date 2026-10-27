@@ -896,14 +896,24 @@ def run_audit(root, game):
     if __package__:
         from .rol_rival_relationship_contracts import check_rival_relationship_contract
         from .rol_family_archive_contracts import check_family_archive_contract
+        from .rol_observation_commission_contracts import check_observation_commission_contract
+        from .rol_companion_mastery_contracts import check_companion_mastery_contract
+        from .rol_exploration_mastery_contracts import check_exploration_mastery_contract
     else:
         from rol_rival_relationship_contracts import check_rival_relationship_contract
         from rol_family_archive_contracts import check_family_archive_contract
+        from rol_observation_commission_contracts import check_observation_commission_contract
+        from rol_companion_mastery_contracts import check_companion_mastery_contract
+        from rol_exploration_mastery_contracts import check_exploration_mastery_contract
     errors = []
     rival_witnesses = check_rival_relationship_contract(root, errors, model=model)
     family_records = check_family_archive_contract(root, errors, model=model)
+    commission_witnesses = check_observation_commission_contract(root, errors, model=model)
+    negotiation_witnesses = check_companion_mastery_contract(root, errors, model=model)
+    exploration_witnesses = check_exploration_mastery_contract(root, errors, model=model)
     assert not errors, "; ".join(errors)
     systems.append(f"{rival_witnesses} identity-bound rival witnesses; {family_records} house knowledge records with catalogue/print consumers")
+    systems.append(f"{commission_witnesses} original-scholar commissions; {negotiation_witnesses} guard-credit and {exploration_witnesses} master-detour witnesses")
     choices |= model.options_seen
     all_choices = {(event, get(v, "name")) for event, nodes in model.events.items()
                    for k, _, v in nodes if k == "option"}

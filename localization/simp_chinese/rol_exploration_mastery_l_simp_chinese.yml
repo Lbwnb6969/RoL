@@ -1,0 +1,4 @@
+﻿l_simp_chinese:
+ rol_expedition_master_exploration_option:0 "由我亲自带队绕行。"
+ rol_expedition_master_exploration_flavor:0 "经验可以代替额外人手，带队的重担由我承担。"
+ rol_expedition_master_exploration_tt:0 "需要100点探险经验。不支付金币，增加25点基础压力，替代原本50金币、10点基础压力的继续路线。只恢复本次检定损失，再增加10点进度并进入下一阶段。共用本场唯一一次危机补救；不立即奖励经验，不绕过后续检定或完整奖励门槛。"

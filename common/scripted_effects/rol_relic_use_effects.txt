@@ -21,10 +21,14 @@ rol_relic_use_clear_pending_effect = {
  remove_character_flag = rol_relic_use_waiting
  remove_variable = rol_relic_use_artifact
  remove_variable = rol_relic_use_mode
+ remove_character_flag = rol_relic_use_commissioned
+ remove_variable = rol_relic_use_commission_partner
  # Keep the monotonic generation and one-year cooldown; cancellation never refunds.
 }
 
 rol_relic_use_begin_project_effect = {
+ remove_character_flag = rol_relic_use_commissioned
+ remove_variable = rol_relic_use_commission_partner
  if = {
   limit = { NOT = { has_variable = rol_relic_use_generation } }
   set_variable = { name = rol_relic_use_generation value = 0 }
@@ -78,7 +82,7 @@ rol_relic_use_reopen_effect = {
 
 rol_relic_use_record_experience_effect = {
  if = {
-  limit = { rol_relic_use_project_valid_trigger = yes }
+  limit = { rol_relic_use_project_valid_trigger = yes NOT = { has_character_flag = rol_relic_use_commissioned } }
   if = { limit = { NOT = { has_trait = rol_relic_seeker } } add_trait = rol_relic_seeker }
   if = { limit = { var:rol_relic_use_mode = 1 } add_trait_xp = { trait = rol_relic_seeker track = rol_exploration value = 10 } if = { limit = { has_trait = brave } add_stress = -5 } }
   else_if = { limit = { var:rol_relic_use_mode = 2 } add_trait_xp = { trait = rol_relic_seeker track = rol_negotiation value = 10 } if = { limit = { has_trait = just } add_stress = -5 } }
@@ -98,7 +102,7 @@ rol_relic_use_record_experience_effect = {
 
 rol_relic_use_publish_effect = {
  if = {
-  limit = { rol_relic_use_project_valid_trigger = yes }
+  limit = { rol_relic_use_project_valid_trigger = yes NOT = { has_character_flag = rol_relic_use_commissioned } }
   add_prestige = 100
   rol_relic_use_clear_pending_effect = yes
  }

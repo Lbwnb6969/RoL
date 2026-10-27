@@ -1,0 +1,46 @@
+﻿# Menu snapshot stays with the chosen person, independently of later companion records.
+rol_relic_use_select_commission_effect = {
+ if = {
+  limit = {
+   rol_relic_use_ready_trigger = yes
+   rol_relic_use_candidate_owned_trigger = yes
+   scope:rol_relic_use_candidate = { artifact_type = rol_nibelung_star_sphere }
+   rol_relic_use_commission_candidate_trigger = yes
+  }
+  rol_relic_use_select_artifact_effect = {
+   TYPE = rol_nibelung_star_sphere
+   MODE = 3
+   MODIFIER = rol_relic_use_2_study_modifier
+  }
+  add_character_flag = rol_relic_use_commissioned
+  set_variable = { name = rol_relic_use_commission_partner value = scope:rol_relic_use_commission_candidate }
+ }
+}
+
+rol_relic_use_commission_pay_effect = {
+ if = {
+  limit = { rol_relic_use_commission_project_trigger = yes gold >= 50 }
+  remove_short_term_gold = 50
+  var:rol_relic_use_commission_partner = {
+   add_gold = 50
+   if = { limit = { NOT = { has_trait = rol_relic_seeker } } add_trait = rol_relic_seeker }
+   add_trait_xp = { trait = rol_relic_seeker track = rol_research value = 10 }
+   add_opinion = { target = root modifier = rol_expedition_respect_opinion }
+  }
+  add_opinion = { target = var:rol_relic_use_commission_partner modifier = rol_expedition_respect_opinion }
+  rol_relic_use_record_knowledge_effect = yes
+  rol_relic_use_clear_pending_effect = yes
+ }
+}
+
+rol_relic_use_commission_credit_effect = {
+ if = {
+  limit = { rol_relic_use_commission_project_trigger = yes }
+  var:rol_relic_use_commission_partner = {
+   add_prestige = 100
+   add_opinion = { target = root modifier = rol_expedition_fulfilled_pact_opinion }
+  }
+  add_opinion = { target = var:rol_relic_use_commission_partner modifier = rol_expedition_fulfilled_pact_opinion }
+  rol_relic_use_clear_pending_effect = yes
+ }
+}

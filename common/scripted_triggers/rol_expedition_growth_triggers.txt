@@ -51,3 +51,8 @@ rol_expedition_remedy_press_on_qualified_trigger = {
 		rol_expedition_trusted_companion_present_trigger = yes
 	}
 }
+
+rol_expedition_master_exploration_trigger = {
+	has_trait = rol_relic_seeker
+	has_trait_xp = { trait = rol_relic_seeker track = rol_exploration value >= 100 }
+}

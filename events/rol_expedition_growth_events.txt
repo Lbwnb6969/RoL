@@ -81,6 +81,17 @@ rol_expedition_growth.0010 = {
 		rol_expedition_remedy_press_on_effect = yes
 	}
 	option = {
+		name = rol_expedition_master_exploration_option
+		flavor = rol_expedition_master_exploration_flavor
+		trigger = {
+			rol_expedition_remedy_window_valid_trigger = yes
+			rol_expedition_master_exploration_trigger = yes
+			scope:activity = { has_variable = rol_expedition_trial_failure_loss }
+		}
+		custom_tooltip = rol_expedition_master_exploration_tt
+		rol_expedition_master_exploration_effect = yes
+	}
+	option = {
 		name = rol_expedition_growth.0010.b
 		flavor = rol_expedition_growth.0010.b.flavor
 		trigger = { rol_expedition_remedy_window_valid_trigger = yes }

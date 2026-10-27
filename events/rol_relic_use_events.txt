@@ -46,7 +46,14 @@ rol_relic_use.1002 = {
  theme = learning
  override_background = { reference = rol_bg_relic_scholarly_study }
  trigger = { is_ai = no rol_relic_use_ready_trigger = yes any_character_artifact = { artifact_type = rol_nibelung_star_sphere } }
- immediate = { random_character_artifact = { limit = { artifact_type = rol_nibelung_star_sphere } save_scope_as = rol_relic_use_candidate } }
+ immediate = {
+  random_character_artifact = { limit = { artifact_type = rol_nibelung_star_sphere } save_scope_as = rol_relic_use_candidate }
+  clear_saved_scope = rol_relic_use_commission_candidate
+  if = {
+   limit = { exists = var:rol_expedition_trusted_companion }
+   var:rol_expedition_trusted_companion = { save_scope_as = rol_relic_use_commission_candidate }
+  }
+ }
  artifact = { target = scope:rol_relic_use_candidate position = lower_center_portrait }
  option = {
   name = rol_relic_use.1002.1
@@ -59,6 +66,18 @@ rol_relic_use.1002 = {
   trigger = { rol_relic_use_ready_trigger = yes rol_relic_use_candidate_owned_trigger = yes scope:rol_relic_use_candidate = { artifact_type = rol_nibelung_star_sphere } }
   custom_tooltip = rol_relic_use_mode_4_tt
   rol_relic_use_select_artifact_effect = { TYPE = rol_nibelung_star_sphere MODE = 4 MODIFIER = rol_relic_use_2_display_modifier }
+ }
+ option = {
+  name = rol_relic_use_commission_option
+  flavor = rol_relic_use_commission_flavor
+  trigger = {
+   rol_relic_use_ready_trigger = yes
+   rol_relic_use_candidate_owned_trigger = yes
+   scope:rol_relic_use_candidate = { artifact_type = rol_nibelung_star_sphere }
+   rol_relic_use_commission_candidate_trigger = yes
+  }
+  custom_tooltip = rol_relic_use_commission_terms_tt
+  rol_relic_use_select_commission_effect = yes
  }
  option = { name = rol_relic_use.cancel }
 }
@@ -138,7 +157,9 @@ rol_relic_use.0003 = {
  title = rol_relic_use.0003.t
  desc = {
   first_valid = {
+   triggered_desc = { trigger = { has_character_flag = rol_relic_use_commissioned NOT = { rol_relic_use_project_valid_trigger = yes } } desc = rol_relic_use_commission_invalid_desc }
    triggered_desc = { trigger = { NOT = { rol_relic_use_project_valid_trigger = yes } } desc = rol_relic_use.0003.desc.invalid }
+   triggered_desc = { trigger = { rol_relic_use_commission_project_trigger = yes } desc = rol_relic_use_commission_result_desc }
    triggered_desc = { trigger = { var:rol_relic_use_mode = 1 } desc = rol_relic_use.0003.desc.1 }
    triggered_desc = { trigger = { var:rol_relic_use_mode = 2 } desc = rol_relic_use.0003.desc.2 }
    triggered_desc = { trigger = { var:rol_relic_use_mode = 3 } desc = rol_relic_use.0003.desc.3 }
@@ -158,15 +179,29 @@ rol_relic_use.0003 = {
  trigger = { is_ai = no is_alive = yes rol_relic_use_generation_matches_trigger = yes NOT = { has_character_flag = rol_relic_use_waiting } }
  option = {
   name = rol_relic_use.0003.a
-  trigger = { rol_relic_use_project_valid_trigger = yes }
+  trigger = { rol_relic_use_project_valid_trigger = yes NOT = { has_character_flag = rol_relic_use_commissioned } }
   custom_tooltip = rol_relic_use_record_tt
   rol_relic_use_record_experience_effect = yes
  }
  option = {
   name = rol_relic_use.0003.b
-  trigger = { rol_relic_use_project_valid_trigger = yes }
+  trigger = { rol_relic_use_project_valid_trigger = yes NOT = { has_character_flag = rol_relic_use_commissioned } }
   custom_tooltip = rol_relic_use_publish_tt
   rol_relic_use_publish_effect = yes
+ }
+ option = {
+  name = rol_relic_use_commission_pay_option
+  flavor = rol_relic_use_commission_pay_flavor
+  trigger = { rol_relic_use_commission_project_trigger = yes gold >= 50 }
+  custom_tooltip = rol_relic_use_commission_pay_tt
+  rol_relic_use_commission_pay_effect = yes
+ }
+ option = {
+  name = rol_relic_use_commission_credit_option
+  flavor = rol_relic_use_commission_credit_flavor
+  trigger = { rol_relic_use_commission_project_trigger = yes }
+  custom_tooltip = rol_relic_use_commission_credit_tt
+  rol_relic_use_commission_credit_effect = yes
  }
  option = {
   name = rol_relic_use.0003.c

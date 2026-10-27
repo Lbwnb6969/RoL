@@ -86,3 +86,18 @@ rol_expedition_companion_settlement_choice_trigger = {
  exists = scope:rol_expedition_companion_generation
  scope:rol_expedition_companion_generation = var:rol_expedition_companion_generation
 }
+
+# A master may replace a personally earned guard's cash fee with public credit.
+# The original person and settlement generation must still match this window.
+rol_expedition_companion_master_credit_trigger = {
+	rol_expedition_companion_settlement_choice_trigger = yes
+	rol_expedition_companion_partner_alive_trigger = yes
+	exists = scope:rol_expedition_companion
+	scope:rol_expedition_companion = var:rol_expedition_companion_partner
+	var:rol_expedition_companion_role = 2
+	has_variable = rol_expedition_companion_earned_xp
+	var:rol_expedition_companion_earned_xp > 0
+	has_trait = rol_relic_seeker
+	has_trait_xp = { trait = rol_relic_seeker track = rol_negotiation value >= 100 }
+	prestige >= 100
+}

@@ -44,6 +44,11 @@ rol_relic_use_generation_matches_trigger = {
 rol_relic_use_project_valid_trigger = {
  rol_relic_use_generation_matches_trigger = yes
  NOT = { has_character_flag = rol_relic_use_waiting }
+ trigger_if = {
+  limit = { has_character_flag = rol_relic_use_commissioned }
+  var:rol_relic_use_mode = 3
+  rol_relic_use_commission_partner_valid_trigger = yes
+ }
  OR = {
   AND = { var:rol_relic_use_mode = 1 exists = var:rol_relic_use_artifact var:rol_relic_use_artifact = { artifact_owner = root artifact_type = rol_blade_of_mars has_artifact_modifier = rol_relic_use_1_field_modifier } }
   AND = { var:rol_relic_use_mode = 2 exists = var:rol_relic_use_artifact var:rol_relic_use_artifact = { artifact_owner = root artifact_type = rol_blade_of_mars has_artifact_modifier = rol_relic_use_1_oath_modifier } }

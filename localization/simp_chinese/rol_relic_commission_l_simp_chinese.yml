@@ -1,0 +1,12 @@
+﻿l_simp_chinese:
+ rol_relic_use_commission_option:0 "请[rol_relic_use_commission_candidate.GetTitledFirstName]主持观测。"
+ rol_relic_use_commission_flavor:0 "我们曾在旅途中依靠彼此的判断。如今，这份逐夜记下的工作也可以托付给熟悉的人。"
+ rol_relic_use_commission_terms_tt:0 "支付原有的50金币，与这位原老搭档开始半年观测项目：观测者须成年、具备能力、仍在你的宫廷，学习至少12且对你好感非负。保留星界球观测用途和一年项目间隔。项目完成后，可支付50金币给原观测者，使其获得10点考据经验；你取得十年观测图，双方获得五年+10好感。也可为观测者公开署名，使其获得100威望，双方获得五年+25好感。你不获得个人专长或发表威望。观测者死亡或离廷时无报酬、无成果收束，不退立项费。"
+ rol_relic_use_commission_result_desc:0 "记录上熟悉的字迹出自[ROOT.Char.MakeScope.Var('rol_relic_use_commission_partner').Char.GetFirstName]。半年里，我的老搭档逐夜将星界球的刻度与天象对照。我可以支付报酬，留下观测图供未来远征使用；也可以将成果以作者本人的名义公开。这是其亲手完成的工作，并不算作我的个人专长。"
+ rol_relic_use_commission_invalid_desc:0 "这项委托已无法完成：原观测者已经失去履约条件或离开我的宫廷，或者星界球已不再支持原定工作。我不能在旧记录中换人、换物领奖。结束项目不产生报酬或成果，原立项费用也不会退还。"
+ rol_relic_use_commission_pay_option:0 "向老搭档支付50金币，收下观测图。"
+ rol_relic_use_commission_pay_flavor:0 "这份细致的工作会为下一段旅途指路。"
+ rol_relic_use_commission_pay_tt:0 "支付50金币给原观测者，其获得10点考据经验，缺少探寻者特质时一并取得。你取得十年星界观测图并揭示塞维利亚远征，双方获得五年+10好感。你不获得专长经验或威望。本项目只结算一次，星界球用途保留。"
+ rol_relic_use_commission_credit_option:0 "以老搭档本人的名字公开成果。"
+ rol_relic_use_commission_credit_flavor:0 "宫廷应该知道，是谁度过了那些守望星空的长夜。"
+ rol_relic_use_commission_credit_tt:0 "原观测者获得100威望，双方获得五年+25好感。你不获得观测图、专长经验或威望。本项目只结算一次，星界球用途保留。"
