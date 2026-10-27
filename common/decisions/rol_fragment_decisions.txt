@@ -1,5 +1,14 @@
 ﻿# Relics of Legends - short fragment expeditions
 
+rol_review_fragment_expedition_decision = {
+	picture = { reference = "gfx/interface/illustrations/decisions/decision_smith.dds" }
+	ai_check_interval = 0
+	is_shown = { is_playable_character = yes is_ai = no rol_fragment_any_route_trigger = yes }
+	is_valid_showing_failures_only = { is_alive = yes }
+	effect = { rol_fragment_review_route_effect = yes }
+	ai_potential = { always = no }
+}
+
 rol_seek_mars_fragment_decision = {
 	picture = { reference = "gfx/interface/illustrations/decisions/decision_smith.dds" }
 	ai_check_interval = 0

@@ -13,6 +13,19 @@ rol_fragment_resonance_choice_trigger = {
 	scope:rol_fragment_resonance_generation = var:rol_fragment_resonance_generation
 }
 
+# A challenge belongs to one expedition, even when the same relic is retried.
+rol_fragment_route_generation_matches_trigger = {
+ rol_fragment_any_route_trigger = yes
+ has_variable = rol_fragment_route_generation
+ exists = scope:rol_fragment_route_generation
+ scope:rol_fragment_route_generation = var:rol_fragment_route_generation
+}
+
+rol_fragment_challenge_valid_trigger = {
+ rol_fragment_route_generation_matches_trigger = yes
+ rol_fragment_target_valid_trigger = yes
+}
+
 rol_fragment_target_valid_trigger = {
  exists = var:rol_fragment_target
  var:rol_fragment_target = { artifact_owner = root }

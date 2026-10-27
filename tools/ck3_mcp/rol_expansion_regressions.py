@@ -156,6 +156,43 @@ def check_expansion_regressions(model, Person, plain_actor, start_route, drive, 
     assert a.xp["rol_research"] == 5 and "rol_fragment_upgrade_pending" not in a.flags
     evidence.append("legacy unnumbered crisis/fragment recovery decisions reconstruct original qualification without extra uses/rewards")
 
+    # Challenge windows, not only their later resonance, belong to one fragment job.
+    a = plain_actor()
+    blade = Person(activity=None, owner=a, artifact_type="rol_blade_of_mars", label="blade")
+    sphere = Person(activity=None, owner=a, artifact_type="rol_nibelung_star_sphere", label="sphere")
+    a.artifacts.extend((blade, sphere))
+    a.flags.update((claimed["rome"], claimed["munich"]))
+    model.decide(a, "rol_seek_mars_fragment_decision")
+    day, event, context = a.queue.pop(0)
+    model.advance(a, day)
+    model.dispatch(a, event, context)
+    old_context = dict(a.scopes)
+    model.choose(a, event, "rol_relic_fragment.0001.d")
+    model.decide(a, "rol_seek_nibelung_fragment_decision")
+    current_context = dict(a.scopes)
+    a.scopes = old_context
+    before = rewards(a), dict(a.variables), list(a.queue)
+    for k, _, candidate in model.events[event]:
+        if k == "option":
+            model.run(model.option_body(candidate), a)
+    assert (rewards(a), a.variables, a.queue) == before
+    model.choose(a, event, "rol_relic_fragment.0001.e")
+    assert "rol_fragment_route_nibelung" in a.flags and a.variables["rol_fragment_target"] is sphere
+    a.scopes = current_context
+    a = drive(model, a)
+    assert "rol_nibelung_fragment_1_modifier" in a.artifacts[1].modifiers and not a.artifacts[0].modifiers
+    a = plain_actor()
+    blade = Person(activity=None, owner=a, artifact_type="rol_blade_of_mars", label="legacy blade")
+    a.artifacts.append(blade)
+    a.flags.add("rol_fragment_route_mars")
+    a.variables["rol_fragment_target"] = blade
+    before_gold = a.gold
+    model.decide(a, "rol_review_fragment_expedition_decision")
+    a = drive(model, a)
+    assert "rol_blade_fragment_1_modifier" in a.artifacts[0].modifiers and a.gold == before_gold
+    assert a.variables["rol_fragment_route_generation"] == 1
+    evidence.append("fragment challenge old windows cannot pay/upgrade/cancel a later relic job; legacy recovery keeps the original item and fee")
+
     for choice in ("a", "b", "c"):
         a = plain_actor()
         item = Person(activity=None, owner=a, artifact_type="rol_blade_of_mars", label="blade")

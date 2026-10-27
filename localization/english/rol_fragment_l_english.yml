@@ -1,5 +1,12 @@
 ﻿l_english:
  rol_fragment_finish_resonance_first_tt:0 "Choose the resonance for your previous fragment upgrade first."
+ rol_review_fragment_expedition_decision:0 "Review the Pending Fragment Expedition"
+ rol_review_fragment_expedition_decision_desc:0 "Reopen the choice for the relic recorded at departure. This continues the existing expedition without another fee, a new target, or a fresh cooldown. If the relic is no longer available, close the original record."
+ rol_review_fragment_expedition_decision_tooltip:0 "Return to the unresolved fragment expedition."
+ rol_review_fragment_expedition_decision_confirm:0 "Review the expedition record"
+ rol_relic_fragment.0001.desc.closed:0 "This expedition record has already been closed. Any later fragment expedition has its own record and remains unchanged."
+ rol_relic_fragment.0001.e:0 "Put this closed record away."
+ rol_relic_fragment.0001.e.flavor:0 "The current expedition belongs to a different entry in the ledger."
  rol_seek_mars_fragment_decision: "Seek the Blade's Missing Fragment"
  rol_seek_mars_fragment_decision_tooltip: "Recover a fragment to deepen the Blade of Mars."
  rol_seek_mars_fragment_decision_desc: "Mount a short expedition to recover a fragment that can deepen the Blade of Mars."

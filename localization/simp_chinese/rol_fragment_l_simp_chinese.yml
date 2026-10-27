@@ -1,5 +1,12 @@
 ﻿l_simp_chinese:
  rol_fragment_finish_resonance_first_tt:0 "先完成上次碎片升级的共鸣选择。"
+ rol_review_fragment_expedition_decision:0 "重阅未决的碎片远征"
+ rol_review_fragment_expedition_decision_desc:0 "重新处理动身时记录的那件圣物。继续原远征，不再次收费，不另选物品，不重置冷却。若原圣物已经失效，可以结束原记录。"
+ rol_review_fragment_expedition_decision_tooltip:0 "恢复尚未处理的碎片远征抉择。"
+ rol_review_fragment_expedition_decision_confirm:0 "查看远征记录"
+ rol_relic_fragment.0001.desc.closed:0 "这份远征记录已经结束。后来的碎片远征使用独立记录，不受这份旧文书影响。"
+ rol_relic_fragment.0001.e:0 "收起这份已结案的文书。"
+ rol_relic_fragment.0001.e.flavor:0 "当前远征另有记录。"
  rol_seek_mars_fragment_decision: "寻找玛尔斯之剑的残片"
  rol_seek_mars_fragment_decision_tooltip: "找回能够深化玛尔斯之剑力量的残片。"
  rol_seek_mars_fragment_decision_desc: "发动一次短途远征，找回能够深化玛尔斯之剑力量的残片。"

@@ -5,6 +5,7 @@ rol_relic_fragment.0001 = {
 	title = rol_relic_fragment.0001.t
 	desc = {
 		first_valid = {
+			triggered_desc = { trigger = { NOT = { rol_fragment_route_generation_matches_trigger = yes } } desc = rol_relic_fragment.0001.desc.closed }
 			triggered_desc = { trigger = { NOT = { rol_fragment_target_valid_trigger = yes } } desc = rol_relic_fragment.0001.desc.invalid }
 			desc = rol_relic_fragment.0001.desc
 		}
@@ -12,15 +13,19 @@ rol_relic_fragment.0001 = {
 	theme = learning
 	override_background = { reference = rol_bg_fragment_expedition }
 	trigger = { is_ai = no is_alive = yes rol_fragment_any_route_trigger = yes }
-	immediate = { if = { limit = { exists = var:rol_fragment_target } var:rol_fragment_target = { save_scope_as = rol_fragment_artifact } } }
+	immediate = {
+		# Initialize an unnumbered legacy job without recapturing an older window.
+		if = { limit = { NOT = { has_variable = rol_fragment_route_generation } } rol_fragment_capture_route_effect = yes }
+		if = { limit = { rol_fragment_route_generation_matches_trigger = yes exists = var:rol_fragment_target } var:rol_fragment_target = { save_scope_as = rol_fragment_artifact } }
+	}
 	option = {
 		name = rol_relic_fragment.0001.a
 		flavor = rol_relic_fragment.0001.a.flavor
 		skill = learning
 		custom_tooltip = rol_relic_fragment.0001.a.odds_tt
-		trigger = { rol_fragment_target_valid_trigger = yes }
+		trigger = { rol_fragment_challenge_valid_trigger = yes }
 		if = {
-			limit = { rol_fragment_target_valid_trigger = yes }
+			limit = { rol_fragment_challenge_valid_trigger = yes }
 			random_list = {
 				0 = {
 					modifier = { add = rol_fragment_learning_success_chance_value }
@@ -39,16 +44,16 @@ rol_relic_fragment.0001 = {
 				}
 			}
 		}
-		else = { rol_clear_fragment_route_effect = yes }
+		else = { rol_fragment_close_selected_route_effect = yes }
 	}
 	option = {
 		name = rol_relic_fragment.0001.b
 		flavor = rol_relic_fragment.0001.b.flavor
 		skill = prowess
 		custom_tooltip = rol_relic_fragment.0001.b.odds_tt
-		trigger = { rol_fragment_target_valid_trigger = yes }
+		trigger = { rol_fragment_challenge_valid_trigger = yes }
 		if = {
-			limit = { rol_fragment_target_valid_trigger = yes }
+			limit = { rol_fragment_challenge_valid_trigger = yes }
 			random_list = {
 				0 = {
 					modifier = { add = rol_fragment_prowess_success_chance_value }
@@ -68,16 +73,16 @@ rol_relic_fragment.0001 = {
 				}
 			}
 		}
-		else = { rol_clear_fragment_route_effect = yes }
+		else = { rol_fragment_close_selected_route_effect = yes }
 	}
 	option = {
 		name = rol_relic_fragment.0001.c
 		flavor = rol_relic_fragment.0001.c.flavor
 		skill = stewardship
 		custom_tooltip = rol_relic_fragment.0001.c.odds_tt
-		trigger = { rol_fragment_target_valid_trigger = yes gold >= 50 }
+		trigger = { rol_fragment_challenge_valid_trigger = yes gold >= 50 }
 		if = {
-			limit = { rol_fragment_target_valid_trigger = yes gold >= 50 }
+			limit = { rol_fragment_challenge_valid_trigger = yes gold >= 50 }
 			random_list = {
 				0 = {
 					modifier = { add = rol_fragment_stewardship_success_chance_value }
@@ -100,10 +105,11 @@ rol_relic_fragment.0001 = {
 				}
 			}
 		}
-		else = { rol_clear_fragment_route_effect = yes }
+		else = { rol_fragment_close_selected_route_effect = yes }
 	}
 
-	option = { name = rol_relic_fragment.0001.d flavor = rol_relic_fragment.0001.d.flavor custom_tooltip = rol_fragment_cancel_tt rol_clear_fragment_route_effect = yes }
+	option = { name = rol_relic_fragment.0001.d flavor = rol_relic_fragment.0001.d.flavor trigger = { rol_fragment_route_generation_matches_trigger = yes } custom_tooltip = rol_fragment_cancel_tt rol_fragment_close_selected_route_effect = yes }
+	option = { name = rol_relic_fragment.0001.e flavor = rol_relic_fragment.0001.e.flavor trigger = { NOT = { rol_fragment_route_generation_matches_trigger = yes } } }
 }
 
 rol_relic_fragment.0002 = {

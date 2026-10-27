@@ -11,6 +11,8 @@ def check_relic_safety_contract(root: Path, errors: list[str]) -> int:
         fragment = get(load("events/rol_relic_fragment_events.txt"), "rol_relic_fragment.0001")
         assert get(get(fragment, "trigger"), "rol_fragment_any_route_trigger") == "yes"
         for decision, _, body in decisions:
+            if not decision.startswith("rol_seek_"):
+                continue
             assert get(get(body, "cost"), "gold") == "120", f"{decision}: native fee missing"
             params = dict((k, v) for k, _, v in get(get(body, "effect"), "rol_relic_fragment_begin_effect"))
             route, kind, last = params["ROUTE"], params["TYPE"], params["LAST_MODIFIER"]
@@ -61,11 +63,71 @@ def check_relic_safety_contract(root: Path, errors: list[str]) -> int:
             assert actor.stress == 40 and not artifact.modifiers and actor.prestige == 200
         options = [v for k, _, v in fragment if k == "option"]
         for option in options[:3]:
-            assert get(get(option, "trigger"), "rol_fragment_target_valid_trigger") == "yes"
-            assert get(get(get(option, "if"), "limit"), "rol_fragment_target_valid_trigger") == "yes"
+            assert get(get(option, "trigger"), "rol_fragment_challenge_valid_trigger") == "yes"
+            assert get(get(get(option, "if"), "limit"), "rol_fragment_challenge_valid_trigger") == "yes"
         assert get(get(options[2], "trigger"), "gold") == "50"
         assert get(get(get(options[2], "if"), "limit"), "gold") == "50"
-        assert get(options[3], "rol_clear_fragment_route_effect") == "yes"
+        assert get(options[3], "rol_fragment_close_selected_route_effect") == "yes"
+        assert get(get(get(decisions, "rol_review_fragment_expedition_decision"), "effect"), "rol_fragment_review_route_effect") == "yes"
+
+        def snapshot(actor):
+            return (actor.gold, actor.prestige, actor.stress, actor.learning_lifestyle_xp,
+                    dict(actor.variables), set(actor.flags), dict(actor.modifiers), dict(actor.xp),
+                    list(actor.events), [dict(item.modifiers) for item in actor.artifacts])
+
+        metadata = {"name", "flavor", "skill", "trigger", "custom_tooltip"}
+        for decision, _, body in decisions:
+            if not decision.startswith("rol_seek_"):
+                continue
+            params = dict((k, v) for k, _, v in get(get(body, "effect"), "rol_relic_fragment_begin_effect"))
+            actor = State(activity=None)
+            item = State(artifact_type=params["TYPE"], owner=actor)
+            actor.artifacts = [item]
+            model.call("rol_relic_fragment_begin_effect", actor, params)
+            old_context = dict(actor.scopes)
+            generation = actor.variables["rol_fragment_route_generation"]
+            # Two windows for one job settle once; a later job keeps a distinct identity.
+            model.call("rol_fragment_close_selected_route_effect", actor)
+            model.call("rol_fragment_close_selected_route_effect", actor)
+            assert actor.variables["rol_fragment_route_generation"] == generation
+            model.call("rol_relic_fragment_begin_effect", actor, params)
+            assert actor.variables["rol_fragment_route_generation"] == generation + 1
+            actor.scopes = old_context
+            before = snapshot(actor)
+            for choice in options:
+                model.run([node for node in choice if node[0] not in metadata], actor)
+            for effect in ("rol_relic_fragment_success_effect", "rol_relic_fragment_failure_effect"):
+                model.call(effect, actor)
+            assert snapshot(actor) == before, "old fragment challenge mutates a later expedition"
+            # A window already open before the numbering migration must recover explicitly.
+            actor.scopes = {}
+            model.run(get(fragment, "immediate"), actor)
+            assert snapshot(actor) == before
+            assert not model.condition(model.triggers["rol_fragment_challenge_valid_trigger"], actor)
+            model.call("rol_fragment_review_route_effect", actor)
+            assert actor.scopes["rol_fragment_route_generation"] == generation + 1
+            assert actor.variables["rol_fragment_target"] is item
+            assert actor.gold == before[0]
+            # Losing the actual item closes only this job without upgrading it.
+            item.owner = State()
+            model.run([node for node in options[0] if node[0] not in metadata], actor)
+            assert "rol_fragment_target" not in actor.variables and not item.modifiers
+            assert actor.variables["rol_fragment_route_generation"] == generation + 1
+            # Unnumbered legacy records preserve their item and initialize once on recovery.
+            actor = State(activity=None)
+            item = State(artifact_type=params["TYPE"], owner=actor)
+            actor.artifacts = [item]
+            actor.flags.add("rol_fragment_route_" + params["ROUTE"])
+            actor.variables["rol_fragment_target"] = item
+            model.call("rol_fragment_review_route_effect", actor)
+            first_context = dict(actor.scopes)
+            model.call("rol_fragment_review_route_effect", actor)
+            assert actor.scopes == first_context and actor.gold == 200
+            model.call("rol_relic_fragment_success_effect", actor)
+            settled = snapshot(actor)
+            for choice in options:
+                model.run([node for node in choice if node[0] not in metadata], actor)
+            assert snapshot(actor) == settled, "fragment job replays after recovery settlement"
 
         legacy = load("events/rol_relic_legacy_events.txt")
         transition = get(legacy, "rol_relic_legacy.0003")
