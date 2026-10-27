@@ -105,6 +105,7 @@ def check_companion_contract(root: Path, errors: list[str]) -> int:
                 assert host.xp.get(track, 0) == (10 if stage else 0), "honour XP can be farmed without stage progress or replayed"
                 assert host.variables["rol_expedition_trusted_companion"] is peer and len(peer.opinions) == len(host.opinions) == 1, "trusted relationship changed person or opinion was replayed"
                 assert (peer.gold == 250) if role == 2 else (peer.gold == 200), "guard payment went to another person"
+                assert peer.prestige == 200, "ordinary scholar/envoy recognition unexpectedly transfers prestige to the companion"
                 assert not model.condition(model.triggers["rol_expedition_companion_pending_trigger"], host), "fulfilled pact remains pending"
 
             poor, *_ = party()

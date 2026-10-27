@@ -190,7 +190,7 @@ def check_field_companion_growth_contract(root: Path, errors: list[str], model=N
             terms = next(line for line in text.splitlines() if ' rol_expedition_companion_guard_terms_tt:' in line)
             action = next(line for line in text.splitlines() if ' rol_expedition_guard_route_tt:' in line)
             assert f"rol_expedition_candidate_guard.MakeScope.ScriptValue('{personal}')" in terms
-            assert f"ROOT.Char.MakeScope.ScriptValue('{price}')" in action
+            assert f"SCOPE.ScriptValue('{price}')" in action, "guard price must retain the event's activity scope"
         return witnesses
     except (AssertionError, ValueError, KeyError, AttributeError, OSError, IndexError, StopIteration) as error:
         line = traceback.extract_tb(error.__traceback__)[-1].lineno
