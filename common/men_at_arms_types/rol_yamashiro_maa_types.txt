@@ -1,0 +1,17 @@
+﻿rol_yamashiro_archers = {
+ type = archers
+ can_recruit = { has_character_flag = rol_yamashiro_watch_unlocked }
+ should_show_when_unavailable = { government_allows = subject_men_at_arms has_character_flag = rol_yamashiro_watch_unlocked }
+ damage = 45
+ toughness = 18
+ pursuit = 0
+ screen = 0
+ terrain_bonus = { hills = { damage = 12 toughness = 6 } forest = { damage = 8 } }
+ counters = { skirmishers = 1 }
+ buy_cost = { gold = bowmen_recruitment_cost }
+ low_maintenance_cost = { gold = bowmen_low_maint_cost }
+ high_maintenance_cost = { gold = bowmen_high_maint_cost }
+ provision_cost = 7
+ stack = 100
+ ai_quality = { value = culture_ai_weight_archers }
+}

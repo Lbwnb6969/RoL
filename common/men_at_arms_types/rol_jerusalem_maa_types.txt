@@ -1,0 +1,18 @@
+﻿rol_jerusalem_watch = {
+	type = heavy_infantry
+	icon = rol_adeptus_custudes
+	can_recruit = { has_character_flag = rol_jerusalem_watch_unlocked }
+	should_show_when_unavailable = { government_allows = subject_men_at_arms has_character_flag = rol_jerusalem_watch_unlocked }
+	damage = 55
+	toughness = 60
+	pursuit = 0
+	screen = 0
+	terrain_bonus = { hills = { toughness = 12 } desert = { toughness = 8 } }
+	counters = { pikemen = 1 }
+	buy_cost = { gold = accolade_heavy_infantry_recruitment_cost }
+	low_maintenance_cost = { gold = heavy_infantry_low_maint_cost }
+	high_maintenance_cost = { gold = heavy_infantry_high_maint_cost }
+	provision_cost = 12
+	stack = 100
+	ai_quality = { value = culture_ai_weight_heavy_infantry }
+}

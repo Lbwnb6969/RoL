@@ -1,0 +1,17 @@
+﻿rol_alexandria_archive_decision = {
+	picture = { reference = "gfx/interface/illustrations/decisions/decision_smith.dds" }
+	ai_check_interval = 0
+	is_shown = { is_ai = no is_playable_character = yes has_title = title:c_alexandria NOT = { has_character_flag = rol_alexandria_archive_finished } }
+	is_valid_showing_failures_only = { is_available_adult = yes gold >= 100 }
+	effect = { trigger_event = rol_new_sites.0001 }
+	ai_potential = { always = no }
+}
+
+rol_jerusalem_watch_decision = {
+	picture = { reference = "gfx/interface/illustrations/decisions/decision_smith.dds" }
+	ai_check_interval = 0
+	is_shown = { is_ai = no is_playable_character = yes has_title = title:c_jerusalem NOT = { has_character_flag = rol_jerusalem_watch_finished } }
+	is_valid_showing_failures_only = { is_available_adult = yes gold >= 100 }
+	effect = { trigger_event = rol_new_sites.0010 }
+	ai_potential = { always = no }
+}

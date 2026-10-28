@@ -1,0 +1,31 @@
+﻿rol_bg_hangzhou_watergate = {
+	background = {
+		reference = "gfx/interface/illustrations/event_scenes/rol_event_hangzhou_watergate.dds"
+		environment = "environment_frontend_west_main"
+		ambience = "event:/SFX/Events/Backgrounds/throneroom_western"
+	}
+}
+
+rol_bg_yamashiro_road = {
+	background = {
+		reference = "gfx/interface/illustrations/event_scenes/rol_event_yamashiro_road.dds"
+		environment = "environment_frontend_west_main"
+		ambience = "event:/SFX/Events/Backgrounds/throneroom_western"
+	}
+}
+
+rol_bg_angkor_waterworks = {
+	background = {
+		reference = "gfx/interface/illustrations/event_scenes/rol_event_angkor_waterworks.dds"
+		environment = "environment_frontend_west_main"
+		ambience = "event:/SFX/Events/Backgrounds/throneroom_western"
+	}
+}
+
+rol_bg_baghdad_library = {
+	background = {
+		reference = "gfx/interface/illustrations/event_scenes/rol_event_baghdad_library.dds"
+		environment = "environment_frontend_west_main"
+		ambience = "event:/SFX/Events/Backgrounds/throneroom_western"
+	}
+}

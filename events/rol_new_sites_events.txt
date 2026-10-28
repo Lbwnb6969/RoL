@@ -1,0 +1,33 @@
+﻿namespace = rol_new_sites
+
+rol_new_sites.0001 = {
+	type = character_event
+	title = rol_new_sites.0001.t
+	desc = rol_new_sites.0001.desc
+	theme = learning
+	override_background = { reference = rol_bg_relic_scholarly_study }
+	option = {
+		name = rol_new_sites.0001.a
+		trigger = { has_title = title:c_alexandria gold >= 100 NOT = { has_character_flag = rol_alexandria_archive_finished } }
+		add_gold = -100
+		add_character_flag = rol_alexandria_archive_finished
+		title:c_alexandria = { add_county_modifier = { modifier = rol_alexandria_archive_modifier years = 20 } }
+	}
+	option = { name = rol_new_sites.leave }
+}
+
+rol_new_sites.0010 = {
+	type = character_event
+	title = rol_new_sites.0010.t
+	desc = rol_new_sites.0010.desc
+	theme = martial
+	override_background = { reference = rol_bg_fragment_expedition }
+	option = {
+		name = rol_new_sites.0010.a
+		trigger = { has_title = title:c_jerusalem gold >= 100 NOT = { has_character_flag = rol_jerusalem_watch_finished } }
+		add_gold = -100
+		add_character_flag = rol_jerusalem_watch_finished
+		add_character_flag = rol_jerusalem_watch_unlocked
+	}
+	option = { name = rol_new_sites.leave }
+}

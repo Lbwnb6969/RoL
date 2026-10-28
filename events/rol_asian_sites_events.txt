@@ -1,0 +1,213 @@
+﻿namespace = rol_asian_sites
+
+rol_asian_sites.0100 = {
+	type = character_event
+	title = rol_asian_sites.0100.t
+	desc = rol_asian_sites.0100.desc
+	theme = learning
+	override_background = { reference = rol_bg_hangzhou_watergate }
+	option = { name = rol_asian_sites.0100.a trigger = { has_title = title:c_hangzhou NOT = { has_character_flag = rol_hangzhou_site_finished } } trigger_event = rol_asian_sites.0102 }
+	option = { name = rol_asian_sites.leave }
+}
+
+rol_asian_sites.0102 = {
+	type = character_event
+	title = rol_asian_sites.0102.t
+	desc = rol_asian_sites.0102.desc
+	theme = learning
+	override_background = { reference = rol_bg_hangzhou_watergate }
+	option = {
+		name = rol_asian_sites.0102.a
+		trigger = { has_title = title:c_hangzhou NOT = { has_character_flag = rol_hangzhou_site_finished } gold >= 25 }
+		add_gold = -25
+		trigger_event = rol_asian_sites.0101
+	}
+	option = {
+		name = rol_asian_sites.0102.b
+		trigger = { has_title = title:c_hangzhou NOT = { has_character_flag = rol_hangzhou_site_finished } }
+		add_stress = 10
+		trigger_event = rol_asian_sites.0101
+	}
+	option = { name = rol_asian_sites.leave }
+}
+
+rol_asian_sites.0101 = {
+	type = character_event
+	title = rol_asian_sites.0101.t
+	desc = rol_asian_sites.0101.desc
+	theme = learning
+	override_background = { reference = rol_bg_hangzhou_watergate }
+	option = {
+		name = rol_asian_sites.0101.a
+		trigger = { has_title = title:c_hangzhou NOT = { has_character_flag = rol_hangzhou_site_finished } gold >= 100 }
+		add_gold = -100
+		add_character_flag = rol_hangzhou_site_finished
+		title:c_hangzhou = { add_county_modifier = { modifier = rol_hangzhou_waterways years = 20 } }
+	}
+	option = {
+		name = rol_asian_sites.0101.b
+		trigger = { has_title = title:c_hangzhou NOT = { has_character_flag = rol_hangzhou_site_finished } }
+		add_character_flag = rol_hangzhou_site_finished
+		add_prestige = 100
+	}
+	option = { name = rol_asian_sites.leave }
+}
+
+rol_asian_sites.0200 = {
+	type = character_event
+	title = rol_asian_sites.0200.t
+	desc = rol_asian_sites.0200.desc
+	theme = martial
+	override_background = { reference = rol_bg_yamashiro_road }
+	option = { name = rol_asian_sites.0200.a trigger = { has_title = title:c_yamashiro NOT = { has_character_flag = rol_yamashiro_site_finished } } trigger_event = rol_asian_sites.0202 }
+	option = { name = rol_asian_sites.leave }
+}
+
+rol_asian_sites.0202 = {
+	type = character_event
+	title = rol_asian_sites.0202.t
+	desc = rol_asian_sites.0202.desc
+	theme = martial
+	override_background = { reference = rol_bg_yamashiro_road }
+	option = {
+		name = rol_asian_sites.0202.a
+		trigger = { has_title = title:c_yamashiro NOT = { has_character_flag = rol_yamashiro_site_finished } gold >= 25 }
+		add_gold = -25
+		trigger_event = rol_asian_sites.0201
+	}
+	option = {
+		name = rol_asian_sites.0202.b
+		trigger = { has_title = title:c_yamashiro NOT = { has_character_flag = rol_yamashiro_site_finished } }
+		add_stress = 10
+		trigger_event = rol_asian_sites.0201
+	}
+	option = { name = rol_asian_sites.leave }
+}
+
+rol_asian_sites.0201 = {
+	type = character_event
+	title = rol_asian_sites.0201.t
+	desc = rol_asian_sites.0201.desc
+	theme = martial
+	override_background = { reference = rol_bg_yamashiro_road }
+	option = {
+		name = rol_asian_sites.0201.a
+		trigger = { has_title = title:c_yamashiro NOT = { has_character_flag = rol_yamashiro_site_finished } gold >= 100 }
+		add_gold = -100
+		add_character_flag = rol_yamashiro_site_finished
+		add_character_flag = rol_yamashiro_watch_unlocked
+	}
+	option = {
+		name = rol_asian_sites.0201.b
+		trigger = { has_title = title:c_yamashiro NOT = { has_character_flag = rol_yamashiro_site_finished } }
+		add_character_flag = rol_yamashiro_site_finished
+		add_prestige = 100
+	}
+	option = { name = rol_asian_sites.leave }
+}
+
+rol_asian_sites.0300 = {
+	type = character_event
+	title = rol_asian_sites.0300.t
+	desc = rol_asian_sites.0300.desc
+	theme = learning
+	override_background = { reference = rol_bg_angkor_waterworks }
+	option = { name = rol_asian_sites.0300.a trigger = { has_title = title:c_angkor NOT = { has_character_flag = rol_angkor_site_finished } } trigger_event = rol_asian_sites.0302 }
+	option = { name = rol_asian_sites.leave }
+}
+
+rol_asian_sites.0302 = {
+	type = character_event
+	title = rol_asian_sites.0302.t
+	desc = rol_asian_sites.0302.desc
+	theme = learning
+	override_background = { reference = rol_bg_angkor_waterworks }
+	option = {
+		name = rol_asian_sites.0302.a
+		trigger = { has_title = title:c_angkor NOT = { has_character_flag = rol_angkor_site_finished } gold >= 25 }
+		add_gold = -25
+		trigger_event = rol_asian_sites.0301
+	}
+	option = {
+		name = rol_asian_sites.0302.b
+		trigger = { has_title = title:c_angkor NOT = { has_character_flag = rol_angkor_site_finished } }
+		add_stress = 10
+		trigger_event = rol_asian_sites.0301
+	}
+	option = { name = rol_asian_sites.leave }
+}
+
+rol_asian_sites.0301 = {
+	type = character_event
+	title = rol_asian_sites.0301.t
+	desc = rol_asian_sites.0301.desc
+	theme = learning
+	override_background = { reference = rol_bg_angkor_waterworks }
+	option = {
+		name = rol_asian_sites.0301.a
+		trigger = { has_title = title:c_angkor NOT = { has_character_flag = rol_angkor_site_finished } gold >= 100 }
+		add_gold = -100
+		add_character_flag = rol_angkor_site_finished
+		title:c_angkor = { add_county_modifier = { modifier = rol_angkor_reservoir years = 20 } }
+	}
+	option = {
+		name = rol_asian_sites.0301.b
+		trigger = { has_title = title:c_angkor NOT = { has_character_flag = rol_angkor_site_finished } }
+		add_character_flag = rol_angkor_site_finished
+		add_prestige = 100
+	}
+	option = { name = rol_asian_sites.leave }
+}
+
+rol_asian_sites.0400 = {
+	type = character_event
+	title = rol_asian_sites.0400.t
+	desc = rol_asian_sites.0400.desc
+	theme = learning
+	override_background = { reference = rol_bg_baghdad_library }
+	option = { name = rol_asian_sites.0400.a trigger = { has_title = title:c_baghdad NOT = { has_character_flag = rol_baghdad_site_finished } } trigger_event = rol_asian_sites.0402 }
+	option = { name = rol_asian_sites.leave }
+}
+
+rol_asian_sites.0402 = {
+	type = character_event
+	title = rol_asian_sites.0402.t
+	desc = rol_asian_sites.0402.desc
+	theme = learning
+	override_background = { reference = rol_bg_baghdad_library }
+	option = {
+		name = rol_asian_sites.0402.a
+		trigger = { has_title = title:c_baghdad NOT = { has_character_flag = rol_baghdad_site_finished } gold >= 25 }
+		add_gold = -25
+		trigger_event = rol_asian_sites.0401
+	}
+	option = {
+		name = rol_asian_sites.0402.b
+		trigger = { has_title = title:c_baghdad NOT = { has_character_flag = rol_baghdad_site_finished } }
+		add_stress = 10
+		trigger_event = rol_asian_sites.0401
+	}
+	option = { name = rol_asian_sites.leave }
+}
+
+rol_asian_sites.0401 = {
+	type = character_event
+	title = rol_asian_sites.0401.t
+	desc = rol_asian_sites.0401.desc
+	theme = learning
+	override_background = { reference = rol_bg_baghdad_library }
+	option = {
+		name = rol_asian_sites.0401.a
+		trigger = { has_title = title:c_baghdad NOT = { has_character_flag = rol_baghdad_site_finished } gold >= 100 }
+		add_gold = -100
+		add_character_flag = rol_baghdad_site_finished
+		add_character_modifier = { modifier = rol_baghdad_manuscripts years = 10 }
+	}
+	option = {
+		name = rol_asian_sites.0401.b
+		trigger = { has_title = title:c_baghdad NOT = { has_character_flag = rol_baghdad_site_finished } }
+		add_character_flag = rol_baghdad_site_finished
+		add_prestige = 100
+	}
+	option = { name = rol_asian_sites.leave }
+}

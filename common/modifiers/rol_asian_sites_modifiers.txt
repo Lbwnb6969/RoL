@@ -1,0 +1,3 @@
+﻿rol_hangzhou_waterways = { development_growth_factor = 0.35 tax_mult = 0.2 }
+rol_angkor_reservoir = { development_growth_factor = 0.35 tax_mult = 0.2 }
+rol_baghdad_manuscripts = { learning = 5 monthly_learning_lifestyle_xp_gain_mult = 0.25 }

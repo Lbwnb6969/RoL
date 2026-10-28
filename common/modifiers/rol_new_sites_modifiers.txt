@@ -1,0 +1,4 @@
+﻿rol_alexandria_archive_modifier = {
+	tax_mult = 0.3
+	development_growth_factor = 0.2
+}
