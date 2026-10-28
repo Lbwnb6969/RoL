@@ -16,7 +16,11 @@ rol_yamashiro_site_decision = {
 	ai_check_interval = 0
 	is_shown = { is_ai = no is_playable_character = yes has_title = title:c_yamashiro NOT = { has_character_flag = rol_yamashiro_site_finished } }
 	is_valid_showing_failures_only = { is_available_adult = yes }
-	effect = { trigger_event = rol_asian_sites.0200 }
+	effect = {
+  if = { limit = { has_character_flag = rol_yamashiro_site_surveyed } trigger_event = rol_asian_sites.0201 }
+  else_if = { limit = { has_character_flag = rol_yamashiro_site_clue } trigger_event = rol_asian_sites.0202 }
+  else = { trigger_event = rol_asian_sites.0200 }
+ }
 	ai_potential = { always = no }
 }
 

@@ -72,6 +72,12 @@ def audit(site):
             assert s['gold']==200-(25 if survey==0 else 0)-(100 if outcome==0 else 0)
             assert s['stress']==(10 if survey else 0) and s['prestige']==(100 if outcome else 0)
             assert (f'rol_{site}_site_restored' in s['flags']) == (outcome==0)
+            if site=='yamashiro':
+                assert ('rol_yamashiro_watch_unlocked' in s['flags']) == (outcome==0)
+                assert not s['rewards']
+            else:
+                reward={'hangzhou':'rol_hangzhou_waterways','angkor':'rol_angkor_reservoir','baghdad':'rol_baghdad_manuscripts'}[site]
+                assert s['rewards']==([reward] if outcome==0 else [])
             old=deepcopy(s)
             assert not choose(final,outcome,s) and s==old # reward replay
             assert choose(epilogue,0,s) and s==old # epilogue is read-only
