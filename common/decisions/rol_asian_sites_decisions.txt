@@ -3,7 +3,11 @@
 	ai_check_interval = 0
 	is_shown = { is_ai = no is_playable_character = yes has_title = title:c_hangzhou NOT = { has_character_flag = rol_hangzhou_site_finished } }
 	is_valid_showing_failures_only = { is_available_adult = yes }
-	effect = { trigger_event = rol_asian_sites.0100 }
+	effect = {
+  if = { limit = { has_character_flag = rol_hangzhou_site_surveyed } trigger_event = rol_asian_sites.0101 }
+  else_if = { limit = { has_character_flag = rol_hangzhou_site_clue } trigger_event = rol_asian_sites.0102 }
+  else = { trigger_event = rol_asian_sites.0100 }
+ }
 	ai_potential = { always = no }
 }
 
