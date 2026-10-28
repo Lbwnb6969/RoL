@@ -42,6 +42,10 @@ rol_baghdad_site_decision = {
 	ai_check_interval = 0
 	is_shown = { is_ai = no is_playable_character = yes has_title = title:c_baghdad NOT = { has_character_flag = rol_baghdad_site_finished } }
 	is_valid_showing_failures_only = { is_available_adult = yes }
-	effect = { trigger_event = rol_asian_sites.0400 }
+	effect = {
+  if = { limit = { has_character_flag = rol_baghdad_site_surveyed } trigger_event = rol_asian_sites.0401 }
+  else_if = { limit = { has_character_flag = rol_baghdad_site_clue } trigger_event = rol_asian_sites.0402 }
+  else = { trigger_event = rol_asian_sites.0400 }
+ }
 	ai_potential = { always = no }
 }

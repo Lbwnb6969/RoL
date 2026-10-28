@@ -192,7 +192,7 @@ rol_asian_sites.0400 = {
 	desc = rol_asian_sites.0400.desc
 	theme = learning
 	override_background = { reference = rol_bg_baghdad_library }
-	option = { name = rol_asian_sites.0400.a trigger = { has_title = title:c_baghdad NOT = { has_character_flag = rol_baghdad_site_finished } } trigger_event = rol_asian_sites.0402 }
+	option = { name = rol_asian_sites.0400.a trigger = { has_title = title:c_baghdad NOT = { has_character_flag = rol_baghdad_site_finished } } add_character_flag = rol_baghdad_site_clue trigger_event = rol_asian_sites.0402 }
 	option = { name = rol_asian_sites.leave }
 }
 
@@ -204,13 +204,15 @@ rol_asian_sites.0402 = {
 	override_background = { reference = rol_bg_baghdad_library }
 	option = {
 		name = rol_asian_sites.0402.a
-		trigger = { has_title = title:c_baghdad NOT = { has_character_flag = rol_baghdad_site_finished } gold >= 25 }
+		trigger = { has_title = title:c_baghdad NOT = { has_character_flag = rol_baghdad_site_finished } has_character_flag = rol_baghdad_site_clue NOT = { has_character_flag = rol_baghdad_site_surveyed } gold >= 25 }
+		add_character_flag = rol_baghdad_site_surveyed
 		add_gold = -25
 		trigger_event = rol_asian_sites.0401
 	}
 	option = {
 		name = rol_asian_sites.0402.b
-		trigger = { has_title = title:c_baghdad NOT = { has_character_flag = rol_baghdad_site_finished } }
+		trigger = { has_title = title:c_baghdad NOT = { has_character_flag = rol_baghdad_site_finished } has_character_flag = rol_baghdad_site_clue NOT = { has_character_flag = rol_baghdad_site_surveyed } }
+		add_character_flag = rol_baghdad_site_surveyed
 		add_stress = 10
 		trigger_event = rol_asian_sites.0401
 	}
@@ -225,16 +227,23 @@ rol_asian_sites.0401 = {
 	override_background = { reference = rol_bg_baghdad_library }
 	option = {
 		name = rol_asian_sites.0401.a
-		trigger = { has_title = title:c_baghdad NOT = { has_character_flag = rol_baghdad_site_finished } gold >= 100 }
+		trigger = { has_title = title:c_baghdad NOT = { has_character_flag = rol_baghdad_site_finished } has_character_flag = rol_baghdad_site_surveyed gold >= 100 }
+		add_character_flag = rol_baghdad_site_restored
 		add_gold = -100
 		add_character_flag = rol_baghdad_site_finished
+		remove_character_flag = rol_baghdad_site_clue
+		remove_character_flag = rol_baghdad_site_surveyed
 		add_character_modifier = { modifier = rol_baghdad_manuscripts years = 10 }
+		trigger_event = rol_asian_sites.0403
 	}
 	option = {
 		name = rol_asian_sites.0401.b
-		trigger = { has_title = title:c_baghdad NOT = { has_character_flag = rol_baghdad_site_finished } }
+		trigger = { has_title = title:c_baghdad NOT = { has_character_flag = rol_baghdad_site_finished } has_character_flag = rol_baghdad_site_surveyed }
 		add_character_flag = rol_baghdad_site_finished
+		remove_character_flag = rol_baghdad_site_clue
+		remove_character_flag = rol_baghdad_site_surveyed
 		add_prestige = 100
+		trigger_event = rol_asian_sites.0403
 	}
 	option = { name = rol_asian_sites.leave }
 }
@@ -281,5 +290,20 @@ rol_asian_sites.0303 = {
  theme = learning
  override_background = { reference = rol_bg_angkor_waterworks }
  trigger = { has_character_flag = rol_angkor_site_finished }
+ option = { name = rol_asian_sites.epilogue_close }
+}
+
+rol_asian_sites.0403 = {
+ type = character_event
+ title = rol_asian_sites.0403.t
+ desc = {
+  first_valid = {
+   triggered_desc = { trigger = { has_character_flag = rol_baghdad_site_restored } desc = rol_asian_sites.0403.restored }
+   desc = rol_asian_sites.0403.published
+  }
+ }
+ theme = learning
+ override_background = { reference = rol_bg_baghdad_library }
+ trigger = { has_character_flag = rol_baghdad_site_finished }
  option = { name = rol_asian_sites.epilogue_close }
 }
