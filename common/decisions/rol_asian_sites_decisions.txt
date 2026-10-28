@@ -29,7 +29,11 @@ rol_angkor_site_decision = {
 	ai_check_interval = 0
 	is_shown = { is_ai = no is_playable_character = yes has_title = title:c_angkor NOT = { has_character_flag = rol_angkor_site_finished } }
 	is_valid_showing_failures_only = { is_available_adult = yes }
-	effect = { trigger_event = rol_asian_sites.0300 }
+	effect = {
+  if = { limit = { has_character_flag = rol_angkor_site_surveyed } trigger_event = rol_asian_sites.0301 }
+  else_if = { limit = { has_character_flag = rol_angkor_site_clue } trigger_event = rol_asian_sites.0302 }
+  else = { trigger_event = rol_asian_sites.0300 }
+ }
 	ai_potential = { always = no }
 }
 

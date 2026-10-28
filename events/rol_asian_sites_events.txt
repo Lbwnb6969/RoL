@@ -130,7 +130,7 @@ rol_asian_sites.0300 = {
 	desc = rol_asian_sites.0300.desc
 	theme = learning
 	override_background = { reference = rol_bg_angkor_waterworks }
-	option = { name = rol_asian_sites.0300.a trigger = { has_title = title:c_angkor NOT = { has_character_flag = rol_angkor_site_finished } } trigger_event = rol_asian_sites.0302 }
+	option = { name = rol_asian_sites.0300.a trigger = { has_title = title:c_angkor NOT = { has_character_flag = rol_angkor_site_finished } } add_character_flag = rol_angkor_site_clue trigger_event = rol_asian_sites.0302 }
 	option = { name = rol_asian_sites.leave }
 }
 
@@ -142,13 +142,15 @@ rol_asian_sites.0302 = {
 	override_background = { reference = rol_bg_angkor_waterworks }
 	option = {
 		name = rol_asian_sites.0302.a
-		trigger = { has_title = title:c_angkor NOT = { has_character_flag = rol_angkor_site_finished } gold >= 25 }
+		trigger = { has_title = title:c_angkor NOT = { has_character_flag = rol_angkor_site_finished } has_character_flag = rol_angkor_site_clue NOT = { has_character_flag = rol_angkor_site_surveyed } gold >= 25 }
+		add_character_flag = rol_angkor_site_surveyed
 		add_gold = -25
 		trigger_event = rol_asian_sites.0301
 	}
 	option = {
 		name = rol_asian_sites.0302.b
-		trigger = { has_title = title:c_angkor NOT = { has_character_flag = rol_angkor_site_finished } }
+		trigger = { has_title = title:c_angkor NOT = { has_character_flag = rol_angkor_site_finished } has_character_flag = rol_angkor_site_clue NOT = { has_character_flag = rol_angkor_site_surveyed } }
+		add_character_flag = rol_angkor_site_surveyed
 		add_stress = 10
 		trigger_event = rol_asian_sites.0301
 	}
@@ -163,16 +165,23 @@ rol_asian_sites.0301 = {
 	override_background = { reference = rol_bg_angkor_waterworks }
 	option = {
 		name = rol_asian_sites.0301.a
-		trigger = { has_title = title:c_angkor NOT = { has_character_flag = rol_angkor_site_finished } gold >= 100 }
+		trigger = { has_title = title:c_angkor NOT = { has_character_flag = rol_angkor_site_finished } has_character_flag = rol_angkor_site_surveyed gold >= 100 }
+		add_character_flag = rol_angkor_site_restored
 		add_gold = -100
 		add_character_flag = rol_angkor_site_finished
+		remove_character_flag = rol_angkor_site_clue
+		remove_character_flag = rol_angkor_site_surveyed
 		title:c_angkor = { add_county_modifier = { modifier = rol_angkor_reservoir years = 20 } }
+		trigger_event = rol_asian_sites.0303
 	}
 	option = {
 		name = rol_asian_sites.0301.b
-		trigger = { has_title = title:c_angkor NOT = { has_character_flag = rol_angkor_site_finished } }
+		trigger = { has_title = title:c_angkor NOT = { has_character_flag = rol_angkor_site_finished } has_character_flag = rol_angkor_site_surveyed }
 		add_character_flag = rol_angkor_site_finished
+		remove_character_flag = rol_angkor_site_clue
+		remove_character_flag = rol_angkor_site_surveyed
 		add_prestige = 100
+		trigger_event = rol_asian_sites.0303
 	}
 	option = { name = rol_asian_sites.leave }
 }
@@ -257,5 +266,20 @@ rol_asian_sites.0203 = {
  theme = learning
  override_background = { reference = rol_bg_yamashiro_road }
  trigger = { has_character_flag = rol_yamashiro_site_finished }
+ option = { name = rol_asian_sites.epilogue_close }
+}
+
+rol_asian_sites.0303 = {
+ type = character_event
+ title = rol_asian_sites.0303.t
+ desc = {
+  first_valid = {
+   triggered_desc = { trigger = { has_character_flag = rol_angkor_site_restored } desc = rol_asian_sites.0303.restored }
+   desc = rol_asian_sites.0303.published
+  }
+ }
+ theme = learning
+ override_background = { reference = rol_bg_angkor_waterworks }
+ trigger = { has_character_flag = rol_angkor_site_finished }
  option = { name = rol_asian_sites.epilogue_close }
 }
