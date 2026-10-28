@@ -17,4 +17,5 @@
  rol_alexandria_archive_modifier:0 "重整的港口档案"
  rol_alexandria_archive_modifier_desc:0 "修复的账册帮助港口商人重新建立贸易联系。持续二十年。"
  rol_jerusalem_watch:0 "圣城古道卫队"
+ rol_jerusalem_recruitment_unlock_tt:0 "解锁圣城古道卫队的个人招募资格；招募需另付费用并占用兵士编制。领主不能借用这项资格，继承人不自动获得。"
  rol_jerusalem_watch_flavor:0 "这些重步兵沿袭石堡守卫的盾墙操练，守护通往圣城的道路。"

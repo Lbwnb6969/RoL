@@ -17,4 +17,5 @@
  rol_alexandria_archive_modifier:0 "Restored Harbor Records"
  rol_alexandria_archive_modifier_desc:0 "Restored ledgers help merchants renew their trade connections. Lasts twenty years."
  rol_jerusalem_watch:0 "Holy City Road Watch"
+ rol_jerusalem_recruitment_unlock_tt:0 "Unlock personal recruitment of Holy City Road Watch. Recruitment costs gold and uses a men-at-arms slot. Lieges cannot borrow this qualification, and heirs do not automatically receive it."
  rol_jerusalem_watch_flavor:0 "These heavy infantry follow the shield-wall drills of the old fort's defenders, guarding the roads to the holy city."

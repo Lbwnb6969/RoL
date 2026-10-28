@@ -1,0 +1,5 @@
+﻿rol_regional_story_actor_available_trigger = {
+	is_playable_character = yes
+	is_ai = no
+	is_available_adult = yes
+}

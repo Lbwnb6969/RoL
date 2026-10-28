@@ -515,12 +515,15 @@ def audit(root: Path) -> int:
     from rol_quest_lifecycle_contracts import check_quest_lifecycle_contract
     compatible_files, _ = check_compatibility_contract(root, errors)
     settled_routes = check_quest_lifecycle_contract(root, errors)
+    from rol_regional_story_contracts import check_regional_story_contract
+    regional_routes = check_regional_story_contract(root, errors)
     if errors:
         print(f"[FAIL] RoL static audit failed: {len(errors)} issue(s)")
         for error in errors:
             print(f"  - {error}")
         return 1
     print(f"[OK] Compatibility and settlement: {compatible_files} active text files, {settled_routes} lifecycle routes")
+    print(f"[OK] Regional short stories: {regional_routes} reward routes (separate from the five activity expeditions)")
     print(f"[OK] System deepening: {rival_witnesses} rival witnesses, {family_records} family knowledge records")
     print(f"[OK] Observation and mastery: {commission_witnesses} commission, {negotiation_witnesses} negotiation, {exploration_witnesses} exploration witnesses")
     print(f"[OK] Expedition feedback: {feedback_types} committed and attributed log types")

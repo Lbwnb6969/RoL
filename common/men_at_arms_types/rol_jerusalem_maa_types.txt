@@ -1,6 +1,8 @@
 ﻿rol_jerusalem_watch = {
 	type = heavy_infantry
-	icon = rol_adeptus_custudes
+	icon = heavy_infantry
+	illustration = { reference = heavy_infantry }
+	access_through_subject = { always = no }
 	can_recruit = { has_character_flag = rol_jerusalem_watch_unlocked }
 	should_show_when_unavailable = { government_allows = subject_men_at_arms has_character_flag = rol_jerusalem_watch_unlocked }
 	damage = 55

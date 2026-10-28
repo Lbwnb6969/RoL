@@ -2,7 +2,7 @@
 	picture = { reference = "gfx/interface/illustrations/decisions/rol_hangzhou_site.dds" }
 	ai_check_interval = 0
 	is_shown = { is_ai = no is_playable_character = yes has_title = title:c_hangzhou NOT = { has_character_flag = rol_hangzhou_site_finished } }
-	is_valid_showing_failures_only = { is_available_adult = yes }
+	is_valid_showing_failures_only = { rol_regional_story_actor_available_trigger = yes }
 	effect = {
   if = { limit = { has_character_flag = rol_hangzhou_site_surveyed } trigger_event = rol_asian_sites.0101 }
   else_if = { limit = { has_character_flag = rol_hangzhou_site_clue } trigger_event = rol_asian_sites.0102 }
@@ -15,7 +15,7 @@ rol_yamashiro_site_decision = {
 	picture = { reference = "gfx/interface/illustrations/decisions/rol_yamashiro_site.dds" }
 	ai_check_interval = 0
 	is_shown = { is_ai = no is_playable_character = yes has_title = title:c_yamashiro NOT = { has_character_flag = rol_yamashiro_site_finished } }
-	is_valid_showing_failures_only = { is_available_adult = yes }
+	is_valid_showing_failures_only = { rol_regional_story_actor_available_trigger = yes }
 	effect = {
   if = { limit = { has_character_flag = rol_yamashiro_site_surveyed } trigger_event = rol_asian_sites.0201 }
   else_if = { limit = { has_character_flag = rol_yamashiro_site_clue } trigger_event = rol_asian_sites.0202 }
@@ -28,7 +28,7 @@ rol_angkor_site_decision = {
 	picture = { reference = "gfx/interface/illustrations/decisions/rol_angkor_site.dds" }
 	ai_check_interval = 0
 	is_shown = { is_ai = no is_playable_character = yes has_title = title:c_angkor NOT = { has_character_flag = rol_angkor_site_finished } }
-	is_valid_showing_failures_only = { is_available_adult = yes }
+	is_valid_showing_failures_only = { rol_regional_story_actor_available_trigger = yes }
 	effect = {
   if = { limit = { has_character_flag = rol_angkor_site_surveyed } trigger_event = rol_asian_sites.0301 }
   else_if = { limit = { has_character_flag = rol_angkor_site_clue } trigger_event = rol_asian_sites.0302 }
@@ -41,7 +41,7 @@ rol_baghdad_site_decision = {
 	picture = { reference = "gfx/interface/illustrations/decisions/rol_baghdad_site.dds" }
 	ai_check_interval = 0
 	is_shown = { is_ai = no is_playable_character = yes has_title = title:c_baghdad NOT = { has_character_flag = rol_baghdad_site_finished } }
-	is_valid_showing_failures_only = { is_available_adult = yes }
+	is_valid_showing_failures_only = { rol_regional_story_actor_available_trigger = yes }
 	effect = {
   if = { limit = { has_character_flag = rol_baghdad_site_surveyed } trigger_event = rol_asian_sites.0401 }
   else_if = { limit = { has_character_flag = rol_baghdad_site_clue } trigger_event = rol_asian_sites.0402 }

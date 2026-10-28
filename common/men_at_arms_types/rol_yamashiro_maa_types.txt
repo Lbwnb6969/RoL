@@ -1,5 +1,8 @@
 ﻿rol_yamashiro_archers = {
  type = archers
+ icon = bowmen
+ illustration = { reference = bowmen }
+ access_through_subject = { always = no }
  can_recruit = { has_character_flag = rol_yamashiro_watch_unlocked }
  should_show_when_unavailable = { government_allows = subject_men_at_arms has_character_flag = rol_yamashiro_watch_unlocked }
  damage = 45
